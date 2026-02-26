@@ -20836,47 +20836,18 @@ level_headers:
 
 LVHEAD_00:
 .db $00                                                                             ; 05:55CA
-
-lvh_width:
-.dw $0100                                                                           ; 05:55CB
-
-lvh_height:
-.dw $0010                                                                           ; 05:55CD
-
-lvh_x0:
-.dw $0040                                                                           ; 05:55CF
-
-lvh_x1:
-.dw $18C0                                                                           ; 05:55D1
-
-lvh_y0:
-.dw $0020                                                                           ; 05:55D3
-
-lvh_y1:
-.dw $0140                                                                           ; 05:55D5
+.dw $0100, $0010, $0040, $18C0, $0020, $0140                                        ; 05:55CB
 .db $08, $0B                                                                        ; 05:55D7
-
-lvh_layout_bank05:
 .dw LVLAYOUT_GHZ1_ENDING
 .db :LVLAYOUT_GHZ1_ENDING
-
-lvh_layout_cmpsize:
 .dw $083E                                                                           ; 05:55DB
-
-lvh_tilemap_bank04:
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
-
-lvh_art0000_bank0C:
 .dw ART_GHZ_0000
 .db :ART_GHZ_0000
-
-lvh_art2000:
 .dw ART_GHZ_2000
 .db :ART_GHZ_2000
 .db $00, $0A, $03, $00                                                              ; 05:55E4
-
-lvh_objlist:
 .dw LVOBJECTS_GHZ1
 .db :LVOBJECTS_GHZ1
 .db $04, $00, $20, $00, $00                                                         ; 05:55EA
