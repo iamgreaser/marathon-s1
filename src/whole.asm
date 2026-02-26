@@ -170,7 +170,7 @@ g_pal_flash_countdown_timer db   ; D2B1
 g_pal_flash_idx db   ; D2B2
 g_pal_flash_color_value db   ; D2B3
 g_prev_sprite_count db   ; D2B4
-g_demo_next_input_relptr dw   ; D2B5
+. dsw 1
 g_camera_y_look_up_offset_px dw   ; D2B7
 g_sonic_flags_copy db   ; D2B9
 g_score_BCD_big_endian_hi db   ; D2BA
@@ -3032,7 +3032,7 @@ run_title_screen:
    ld     a, (hl)                      ; 00:1326 - 7E
    inc    hl                           ; 00:1327 - 23
    and    a                            ; 00:1328 - A7
-   jr     z, @stop_music_and_return    ; 00:1329 - 28 25
+   jp z, 0 ; We have no demo, so we do a reset if the title screen times out.
    ld     (tmp_01), a                  ; 00:132B - 32 0F D2
    ld     (tmp_02), hl                 ; 00:132E - 22 10 D2
    ld     (tmp_04), de                 ; 00:1331 - ED 53 12 D2
@@ -3047,8 +3047,6 @@ run_title_screen:
    bit    5, (iy+g_inputs_player_1-IYBASE)  ; 00:1348 - FD CB 03 6E
    jp     nz, @mainloop                ; 00:134C - C2 EA 12
    scf                                 ; 00:134F - 37
-
-@stop_music_and_return:
    rst    $20                          ; 00:1350 - E7
    ret                                 ; 00:1351 - C9
 
@@ -4071,31 +4069,6 @@ LUT_level_tally_act_art_offset:
 PAL3_score_tally:
 .INCBIN "src/data/score_tally.pal3"
 
-update_demo_inputs:
-   ld     hl, (g_demo_next_input_relptr)  ; 00:1BAD - 2A B5 D2
-   ld     de, ARRAY_demo_inputs        ; 00:1BB0 - 11 C6 1B
-   add    hl, de                       ; 00:1BB3 - 19
-   ld     a, (hl)                      ; 00:1BB4 - 7E
-   ld     (iy+g_inputs_player_1-IYBASE), a  ; 00:1BB5 - FD 77 03
-   ld     a, (g_global_tick_counter)   ; 00:1BB8 - 3A 23 D2
-   and    $1F                          ; 00:1BBB - E6 1F
-   ret    nz                           ; 00:1BBD - C0
-   ld     hl, (g_demo_next_input_relptr)  ; 00:1BBE - 2A B5 D2
-   inc    hl                           ; 00:1BC1 - 23
-   ld     (g_demo_next_input_relptr), hl  ; 00:1BC2 - 22 B5 D2
-   ret                                 ; 00:1BC5 - C9
-
-ARRAY_demo_inputs:
-.db $F7, $F7, $F7, $F7, $DF, $F7, $FF, $FF, $D7, $F7, $F7, $F7, $FF, $DF, $F7, $F7  ; 00:1BC6
-.db $DF, $F7, $F7, $F7, $F7, $FF, $FF, $DF, $F7, $FF, $FF, $FF, $FB, $F7, $F7, $F5  ; 00:1BD6
-.db $FF, $FF, $FF, $FF, $FB, $FB, $F9, $FF, $FF, $FF, $FF, $F7, $F7, $F7, $F7, $D7  ; 00:1BE6
-.db $FF, $FF, $D7, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $D7, $FB, $FF, $FF, $FF, $FF  ; 00:1BF6
-.db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $D7, $F7, $F7, $FF, $D7  ; 00:1C06
-.db $FB, $F7, $F7, $F7, $F7, $FB, $FB, $F7, $FF, $D7, $FB, $FF, $F7, $F7, $D7, $FB  ; 00:1C16
-.db $D7, $F7, $F7, $F7, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $F7, $F7, $D7, $FF  ; 00:1C26
-.db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  ; 00:1C36
-.db $FF, $FF, $00                                                                   ; 00:1C46
-
 main:
    set    0, (iy+iy_00-IYBASE)         ; 00:1C49 - FD CB 00 C6
    ei                                  ; 00:1C4D - FB
@@ -4127,9 +4100,6 @@ main:
    res    1, (iy+iy_02-IYBASE)         ; 00:1C8B - FD CB 02 8E
    call   clear_sprite_table           ; 00:1C8F - CD E2 05
    call   run_title_screen             ; 00:1C92 - CD 87 12
-   res    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1C95 - FD CB 05 8E
-   jr     c, @main_loop                ; 00:1C99 - 38 04
-   set    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1C9B - FD CB 05 CE
 
 @main_loop:
    ld     a, (g_level)                 ; 00:1C9F - 3A 3E D2
@@ -4139,9 +4109,6 @@ main:
    res    1, (iy+iy_02-IYBASE)         ; 00:1CAA - FD CB 02 8E
    call   clear_sprite_table           ; 00:1CAE - CD E2 05
    call   run_world_map                ; 00:1CB1 - CD 52 0C
-   bit    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1CB4 - FD CB 05 4E
-   jr     z, @run_this_level           ; 00:1CB8 - 28 03
-   jp     c, @reset_game_state         ; 00:1CBA - DA 4E 1C
 
 @run_this_level:
    call   fade_screen_to_black         ; 00:1CBD - CD 40 0A
@@ -4244,11 +4211,6 @@ load_and_run_level:
    set    5, (iy+iy_00-IYBASE)         ; 00:1D98 - FD CB 00 EE
    pop    bc                           ; 00:1D9C - C1
    djnz   @each_level_warmup_frame     ; 00:1D9D - 10 A3
-   bit    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1D9F - FD CB 05 4E
-   jr     z, @main_level_loop          ; 00:1DA3 - 28 09
-   ld     hl, $0000                    ; 00:1DA5 - 21 00 00
-   ld     (g_demo_next_input_relptr), hl  ; 00:1DA8 - 22 B5 D2
-   ld     (iy+g_sprite_count-IYBASE), h  ; 00:1DAB - FD 74 0A
 
 @main_level_loop:
    res    0, (iy+iy_00-IYBASE)         ; 00:1DAE - FD CB 00 86
@@ -4283,13 +4245,6 @@ load_and_run_level:
 @continue_from_level_ending_timers:
    bit    1, (iy+iy_06_lvflag01-IYBASE)  ; 00:1DF0 - FD CB 06 4E
    call   nz, handle_level_finishing   ; 00:1DF4 - C4 78 1E
-   bit    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1DF7 - FD CB 05 4E
-   jr     z, @skip_demo_playback       ; 00:1DFB - 28 0A
-   bit    5, (iy+g_inputs_player_1-IYBASE)  ; 00:1DFD - FD CB 03 6E
-   jp     z, fade_out_and_stop_level   ; 00:1E01 - CA B8 20
-   call   update_demo_inputs           ; 00:1E04 - CD AD 1B
-
-@skip_demo_playback:
    ld     hl, (g_global_tick_counter)  ; 00:1E07 - 2A 23 D2
    inc    hl                           ; 00:1E0A - 23
    ld     (g_global_tick_counter), hl  ; 00:1E0B - 22 23 D2
@@ -4356,8 +4311,6 @@ handle_level_finishing:
    ret                                 ; 00:1E9D - C9
 
 handle_game_paused:
-   bit    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:1E9E - FD CB 05 4E
-   ret    nz                           ; 00:1EA2 - C0
    rst    $20                          ; 00:1EA3 - E7
 
 @loop_while_paused:
@@ -4623,8 +4576,6 @@ handle_level_restart_countdown_timer:
    dec    a                            ; 00:2067 - 3D
    ld     (g_level_restart_countdown_timer), a  ; 00:2068 - 32 87 D2
    jp     nz, load_and_run_level@return_from_restart_timer_nonexpiry  ; 00:206B - C2 E2 1D
-   bit    1, (iy+iy_05_lvflag00-IYBASE)  ; 00:206E - FD CB 05 4E
-   jr     nz, fade_out_and_stop_level  ; 00:2072 - 20 44
    bit    4, (iy+iy_0C_old_lvflag01-IYBASE)  ; 00:2074 - FD CB 0C 66
    jr     z, @level_not_entered_through_teleport  ; 00:2078 - 28 04
    set    4, (iy+iy_06_lvflag01-IYBASE)  ; 00:207A - FD CB 06 E6
