@@ -779,13 +779,6 @@ wait_until_irq_ticked:
    jr     z, wait_until_irq_ticked     ; 00:0320 - 28 FA
    ret                                 ; 00:0322 - C9
 
-UNUSED_00323:
-   set    2, (iy+iy_00-IYBASE)         ; 00:0323 - FD CB 00 D6
-   ld     (g_unknown_UNUSED_D225), hl  ; 00:0327 - 22 25 D2
-   ld     (g_unknown_UNUSED_D227), de  ; 00:032A - ED 53 27 D2
-   ld     (g_unknown_UNUSED_D229), bc  ; 00:032E - ED 43 29 D2
-   ret                                 ; 00:0332 - C9
-
 signal_load_palettes:
    set    3, (iy+iy_00-IYBASE)         ; 00:0333 - FD CB 00 DE
    ld     (g_SIG00b3_palettes_present), a  ; 00:0337 - 32 2F D2
@@ -852,94 +845,6 @@ upload_sprite_table_IRQ:
    ld     (g_prev_sprite_count), a     ; 00:0390 - 32 B4 D2
    ld     (iy+g_sprite_count-IYBASE), b  ; 00:0393 - FD 70 0A
    ret                                 ; 00:0396 - C9
-
-UNUSED_00397:
-   di                                  ; 00:0397 - F3
-   ld     a, e                         ; 00:0398 - 7B
-   out    ($BF), a                     ; 00:0399 - D3 BF
-   ld     a, d                         ; 00:039B - 7A
-   or     $40                          ; 00:039C - F6 40
-   out    ($BF), a                     ; 00:039E - D3 BF
-   ei                                  ; 00:03A0 - FB
-
--:
-   ld     a, (hl)                      ; 00:03A1 - 7E
-   out    ($BE), a                     ; 00:03A2 - D3 BE
-   inc    hl                           ; 00:03A4 - 23
-   dec    bc                           ; 00:03A5 - 0B
-   ld     a, b                         ; 00:03A6 - 78
-   or     c                            ; 00:03A7 - B1
-   jp     nz, -                        ; 00:03A8 - C2 A1 03
-   ret                                 ; 00:03AB - C9
-
-UNUSED_003AC:
-   di                                  ; 00:03AC - F3
-   push   af                           ; 00:03AD - F5
-   ld     a, e                         ; 00:03AE - 7B
-   out    ($BF), a                     ; 00:03AF - D3 BF
-   ld     a, d                         ; 00:03B1 - 7A
-   or     $40                          ; 00:03B2 - F6 40
-   out    ($BF), a                     ; 00:03B4 - D3 BF
-   pop    af                           ; 00:03B6 - F1
-   ld     de, (g_committed_rompage_1)  ; 00:03B7 - ED 5B 35 D2
-   push   de                           ; 00:03BB - D5
-   ld     (rompage_1), a               ; 00:03BC - 32 FE FF
-   ld     (g_committed_rompage_1), a   ; 00:03BF - 32 35 D2
-   inc    a                            ; 00:03C2 - 3C
-   ld     (rompage_2), a               ; 00:03C3 - 32 FF FF
-   ld     (g_committed_rompage_2), a   ; 00:03C6 - 32 36 D2
-   ei                                  ; 00:03C9 - FB
-
---:
-   ld     a, (hl)                      ; 00:03CA - 7E
-   cpl                                 ; 00:03CB - 2F
-   ld     e, a                         ; 00:03CC - 5F
-
--:
-   ld     a, (hl)                      ; 00:03CD - 7E
-   cp     e                            ; 00:03CE - BB
-   jr     z, +                         ; 00:03CF - 28 0C
-   out    ($BE), a                     ; 00:03D1 - D3 BE
-   ld     e, a                         ; 00:03D3 - 5F
-   inc    hl                           ; 00:03D4 - 23
-   dec    bc                           ; 00:03D5 - 0B
-   ld     a, b                         ; 00:03D6 - 78
-   or     c                            ; 00:03D7 - B1
-   jp     nz, -                        ; 00:03D8 - C2 CD 03
-   jr     ++                           ; 00:03DB - 18 18
-
-+:
-   ld     d, a                         ; 00:03DD - 57
-   inc    hl                           ; 00:03DE - 23
-   dec    bc                           ; 00:03DF - 0B
-   ld     a, b                         ; 00:03E0 - 78
-   or     c                            ; 00:03E1 - B1
-   jr     z, ++                        ; 00:03E2 - 28 11
-   ld     a, d                         ; 00:03E4 - 7A
-   ld     e, (hl)                      ; 00:03E5 - 5E
-
--:
-   out    ($BE), a                     ; 00:03E6 - D3 BE
-   dec    e                            ; 00:03E8 - 1D
-   nop                                 ; 00:03E9 - 00
-   nop                                 ; 00:03EA - 00
-   jp     nz, -                        ; 00:03EB - C2 E6 03
-   inc    hl                           ; 00:03EE - 23
-   dec    bc                           ; 00:03EF - 0B
-   ld     a, b                         ; 00:03F0 - 78
-   or     c                            ; 00:03F1 - B1
-   jp     nz, --                       ; 00:03F2 - C2 CA 03
-
-++:
-   di                                  ; 00:03F5 - F3
-   pop    de                           ; 00:03F6 - D1
-   ld     (g_committed_rompage_1), de  ; 00:03F7 - ED 53 35 D2
-   ld     a, e                         ; 00:03FB - 7B
-   ld     (rompage_1), a               ; 00:03FC - 32 FE FF
-   ld     a, d                         ; 00:03FF - 7A
-   ld     (rompage_2), a               ; 00:0400 - 32 FF FF
-   ei                                  ; 00:0403 - FB
-   ret                                 ; 00:0404 - C9
 
 load_art:
    di                                  ; 00:0405 - F3
@@ -13843,11 +13748,17 @@ objfunc_29_log:
    ld     (ix+15), l                   ; 01:7FD3 - DD 75 0F
    ld     (ix+16), h                   ; 01:7FD6 - DD 74 10
    jr     log_obj_continue@sprite_was_set  ; 01:7FD9 - 18 30
-.db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00  ; 01:7FDB
-.db $00, $00, $00, $00, $00                                                         ; 01:7FEB
+.ENDS
 
-TMRSEGA:
-.db $54, $4D, $52, $20, $53, $45, $47, $41, $59, $59, $1B, $A5, $76, $70, $00, $40  ; 01:7FF0
+.SMSTAG
+.SDSCTAG 0.0, "Sonic 1 Marathon", "", "modified by GreaseMonkey"
+
+.SECTION "Bank01_TMR_SEGA_presum" SLOT 1 BANK $01 FORCE ORG $3FF8
+.db $59, $59 ; 01:7FF8
+.ENDS
+;; Checksum is at 7FFA, 2 bytes.
+.SECTION "Bank01_TMR_SEGA_postsum" SLOT 1 BANK $01 FORCE ORG $3FFC
+.db $76, $70, $00  ; 01:7FFC
 .ENDS
 
 .SECTION "Bank02" SLOT 2 BANK $02 FORCE ORG $0000
