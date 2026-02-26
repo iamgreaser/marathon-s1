@@ -84,7 +84,6 @@ g_SIG00b3_palettes_present db   ; D22F
 g_current_displayed_palette_0 dw   ; D230
 g_current_displayed_palette_1 dw   ; D232
 .  dsb 1
-g_committed_rompage_1 db   ; D235
 g_committed_rompage_2 db   ; D236
 .  dsb 1
 g_level_width db   ; D238
@@ -491,8 +490,8 @@ irq_start:
 @dont_prepare_line_interrupt_for_water:
    push   ix                           ; 00:00AC - DD E5
    push   iy                           ; 00:00AE - FD E5
-   ld     hl, (g_committed_rompage_1)  ; 00:00B0 - 2A 35 D2
-   push   hl                           ; 00:00B3 - E5
+   ld a, (g_committed_rompage_2)
+   push af
    bit    0, (iy+iy_00-IYBASE)         ; 00:00B4 - FD CB 00 46
    call   nz, @fn_consider_underwater_palette  ; 00:00B8 - C4 A0 01
    bit    0, (iy+iy_00-IYBASE)         ; 00:00BB - FD CB 00 46
@@ -508,9 +507,9 @@ irq_start:
    in     a, ($DD)                     ; 00:00DB - DB DD
    and    $10                          ; 00:00DD - E6 10
    jp     z, ENTRY_RESET               ; 00:00DF - CA 00 00
-   pop    hl                           ; 00:00E2 - E1
-   ld     (rompage_1), hl              ; 00:00E3 - 22 FE FF
-   ld     (g_committed_rompage_1), hl  ; 00:00E6 - 22 35 D2
+   pop af
+   ld (g_committed_rompage_2), a
+   ld (rompage_2), a
    pop    iy                           ; 00:00E9 - FD E1
    pop    ix                           ; 00:00EB - DD E1
    pop    bc                           ; 00:00ED - C1
@@ -548,8 +547,8 @@ irq_start:
    out    ($BF), a                     ; 00:012B - D3 BF
    bit    7, (iy+iy_07_lvflag02-IYBASE)  ; 00:013D - FD CB 07 7E
    call   nz, update_sonic_3bpp_sprite  ; 00:0141 - C4 E0 37
-   ld     a, $01                       ; 00:0144 - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    bit    1, (iy+iy_00-IYBASE)         ; 00:0154 - FD CB 00 4E
    call   nz, upload_sprite_table_IRQ  ; 00:0158 - C4 3E 03
    bit    5, (iy+iy_00-IYBASE)         ; 00:015B - FD CB 00 6E
@@ -563,8 +562,8 @@ irq_start:
    ret                                 ; 00:0173 - C9
 
 @fn_update_palette:
-   ld     a, $01                       ; 00:0174 - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    bit    7, (iy+iy_06_lvflag01-IYBASE)  ; 00:0184 - FD CB 06 7E
    jr     nz, @use_underwater_palettes_instead  ; 00:0188 - 20 12
    ld     hl, (g_SIG00b3_palette_addr)  ; 00:018A - 2A 2B D2
@@ -581,8 +580,8 @@ irq_start:
 @fn_consider_underwater_palette:
    bit    7, (iy+iy_06_lvflag01-IYBASE)  ; 00:01A0 - FD CB 06 7E
    ret    z                            ; 00:01A4 - C8
-   ld     a, $01                       ; 00:01A5 - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     b, $00                       ; 00:01B5 - 06 00
 
 @waste_19_scanlines:
@@ -693,6 +692,7 @@ reset_init:
    ld     a, $01                       ; 00:0295 - 3E 01
    ld     (rompage_1), a               ; 00:0297 - 32 FE FF
    ld     a, $02                       ; 00:029A - 3E 02
+   ld (g_committed_rompage_2), a
    ld     (rompage_2), a               ; 00:029C - 32 FF FF
    ld     hl, g_level_layout           ; 00:029F - 21 00 C0
    ld     de, g_level_layout_1         ; 00:02A2 - 11 01 C0
@@ -765,13 +765,6 @@ TBL_reset_vdp_regs:
 ;; - It avoids consistently getting these around the wrong way, which is the race condition that happens with that particular ROM bank error that was exploited in a TAS.
 ;; - It saves ROM space.
 ;; ... yes, you write the committed page *before* writing the actual register, so the IRQ can restore it correctly.
-set_rompage_1_2:
-   inc a
-   call set_rompage_2
-   dec a
-   ld (g_committed_rompage_1), a
-   ld (rompage_1), a
-   ret
 set_rompage_2:
    ld (g_committed_rompage_2), a
    ld (rompage_2), a
@@ -858,8 +851,10 @@ load_art:
    or     $40                          ; 00:0418 - F6 40
    out    ($BF), a                     ; 00:041A - D3 BF
    pop    af                           ; 00:041C - F1
-   ld     de, (g_committed_rompage_1)  ; 00:0421 - ED 5B 35 D2
-   push   de                           ; 00:0425 - D5
+   ld e, a
+   ld a, (g_committed_rompage_2)
+   push af
+   ld a, e
    call set_rompage_2
    bit    1, (iy+iy_09-IYBASE)         ; 00:0433 - FD CB 09 4E
    jr     nz, +                        ; 00:0437 - 20 01
@@ -1000,9 +995,9 @@ load_art:
    di                                  ; 00:04E9 - F3
 
 +:
-   pop    de                           ; 00:04EA - D1
-   ld     (g_committed_rompage_1), de  ; 00:04EB - ED 53 35 D2
-   ld     (rompage_1), de              ; 00:04EF - ED 53 FE FF
+   pop af
+   ld (g_committed_rompage_2), a
+   ld (rompage_2), a
    ei                                  ; 00:04F3 - FB
    res    1, (iy+iy_09-IYBASE)         ; 00:04F4 - FD CB 09 8E
    ret                                 ; 00:04F8 - C9
@@ -1943,8 +1938,8 @@ unpack_level_layout_into_ram:
    ret                                 ; 00:0A3F - C9
 
 fade_screen_to_black:
-   ld     a, $01                       ; 00:0A40 - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     a, (iy+g_sprite_count-IYBASE)  ; 00:0A50 - FD 7E 0A
    res    0, (iy+iy_00-IYBASE)         ; 00:0A53 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:0A57 - CD 1C 03
@@ -2010,8 +2005,8 @@ fade_screen_down_to_palette:
    ld     de, g_temporary_palette_buffer  ; 00:0AB4 - 11 BC D3
    ld     bc, $0020                    ; 00:0AB7 - 01 20 00
    ldir                                ; 00:0ABA - ED B0
-   ld     a, $01                       ; 00:0ABC - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     hl, g_temporary_palette_buffer  ; 00:0ACC - 21 BC D3
    ld     a, $03                       ; 00:0ACF - 3E 03
    call   signal_load_palettes         ; 00:0AD1 - CD 33 03
@@ -2113,8 +2108,8 @@ palette_fade_up:
    ldir                                ; 00:0B6C - ED B0
 
 _palette_fade_up_common:
-   ld     a, $01                       ; 00:0B6E - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     hl, g_temporary_palette_buffer  ; 00:0B7E - 21 BC D3
    ld     a, $03                       ; 00:0B81 - 3E 03
    call   signal_load_palettes         ; 00:0B83 - CD 33 03
@@ -3482,8 +3477,8 @@ load_and_run_level:
    ld     hl, $0070                    ; 00:1D76 - 21 70 00
    ld     (g_camera_sonic_bounds_y1), hl  ; 00:1D79 - 22 65 D2
    call   update_ring_tile_art_timer_and_index  ; 00:1D7C - CD 9C 23
-   ld     a, $01                       ; 00:1D7F - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    call   draw_HUD_sprites             ; 00:1D8F - CD 5A 2E
    call   update_active_scroll_pos_and_ptrs  ; 00:1D92 - CD 3E 06
    call   load_scroll_tile_list_buffers  ; 00:1D95 - CD BD 06
@@ -3552,8 +3547,8 @@ load_and_run_level:
    ld     (hl), a                      ; 00:1E4C - 77
    add    hl, de                       ; 00:1E4D - 19
    djnz   @loop_clear_some_sprite_table_entries  ; 00:1E4E - 10 F8
-   ld     a, $01                       ; 00:1E50 - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    call   draw_HUD_sprites             ; 00:1E60 - CD 5A 2E
    call   update_active_scroll_pos_and_ptrs  ; 00:1E63 - CD 3E 06
    call   load_scroll_tile_list_buffers  ; 00:1E66 - CD BD 06
@@ -3636,8 +3631,8 @@ handle_palette_flashing:
    ld     (g_pal_flash_countdown_timer), a  ; 00:1F07 - 32 B1 D2
    ld     e, a                         ; 00:1F0A - 5F
    di                                  ; 00:1F0B - F3
-   ld     a, $01                       ; 00:1F0C - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     e, $00                       ; 00:1F1C - 1E 00
    ld     a, (g_pal_flash_idx)         ; 00:1F1E - 3A B2 D2
    ld     hl, (g_current_displayed_palette_0)  ; 00:1F21 - 2A 30 D2
@@ -4104,8 +4099,8 @@ load_and_init_level_from_header:
    ld     hl, LUT_base_PAL3s           ; 00:2278 - 21 7C 62
    add    hl, de                       ; 00:227B - 19
    di                                  ; 00:227C - F3
-   ld     a, $01                       ; 00:227D - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ei                                  ; 00:228D - FB
    ld     a, (hl)                      ; 00:228E - 7E
    inc    hl                           ; 00:228F - 23
@@ -4139,8 +4134,8 @@ load_and_init_level_from_header:
    ld     hl, LUT_PAL1_cycles          ; 00:22B8 - 21 8C 62
    add    hl, bc                       ; 00:22BB - 09
    di                                  ; 00:22BC - F3
-   ld     a, $01                       ; 00:22BD - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ei                                  ; 00:22CD - FB
    ld     a, (hl)                      ; 00:22CE - 7E
    inc    hl                           ; 00:22CF - 23
@@ -4404,8 +4399,8 @@ run_ending_and_credits:
    ld     (g_saved_vdp_reg_01), a      ; 00:25D1 - 32 19 D2
    res    0, (iy+iy_00-IYBASE)         ; 00:25D4 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:25D8 - CD 1C 03
-   ld     a, $01                       ; 00:25DB - 3E 01
-   call set_rompage_1_2
+   ld a, $02
+   call set_rompage_2
    ld     a, (g_chaos_emeralds_collected)  ; 00:25E3 - 3A 7F D2
    cp     $06                          ; 00:25E6 - FE 06
    jp     c, @skip_good_ending         ; 00:25E8 - DA 93 26
