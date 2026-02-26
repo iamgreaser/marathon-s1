@@ -2234,8 +2234,7 @@ calc_level_offset_HL_and_mask_C:
 
 write_partial_monitor_art:
    di                                  ; 00:0C1D - F3
-   ld     a, $05                       ; 00:0C1E - 3E 05
-   ld     (rompage_1), a               ; 00:0C20 - 32 FE FF
+   ld     (rompage_2), a               ; 00:0C20 - 32 FE FF
    ld     a, (g_global_tick_counter)   ; 00:0C23 - 3A 23 D2
    and    $0F                          ; 00:0C26 - E6 0F
    add    a, a                         ; 00:0C28 - 87
@@ -2264,8 +2263,8 @@ write_partial_monitor_art:
    out    ($BE), a                     ; 00:0C45 - D3 BE
    inc    de                           ; 00:0C47 - 13
    djnz   -                            ; 00:0C48 - 10 F4
-   ld     a, (g_committed_rompage_1)   ; 00:0C4A - 3A 35 D2
-   ld     (rompage_1), a               ; 00:0C4D - 32 FE FF
+   ld     a, (g_committed_rompage_2)   ; 00:0C4A - 3A 35 D2
+   ld     (rompage_2), a               ; 00:0C4D - 32 FE FF
    ei                                  ; 00:0C50 - FB
    ret                                 ; 00:0C51 - C9
 
@@ -9498,7 +9497,8 @@ monitor_common_destroy_after_hit:
    ret                                 ; 01:5B30 - C9
 
 monitor_common_set_art_and_go_to_main:
-   ld     hl, $5180                    ; 01:5B31 - 21 80 51
+   ld hl, MONART_rings
+   ld a, :MONART_rings
 
 monitor_common_main:
    call   write_partial_monitor_art    ; 01:5B34 - CD 1D 0C
@@ -9580,7 +9580,8 @@ objfunc_02_monitor_speed_shoes:
    jp     monitor_common_destroy_after_hit  ; 01:5BFC - C3 29 5B
 
 @continue_into_common_main:
-   ld     hl, $5200                    ; 01:5BFF - 21 00 52
+   ld hl, MONART_speed_shoes
+   ld a, :MONART_speed_shoes
    jp     monitor_common_main          ; 01:5C02 - C3 34 5B
 
 objfunc_03_monitor_life:
@@ -9635,7 +9636,8 @@ objfunc_03_monitor_life:
    jr     z, @level_kludge_SKY3_hidden_unless_enough_collected  ; 01:5C6B - 28 5D
 
 @continue_into_common_main:
-   ld     hl, $5280                    ; 01:5C6D - 21 80 52
+   ld hl, MONART_life
+   ld a, :MONART_life
    jp     monitor_common_main          ; 01:5C70 - C3 34 5B
 
 @level_kludge_BRI2_bobbing:
@@ -9663,12 +9665,12 @@ objfunc_03_monitor_life:
    ld     hl, g_level_button_toggled_on_mask  ; 01:5CA0 - 21 17 D3
    call   calc_level_offset_HL_and_mask_C  ; 01:5CA3 - CD 02 0C
    ld     a, (hl)                      ; 01:5CA6 - 7E
-   ld     hl, $5180                    ; 01:5CA7 - 21 80 51
+   ld hl, MONART_rings
+   ld a, :MONART_rings
    and    c                            ; 01:5CAA - A1
    jp     z, monitor_common_main       ; 01:5CAB - CA 34 5B
    res    2, (ix+24)                   ; 01:5CAE - DD CB 18 96
-   ld     hl, $5280                    ; 01:5CB2 - 21 80 52
-   jp     monitor_common_main          ; 01:5CB5 - C3 34 5B
+   jr @continue_into_common_main
 
 @level_kludge_SCR1_moving_on_conveyor:
    set    1, (ix+24)                   ; 01:5CB8 - DD CB 18 CE
@@ -9698,7 +9700,8 @@ objfunc_04_monitor_shield:
    jp     monitor_common_destroy_after_hit  ; 01:5CF6 - C3 29 5B
 
 @continue_into_common_main:
-   ld     hl, $5300                    ; 01:5CF9 - 21 00 53
+   ld hl, MONART_shield
+   ld a, :MONART_shield
    jp     monitor_common_main          ; 01:5CFC - C3 34 5B
 
 objfunc_05_monitor_invincibility:
@@ -9719,7 +9722,8 @@ objfunc_05_monitor_invincibility:
    jp     monitor_common_destroy_after_hit  ; 01:5D26 - C3 29 5B
 
 @continue_into_common_main:
-   ld     hl, $5380                    ; 01:5D29 - 21 80 53
+   ld hl, MONART_invincibility
+   ld a, :MONART_invincibility
    jp     monitor_common_main          ; 01:5D2C - C3 34 5B
 
 objfunc_51_monitor_checkpoint:
@@ -9763,7 +9767,8 @@ objfunc_51_monitor_checkpoint:
    jp     monitor_common_destroy_after_hit  ; 01:5D77 - C3 29 5B
 
 @continue_into_common_main:
-   ld     hl, $5480                    ; 01:5D7A - 21 80 54
+   ld hl, MONART_checkpoint
+   ld a, :MONART_checkpoint
    jp     monitor_common_main          ; 01:5D7D - C3 34 5B
 
 objfunc_52_monitor_continue:
@@ -9780,7 +9785,8 @@ objfunc_52_monitor_continue:
    jp     monitor_common_destroy_after_hit  ; 01:5D9F - C3 29 5B
 
 @continue_into_common_main:
-   ld     hl, $5500                    ; 01:5DA2 - 21 00 55
+   ld hl, MONART_continue
+   ld a, :MONART_continue
    jp     monitor_common_main          ; 01:5DA5 - C3 34 5B
 
 reposition_monitor_on_init:
@@ -9958,7 +9964,8 @@ objfunc_06_chaos_emerald:
    ld     (ix+10), l                   ; 01:5F00 - DD 75 0A
    ld     (ix+11), h                   ; 01:5F03 - DD 74 0B
    ld     (ix+12), a                   ; 01:5F06 - DD 77 0C
-   ld     hl, $5400                    ; 01:5F09 - 21 00 54
+   ld hl, MONART_chaos_emerald
+   ld a, :MONART_chaos_emerald
    call   write_partial_monitor_art    ; 01:5F0C - CD 1D 0C
    ret                                 ; 01:5F0F - C9
 
@@ -19432,7 +19439,8 @@ SPRTAB_end_controller_start_exploding:
 
 objfunc_54_end_controller_good_ending_chaos_emeralds:
    set    5, (ix+24)                   ; 02:BF4C - DD CB 18 EE
-   ld     hl, $5400                    ; 02:BF50 - 21 00 54
+   ld hl, MONART_chaos_emerald
+   ld a, :MONART_chaos_emerald
    call   write_partial_monitor_art    ; 02:BF53 - CD 1D 0C
    bit    0, (ix+24)                   ; 02:BF56 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:BF5A - 20 22
@@ -20799,6 +20807,46 @@ SFX_23_UNKNOWN:
 .db $06, $8C, $8C, $87, $05, $1F, $00, $87, $FF, $14, $00, $81, $00, $FE            ; 03:7FA3
 .ENDS
 
+.SECTION "base_MONART_rings" SUPERFREE SLOT 2
+MONART_rings:
+.INCBIN "src/data/mon_rings.monart"
+.ENDS
+
+.SECTION "base_MONART_speed_shoes" SUPERFREE SLOT 2
+MONART_speed_shoes:
+.INCBIN "src/data/mon_speed_shoes.monart"
+.ENDS
+
+.SECTION "base_MONART_life" SUPERFREE SLOT 2
+MONART_life:
+.INCBIN "src/data/mon_life.monart"
+.ENDS
+
+.SECTION "base_MONART_shield" SUPERFREE SLOT 2
+MONART_shield:
+.INCBIN "src/data/mon_shield.monart"
+.ENDS
+
+.SECTION "base_MONART_invincibility" SUPERFREE SLOT 2
+MONART_invincibility:
+.INCBIN "src/data/mon_invincibility.monart"
+.ENDS
+
+.SECTION "base_MONART_chaos_emerald" SUPERFREE SLOT 2
+MONART_chaos_emerald:
+.INCBIN "src/data/mon_chaos_emerald.monart"
+.ENDS
+
+.SECTION "base_MONART_checkpoint" SUPERFREE SLOT 2
+MONART_checkpoint:
+.INCBIN "src/data/mon_checkpoint.monart"
+.ENDS
+
+.SECTION "base_MONART_continue" SUPERFREE SLOT 2
+MONART_continue:
+.INCBIN "src/data/mon_continue.monart"
+.ENDS
+
 .SECTION "Bank04" SLOT 2 BANK $04 FORCE ORG $0000
 
 LVTILEMAP_GHZ:
@@ -20828,30 +20876,6 @@ LVTILEMAP_SKY_3:
 
 LVTILEMAP_special:
 .INCBIN "src/data/lv_special.tilemap"
-
-MONART_rings:
-.INCBIN "src/data/mon_rings.monart"
-
-MONART_speed_shoes:
-.INCBIN "src/data/mon_speed_shoes.monart"
-
-MONART_life:
-.INCBIN "src/data/mon_life.monart"
-
-MONART_shield:
-.INCBIN "src/data/mon_shield.monart"
-
-MONART_invincibility:
-.INCBIN "src/data/mon_invincibility.monart"
-
-MONART_chaos_emerald:
-.INCBIN "src/data/mon_chaos_emerald.monart"
-
-MONART_checkpoint:
-.INCBIN "src/data/mon_checkpoint.monart"
-
-MONART_continue:
-.INCBIN "src/data/mon_continue.monart"
 
 level_headers:
 ; .dw $004A, $006F, $0094, $00DE, $0103, $0128, $014D, $0172                          ; 05:5580
