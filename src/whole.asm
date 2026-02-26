@@ -7258,25 +7258,31 @@ objfunc_00_sonic:
    call   z, @fn_try_to_roll           ; 01:49DD - CC C1 50
    bit    1, (iy+g_inputs_player_1-IYBASE)  ; 01:49E0 - FD CB 03 4E
    call   nz, @fn_clear_extra_rolling_flag_SEMIVESTIGIAL  ; 01:49E4 - C4 E3 50
-   ld     a, $0F                       ; 01:49E7 - 3E 0F
-   call set_rompage_2
    ld     bc, $000C                    ; 01:49EF - 01 0C 00
    ld     de, $0010                    ; 01:49F2 - 11 10 00
    call   get_obj_level_tile_ptr_in_ram  ; 01:49F5 - CD F9 36
    ld     e, (hl)                      ; 01:49F8 - 5E
-   ld     d, $00                       ; 01:49F9 - 16 00
-   ld     a, (g_tile_flags_index)      ; 01:49FB - 3A D4 D2
-   add    a, a                         ; 01:49FE - 87
+   ld a, (g_tile_flags_index)
+   ld d, a
+   add a, a
+   add a, d
+   ld d, $00
    ld     l, a                         ; 01:49FF - 6F
    ld     h, d                         ; 01:4A00 - 62
-   ld     bc, $B9ED                    ; 01:4A01 - 01 ED B9
+   ld a, :level_specials
+   call set_rompage_2
+   ld     bc, level_specials           ; 01:4A01 - 01 ED B9
    add    hl, bc                       ; 01:4A04 - 09
-   ld     a, (hl)                      ; 01:4A05 - 7E
-   inc    hl                           ; 01:4A06 - 23
-   ld     h, (hl)                      ; 01:4A07 - 66
-   ld     l, a                         ; 01:4A08 - 6F
+   push de
+   ld e, (hl)
+   inc hl
+   ld d, (hl)
+   inc hl
+   ld a, (hl)
+   call set_rompage_2
+   ex de, hl
+   pop de
    add    hl, de                       ; 01:4A09 - 19
-   add    hl, bc                       ; 01:4A0A - 09
    ld     a, (hl)                      ; 01:4A0B - 7E
    cp     $1C                          ; 01:4A0C - FE 1C
    jr     nc, objfunc_00_sonic@return_from_tile_special  ; 01:4A0E - 30 18
@@ -22001,31 +22007,64 @@ ART_0C_E508:
 
 ART_0C_EF3F:
 .INCBIN "src/data/boss_3.art2000"
+.ENDS
 
-level_specials_rel:
-.dw $0010, $00C4, $0154, $01F4, $02B4, $0374, $044C, $04CC                          ; 0F:B9ED
+.SECTION "base_level_specials" SUPERFREE SLOT 2
+level_specials:
+.dw LVTILESPECIALS_GHZ
+.db :LVTILESPECIALS_GHZ
+.dw LVTILESPECIALS_BRI
+.db :LVTILESPECIALS_BRI
+.dw LVTILESPECIALS_JUN
+.db :LVTILESPECIALS_JUN
+.dw LVTILESPECIALS_LAB
+.db :LVTILESPECIALS_LAB
+.dw LVTILESPECIALS_SCR
+.db :LVTILESPECIALS_SCR
+.dw LVTILESPECIALS_SKY
+.db :LVTILESPECIALS_SKY
+.dw LVTILESPECIALS_special
+.db :LVTILESPECIALS_special
+.dw LVTILESPECIALS_SKY_3
+.db :LVTILESPECIALS_SKY_3
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_GHZ" SUPERFREE SLOT 2
 LVTILESPECIALS_GHZ:
 .INCBIN "src/data/lv_ghz.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_BRI" SUPERFREE SLOT 2
 LVTILESPECIALS_BRI:
 .INCBIN "src/data/lv_bri.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_JUN" SUPERFREE SLOT 2
 LVTILESPECIALS_JUN:
 .INCBIN "src/data/lv_jun.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_LAB" SUPERFREE SLOT 2
 LVTILESPECIALS_LAB:
 .INCBIN "src/data/lv_lab.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_SCR" SUPERFREE SLOT 2
 LVTILESPECIALS_SCR:
 .INCBIN "src/data/lv_scr.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_SKY" SUPERFREE SLOT 2
 LVTILESPECIALS_SKY:
 .INCBIN "src/data/lv_sky.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_special" SUPERFREE SLOT 2
 LVTILESPECIALS_special:
 .INCBIN "src/data/lv_special.tilespecials"
+.ENDS
 
+.SECTION "base_LVTILESPECIALS_SKY_3" SUPERFREE SLOT 2
 LVTILESPECIALS_SKY_3:
 .INCBIN "src/data/lv_sky_3.tilespecials"
 .ENDS
