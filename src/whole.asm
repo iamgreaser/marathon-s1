@@ -8,8 +8,9 @@ SLOT 0 START $0000 SIZE $4000
 SLOT 1 START $4000 SIZE $4000
 SLOT 2 START $8000 SIZE $4000
 SLOT 3 START $C000 SIZE $4000
+SLOT 4 START $C000 SIZE $2000
 DEFAULTSLOT 2
-DEFAULTRAMSECTIONSLOT 3
+DEFAULTRAMSECTIONSLOT 4
 .ENDME
 
 .ROMBANKMAP
@@ -20,7 +21,7 @@ BANKS 16
 
 .DEF IYBASE $D200
 
-.RAMSECTION "RAMSection" SLOT 3 FORCE ORGA $C000
+.RAMSECTION "RAMSection" SLOT 4 FORCE ORGA $C000
 g_level_layout db   ; C000
 g_level_layout_1 db   ; C001
 .  dsb 4094
@@ -422,20 +423,24 @@ ENTRY_RESET:
    cp     $B0                          ; 00:0005 - FE B0
    jr     nz, @wait_for_vblank         ; 00:0007 - 20 FA
    jp     reset_init                   ; 00:0009 - C3 8B 02
-.db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00                      ; 00:000C
+.ENDS
 
+.SECTION "Bank00_0018" SLOT 0 BANK $00 FORCE ORG $0018
 ENTRY_RST_18:
    jp     di_call_s1_b03_4012_a_DI     ; 00:0018 - C3 D7 02
-.db $00, $00, $00, $00, $00                                                         ; 00:001B
+.ENDS
 
+.SECTION "Bank00_0020" SLOT 0 BANK $00 FORCE ORG $0020
 ENTRY_RST_20:
    jp     di_call_s1_b03_4006_DI       ; 00:0020 - C3 ED 02
-.db $00, $00, $00, $00, $00                                                         ; 00:0023
+.ENDS
 
+.SECTION "Bank00_0028" SLOT 0 BANK $00 FORCE ORG $0028
 ENTRY_RST_28:
    jp     play_sound_effect_a_DI       ; 00:0028 - C3 FE 02
-.db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00                 ; 00:002B
+.ENDS
 
+.SECTION "Bank00_0038" SLOT 0 BANK $00 FORCE ORG $0038
 ENTRY_IRQ:
    jp     irq_start                    ; 00:0038 - C3 73 00
 .db $44, $65, $76, $65, $6C, $6F, $70, $65, $64, $20, $42, $79, $20, $28, $43, $29  ; 00:003B
