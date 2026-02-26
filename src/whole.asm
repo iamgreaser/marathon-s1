@@ -3451,8 +3451,6 @@ fill_ram_at_hl_for_b_bytes_with_a:
    ret                                 ; 00:1CEC - C9
 
 load_and_run_level:
-   ld     a, $05                       ; 00:1CED - 3E 05
-   call set_rompage_1
    ld     a, (g_level)                 ; 00:1CF5 - 3A 3E D2
    bit    4, (iy+iy_06_lvflag01-IYBASE)  ; 00:1CF8 - FD CB 06 66
    jr     z, @level_load_was_not_teleport  ; 00:1CFC - 28 03
@@ -3464,6 +3462,8 @@ load_and_run_level:
    ld     h, $00                       ; 00:1D03 - 26 00
    ld     de, level_headers            ; 00:1D05 - 11 80 55
    add    hl, de                       ; 00:1D08 - 19
+   ld a, :level_headers
+   call set_rompage_2
    ld     a, (hl)                      ; 00:1D09 - 7E
    inc    hl                           ; 00:1D0A - 23
    ld     h, (hl)                      ; 00:1D0B - 66
@@ -20794,7 +20794,9 @@ LVTILEMAP_SKY_3:
 
 LVTILEMAP_special:
 .INCBIN "src/data/lv_special.tilemap"
+.ENDS
 
+.SECTION "base_level_headers" SLOT 2 SUPERFREE
 level_headers:
 ; .dw $004A, $006F, $0094, $00DE, $0103, $0128, $014D, $0172                          ; 05:5580
 .dw LVHEAD_00
