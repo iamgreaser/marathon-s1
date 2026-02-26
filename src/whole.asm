@@ -498,7 +498,7 @@ irq_start:
    call   z, @fn_update_screen         ; 00:00BF - CC F7 00
    ei                                  ; 00:00C2 - FB
    ld     a, $03                       ; 00:00C3 - 3E 03
-   call set_rompage_1
+   call set_rompage_2
    call   snddrv_update                ; 00:00CB - CD 00 40
    call   poll_player_1_inputs         ; 00:00CE - CD A7 05
    bit    4, (iy+g_inputs_player_1-IYBASE)  ; 00:00D1 - FD CB 03 66
@@ -728,22 +728,22 @@ di_call_s1_b03_4012_a_DI:
    di                                  ; 00:02D7 - F3
    push   af                           ; 00:02D8 - F5
    ld     a, $03                       ; 00:02D9 - 3E 03
-   ld     (rompage_1), a               ; 00:02DB - 32 FE FF
+   ld     (rompage_2), a               ; 00:02DB - 32 FE FF
    pop    af                           ; 00:02DE - F1
    ld     (g_current_music), a         ; 00:02DF - 32 D2 D2
    call   snddrv_play_music            ; 00:02E2 - CD 12 40
-   ld     a, (g_committed_rompage_1)   ; 00:02E5 - 3A 35 D2
-   ld     (rompage_1), a               ; 00:02E8 - 32 FE FF
+   ld     a, (g_committed_rompage_2)   ; 00:02E5 - 3A 35 D2
+   ld     (rompage_2), a               ; 00:02E8 - 32 FE FF
    ei                                  ; 00:02EB - FB
    ret                                 ; 00:02EC - C9
 
 di_call_s1_b03_4006_DI:
    di                                  ; 00:02ED - F3
    ld     a, $03                       ; 00:02EE - 3E 03
-   ld     (rompage_1), a               ; 00:02F0 - 32 FE FF
+   ld     (rompage_2), a               ; 00:02F0 - 32 FE FF
    call   snddrv_stop                  ; 00:02F3 - CD 06 40
-   ld     a, (g_committed_rompage_1)   ; 00:02F6 - 3A 35 D2
-   ld     (rompage_1), a               ; 00:02F9 - 32 FE FF
+   ld     a, (g_committed_rompage_2)   ; 00:02F6 - 3A 35 D2
+   ld     (rompage_2), a               ; 00:02F9 - 32 FE FF
    ei                                  ; 00:02FC - FB
    ret                                 ; 00:02FD - C9
 
@@ -751,11 +751,11 @@ play_sound_effect_a_DI:
    di                                  ; 00:02FE - F3
    push   af                           ; 00:02FF - F5
    ld     a, $03                       ; 00:0300 - 3E 03
-   ld     (rompage_1), a               ; 00:0302 - 32 FE FF
+   ld     (rompage_2), a               ; 00:0302 - 32 FE FF
    pop    af                           ; 00:0305 - F1
    call   snddrv_play_sound            ; 00:0306 - CD 15 40
-   ld     a, (g_committed_rompage_1)   ; 00:0309 - 3A 35 D2
-   ld     (rompage_1), a               ; 00:030C - 32 FE FF
+   ld     a, (g_committed_rompage_2)   ; 00:0309 - 3A 35 D2
+   ld     (rompage_2), a               ; 00:030C - 32 FE FF
    ei                                  ; 00:030F - FB
    ret                                 ; 00:0310 - C9
 
@@ -3624,7 +3624,7 @@ handle_game_paused:
    bit    3, (iy+iy_07_lvflag02-IYBASE)  ; 00:1EC6 - FD CB 07 5E
    jr     nz, @loop_while_paused       ; 00:1ECA - 20 D8
    ld     a, $03                       ; 00:1ECC - 3E 03
-   call set_rompage_1
+   call set_rompage_2
    call   snddrv_resume_music          ; 00:1ED4 - CD 09 40
    ret                                 ; 00:1ED7 - C9
 
@@ -3903,7 +3903,7 @@ disable_waterline_for_level_end_or_restart:
 
 fade_out_and_stop_level:
    ld     a, $03                       ; 00:20B8 - 3E 03
-   call set_rompage_1
+   call set_rompage_2
    ld     hl, $0028                    ; 00:20C0 - 21 28 00
    call   snddrv_fade_out              ; 00:20C3 - CD 0C 40
    call   fade_screen_to_black         ; 00:20C6 - CD 40 0A
@@ -19435,7 +19435,7 @@ SPRTAB_end_chaos_emerald:
 .db $5C, $5E, $FF, $FF, $FF, $FF, $FF                                               ; 02:BFF1
 .ENDS
 
-.SECTION "Bank03" SLOT 1 BANK $03 FORCE ORG $0000
+.SECTION "Bank03" SLOT 2 BANK $03 FORCE ORG $0000
 
 snddrv_update:
    jp     snddrv_update_unvectored     ; 03:4000 - C3 3A 42
