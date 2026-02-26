@@ -3493,8 +3493,6 @@ load_and_run_level:
    ld     hl, (g_global_tick_counter)  ; 00:1D4E - 2A 23 D2
    inc    hl                           ; 00:1D51 - 23
    ld     (g_global_tick_counter), hl  ; 00:1D52 - 22 23 D2
-   ld     a, $0B                       ; 00:1D55 - 3E 0B
-   call set_rompage_1
    bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1D5D - FD CB 05 56
    call   nz, update_ring_tiles        ; 00:1D61 - C4 79 38
    ld     hl, $0060                    ; 00:1D64 - 21 60 00
@@ -3518,8 +3516,6 @@ load_and_run_level:
 @main_level_loop:
    res    0, (iy+iy_00-IYBASE)         ; 00:1DAE - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1DB2 - CD 1C 03
-   ld     a, $0B                       ; 00:1DB5 - 3E 0B
-   call set_rompage_1
    bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1DBD - FD CB 05 56
    call   nz, update_ring_tiles        ; 00:1DC1 - C4 79 38
    bit    3, (iy+iy_06_lvflag01-IYBASE)  ; 00:1DC4 - FD CB 06 5E
@@ -3616,8 +3612,6 @@ handle_game_paused:
    res    0, (iy+iy_00-IYBASE)         ; 00:1EA7 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1EAB - CD 1C 03
    ld     (iy+g_sprite_count-IYBASE), a  ; 00:1EAE - FD 77 0A
-   ld     a, $0B                       ; 00:1EB1 - 3E 0B
-   call set_rompage_1
    bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1EB9 - FD CB 05 56
    call   nz, update_ring_tiles        ; 00:1EBD - C4 79 38
    call   update_palette_cycle         ; 00:1EC0 - CD C9 23
@@ -4316,7 +4310,7 @@ update_ring_tile_art_timer_and_index:
    srl    a                            ; 00:23A8 - CB 3F
    rr     l                            ; 00:23AA - CB 1D
    ld     h, a                         ; 00:23AC - 67
-   ld     de, $7CF0                    ; 00:23AD - 11 F0 7C
+   ld     de, ring_art                 ; 00:23AD - 11 F0 7C
    add    hl, de                       ; 00:23B0 - 19
    ld     (g_new_ring_tiles_ptr), hl   ; 00:23B1 - 22 93 D2
    ld     hl, g_ring_tile_subtimer_index  ; 00:23B4 - 21 98 D2
@@ -6435,6 +6429,8 @@ update_sonic_3bpp_sprite:
    ret                                 ; 00:382D - C9
 
 update_ring_tiles:
+   ld a, :ring_art
+   call set_rompage_2
    ld     de, (g_new_ring_tiles_ptr)   ; 00:3879 - ED 5B 93 D2
    ld     hl, (g_old_ring_tiles_ptr)   ; 00:387D - 2A 95 D2
    and    a                            ; 00:3880 - A7
@@ -22069,8 +22065,10 @@ ART_09_AEB1:
 
 ART_09_B92E:
 .INCBIN "src/data/common_level_art.art3000"
+.ENDS
 
-ring_art_0B:
+.SECTION "base_ring_art" SLOT 2 SUPERFREE
+ring_art:
 .INCBIN "src/data/ringart_00.ringart"
 .INCBIN "src/data/ringart_01.ringart"
 .INCBIN "src/data/ringart_02.ringart"
