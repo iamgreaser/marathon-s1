@@ -3485,7 +3485,7 @@ load_and_run_level:
    add    a, a                         ; 00:1D01 - 87
    ld     l, a                         ; 00:1D02 - 6F
    ld     h, $00                       ; 00:1D03 - 26 00
-   ld     de, level_headers_rel        ; 00:1D05 - 11 80 55
+   ld     de, level_headers            ; 00:1D05 - 11 80 55
    add    hl, de                       ; 00:1D08 - 19
    ld     a, (hl)                      ; 00:1D09 - 7E
    inc    hl                           ; 00:1D0A - 23
@@ -3493,7 +3493,6 @@ load_and_run_level:
    ld     l, a                         ; 00:1D0C - 6F
    or     h                            ; 00:1D0D - B4
    jp     z, run_ending_and_credits    ; 00:1D0E - CA 8B 25
-   add    hl, de                       ; 00:1D11 - 19
    call   load_and_init_level_from_header  ; 00:1D12 - CD CB 20
    set    0, (iy+iy_02-IYBASE)         ; 00:1D15 - FD CB 02 C6
    set    1, (iy+iy_02-IYBASE)         ; 00:1D19 - FD CB 02 CE
@@ -4253,8 +4252,9 @@ load_and_init_level_from_header:
    ld     d, (hl)                      ; 00:22D9 - 56
    inc    hl                           ; 00:22DA - 23
    push   hl                           ; 00:22DB - E5
-   ld     hl, level_headers_rel        ; 00:22DC - 21 80 55
+   ld     hl, level_headers            ; 00:22DC - 21 80 55
    add    hl, de                       ; 00:22DF - 19
+   ; ^ TODO: Load objects from an absolute location --GM
    ld     a, $05                       ; 00:22E0 - 3E 05
    ld     (rompage_1), a               ; 00:22E2 - 32 FE FF
    ld     (g_committed_rompage_1), a   ; 00:22E5 - 32 35 D2
@@ -20916,12 +20916,49 @@ MONART_checkpoint:
 MONART_continue:
 .INCBIN "src/data/mon_continue.monart"
 
-level_headers_rel:
-.dw $004A, $006F, $0094, $00DE, $0103, $0128, $014D, $0172                          ; 05:5580
-.dw $0197, $01BC, $01E1, $0206, $022B, $0250, $02BF, $0378                          ; 05:5590
-.dw $039D, $03C2, $00B9, $0000, $0275, $029A, $032E, $0353                          ; 05:55A0
-.dw $02E4, $0309, $03E7, $03E7, $040C, $0431, $0456, $047B                          ; 05:55B0
-.dw $04A0, $04C5, $04EA, $050F, $0000                                               ; 05:55C0
+level_headers:
+; .dw $004A, $006F, $0094, $00DE, $0103, $0128, $014D, $0172                          ; 05:5580
+.dw LVHEAD_00
+.dw LVHEAD_01
+.dw LVHEAD_02
+.dw LVHEAD_03
+.dw LVHEAD_04
+.dw LVHEAD_05
+.dw LVHEAD_06
+.dw LVHEAD_07
+; .dw $0197, $01BC, $01E1, $0206, $022B, $0250, $02BF, $0378                          ; 05:5590
+.dw LVHEAD_08
+.dw LVHEAD_09
+.dw LVHEAD_0A
+.dw LVHEAD_0B
+.dw LVHEAD_0C
+.dw LVHEAD_0D
+.dw LVHEAD_0E
+.dw LVHEAD_0F
+; .dw $039D, $03C2, $00B9, $0000, $0275, $029A, $032E, $0353                          ; 05:55A0
+.dw LVHEAD_10
+.dw LVHEAD_11
+.dw LVHEAD_12
+.dw 0
+.dw LVHEAD_14
+.dw LVHEAD_15
+.dw LVHEAD_16
+.dw LVHEAD_17
+; .dw $02E4, $0309, $03E7, $03E7, $040C, $0431, $0456, $047B                          ; 05:55B0
+.dw LVHEAD_18
+.dw LVHEAD_19
+.dw LVHEAD_1A
+.dw LVHEAD_1B
+.dw LVHEAD_1C
+.dw LVHEAD_1D
+.dw LVHEAD_1E
+.dw LVHEAD_1F
+; .dw $04A0, $04C5, $04EA, $050F, $0000                                               ; 05:55C0
+.dw LVHEAD_20
+.dw LVHEAD_21
+.dw LVHEAD_22
+.dw LVHEAD_23
+.dw 0
 
 LVHEAD_00:
 .db $00                                                                             ; 05:55CA
