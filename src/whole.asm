@@ -6676,6 +6676,27 @@ fn_of_setbox:
    call fn_of_setbox
 .ENDM
 
+;; Normally 26 bytes, the call is 9 bytes, so each use saves up to 17 bytes minus the overall 27 byte overhead of the function itself.
+;; Some cases only adjust one part.
+;;
+fn_of_adjust_pos:
+   ld l, (ix+2)
+   ld h, (ix+3)
+   add hl, de
+   ld (ix+2), l
+   ld (ix+3), h
+   ld l, (ix+5)
+   ld h, (ix+6)
+   add hl, bc
+   ld (ix+5), l
+   ld (ix+6), h
+   ret
+.MACRO of_adjust_pos ARGS dx, dy
+   ld de, dx
+   ld bc, dy
+   call fn_of_adjust_pos
+.ENDM
+
 ;;
 ;; OBJFUNCS
 ;;
@@ -9302,6 +9323,7 @@ objfunc_52_monitor_continue:
 reposition_monitor_on_init:
    bit    0, (ix+24)                   ; 01:5DA8 - DD CB 18 46
    ret    nz                           ; 01:5DAC - C0
+   set 0, (ix+24)
    ld     a, (g_tile_flags_index)      ; 01:5DAD - 3A D4 D2
    and    a                            ; 01:5DB0 - A7
    jr     nz, @skip_GHZ_tile_position_kludges  ; 01:5DB1 - 20 13
@@ -9309,29 +9331,15 @@ reposition_monitor_on_init:
    ld     e, c                         ; 01:5DB6 - 59
    ld     d, b                         ; 01:5DB7 - 50
    call   get_obj_level_tile_ptr_in_ram  ; 01:5DB8 - CD F9 36
-   ld     de, $0016                    ; 01:5DBB - 11 16 00
-   ld     bc, $0012                    ; 01:5DBE - 01 12 00
    ld     a, (hl)                      ; 01:5DC1 - 7E
    cp     $AB                          ; 01:5DC2 - FE AB
-   jr     z, @continue_while_applying_GHZ_tile_AB_kludge  ; 01:5DC4 - 28 06
+   jr     nz, @skip_GHZ_tile_position_kludges
+   of_adjust_pos $0016, $0012
+   ret
 
 @skip_GHZ_tile_position_kludges:
-   ld     de, $0004                    ; 01:5DC6 - 11 04 00
-   ld     bc, $0000                    ; 01:5DC9 - 01 00 00
-
-@continue_while_applying_GHZ_tile_AB_kludge:
-   ld     l, (ix+2)                    ; 01:5DCC - DD 6E 02
-   ld     h, (ix+3)                    ; 01:5DCF - DD 66 03
-   add    hl, de                       ; 01:5DD2 - 19
-   ld     (ix+2), l                    ; 01:5DD3 - DD 75 02
-   ld     (ix+3), h                    ; 01:5DD6 - DD 74 03
-   ld     l, (ix+5)                    ; 01:5DD9 - DD 6E 05
-   ld     h, (ix+6)                    ; 01:5DDC - DD 66 06
-   add    hl, bc                       ; 01:5DDF - 09
-   ld     (ix+5), l                    ; 01:5DE0 - DD 75 05
-   ld     (ix+6), h                    ; 01:5DE3 - DD 74 06
-   set    0, (ix+24)                   ; 01:5DE6 - DD CB 18 C6
-   ret                                 ; 01:5DEA - C9
+   of_adjust_pos $0004, $0000
+   ret
 
 handle_sonic_monitor_collision:
    ld     hl, $0804                    ; 01:5DEB - 21 04 08
@@ -10844,12 +10852,7 @@ objfunc_12_GHZ_boss:
    call   move_locked_camera_towards_target  ; 01:7018 - CD A6 7C
    bit    0, (ix+17)                   ; 01:701B - DD CB 11 46
    jr     nz, @already_initialised     ; 01:701F - 20 42
-   ld     l, (ix+5)                    ; 01:7021 - DD 6E 05
-   ld     h, (ix+6)                    ; 01:7024 - DD 66 06
-   ld     de, $FFF8                    ; 01:7027 - 11 F8 FF
-   add    hl, de                       ; 01:702A - 19
-   ld     (ix+5), l                    ; 01:702B - DD 75 05
-   ld     (ix+6), h                    ; 01:702E - DD 74 06
+   of_adjust_pos $0000, $FFF8
    ld hl, ART_boss_1_2000
    ld a, :ART_boss_1_2000
    ld de, $2000
@@ -11154,12 +11157,7 @@ objfunc_25_animal_capsule:
    set    5, (ix+24)                   ; 01:732C - DD CB 18 EE
    bit    0, (ix+24)                   ; 01:7330 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7334 - 20 14
-   ld     l, (ix+5)                    ; 01:7336 - DD 6E 05
-   ld     h, (ix+6)                    ; 01:7339 - DD 66 06
-   ld     de, $0010                    ; 01:733C - 11 10 00
-   add    hl, de                       ; 01:733F - 19
-   ld     (ix+5), l                    ; 01:7340 - DD 75 05
-   ld     (ix+6), h                    ; 01:7343 - DD 74 06
+   of_adjust_pos $0000, $0010
    set    0, (ix+24)                   ; 01:7346 - DD CB 18 C6
 
 @already_initialised:
@@ -12170,12 +12168,7 @@ objfunc_26_badnik_chopper:
    add    hl, de                       ; 01:7D28 - 19
    ld     (ix+18), l                   ; 01:7D29 - DD 75 12
    ld     (ix+19), h                   ; 01:7D2C - DD 74 13
-   ld     l, (ix+2)                    ; 01:7D2F - DD 6E 02
-   ld     h, (ix+3)                    ; 01:7D32 - DD 66 03
-   ld     de, $0008                    ; 01:7D35 - 11 08 00
-   add    hl, de                       ; 01:7D38 - 19
-   ld     (ix+2), l                    ; 01:7D39 - DD 75 02
-   ld     (ix+3), h                    ; 01:7D3C - DD 74 03
+   of_adjust_pos $0008, $0000
    set    1, (ix+24)                   ; 01:7D3F - DD CB 18 CE
 
 @already_initialised:
@@ -12337,12 +12330,7 @@ objfunc_29_log:
    of_setbox $0A, $10
    bit    0, (ix+24)                   ; 01:7EF2 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7EF6 - 20 14
-   ld     l, (ix+5)                    ; 01:7EF8 - DD 6E 05
-   ld     h, (ix+6)                    ; 01:7EFB - DD 66 06
-   ld     de, $FFE8                    ; 01:7EFE - 11 E8 FF
-   add    hl, de                       ; 01:7F01 - 19
-   ld     (ix+5), l                    ; 01:7F02 - DD 75 05
-   ld     (ix+6), h                    ; 01:7F05 - DD 74 06
+   of_adjust_pos $0000, $FFE8
    set    0, (ix+24)                   ; 01:7F08 - DD CB 18 C6
 
 @already_initialised:
@@ -13122,12 +13110,7 @@ objfunc_4E_seesaw:
    bit    0, (ix+24)                   ; 02:8670 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8674 - 20 18
    ld     (ix+17), $1C                 ; 02:8676 - DD 36 11 1C
-   ld     l, (ix+2)                    ; 02:867A - DD 6E 02
-   ld     h, (ix+3)                    ; 02:867D - DD 66 03
-   ld     de, $FFF0                    ; 02:8680 - 11 F0 FF
-   add    hl, de                       ; 02:8683 - 19
-   ld     (ix+2), l                    ; 02:8684 - DD 75 02
-   ld     (ix+3), h                    ; 02:8687 - DD 74 03
+   of_adjust_pos $FFF0, $0000
    set    0, (ix+24)                   ; 02:868A - DD CB 18 C6
 
 @already_initialised:
@@ -13492,12 +13475,7 @@ objfunc_3E_giant_spear:
    set    5, (ix+24)                   ; 02:8AF6 - DD CB 18 EE
    bit    0, (ix+24)                   ; 02:8AFA - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8AFE - 20 14
-   ld     l, (ix+2)                    ; 02:8B00 - DD 6E 02
-   ld     h, (ix+3)                    ; 02:8B03 - DD 66 03
-   ld     de, $000C                    ; 02:8B06 - 11 0C 00
-   add    hl, de                       ; 02:8B09 - 19
-   ld     (ix+2), l                    ; 02:8B0A - DD 75 02
-   ld     (ix+3), h                    ; 02:8B0D - DD 74 03
+   of_adjust_pos $000C, $0000
    set    0, (ix+24)                   ; 02:8B10 - DD CB 18 C6
 
 @already_initialised:
@@ -13619,20 +13597,13 @@ objfunc_3F_fireball_gargoyle:
    of_setbox $04, $0A
    bit    0, (ix+24)                   ; 02:8C22 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8C26 - 20 46
+   of_adjust_pos $000A, $0008
    ld     l, (ix+2)                    ; 02:8C28 - DD 6E 02
    ld     h, (ix+3)                    ; 02:8C2B - DD 66 03
-   ld     de, $000A                    ; 02:8C2E - 11 0A 00
-   add    hl, de                       ; 02:8C31 - 19
-   ld     (ix+2), l                    ; 02:8C32 - DD 75 02
-   ld     (ix+3), h                    ; 02:8C35 - DD 74 03
    ld     (ix+18), l                   ; 02:8C38 - DD 75 12
    ld     (ix+19), h                   ; 02:8C3B - DD 74 13
    ld     l, (ix+5)                    ; 02:8C3E - DD 6E 05
    ld     h, (ix+6)                    ; 02:8C41 - DD 66 06
-   ld     de, $0008                    ; 02:8C44 - 11 08 00
-   add    hl, de                       ; 02:8C47 - 19
-   ld     (ix+5), l                    ; 02:8C48 - DD 75 05
-   ld     (ix+6), h                    ; 02:8C4B - DD 74 06
    ld     (ix+20), l                   ; 02:8C4E - DD 75 14
    ld     (ix+21), h                   ; 02:8C51 - DD 74 15
    ld     (ix+17), $96                 ; 02:8C54 - DD 36 11 96
@@ -14109,16 +14080,13 @@ objfunc_45_LAB_float_up_platform:
    ld     (ix+16), SPRTAB_LAB_float_up_platform>>8  ; 02:90D0 - DD 36 10 91
    bit    1, (ix+24)                   ; 02:90D4 - DD CB 18 4E
    jr     nz, @already_initialised     ; 02:90D8 - 20 26
+   of_adjust_pos $0000, $FFFF
    ld     l, (ix+2)                    ; 02:90DA - DD 6E 02
    ld     h, (ix+3)                    ; 02:90DD - DD 66 03
    ld     (ix+17), l                   ; 02:90E0 - DD 75 11
    ld     (ix+18), h                   ; 02:90E3 - DD 74 12
    ld     l, (ix+5)                    ; 02:90E6 - DD 6E 05
    ld     h, (ix+6)                    ; 02:90E9 - DD 66 06
-   ld     de, $FFFF                    ; 02:90EC - 11 FF FF
-   add    hl, de                       ; 02:90EF - 19
-   ld     (ix+5), l                    ; 02:90F0 - DD 75 05
-   ld     (ix+6), h                    ; 02:90F3 - DD 74 06
    ld     (ix+19), l                   ; 02:90F6 - DD 75 13
    ld     (ix+20), h                   ; 02:90F9 - DD 74 14
    set    1, (ix+24)                   ; 02:90FC - DD CB 18 CE
@@ -15411,18 +15379,7 @@ objfunc_16_SCR_ceiling_flamer:
    set    5, (ix+24)                   ; 02:9C8E - DD CB 18 EE
    bit    0, (ix+24)                   ; 02:9C92 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:9C96 - 20 2A
-   ld     l, (ix+2)                    ; 02:9C98 - DD 6E 02
-   ld     h, (ix+3)                    ; 02:9C9B - DD 66 03
-   ld     de, $000C                    ; 02:9C9E - 11 0C 00
-   add    hl, de                       ; 02:9CA1 - 19
-   ld     (ix+2), l                    ; 02:9CA2 - DD 75 02
-   ld     (ix+3), h                    ; 02:9CA5 - DD 74 03
-   ld     l, (ix+5)                    ; 02:9CA8 - DD 6E 05
-   ld     h, (ix+6)                    ; 02:9CAB - DD 66 06
-   ld     de, $0012                    ; 02:9CAE - 11 12 00
-   add    hl, de                       ; 02:9CB1 - 19
-   ld     (ix+5), l                    ; 02:9CB2 - DD 75 05
-   ld     (ix+6), h                    ; 02:9CB5 - DD 74 06
+   of_adjust_pos $000C, $0012
    call   random_A                     ; 02:9CB8 - CD 25 06
    ld     (ix+17), a                   ; 02:9CBB - DD 77 11
    set    0, (ix+24)                   ; 02:9CBE - DD CB 18 C6
@@ -15843,18 +15800,7 @@ objfunc_1A_SCR_zapper:
    of_setbox $30, $10
    bit    0, (ix+24)                   ; 02:A0F4 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A0F8 - 20 24
-   ld     l, (ix+2)                    ; 02:A0FA - DD 6E 02
-   ld     h, (ix+3)                    ; 02:A0FD - DD 66 03
-   ld     de, $0018                    ; 02:A100 - 11 18 00
-   add    hl, de                       ; 02:A103 - 19
-   ld     (ix+2), l                    ; 02:A104 - DD 75 02
-   ld     (ix+3), h                    ; 02:A107 - DD 74 03
-   ld     l, (ix+5)                    ; 02:A10A - DD 6E 05
-   ld     h, (ix+6)                    ; 02:A10D - DD 66 06
-   ld     de, $0010                    ; 02:A110 - 11 10 00
-   add    hl, de                       ; 02:A113 - 19
-   ld     (ix+5), l                    ; 02:A114 - DD 75 05
-   ld     (ix+6), h                    ; 02:A117 - DD 74 06
+   of_adjust_pos $0018, $0010
    set    0, (ix+24)                   ; 02:A11A - DD CB 18 C6
 
 @already_initialised:
@@ -16112,12 +16058,7 @@ objfunc_1D_floorbutton:
    of_setbox $0A, $11
    bit    0, (ix+24)                   ; 02:A400 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A404 - 20 14
-   ld     l, (ix+2)                    ; 02:A406 - DD 6E 02
-   ld     h, (ix+3)                    ; 02:A409 - DD 66 03
-   ld     de, $0008                    ; 02:A40C - 11 08 00
-   add    hl, de                       ; 02:A40F - 19
-   ld     (ix+2), l                    ; 02:A410 - DD 75 02
-   ld     (ix+3), h                    ; 02:A413 - DD 74 03
+   of_adjust_pos $0008, $0000
    set    0, (ix+24)                   ; 02:A416 - DD CB 18 C6
 
 @already_initialised:
@@ -16745,18 +16686,7 @@ objfunc_31_SKY2_propeller:
    of_setbox $05, $14
    bit    0, (ix+24)                   ; 02:AA76 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AA7A - 20 24
-   ld     l, (ix+2)                    ; 02:AA7C - DD 6E 02
-   ld     h, (ix+3)                    ; 02:AA7F - DD 66 03
-   ld     de, $000F                    ; 02:AA82 - 11 0F 00
-   add    hl, de                       ; 02:AA85 - 19
-   ld     (ix+2), l                    ; 02:AA86 - DD 75 02
-   ld     (ix+3), h                    ; 02:AA89 - DD 74 03
-   ld     l, (ix+5)                    ; 02:AA8C - DD 6E 05
-   ld     h, (ix+6)                    ; 02:AA8F - DD 66 06
-   ld     de, $FFFA                    ; 02:AA92 - 11 FA FF
-   add    hl, de                       ; 02:AA95 - 19
-   ld     (ix+5), l                    ; 02:AA96 - DD 75 05
-   ld     (ix+6), h                    ; 02:AA99 - DD 74 06
+   of_adjust_pos $000F, $FFFA
    set    0, (ix+24)                   ; 02:AA9C - DD CB 18 C6
 
 @already_initialised:
@@ -17045,12 +16975,7 @@ objfunc_33_SKY2_cannon:
    set    5, (ix+24)                   ; 02:AD6C - DD CB 18 EE
    bit    0, (ix+24)                   ; 02:AD70 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AD74 - 20 1A
-   ld     l, (ix+2)                    ; 02:AD76 - DD 6E 02
-   ld     h, (ix+3)                    ; 02:AD79 - DD 66 03
-   ld     de, $FFFC                    ; 02:AD7C - 11 FC FF
-   add    hl, de                       ; 02:AD7F - 19
-   ld     (ix+2), l                    ; 02:AD80 - DD 75 02
-   ld     (ix+3), h                    ; 02:AD83 - DD 74 03
+   of_adjust_pos $FFFC, $0000
    call   random_A                     ; 02:AD86 - CD 25 06
    ld     (ix+17), a                   ; 02:AD89 - DD 77 11
    set    0, (ix+24)                   ; 02:AD8C - DD CB 18 C6
@@ -17962,20 +17887,13 @@ objfunc_4A_SKY3_boss:
    ld     hl, $0350                    ; 02:B653 - 21 50 03
    ld     de, $0120                    ; 02:B656 - 11 20 01
    call   set_locked_camera_target     ; 02:B659 - CD 8C 7C
+   of_adjust_pos $0008, $0010
    ld     l, (ix+2)                    ; 02:B65C - DD 6E 02
    ld     h, (ix+3)                    ; 02:B65F - DD 66 03
-   ld     de, $0008                    ; 02:B662 - 11 08 00
-   add    hl, de                       ; 02:B665 - 19
-   ld     (ix+2), l                    ; 02:B666 - DD 75 02
-   ld     (ix+3), h                    ; 02:B669 - DD 74 03
    ld     (ix+17), l                   ; 02:B66C - DD 75 11
    ld     (ix+18), h                   ; 02:B66F - DD 74 12
    ld     l, (ix+5)                    ; 02:B672 - DD 6E 05
    ld     h, (ix+6)                    ; 02:B675 - DD 66 06
-   ld     de, $0010                    ; 02:B678 - 11 10 00
-   add    hl, de                       ; 02:B67B - 19
-   ld     (ix+5), l                    ; 02:B67C - DD 75 05
-   ld     (ix+6), h                    ; 02:B67F - DD 74 06
    ld     (ix+19), l                   ; 02:B682 - DD 75 13
    ld     (ix+20), h                   ; 02:B685 - DD 74 14
    xor    a                            ; 02:B688 - AF
