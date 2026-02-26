@@ -1026,6 +1026,9 @@ LUT_004F9_left_shift_bitmask:
 .db $01, $02, $04, $08, $10, $20, $40, $80                                          ; 00:04F9
 
 unpack_art_tilemap_into_vram:
+   call set_rompage_2
+   xor a
+   ld (tmp_00), a
    di                                  ; 00:0501 - F3
    ld     a, e                         ; 00:0502 - 7B
    out    ($BF), a                     ; 00:0503 - D3 BF
@@ -2281,13 +2284,10 @@ run_title_screen:
    ld     de, $2000                    ; 00:12A4 - 11 00 20
    ld     a, $09                       ; 00:12A7 - 3E 09
    call   load_art                     ; 00:12A9 - CD 05 04
-   ld     a, $05                       ; 00:12AC - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_6000           ; 00:12B4 - 21 00 60
+   ld a, :ARTMAP_05_6000
    ld     de, $3800                    ; 00:12B7 - 11 00 38
    ld     bc, $012E                    ; 00:12BA - 01 2E 01
-   ld     a, $00                       ; 00:12BD - 3E 00
-   ld     (tmp_00), a                  ; 00:12BF - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:12C2 - CD 01 05
    xor    a                            ; 00:12C5 - AF
    ld     (g_vdp_scroll_x), a          ; 00:12C6 - 32 51 D2
@@ -2440,13 +2440,10 @@ run_game_over_screen:
    ld     de, $0000                    ; 00:1414 - 11 00 00
    ld     a, $09                       ; 00:1417 - 3E 09
    call   load_art                     ; 00:1419 - CD 05 04
-   ld     a, $05                       ; 00:141C - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_67FE           ; 00:1424 - 21 FE 67
+   ld a, :ARTMAP_05_67FE
    ld     bc, $0032                    ; 00:1427 - 01 32 00
    ld     de, $3800                    ; 00:142A - 11 00 38
-   ld     a, $00                       ; 00:142D - 3E 00
-   ld     (tmp_00), a                  ; 00:142F - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:1432 - CD 01 05
    xor    a                            ; 00:1435 - AF
    ld     (g_vdp_scroll_x), a          ; 00:1436 - 32 51 D2
@@ -2601,21 +2598,19 @@ handle_level_score_screen:
    ld     de, $0000                    ; 00:1583 - 11 00 00
    ld     a, $09                       ; 00:1586 - 3E 09
    call   load_art                     ; 00:1588 - CD 05 04
-   ld     a, $05                       ; 00:158B - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_612E           ; 00:1593 - 21 2E 61
    ld     bc, $00BB                    ; 00:1596 - 01 BB 00
    ld     de, $3800                    ; 00:1599 - 11 00 38
    ld     a, (g_level)                 ; 00:159C - 3A 3E D2
    cp     $1C                          ; 00:159F - FE 1C
+   ld a, :ARTMAP_05_612E
    jr     c, @artmap_not_bonus         ; 00:15A1 - 38 09
    ld     hl, ARTMAP_05_61E9           ; 00:15A3 - 21 E9 61
+   ld a, :ARTMAP_05_61E9
    ld     bc, $0095                    ; 00:15A6 - 01 95 00
    ld     de, $3800                    ; 00:15A9 - 11 00 38
 
 @artmap_not_bonus:
-   xor    a                            ; 00:15AC - AF
-   ld     (tmp_00), a                  ; 00:15AD - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:15B0 - CD 01 05
    ld     hl, LUT_chaos_emerald_icon_16x16text  ; 00:15B3 - 21 11 17
    ld     c, $10                       ; 00:15B6 - 0E 10
@@ -4413,13 +4408,10 @@ run_ending_and_credits:
    ld     de, $0000                    ; 00:25AC - 11 00 00
    ld     a, $0C                       ; 00:25AF - 3E 0C
    call   load_art                     ; 00:25B1 - CD 05 04
-   ld     a, $05                       ; 00:25B4 - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_6830           ; 00:25BC - 21 30 68
+   ld a, :ARTMAP_05_6830
    ld     bc, $0179                    ; 00:25BF - 01 79 01
    ld     de, $3800                    ; 00:25C2 - 11 00 38
-   xor    a                            ; 00:25C5 - AF
-   ld     (tmp_00), a                  ; 00:25C6 - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:25C9 - CD 01 05
    ld     a, (g_saved_vdp_reg_01)      ; 00:25CC - 3A 19 D2
    or     $40                          ; 00:25CF - F6 40
@@ -4503,13 +4495,10 @@ run_ending_and_credits:
    ld     hl, LUT_02047_all7F          ; 00:266B - 21 47 20
    call   palette_fade_up              ; 00:266E - CD 60 0B
    ld     (iy+g_sprite_count-IYBASE), $00  ; 00:2671 - FD 36 0A 00
-   ld     a, $05                       ; 00:2675 - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_69A9           ; 00:267D - 21 A9 69
+   ld a, :ARTMAP_05_69A9
    ld     bc, $0145                    ; 00:2680 - 01 45 01
    ld     de, $3800                    ; 00:2683 - 11 00 38
-   xor    a                            ; 00:2686 - AF
-   ld     (tmp_00), a                  ; 00:2687 - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:268A - CD 01 05
    ld     hl, PAL3_ending_tally        ; 00:268D - 21 28 28
    call   fade_screen_down_to_palette  ; 00:2690 - CD AE 0A
@@ -4534,10 +4523,9 @@ run_ending_and_credits:
    ld     a, $05                       ; 00:26C1 - 3E 05
    call set_rompage_1
    ld     hl, ARTMAP_05_6C61           ; 00:26C9 - 21 61 6C
+   ld a, :ARTMAP_05_6C61
    ld     bc, $0189                    ; 00:26CC - 01 89 01
    ld     de, $3800                    ; 00:26CF - 11 00 38
-   xor    a                            ; 00:26D2 - AF
-   ld     (tmp_00), a                  ; 00:26D3 - 32 0E D2
    call   unpack_art_tilemap_into_vram  ; 00:26D6 - CD 01 05
    xor    a                            ; 00:26D9 - AF
    ld     hl, g_credits_sprites        ; 00:26DA - 21 22 D3
@@ -21620,40 +21608,62 @@ LVOBJECTS_ENDING:
 .INCBIN "src/data/lv_ending.objects"
 .ENDS
 
-.SECTION "Bank05_2000" SLOT 1 BANK $05 FORCE ORG $2000
+.SECTION "base_ARTMAP_05_6000" SUPERFREE SLOT 2
 ARTMAP_05_6000:
 .INCBIN "src/data/title_screen.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_612E" SUPERFREE SLOT 2
 ARTMAP_05_612E:
 .INCBIN "src/data/score_tally_normal.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_61E9" SUPERFREE SLOT 2
 ARTMAP_05_61E9:
 .INCBIN "src/data/score_tally_special.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_627E" SUPERFREE SLOT 2
 ARTMAP_05_627E:
 .INCBIN "src/data/world_map_1.artmap10"
+.ENDS
 
+.SECTION "base_ARTMAP_05_63F6" SUPERFREE SLOT 2
 ARTMAP_05_63F6:
 .INCBIN "src/data/world_map_1.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_653B" SUPERFREE SLOT 2
 ARTMAP_05_653B:
 .INCBIN "src/data/world_map_2.artmap10"
+.ENDS
 
+.SECTION "base_ARTMAP_05_66AB" SUPERFREE SLOT 2
 ARTMAP_05_66AB:
 .INCBIN "src/data/world_map_2.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_67FE" SUPERFREE SLOT 2
 ARTMAP_05_67FE:
 .INCBIN "src/data/game_over.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_6830" SUPERFREE SLOT 2
 ARTMAP_05_6830:
 .INCBIN "src/data/ending_tally.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_69A9" SUPERFREE SLOT 2
 ARTMAP_05_69A9:
 .INCBIN "src/data/good_ending_island.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_6AEE_UNUSED" SUPERFREE SLOT 2
 ARTMAP_05_6AEE_UNUSED:
 .INCBIN "src/data/unused_credits_screen_beta.artmap00"
+.ENDS
 
+.SECTION "base_ARTMAP_05_6C61" SUPERFREE SLOT 2
 ARTMAP_05_6C61:
 .INCBIN "src/data/credits_screen.artmap00"
 .ENDS
