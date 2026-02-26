@@ -21623,26 +21623,6 @@ ARTMAP_05_61E9:
 .INCBIN "src/data/score_tally_special.artmap00"
 .ENDS
 
-.SECTION "base_ARTMAP_05_627E" SUPERFREE SLOT 2
-ARTMAP_05_627E:
-.INCBIN "src/data/world_map_1.artmap10"
-.ENDS
-
-.SECTION "base_ARTMAP_05_63F6" SUPERFREE SLOT 2
-ARTMAP_05_63F6:
-.INCBIN "src/data/world_map_1.artmap00"
-.ENDS
-
-.SECTION "base_ARTMAP_05_653B" SUPERFREE SLOT 2
-ARTMAP_05_653B:
-.INCBIN "src/data/world_map_2.artmap10"
-.ENDS
-
-.SECTION "base_ARTMAP_05_66AB" SUPERFREE SLOT 2
-ARTMAP_05_66AB:
-.INCBIN "src/data/world_map_2.artmap00"
-.ENDS
-
 .SECTION "base_ARTMAP_05_67FE" SUPERFREE SLOT 2
 ARTMAP_05_67FE:
 .INCBIN "src/data/game_over.artmap00"
@@ -21656,11 +21636,6 @@ ARTMAP_05_6830:
 .SECTION "base_ARTMAP_05_69A9" SUPERFREE SLOT 2
 ARTMAP_05_69A9:
 .INCBIN "src/data/good_ending_island.artmap00"
-.ENDS
-
-.SECTION "base_ARTMAP_05_6AEE_UNUSED" SUPERFREE SLOT 2
-ARTMAP_05_6AEE_UNUSED:
-.INCBIN "src/data/unused_credits_screen_beta.artmap00"
 .ENDS
 
 .SECTION "base_ARTMAP_05_6C61" SUPERFREE SLOT 2
