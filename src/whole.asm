@@ -101,6 +101,7 @@ g_water_irq_line_state db   ; D247
 g_water_onscreen_y db   ; D248
 .  dsb 6
 g_level_tilemap_ptr dw   ; D24F
+g_level_tilemap_bank db
 g_vdp_scroll_x db   ; D251
 g_vdp_scroll_y db   ; D252
 .  dsb 4
@@ -241,7 +242,7 @@ g_credits_sprites db   ; D322
 g_per_level_checkpoint_positions dw   ; D32E
 .  dsb 36
 g_level_header_copy db   ; D354
-.  dsb 41
+.  dsb 42
 g_object_ptrs dw   ; D37C
 g_active_object_ptrs dw   ; D37E
 .  dsb 60
@@ -1359,8 +1360,8 @@ load_scroll_tile_list_buffers:
    bit    5, (iy+iy_00-IYBASE)         ; 00:06BD - FD CB 00 6E
    ret    z                            ; 00:06C1 - C8
    di                                  ; 00:06C2 - F3
-   ld     a, $04                       ; 00:06C3 - 3E 04
-   call set_rompage_1_2
+   ld a, (g_level_tilemap_bank)
+   call set_rompage_2
    ei                                  ; 00:06D3 - FB
    ld     a, (g_tile_flags_index)      ; 00:06D4 - 3A D4 D2
    add    a, a                         ; 00:06D7 - 87
@@ -1793,8 +1794,8 @@ get_screen_tile_ptr_in_ram:
 
 draw_initial_screen_tiles:
    di                                  ; 00:0966 - F3
-   ld     a, $04                       ; 00:0967 - 3E 04
-   call set_rompage_1_2
+   ld a, (g_level_tilemap_bank)
+   call set_rompage_2
    ld     bc, $0000                    ; 00:0977 - 01 00 00
    call   get_screen_tile_ptr_in_ram   ; 00:097A - CD D5 08
    ld     de, $3800                    ; 00:097D - 11 00 38
@@ -3917,7 +3918,7 @@ load_and_init_level_from_header:
    res    0, (iy+iy_00-IYBASE)         ; 00:20D3 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:20D7 - CD 1C 03
    ld     de, g_level_header_copy      ; 00:20DA - 11 54 D3
-   ld     bc, $002A                    ; 00:20DD - 01 28 00
+   ld     bc, $002B                    ; 00:20DD - 01 28 00
    ldir                                ; 00:20E0 - ED B0
    ld     hl, g_level_header_copy      ; 00:20E2 - 21 54 D3
    push   hl                           ; 00:20E5 - E5
@@ -4097,11 +4098,10 @@ load_and_init_level_from_header:
    inc    hl                           ; 00:2248 - 23
    ld     d, (hl)                      ; 00:2249 - 56
    inc    hl                           ; 00:224A - 23
-   ex     de, hl                       ; 00:224B - EB
-   ld     bc, $4000                    ; 00:224C - 01 00 40
-   add    hl, bc                       ; 00:224F - 09
-   ld     (g_level_tilemap_ptr), hl    ; 00:2250 - 22 4F D2
-   ex     de, hl                       ; 00:2253 - EB
+   ld a, (hl)
+   inc hl
+   ld (g_level_tilemap_ptr), de
+   ld (g_level_tilemap_bank), a
    ld     e, (hl)                      ; 00:2254 - 5E
    inc    hl                           ; 00:2255 - 23
    ld     d, (hl)                      ; 00:2256 - 56
@@ -20765,33 +20765,42 @@ MONART_continue:
 .INCBIN "src/data/mon_continue.monart"
 .ENDS
 
-.SECTION "Bank04" SLOT 2 BANK $04 FORCE ORG $0000
-
+.SECTION "base_LVTILEMAP_GHZ" SUPERFREE SLOT 2
 LVTILEMAP_GHZ:
 .INCBIN "src/data/lv_ghz.tilemap"
-
-LVTILEMAP_BRI:
-.INCBIN "src/data/lv_bri.tilemap"
-
-LVTILEMAP_JUN:
-.INCBIN "src/data/lv_jun.tilemap"
-
-LVTILEMAP_LAB:
-.INCBIN "src/data/lv_lab.tilemap"
-
-LVTILEMAP_SCR:
-.INCBIN "src/data/lv_scr.tilemap"
-
-LVTILEMAP_SKY:
-.INCBIN "src/data/lv_sky.tilemap" READ $00A80
 .ENDS
 
-.SECTION "Bank05" SLOT 1 BANK $05 FORCE ORG $0000
-.INCBIN "src/data/lv_sky.tilemap" SKIP $00A80
+.SECTION "base_LVTILEMAP_BRI" SUPERFREE SLOT 2
+LVTILEMAP_BRI:
+.INCBIN "src/data/lv_bri.tilemap"
+.ENDS
 
+.SECTION "base_LVTILEMAP_JUN" SUPERFREE SLOT 2
+LVTILEMAP_JUN:
+.INCBIN "src/data/lv_jun.tilemap"
+.ENDS
+
+.SECTION "base_LVTILEMAP_LAB" SUPERFREE SLOT 2
+LVTILEMAP_LAB:
+.INCBIN "src/data/lv_lab.tilemap"
+.ENDS
+
+.SECTION "base_LVTILEMAP_SCR" SUPERFREE SLOT 2
+LVTILEMAP_SCR:
+.INCBIN "src/data/lv_scr.tilemap"
+.ENDS
+
+.SECTION "base_LVTILEMAP_SKY" SUPERFREE SLOT 2
+LVTILEMAP_SKY:
+.INCBIN "src/data/lv_sky.tilemap"
+.ENDS
+
+.SECTION "base_LVTILEMAP_SKY_3" SUPERFREE SLOT 2
 LVTILEMAP_SKY_3:
 .INCBIN "src/data/lv_sky_3.tilemap"
+.ENDS
 
+.SECTION "base_LVTILEMAP_special" SUPERFREE SLOT 2
 LVTILEMAP_special:
 .INCBIN "src/data/lv_special.tilemap"
 .ENDS
@@ -20871,7 +20880,8 @@ lvh_layout_cmpsize:
 .dw $083E                                                                           ; 05:55DB
 
 lvh_tilemap_bank04:
-.dw $0000                                                                           ; 05:55DD
+.dw LVTILEMAP_GHZ
+.db :LVTILEMAP_GHZ
 
 lvh_art0000_bank0C:
 .dw $2FE6                                                                           ; 05:55DF
@@ -20892,7 +20902,10 @@ LVHEAD_01:
 .db $02, $03                                                                        ; 05:55FC
 .dw LVLAYOUT_GHZ2
 .db :LVLAYOUT_GHZ2
-.dw $0661, $0000, $2FE6
+.dw $0661
+.dw LVTILEMAP_GHZ
+.db :LVTILEMAP_GHZ
+.dw $2FE6
 .db $09                                                                             ; 05:5606
 .dw $612A                                                                           ; 05:5607
 .db $00, $0A, $03, $00                                                              ; 05:5609
@@ -20906,7 +20919,10 @@ LVHEAD_02:
 .db $07, $16                                                                        ; 05:5621
 .dw LVLAYOUT_GHZ3
 .db :LVLAYOUT_GHZ3
-.dw $032D, $0000, $2FE6
+.dw $032D
+.dw LVTILEMAP_GHZ
+.db :LVTILEMAP_GHZ
+.dw $2FE6
 .db $09                                                                             ; 05:562B
 .dw $612A                                                                           ; 05:562C
 .db $00, $0A, $03, $00                                                              ; 05:562E
@@ -20920,7 +20936,10 @@ LVHEAD_12:
 .db $D9, $0A                                                                        ; 05:5646
 .dw LVLAYOUT_GHZ1_ENDING
 .db :LVLAYOUT_GHZ1_ENDING
-.dw $083E, $0000, $2FE6                                                      ; 05:5648
+.dw $083E,
+.dw LVTILEMAP_GHZ
+.db :LVTILEMAP_GHZ
+.dw $2FE6
 .db $09                                                                             ; 05:5650
 .dw $AEB1                                                                           ; 05:5651
 .db $00, $0A, $03, $00                                                              ; 05:5653
@@ -20934,7 +20953,10 @@ LVHEAD_03:
 .db $03, $0C                                                                        ; 05:566B
 .dw LVLAYOUT_BRI1
 .db :LVLAYOUT_BRI1
-.dw $0694, $0B80, $4578
+.dw $0694
+.dw LVTILEMAP_BRI
+.db :LVTILEMAP_BRI
+.dw $4578
 .db $09                                                                             ; 05:5675
 .dw $6C3D                                                                           ; 05:5676
 .db $01, $08, $03, $01                                                              ; 05:5678
@@ -20948,7 +20970,10 @@ LVHEAD_04:
 .db $02, $1C                                                                        ; 05:5690
 .dw LVLAYOUT_BRI2
 .db :LVLAYOUT_BRI2
-.dw $0499, $0B80, $4578
+.dw $0499
+.dw LVTILEMAP_BRI
+.db :LVTILEMAP_BRI
+.dw $4578
 .db $09                                                                             ; 05:569A
 .dw $6C3D                                                                           ; 05:569B
 .db $01, $08, $03, $01                                                              ; 05:569D
@@ -20962,7 +20987,10 @@ LVHEAD_05:
 .db $06, $1B                                                                        ; 05:56B5
 .dw LVLAYOUT_BRI3
 .db :LVLAYOUT_BRI3
-.dw $0140, $0B80, $4578
+.dw $0140
+.dw LVTILEMAP_BRI
+.db :LVTILEMAP_BRI
+.dw $4578
 .db $09                                                                             ; 05:56BF
 .dw $6C3D                                                                           ; 05:56C0
 .db $01, $08, $03, $01                                                              ; 05:56C2
@@ -20976,7 +21004,10 @@ LVHEAD_06:
 .db $02, $0B                                                                        ; 05:56DA
 .dw LVLAYOUT_JUN1
 .db :LVLAYOUT_JUN1
-.dw $0AAC, $1480, $5B00
+.dw $0AAC
+.dw LVTILEMAP_JUN
+.db :LVTILEMAP_JUN
+.dw $5B00
 .db $09                                                                             ; 05:56E4
 .dw $77CD                                                                           ; 05:56E5
 .db $02, $05, $03, $02                                                              ; 05:56E7
@@ -20990,7 +21021,10 @@ LVHEAD_07:
 .db $02, $FA                                                                        ; 05:56FF
 .dw LVLAYOUT_JUN2_special_4_8
 .db :LVLAYOUT_JUN2_special_4_8
-.dw $08DB, $1480, $5B00
+.dw $08DB
+.dw LVTILEMAP_JUN
+.db :LVTILEMAP_JUN
+.dw $5B00
 .db $09                                                                             ; 05:5709
 .dw $77CD                                                                           ; 05:570A
 .db $02, $05, $03, $02                                                              ; 05:570C
@@ -21004,7 +21038,10 @@ LVHEAD_08:
 .db $03, $21                                                                        ; 05:5724
 .dw LVLAYOUT_JUN3
 .db :LVLAYOUT_JUN3
-.dw $03F5, $1480, $5B00
+.dw $03F5
+.dw LVTILEMAP_JUN
+.db :LVTILEMAP_JUN
+.dw $5B00
 .db $09                                                                             ; 05:572E
 .dw $77CD                                                                           ; 05:572F
 .db $02, $05, $03, $02                                                              ; 05:5731
@@ -21018,7 +21055,10 @@ LVHEAD_09:
 .db $02, $05                                                                        ; 05:5749
 .dw LVLAYOUT_LAB1
 .db :LVLAYOUT_LAB1
-.dw $08C2, $1E80, $71BF
+.dw $08C2
+.dw LVTILEMAP_LAB
+.db :LVTILEMAP_LAB
+.dw $71BF
 .db $09                                                                             ; 05:5753
 .dw $83B6                                                                           ; 05:5754
 .db $03, $05, $03, $03                                                              ; 05:5756
@@ -21032,7 +21072,10 @@ LVHEAD_0A:
 .db $03, $09                                                                        ; 05:576E
 .dw LVLAYOUT_LAB2
 .db :LVLAYOUT_LAB2
-.dw $0D13, $1E80, $71BF
+.dw $0D13
+.dw LVTILEMAP_LAB
+.db :LVTILEMAP_LAB
+.dw $71BF
 .db $09                                                                             ; 05:5778
 .dw $83B6                                                                           ; 05:5779
 .db $03, $05, $03, $03                                                              ; 05:577B
@@ -21046,7 +21089,10 @@ LVHEAD_0B:
 .db $03, $25                                                                        ; 05:5793
 .dw LVLAYOUT_LAB3
 .db :LVLAYOUT_LAB3
-.dw $030B, $1E80, $71BF
+.dw $030B
+.dw LVTILEMAP_LAB
+.db :LVTILEMAP_LAB
+.dw $71BF
 .db $09                                                                             ; 05:579D
 .dw $83B6                                                                           ; 05:579E
 .db $03, $05, $03, $03                                                              ; 05:57A0
@@ -21060,7 +21106,10 @@ LVHEAD_0C:
 .db $03, $0B                                                                        ; 05:57B8
 .dw LVLAYOUT_SCR1
 .db :LVLAYOUT_SCR1
-.dw $069A, $2980, $884B
+.dw $069A
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:57C2
 .dw $8F75                                                                           ; 05:57C3
 .db $04, $06, $04, $04                                                              ; 05:57C5
@@ -21074,7 +21123,10 @@ LVHEAD_0D:
 .db $04, $16                                                                        ; 05:57DD
 .dw LVLAYOUT_SCR2_main
 .db :LVLAYOUT_SCR2_main
-.dw $0904, $2980, $884B
+.dw $0904
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:57E7
 .dw $8F75                                                                           ; 05:57E8
 .db $04, $06, $04, $04                                                              ; 05:57EA
@@ -21089,7 +21141,10 @@ LVHEAD_14:
 .db $03, $3D                                                                        ; 05:5802
 .dw LVLAYOUT_SCR2_upper
 .db :LVLAYOUT_SCR2_upper
-.dw $08F8, $2980, $884B
+.dw $08F8
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:580C
 .dw $8F75                                                                           ; 05:580D
 .db $04, $06, $04, $04                                                              ; 05:580F
@@ -21104,7 +21159,10 @@ LVHEAD_15:
 .db $03, $03                                                                        ; 05:5827
 .dw LVLAYOUT_SCR2_lower
 .db :LVLAYOUT_SCR2_lower
-.dw $06AF, $2980, $884B
+.dw $06AF
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:5831
 .dw $8F75                                                                           ; 05:5832
 .db $04, $06, $04, $04                                                              ; 05:5834
@@ -21118,7 +21176,10 @@ LVHEAD_0E:
 .db $03, $36                                                                        ; 05:584C
 .dw LVLAYOUT_SCR3
 .db :LVLAYOUT_SCR3
-.dw $08B2, $2980, $884B
+.dw $08B2
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:5856
 .dw $8F75                                                                           ; 05:5857
 .db $04, $06, $04, $04                                                              ; 05:5859
@@ -21132,7 +21193,10 @@ LVHEAD_18:
 .db $7B, $03                                                                        ; 05:5871
 .dw LVLAYOUT_SCR2_main
 .db :LVLAYOUT_SCR2_main
-.dw $0904, $2980, $884B
+.dw $0904
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:587B
 .dw $8F75                                                                           ; 05:587C
 .db $04, $06, $04, $04                                                              ; 05:587E
@@ -21146,7 +21210,10 @@ LVHEAD_19:
 .db $7B, $1B                                                                        ; 05:5896
 .dw LVLAYOUT_SCR2_main
 .db :LVLAYOUT_SCR2_main
-.dw $0904, $2980, $884B
+.dw $0904
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:58A0
 .dw $8F75                                                                           ; 05:58A1
 .db $04, $06, $04, $04                                                              ; 05:58A3
@@ -21160,7 +21227,10 @@ LVHEAD_16:
 .db $50, $10                                                                        ; 05:58BB
 .dw LVLAYOUT_SCR2_main
 .db :LVLAYOUT_SCR2_main
-.dw $0904, $2980, $884B
+.dw $0904
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:58C5
 .dw $8F75                                                                           ; 05:58C6
 .db $04, $06, $04, $04                                                              ; 05:58C8
@@ -21174,7 +21244,10 @@ LVHEAD_17:
 .db $27, $1C                                                                        ; 05:58E0
 .dw LVLAYOUT_SCR2_upper
 .db :LVLAYOUT_SCR2_upper
-.dw $08F8, $2980, $884B
+.dw $08F8
+.dw LVTILEMAP_SCR
+.db :LVTILEMAP_SCR
+.dw $884B
 .db $09                                                                             ; 05:58EA
 .dw $8F75                                                                           ; 05:58EB
 .db $04, $06, $04, $04                                                              ; 05:58ED
@@ -21188,7 +21261,10 @@ LVHEAD_0F:
 .db $02, $1D                                                                        ; 05:5905
 .dw LVLAYOUT_SKY1
 .db :LVLAYOUT_SKY1
-.dw $076E, $3580, $9CEE
+.dw $076E
+.dw LVTILEMAP_SKY
+.db :LVTILEMAP_SKY
+.dw $9CEE
 .db $09                                                                             ; 05:590F
 .dw $99E0                                                                           ; 05:5910
 .db $05, $06, $04, $05                                                              ; 05:5912
@@ -21202,7 +21278,10 @@ LVHEAD_10:
 .db $0A, $17                                                                        ; 05:592A
 .dw LVLAYOUT_SKY2
 .db :LVLAYOUT_SKY2
-.dw $039D, $3580, $9CEE
+.dw $039D
+.dw LVTILEMAP_SKY
+.db :LVTILEMAP_SKY
+.dw $9CEE
 .db $09                                                                             ; 05:5934
 .dw $99E0                                                                           ; 05:5935
 .db $05, $06, $04, $08                                                              ; 05:5937
@@ -21216,7 +21295,10 @@ LVHEAD_11:
 .db $02, $01                                                                        ; 05:594F
 .dw LVLAYOUT_SKY3_endof_SKY2
 .db :LVLAYOUT_SKY3_endof_SKY2
-.dw $04C0, $4300, $B3B5
+.dw $04C0
+.dw LVTILEMAP_SKY_3
+.db :LVTILEMAP_SKY_3
+.dw $B3B5
 .db $09                                                                             ; 05:5959
 .dw $99E0                                                                           ; 05:595A
 .db $06, $08, $04, $06                                                              ; 05:595C
@@ -21231,7 +21313,10 @@ LVHEAD_1B:
 .db $03, $3B                                                                        ; 05:5974
 .dw LVLAYOUT_SKY3_endof_SKY2
 .db :LVLAYOUT_SKY3_endof_SKY2
-.dw $04C0, $4300, $B3B5
+.dw $04C0
+.dw LVTILEMAP_SKY_3
+.db :LVTILEMAP_SKY_3
+.dw $B3B5
 .db $09                                                                             ; 05:597E
 .dw $99E0                                                                           ; 05:597F
 .db $06, $08, $04, $06                                                              ; 05:5981
@@ -21245,7 +21330,10 @@ LVHEAD_1C:
 .db $02, $06                                                                        ; 05:5999
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:59A3
 .dw $A511                                                                           ; 05:59A4
 .db $07, $01, $01, $07                                                              ; 05:59A6
@@ -21259,7 +21347,10 @@ LVHEAD_1D:
 .db $02, $1E                                                                        ; 05:59BE
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:59C8
 .dw $A511                                                                           ; 05:59C9
 .db $07, $01, $01, $07                                                              ; 05:59CB
@@ -21273,7 +21364,10 @@ LVHEAD_1E:
 .db $03, $3B                                                                        ; 05:59E3
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:59ED
 .dw $A511                                                                           ; 05:59EE
 .db $07, $01, $01, $07                                                              ; 05:59F0
@@ -21287,7 +21381,10 @@ LVHEAD_1F:
 .db $06, $04                                                                        ; 05:5A08
 .dw LVLAYOUT_JUN2_special_4_8
 .db :LVLAYOUT_JUN2_special_4_8
-.dw $08DB, $4980, $C7FE
+.dw $08DB
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:5A12
 .dw $A511                                                                           ; 05:5A13
 .db $07, $01, $01, $07                                                              ; 05:5A15
@@ -21301,7 +21398,10 @@ LVHEAD_20:
 .db $02, $06                                                                        ; 05:5A2D
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:5A37
 .dw $A511                                                                           ; 05:5A38
 .db $07, $01, $01, $07                                                              ; 05:5A3A
@@ -21315,7 +21415,10 @@ LVHEAD_21:
 .db $02, $1E                                                                        ; 05:5A52
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:5A5C
 .dw $A511                                                                           ; 05:5A5D
 .db $07, $01, $01, $07                                                              ; 05:5A5F
@@ -21329,7 +21432,10 @@ LVHEAD_22:
 .db $03, $3B                                                                        ; 05:5A77
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .db :LVLAYOUT_SPECIAL_1_2_3_5_6_7
-.dw $0760, $4980, $C7FE
+.dw $0760
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:5A81
 .dw $A511                                                                           ; 05:5A82
 .db $07, $01, $01, $07                                                              ; 05:5A84
@@ -21343,7 +21449,10 @@ LVHEAD_23:
 .db $06, $04                                                                        ; 05:5A9C
 .dw LVLAYOUT_JUN2_special_4_8
 .db :LVLAYOUT_JUN2_special_4_8
-.dw $08DB, $4980, $C7FE
+.dw $08DB
+.dw LVTILEMAP_special
+.db :LVTILEMAP_special
+.dw $C7FE
 .db $09                                                                             ; 05:5AA6
 .dw $A511                                                                           ; 05:5AA7
 .db $07, $01, $01, $07                                                              ; 05:5AA9
