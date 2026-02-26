@@ -4200,7 +4200,7 @@ load_and_init_level_from_header:
    push   hl                           ; 00:22DB - E5
    ld l, e
    ld h, d
-   call set_rompage_1
+   call set_rompage_2
    call   load_object_list             ; 00:22E8 - CD 2B 23
    pop    hl                           ; 00:22EB - E1
    ld     c, (hl)                      ; 00:22EC - 4E
@@ -20937,8 +20937,8 @@ lvh_art2000:
 .db $00, $0A, $03, $00                                                              ; 05:55E4
 
 lvh_objlist:
-.dw LVOBJECTS_05_5AB4
-.db :LVOBJECTS_05_5AB4
+.dw LVOBJECTS_GHZ1
+.db :LVOBJECTS_GHZ1
 .db $04, $00, $20, $00, $00                                                         ; 05:55EA
 
 LVHEAD_01:
@@ -20949,8 +20949,8 @@ LVHEAD_01:
 .db $09                                                                             ; 05:5606
 .dw $612A                                                                           ; 05:5607
 .db $00, $0A, $03, $00                                                              ; 05:5609
-.dw LVOBJECTS_05_5B00
-.db :LVOBJECTS_05_5B00
+.dw LVOBJECTS_GHZ2
+.db :LVOBJECTS_GHZ2
 .db $04, $00, $20, $00, $00                                                         ; 05:560F
 
 LVHEAD_02:
@@ -20961,8 +20961,8 @@ LVHEAD_02:
 .db $09                                                                             ; 05:562B
 .dw $612A                                                                           ; 05:562C
 .db $00, $0A, $03, $00                                                              ; 05:562E
-.dw LVOBJECTS_05_5B43
-.db :LVOBJECTS_05_5B43
+.dw LVOBJECTS_GHZ3
+.db :LVOBJECTS_GHZ3
 .db $00, $00, $00, $00, $00                                                         ; 05:5634
 
 LVHEAD_12:
@@ -20973,8 +20973,8 @@ LVHEAD_12:
 .db $09                                                                             ; 05:5650
 .dw $AEB1                                                                           ; 05:5651
 .db $00, $0A, $03, $00                                                              ; 05:5653
-.dw LVOBJECTS_05_5FBA
-.db :LVOBJECTS_05_5FBA
+.dw LVOBJECTS_ENDING
+.db :LVOBJECTS_ENDING
 .db $00, $00, $00, $00, $FF                                                         ; 05:5659
 
 LVHEAD_03:
@@ -20985,8 +20985,8 @@ LVHEAD_03:
 .db $09                                                                             ; 05:5675
 .dw $6C3D                                                                           ; 05:5676
 .db $01, $08, $03, $01                                                              ; 05:5678
-.dw LVOBJECTS_05_5B56
-.db :LVOBJECTS_05_5B56
+.dw LVOBJECTS_BRI1
+.db :LVOBJECTS_BRI1
 .db $04, $00, $20, $00, $01                                                         ; 05:567E
 
 LVHEAD_04:
@@ -20997,8 +20997,8 @@ LVHEAD_04:
 .db $09                                                                             ; 05:569A
 .dw $6C3D                                                                           ; 05:569B
 .db $01, $08, $03, $01                                                              ; 05:569D
-.dw LVOBJECTS_05_5B9C
-.db :LVOBJECTS_05_5B9C
+.dw LVOBJECTS_BRI2
+.db :LVOBJECTS_BRI2
 .db $0C, $00, $20, $00, $01                                                         ; 05:56A3
 
 LVHEAD_05:
@@ -21009,8 +21009,8 @@ LVHEAD_05:
 .db $09                                                                             ; 05:56BF
 .dw $6C3D                                                                           ; 05:56C0
 .db $01, $08, $03, $01                                                              ; 05:56C2
-.dw LVOBJECTS_05_5BD6
-.db :LVOBJECTS_05_5BD6
+.dw LVOBJECTS_BRI3
+.db :LVOBJECTS_BRI3
 .db $00, $00, $00, $00, $01                                                         ; 05:56C8
 
 LVHEAD_06:
@@ -21021,8 +21021,8 @@ LVHEAD_06:
 .db $09                                                                             ; 05:56E4
 .dw $77CD                                                                           ; 05:56E5
 .db $02, $05, $03, $02                                                              ; 05:56E7
-.dw LVOBJECTS_05_5BEC
-.db :LVOBJECTS_05_5BEC
+.dw LVOBJECTS_JUN1
+.db :LVOBJECTS_JUN1
 .db $04, $00, $20, $00, $02                                                         ; 05:56ED
 
 LVHEAD_07:
@@ -21033,8 +21033,8 @@ LVHEAD_07:
 .db $09                                                                             ; 05:5709
 .dw $77CD                                                                           ; 05:570A
 .db $02, $05, $03, $02                                                              ; 05:570C
-.dw LVOBJECTS_05_5C44
-.db :LVOBJECTS_05_5C44
+.dw LVOBJECTS_JUN2
+.db :LVOBJECTS_JUN2
 .db $84, $00, $20, $00, $02                                                         ; 05:5712
 
 LVHEAD_08:
@@ -21045,8 +21045,8 @@ LVHEAD_08:
 .db $09                                                                             ; 05:572E
 .dw $77CD                                                                           ; 05:572F
 .db $02, $05, $03, $02                                                              ; 05:5731
-.dw LVOBJECTS_05_5C8D
-.db :LVOBJECTS_05_5C8D
+.dw LVOBJECTS_JUN3
+.db :LVOBJECTS_JUN3
 .db $00, $00, $00, $00, $02                                                         ; 05:5737
 
 LVHEAD_09:
@@ -21057,8 +21057,8 @@ LVHEAD_09:
 .db $09                                                                             ; 05:5753
 .dw $83B6                                                                           ; 05:5754
 .db $03, $05, $03, $03                                                              ; 05:5756
-.dw LVOBJECTS_05_5CA3
-.db :LVOBJECTS_05_5CA3
+.dw LVOBJECTS_LAB1
+.db :LVOBJECTS_LAB1
 .db $04, $80, $20, $00, $03                                                         ; 05:575C
 
 LVHEAD_0A:
@@ -21069,8 +21069,8 @@ LVHEAD_0A:
 .db $09                                                                             ; 05:5778
 .dw $83B6                                                                           ; 05:5779
 .db $03, $05, $03, $03                                                              ; 05:577B
-.dw LVOBJECTS_05_5CF2
-.db :LVOBJECTS_05_5CF2
+.dw LVOBJECTS_LAB2
+.db :LVOBJECTS_LAB2
 .db $04, $80, $20, $00, $03                                                         ; 05:5781
 
 LVHEAD_0B:
@@ -21081,8 +21081,8 @@ LVHEAD_0B:
 .db $09                                                                             ; 05:579D
 .dw $83B6                                                                           ; 05:579E
 .db $03, $05, $03, $03                                                              ; 05:57A0
-.dw LVOBJECTS_05_5D4A
-.db :LVOBJECTS_05_5D4A
+.dw LVOBJECTS_LAB3
+.db :LVOBJECTS_LAB3
 .db $00, $80, $10, $00, $03                                                         ; 05:57A6
 
 LVHEAD_0C:
@@ -21093,8 +21093,8 @@ LVHEAD_0C:
 .db $09                                                                             ; 05:57C2
 .dw $8F75                                                                           ; 05:57C3
 .db $04, $06, $04, $04                                                              ; 05:57C5
-.dw LVOBJECTS_05_5D69
-.db :LVOBJECTS_05_5D69
+.dw LVOBJECTS_SCR1
+.db :LVOBJECTS_SCR1
 .db $04, $00, $20, $00, $04                                                         ; 05:57CB
 
 LVHEAD_0D:
@@ -21106,8 +21106,8 @@ LVHEAD_0D:
 .dw $8F75                                                                           ; 05:57E8
 .db $04, $06, $04, $04                                                              ; 05:57EA
 .dw $082C                                                                           ; 05:57EE
-.dw LVOBJECTS_05_5DAC
-.db :LVOBJECTS_05_5DAC
+.dw LVOBJECTS_SCR2_main
+.db :LVOBJECTS_SCR2_main
 .db $04, $00, $20, $00, $04                                                         ; 05:57F0
 
 LVHEAD_14:
@@ -21119,8 +21119,8 @@ LVHEAD_14:
 .dw $8F75                                                                           ; 05:580D
 .db $04, $06, $04, $04                                                              ; 05:580F
 .dw $0869                                                                           ; 05:5813
-.dw LVOBJECTS_05_5DE9
-.db :LVOBJECTS_05_5DE9
+.dw LVOBJECTS_SCR2_upper
+.db :LVOBJECTS_SCR2_upper
 .db $04, $00, $20, $00, $04                                                         ; 05:5815
 
 LVHEAD_15:
@@ -21131,8 +21131,8 @@ LVHEAD_15:
 .db $09                                                                             ; 05:5831
 .dw $8F75                                                                           ; 05:5832
 .db $04, $06, $04, $04                                                              ; 05:5834
-.dw LVOBJECTS_05_5E35
-.db :LVOBJECTS_05_5E35
+.dw LVOBJECTS_SCR2_lower
+.db :LVOBJECTS_SCR2_lower
 .db $04, $00, $20, $00, $04                                                         ; 05:583A
 
 LVHEAD_0E:
@@ -21143,8 +21143,8 @@ LVHEAD_0E:
 .db $09                                                                             ; 05:5856
 .dw $8F75                                                                           ; 05:5857
 .db $04, $06, $04, $04                                                              ; 05:5859
-.dw LVOBJECTS_05_5E4E
-.db :LVOBJECTS_05_5E4E
+.dw LVOBJECTS_SCR3
+.db :LVOBJECTS_SCR3
 .db $04, $00, $00, $00, $04                                                         ; 05:585F
 
 LVHEAD_18:
@@ -21155,8 +21155,8 @@ LVHEAD_18:
 .db $09                                                                             ; 05:587B
 .dw $8F75                                                                           ; 05:587C
 .db $04, $06, $04, $04                                                              ; 05:587E
-.dw LVOBJECTS_05_5DAC
-.db :LVOBJECTS_05_5DAC
+.dw LVOBJECTS_SCR2_main
+.db :LVOBJECTS_SCR2_main
 .db $04, $00, $20, $00, $04                                                         ; 05:5884
 
 LVHEAD_19:
@@ -21167,8 +21167,8 @@ LVHEAD_19:
 .db $09                                                                             ; 05:58A0
 .dw $8F75                                                                           ; 05:58A1
 .db $04, $06, $04, $04                                                              ; 05:58A3
-.dw LVOBJECTS_05_5DAC
-.db :LVOBJECTS_05_5DAC
+.dw LVOBJECTS_SCR2_main
+.db :LVOBJECTS_SCR2_main
 .db $04, $00, $20, $00, $04                                                         ; 05:58A9
 
 LVHEAD_16:
@@ -21179,8 +21179,8 @@ LVHEAD_16:
 .db $09                                                                             ; 05:58C5
 .dw $8F75                                                                           ; 05:58C6
 .db $04, $06, $04, $04                                                              ; 05:58C8
-.dw LVOBJECTS_05_5DAC
-.db :LVOBJECTS_05_5DAC
+.dw LVOBJECTS_SCR2_main
+.db :LVOBJECTS_SCR2_main
 .db $04, $00, $20, $00, $04                                                         ; 05:58CE
 
 LVHEAD_17:
@@ -21191,8 +21191,8 @@ LVHEAD_17:
 .db $09                                                                             ; 05:58EA
 .dw $8F75                                                                           ; 05:58EB
 .db $04, $06, $04, $04                                                              ; 05:58ED
-.dw LVOBJECTS_05_5DE9
-.db :LVOBJECTS_05_5DE9
+.dw LVOBJECTS_SCR2_upper
+.db :LVOBJECTS_SCR2_upper
 .db $04, $00, $20, $00, $04                                                         ; 05:58F3
 
 LVHEAD_0F:
@@ -21203,8 +21203,8 @@ LVHEAD_0F:
 .db $09                                                                             ; 05:590F
 .dw $99E0                                                                           ; 05:5910
 .db $05, $06, $04, $05                                                              ; 05:5912
-.dw LVOBJECTS_05_5E9A
-.db :LVOBJECTS_05_5E9A
+.dw LVOBJECTS_SKY1
+.db :LVOBJECTS_SKY1
 .db $04, $00, $22, $00, $04                                                         ; 05:5918
 
 LVHEAD_10:
@@ -21215,8 +21215,8 @@ LVHEAD_10:
 .db $09                                                                             ; 05:5934
 .dw $99E0                                                                           ; 05:5935
 .db $05, $06, $04, $08                                                              ; 05:5937
-.dw LVOBJECTS_05_5ED4
-.db :LVOBJECTS_05_5ED4
+.dw LVOBJECTS_SKY2
+.db :LVOBJECTS_SKY2
 .db $40, $00, $20, $00, $05                                                         ; 05:593D
 
 LVHEAD_11:
@@ -21227,8 +21227,8 @@ LVHEAD_11:
 .db $09                                                                             ; 05:5959
 .dw $99E0                                                                           ; 05:595A
 .db $06, $08, $04, $06                                                              ; 05:595C
-.dw LVOBJECTS_05_5F17
-.db :LVOBJECTS_05_5F17
+.dw LVOBJECTS_SKY3
+.db :LVOBJECTS_SKY3
 .db $00, $00, $00, $00, $04                                                         ; 05:5962
 
 LVHEAD_1A:
@@ -21240,8 +21240,8 @@ LVHEAD_1B:
 .db $09                                                                             ; 05:597E
 .dw $99E0                                                                           ; 05:597F
 .db $06, $08, $04, $06                                                              ; 05:5981
-.dw LVOBJECTS_05_5F21
-.db :LVOBJECTS_05_5F21
+.dw LVOBJECTS_SKY2_end
+.db :LVOBJECTS_SKY2_end
 .db $00, $00, $00, $00, $04                                                         ; 05:5987
 
 LVHEAD_1C:
@@ -21252,8 +21252,8 @@ LVHEAD_1C:
 .db $09                                                                             ; 05:59A3
 .dw $A511                                                                           ; 05:59A4
 .db $07, $01, $01, $07                                                              ; 05:59A6
-.dw LVOBJECTS_05_5F25
-.db :LVOBJECTS_05_5F25
+.dw LVOBJECTS_SPECIAL_1
+.db :LVOBJECTS_SPECIAL_1
 .db $04, $00, $21, $00, $10                                                         ; 05:59AC
 
 LVHEAD_1D:
@@ -21264,8 +21264,8 @@ LVHEAD_1D:
 .db $09                                                                             ; 05:59C8
 .dw $A511                                                                           ; 05:59C9
 .db $07, $01, $01, $07                                                              ; 05:59CB
-.dw LVOBJECTS_05_5F2C
-.db :LVOBJECTS_05_5F2C
+.dw LVOBJECTS_SPECIAL_2
+.db :LVOBJECTS_SPECIAL_2
 .db $04, $00, $21, $00, $10                                                         ; 05:59D1
 
 LVHEAD_1E:
@@ -21276,8 +21276,8 @@ LVHEAD_1E:
 .db $09                                                                             ; 05:59ED
 .dw $A511                                                                           ; 05:59EE
 .db $07, $01, $01, $07                                                              ; 05:59F0
-.dw LVOBJECTS_05_5F36
-.db :LVOBJECTS_05_5F36
+.dw LVOBJECTS_SPECIAL_3
+.db :LVOBJECTS_SPECIAL_3
 .db $04, $00, $21, $00, $10                                                         ; 05:59F6
 
 LVHEAD_1F:
@@ -21288,8 +21288,8 @@ LVHEAD_1F:
 .db $09                                                                             ; 05:5A12
 .dw $A511                                                                           ; 05:5A13
 .db $07, $01, $01, $07                                                              ; 05:5A15
-.dw LVOBJECTS_05_5F40
-.db :LVOBJECTS_05_5F40
+.dw LVOBJECTS_SPECIAL_4
+.db :LVOBJECTS_SPECIAL_4
 .db $04, $00, $21, $00, $10                                                         ; 05:5A1B
 
 LVHEAD_20:
@@ -21300,8 +21300,8 @@ LVHEAD_20:
 .db $09                                                                             ; 05:5A37
 .dw $A511                                                                           ; 05:5A38
 .db $07, $01, $01, $07                                                              ; 05:5A3A
-.dw LVOBJECTS_05_5F53
-.db :LVOBJECTS_05_5F53
+.dw LVOBJECTS_SPECIAL_5
+.db :LVOBJECTS_SPECIAL_5
 .db $04, $00, $21, $00, $10                                                         ; 05:5A40
 
 LVHEAD_21:
@@ -21312,8 +21312,8 @@ LVHEAD_21:
 .db $09                                                                             ; 05:5A5C
 .dw $A511                                                                           ; 05:5A5D
 .db $07, $01, $01, $07                                                              ; 05:5A5F
-.dw LVOBJECTS_05_5F66
-.db :LVOBJECTS_05_5F66
+.dw LVOBJECTS_SPECIAL_6
+.db :LVOBJECTS_SPECIAL_6
 .db $04, $00, $21, $00, $10                                                         ; 05:5A65
 
 LVHEAD_22:
@@ -21324,8 +21324,8 @@ LVHEAD_22:
 .db $09                                                                             ; 05:5A81
 .dw $A511                                                                           ; 05:5A82
 .db $07, $01, $01, $07                                                              ; 05:5A84
-.dw LVOBJECTS_05_5F7F
-.db :LVOBJECTS_05_5F7F
+.dw LVOBJECTS_SPECIAL_7
+.db :LVOBJECTS_SPECIAL_7
 .db $04, $00, $21, $00, $10                                                         ; 05:5A8A
 
 LVHEAD_23:
@@ -21336,98 +21336,159 @@ LVHEAD_23:
 .db $09                                                                             ; 05:5AA6
 .dw $A511                                                                           ; 05:5AA7
 .db $07, $01, $01, $07                                                              ; 05:5AA9
-.dw LVOBJECTS_05_5F95
-.db :LVOBJECTS_05_5F95
+.dw LVOBJECTS_SPECIAL_8
+.db :LVOBJECTS_SPECIAL_8
 .db $04, $00, $21, $00, $10                                                         ; 05:5AAF
 
-LVOBJECTS_05_5AB4:
+.ENDS
+
+.SECTION "base_LVOBJECTS_GHZ1" SUPERFREE SLOT 2
+LVOBJECTS_GHZ1:
 .INCBIN "src/data/lv_ghz_1.objects"
+.ENDS
 
-LVOBJECTS_05_5B00:
+.SECTION "base_LVOBJECTS_GHZ2" SUPERFREE SLOT 2
+LVOBJECTS_GHZ2:
 .INCBIN "src/data/lv_ghz_2.objects"
+.ENDS
 
-LVOBJECTS_05_5B43:
+.SECTION "base_LVOBJECTS_GHZ3" SUPERFREE SLOT 2
+LVOBJECTS_GHZ3:
 .INCBIN "src/data/lv_ghz_3.objects"
+.ENDS
 
-LVOBJECTS_05_5B56:
+.SECTION "base_LVOBJECTS_BRI1" SUPERFREE SLOT 2
+LVOBJECTS_BRI1:
 .INCBIN "src/data/lv_bri_1.objects"
+.ENDS
 
-LVOBJECTS_05_5B9C:
+.SECTION "base_LVOBJECTS_BRI2" SUPERFREE SLOT 2
+LVOBJECTS_BRI2:
 .INCBIN "src/data/lv_bri_2.objects"
+.ENDS
 
-LVOBJECTS_05_5BD6:
+.SECTION "base_LVOBJECTS_BRI3" SUPERFREE SLOT 2
+LVOBJECTS_BRI3:
 .INCBIN "src/data/lv_bri_3.objects"
+.ENDS
 
-LVOBJECTS_05_5BEC:
+.SECTION "base_LVOBJECTS_JUN1" SUPERFREE SLOT 2
+LVOBJECTS_JUN1:
 .INCBIN "src/data/lv_jun_1.objects"
+.ENDS
 
-LVOBJECTS_05_5C44:
+.SECTION "base_LVOBJECTS_JUN2" SUPERFREE SLOT 2
+LVOBJECTS_JUN2:
 .INCBIN "src/data/lv_jun_2.objects"
+.ENDS
 
-LVOBJECTS_05_5C8D:
+.SECTION "base_LVOBJECTS_JUN3" SUPERFREE SLOT 2
+LVOBJECTS_JUN3:
 .INCBIN "src/data/lv_jun_3.objects"
+.ENDS
 
-LVOBJECTS_05_5CA3:
+.SECTION "base_LVOBJECTS_LAB1" SUPERFREE SLOT 2
+LVOBJECTS_LAB1:
 .INCBIN "src/data/lv_lab_1.objects"
+.ENDS
 
-LVOBJECTS_05_5CF2:
+.SECTION "base_LVOBJECTS_LAB2" SUPERFREE SLOT 2
+LVOBJECTS_LAB2:
 .INCBIN "src/data/lv_lab_2.objects"
+.ENDS
 
-LVOBJECTS_05_5D4A:
+.SECTION "base_LVOBJECTS_LAB3" SUPERFREE SLOT 2
+LVOBJECTS_LAB3:
 .INCBIN "src/data/lv_lab_3.objects"
+.ENDS
 
-LVOBJECTS_05_5D69:
+.SECTION "base_LVOBJECTS_SCR1" SUPERFREE SLOT 2
+LVOBJECTS_SCR1:
 .INCBIN "src/data/lv_scr_1.objects"
+.ENDS
 
-LVOBJECTS_05_5DAC:
+.SECTION "base_LVOBJECTS_SCR2_main" SUPERFREE SLOT 2
+LVOBJECTS_SCR2_main:
 .INCBIN "src/data/lv_scr_2_main.objects"
+.ENDS
 
-LVOBJECTS_05_5DE9:
+.SECTION "base_LVOBJECTS_SCR2_upper" SUPERFREE SLOT 2
+LVOBJECTS_SCR2_upper:
 .INCBIN "src/data/lv_scr_2_upper.objects"
+.ENDS
 
-LVOBJECTS_05_5E35:
+.SECTION "base_LVOBJECTS_SCR2_lower" SUPERFREE SLOT 2
+LVOBJECTS_SCR2_lower:
 .INCBIN "src/data/lv_scr_2_lower.objects"
+.ENDS
 
-LVOBJECTS_05_5E4E:
+.SECTION "base_LVOBJECTS_SCR3" SUPERFREE SLOT 2
+LVOBJECTS_SCR3:
 .INCBIN "src/data/lv_scr_3.objects"
+.ENDS
 
-LVOBJECTS_05_5E9A:
+.SECTION "base_LVOBJECTS_SKY1" SUPERFREE SLOT 2
+LVOBJECTS_SKY1:
 .INCBIN "src/data/lv_sky_1.objects"
+.ENDS
 
-LVOBJECTS_05_5ED4:
+.SECTION "base_LVOBJECTS_SKY2" SUPERFREE SLOT 2
+LVOBJECTS_SKY2:
 .INCBIN "src/data/lv_sky_2.objects"
+.ENDS
 
-LVOBJECTS_05_5F17:
+.SECTION "base_LVOBJECTS_SKY3" SUPERFREE SLOT 2
+LVOBJECTS_SKY3:
 .INCBIN "src/data/lv_sky_3.objects"
+.ENDS
 
-LVOBJECTS_05_5F21:
+.SECTION "base_LVOBJECTS_SKY2_end" SUPERFREE SLOT 2
+LVOBJECTS_SKY2_end:
 .INCBIN "src/data/lv_sky_2_end.objects"
+.ENDS
 
-LVOBJECTS_05_5F25:
+.SECTION "base_LVOBJECTS_SPECIAL_1" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_1:
 .INCBIN "src/data/lv_special_1.objects"
+.ENDS
 
-LVOBJECTS_05_5F2C:
+.SECTION "base_LVOBJECTS_SPECIAL_2" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_2:
 .INCBIN "src/data/lv_special_2.objects"
+.ENDS
 
-LVOBJECTS_05_5F36:
+.SECTION "base_LVOBJECTS_SPECIAL_3" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_3:
 .INCBIN "src/data/lv_special_3.objects"
+.ENDS
 
-LVOBJECTS_05_5F40:
+.SECTION "base_LVOBJECTS_SPECIAL_4" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_4:
 .INCBIN "src/data/lv_special_4.objects"
+.ENDS
 
-LVOBJECTS_05_5F53:
+.SECTION "base_LVOBJECTS_SPECIAL_5" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_5:
 .INCBIN "src/data/lv_special_5.objects"
+.ENDS
 
-LVOBJECTS_05_5F66:
+.SECTION "base_LVOBJECTS_SPECIAL_6" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_6:
 .INCBIN "src/data/lv_special_6.objects"
+.ENDS
 
-LVOBJECTS_05_5F7F:
+.SECTION "base_LVOBJECTS_SPECIAL_7" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_7:
 .INCBIN "src/data/lv_special_7.objects"
+.ENDS
 
-LVOBJECTS_05_5F95:
+.SECTION "base_LVOBJECTS_SPECIAL_8" SUPERFREE SLOT 2
+LVOBJECTS_SPECIAL_8:
 .INCBIN "src/data/lv_special_8.objects"
+.ENDS
 
-LVOBJECTS_05_5FBA:
+.SECTION "base_LVOBJECTS_ENDING" SUPERFREE SLOT 2
+LVOBJECTS_ENDING:
 .INCBIN "src/data/lv_ending.objects"
 .ENDS
 
