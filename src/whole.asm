@@ -6402,8 +6402,6 @@ update_sonic_3bpp_sprite:
    ret    z                            ; 00:37EA - C8
    ld     hl, $3680                    ; 00:37EB - 21 80 36
    ex     de, hl                       ; 00:37EE - EB
-   bit    0, (iy+iy_06_lvflag01-IYBASE)  ; 00:37EF - FD CB 06 46
-   jp     nz, @upside_down_sprites_VESTIGIAL  ; 00:37F3 - C2 2E 38
    ld     a, e                         ; 00:37F6 - 7B
    out    ($BF), a                     ; 00:37F7 - D3 BF
    ld     a, d                         ; 00:37F9 - 7A
@@ -6435,54 +6433,6 @@ update_sonic_3bpp_sprite:
    ld     hl, (g_new_sonic_sprite_ptr)  ; 00:3827 - 2A 8F D2
    ld     (g_old_sonic_sprite_ptr), hl  ; 00:382A - 22 91 D2
    ret                                 ; 00:382D - C9
-
-@upside_down_sprites_VESTIGIAL:
-   ld     bc, $011D                    ; 00:382E - 01 1D 01
-   add    hl, bc                       ; 00:3831 - 09
-   ld     a, e                         ; 00:3832 - 7B
-   out    ($BF), a                     ; 00:3833 - D3 BF
-   ld     a, d                         ; 00:3835 - 7A
-   or     $40                          ; 00:3836 - F6 40
-   out    ($BF), a                     ; 00:3838 - D3 BF
-   exx                                 ; 00:383A - D9
-   push   bc                           ; 00:383B - C5
-   ld     b, $18                       ; 00:383C - 06 18
-   exx                                 ; 00:383E - D9
-   ld     de, $FFFA                    ; 00:383F - 11 FA FF
-   ld     c, $BE                       ; 00:3842 - 0E BE
-   xor    a                            ; 00:3844 - AF
-
-@each_4_upside_down_rows:
-   outi                                ; 00:3845 - ED A3
-   outi                                ; 00:3847 - ED A3
-   outi                                ; 00:3849 - ED A3
-   out    ($BE), a                     ; 00:384B - D3 BE
-   add    hl, de                       ; 00:384D - 19
-   outi                                ; 00:384E - ED A3
-   outi                                ; 00:3850 - ED A3
-   outi                                ; 00:3852 - ED A3
-   out    ($BE), a                     ; 00:3854 - D3 BE
-   add    hl, de                       ; 00:3856 - 19
-   outi                                ; 00:3857 - ED A3
-   outi                                ; 00:3859 - ED A3
-   outi                                ; 00:385B - ED A3
-   out    ($BE), a                     ; 00:385D - D3 BE
-   add    hl, de                       ; 00:385F - 19
-   outi                                ; 00:3860 - ED A3
-   outi                                ; 00:3862 - ED A3
-   outi                                ; 00:3864 - ED A3
-   out    ($BE), a                     ; 00:3866 - D3 BE
-   add    hl, de                       ; 00:3868 - 19
-   exx                                 ; 00:3869 - D9
-   dec    b                            ; 00:386A - 05
-   exx                                 ; 00:386B - D9
-   jp     nz, @each_4_upside_down_rows  ; 00:386C - C2 45 38
-   exx                                 ; 00:386F - D9
-   pop    bc                           ; 00:3870 - C1
-   exx                                 ; 00:3871 - D9
-   ld     hl, (g_new_sonic_sprite_ptr)  ; 00:3872 - 2A 8F D2
-   ld     (g_old_sonic_sprite_ptr), hl  ; 00:3875 - 22 91 D2
-   ret                                 ; 00:3878 - C9
 
 update_ring_tiles:
    ld     de, (g_new_ring_tiles_ptr)   ; 00:3879 - ED 5B 93 D2
@@ -7502,25 +7452,6 @@ objfunc_00_sonic:
    ld     c, $00                       ; 01:4BBC - 0E 00
 
 @continue_without_applying_gravity:
-   bit    0, (iy+iy_06_lvflag01-IYBASE)  ; 01:4BBE - FD CB 06 46
-   jr     z, @skip_upside_down_gravity_VESTIGIAL  ; 01:4BC2 - 28 12
-   push   hl                           ; 01:4BC4 - E5
-   ld     a, e                         ; 01:4BC5 - 7B
-   cpl                                 ; 01:4BC6 - 2F
-   ld     e, a                         ; 01:4BC7 - 5F
-   ld     a, d                         ; 01:4BC8 - 7A
-   cpl                                 ; 01:4BC9 - 2F
-   ld     d, a                         ; 01:4BCA - 57
-   ld     a, c                         ; 01:4BCB - 79
-   cpl                                 ; 01:4BCC - 2F
-   ld     hl, $0001                    ; 01:4BCD - 21 01 00
-   add    hl, de                       ; 01:4BD0 - 19
-   ex     de, hl                       ; 01:4BD1 - EB
-   adc    a, $00                       ; 01:4BD2 - CE 00
-   ld     c, a                         ; 01:4BD4 - 4F
-   pop    hl                           ; 01:4BD5 - E1
-
-@skip_upside_down_gravity_VESTIGIAL:
    add    hl, de                       ; 01:4BD6 - 19
    ld     a, b                         ; 01:4BD7 - 78
    adc    a, c                         ; 01:4BD8 - 89
@@ -7645,8 +7576,6 @@ objfunc_00_sonic:
    add    hl, bc                       ; 01:4CAB - 09
    ld     (g_new_sonic_sprite_ptr), hl  ; 01:4CAC - 22 8F D2
    ld     hl, SPRITEMAP_sonic_normal   ; 01:4CAF - 21 1D 59
-   bit    0, (iy+iy_06_lvflag01-IYBASE)  ; 01:4CB2 - FD CB 06 46
-   call   nz, @fn_use_hflipped_in_upside_down_mode_VESTIGIAL  ; 01:4CB6 - C4 0F 52
    ld     a, (sonic_anim_index_ix_20)  ; 01:4CB9 - 3A 10 D4
    cp     $13                          ; 01:4CBC - FE 13
    call   z, @fn_use_upspring_sprites  ; 01:4CBE - CC 13 52
@@ -8406,10 +8335,6 @@ objfunc_00_sonic:
    ret    nz                           ; 01:520B - C0
    ld     d, $18                       ; 01:520C - 16 18
    ret                                 ; 01:520E - C9
-
-@fn_use_hflipped_in_upside_down_mode_VESTIGIAL:
-   ld     hl, SPRITEMAP_sonic_hflip    ; 01:520F - 21 2B 59
-   ret                                 ; 01:5212 - C9
 
 @fn_use_upspring_sprites:
    ld     hl, SPRITEMAP_sonic_upspring_right  ; 01:5213 - 21 39 59
@@ -9355,6 +9280,7 @@ CODEPTRTAB_sonic_tile_specials:
 SPRITEMAP_sonic_normal:
 .db $B4, $B6, $B8, $FF, $FF, $FF, $BA, $BC, $BE, $FF, $FF, $FF, $FF, $FF            ; 01:591D
 
+;; v TODO: This is vestigial for upside-down mode, but could be useful later? --GM
 SPRITEMAP_sonic_hflip:
 .db $B8, $B6, $B4, $FF, $FF, $FF, $BE, $BC, $BA, $FF, $FF, $FF, $FF, $FF            ; 01:592B
 
