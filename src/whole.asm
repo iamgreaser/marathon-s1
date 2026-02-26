@@ -270,8 +270,12 @@ sonic_brake_sound_cooldown_timer_ix_22 db   ; D412
 sonic_ix_23 db   ; D413
 sonic_flags_ix_24 db   ; D414
 .  dsb 1
-object_list_past_sonic db   ; D416
-.  dsb 2029
+object_list_past_sonic dsb 26*31   ; D416
+
+;
+; We now have a bunch of free space here!
+;
+
 snd_flags_04 db   ; DC04
 snd_sfx_channel_idx db   ; DC05
 snd_sfx_current_priority db   ; DC06
@@ -405,6 +409,14 @@ snd_loop_counter_stack_s01_0 db   ; DD08
 snd_loop_counter_stack_s02_0 db   ; DD09
 snd_loop_counter_stack_s03_0 db   ; DD0A
 snd_loop_counter_stack_s04_0 db   ; DD0B
+
+; Allow nesting up to 6 loops on all channels.
+.  dsb 5*5
+
+;
+; And now we have some more free space up until we get trashed by the stack.
+;
+
 .ENDS
 
 .DEF rompage_cfg $FFFC
