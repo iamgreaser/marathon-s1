@@ -850,31 +850,17 @@ upload_sprite_table_IRQ:
    ret                                 ; 00:0396 - C9
 
 load_art:
-   di                                  ; 00:0405 - F3
-
--:
-   push   af                           ; 00:0406 - F5
-   ld     a, h                         ; 00:0407 - 7C
-   cp     $40                          ; 00:0408 - FE 40
-   jr     c, +                         ; 00:040A - 38 08
-   sub    $40                          ; 00:040C - D6 40
-   ld     h, a                         ; 00:040E - 67
-   pop    af                           ; 00:040F - F1
-   inc    a                            ; 00:0410 - 3C
-   jp     -                            ; 00:0411 - C3 06 04
-
-+:
+   di
+   push af
    ld     a, e                         ; 00:0414 - 7B
    out    ($BF), a                     ; 00:0415 - D3 BF
    ld     a, d                         ; 00:0417 - 7A
    or     $40                          ; 00:0418 - F6 40
    out    ($BF), a                     ; 00:041A - D3 BF
    pop    af                           ; 00:041C - F1
-   ld     de, $4000                    ; 00:041D - 11 00 40
-   add    hl, de                       ; 00:0420 - 19
    ld     de, (g_committed_rompage_1)  ; 00:0421 - ED 5B 35 D2
    push   de                           ; 00:0425 - D5
-   call set_rompage_1_2
+   call set_rompage_2
    bit    1, (iy+iy_09-IYBASE)         ; 00:0433 - FD CB 09 4E
    jr     nz, +                        ; 00:0437 - 20 01
    ei                                  ; 00:0439 - FB
@@ -2275,14 +2261,14 @@ run_title_screen:
    ld     (g_saved_vdp_reg_01), a      ; 00:128C - 32 19 D2
    res    0, (iy+iy_00-IYBASE)         ; 00:128F - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1293 - CD 1C 03
-   ld     hl, ART_09_2000              ; 00:1296 - 21 00 20
-   ld     de, $0000                    ; 00:1299 - 11 00 00
-   ld     a, $09                       ; 00:129C - 3E 09
-   call   load_art                     ; 00:129E - CD 05 04
-   ld     hl, ART_09_4B0A              ; 00:12A1 - 21 0A 4B
-   ld     de, $2000                    ; 00:12A4 - 11 00 20
-   ld     a, $09                       ; 00:12A7 - 3E 09
-   call   load_art                     ; 00:12A9 - CD 05 04
+   ld hl, ART_09_2000
+   ld a, :ART_09_2000
+   ld de, $0000
+   call load_art
+   ld hl, ART_09_4B0A
+   ld a, :ART_09_4B0A
+   ld de, $2000
+   call load_art
    ld     hl, ARTMAP_05_6000           ; 00:12B4 - 21 00 60
    ld a, :ARTMAP_05_6000
    ld     de, $3800                    ; 00:12B7 - 11 00 38
@@ -2435,10 +2421,10 @@ run_game_over_screen:
    res    0, (iy+iy_00-IYBASE)         ; 00:1409 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:140D - CD 1C 03
    di                                  ; 00:1410 - F3
-   ld     hl, ART_09_351F              ; 00:1411 - 21 1F 35
-   ld     de, $0000                    ; 00:1414 - 11 00 00
-   ld     a, $09                       ; 00:1417 - 3E 09
-   call   load_art                     ; 00:1419 - CD 05 04
+   ld hl, ART_09_351F
+   ld a, :ART_09_351F
+   ld de, $0000
+   call load_art
    ld     hl, ARTMAP_05_67FE           ; 00:1424 - 21 FE 67
    ld a, :ARTMAP_05_67FE
    ld     bc, $0032                    ; 00:1427 - 01 32 00
@@ -2589,14 +2575,14 @@ handle_level_score_screen:
    ld     (g_saved_vdp_reg_01), a      ; 00:156B - 32 19 D2
    res    0, (iy+iy_00-IYBASE)         ; 00:156E - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1572 - CD 1C 03
-   ld     hl, ART_09_B92E              ; 00:1575 - 21 2E B9
-   ld     de, $3000                    ; 00:1578 - 11 00 30
-   ld     a, $09                       ; 00:157B - 3E 09
-   call   load_art                     ; 00:157D - CD 05 04
-   ld     hl, ART_09_351F              ; 00:1580 - 21 1F 35
-   ld     de, $0000                    ; 00:1583 - 11 00 00
-   ld     a, $09                       ; 00:1586 - 3E 09
-   call   load_art                     ; 00:1588 - CD 05 04
+   ld hl, ART_09_B92E
+   ld a, :ART_09_B92E
+   ld de, $3000
+   call load_art
+   ld hl, ART_09_351F
+   ld a, :ART_09_351F
+   ld de, $0000
+   call load_art
    ld     hl, ARTMAP_05_612E           ; 00:1593 - 21 2E 61
    ld     bc, $00BB                    ; 00:1596 - 01 BB 00
    ld     de, $3800                    ; 00:1599 - 11 00 38
@@ -3977,10 +3963,10 @@ load_and_init_level_from_header:
    ldir                                ; 00:2170 - ED B0
 
 @skip_set_init_time_after_teleport:
-   ld     hl, ART_09_B92E              ; 00:2172 - 21 2E B9
-   ld     de, $3000                    ; 00:2175 - 11 00 30
-   ld     a, $09                       ; 00:2178 - 3E 09
-   call   load_art                     ; 00:217A - CD 05 04
+   ld hl, ART_09_B92E
+   ld a, :ART_09_B92E
+   ld de, $3000
+   call load_art
    pop    hl                           ; 00:217D - E1
    ld     a, (hl)                      ; 00:217E - 7E
    ld     (g_tile_flags_index), a      ; 00:217F - 32 D4 D2
@@ -4097,7 +4083,7 @@ load_and_init_level_from_header:
    push   hl                           ; 00:2258 - E5
    ex     de, hl                       ; 00:2259 - EB
    ld     de, $0000                    ; 00:225A - 11 00 00
-   call   load_art                     ; 00:225F - CD 05 04
+   call load_art
    pop    hl                           ; 00:2262 - E1
    ld     e, (hl)                      ; 00:2265 - 5E
    inc    hl                           ; 00:2266 - 23
@@ -4108,7 +4094,7 @@ load_and_init_level_from_header:
    push   hl                           ; 00:2269 - E5
    ex     de, hl                       ; 00:226A - EB
    ld     de, $2000                    ; 00:226B - 11 00 20
-   call   load_art                     ; 00:226E - CD 05 04
+   call load_art
    pop    hl                           ; 00:2271 - E1
    ld     a, (hl)                      ; 00:2272 - 7E
    push   hl                           ; 00:2273 - E5
@@ -4404,10 +4390,10 @@ run_ending_and_credits:
    ld     hl, PAL3_ending_tally        ; 00:25A1 - 21 28 28
    ld     a, $03                       ; 00:25A4 - 3E 03
    call   signal_load_palettes         ; 00:25A6 - CD 33 03
-   ld     hl, ART_0C_0000              ; 00:25A9 - 21 00 00
-   ld     de, $0000                    ; 00:25AC - 11 00 00
-   ld     a, $0C                       ; 00:25AF - 3E 0C
-   call   load_art                     ; 00:25B1 - CD 05 04
+   ld hl, ART_0C_0000
+   ld a, :ART_0C_0000
+   ld de, $0000
+   call load_art
    ld     hl, ARTMAP_05_6830           ; 00:25BC - 21 30 68
    ld a, :ARTMAP_05_6830
    ld     bc, $0179                    ; 00:25BF - 01 79 01
@@ -4512,14 +4498,14 @@ run_ending_and_credits:
    call   fade_screen_to_black         ; 00:26A2 - CD 40 0A
    ld     bc, $0078                    ; 00:26A5 - 01 78 00
    call   wait_BC_frames_for_pre_credits_delay  ; 00:26A8 - CD 45 27
-   ld     hl, ART_0C_1801              ; 00:26AB - 21 01 18
-   ld     de, $0000                    ; 00:26AE - 11 00 00
-   ld     a, $0C                       ; 00:26B1 - 3E 0C
-   call   load_art                     ; 00:26B3 - CD 05 04
-   ld     hl, ART_09_4B0A              ; 00:26B6 - 21 0A 4B
-   ld     de, $2000                    ; 00:26B9 - 11 00 20
-   ld     a, $09                       ; 00:26BC - 3E 09
-   call   load_art                     ; 00:26BE - CD 05 04
+   ld hl, ART_0C_1801
+   ld a, :ART_0C_1801
+   ld de, $0000
+   call load_art
+   ld hl, ART_09_4B0A
+   ld a, :ART_09_4B0A
+   ld de, $2000
+   call load_art
    ld     hl, ARTMAP_05_6C61           ; 00:26C9 - 21 61 6C
    ld a, :ARTMAP_05_6C61
    ld     bc, $0189                    ; 00:26CC - 01 89 01
@@ -9891,10 +9877,10 @@ objfunc_07_signpost:
    jr     nz, @art_already_loaded      ; 01:5F23 - 20 1F
    res    7, (iy+iy_06_lvflag01-IYBASE)  ; 01:5F25 - FD CB 06 BE
    res    3, (iy+iy_05_lvflag00-IYBASE)  ; 01:5F29 - FD CB 05 9E
-   ld     hl, ART_09_4294              ; 01:5F2D - 21 94 42
-   ld     de, $2000                    ; 01:5F30 - 11 00 20
-   ld     a, $09                       ; 01:5F33 - 3E 09
-   call   load_art                     ; 01:5F35 - CD 05 04
+   ld hl, ART_09_4294
+   ld a, :ART_09_4294
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_signpost            ; 01:5F38 - 21 6C 62
    ld     a, $02                       ; 01:5F3B - 3E 02
    call   signal_load_palettes         ; 01:5F3D - CD 33 03
@@ -11264,10 +11250,10 @@ objfunc_12_GHZ_boss:
    add    hl, de                       ; 01:702A - 19
    ld     (ix+5), l                    ; 01:702B - DD 75 05
    ld     (ix+6), h                    ; 01:702E - DD 74 06
-   ld     hl, ART_09_AEB1              ; 01:7031 - 21 B1 AE
-   ld     de, $2000                    ; 01:7034 - 11 00 20
-   ld     a, $09                       ; 01:7037 - 3E 09
-   call   load_art                     ; 01:7039 - CD 05 04
+   ld hl, ART_boss_1_2000
+   ld a, :ART_boss_1_2000
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_boss                ; 01:703C - 21 1C 73
    ld     a, $02                       ; 01:703F - 3E 02
    call   signal_load_palettes         ; 01:7041 - CD 33 03
@@ -12177,10 +12163,10 @@ boss_generic_update_8hp:
    set    1, (iy+iy_09-IYBASE)         ; 01:7912 - FD CB 09 CE
 
 @skip_special_case_LAB3:
-   ld     hl, ART_0C_DA28              ; 01:7916 - 21 28 DA
-   ld     de, $2000                    ; 01:7919 - 11 00 20
-   ld     a, $0C                       ; 01:791C - 3E 0C
-   call   load_art                     ; 01:791E - CD 05 04
+   ld hl, ART_0C_DA28
+   ld a, :ART_0C_DA28
+   ld de, $2000
+   call load_art
    ret                                 ; 01:7921 - C9
 
 SPRTAB_boss_generic_fly_out:
@@ -12924,10 +12910,10 @@ objfunc_2C_JUN3_boss:
    ld     a, (sonic_flags_ix_24)       ; 02:806F - 3A 14 D4
    rlca                                ; 02:8072 - 07
    ret    nc                           ; 02:8073 - D0
-   ld     hl, ART_09_AEB1              ; 02:8074 - 21 B1 AE
-   ld     de, $2000                    ; 02:8077 - 11 00 20
-   ld     a, $09                       ; 02:807A - 3E 09
-   call   load_art                     ; 02:807C - CD 05 04
+   ld hl, ART_boss_1_2000
+   ld a, :ART_boss_1_2000
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_boss                ; 02:807F - 21 1C 73
    ld     a, $02                       ; 02:8082 - 3E 02
    call   signal_load_palettes         ; 02:8084 - CD 33 03
@@ -13342,10 +13328,10 @@ objfunc_48_BRI3_boss:
    ld     hl, $03A0                    ; 02:84B3 - 21 A0 03
    ld     de, $0300                    ; 02:84B6 - 11 00 03
    call   set_locked_camera_target     ; 02:84B9 - CD 8C 7C
-   ld     hl, ART_0C_E508              ; 02:84BC - 21 08 E5
-   ld     de, $2000                    ; 02:84BF - 11 00 20
-   ld     a, $0C                       ; 02:84C2 - 3E 0C
-   call   load_art                     ; 02:84C4 - CD 05 04
+   ld hl, ART_0C_E508
+   ld a, :ART_0C_E508
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_boss                ; 02:84C7 - 21 1C 73
    ld     a, $02                       ; 02:84CA - 3E 02
    call   signal_load_palettes         ; 02:84CC - CD 33 03
@@ -14742,10 +14728,10 @@ objfunc_49_LAB3_boss:
    ld     de, $0290                    ; 02:9287 - 11 90 02
    call   set_locked_camera_target     ; 02:928A - CD 8C 7C
    set    1, (iy+iy_09-IYBASE)         ; 02:928D - FD CB 09 CE
-   ld     hl, ART_0C_E508              ; 02:9291 - 21 08 E5
-   ld     de, $2000                    ; 02:9294 - 11 00 20
-   ld     a, $0C                       ; 02:9297 - 3E 0C
-   call   load_art                     ; 02:9299 - CD 05 04
+   ld hl, ART_0C_E508
+   ld a, :ART_0C_E508
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_boss                ; 02:929C - 21 1C 73
    ld     a, $02                       ; 02:929F - 3E 02
    call   signal_load_palettes         ; 02:92A1 - CD 33 03
@@ -16926,10 +16912,10 @@ objfunc_22_SCR_boss:
    ld     (g_level_limit_y1), hl       ; 02:A80D - 22 79 D2
    ld     hl, $0220                    ; 02:A810 - 21 20 02
    ld     (g_level_camera_lock_towards_y), hl  ; 02:A813 - 22 7D D2
-   ld     hl, ART_0C_EF3F              ; 02:A816 - 21 3F EF
-   ld     de, $2000                    ; 02:A819 - 11 00 20
-   ld     a, $0C                       ; 02:A81C - 3E 0C
-   call   load_art                     ; 02:A81E - CD 05 04
+   ld hl, ART_0C_EF3F
+   ld a, :ART_0C_EF3F
+   ld de, $2000
+   call load_art
    ld     hl, PAL2_boss                ; 02:A821 - 21 1C 73
    ld     a, $02                       ; 02:A824 - 3E 02
    call   signal_load_palettes         ; 02:A826 - CD 33 03
@@ -18927,10 +18913,10 @@ objfunc_46_SKY3_vertical_zappers:
    ld     (g_camera_sonic_bounds_y0_target), hl  ; 02:BB8B - 22 6B D2
    bit    0, (ix+24)                   ; 02:BB8E - DD CB 18 46
    jr     nz, @already_initialised     ; 02:BB92 - 20 13
-   ld     hl, ART_0C_EF3F              ; 02:BB94 - 21 3F EF
-   ld     de, $2000                    ; 02:BB97 - 11 00 20
-   ld     a, $0C                       ; 02:BB9A - 3E 0C
-   call   load_art                     ; 02:BB9C - CD 05 04
+   ld hl, ART_0C_EF3F
+   ld a, :ART_0C_EF3F
+   ld de, $2000
+   call load_art
    ld     (ix+18), $01                 ; 02:BB9F - DD 36 12 01
    set    0, (ix+24)                   ; 02:BBA3 - DD CB 18 C6
 
@@ -20878,12 +20864,12 @@ lvh_tilemap_bank04:
 .db :LVTILEMAP_GHZ
 
 lvh_art0000_bank0C:
-.dw $2FE6                                                                           ; 05:55DF
-.db $0C
+.dw ART_GHZ_0000
+.db :ART_GHZ_0000
 
 lvh_art2000:
-.dw $612A                                                                           ; 05:55E2
-.db $09                                                                             ; 05:55E1
+.dw ART_GHZ_2000
+.db :ART_GHZ_2000
 .db $00, $0A, $03, $00                                                              ; 05:55E4
 
 lvh_objlist:
@@ -20900,10 +20886,10 @@ LVHEAD_01:
 .dw $0661
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
-.dw $2FE6
-.db $0C
-.dw $612A                                                                           ; 05:5607
-.db $09                                                                             ; 05:5606
+.dw ART_GHZ_0000
+.db :ART_GHZ_0000
+.dw ART_GHZ_2000
+.db :ART_GHZ_2000
 .db $00, $0A, $03, $00                                                              ; 05:5609
 .dw LVOBJECTS_GHZ2
 .db :LVOBJECTS_GHZ2
@@ -20918,10 +20904,10 @@ LVHEAD_02:
 .dw $032D
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
-.dw $2FE6
-.db $0C
-.dw $612A                                                                           ; 05:562C
-.db $09                                                                             ; 05:562B
+.dw ART_GHZ_0000
+.db :ART_GHZ_0000
+.dw ART_GHZ_2000
+.db :ART_GHZ_2000
 .db $00, $0A, $03, $00                                                              ; 05:562E
 .dw LVOBJECTS_GHZ3
 .db :LVOBJECTS_GHZ3
@@ -20936,10 +20922,10 @@ LVHEAD_12:
 .dw $083E
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
-.dw $2FE6
-.db $0C
-.dw $AEB1                                                                           ; 05:5651
-.db $09                                                                             ; 05:5650
+.dw ART_GHZ_0000
+.db :ART_GHZ_0000
+.dw ART_boss_1_2000
+.db :ART_boss_1_2000
 .db $00, $0A, $03, $00                                                              ; 05:5653
 .dw LVOBJECTS_ENDING
 .db :LVOBJECTS_ENDING
@@ -20954,10 +20940,10 @@ LVHEAD_03:
 .dw $0694
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
-.dw $4578
-.db $0C
-.dw $6C3D                                                                           ; 05:5676
-.db $09                                                                             ; 05:5675
+.dw ART_BRI_0000
+.db :ART_BRI_0000
+.dw ART_BRI_2000
+.db :ART_BRI_2000
 .db $01, $08, $03, $01                                                              ; 05:5678
 .dw LVOBJECTS_BRI1
 .db :LVOBJECTS_BRI1
@@ -20972,10 +20958,10 @@ LVHEAD_04:
 .dw $0499
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
-.dw $4578
-.db $0C
-.dw $6C3D                                                                           ; 05:569B
-.db $09                                                                             ; 05:569A
+.dw ART_BRI_0000
+.db :ART_BRI_0000
+.dw ART_BRI_2000
+.db :ART_BRI_2000
 .db $01, $08, $03, $01                                                              ; 05:569D
 .dw LVOBJECTS_BRI2
 .db :LVOBJECTS_BRI2
@@ -20990,10 +20976,10 @@ LVHEAD_05:
 .dw $0140
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
-.dw $4578
-.db $0C
-.dw $6C3D                                                                           ; 05:56C0
-.db $09                                                                             ; 05:56BF
+.dw ART_BRI_0000
+.db :ART_BRI_0000
+.dw ART_BRI_2000
+.db :ART_BRI_2000
 .db $01, $08, $03, $01                                                              ; 05:56C2
 .dw LVOBJECTS_BRI3
 .db :LVOBJECTS_BRI3
@@ -21008,10 +20994,10 @@ LVHEAD_06:
 .dw $0AAC
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
-.dw $5B00
-.db $0C
-.dw $77CD                                                                           ; 05:56E5
-.db $09                                                                             ; 05:56E4
+.dw ART_JUN_0000
+.db :ART_JUN_0000
+.dw ART_JUN_2000
+.db :ART_JUN_2000
 .db $02, $05, $03, $02                                                              ; 05:56E7
 .dw LVOBJECTS_JUN1
 .db :LVOBJECTS_JUN1
@@ -21026,10 +21012,10 @@ LVHEAD_07:
 .dw $08DB
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
-.dw $5B00
-.db $0C
-.dw $77CD                                                                           ; 05:570A
-.db $09                                                                             ; 05:5709
+.dw ART_JUN_0000
+.db :ART_JUN_0000
+.dw ART_JUN_2000
+.db :ART_JUN_2000
 .db $02, $05, $03, $02                                                              ; 05:570C
 .dw LVOBJECTS_JUN2
 .db :LVOBJECTS_JUN2
@@ -21044,10 +21030,10 @@ LVHEAD_08:
 .dw $03F5
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
-.dw $5B00
-.db $0C
-.dw $77CD                                                                           ; 05:572F
-.db $09                                                                             ; 05:572E
+.dw ART_JUN_0000
+.db :ART_JUN_0000
+.dw ART_JUN_2000
+.db :ART_JUN_2000
 .db $02, $05, $03, $02                                                              ; 05:5731
 .dw LVOBJECTS_JUN3
 .db :LVOBJECTS_JUN3
@@ -21062,10 +21048,10 @@ LVHEAD_09:
 .dw $08C2
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
-.dw $71BF
-.db $0C
-.dw $83B6                                                                           ; 05:5754
-.db $09                                                                             ; 05:5753
+.dw ART_LAB_0000
+.db :ART_LAB_0000
+.dw ART_LAB_2000
+.db :ART_LAB_2000
 .db $03, $05, $03, $03                                                              ; 05:5756
 .dw LVOBJECTS_LAB1
 .db :LVOBJECTS_LAB1
@@ -21080,10 +21066,10 @@ LVHEAD_0A:
 .dw $0D13
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
-.dw $71BF
-.db $0C
-.dw $83B6                                                                           ; 05:5779
-.db $09                                                                             ; 05:5778
+.dw ART_LAB_0000
+.db :ART_LAB_0000
+.dw ART_LAB_2000
+.db :ART_LAB_2000
 .db $03, $05, $03, $03                                                              ; 05:577B
 .dw LVOBJECTS_LAB2
 .db :LVOBJECTS_LAB2
@@ -21098,10 +21084,10 @@ LVHEAD_0B:
 .dw $030B
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
-.dw $71BF
-.db $0C
-.dw $83B6                                                                           ; 05:579E
-.db $09                                                                             ; 05:579D
+.dw ART_LAB_0000
+.db :ART_LAB_0000
+.dw ART_LAB_2000
+.db :ART_LAB_2000
 .db $03, $05, $03, $03                                                              ; 05:57A0
 .dw LVOBJECTS_LAB3
 .db :LVOBJECTS_LAB3
@@ -21116,10 +21102,10 @@ LVHEAD_0C:
 .dw $069A
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:57C3
-.db $09                                                                             ; 05:57C2
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:57C5
 .dw LVOBJECTS_SCR1
 .db :LVOBJECTS_SCR1
@@ -21134,10 +21120,10 @@ LVHEAD_0D:
 .dw $0904
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:57E8
-.db $09                                                                             ; 05:57E7
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:57EA
 .dw $082C                                                                           ; 05:57EE
 .dw LVOBJECTS_SCR2_main
@@ -21153,10 +21139,10 @@ LVHEAD_14:
 .dw $08F8
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:580D
-.db $09                                                                             ; 05:580C
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:580F
 .dw $0869                                                                           ; 05:5813
 .dw LVOBJECTS_SCR2_upper
@@ -21172,10 +21158,10 @@ LVHEAD_15:
 .dw $06AF
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:5832
-.db $09                                                                             ; 05:5831
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:5834
 .dw LVOBJECTS_SCR2_lower
 .db :LVOBJECTS_SCR2_lower
@@ -21190,10 +21176,10 @@ LVHEAD_0E:
 .dw $08B2
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:5857
-.db $09                                                                             ; 05:5856
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:5859
 .dw LVOBJECTS_SCR3
 .db :LVOBJECTS_SCR3
@@ -21208,10 +21194,10 @@ LVHEAD_18:
 .dw $0904
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:587C
-.db $09                                                                             ; 05:587B
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:587E
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21226,10 +21212,10 @@ LVHEAD_19:
 .dw $0904
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:58A1
-.db $09                                                                             ; 05:58A0
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:58A3
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21244,10 +21230,10 @@ LVHEAD_16:
 .dw $0904
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:58C6
-.db $09                                                                             ; 05:58C5
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:58C8
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21262,10 +21248,10 @@ LVHEAD_17:
 .dw $08F8
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
-.dw $884B
-.db $0C
-.dw $8F75                                                                           ; 05:58EB
-.db $09                                                                             ; 05:58EA
+.dw ART_SCR_0000
+.db :ART_SCR_0000
+.dw ART_SCR_2000
+.db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:58ED
 .dw LVOBJECTS_SCR2_upper
 .db :LVOBJECTS_SCR2_upper
@@ -21280,10 +21266,10 @@ LVHEAD_0F:
 .dw $076E
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
-.dw $9CEE
-.db $0C
-.dw $99E0                                                                           ; 05:5910
-.db $09                                                                             ; 05:590F
+.dw ART_SKY_0000
+.db :ART_SKY_0000
+.dw ART_SKY_2000
+.db :ART_SKY_2000
 .db $05, $06, $04, $05                                                              ; 05:5912
 .dw LVOBJECTS_SKY1
 .db :LVOBJECTS_SKY1
@@ -21298,10 +21284,10 @@ LVHEAD_10:
 .dw $039D
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
-.dw $9CEE
-.db $0C
-.dw $99E0                                                                           ; 05:5935
-.db $09                                                                             ; 05:5934
+.dw ART_SKY_0000
+.db :ART_SKY_0000
+.dw ART_SKY_2000
+.db :ART_SKY_2000
 .db $05, $06, $04, $08                                                              ; 05:5937
 .dw LVOBJECTS_SKY2
 .db :LVOBJECTS_SKY2
@@ -21316,10 +21302,10 @@ LVHEAD_11:
 .dw $04C0
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
-.dw $B3B5
-.db $0C
-.dw $99E0                                                                           ; 05:595A
-.db $09                                                                             ; 05:5959
+.dw ART_SKY3_0000
+.db :ART_SKY3_0000
+.dw ART_SKY_2000
+.db :ART_SKY_2000
 .db $06, $08, $04, $06                                                              ; 05:595C
 .dw LVOBJECTS_SKY3
 .db :LVOBJECTS_SKY3
@@ -21335,10 +21321,10 @@ LVHEAD_1B:
 .dw $04C0
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
-.dw $B3B5
-.db $0C
-.dw $99E0                                                                           ; 05:597F
-.db $09                                                                             ; 05:597E
+.dw ART_SKY3_0000
+.db :ART_SKY3_0000
+.dw ART_SKY_2000
+.db :ART_SKY_2000
 .db $06, $08, $04, $06                                                              ; 05:5981
 .dw LVOBJECTS_SKY2_end
 .db :LVOBJECTS_SKY2_end
@@ -21353,10 +21339,10 @@ LVHEAD_1C:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:59A4
-.db $09                                                                             ; 05:59A3
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:59A6
 .dw LVOBJECTS_SPECIAL_1
 .db :LVOBJECTS_SPECIAL_1
@@ -21371,10 +21357,10 @@ LVHEAD_1D:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:59C9
-.db $09                                                                             ; 05:59C8
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:59CB
 .dw LVOBJECTS_SPECIAL_2
 .db :LVOBJECTS_SPECIAL_2
@@ -21389,10 +21375,10 @@ LVHEAD_1E:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:59EE
-.db $09                                                                             ; 05:59ED
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:59F0
 .dw LVOBJECTS_SPECIAL_3
 .db :LVOBJECTS_SPECIAL_3
@@ -21407,10 +21393,10 @@ LVHEAD_1F:
 .dw $08DB
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:5A13
-.db $09                                                                             ; 05:5A12
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:5A15
 .dw LVOBJECTS_SPECIAL_4
 .db :LVOBJECTS_SPECIAL_4
@@ -21425,10 +21411,10 @@ LVHEAD_20:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:5A38
-.db $09                                                                             ; 05:5A37
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:5A3A
 .dw LVOBJECTS_SPECIAL_5
 .db :LVOBJECTS_SPECIAL_5
@@ -21443,10 +21429,10 @@ LVHEAD_21:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:5A5D
-.db $09                                                                             ; 05:5A5C
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:5A5F
 .dw LVOBJECTS_SPECIAL_6
 .db :LVOBJECTS_SPECIAL_6
@@ -21461,10 +21447,10 @@ LVHEAD_22:
 .dw $0760
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:5A82
-.db $09                                                                             ; 05:5A81
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:5A84
 .dw LVOBJECTS_SPECIAL_7
 .db :LVOBJECTS_SPECIAL_7
@@ -21479,10 +21465,10 @@ LVHEAD_23:
 .dw $08DB
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
-.dw $C7FE
-.db $0C
-.dw $A511                                                                           ; 05:5AA7
-.db $09                                                                             ; 05:5AA6
+.dw ART_special_0000
+.db :ART_special_0000
+.dw ART_special_2000
+.db :ART_special_2000
 .db $07, $01, $01, $07                                                              ; 05:5AA9
 .dw LVOBJECTS_SPECIAL_8
 .db :LVOBJECTS_SPECIAL_8
@@ -22372,57 +22358,77 @@ SONICUNCART_L_29_UNKNOWN:
 .INCBIN "src/data/sonic_29_l.sonicuncart"
 .ENDS
 
-.SECTION "Bank09_2000" SLOT 0 BANK $09 FORCE ORG $2000
+.SECTION "base_ART_09_2000" SUPERFREE SLOT 2
 ART_09_2000:
 .INCBIN "src/data/title_screen.art0000"
-
-ART_09_351F:
-.INCBIN "src/data/score_tally_game_over.art0000" READ $00AE1
 .ENDS
 
-.SECTION "Bank0A" SLOT 1 BANK $0A FORCE ORG $0000
-.INCBIN "src/data/score_tally_game_over.art0000" SKIP $00AE1
+.SECTION "base_ART_09_351F" SUPERFREE SLOT 2
+ART_09_351F:
+.INCBIN "src/data/score_tally_game_over.art0000"
+.ENDS
 
+.SECTION "base_ART_09_4294" SUPERFREE SLOT 2
 ART_09_4294:
 .INCBIN "src/data/signpost.art2000"
-
-ART_09_4B0A:
-.INCBIN "src/data/title_screen_credits.art2000"
-
-ART_09_526B:
-.INCBIN "src/data/world_map_1.art2000"
-
-ART_09_5942:
-.INCBIN "src/data/world_map_2.art2000"
-
-ART_09_612A:
-.INCBIN "src/data/lv_ghz.art2000"
-
-ART_09_6C3D:
-.INCBIN "src/data/lv_bri.art2000"
-
-ART_09_77CD:
-.INCBIN "src/data/lv_jun.art2000" READ $00833
 .ENDS
 
-.SECTION "Bank0B" SLOT 2 BANK $0B FORCE ORG $0000
-.INCBIN "src/data/lv_jun.art2000" SKIP $00833
+.SECTION "base_ART_09_4B0A" SUPERFREE SLOT 2
+ART_09_4B0A:
+.INCBIN "src/data/title_screen_credits.art2000"
+.ENDS
 
-ART_09_83B6:
+.SECTION "base_ART_09_526B" SUPERFREE SLOT 2
+ART_09_526B:
+.INCBIN "src/data/world_map_1.art2000"
+.ENDS
+
+.SECTION "base_ART_09_5942" SUPERFREE SLOT 2
+ART_09_5942:
+.INCBIN "src/data/world_map_2.art2000"
+.ENDS
+
+.SECTION "base_ART_09_612A" SUPERFREE SLOT 2
+ART_GHZ_2000:
+.INCBIN "src/data/lv_ghz.art2000"
+.ENDS
+
+.SECTION "base_ART_09_6C3D" SUPERFREE SLOT 2
+ART_BRI_2000:
+.INCBIN "src/data/lv_bri.art2000"
+.ENDS
+
+.SECTION "base_ART_09_77CD" SUPERFREE SLOT 2
+ART_JUN_2000:
+.INCBIN "src/data/lv_jun.art2000"
+.ENDS
+
+.SECTION "base_ART_09_83B6" SUPERFREE SLOT 2
+ART_LAB_2000:
 .INCBIN "src/data/lv_lab.art2000"
+.ENDS
 
-ART_09_8F75:
+.SECTION "base_ART_09_8F75" SUPERFREE SLOT 2
+ART_SCR_2000:
 .INCBIN "src/data/lv_scr.art2000"
+.ENDS
 
-ART_09_99E0:
+.SECTION "base_ART_09_99E0" SUPERFREE SLOT 2
+ART_SKY_2000:
 .INCBIN "src/data/lv_sky.art2000"
+.ENDS
 
-ART_09_A511:
+.SECTION "base_ART_09_A511" SUPERFREE SLOT 2
+ART_special_2000:
 .INCBIN "src/data/lv_special.art2000"
+.ENDS
 
-ART_09_AEB1:
+.SECTION "base_ART_09_AEB1" SUPERFREE SLOT 2
+ART_boss_1_2000:
 .INCBIN "src/data/boss_1.art2000"
+.ENDS
 
+.SECTION "base_ART_09_B92E" SUPERFREE SLOT 2
 ART_09_B92E:
 .INCBIN "src/data/common_level_art.art3000"
 .ENDS
@@ -22437,56 +22443,67 @@ ring_art:
 .INCBIN "src/data/ringart_05.ringart"
 .ENDS
 
-.SECTION "Bank0C" SLOT 0 BANK $0C FORCE ORG $0000
-
+.SECTION "base_ART_0C_0000" SUPERFREE SLOT 2
 ART_0C_0000:
 .INCBIN "src/data/world_map_1_ending.art0000"
+.ENDS
 
+.SECTION "base_ART_0C_1801" SUPERFREE SLOT 2
 ART_0C_1801:
 .INCBIN "src/data/world_map_2_credits.art0000"
-
-ART_0C_2FE6:
-.INCBIN "src/data/lv_ghz.art0000" READ $0101A
 .ENDS
 
-.SECTION "Bank0D" SLOT 1 BANK $0D FORCE ORG $0000
-.INCBIN "src/data/lv_ghz.art0000" SKIP $0101A
+.SECTION "base_ART_0C_2FE6" SUPERFREE SLOT 2
+ART_GHZ_0000:
+.INCBIN "src/data/lv_ghz.art0000"
+.ENDS
 
-ART_0C_4578:
+.SECTION "base_ART_0C_4578" SUPERFREE SLOT 2
+ART_BRI_0000:
 .INCBIN "src/data/lv_bri.art0000"
+.ENDS
 
-ART_0C_5B00:
+.SECTION "base_ART_0C_5B00" SUPERFREE SLOT 2
+ART_JUN_0000:
 .INCBIN "src/data/lv_jun.art0000"
-
-ART_0C_71BF:
-.INCBIN "src/data/lv_lab.art0000" READ $00E41
 .ENDS
 
-.SECTION "Bank0E" SLOT 2 BANK $0E FORCE ORG $0000
-.INCBIN "src/data/lv_lab.art0000" SKIP $00E41
+.SECTION "base_ART_0C_71BF" SUPERFREE SLOT 2
+ART_LAB_0000:
+.INCBIN "src/data/lv_lab.art0000"
+.ENDS
 
-ART_0C_884B:
+.SECTION "base_ART_0C_884B" SUPERFREE SLOT 2
+ART_SCR_0000:
 .INCBIN "src/data/lv_scr.art0000"
-
-ART_0C_9CEE:
-.INCBIN "src/data/lv_sky.art0000"
-
-ART_0C_B3B5:
-.INCBIN "src/data/lv_sky_3.art0000" READ $00C4B
 .ENDS
 
-.SECTION "Bank0F" SLOT 3 BANK $0F FORCE ORG $0000
-.INCBIN "src/data/lv_sky_3.art0000" SKIP $00C4B
+.SECTION "base_ART_0C_9CEE" SUPERFREE SLOT 2
+ART_SKY_0000:
+.INCBIN "src/data/lv_sky.art0000"
+.ENDS
 
-ART_0C_C7FE:
+.SECTION "base_ART_0C_B3B5" SUPERFREE SLOT 2
+ART_SKY3_0000:
+.INCBIN "src/data/lv_sky_3.art0000"
+.ENDS
+
+.SECTION "base_ART_0C_C7FE" SUPERFREE SLOT 2
+ART_special_0000:
 .INCBIN "src/data/lv_special.art0000"
+.ENDS
 
+.SECTION "base_ART_0C_DA28" SUPERFREE SLOT 2
 ART_0C_DA28:
 .INCBIN "src/data/animal_capsule_and_friends.art2000"
+.ENDS
 
+.SECTION "base_ART_0C_E508" SUPERFREE SLOT 2
 ART_0C_E508:
 .INCBIN "src/data/boss_2.art2000"
+.ENDS
 
+.SECTION "base_ART_0C_EF3F" SUPERFREE SLOT 2
 ART_0C_EF3F:
 .INCBIN "src/data/boss_3.art2000"
 .ENDS
