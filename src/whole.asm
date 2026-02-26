@@ -242,7 +242,7 @@ g_credits_sprites db   ; D322
 g_per_level_checkpoint_positions dw   ; D32E
 .  dsb 36
 g_level_header_copy db   ; D354
-.  dsb 42
+.  dsb 43
 g_object_ptrs dw   ; D37C
 g_active_object_ptrs dw   ; D37E
 .  dsb 60
@@ -3904,7 +3904,7 @@ load_and_init_level_from_header:
    res    0, (iy+iy_00-IYBASE)         ; 00:20D3 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:20D7 - CD 1C 03
    ld     de, g_level_header_copy      ; 00:20DA - 11 54 D3
-   ld     bc, $002B                    ; 00:20DD - 01 28 00
+   ld     bc, $002C                    ; 00:20DD - 01 28 00
    ldir                                ; 00:20E0 - ED B0
    ld     hl, g_level_header_copy      ; 00:20E2 - 21 54 D3
    push   hl                           ; 00:20E5 - E5
@@ -4092,18 +4092,19 @@ load_and_init_level_from_header:
    inc    hl                           ; 00:2255 - 23
    ld     d, (hl)                      ; 00:2256 - 56
    inc    hl                           ; 00:2257 - 23
+   ld a, (hl)
+   inc hl
    push   hl                           ; 00:2258 - E5
    ex     de, hl                       ; 00:2259 - EB
    ld     de, $0000                    ; 00:225A - 11 00 00
-   ld     a, $0C                       ; 00:225D - 3E 0C
    call   load_art                     ; 00:225F - CD 05 04
    pop    hl                           ; 00:2262 - E1
-   ld     a, (hl)                      ; 00:2263 - 7E
-   inc    hl                           ; 00:2264 - 23
    ld     e, (hl)                      ; 00:2265 - 5E
    inc    hl                           ; 00:2266 - 23
    ld     d, (hl)                      ; 00:2267 - 56
    inc    hl                           ; 00:2268 - 23
+   ld a, (hl)
+   inc hl
    push   hl                           ; 00:2269 - E5
    ex     de, hl                       ; 00:226A - EB
    ld     de, $2000                    ; 00:226B - 11 00 20
@@ -20878,10 +20879,11 @@ lvh_tilemap_bank04:
 
 lvh_art0000_bank0C:
 .dw $2FE6                                                                           ; 05:55DF
-.db $09                                                                             ; 05:55E1
+.db $0C
 
 lvh_art2000:
 .dw $612A                                                                           ; 05:55E2
+.db $09                                                                             ; 05:55E1
 .db $00, $0A, $03, $00                                                              ; 05:55E4
 
 lvh_objlist:
@@ -20899,8 +20901,9 @@ LVHEAD_01:
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
 .dw $2FE6
-.db $09                                                                             ; 05:5606
+.db $0C
 .dw $612A                                                                           ; 05:5607
+.db $09                                                                             ; 05:5606
 .db $00, $0A, $03, $00                                                              ; 05:5609
 .dw LVOBJECTS_GHZ2
 .db :LVOBJECTS_GHZ2
@@ -20916,8 +20919,9 @@ LVHEAD_02:
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
 .dw $2FE6
-.db $09                                                                             ; 05:562B
+.db $0C
 .dw $612A                                                                           ; 05:562C
+.db $09                                                                             ; 05:562B
 .db $00, $0A, $03, $00                                                              ; 05:562E
 .dw LVOBJECTS_GHZ3
 .db :LVOBJECTS_GHZ3
@@ -20929,12 +20933,13 @@ LVHEAD_12:
 .db $D9, $0A                                                                        ; 05:5646
 .dw LVLAYOUT_GHZ1_ENDING
 .db :LVLAYOUT_GHZ1_ENDING
-.dw $083E,
+.dw $083E
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
 .dw $2FE6
-.db $09                                                                             ; 05:5650
+.db $0C
 .dw $AEB1                                                                           ; 05:5651
+.db $09                                                                             ; 05:5650
 .db $00, $0A, $03, $00                                                              ; 05:5653
 .dw LVOBJECTS_ENDING
 .db :LVOBJECTS_ENDING
@@ -20950,8 +20955,9 @@ LVHEAD_03:
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
 .dw $4578
-.db $09                                                                             ; 05:5675
+.db $0C
 .dw $6C3D                                                                           ; 05:5676
+.db $09                                                                             ; 05:5675
 .db $01, $08, $03, $01                                                              ; 05:5678
 .dw LVOBJECTS_BRI1
 .db :LVOBJECTS_BRI1
@@ -20967,8 +20973,9 @@ LVHEAD_04:
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
 .dw $4578
-.db $09                                                                             ; 05:569A
+.db $0C
 .dw $6C3D                                                                           ; 05:569B
+.db $09                                                                             ; 05:569A
 .db $01, $08, $03, $01                                                              ; 05:569D
 .dw LVOBJECTS_BRI2
 .db :LVOBJECTS_BRI2
@@ -20984,8 +20991,9 @@ LVHEAD_05:
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
 .dw $4578
-.db $09                                                                             ; 05:56BF
+.db $0C
 .dw $6C3D                                                                           ; 05:56C0
+.db $09                                                                             ; 05:56BF
 .db $01, $08, $03, $01                                                              ; 05:56C2
 .dw LVOBJECTS_BRI3
 .db :LVOBJECTS_BRI3
@@ -21001,8 +21009,9 @@ LVHEAD_06:
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
 .dw $5B00
-.db $09                                                                             ; 05:56E4
+.db $0C
 .dw $77CD                                                                           ; 05:56E5
+.db $09                                                                             ; 05:56E4
 .db $02, $05, $03, $02                                                              ; 05:56E7
 .dw LVOBJECTS_JUN1
 .db :LVOBJECTS_JUN1
@@ -21018,8 +21027,9 @@ LVHEAD_07:
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
 .dw $5B00
-.db $09                                                                             ; 05:5709
+.db $0C
 .dw $77CD                                                                           ; 05:570A
+.db $09                                                                             ; 05:5709
 .db $02, $05, $03, $02                                                              ; 05:570C
 .dw LVOBJECTS_JUN2
 .db :LVOBJECTS_JUN2
@@ -21035,8 +21045,9 @@ LVHEAD_08:
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
 .dw $5B00
-.db $09                                                                             ; 05:572E
+.db $0C
 .dw $77CD                                                                           ; 05:572F
+.db $09                                                                             ; 05:572E
 .db $02, $05, $03, $02                                                              ; 05:5731
 .dw LVOBJECTS_JUN3
 .db :LVOBJECTS_JUN3
@@ -21052,8 +21063,9 @@ LVHEAD_09:
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
 .dw $71BF
-.db $09                                                                             ; 05:5753
+.db $0C
 .dw $83B6                                                                           ; 05:5754
+.db $09                                                                             ; 05:5753
 .db $03, $05, $03, $03                                                              ; 05:5756
 .dw LVOBJECTS_LAB1
 .db :LVOBJECTS_LAB1
@@ -21069,8 +21081,9 @@ LVHEAD_0A:
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
 .dw $71BF
-.db $09                                                                             ; 05:5778
+.db $0C
 .dw $83B6                                                                           ; 05:5779
+.db $09                                                                             ; 05:5778
 .db $03, $05, $03, $03                                                              ; 05:577B
 .dw LVOBJECTS_LAB2
 .db :LVOBJECTS_LAB2
@@ -21086,8 +21099,9 @@ LVHEAD_0B:
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
 .dw $71BF
-.db $09                                                                             ; 05:579D
+.db $0C
 .dw $83B6                                                                           ; 05:579E
+.db $09                                                                             ; 05:579D
 .db $03, $05, $03, $03                                                              ; 05:57A0
 .dw LVOBJECTS_LAB3
 .db :LVOBJECTS_LAB3
@@ -21103,8 +21117,9 @@ LVHEAD_0C:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:57C2
+.db $0C
 .dw $8F75                                                                           ; 05:57C3
+.db $09                                                                             ; 05:57C2
 .db $04, $06, $04, $04                                                              ; 05:57C5
 .dw LVOBJECTS_SCR1
 .db :LVOBJECTS_SCR1
@@ -21120,8 +21135,9 @@ LVHEAD_0D:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:57E7
+.db $0C
 .dw $8F75                                                                           ; 05:57E8
+.db $09                                                                             ; 05:57E7
 .db $04, $06, $04, $04                                                              ; 05:57EA
 .dw $082C                                                                           ; 05:57EE
 .dw LVOBJECTS_SCR2_main
@@ -21138,8 +21154,9 @@ LVHEAD_14:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:580C
+.db $0C
 .dw $8F75                                                                           ; 05:580D
+.db $09                                                                             ; 05:580C
 .db $04, $06, $04, $04                                                              ; 05:580F
 .dw $0869                                                                           ; 05:5813
 .dw LVOBJECTS_SCR2_upper
@@ -21156,8 +21173,9 @@ LVHEAD_15:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:5831
+.db $0C
 .dw $8F75                                                                           ; 05:5832
+.db $09                                                                             ; 05:5831
 .db $04, $06, $04, $04                                                              ; 05:5834
 .dw LVOBJECTS_SCR2_lower
 .db :LVOBJECTS_SCR2_lower
@@ -21173,8 +21191,9 @@ LVHEAD_0E:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:5856
+.db $0C
 .dw $8F75                                                                           ; 05:5857
+.db $09                                                                             ; 05:5856
 .db $04, $06, $04, $04                                                              ; 05:5859
 .dw LVOBJECTS_SCR3
 .db :LVOBJECTS_SCR3
@@ -21190,8 +21209,9 @@ LVHEAD_18:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:587B
+.db $0C
 .dw $8F75                                                                           ; 05:587C
+.db $09                                                                             ; 05:587B
 .db $04, $06, $04, $04                                                              ; 05:587E
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21207,8 +21227,9 @@ LVHEAD_19:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:58A0
+.db $0C
 .dw $8F75                                                                           ; 05:58A1
+.db $09                                                                             ; 05:58A0
 .db $04, $06, $04, $04                                                              ; 05:58A3
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21224,8 +21245,9 @@ LVHEAD_16:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:58C5
+.db $0C
 .dw $8F75                                                                           ; 05:58C6
+.db $09                                                                             ; 05:58C5
 .db $04, $06, $04, $04                                                              ; 05:58C8
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
@@ -21241,8 +21263,9 @@ LVHEAD_17:
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
 .dw $884B
-.db $09                                                                             ; 05:58EA
+.db $0C
 .dw $8F75                                                                           ; 05:58EB
+.db $09                                                                             ; 05:58EA
 .db $04, $06, $04, $04                                                              ; 05:58ED
 .dw LVOBJECTS_SCR2_upper
 .db :LVOBJECTS_SCR2_upper
@@ -21258,8 +21281,9 @@ LVHEAD_0F:
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
 .dw $9CEE
-.db $09                                                                             ; 05:590F
+.db $0C
 .dw $99E0                                                                           ; 05:5910
+.db $09                                                                             ; 05:590F
 .db $05, $06, $04, $05                                                              ; 05:5912
 .dw LVOBJECTS_SKY1
 .db :LVOBJECTS_SKY1
@@ -21275,8 +21299,9 @@ LVHEAD_10:
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
 .dw $9CEE
-.db $09                                                                             ; 05:5934
+.db $0C
 .dw $99E0                                                                           ; 05:5935
+.db $09                                                                             ; 05:5934
 .db $05, $06, $04, $08                                                              ; 05:5937
 .dw LVOBJECTS_SKY2
 .db :LVOBJECTS_SKY2
@@ -21292,8 +21317,9 @@ LVHEAD_11:
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
 .dw $B3B5
-.db $09                                                                             ; 05:5959
+.db $0C
 .dw $99E0                                                                           ; 05:595A
+.db $09                                                                             ; 05:5959
 .db $06, $08, $04, $06                                                              ; 05:595C
 .dw LVOBJECTS_SKY3
 .db :LVOBJECTS_SKY3
@@ -21310,8 +21336,9 @@ LVHEAD_1B:
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
 .dw $B3B5
-.db $09                                                                             ; 05:597E
+.db $0C
 .dw $99E0                                                                           ; 05:597F
+.db $09                                                                             ; 05:597E
 .db $06, $08, $04, $06                                                              ; 05:5981
 .dw LVOBJECTS_SKY2_end
 .db :LVOBJECTS_SKY2_end
@@ -21327,8 +21354,9 @@ LVHEAD_1C:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:59A3
+.db $0C
 .dw $A511                                                                           ; 05:59A4
+.db $09                                                                             ; 05:59A3
 .db $07, $01, $01, $07                                                              ; 05:59A6
 .dw LVOBJECTS_SPECIAL_1
 .db :LVOBJECTS_SPECIAL_1
@@ -21344,8 +21372,9 @@ LVHEAD_1D:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:59C8
+.db $0C
 .dw $A511                                                                           ; 05:59C9
+.db $09                                                                             ; 05:59C8
 .db $07, $01, $01, $07                                                              ; 05:59CB
 .dw LVOBJECTS_SPECIAL_2
 .db :LVOBJECTS_SPECIAL_2
@@ -21361,8 +21390,9 @@ LVHEAD_1E:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:59ED
+.db $0C
 .dw $A511                                                                           ; 05:59EE
+.db $09                                                                             ; 05:59ED
 .db $07, $01, $01, $07                                                              ; 05:59F0
 .dw LVOBJECTS_SPECIAL_3
 .db :LVOBJECTS_SPECIAL_3
@@ -21378,8 +21408,9 @@ LVHEAD_1F:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:5A12
+.db $0C
 .dw $A511                                                                           ; 05:5A13
+.db $09                                                                             ; 05:5A12
 .db $07, $01, $01, $07                                                              ; 05:5A15
 .dw LVOBJECTS_SPECIAL_4
 .db :LVOBJECTS_SPECIAL_4
@@ -21395,8 +21426,9 @@ LVHEAD_20:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:5A37
+.db $0C
 .dw $A511                                                                           ; 05:5A38
+.db $09                                                                             ; 05:5A37
 .db $07, $01, $01, $07                                                              ; 05:5A3A
 .dw LVOBJECTS_SPECIAL_5
 .db :LVOBJECTS_SPECIAL_5
@@ -21412,8 +21444,9 @@ LVHEAD_21:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:5A5C
+.db $0C
 .dw $A511                                                                           ; 05:5A5D
+.db $09                                                                             ; 05:5A5C
 .db $07, $01, $01, $07                                                              ; 05:5A5F
 .dw LVOBJECTS_SPECIAL_6
 .db :LVOBJECTS_SPECIAL_6
@@ -21429,8 +21462,9 @@ LVHEAD_22:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:5A81
+.db $0C
 .dw $A511                                                                           ; 05:5A82
+.db $09                                                                             ; 05:5A81
 .db $07, $01, $01, $07                                                              ; 05:5A84
 .dw LVOBJECTS_SPECIAL_7
 .db :LVOBJECTS_SPECIAL_7
@@ -21446,8 +21480,9 @@ LVHEAD_23:
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
 .dw $C7FE
-.db $09                                                                             ; 05:5AA6
+.db $0C
 .dw $A511                                                                           ; 05:5AA7
+.db $09                                                                             ; 05:5AA6
 .db $07, $01, $01, $07                                                              ; 05:5AA9
 .dw LVOBJECTS_SPECIAL_8
 .db :LVOBJECTS_SPECIAL_8
