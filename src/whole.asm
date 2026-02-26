@@ -3448,12 +3448,9 @@ main:
    jr     nz, @skip_level_start_delay  ; 00:1CCD - 20 0C
 
 @force_level_start_delay:
-   ld     b, $3C                       ; 00:1CCF - 06 3C
-
-@wait_60_frames_before_entering_gameplay:
+   ;; We skip the 60-frame delay because it's a literal waste of time.
    res    0, (iy+iy_00-IYBASE)         ; 00:1CD1 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1CD5 - CD 1C 03
-   djnz   @wait_60_frames_before_entering_gameplay  ; 00:1CD8 - 10 F7
    rst    $20                          ; 00:1CDA - E7
    ;; If we don't go via the world map screen (removed),
    ;; and we ended the level with the next level's music playing,
