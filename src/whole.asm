@@ -6676,6 +6676,18 @@ fn_of_setbox:
    call fn_of_setbox
 .ENDM
 
+;; Normally 17 bytes, the call is 9 bytes, so each use saves 8 bytes minus the overall 12 byte overhead of the function itself.
+fn_of_check_collision_with_sonic:
+   ld (ix+13), e
+   ld (ix+14), d
+   ld (tmp_06), hl
+   jp check_collision_with_sonic
+.MACRO of_check_collision_with_sonic ARGS x0, y0, lx, ly
+   ld hl, 0+(x0)+((y0)<<8)
+   ld de, 0+(lx)+((ly)<<8)
+   call fn_of_check_collision_with_sonic
+.ENDM
+
 ;; Normally 26 bytes, the call is 9 bytes, so each use saves up to 17 bytes minus the overall 27 byte overhead of the function itself.
 ;; Some cases only adjust one part.
 ;;
@@ -9014,11 +9026,8 @@ sonic_anim_19_dropped_rings_02_05:
 .db $1B, $FF, $00                                                                   ; 01:5B06
 
 objfunc_01_monitor_rings:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5B11 - CD A8 5D
-   ld     hl, $0003                    ; 01:5B14 - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5B17 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5B1A - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, monitor_common_set_art_and_go_to_main  ; 01:5B1D - 38 12
    call   handle_sonic_monitor_collision  ; 01:5B1F - CD EB 5D
    jr     c, monitor_common_set_art_and_go_to_main  ; 01:5B22 - 38 0D
@@ -9101,11 +9110,8 @@ SPRITEMAP_monitor_unnoisy_surrounds:
 .db $54, $FE, $58, $FF, $FF, $FF, $AA, $AC, $AE, $FF, $FF, $FF, $FF                 ; 01:5BCC
 
 objfunc_02_monitor_speed_shoes:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5BE1 - CD A8 5D
-   ld     hl, $0003                    ; 01:5BE4 - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5BE7 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5BEA - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @continue_into_common_main  ; 01:5BED - 38 10
    call   handle_sonic_monitor_collision  ; 01:5BEF - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5BF2 - 38 0B
@@ -9121,7 +9127,6 @@ objfunc_02_monitor_speed_shoes:
    jp     monitor_common_main          ; 01:5C02 - C3 34 5B
 
 objfunc_03_monitor_life:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5C0D - CD A8 5D
    ld     hl, g_level_lives_collected_mask  ; 01:5C10 - 21 05 D3
    call   calc_level_offset_HL_and_mask_C  ; 01:5C13 - CD 02 0C
@@ -9132,9 +9137,7 @@ objfunc_03_monitor_life:
    jp     monitor_common_destroy_after_hit  ; 01:5C1E - C3 29 5B
 
 @life_not_consumed_yet:
-   ld     hl, $0003                    ; 01:5C21 - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5C24 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5C27 - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @check_level_specific_kludges  ; 01:5C2A - 38 2E
    call   handle_sonic_monitor_collision  ; 01:5C2C - CD EB 5D
    jr     c, @check_level_specific_kludges  ; 01:5C2F - 38 29
@@ -9222,11 +9225,8 @@ objfunc_03_monitor_life:
    jr     @continue_into_common_main   ; 01:5CD5 - 18 96
 
 objfunc_04_monitor_shield:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5CDF - CD A8 5D
-   ld     hl, $0003                    ; 01:5CE2 - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5CE5 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5CE8 - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @continue_into_common_main  ; 01:5CEB - 38 0C
    call   handle_sonic_monitor_collision  ; 01:5CED - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5CF0 - 38 07
@@ -9239,11 +9239,8 @@ objfunc_04_monitor_shield:
    jp     monitor_common_main          ; 01:5CFC - C3 34 5B
 
 objfunc_05_monitor_invincibility:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5D07 - CD A8 5D
-   ld     hl, $0003                    ; 01:5D0A - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5D0D - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5D10 - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @continue_into_common_main  ; 01:5D13 - 38 14
    call   handle_sonic_monitor_collision  ; 01:5D15 - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5D18 - 38 0F
@@ -9260,11 +9257,8 @@ objfunc_05_monitor_invincibility:
    jp     monitor_common_main          ; 01:5D2C - C3 34 5B
 
 objfunc_51_monitor_checkpoint:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5D37 - CD A8 5D
-   ld     hl, $0003                    ; 01:5D3A - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5D3D - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5D40 - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @continue_into_common_main  ; 01:5D43 - 38 35
    call   handle_sonic_monitor_collision  ; 01:5D45 - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5D48 - 38 30
@@ -9304,11 +9298,8 @@ objfunc_51_monitor_checkpoint:
    jp     monitor_common_main          ; 01:5D7D - C3 34 5B
 
 objfunc_52_monitor_continue:
-   of_setbox $14, $18
    call   reposition_monitor_on_init   ; 01:5D88 - CD A8 5D
-   ld     hl, $0003                    ; 01:5D8B - 21 03 00
-   ld     (tmp_06), hl                 ; 01:5D8E - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5D91 - CD 56 39
+   of_check_collision_with_sonic $03, $00, $14, $18
    jr     c, @continue_into_common_main  ; 01:5D94 - 38 0C
    call   handle_sonic_monitor_collision  ; 01:5D96 - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5D99 - 38 07
@@ -9439,14 +9430,11 @@ objfunc_06_chaos_emerald:
    ld     a, (hl)                      ; 01:5EA8 - 7E
    and    c                            ; 01:5EA9 - A1
    jr     nz, @destroy_already_collected  ; 01:5EAA - 20 32
-   of_setbox $0C, $11
    call   reposition_monitor_on_init   ; 01:5EB4 - CD A8 5D
    xor    a                            ; 01:5EB7 - AF
    ld     (ix+15), a                   ; 01:5EB8 - DD 77 0F
    ld     (ix+16), a                   ; 01:5EBB - DD 77 10
-   ld     hl, $0202                    ; 01:5EBE - 21 02 02
-   ld     (tmp_06), hl                 ; 01:5EC1 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5EC4 - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $11
    jr     c, @dont_collect_yet         ; 01:5EC7 - 38 1A
    ld     hl, g_level_has_emerald_mask  ; 01:5EC9 - 21 0B D3
    call   calc_level_offset_HL_and_mask_C  ; 01:5ECC - CD 02 0C
@@ -9490,7 +9478,6 @@ SPRITEMAP_monitor_image:
 .db $5C, $5E, $FF, $FF, $FF, $FF, $FF                                               ; 01:5F10
 
 objfunc_07_signpost:
-   of_setbox $18, $30
    bit    0, (ix+17)                   ; 01:5F1F - DD CB 11 46
    jr     nz, @art_already_loaded      ; 01:5F23 - 20 1F
    res    7, (iy+iy_06_lvflag01-IYBASE)  ; 01:5F25 - FD CB 06 BE
@@ -9577,9 +9564,7 @@ objfunc_07_signpost:
    jp     @decide                      ; 01:5FE5 - C3 30 60
 
 @check_sonic_touching:
-   ld     hl, $0A0A                    ; 01:5FE8 - 21 0A 0A
-   ld     (tmp_06), hl                 ; 01:5FEB - 22 14 D2
-   call   check_collision_with_sonic   ; 01:5FEE - CD 56 39
+   of_check_collision_with_sonic $0A, $0A, $18, $30
    jr     c, @decide                   ; 01:5FF1 - 38 3D
    bit    7, (ix+12)                   ; 01:5FF3 - DD CB 0C 7E
    jr     nz, @decide                  ; 01:5FF7 - 20 37
@@ -9875,7 +9860,6 @@ LVCYCPAL1_SKY_3:
 .INCBIN "src/data/lv_sky_3.pal1c"
 
 objfunc_08_badnik_crabmeat:
-   of_setbox $10, $1F
    ld     e, (ix+18)                   ; 01:65F6 - DD 5E 12
    ld     d, $00                       ; 01:65F9 - 16 00
 
@@ -9972,9 +9956,7 @@ objfunc_08_badnik_crabmeat:
    ld     b, (hl)                      ; 01:66AB - 46
    ld     de, SPRITEMAP_crabmeat_frames  ; 01:66AC - 11 F9 66
    call   do_framed_animation          ; 01:66AF - CD 41 7C
-   ld     hl, $0A04                    ; 01:66B2 - 21 04 0A
-   ld     (tmp_06), hl                 ; 01:66B5 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:66B8 - CD 56 39
+   of_check_collision_with_sonic $04, $0A, $10, $1F
    ld     hl, $0804                    ; 01:66BB - 21 04 08
    ld     (tmp_00), hl                 ; 01:66BE - 22 0E D2
    call   nc, enemy_touched_sonic      ; 01:66C1 - D4 E5 35
@@ -10028,7 +10010,6 @@ objfunc_09_platform_swing:
    set    1, (ix+24)                   ; 01:677E - DD CB 18 CE
 
 @already_initialised:
-   of_setbox $1A, $10
    ld     l, (ix+2)                    ; 01:678A - DD 6E 02
    ld     h, (ix+3)                    ; 01:678D - DD 66 03
    ld     (tmp_00), hl                 ; 01:6790 - 22 0E D2
@@ -10071,9 +10052,7 @@ objfunc_09_platform_swing:
    ld     a, (sonic_vel_y_hi)          ; 01:67D3 - 3A 08 D4
    and    a                            ; 01:67D6 - A7
    jp     m, @skip_sonic_collision     ; 01:67D7 - FA F9 67
-   ld     hl, $0806                    ; 01:67DA - 21 06 08
-   ld     (tmp_06), hl                 ; 01:67DD - 22 14 D2
-   call   check_collision_with_sonic   ; 01:67E0 - CD 56 39
+   of_check_collision_with_sonic $06, $08, $1A, $10
    jr     c, @skip_sonic_collision     ; 01:67E3 - 38 14
    ld     hl, (sonic_x)                ; 01:67E5 - 2A FE D3
    ld     de, (tmp_00)                 ; 01:67E8 - ED 5B 0E D2
@@ -10206,15 +10185,12 @@ SPRITEMAP_explosion_frames:
 
 objfunc_0B_platform_semilowering:
    set    5, (ix+24)                   ; 01:69E9 - DD CB 18 EE
-   of_setbox $1A, $10
    ld     (ix+15), SPRITEMAP_platform_GHZ&$FF  ; 01:69F5 - DD 36 0F 11
    ld     (ix+16), SPRITEMAP_platform_GHZ>>8  ; 01:69F9 - DD 36 10 69
    ld     a, (sonic_vel_y_hi)          ; 01:69FD - 3A 08 D4
    and    a                            ; 01:6A00 - A7
    jp     m, @not_collided_with_sonic  ; 01:6A01 - FA 2E 6A
-   ld     hl, $0806                    ; 01:6A04 - 21 06 08
-   ld     (tmp_06), hl                 ; 01:6A07 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6A0A - CD 56 39
+   of_check_collision_with_sonic $06, $08, $1A, $10
    jr     c, @not_collided_with_sonic  ; 01:6A0D - 38 1F
    ld     de, $0000                    ; 01:6A0F - 11 00 00
    ld     a, (ix+5)                    ; 01:6A12 - DD 7E 05
@@ -10265,13 +10241,10 @@ objfunc_0C_platform_fall_on_touch:
    ld     (ix+12), a                   ; 01:6A6C - DD 77 0C
 
 @pre_fall_delay_was_not_expired:
-   of_setbox $1A, $10
    ld     a, (sonic_vel_y_hi)          ; 01:6A77 - 3A 08 D4
    and    a                            ; 01:6A7A - A7
    jp     m, @sonic_was_not_positioned_correctly  ; 01:6A7B - FA 99 6A
-   ld     hl, $0806                    ; 01:6A7E - 21 06 08
-   ld     (tmp_06), hl                 ; 01:6A81 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6A84 - CD 56 39
+   of_check_collision_with_sonic $06, $08, $1A, $10
    jr     c, @sonic_was_not_positioned_correctly  ; 01:6A87 - 38 10
    ld     (ix+22), $01                 ; 01:6A89 - DD 36 16 01
    ld     bc, $0010                    ; 01:6A8D - 01 10 00
@@ -10302,10 +10275,7 @@ objfunc_0C_platform_fall_on_touch:
 
 objfunc_0D_fireball_pallet:
    set    5, (ix+24)                   ; 01:6AC1 - DD CB 18 EE
-   of_setbox $02, $02
-   ld     hl, $0303                    ; 01:6ACD - 21 03 03
-   ld     (tmp_06), hl                 ; 01:6AD0 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6AD3 - CD 56 39
+   of_check_collision_with_sonic $03, $03, $02, $02
    call   nc, damage_sonic             ; 01:6AD6 - D4 FD 35
    ld     l, (ix+10)                   ; 01:6AD9 - DD 6E 0A
    ld     h, (ix+11)                   ; 01:6ADC - DD 66 0B
@@ -10407,7 +10377,6 @@ objfunc_0E_badnik_buzz_bomber:
    set    0, (ix+24)                   ; 01:6BA7 - DD CB 18 C6
 
 @already_initialised:
-   of_setbox $14, $20
    ld     l, (ix+2)                    ; 01:6BB3 - DD 6E 02
    ld     h, (ix+3)                    ; 01:6BB6 - DD 66 03
    ld     de, (sonic_x)                ; 01:6BB9 - ED 5B FE D3
@@ -10537,9 +10506,7 @@ objfunc_0E_badnik_buzz_bomber:
    ld     b, (hl)                      ; 01:6CBD - 46
    ld     de, SPRITEMAP_buzz_bomber_frames  ; 01:6CBE - 11 F9 6C
    call   do_framed_animation          ; 01:6CC1 - CD 41 7C
-   ld     hl, $1000                    ; 01:6CC4 - 21 00 10
-   ld     (tmp_06), hl                 ; 01:6CC7 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6CCA - CD 56 39
+   of_check_collision_with_sonic $00, $10, $14, $20
    ld     hl, $1004                    ; 01:6CCD - 21 04 10
    ld     (tmp_00), hl                 ; 01:6CD0 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 01:6CD3 - D4 E5 35
@@ -10584,14 +10551,13 @@ objfunc_0F_platform_horizontal:
    ld     (g_camera_sonic_bounds_y1_target), hl  ; 01:6D85 - 22 6D D2
 
 @level_was_JUN2_dont_break_the_camera:
-   of_setbox $1A, $10
    ld     c, $00                       ; 01:6D90 - 0E 00
    ld     a, (sonic_vel_y_hi)          ; 01:6D92 - 3A 08 D4
    and    a                            ; 01:6D95 - A7
    jp     m, @sonic_was_not_positioned_correctly  ; 01:6D96 - FA B1 6D
    ld     hl, $0806                    ; 01:6D99 - 21 06 08
    ld     (tmp_06), hl                 ; 01:6D9C - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6D9F - CD 56 39
+   of_check_collision_with_sonic $06, $08, $1A, $10
    ld     c, $00                       ; 01:6DA2 - 0E 00
    jr     c, @sonic_was_not_positioned_correctly  ; 01:6DA4 - 38 0B
    ld     bc, $0010                    ; 01:6DA6 - 01 10 00
@@ -10649,7 +10615,6 @@ objfunc_0F_platform_horizontal:
 
 objfunc_10_badnik_motobug:
    res    5, (ix+24)                   ; 01:6E0C - DD CB 18 AE
-   of_setbox $0A, $10
    ld     e, (ix+18)                   ; 01:6E18 - DD 5E 12
    ld     d, $00                       ; 01:6E1B - 16 00
 
@@ -10708,9 +10673,7 @@ objfunc_10_badnik_motobug:
    ld     b, (hl)                      ; 01:6E7C - 46
    ld     de, SPRITEMAP_motobug_frames  ; 01:6E7D - 11 CB 6E
    call   do_framed_animation          ; 01:6E80 - CD 41 7C
-   ld     hl, $0203                    ; 01:6E83 - 21 03 02
-   ld     (tmp_06), hl                 ; 01:6E86 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6E89 - CD 56 39
+   of_check_collision_with_sonic $03, $02, $0A, $10
    ld     hl, $0000                    ; 01:6E8C - 21 00 00
    ld     (tmp_00), hl                 ; 01:6E8F - 22 0E D2
    call   nc, enemy_touched_sonic      ; 01:6E92 - D4 E5 35
@@ -10743,7 +10706,6 @@ SPRITEMAP_motobug_frames:
 
 objfunc_11_badnik_newtron:
    set    5, (ix+24)                   ; 01:6F08 - DD CB 18 EE
-   of_setbox $0C, $14
    ld     a, (ix+17)                   ; 01:6F14 - DD 7E 11
    cp     $02                          ; 01:6F17 - FE 02
    jr     z, @state_02                 ; 01:6F19 - 28 03
@@ -10834,9 +10796,7 @@ objfunc_11_badnik_newtron:
 @continue:
    ld     (ix+15), c                   ; 01:6FD4 - DD 71 0F
    ld     (ix+16), b                   ; 01:6FD7 - DD 70 10
-   ld     hl, $0202                    ; 01:6FDA - 21 02 02
-   ld     (tmp_06), hl                 ; 01:6FDD - 22 14 D2
-   call   check_collision_with_sonic   ; 01:6FE0 - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $14
    ld     hl, $0000                    ; 01:6FE3 - 21 00 00
    ld     (tmp_00), hl                 ; 01:6FE6 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 01:6FE9 - D4 E5 35
@@ -11161,7 +11121,6 @@ objfunc_25_animal_capsule:
    set    0, (ix+24)                   ; 01:7346 - DD CB 18 C6
 
 @already_initialised:
-   of_setbox $1C, $40
    ld     hl, animal_capsule_UNK_07564  ; 01:7352 - 21 64 75
    bit    1, (ix+24)                   ; 01:7355 - DD CB 18 4E
    jr     z, @capsule_show_as_intact   ; 01:7359 - 28 03
@@ -11210,9 +11169,7 @@ objfunc_25_animal_capsule:
    ld     de, $FF90                    ; 01:73A8 - 11 90 FF
    add    hl, de                       ; 01:73AB - 19
    ld     (g_level_limit_x1), hl       ; 01:73AC - 22 75 D2
-   ld     hl, $0002                    ; 01:73AF - 21 02 00
-   ld     (tmp_06), hl                 ; 01:73B2 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:73B5 - CD 56 39
+   of_check_collision_with_sonic $02, $00, $1C, $40
    jp     c, @sonic_was_not_positioned_correctly  ; 01:73B8 - DA 5B 74
    ld     a, (sonic_vel_y_hi)          ; 01:73BB - 3A 08 D4
    and    a                            ; 01:73BE - A7
@@ -11859,10 +11816,7 @@ spawn_explosion:
 
 objfunc_4B_throw_sonic_into_a_pit_GHZ2:
    set    5, (ix+24)                   ; 01:7AA7 - DD CB 18 EE
-   of_setbox $40, $40
-   ld     hl, $0000                    ; 01:7AB3 - 21 00 00
-   ld     (tmp_06), hl                 ; 01:7AB6 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:7AB9 - CD 56 39
+   of_check_collision_with_sonic $00, $00, $40, $40
    ret    c                            ; 01:7ABC - D8
    bit    6, (iy+iy_06_lvflag01-IYBASE)  ; 01:7ABD - FD CB 06 76
    ret    nz                           ; 01:7AC1 - C0
@@ -12147,7 +12101,6 @@ put_sonic_y_pos_on_platform:
 
 objfunc_26_badnik_chopper:
    set    5, (ix+24)                   ; 01:7CF6 - DD CB 18 EE
-   of_setbox $08, $0C
    ld     a, (ix+20)                   ; 01:7D02 - DD 7E 14
    and    a                            ; 01:7D05 - A7
    jr     z, @not_hidden               ; 01:7D06 - 28 0B
@@ -12229,9 +12182,7 @@ objfunc_26_badnik_chopper:
    ld     (ix+16), SPRITEMAP_chopper_emerging>>8  ; 01:7DC5 - DD 36 10 7D
 
 @not_emerging:
-   ld     hl, $0204                    ; 01:7DC9 - 21 04 02
-   ld     (tmp_06), hl                 ; 01:7DCC - 22 14 D2
-   call   check_collision_with_sonic   ; 01:7DCF - CD 56 39
+   of_check_collision_with_sonic $04, $02, $08, $0C
    ld     hl, $0000                    ; 01:7DD2 - 21 00 00
    ld     (tmp_00), hl                 ; 01:7DD5 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 01:7DD8 - D4 E5 35
@@ -12327,7 +12278,6 @@ SPRITEMAP_platform_downwards_wide:
 
 objfunc_29_log:
    set    5, (ix+24)                   ; 01:7EE6 - DD CB 18 EE
-   of_setbox $0A, $10
    bit    0, (ix+24)                   ; 01:7EF2 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7EF6 - 20 14
    of_adjust_pos $0000, $FFE8
@@ -12349,9 +12299,7 @@ objfunc_29_log:
    ld     a, (sonic_vel_y_hi)          ; 01:7F2A - 3A 08 D4
    and    a                            ; 01:7F2D - A7
    jp     m, log_obj_continue          ; 01:7F2E - FA 03 80
-   ld     hl, $0806                    ; 01:7F31 - 21 06 08
-   ld     (tmp_06), hl                 ; 01:7F34 - 22 14 D2
-   call   check_collision_with_sonic   ; 01:7F37 - CD 56 39
+   of_check_collision_with_sonic $06, $08, $0A, $10
    jp     c, log_obj_continue          ; 01:7F3A - DA 03 80
    ld     bc, $0010                    ; 01:7F3D - 01 10 00
    ld     e, (ix+10)                   ; 01:7F40 - DD 5E 0A
@@ -12653,10 +12601,7 @@ SPRTAB_JUN3_boss_facing_right:
 
 objfunc_2B_JUN3_boss_bomb:
    res    5, (ix+24)                   ; 02:8218 - DD CB 18 AE
-   of_setbox $0C, $10
-   ld     hl, $0202                    ; 02:8224 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:8227 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:822A - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $10
    call   nc, damage_sonic             ; 02:822D - D4 FD 35
    ld     l, (ix+7)                    ; 02:8230 - DD 6E 07
    ld     h, (ix+8)                    ; 02:8233 - DD 66 08
@@ -12738,15 +12683,9 @@ SPRTAB_JUN3_boss_bomb:
 .db $FF, $FF, $0C, $0E, $FF, $FF, $FF, $FF, $FF                                     ; 02:82DD
 
 objfunc_2D_badnik_spikeses:
-   of_setbox $10, $0F
-   ld     hl, $0408                    ; 02:82EE - 21 08 04
-   ld     (tmp_06), hl                 ; 02:82F1 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:82F4 - CD 56 39
+   of_check_collision_with_sonic $08, $04, $10, $0F
    call   nc, damage_sonic             ; 02:82F7 - D4 FD 35
-   of_setbox $14, $20
-   ld     hl, $1006                    ; 02:8302 - 21 06 10
-   ld     (tmp_06), hl                 ; 02:8305 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:8308 - CD 56 39
+   of_check_collision_with_sonic $06, $10, $14, $20
    ld     hl, $0404                    ; 02:830B - 21 04 04
    ld     (tmp_00), hl                 ; 02:830E - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:8311 - D4 E5 35
@@ -12804,7 +12743,6 @@ SPRTAB_spikeses:
 
 objfunc_2E_falling_bridge_piece:
    set    5, (ix+24)                   ; 02:83C1 - DD CB 18 EE
-   of_setbox $0E, $08
    bit    0, (ix+24)                   ; 02:83CD - DD CB 18 46
    jr     nz, @already_fallen          ; 02:83D1 - 20 54
    xor    a                            ; 02:83D3 - AF
@@ -12873,9 +12811,7 @@ objfunc_2E_falling_bridge_piece:
    ret                                 ; 02:8466 - C9
 
 @do_platform_behaviour:
-   ld     hl, $0402                    ; 02:8467 - 21 02 04
-   ld     (tmp_06), hl                 ; 02:846A - 22 14 D2
-   call   check_collision_with_sonic   ; 02:846D - CD 56 39
+   of_check_collision_with_sonic $02, $04, $0E, $08
    ret    c                            ; 02:8470 - D8
    ld     a, (sonic_vel_y_hi)          ; 02:8471 - 3A 08 D4
    and    a                            ; 02:8474 - A7
@@ -13331,10 +13267,7 @@ objfunc_3C_badnik_jaws:
    ld     (ix+7), $20                  ; 02:8842 - DD 36 07 20
    ld     (ix+8), $00                  ; 02:8846 - DD 36 08 00
    ld     (ix+9), $00                  ; 02:884A - DD 36 09 00
-   of_setbox $14, $0C
-   ld     hl, $0A02                    ; 02:8856 - 21 02 0A
-   ld     (tmp_06), hl                 ; 02:8859 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:885C - CD 56 39
+   of_check_collision_with_sonic $02, $0A, $14, $0C
    ld     hl, $0008                    ; 02:885F - 21 08 00
    ld     (tmp_00), hl                 ; 02:8862 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:8865 - D4 E5 35
@@ -13347,10 +13280,8 @@ objfunc_3C_badnik_jaws:
    ld     (ix+7), $E0                  ; 02:8873 - DD 36 07 E0
    ld     (ix+8), $FF                  ; 02:8877 - DD 36 08 FF
    ld     (ix+9), $FF                  ; 02:887B - DD 36 09 FF
-   of_setbox $0C, $0C
-   ld     hl, $0202                    ; 02:8887 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:888A - 22 14 D2
-   call   check_collision_with_sonic   ; 02:888D - CD 56 39
+   ;; Yes, the collision box actually changes depending on facing direction.
+   of_check_collision_with_sonic $02, $02, $0C, $0C
    ld     hl, $0000                    ; 02:8890 - 21 00 00
    ld     (tmp_00), hl                 ; 02:8893 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:8896 - D4 E5 35
@@ -13382,7 +13313,6 @@ SPRTAB_jaws:
 
 objfunc_3D_spinning_spike_ball:
    set    5, (ix+24)                   ; 02:88FB - DD CB 18 EE
-   of_setbox $08, $0C
    bit    0, (ix+24)                   ; 02:8907 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:890B - 20 24
    ld     l, (ix+2)                    ; 02:890D - DD 6E 02
@@ -13430,9 +13360,7 @@ objfunc_3D_spinning_spike_ball:
    add    hl, bc                       ; 02:895E - 09
    ld     (ix+5), l                    ; 02:895F - DD 75 05
    ld     (ix+6), h                    ; 02:8962 - DD 74 06
-   ld     hl, $0204                    ; 02:8965 - 21 04 02
-   ld     (tmp_06), hl                 ; 02:8968 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:896B - CD 56 39
+   of_check_collision_with_sonic $04, $02, $08, $0C
    call   nc, damage_sonic             ; 02:896E - D4 FD 35
    ld     (ix+15), SPRTAB_spinning_spike_ball&$FF  ; 02:8971 - DD 36 0F 87
    ld     (ix+16), SPRTAB_spinning_spike_ball>>8  ; 02:8975 - DD 36 10 89
@@ -13594,7 +13522,6 @@ LUT_giant_spear_anim_frames_n_y:
 
 objfunc_3F_fireball_gargoyle:
    res    5, (ix+24)                   ; 02:8C16 - DD CB 18 AE
-   of_setbox $04, $0A
    bit    0, (ix+24)                   ; 02:8C22 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8C26 - 20 46
    of_adjust_pos $000A, $0008
@@ -13662,9 +13589,7 @@ objfunc_3F_fireball_gargoyle:
    jr     nz, @reset_fireball          ; 02:8CC9 - 20 4F
    bit    7, (ix+24)                   ; 02:8CCB - DD CB 18 7E
    jr     nz, @reset_fireball          ; 02:8CCF - 20 49
-   ld     hl, $0402                    ; 02:8CD1 - 21 02 04
-   ld     (tmp_06), hl                 ; 02:8CD4 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:8CD7 - CD 56 39
+   of_check_collision_with_sonic $02, $04, $04, $0A
    call   nc, damage_sonic             ; 02:8CDA - D4 FD 35
    ld     e, (ix+2)                    ; 02:8CDD - DD 5E 02
    ld     d, (ix+3)                    ; 02:8CE0 - DD 56 03
@@ -13965,10 +13890,7 @@ objfunc_43_nothing_UNUSED_MAYBE:  ; Share this and save a byte
    ret                                 ; 02:8F6B - C9
 
 objfunc_44_badnik_burrobot:
-   of_setbox $0C, $20
-   ld     hl, $0202                    ; 02:8F75 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:8F78 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:8F7B - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $20
    ld     hl, $0800                    ; 02:8F7E - 21 00 08
    ld     (tmp_00), hl                 ; 02:8F81 - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:8F84 - D4 E5 35
@@ -14075,7 +13997,6 @@ SPRTAB_badnik_burrobot:
 
 objfunc_45_LAB_float_up_platform:
    set    5, (ix+24)                   ; 02:90C0 - DD CB 18 EE
-   of_setbox $1E, $1C
    ld     (ix+15), SPRTAB_LAB_float_up_platform&$FF  ; 02:90CC - DD 36 0F DE
    ld     (ix+16), SPRTAB_LAB_float_up_platform>>8  ; 02:90D0 - DD 36 10 91
    bit    1, (ix+24)                   ; 02:90D4 - DD CB 18 4E
@@ -14184,9 +14105,7 @@ objfunc_45_LAB_float_up_platform:
    ret                                 ; 02:91B6 - C9
 
 @skip_reset:
-   ld     hl, $0E02                    ; 02:91B7 - 21 02 0E
-   ld     (tmp_06), hl                 ; 02:91BA - 22 14 D2
-   call   check_collision_with_sonic   ; 02:91BD - CD 56 39
+   of_check_collision_with_sonic $02, $0E, $1E, $1C
    ret    c                            ; 02:91C0 - D8
    set    0, (ix+24)                   ; 02:91C1 - DD CB 18 C6
    ld     a, (sonic_vel_y)             ; 02:91C5 - 3A 07 D4
@@ -14509,10 +14428,7 @@ SPRTAB_LAB3_boss:
 
 objfunc_2F_LAB3_boss_rocket:
    set    5, (ix+24)                   ; 02:94A5 - DD CB 18 EE
-   of_setbox $08, $0A
-   ld     hl, $0404                    ; 02:94B1 - 21 04 04
-   ld     (tmp_06), hl                 ; 02:94B4 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:94B7 - CD 56 39
+   of_check_collision_with_sonic $04, $04, $08, $0A
    call   nc, damage_sonic             ; 02:94BA - D4 FD 35
    bit    1, (ix+24)                   ; 02:94BD - DD CB 18 4E
    jr     nz, @already_initialised     ; 02:94C1 - 20 1F
@@ -14848,7 +14764,6 @@ objfunc_20_air_bubble:
    pop    af                           ; 02:9768 - F1
    ld     (g_next_avail_vdp_sprite_ptr), hl  ; 02:9769 - 22 3C D2
    ld     (iy+g_sprite_count-IYBASE), a  ; 02:976C - FD 77 0A
-   of_setbox $0A, $0C
    ld     a, (ix+18)                   ; 02:9777 - DD 7E 12
    and    a                            ; 02:977A - A7
    jr     z, @not_collected_yet        ; 02:977B - 28 1A
@@ -14864,9 +14779,7 @@ objfunc_20_air_bubble:
    jp     @set_x_vel                   ; 02:9794 - C3 09 98
 
 @not_collected_yet:
-   ld     hl, $0206                    ; 02:9797 - 21 06 02
-   ld     (tmp_06), hl                 ; 02:979A - 22 14 D2
-   call   check_collision_with_sonic   ; 02:979D - CD 56 39
+   of_check_collision_with_sonic $06, $02, $0A, $0C
    jr     c, @continue_from_non_collection  ; 02:97A0 - 38 41
    ld     bc, (sonic_y)                ; 02:97A2 - ED 4B 01 D4
    ld     e, (ix+5)                    ; 02:97A6 - DD 5E 05
@@ -14992,10 +14905,7 @@ objfunc_4C_flipper:
    ld     a, (ix+17)                   ; 02:9894 - DD 7E 11
    cp     $01                          ; 02:9897 - FE 01
    jr     nc, @flipper_not_00          ; 02:9899 - 30 38
-   ld     hl, $140C                    ; 02:989B - 21 0C 14
-   ld     (tmp_06), hl                 ; 02:989E - 22 14 D2
-   of_setbox $1E, $16
-   call   check_collision_with_sonic   ; 02:98A9 - CD 56 39
+   of_check_collision_with_sonic $0C, $14, $1E, $16
    ret    c                            ; 02:98AC - D8
    ld     bc, LUT_flipper_y_offsets_00  ; 02:98AD - 01 9E 99
    call   compute_flipper_y_offset     ; 02:98B0 - CD AF 9A
@@ -15018,10 +14928,7 @@ objfunc_4C_flipper:
    jp     nc, @flipper_not_01          ; 02:98D5 - D2 5E 99
    ld     (ix+15), SPRTAB_flipper_01&$FF  ; 02:98D8 - DD 36 0F 90
    ld     (ix+16), SPRTAB_flipper_01>>8  ; 02:98DC - DD 36 10 9A
-   ld     hl, $080F                    ; 02:98E0 - 21 0F 08
-   ld     (tmp_06), hl                 ; 02:98E3 - 22 14 D2
-   of_setbox $1E, $16
-   call   check_collision_with_sonic   ; 02:98EE - CD 56 39
+   of_check_collision_with_sonic $0F, $08, $1E, $16
    ret    c                            ; 02:98F1 - D8
    ld     bc, LUT_flipper_y_offsets_01  ; 02:98F2 - 01 BE 99
    call   compute_flipper_y_offset     ; 02:98F5 - CD AF 9A
@@ -15069,10 +14976,7 @@ objfunc_4C_flipper:
 @flipper_not_01:
    ld     (ix+15), SPRTAB_flipper_02&$FF  ; 02:995E - DD 36 0F A2
    ld     (ix+16), SPRTAB_flipper_02>>8  ; 02:9962 - DD 36 10 9A
-   ld     hl, $021A                    ; 02:9966 - 21 1A 02
-   ld     (tmp_06), hl                 ; 02:9969 - 22 14 D2
-   of_setbox $1E, $16
-   call   check_collision_with_sonic   ; 02:9974 - CD 56 39
+   of_check_collision_with_sonic $1A, $02, $1E, $16
    ret    c                            ; 02:9977 - D8
    ld     bc, LUT_flipper_y_offsets_02  ; 02:9978 - 01 DE 99
    call   compute_flipper_y_offset     ; 02:997B - CD AF 9A
@@ -15175,7 +15079,6 @@ compute_flipper_y_offset:
 
 objfunc_21_special_stage_bouncer:
    set    5, (ix+24)                   ; 02:9AFB - DD CB 18 EE
-   of_setbox $1C, $06
    ld     (ix+15), SPRTAB_special_stage_bouncer&$FF  ; 02:9B07 - DD 36 0F 6E
    ld     (ix+16), SPRTAB_special_stage_bouncer>>8  ; 02:9B0B - DD 36 10 9B
    ld     hl, $0001                    ; 02:9B0F - 21 01 00
@@ -15198,9 +15101,7 @@ objfunc_21_special_stage_bouncer:
    ld     a, (ix+17)                   ; 02:9B2F - DD 7E 11
    and    a                            ; 02:9B32 - A7
    jr     nz, @handle_hit_cooldown_counter  ; 02:9B33 - 20 35
-   ld     hl, $0602                    ; 02:9B35 - 21 02 06
-   ld     (tmp_06), hl                 ; 02:9B38 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:9B3B - CD 56 39
+   of_check_collision_with_sonic $02, $06, $1C, $06
    ret    c                            ; 02:9B3E - D8
    ld     a, (g_sonic_bounce_vel_y_pix_hi)  ; 02:9B3F - 3A E8 D2
    ld     de, (g_sonic_bounce_vel_y_sub)  ; 02:9B42 - ED 5B E6 D2
@@ -15235,10 +15136,7 @@ SPRTAB_special_stage_bouncer:
 
 objfunc_13_level_change_corridor:
    set    5, (ix+24)                   ; 02:9B75 - DD CB 18 EE
-   of_setbox $1E, $60
-   ld     hl, $0000                    ; 02:9B81 - 21 00 00
-   ld     (tmp_06), hl                 ; 02:9B84 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:9B87 - CD 56 39
+   of_check_collision_with_sonic $00, $00, $1E, $60
    jr     c, @finish_tick              ; 02:9B8A - 38 45
    ld     l, (ix+2)                    ; 02:9B8C - DD 6E 02
    ld     h, (ix+3)                    ; 02:9B8F - DD 66 03
@@ -15325,13 +15223,10 @@ objfunc_14_SCR_flamer_firing_right:
    set    0, (ix+24)                   ; 02:9C15 - DD CB 18 C6
 
 @already_initialised:
-   of_setbox $06, $08
    ld     a, (ix+19)                   ; 02:9C21 - DD 7E 13
    cp     $64                          ; 02:9C24 - FE 64
    jr     nc, @is_immaterial           ; 02:9C26 - 30 0C
-   ld     hl, $0400                    ; 02:9C28 - 21 00 04
-   ld     (tmp_06), hl                 ; 02:9C2B - 22 14 D2
-   call   check_collision_with_sonic   ; 02:9C2E - CD 56 39
+   of_check_collision_with_sonic $00, $04, $06, $08
    call   nc, damage_sonic             ; 02:9C31 - D4 FD 35
 
 @is_immaterial:
@@ -15797,7 +15692,6 @@ SPRTAB_SCR_door_open_on_both_sides:
 
 objfunc_1A_SCR_zapper:
    set    5, (ix+24)                   ; 02:A0E8 - DD CB 18 EE
-   of_setbox $30, $10
    bit    0, (ix+24)                   ; 02:A0F4 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A0F8 - 20 24
    of_adjust_pos $0018, $0010
@@ -15812,9 +15706,7 @@ objfunc_1A_SCR_zapper:
    rst    $28                          ; 02:A129 - EF
 
 @skip_sound_effect:
-   ld     hl, $0000                    ; 02:A12A - 21 00 00
-   ld     (tmp_06), hl                 ; 02:A12D - 22 14 D2
-   call   check_collision_with_sonic   ; 02:A130 - CD 56 39
+   of_check_collision_with_sonic $00, $00, $30, $10
    call   nc, damage_sonic             ; 02:A133 - D4 FD 35
    ld     de, SPRTAB_SCR_zapper        ; 02:A136 - 11 73 A1
    ld     bc, LUT_zapper_anim_zapping  ; 02:A139 - 01 67 A1
@@ -15855,10 +15747,7 @@ SPRTAB_SCR_zapper:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $FF                                               ; 02:A1A3
 
 objfunc_1B_badnik_ballhog:
-   of_setbox $0A, $20
-   ld     hl, $0803                    ; 02:A1B2 - 21 03 08
-   ld     (tmp_06), hl                 ; 02:A1B5 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:A1B8 - CD 56 39
+   of_check_collision_with_sonic $03, $08, $0A, $20
    ld     hl, $0E00                    ; 02:A1BB - 21 00 0E
    ld     (tmp_00), hl                 ; 02:A1BE - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:A1C1 - D4 E5 35
@@ -15994,10 +15883,7 @@ SPRTAB_ballhog_right:
 
 objfunc_1C_badnik_ballhog_bomb:
    res    5, (ix+24)                   ; 02:A33C - DD CB 18 AE
-   of_setbox $0A, $0F
-   ld     hl, $0101                    ; 02:A348 - 21 01 01
-   ld     (tmp_06), hl                 ; 02:A34B - 22 14 D2
-   call   check_collision_with_sonic   ; 02:A34E - CD 56 39
+   of_check_collision_with_sonic $01, $01, $0A, $0F
    call   nc, damage_sonic             ; 02:A351 - D4 FD 35
    bit    7, (ix+24)                   ; 02:A354 - DD CB 18 7E
    jr     z, @skip_bounce_off_ground   ; 02:A358 - 28 0C
@@ -16055,16 +15941,13 @@ SPRTAB_ballhog_bomb:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $7C, $7E, $FF, $FF, $FF, $FF, $FF                 ; 02:A3EB
 
 objfunc_1D_floorbutton:
-   of_setbox $0A, $11
    bit    0, (ix+24)                   ; 02:A400 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A404 - 20 14
    of_adjust_pos $0008, $0000
    set    0, (ix+24)                   ; 02:A416 - DD CB 18 C6
 
 @already_initialised:
-   ld     hl, $0001                    ; 02:A41A - 21 01 00
-   ld     (tmp_06), hl                 ; 02:A41D - 22 14 D2
-   call   check_collision_with_sonic   ; 02:A420 - CD 56 39
+   of_check_collision_with_sonic $01, $00, $0A, $11
    jr     c, @button_is_up             ; 02:A423 - 38 3F
    ld     a, (sonic_vel_y_hi)          ; 02:A425 - 3A 08 D4
    and    a                            ; 02:A428 - A7
@@ -16683,7 +16566,6 @@ SPRTAB_moving_cloud:
 
 objfunc_31_SKY2_propeller:
    set    5, (ix+24)                   ; 02:AA6A - DD CB 18 EE
-   of_setbox $05, $14
    bit    0, (ix+24)                   ; 02:AA76 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AA7A - 20 24
    of_adjust_pos $000F, $FFFA
@@ -16727,9 +16609,7 @@ objfunc_31_SKY2_propeller:
 @skip_drawing_sprite:
    pop    bc                           ; 02:AADA - C1
    djnz   @each_sprite                 ; 02:AADB - 10 E3
-   ld     hl, $0202                    ; 02:AADD - 21 02 02
-   ld     (tmp_06), hl                 ; 02:AAE0 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:AAE3 - CD 56 39
+   of_check_collision_with_sonic $02, $02, $05, $14
    call   nc, damage_sonic             ; 02:AAE6 - D4 FD 35
    ld     (ix+15), $00                 ; 02:AAE9 - DD 36 0F 00
    ld     (ix+16), $00                 ; 02:AAED - DD 36 10 00
@@ -16758,7 +16638,6 @@ LUT_SKY2_propeller_sprites_03:
 .db $00, $08, $1A, $00, $00, $FF                                                    ; 02:AB1B
 
 objfunc_32_badnik_bomb:
-   of_setbox $0C, $10
    ld     a, (ix+17)                   ; 02:AB29 - DD 7E 11
    cp     $64                          ; 02:AB2C - FE 64
    jr     nc, @dont_start_exploding    ; 02:AB2E - 30 2A
@@ -16893,9 +16772,7 @@ objfunc_32_badnik_bomb:
    ld     (ix+12), $00                 ; 02:AC72 - DD 36 0C 00
 
 @finish_without_gravity:
-   ld     hl, $0202                    ; 02:AC76 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:AC79 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:AC7C - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $10
    call   nc, damage_sonic             ; 02:AC7F - D4 FD 35
    ld     a, (g_global_tick_counter)   ; 02:AC82 - 3A 23 D2
    and    $3F                          ; 02:AC85 - E6 3F
@@ -17040,7 +16917,6 @@ SPRTAB_SKY2_cannon_shot_puff:
 
 objfunc_34_SKY2_cannon_shell:
    set    5, (ix+24)                   ; 02:AE35 - DD CB 18 EE
-   of_setbox $0C, $0C
    ld     hl, (g_level_scroll_x_pix_lo)  ; 02:AE41 - 2A 5A D2
    ld     de, $0110                    ; 02:AE44 - 11 10 01
    add    hl, de                       ; 02:AE47 - 19
@@ -17052,9 +16928,7 @@ objfunc_34_SKY2_cannon_shell:
    ld     (ix+0), $FF                  ; 02:AE53 - DD 36 00 FF
 
 @skip_despawn_right_of_screen:
-   ld     hl, $0202                    ; 02:AE57 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:AE5A - 22 14 D2
-   call   check_collision_with_sonic   ; 02:AE5D - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $0C
    call   nc, damage_sonic             ; 02:AE60 - D4 FD 35
    xor    a                            ; 02:AE63 - AF
    ld     (ix+7), $80                  ; 02:AE64 - DD 36 07 80
@@ -17110,10 +16984,7 @@ objfunc_35_badnik_orbinaut:
    ld     (ix+22), $FF                 ; 02:AEF5 - DD 36 16 FF
 
 @sonic_was_on_the_left:
-   of_setbox $1C, $1C
-   ld     hl, $1212                    ; 02:AF01 - 21 12 12
-   ld     (tmp_06), hl                 ; 02:AF04 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:AF07 - CD 56 39
+   of_check_collision_with_sonic $12, $12, $1C, $1C
    ld     hl, $1010                    ; 02:AF0A - 21 10 10
    ld     (tmp_00), hl                 ; 02:AF0D - 22 0E D2
    call   nc, enemy_touched_sonic      ; 02:AF10 - D4 E5 35
@@ -17299,10 +17170,7 @@ objfunc_36_badnik_orbinaut_ejected_ball:
    set    5, (ix+24)                   ; 02:B0F4 - DD CB 18 EE
    ld     (ix+15), $00                 ; 02:B0F8 - DD 36 0F 00
    ld     (ix+16), $00                 ; 02:B0FC - DD 36 10 00
-   of_setbox $04, $0A
-   ld     hl, $0602                    ; 02:B108 - 21 02 06
-   ld     (tmp_06), hl                 ; 02:B10B - 22 14 D2
-   call   check_collision_with_sonic   ; 02:B10E - CD 56 39
+   of_check_collision_with_sonic $02, $06, $04, $0A
    call   nc, damage_sonic             ; 02:B111 - D4 FD 35
    ld     l, (ix+2)                    ; 02:B114 - DD 6E 02
    ld     h, (ix+3)                    ; 02:B117 - DD 66 03
@@ -17496,10 +17364,7 @@ objfunc_38_SKY_platform_right:
    ld     a, (sonic_vel_y_hi)          ; 02:B2D3 - 3A 08 D4
    and    a                            ; 02:B2D6 - A7
    jp     m, @skip_put_sonic_on_platform  ; 02:B2D7 - FA 29 B3
-   of_setbox $1E, $10
-   ld     hl, $0A02                    ; 02:B2E2 - 21 02 0A
-   ld     (tmp_06), hl                 ; 02:B2E5 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:B2E8 - CD 56 39
+   of_check_collision_with_sonic $02, $0A, $1E, $10
    jr     c, @skip_put_sonic_on_platform  ; 02:B2EB - 38 3C
    ld     hl, $0030                    ; 02:B2ED - 21 30 00
    ld     (g_camera_sonic_bounds_y0_target), hl  ; 02:B2F0 - 22 6B D2
@@ -17583,12 +17448,9 @@ objfunc_39_SKY2_spike_wall_right:
    set    0, (ix+24)                   ; 02:B3AE - DD CB 18 C6
 
 @already_initialised:
-   of_setbox $0C, $2E
    ld     (ix+15), SPRTAB_SKY2_spike_wall_right&$FF  ; 02:B3BA - DD 36 0F 5B
    ld     (ix+16), SPRTAB_SKY2_spike_wall_right>>8  ; 02:B3BE - DD 36 10 B4
-   ld     hl, $0202                    ; 02:B3C2 - 21 02 02
-   ld     (tmp_06), hl                 ; 02:B3C5 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:B3C8 - CD 56 39
+   of_check_collision_with_sonic $02, $02, $0C, $2E
    call   nc, damage_sonic             ; 02:B3CB - D4 FD 35
    ld     l, (ix+1)                    ; 02:B3CE - DD 6E 01
    ld     h, (ix+2)                    ; 02:B3D1 - DD 66 02
@@ -17804,10 +17666,7 @@ objfunc_3B_platform_y_oscillate:
    ld     a, (sonic_vel_y_hi)          ; 02:B591 - 3A 08 D4
    and    a                            ; 02:B594 - A7
    ret    m                            ; 02:B595 - F8
-   of_setbox $1E, $1C
-   ld     hl, $0802                    ; 02:B59E - 21 02 08
-   ld     (tmp_06), hl                 ; 02:B5A1 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:B5A4 - CD 56 39
+   of_check_collision_with_sonic $02, $08, $1E, $1C
    ret    c                            ; 02:B5A7 - D8
    ld     e, (ix+10)                   ; 02:B5A8 - DD 5E 0A
    ld     d, (ix+11)                   ; 02:B5AB - DD 56 0B
@@ -18717,7 +18576,6 @@ objfunc_53_end_controller_start:
    rst    $28                          ; 02:BE5B - EF
 
 @skip_sonic_spawn_in:
-   of_setbox $20, $1C
    xor    a                            ; 02:BE64 - AF
    ld     (ix+7), a                    ; 02:BE65 - DD 77 07
    ld     (ix+8), $01                  ; 02:BE68 - DD 36 08 01
@@ -18743,9 +18601,7 @@ objfunc_53_end_controller_start:
    ld     (ix+16), SPRTAB_end_controller_start_flying>>8  ; 02:BE9A - DD 36 10 BF
    bit    0, (ix+24)                   ; 02:BE9E - DD CB 18 46
    jr     nz, @did_not_get_hit_by_sonic  ; 02:BEA2 - 20 33
-   ld     hl, $1008                    ; 02:BEA4 - 21 08 10
-   ld     (tmp_06), hl                 ; 02:BEA7 - 22 14 D2
-   call   check_collision_with_sonic   ; 02:BEAA - CD 56 39
+   of_check_collision_with_sonic $08, $10, $20, $1C
    jr     c, @did_not_get_hit_by_sonic  ; 02:BEAD - 38 28
    ld     de, $0001                    ; 02:BEAF - 11 01 00
    ld     hl, (sonic_vel_y_sub)        ; 02:BEB2 - 2A 06 D4
