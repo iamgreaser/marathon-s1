@@ -769,7 +769,6 @@ set_rompage_1_2:
    inc a
    call set_rompage_2
    dec a
-set_rompage_1:
    ld (g_committed_rompage_1), a
    ld (rompage_1), a
    ret
@@ -4419,7 +4418,7 @@ run_ending_and_credits:
    res    0, (iy+iy_00-IYBASE)         ; 00:25D4 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:25D8 - CD 1C 03
    ld     a, $01                       ; 00:25DB - 3E 01
-   call set_rompage_1
+   call set_rompage_1_2
    ld     a, (g_chaos_emeralds_collected)  ; 00:25E3 - 3A 7F D2
    cp     $06                          ; 00:25E6 - FE 06
    jp     c, @skip_good_ending         ; 00:25E8 - DA 93 26
@@ -4520,8 +4519,6 @@ run_ending_and_credits:
    ld     de, $2000                    ; 00:26B9 - 11 00 20
    ld     a, $09                       ; 00:26BC - 3E 09
    call   load_art                     ; 00:26BE - CD 05 04
-   ld     a, $05                       ; 00:26C1 - 3E 05
-   call set_rompage_1
    ld     hl, ARTMAP_05_6C61           ; 00:26C9 - 21 61 6C
    ld a, :ARTMAP_05_6C61
    ld     bc, $0189                    ; 00:26CC - 01 89 01
