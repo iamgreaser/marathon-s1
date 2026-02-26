@@ -19419,7 +19419,7 @@ SPRTAB_end_chaos_emerald:
 .db $5C, $5E, $FF, $FF, $FF, $FF, $FF                                               ; 02:BFF1
 .ENDS
 
-.SECTION "Bank03" SLOT 2 BANK $03 FORCE ORG $0000
+.SECTION "Sound Driver" SLOT 0 BANK $00 FREE
 
 snddrv_update:
    jp     snddrv_update_unvectored     ; 03:4000 - C3 3A 42
@@ -20511,7 +20511,9 @@ sound_effect_ptr_table:
 .db $01, $00                                                                        ; 03:47CA
 .dw SFX_23_UNKNOWN                                                                  ; 03:47CC
 .db $02, $00                                                                        ; 03:47CE
+.ENDS
 
+.SECTION "Sound - Music + SFX" SLOT 2 BANK $03 FREE
 SONG_GHZ:
 .INCBIN "src/data/lv_ghz.song"
 
