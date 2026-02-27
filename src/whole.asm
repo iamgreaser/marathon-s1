@@ -1463,7 +1463,7 @@ load_scroll_tile_list_buffers:
    ld a, l
    add a, $10
    ld l, a
-   call z, tile_lookup_move_to_next_y_chunk
+   call c, tile_lookup_move_to_next_y_chunk
    djnz   @each_vertical_metatile      ; 00:0770 - 10 C1
 
 @skip_vertical_tile_update:
@@ -1885,7 +1885,7 @@ draw_initial_screen_tiles:
    ld a, l
    add a, $10
    ld l, a
-   call z, tile_lookup_move_to_next_y_chunk
+   call c, tile_lookup_move_to_next_y_chunk
    add    hl, bc                       ; 00:0A02 - 09
    ex     de, hl                       ; 00:0A03 - EB
    ld     bc, $0100                    ; 00:0A04 - 01 00 01
