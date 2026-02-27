@@ -1755,9 +1755,12 @@ get_tile_ptr_in_ram_from_HL_DE:
    rlca
    rlca
    rlca
+   ld l, a
+   ld h, $00
    ;; Apply offset to table, stashing E briefly
    ld a, e
    ld de, g_ram_layout_ptrs_per_y
+   add hl, hl
    add hl, de
    ld e, a
    ;; Grab pointer to our row
