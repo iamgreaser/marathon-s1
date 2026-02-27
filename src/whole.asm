@@ -1862,6 +1862,10 @@ draw_initial_screen_tiles:
    pop    de                           ; 00:09F0 - D1
    pop    hl                           ; 00:09F1 - E1
    inc    hl                           ; 00:09F2 - 23
+   ;; Handle X discontinuity by moving onto the next chunk if needed.
+   ld a, l
+   and $0F
+   call z, @move_to_next_x_chunk
    ld     bc, $0008                    ; 00:09F3 - 01 08 00
    ex     de, hl                       ; 00:09F6 - EB
    add    hl, bc                       ; 00:09F7 - 09
@@ -1870,7 +1874,11 @@ draw_initial_screen_tiles:
    djnz   @each_metatile_x             ; 00:09FA - 10 8B
    pop    de                           ; 00:09FC - D1
    pop    hl                           ; 00:09FD - E1
-   ld     bc, (g_level_width)          ; 00:09FE - ED 4B 38 D2
+   ;; Handle X discontinuity by moving onto the next chunk if needed.
+   ld a, l
+   add a, $10
+   ld l, a
+   call z, @move_to_next_y_chunk
    add    hl, bc                       ; 00:0A02 - 09
    ex     de, hl                       ; 00:0A03 - EB
    ld     bc, $0100                    ; 00:0A04 - 01 00 01
@@ -1881,6 +1889,25 @@ draw_initial_screen_tiles:
    jp     nz, @each_metatile_y         ; 00:0A0B - C2 82 09
    ei                                  ; 00:0A0E - FB
    ret                                 ; 00:0A0F - C9
+
+@move_to_next_x_chunk:
+   xor l
+   ld l, a
+   inc h
+   ret
+
+@move_to_next_y_chunk:
+   push hl
+      ld hl, (g_level_width)
+      add hl, hl
+      add hl, hl
+      add hl, hl
+      add hl, hl
+      ld a, h
+   pop hl
+   add a, h
+   ld h, a
+   ret
 
 unpack_level_layout_into_ram:
    ld     de, g_level_layout
