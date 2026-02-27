@@ -20277,7 +20277,6 @@ LVHEAD_0D:
 .dw ART_SCR_2000
 .db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:57EA
-.dw $082C                                                                           ; 05:57EE
 .dw LVOBJECTS_SCR2_main
 .db :LVOBJECTS_SCR2_main
 .db $04, $00, $20, $00, $04                                                         ; 05:57F0
