@@ -1,0 +1,5 @@
+Regressions known at this stage:
+
+- Sonic can actually jump repeatedly while an animal capsule is exploding.
+- The LAB1 life monitor always shows as a life monitor.
+
