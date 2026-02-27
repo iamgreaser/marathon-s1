@@ -45,3 +45,7 @@ indent_size = 4
 [*.dot]
 indent_style = space
 indent_size = 3
+
+[*.rb]
+indent_style = space
+indent_size = 2

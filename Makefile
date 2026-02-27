@@ -6,5 +6,5 @@ out/ build/:
 out/marathon-s1.sms: src/whole.lnk build/whole.o | out/
 	wlalink -v -S $< $@
 
-build/whole.o: src/whole.asm $(wildcard src/data/*) | build/
+build/whole.o: src/whole.asm $(wildcard src/data/*) $(wildcard src/*.asm) | build/
 	wla-z80 -v -o $@ $<
