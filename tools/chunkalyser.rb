@@ -7,6 +7,7 @@
 # 16x16 compresses better even if we ignore pointer sizes (also compared against the vanilla RLE scheme).
 # Let's go with 16x16 for now.
 CHUNK_SIZE = 16
+#CHUNK_SIZE = 8
 
 # Using an indirect chunk pointer table and 2-byte indices actually makes things worse. (also tested with 8x8)
 # So, use 3-byte pointers.
@@ -69,6 +70,7 @@ def main
       (width/CHUNK_SIZE).times do |cx|
         unc_chunk = extract_chunk_from_2d(unpacked_2d, cx*CHUNK_SIZE, cy*CHUNK_SIZE, CHUNK_SIZE, CHUNK_SIZE)
         chunk = newcmp_pack(unc_chunk)
+        #chunk = ext_zx0_pack(unc_chunk)
 
         $total_chunked_bytes += PER_PTR_COST
         unless $used_chunks.has_key?(chunk)
@@ -150,6 +152,19 @@ def extract_chunk_from_2d(unpacked_2d, x0, y0, lx, ly)
       unpacked_2d[y0+sy][x0+sx]
     end
   end.flatten
+end
+
+# A possible option. Gives better results for 16x16 but worse for 8x8.
+# Must have ZX0 installed and in your PATH: https://github.com/einar-saukas/ZX0
+def ext_zx0_pack(unc_chunk)
+  begin
+    File.write("zx0unc.tmp", unc_chunk.join)
+    system("zx0", "zx0unc.tmp", "zx0cmp.tmp")
+    File.read("zx0cmp.tmp").bytes
+  ensure
+    File.unlink("zx0cmp.tmp") rescue nil
+    File.unlink("zx0unc.tmp") rescue nil
+  end
 end
 
 def newcmp_pack(unc_chunk)
