@@ -1459,6 +1459,7 @@ load_scroll_tile_list_buffers:
    ld     (de), a                      ; 00:076C - 12
    inc    e                            ; 00:076D - 1C
    exx                                 ; 00:076E - D9
+   ;; Handle Y discontinuity by moving onto the next chunk if needed.
    ld a, l
    add a, $10
    ld l, a
@@ -1531,7 +1532,11 @@ load_scroll_tile_list_buffers:
    ld     (de), a                      ; 00:07D4 - 12
    inc    e                            ; 00:07D5 - 1C
    exx                                 ; 00:07D6 - D9
-   inc    hl                           ; 00:07D7 - 23
+   ;; Handle X discontinuity by moving onto the next chunk if needed.
+   inc l
+   ld a, l
+   and $0F
+   call z, tile_lookup_move_to_next_x_chunk
    djnz   @each_horizontal_metatile    ; 00:07D8 - 10 C9
 
 @skip_horizontal_tile_update:
@@ -1863,8 +1868,8 @@ draw_initial_screen_tiles:
    djnz   @each_x_span_within_metatile  ; 00:09EE - 10 C6
    pop    de                           ; 00:09F0 - D1
    pop    hl                           ; 00:09F1 - E1
-   inc    hl                           ; 00:09F2 - 23
    ;; Handle X discontinuity by moving onto the next chunk if needed.
+   inc l
    ld a, l
    and $0F
    call z, tile_lookup_move_to_next_x_chunk
@@ -1876,7 +1881,7 @@ draw_initial_screen_tiles:
    djnz   @each_metatile_x             ; 00:09FA - 10 8B
    pop    de                           ; 00:09FC - D1
    pop    hl                           ; 00:09FD - E1
-   ;; Handle X discontinuity by moving onto the next chunk if needed.
+   ;; Handle Y discontinuity by moving onto the next chunk if needed.
    ld a, l
    add a, $10
    ld l, a
@@ -1893,7 +1898,9 @@ draw_initial_screen_tiles:
    ret                                 ; 00:0A0F - C9
 
 tile_lookup_move_to_next_x_chunk:
-   xor l
+   ld a, l
+   dec a
+   and $F0
    ld l, a
    inc h
    ret
