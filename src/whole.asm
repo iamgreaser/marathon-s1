@@ -5738,7 +5738,6 @@ make_sonic_throw_his_rings:
    push   hl                           ; 00:364F - E5
    pop    ix                           ; 00:3650 - DD E1
    ld     (ix+17), $06                 ; 00:3656 - DD 36 11 06
-   ld     (ix+18), $00                 ; 00:365A - DD 36 12 00
    ld     hl, (sonic_x)                ; 00:365E - 2A FE D3
    ld     (ix+2), l                    ; 00:3661 - DD 75 02
    ld     (ix+3), h                    ; 00:3664 - DD 74 03
@@ -8076,9 +8075,6 @@ objfunc_00_sonic:
    push   hl                           ; 01:52D4 - E5
    pop    ix                           ; 01:52D5 - DD E1
    xor    a                            ; 01:52D7 - AF
-   ld     (ix+17), a                   ; 01:52DC - DD 77 11
-   ld     (ix+24), a                   ; 01:52DF - DD 77 18
-   ld     (ix+1), a                    ; 01:52E2 - DD 77 01
    ld     hl, (sonic_x)                ; 01:52E5 - 2A FE D3
    ld     de, $0002                    ; 01:52E8 - 11 02 00
    add    hl, de                       ; 01:52EB - 19
@@ -8890,13 +8886,6 @@ objfunc_00_sonic:
    ld     (ix+4), a                    ; 01:58AE - DD 77 04
    ld     (ix+5), e                    ; 01:58B1 - DD 73 05
    ld     (ix+6), d                    ; 01:58B4 - DD 72 06
-   ld     (ix+7), a                    ; 01:58B7 - DD 77 07
-   ld     (ix+8), a                    ; 01:58BA - DD 77 08
-   ld     (ix+9), a                    ; 01:58BD - DD 77 09
-   ld     (ix+10), a                   ; 01:58C0 - DD 77 0A
-   ld     (ix+11), a                   ; 01:58C3 - DD 77 0B
-   ld     (ix+12), a                   ; 01:58C6 - DD 77 0C
-   ld     (ix+24), a                   ; 01:58C9 - DD 77 18
    pop    ix                           ; 01:58CC - DD E1
    and    a                            ; 01:58CE - A7
    ret                                 ; 01:58CF - C9
@@ -10461,12 +10450,6 @@ objfunc_0E_badnik_buzz_bomber:
    add    hl, bc                       ; 01:6C5E - 09
    ld     (ix+5), l                    ; 01:6C5F - DD 75 05
    ld     (ix+6), h                    ; 01:6C62 - DD 74 06
-   ld     (ix+17), a                   ; 01:6C65 - DD 77 11
-   ld     (ix+19), a                   ; 01:6C68 - DD 77 13
-   ld     (ix+20), a                   ; 01:6C6B - DD 77 14
-   ld     (ix+21), a                   ; 01:6C6E - DD 77 15
-   ld     (ix+22), a                   ; 01:6C71 - DD 77 16
-   ld     (ix+23), a                   ; 01:6C74 - DD 77 17
    ld     (ix+7), $00                  ; 01:6C77 - DD 36 07 00
    ld     (ix+8), $FF                  ; 01:6C7B - DD 36 08 FF
    ld     (ix+9), $FF                  ; 01:6C7F - DD 36 09 FF
@@ -10756,18 +10739,9 @@ objfunc_11_badnik_newtron:
    add    hl, bc                       ; 01:6F7D - 09
    ld     (ix+5), l                    ; 01:6F7E - DD 75 05
    ld     (ix+6), h                    ; 01:6F81 - DD 74 06
-   ld     (ix+17), a                   ; 01:6F84 - DD 77 11
-   ld     (ix+19), a                   ; 01:6F87 - DD 77 13
-   ld     (ix+20), a                   ; 01:6F8A - DD 77 14
-   ld     (ix+21), a                   ; 01:6F8D - DD 77 15
-   ld     (ix+22), a                   ; 01:6F90 - DD 77 16
-   ld     (ix+23), a                   ; 01:6F93 - DD 77 17
    ld     (ix+7), $00                  ; 01:6F96 - DD 36 07 00
    ld     (ix+8), $FE                  ; 01:6F9A - DD 36 08 FE
    ld     (ix+9), $FF                  ; 01:6F9E - DD 36 09 FF
-   ld     (ix+10), a                   ; 01:6FA2 - DD 77 0A
-   ld     (ix+11), a                   ; 01:6FA5 - DD 77 0B
-   ld     (ix+12), a                   ; 01:6FA8 - DD 77 0C
    pop    ix                           ; 01:6FAB - DD E1
    pop    bc                           ; 01:6FAD - C1
    ld     a, $0A                       ; 01:6FAE - 3E 0A
@@ -11301,8 +11275,6 @@ objfunc_25_animal_capsule:
    push   hl                           ; 01:74CB - E5
    pop    ix                           ; 01:74CC - DD E1
    xor    a                            ; 01:74D4 - AF
-   ld     (ix+22), a                   ; 01:74D5 - DD 77 16
-   ld     (ix+23), a                   ; 01:74D8 - DD 77 17
    ld     (ix+1), a                    ; 01:74DB - DD 77 01
    ld     hl, $0008                    ; 01:74DE - 21 08 00
    add    hl, de                       ; 01:74E1 - 19
@@ -11791,15 +11763,6 @@ spawn_explosion:
    add    hl, bc                       ; 01:7A7F - 09
    ld     (ix+5), l                    ; 01:7A80 - DD 75 05
    ld     (ix+6), h                    ; 01:7A83 - DD 74 06
-   ld     (ix+17), a                   ; 01:7A86 - DD 77 11
-   ld     (ix+22), a                   ; 01:7A89 - DD 77 16
-   ld     (ix+23), a                   ; 01:7A8C - DD 77 17
-   ld     (ix+7), a                    ; 01:7A8F - DD 77 07
-   ld     (ix+8), a                    ; 01:7A92 - DD 77 08
-   ld     (ix+9), a                    ; 01:7A95 - DD 77 09
-   ld     (ix+10), a                   ; 01:7A98 - DD 77 0A
-   ld     (ix+11), a                   ; 01:7A9B - DD 77 0B
-   ld     (ix+12), a                   ; 01:7A9E - DD 77 0C
    pop    ix                           ; 01:7AA1 - DD E1
    ld     a, $01                       ; 01:7AA3 - 3E 01
    rst    $28                          ; 01:7AA5 - EF
@@ -12570,15 +12533,6 @@ objfunc_2C_JUN3_boss:
    add    hl, bc                       ; 02:81B9 - 09
    ld     (ix+5), l                    ; 02:81BA - DD 75 05
    ld     (ix+6), h                    ; 02:81BD - DD 74 06
-   ld     (ix+7), a                    ; 02:81C0 - DD 77 07
-   ld     (ix+8), a                    ; 02:81C3 - DD 77 08
-   ld     (ix+9), a                    ; 02:81C6 - DD 77 09
-   ld     (ix+10), a                   ; 02:81C9 - DD 77 0A
-   ld     (ix+11), a                   ; 02:81CC - DD 77 0B
-   ld     (ix+12), a                   ; 02:81CF - DD 77 0C
-   ld     (ix+17), a                   ; 02:81D2 - DD 77 11
-   ld     (ix+22), a                   ; 02:81D5 - DD 77 16
-   ld     (ix+23), a                   ; 02:81D8 - DD 77 17
    call   random_A                     ; 02:81DB - CD 25 06
    and    $3F                          ; 02:81DE - E6 3F
    add    a, $64                       ; 02:81E0 - C6 64
@@ -12997,12 +12951,7 @@ boss_fire_fireball_pallet:
    ld     (ix+4), a                    ; 02:85F0 - DD 77 04
    ld     (ix+5), l                    ; 02:85F3 - DD 75 05
    ld     (ix+6), h                    ; 02:85F6 - DD 74 06
-   ld     (ix+17), a                   ; 02:85F9 - DD 77 11
    ld     (ix+19), c                   ; 02:85FC - DD 71 13
-   ld     (ix+20), a                   ; 02:85FF - DD 77 14
-   ld     (ix+21), a                   ; 02:8602 - DD 77 15
-   ld     (ix+22), a                   ; 02:8605 - DD 77 16
-   ld     (ix+23), a                   ; 02:8608 - DD 77 17
    ld     hl, (tmp_04)                 ; 02:860B - 2A 12 D2
    xor    a                            ; 02:860E - AF
    bit    7, h                         ; 02:860F - CB 7C
@@ -14160,12 +14109,6 @@ spawn_bubble:
    add    hl, bc                       ; 02:923B - 09
    ld     (ix+5), l                    ; 02:923C - DD 75 05
    ld     (ix+6), h                    ; 02:923F - DD 74 06
-   ld     (ix+17), a                   ; 02:9242 - DD 77 11
-   ld     (ix+18), a                   ; 02:9245 - DD 77 12
-   ld     (ix+24), a                   ; 02:9248 - DD 77 18
-   ld     (ix+7), a                    ; 02:924B - DD 77 07
-   ld     (ix+8), a                    ; 02:924E - DD 77 08
-   ld     (ix+9), a                    ; 02:9251 - DD 77 09
    pop    ix                           ; 02:9254 - DD E1
    ret                                 ; 02:9256 - C9
 
@@ -14301,13 +14244,6 @@ objfunc_49_LAB3_boss:
    ld     (ix+4), a                    ; 02:9388 - DD 77 04
    ld     (ix+5), l                    ; 02:938B - DD 75 05
    ld     (ix+6), h                    ; 02:938E - DD 74 06
-   ld     (ix+24), a                   ; 02:9391 - DD 77 18
-   ld     (ix+7), a                    ; 02:9394 - DD 77 07
-   ld     (ix+8), a                    ; 02:9397 - DD 77 08
-   ld     (ix+9), a                    ; 02:939A - DD 77 09
-   ld     (ix+10), a                   ; 02:939D - DD 77 0A
-   ld     (ix+11), a                   ; 02:93A0 - DD 77 0B
-   ld     (ix+12), a                   ; 02:93A3 - DD 77 0C
    pop    ix                           ; 02:93A6 - DD E1
    jp     @continue_to_common_code     ; 02:93A8 - C3 F7 93
 
@@ -14644,14 +14580,6 @@ objfunc_2F_LAB3_boss_rocket:
    ld     (ix+4), a                    ; 02:9664 - DD 77 04
    ld     (ix+5), l                    ; 02:9667 - DD 75 05
    ld     (ix+6), h                    ; 02:966A - DD 74 06
-   ld     (ix+17), a                   ; 02:966D - DD 77 11
-   ld     (ix+18), a                   ; 02:9670 - DD 77 12
-   ld     (ix+7), a                    ; 02:9673 - DD 77 07
-   ld     (ix+8), a                    ; 02:9676 - DD 77 08
-   ld     (ix+9), a                    ; 02:9679 - DD 77 09
-   ld     (ix+10), a                   ; 02:967C - DD 77 0A
-   ld     (ix+11), a                   ; 02:967F - DD 77 0B
-   ld     (ix+12), a                   ; 02:9682 - DD 77 0C
    pop    ix                           ; 02:9685 - DD E1
    ret                                 ; 02:9687 - C9
 
@@ -15773,9 +15701,6 @@ objfunc_1B_badnik_ballhog:
    ld     (ix+4), a                    ; 02:A231 - DD 77 04
    ld     (ix+5), l                    ; 02:A234 - DD 75 05
    ld     (ix+6), h                    ; 02:A237 - DD 74 06
-   ld     (ix+17), a                   ; 02:A23A - DD 77 11
-   ld     (ix+22), a                   ; 02:A23D - DD 77 16
-   ld     (ix+23), a                   ; 02:A240 - DD 77 17
    ld     (ix+7), a                    ; 02:A243 - DD 77 07
    ld     (ix+8), $FF                  ; 02:A246 - DD 36 08 FF
    ld     (ix+9), $FF                  ; 02:A24A - DD 36 09 FF
@@ -15821,9 +15746,6 @@ objfunc_1B_badnik_ballhog:
    ld     (ix+4), a                    ; 02:A2A6 - DD 77 04
    ld     (ix+5), l                    ; 02:A2A9 - DD 75 05
    ld     (ix+6), h                    ; 02:A2AC - DD 74 06
-   ld     (ix+17), a                   ; 02:A2AF - DD 77 11
-   ld     (ix+22), a                   ; 02:A2B2 - DD 77 16
-   ld     (ix+23), a                   ; 02:A2B5 - DD 77 17
    ld     (ix+7), a                    ; 02:A2B8 - DD 77 07
    ld     (ix+8), $01                  ; 02:A2BB - DD 36 08 01
    ld     (ix+9), a                    ; 02:A2BF - DD 77 09
@@ -16771,12 +16693,7 @@ init_fireball_object:
    ld     (ix+4), a                    ; 02:ACBA - DD 77 04
    ld     (ix+5), c                    ; 02:ACBD - DD 71 05
    ld     (ix+6), b                    ; 02:ACC0 - DD 70 06
-   ld     (ix+17), a                   ; 02:ACC3 - DD 77 11
    ld     (ix+19), $24                 ; 02:ACC6 - DD 36 13 24
-   ld     (ix+20), a                   ; 02:ACCA - DD 77 14
-   ld     (ix+21), a                   ; 02:ACCD - DD 77 15
-   ld     (ix+22), a                   ; 02:ACD0 - DD 77 16
-   ld     (ix+23), a                   ; 02:ACD3 - DD 77 17
    ld     (ix+7), a                    ; 02:ACD6 - DD 77 07
    ld     hl, (tmp_04)                 ; 02:ACD9 - 2A 12 D2
    ld     (ix+8), l                    ; 02:ACDC - DD 75 08
@@ -17102,9 +17019,6 @@ objfunc_35_badnik_orbinaut:
 @ball_is_to_move_right:
    ld     (ix+9), a                    ; 02:B021 - DD 77 09
    xor    a                            ; 02:B024 - AF
-   ld     (ix+10), a                   ; 02:B025 - DD 77 0A
-   ld     (ix+11), a                   ; 02:B028 - DD 77 0B
-   ld     (ix+12), a                   ; 02:B02B - DD 77 0C
    pop    ix                           ; 02:B02E - DD E1
    ret                                 ; 02:B030 - C9
 
@@ -17662,12 +17576,6 @@ shoot_straight_fireball:
    ld     (ix+4), a                    ; 02:B5EE - DD 77 04
    ld     (ix+5), c                    ; 02:B5F1 - DD 71 05
    ld     (ix+6), b                    ; 02:B5F4 - DD 70 06
-   ld     (ix+17), a                   ; 02:B5F7 - DD 77 11
-   ld     (ix+19), a                   ; 02:B5FA - DD 77 13
-   ld     (ix+20), a                   ; 02:B5FD - DD 77 14
-   ld     (ix+21), a                   ; 02:B600 - DD 77 15
-   ld     (ix+22), a                   ; 02:B603 - DD 77 16
-   ld     (ix+23), a                   ; 02:B606 - DD 77 17
    ld     hl, (tmp_04)                 ; 02:B609 - 2A 12 D2
    bit    7, h                         ; 02:B60C - CB 7C
    jr     z, @x_vel_was_positive       ; 02:B60E - 28 02
@@ -18130,14 +18038,6 @@ objfunc_4A_SKY3_boss:
    ld     hl, $012F                    ; 02:B9F7 - 21 2F 01
    ld     (ix+5), l                    ; 02:B9FA - DD 75 05
    ld     (ix+6), h                    ; 02:B9FD - DD 74 06
-   ld     (ix+17), a                   ; 02:BA00 - DD 77 11
-   ld     (ix+24), a                   ; 02:BA03 - DD 77 18
-   ld     (ix+7), a                    ; 02:BA06 - DD 77 07
-   ld     (ix+8), a                    ; 02:BA09 - DD 77 08
-   ld     (ix+9), a                    ; 02:BA0C - DD 77 09
-   ld     (ix+10), a                   ; 02:BA0F - DD 77 0A
-   ld     (ix+11), a                   ; 02:BA12 - DD 77 0B
-   ld     (ix+12), a                   ; 02:BA15 - DD 77 0C
    pop    ix                           ; 02:BA18 - DD E1
    ret                                 ; 02:BA1A - C9
 
