@@ -5251,7 +5251,32 @@ return_from_objfunc:
    ld     (ix+5), h                    ; 00:3316 - DD 74 05
    ld     (ix+6), a                    ; 00:3319 - DD 77 06
    bit    5, (ix+24)                   ; 00:331C - DD CB 18 6E
-   jp     nz, @skip_vertical_and_all_clamping  ; 00:3320 - C2 E6 34
+   call   z, collide_with_world
+   ld     l, (ix+5)                    ; 00:34E6 - DD 6E 05
+   ld     h, (ix+6)                    ; 00:34E9 - DD 66 06
+   ld     bc, (g_level_scroll_y_pix_lo)  ; 00:34EC - ED 4B 5D D2
+   and    a                            ; 00:34F0 - A7
+   sbc    hl, bc                       ; 00:34F1 - ED 42
+   ex     de, hl                       ; 00:34F3 - EB
+   ld     l, (ix+2)                    ; 00:34F4 - DD 6E 02
+   ld     h, (ix+3)                    ; 00:34F7 - DD 66 03
+   ld     bc, (g_level_scroll_x_pix_lo)  ; 00:34FA - ED 4B 5A D2
+   and    a                            ; 00:34FE - A7
+   sbc    hl, bc                       ; 00:34FF - ED 42
+   ld     c, (ix+15)                   ; 00:3501 - DD 4E 0F
+   ld     b, (ix+16)                   ; 00:3504 - DD 46 10
+   ld     a, c                         ; 00:3507 - 79
+   or     b                            ; 00:3508 - B0
+   call   nz, draw_sprite_string       ; 00:3509 - C4 0F 35
+   pop    hl                           ; 00:350C - E1
+   pop    bc                           ; 00:350D - C1
+   ret                                 ; 00:350E - C9
+
+collide_with_world:
+   call collide_with_world_horizontally
+   jp collide_with_world_vertically
+
+collide_with_world_horizontally:
    ld     b, $00                       ; 00:3323 - 06 00
    ld     d, b                         ; 00:3325 - 50
    ld     e, (ix+14)                   ; 00:3326 - DD 5E 0E
@@ -5291,7 +5316,7 @@ return_from_objfunc:
    pop    hl                           ; 00:3364 - E1
    pop    de                           ; 00:3365 - D1
    and    $3F                          ; 00:3366 - E6 3F
-   jp     z, @skip_horizontal_clamping  ; 00:3368 - CA F6 33
+   ret z
    ld     a, (tmp_06)                  ; 00:336B - 3A 14 D2
    add    a, a                         ; 00:336E - 87
    ld     c, a                         ; 00:336F - 4F
@@ -5309,7 +5334,7 @@ return_from_objfunc:
    add    hl, de                       ; 00:337F - 19
    ld     a, (hl)                      ; 00:3380 - 7E
    cp     $80                          ; 00:3381 - FE 80
-   jp     z, @skip_horizontal_clamping  ; 00:3383 - CA F6 33
+   ret z
    ld     e, a                         ; 00:3386 - 5F
    and    a                            ; 00:3387 - A7
    jp     p, @horizontal_offset_was_positive  ; 00:3388 - F2 8D 33
@@ -5328,7 +5353,7 @@ return_from_objfunc:
    and    $1F                          ; 00:33A3 - E6 1F
    cp     e                            ; 00:33A5 - BB
    jr     nc, @apply_horizontal_clamping  ; 00:33A6 - 30 0D
-   jp     @skip_horizontal_clamping    ; 00:33A8 - C3 F6 33
+   ret
 
 @compare_left_movement_clamp:
    and    a                            ; 00:33AB - A7
@@ -5336,7 +5361,7 @@ return_from_objfunc:
    ld     a, l                         ; 00:33AF - 7D
    and    $1F                          ; 00:33B0 - E6 1F
    cp     e                            ; 00:33B2 - BB
-   jr     nc, @skip_horizontal_clamping  ; 00:33B3 - 30 41
+   ret nc
 
 @apply_horizontal_clamping:
    set    6, (ix+24)                   ; 00:33B5 - DD CB 18 F6
@@ -5372,8 +5397,9 @@ return_from_objfunc:
    ld     (ix+10), l                   ; 00:33ED - DD 75 0A
    ld     (ix+11), h                   ; 00:33F0 - DD 74 0B
    ld     (ix+12), a                   ; 00:33F3 - DD 77 0C
+   ret
 
-@skip_horizontal_clamping:
+collide_with_world_vertically:
    ld     b, $00                       ; 00:33F6 - 06 00
    ld     d, b                         ; 00:33F8 - 50
    bit    7, (ix+11)                   ; 00:33F9 - DD CB 0B 7E
@@ -5415,7 +5441,7 @@ return_from_objfunc:
    pop    hl                           ; 00:343C - E1
    pop    bc                           ; 00:343D - C1
    and    $3F                          ; 00:343E - E6 3F
-   jp     z, @skip_vertical_and_all_clamping  ; 00:3440 - CA E6 34
+   ret z
    ld     a, (tmp_06)                  ; 00:3443 - 3A 14 D2
    add    a, a                         ; 00:3446 - 87
    ld     e, a                         ; 00:3447 - 5F
@@ -5433,7 +5459,7 @@ return_from_objfunc:
    add    hl, bc                       ; 00:3457 - 09
    ld     a, (hl)                      ; 00:3458 - 7E
    cp     $80                          ; 00:3459 - FE 80
-   jp     z, @skip_vertical_and_all_clamping  ; 00:345B - CA E6 34
+   ret z
    ld     c, a                         ; 00:345E - 4F
    and    a                            ; 00:345F - A7
    jp     p, @vertical_offset_was_positive  ; 00:3460 - F2 65 34
@@ -5458,7 +5484,7 @@ return_from_objfunc:
    add    a, (hl)                      ; 00:3487 - 86
    exx                                 ; 00:3488 - D9
    cp     c                            ; 00:3489 - B9
-   jr     c, @skip_vertical_and_all_clamping  ; 00:348A - 38 5A
+   ret c
    set    7, (ix+24)                   ; 00:348C - DD CB 18 FE
    jp     @apply_vertical_clamping     ; 00:3490 - C3 A9 34
 
@@ -5475,7 +5501,7 @@ return_from_objfunc:
    add    a, (hl)                      ; 00:34A4 - 86
    exx                                 ; 00:34A5 - D9
    cp     c                            ; 00:34A6 - B9
-   jr     nc, @skip_vertical_and_all_clamping  ; 00:34A7 - 30 3D
+   ret nc
 
 @apply_vertical_clamping:
    ld     a, l                         ; 00:34A9 - 7D
@@ -5510,27 +5536,7 @@ return_from_objfunc:
    ld     (ix+7), l                    ; 00:34DD - DD 75 07
    ld     (ix+8), h                    ; 00:34E0 - DD 74 08
    ld     (ix+9), a                    ; 00:34E3 - DD 77 09
-
-@skip_vertical_and_all_clamping:
-   ld     l, (ix+5)                    ; 00:34E6 - DD 6E 05
-   ld     h, (ix+6)                    ; 00:34E9 - DD 66 06
-   ld     bc, (g_level_scroll_y_pix_lo)  ; 00:34EC - ED 4B 5D D2
-   and    a                            ; 00:34F0 - A7
-   sbc    hl, bc                       ; 00:34F1 - ED 42
-   ex     de, hl                       ; 00:34F3 - EB
-   ld     l, (ix+2)                    ; 00:34F4 - DD 6E 02
-   ld     h, (ix+3)                    ; 00:34F7 - DD 66 03
-   ld     bc, (g_level_scroll_x_pix_lo)  ; 00:34FA - ED 4B 5A D2
-   and    a                            ; 00:34FE - A7
-   sbc    hl, bc                       ; 00:34FF - ED 42
-   ld     c, (ix+15)                   ; 00:3501 - DD 4E 0F
-   ld     b, (ix+16)                   ; 00:3504 - DD 46 10
-   ld     a, c                         ; 00:3507 - 79
-   or     b                            ; 00:3508 - B0
-   call   nz, draw_sprite_string       ; 00:3509 - C4 0F 35
-   pop    hl                           ; 00:350C - E1
-   pop    bc                           ; 00:350D - C1
-   ret                                 ; 00:350E - C9
+   ret
 
 draw_sprite_string:
    ld     (tmp_06), hl                 ; 00:350F - 22 14 D2
