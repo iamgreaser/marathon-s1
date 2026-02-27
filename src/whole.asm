@@ -7043,7 +7043,7 @@ objfunc_00_sonic:
    ld     e, c                         ; 01:4B51 - 59
    ld     d, c                         ; 01:4B52 - 51
    bit    7, (ix+24)                   ; 01:4B53 - DD CB 18 7E
-   call   nz, @fn_handle_sonic_landing_SEMIVESTIGIAL  ; 01:4B57 - C4 AF 50
+   call   nz, @fn_handle_sonic_landing  ; 01:4B57 - C4 AF 50
    bit    0, (ix+24)                   ; 01:4B5A - DD CB 18 46
    jp     nz, @update_y_velocity_for_rolling  ; 01:4B5E - C2 07 54
    ld     a, (g_sonic_jump_countdown_timer)  ; 01:4B61 - 3A 8E D2
@@ -7794,13 +7794,7 @@ objfunc_00_sonic:
    rst    $28                          ; 01:50A4 - EF
    ret                                 ; 01:50A5 - C9
 
-@fn_handle_sonic_landing_SEMIVESTIGIAL:
-   exx                                 ; 01:50AF - D9
-   ld     hl, (sonic_y)                ; 01:50B0 - 2A 01 D4
-   ld     (g_UNUSED_last_sonic_ground_y), hl  ; 01:50B3 - 22 D9 D2
-   exx                                 ; 01:50B6 - D9
-   bit    2, (ix+24)                   ; 01:50B7 - DD CB 18 56
-   ret    z                            ; 01:50BB - C8
+@fn_handle_sonic_landing:
    res    2, (ix+24)                   ; 01:50BC - DD CB 18 96
    ret                                 ; 01:50C0 - C9
 
