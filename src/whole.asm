@@ -6839,8 +6839,6 @@ objfunc_00_sonic:
    ldir
    bit    1, (iy+g_inputs_player_1-IYBASE)  ; 01:49D9 - FD CB 03 4E
    call   z, @fn_try_to_roll           ; 01:49DD - CC C1 50
-   bit    1, (iy+g_inputs_player_1-IYBASE)  ; 01:49E0 - FD CB 03 4E
-   call   nz, @fn_clear_extra_rolling_flag_SEMIVESTIGIAL  ; 01:49E4 - C4 E3 50
    ld     bc, $000C                    ; 01:49EF - 01 0C 00
    ld     de, $0010                    ; 01:49F2 - 11 10 00
    call   get_obj_level_tile_ptr_in_ram  ; 01:49F5 - CD F9 36
@@ -7814,12 +7812,7 @@ objfunc_00_sonic:
    rst    $28                          ; 01:50DD - EF
 
 @skip_rolling_sound_effect:
-   set    2, (iy+iy_07_lvflag02-IYBASE)  ; 01:50DE - FD CB 07 D6
    ret                                 ; 01:50E2 - C9
-
-@fn_clear_extra_rolling_flag_SEMIVESTIGIAL:
-   res    2, (iy+iy_07_lvflag02-IYBASE)  ; 01:50E3 - FD CB 07 96
-   ret                                 ; 01:50E7 - C9
 
 @fn_set_underwater_state_based_on_water_level:
    ld     hl, (g_water_level_y)        ; 01:50E8 - 2A DC D2
