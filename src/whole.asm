@@ -6361,9 +6361,6 @@ tick_game_time:
    ld     (hl), a                      ; 00:3A60 - 77
    ret                                 ; 00:3A61 - C9
 
-UNK_03A62:
-.db $01, $30, $00                                                                   ; 00:3A62
-
 PTRLUT_level_tile_flags:
 .dw LVTILEFLAGS_GHZ, LVTILEFLAGS_BRI, LVTILEFLAGS_JUN, LVTILEFLAGS_LAB, LVTILEFLAGS_SCR, LVTILEFLAGS_SKY, LVTILEFLAGS_special, LVTILEFLAGS_SKY_3  ; 00:3A65
 
