@@ -16,12 +16,12 @@ BANKSIZE $4000
 BANKS 16
 .ENDRO
 
+.INCLUDE "src/chunked_layouts.asm"
+
 .DEF IYBASE $D200
 
 .RAMSECTION "RAMSection" SLOT 4 FORCE ORGA $C000
-g_level_layout db   ; C000
-g_level_layout_1 db   ; C001
-.  dsb 4094
+g_level_layout dsb 4096   ; C000
 g_sprite_table db   ; D000
 g_sprite_table_0_y db   ; D001
 .  dsb 34
@@ -246,7 +246,13 @@ g_active_object_ptrs dw   ; D37E
 .  dsb 60
 g_temporary_palette_buffer db   ; D3BC
 .  dsb 63
+
+;
+; New stuff should go here.
+;
 g_of_saved_hl dw
+g_ram_layout_ptrs_per_y dsw 16  ; Use this to compute Y offsets into the layout in RAM for the time being.
+
 object_list db   ; D3FC
 sonic_x_sub db   ; D3FD
 sonic_x db   ; D3FE
@@ -706,8 +712,8 @@ reset_init:
    ld     a, $02                       ; 00:029A - 3E 02
    ld (g_committed_rompage_2), a
    ld     (rompage_2), a               ; 00:029C - 32 FF FF
-   ld     hl, g_level_layout           ; 00:029F - 21 00 C0
-   ld     de, g_level_layout_1         ; 00:02A2 - 11 01 C0
+   ld     hl, $C000                    ; 00:029F - 21 00 C0
+   ld     de, $C000+1                  ; 00:02A2 - 11 01 C0
    ld     bc, $1FEF                    ; 00:02A5 - 01 EF 1F
    ld     (hl), l                      ; 00:02A8 - 75
    ldir                                ; 00:02A9 - ED B0
@@ -1690,99 +1696,70 @@ dispatch_scrolling_tile_updates_IRQ:
    ld     h, a                         ; 00:08D1 - 67
    jp     @return_from_wrap_vertical   ; 00:08D2 - C3 3C 08
 
+;; C = X offset in metatiles
+;; B = Y offset in metatiles
+;; (g_level_scroll_tile_x).b = base X in metatiles
+;; (g_level_scroll_tile_y).b = base Y in metatiles
 get_screen_tile_ptr_in_ram:
-   ld     a, (g_level_width)           ; 00:08D5 - 3A 38 D2
-   rlca                                ; 00:08D8 - 07
-   jr     c, @width_128                ; 00:08D9 - 38 0C
-   rlca                                ; 00:08DB - 07
-   jr     c, @width_64                 ; 00:08DC - 38 1F
-   rlca                                ; 00:08DE - 07
-   jr     c, @width_32                 ; 00:08DF - 38 36
-   rlca                                ; 00:08E1 - 07
-   jr     c, @width_16                 ; 00:08E2 - 38 51
-   jp     @width_256                   ; 00:08E4 - C3 57 09
+   ;; NOTE: I *think* BC is trashable, but I could be wrong, so applying a bit of safety for the time being.
+   push bc
+   ;; Apply the tile offset.
+   ld a, (g_level_scroll_tile_y)
+   add a, b
+   ld b, a
+   ld a, (g_level_scroll_tile_x)
+   add a, c
+   ld c, a
+   ;; Now get our pointer!
+   call get_tile_ptr_in_ram_from_C_B
+   pop bc
+   ret
 
-@width_128:
-   ld     a, (g_level_scroll_tile_y)   ; 00:08E7 - 3A 58 D2
-   add    a, b                         ; 00:08EA - 80
-   ld     e, $00                       ; 00:08EB - 1E 00
-   srl    a                            ; 00:08ED - CB 3F
-   rr     e                            ; 00:08EF - CB 1B
-   ld     d, a                         ; 00:08F1 - 57
-   ld     a, (g_level_scroll_tile_x)   ; 00:08F2 - 3A 57 D2
-   add    a, c                         ; 00:08F5 - 81
-   add    a, e                         ; 00:08F6 - 83
-   ld     e, a                         ; 00:08F7 - 5F
-   ld     hl, g_level_layout           ; 00:08F8 - 21 00 C0
-   add    hl, de                       ; 00:08FB - 19
-   ret                                 ; 00:08FC - C9
+get_tile_ptr_in_ram_from_C_B:
+   ;; Get the upper 4 bits of the Y tile offset to get the Y chunk index
+   ;; Then multiply by 2 and feed through g_ram_layout_ptrs_per_y to get the pointer to the chunks for this
+   ld a, b
+   rrca
+   rrca
+   rrca
+   and $1E
+   add a, <g_ram_layout_ptrs_per_y
+   ld l, a
+   ld a, $00
+   adc a, >g_ram_layout_ptrs_per_y
+   ld h, a
+   ld e, (hl)
+   inc hl
+   ld d, (hl)
+   ex de, hl
 
-@width_64:
-   ld     a, (g_level_scroll_tile_y)   ; 00:08FD - 3A 58 D2
-   add    a, b                         ; 00:0900 - 80
-   ld     e, $00                       ; 00:0901 - 1E 00
-   srl    a                            ; 00:0903 - CB 3F
-   rr     e                            ; 00:0905 - CB 1B
-   srl    a                            ; 00:0907 - CB 3F
-   rr     e                            ; 00:0909 - CB 1B
-   ld     d, a                         ; 00:090B - 57
-   ld     a, (g_level_scroll_tile_x)   ; 00:090C - 3A 57 D2
-   add    a, c                         ; 00:090F - 81
-   add    a, e                         ; 00:0910 - 83
-   ld     e, a                         ; 00:0911 - 5F
-   ld     hl, g_level_layout           ; 00:0912 - 21 00 C0
-   add    hl, de                       ; 00:0915 - 19
-   ret                                 ; 00:0916 - C9
+   ;; Get the upper 4 bits of the X tile offset to get the X chunk index
+   ;; Add this to the high byte of the pointer to get us to the actual chunk
+   ld a, c
+   rlca
+   rlca
+   rlca
+   rlca
+   and $0F
+   add a, h
+   ld h, a
 
-@width_32:
-   ld     a, (g_level_scroll_tile_y)   ; 00:0917 - 3A 58 D2
-   add    a, b                         ; 00:091A - 80
-   ld     e, $00                       ; 00:091B - 1E 00
-   srl    a                            ; 00:091D - CB 3F
-   rr     e                            ; 00:091F - CB 1B
-   srl    a                            ; 00:0921 - CB 3F
-   rr     e                            ; 00:0923 - CB 1B
-   srl    a                            ; 00:0925 - CB 3F
-   rr     e                            ; 00:0927 - CB 1B
-   ld     d, a                         ; 00:0929 - 57
-   ld     a, (g_level_scroll_tile_x)   ; 00:092A - 3A 57 D2
-   add    a, c                         ; 00:092D - 81
-   add    a, e                         ; 00:092E - 83
-   ld     e, a                         ; 00:092F - 5F
-   ld     hl, g_level_layout           ; 00:0930 - 21 00 C0
-   add    hl, de                       ; 00:0933 - 19
-   ret                                 ; 00:0934 - C9
-
-@width_16:
-   ld     a, (g_level_scroll_tile_y)   ; 00:0935 - 3A 58 D2
-   add    a, b                         ; 00:0938 - 80
-   ld     e, $00                       ; 00:0939 - 1E 00
-   srl    a                            ; 00:093B - CB 3F
-   rr     e                            ; 00:093D - CB 1B
-   srl    a                            ; 00:093F - CB 3F
-   rr     e                            ; 00:0941 - CB 1B
-   srl    a                            ; 00:0943 - CB 3F
-   rr     e                            ; 00:0945 - CB 1B
-   srl    a                            ; 00:0947 - CB 3F
-   rr     e                            ; 00:0949 - CB 1B
-   ld     d, a                         ; 00:094B - 57
-   ld     a, (g_level_scroll_tile_x)   ; 00:094C - 3A 57 D2
-   add    a, c                         ; 00:094F - 81
-   add    a, e                         ; 00:0950 - 83
-   ld     e, a                         ; 00:0951 - 5F
-   ld     hl, g_level_layout           ; 00:0952 - 21 00 C0
-   add    hl, de                       ; 00:0955 - 19
-   ret                                 ; 00:0956 - C9
-
-@width_256:
-   ld     a, (g_level_scroll_tile_y)   ; 00:0957 - 3A 58 D2
-   add    a, b                         ; 00:095A - 80
-   ld     d, a                         ; 00:095B - 57
-   ld     a, (g_level_scroll_tile_x)   ; 00:095C - 3A 57 D2
-   add    a, c                         ; 00:095F - 81
-   ld     e, a                         ; 00:0960 - 5F
-   ld     hl, g_level_layout           ; 00:0961 - 21 00 C0
-   add    hl, de                       ; 00:0964 - 19
+   ;; Get the lower 4 bits of the Y tile offset to get its position in the chunk
+   ;; Make sure they're up the top of the byte
+   ld a, b
+   add a, a
+   add a, a
+   add a, a
+   add a, a
+   ld e, a
+   ;; Get the lower 4 bits of the X tile offset and add them in
+   ld a, c
+   and $0F
+   add a, e
+   ld e, a
+   ld d, $00
+   ;; Apply this offset and get our metatile index!
+   add hl, de
    ret                                 ; 00:0965 - C9
 
 draw_initial_screen_tiles:
@@ -1906,48 +1883,91 @@ draw_initial_screen_tiles:
    ret                                 ; 00:0A0F - C9
 
 unpack_level_layout_into_ram:
-   ld     de, g_level_layout           ; 00:0A10 - 11 00 C0
+   ld     de, g_level_layout
+   ;; Load our 16 chunks.
+   ld b, $10
+   @each_chunk:
+      ld a, (g_committed_rompage_2)
+      ld c, a
+      push bc
+         ld c, (hl)
+         inc hl
+         ld b, (hl)
+         inc hl
+         ld a, (hl)
+         inc hl
+         call set_rompage_2
+         push hl
+            ld l, c
+            ld h, b
+            call load_level_chunk@ENTRY_POINT
+         pop hl
+      pop bc
+      ld a, c
+      call set_rompage_2
+      djnz @each_chunk
 
---:
-   ld     a, (hl)                      ; 00:0A13 - 7E
-   cpl                                 ; 00:0A14 - 2F
-   ld     (iy+g_last_rle_byte-IYBASE), a  ; 00:0A15 - FD 77 01
+   ;; Prepare the Y table offsets.
+   ;; Width to Y step changes:
+   ;;  16 metatiles =  1 chunk  = $0100
+   ;;  32 metatiles =  2 chunks = $0200
+   ;;  64 metatiles =  4 chunks = $0400
+   ;; 128 metatiles =  8 chunks = $0800
+   ;; 256 metatiles = 16 chunks = $1000
+   ;; This seems easy enough...
+   ld hl, (g_level_width)
+   add hl, hl
+   add hl, hl
+   add hl, hl
+   add hl, hl
+   ld c, l
+   ld b, h
+   ld de, g_level_layout
+   ld hl, g_ram_layout_ptrs_per_y
+   ;; It's fine to fill all 16 entries even if the latter entries technically overflow.
+   ;; (Although that means you cannot Y-wrap levels yet!)
+   ;; DE = ptr value to write
+   ;; BC = ptr value delta to apply each row
+   ;; HL = place to write pointers
+   ;; A = times to do this
+   ld a, $10
+   @each_y_row_ptr:
+      ld (hl), e
+      inc hl
+      ld (hl), d
+      inc hl
+      ex de, hl
+      add hl, bc
+      ex de, hl
+      dec a
+      jr nz, @each_y_row_ptr
+   ret
 
--:
-   ld     a, (hl)                      ; 00:0A18 - 7E
-   cp     (iy+g_last_rle_byte-IYBASE)  ; 00:0A19 - FD BE 01
-   jr     z, +                         ; 00:0A1C - 28 0D
-   ld     (de), a                      ; 00:0A1E - 12
-   ld     (iy+g_last_rle_byte-IYBASE), a  ; 00:0A1F - FD 77 01
-   inc    hl                           ; 00:0A22 - 23
-   inc    de                           ; 00:0A23 - 13
-   dec    bc                           ; 00:0A24 - 0B
-   ld     a, b                         ; 00:0A25 - 78
-   or     c                            ; 00:0A26 - B1
-   jp     nz, -                        ; 00:0A27 - C2 18 0A
-   ret                                 ; 00:0A2A - C9
-
-+:
-   dec    bc                           ; 00:0A2B - 0B
-   ld     a, b                         ; 00:0A2C - 78
-   or     c                            ; 00:0A2D - B1
-   ret    z                            ; 00:0A2E - C8
-   ld     a, (hl)                      ; 00:0A2F - 7E
-   inc    hl                           ; 00:0A30 - 23
-   push   bc                           ; 00:0A31 - C5
-   ld     b, (hl)                      ; 00:0A32 - 46
-
--:
-   ld     (de), a                      ; 00:0A33 - 12
-   inc    de                           ; 00:0A34 - 13
-   djnz   -                            ; 00:0A35 - 10 FC
-   pop    bc                           ; 00:0A37 - C1
-   inc    hl                           ; 00:0A38 - 23
-   dec    bc                           ; 00:0A39 - 0B
-   ld     a, b                         ; 00:0A3A - 78
-   or     c                            ; 00:0A3B - B1
-   jp     nz, --                       ; 00:0A3C - C2 13 0A
-   ret                                 ; 00:0A3F - C9
+;; DE = target in RAM
+;; HL = source RLE-compressed data, $DF-terminated
+;; When done, HL points past the DF byte and DE points past the output end.
+;; Also BC and A are trashed.
+load_level_chunk:
+@append_literal:
+   ldi
+@ENTRY_POINT:
+@each_input:
+   ld a, (hl)
+   sub $DF
+   ret z
+   jp c, @append_literal
+   ;; E0: A = 1. Add 1 to get the length of 2 we want.
+   inc a
+   ld c, a
+   ld b, $00
+   push hl
+      ld l, e
+      ld h, d
+      dec hl
+      ldir
+   pop hl
+   inc hl
+   jp @each_input
 
 fade_screen_to_black:
    ld a, $02
@@ -2993,12 +3013,14 @@ main:
    call   run_title_screen             ; 00:1C92 - CD 87 12
 
    ; TEST: Pick a level at random.
+   .IF 0
    call random_A
    -:
       sub $12
       jr nc, -
       add a, $12
       ld (g_level), a
+   .ENDIF
 
 @main_loop:
    ld     a, (g_level)                 ; 00:1C9F - 3A 3E D2
@@ -5826,154 +5848,27 @@ explode_object_IX:
    ret                                 ; 00:36F8 - C9
 
 get_obj_level_tile_ptr_in_ram:
-   ld     a, (g_level_width)           ; 00:36F9 - 3A 38 D2
-   cp     $80                          ; 00:36FC - FE 80
-   jr     z, @width_128                ; 00:36FE - 28 0F
-   cp     $40                          ; 00:3700 - FE 40
-   jr     z, @width_64                 ; 00:3702 - 28 37
-   cp     $20                          ; 00:3704 - FE 20
-   jr     z, @width_32                 ; 00:3706 - 28 5C
-   cp     $10                          ; 00:3708 - FE 10
-   jr     z, @width_16                 ; 00:370A - 28 7E
-   jp     @width_256                   ; 00:370C - C3 B3 37
-
-@width_128:
-   ld     l, (ix+5)                    ; 00:370F - DD 6E 05
-   ld     h, (ix+6)                    ; 00:3712 - DD 66 06
-   add    hl, de                       ; 00:3715 - 19
-   ld     a, l                         ; 00:3716 - 7D
-   add    a, a                         ; 00:3717 - 87
-   rl     h                            ; 00:3718 - CB 14
-   add    a, a                         ; 00:371A - 87
-   rl     h                            ; 00:371B - CB 14
-   and    $80                          ; 00:371D - E6 80
-   ld     l, a                         ; 00:371F - 6F
-   ex     de, hl                       ; 00:3720 - EB
-   ld     l, (ix+2)                    ; 00:3721 - DD 6E 02
-   ld     h, (ix+3)                    ; 00:3724 - DD 66 03
-   add    hl, bc                       ; 00:3727 - 09
-   ld     a, l                         ; 00:3728 - 7D
-   add    a, a                         ; 00:3729 - 87
-   rl     h                            ; 00:372A - CB 14
-   add    a, a                         ; 00:372C - 87
-   rl     h                            ; 00:372D - CB 14
-   add    a, a                         ; 00:372F - 87
-   rl     h                            ; 00:3730 - CB 14
-   ld     l, h                         ; 00:3732 - 6C
-   ld     h, $00                       ; 00:3733 - 26 00
-   add    hl, de                       ; 00:3735 - 19
-   ld     de, g_level_layout           ; 00:3736 - 11 00 C0
-   add    hl, de                       ; 00:3739 - 19
-   ret                                 ; 00:373A - C9
-
-@width_64:
-   ld     l, (ix+5)                    ; 00:373B - DD 6E 05
-   ld     h, (ix+6)                    ; 00:373E - DD 66 06
-   add    hl, de                       ; 00:3741 - 19
-   ld     a, l                         ; 00:3742 - 7D
-   add    a, a                         ; 00:3743 - 87
-   rl     h                            ; 00:3744 - CB 14
-   and    $C0                          ; 00:3746 - E6 C0
-   ld     l, a                         ; 00:3748 - 6F
-   ex     de, hl                       ; 00:3749 - EB
-   ld     l, (ix+2)                    ; 00:374A - DD 6E 02
-   ld     h, (ix+3)                    ; 00:374D - DD 66 03
-   add    hl, bc                       ; 00:3750 - 09
-   ld     a, l                         ; 00:3751 - 7D
-   add    a, a                         ; 00:3752 - 87
-   rl     h                            ; 00:3753 - CB 14
-   add    a, a                         ; 00:3755 - 87
-   rl     h                            ; 00:3756 - CB 14
-   add    a, a                         ; 00:3758 - 87
-   rl     h                            ; 00:3759 - CB 14
-   ld     l, h                         ; 00:375B - 6C
-   ld     h, $00                       ; 00:375C - 26 00
-   add    hl, de                       ; 00:375E - 19
-   ld     de, g_level_layout           ; 00:375F - 11 00 C0
-   add    hl, de                       ; 00:3762 - 19
-   ret                                 ; 00:3763 - C9
-
-@width_32:
-   ld     l, (ix+5)                    ; 00:3764 - DD 6E 05
-   ld     h, (ix+6)                    ; 00:3767 - DD 66 06
-   add    hl, de                       ; 00:376A - 19
-   ld     a, l                         ; 00:376B - 7D
-   and    $E0                          ; 00:376C - E6 E0
-   ld     l, a                         ; 00:376E - 6F
-   ex     de, hl                       ; 00:376F - EB
-   ld     l, (ix+2)                    ; 00:3770 - DD 6E 02
-   ld     h, (ix+3)                    ; 00:3773 - DD 66 03
-   add    hl, bc                       ; 00:3776 - 09
-   ld     a, l                         ; 00:3777 - 7D
-   add    a, a                         ; 00:3778 - 87
-   rl     h                            ; 00:3779 - CB 14
-   add    a, a                         ; 00:377B - 87
-   rl     h                            ; 00:377C - CB 14
-   add    a, a                         ; 00:377E - 87
-   rl     h                            ; 00:377F - CB 14
-   ld     l, h                         ; 00:3781 - 6C
-   ld     h, $00                       ; 00:3782 - 26 00
-   add    hl, de                       ; 00:3784 - 19
-   ld     de, g_level_layout           ; 00:3785 - 11 00 C0
-   add    hl, de                       ; 00:3788 - 19
-   ret                                 ; 00:3789 - C9
-
-@width_16:
-   ld     l, (ix+5)                    ; 00:378A - DD 6E 05
-   ld     h, (ix+6)                    ; 00:378D - DD 66 06
-   add    hl, de                       ; 00:3790 - 19
-   ld     a, l                         ; 00:3791 - 7D
-   srl    h                            ; 00:3792 - CB 3C
-   rra                                 ; 00:3794 - 1F
-   and    $F0                          ; 00:3795 - E6 F0
-   ld     l, a                         ; 00:3797 - 6F
-   ex     de, hl                       ; 00:3798 - EB
-   ld     l, (ix+2)                    ; 00:3799 - DD 6E 02
-   ld     h, (ix+3)                    ; 00:379C - DD 66 03
-   add    hl, bc                       ; 00:379F - 09
-   ld     a, l                         ; 00:37A0 - 7D
-   add    a, a                         ; 00:37A1 - 87
-   rl     h                            ; 00:37A2 - CB 14
-   add    a, a                         ; 00:37A4 - 87
-   rl     h                            ; 00:37A5 - CB 14
-   add    a, a                         ; 00:37A7 - 87
-   rl     h                            ; 00:37A8 - CB 14
-   ld     l, h                         ; 00:37AA - 6C
-   ld     h, $00                       ; 00:37AB - 26 00
-   add    hl, de                       ; 00:37AD - 19
-   ld     de, g_level_layout           ; 00:37AE - 11 00 C0
-   add    hl, de                       ; 00:37B1 - 19
-   ret                                 ; 00:37B2 - C9
-
-@width_256:
-   ld     l, (ix+5)                    ; 00:37B3 - DD 6E 05
-   ld     h, (ix+6)                    ; 00:37B6 - DD 66 06
-   add    hl, de                       ; 00:37B9 - 19
-   ld     a, l                         ; 00:37BA - 7D
-   rlca                                ; 00:37BB - 07
-   rl     h                            ; 00:37BC - CB 14
-   rlca                                ; 00:37BE - 07
-   rl     h                            ; 00:37BF - CB 14
-   rlca                                ; 00:37C1 - 07
-   rl     h                            ; 00:37C2 - CB 14
-   ex     de, hl                       ; 00:37C4 - EB
-   ld     l, (ix+2)                    ; 00:37C5 - DD 6E 02
-   ld     h, (ix+3)                    ; 00:37C8 - DD 66 03
-   add    hl, bc                       ; 00:37CB - 09
-   ld     a, l                         ; 00:37CC - 7D
-   rlca                                ; 00:37CD - 07
-   rl     h                            ; 00:37CE - CB 14
-   rlca                                ; 00:37D0 - 07
-   rl     h                            ; 00:37D1 - CB 14
-   rlca                                ; 00:37D3 - 07
-   rl     h                            ; 00:37D4 - CB 14
-   ld     l, h                         ; 00:37D6 - 6C
-   ld     h, $00                       ; 00:37D7 - 26 00
-   ld     e, h                         ; 00:37D9 - 5C
-   add    hl, de                       ; 00:37DA - 19
-   ld     de, g_level_layout           ; 00:37DB - 11 00 C0
-   add    hl, de                       ; 00:37DE - 19
-   ret                                 ; 00:37DF - C9
+   ;; Compute our tile offsets
+   ld l, (ix+5)
+   ld h, (ix+6)
+   add hl, de
+   add hl, hl
+   add hl, hl
+   add hl, hl
+   ex de, hl
+   ;; DE = Y
+   ld l, (ix+2)
+   ld h, (ix+3)
+   add hl, bc
+   add hl, hl
+   add hl, hl
+   add hl, hl
+   ;; HL = X
+   ;; Put X in C, Y in B
+   ld c, h
+   ld b, d
+   ;; Now get the tile pointer from that.
+   jp get_tile_ptr_in_ram_from_C_B
 
 update_sonic_3bpp_sprite:
    ld     de, (g_new_sonic_sprite_ptr)  ; 00:37E0 - ED 5B 8F D2
@@ -20810,111 +20705,6 @@ ARTMAP_05_69A9:
 .SECTION "base_ARTMAP_05_6C61" SUPERFREE SLOT 2
 ARTMAP_05_6C61:
 .INCBIN "src/data/credits_screen.artmap00"
-.ENDS
-
-.SECTION "base_LVLAYOUT_GHZ1_ENDING" SUPERFREE SLOT 2
-LVLAYOUT_GHZ1_ENDING:
-.INCBIN "src/data/lv_ghz_1_ending.layout8"
-.ENDS
-
-.SECTION "base_LVLAYOUT_GHZ2" SUPERFREE SLOT 2
-LVLAYOUT_GHZ2:
-.INCBIN "src/data/lv_ghz_2.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_GHZ3" SUPERFREE SLOT 2
-LVLAYOUT_GHZ3:
-.INCBIN "src/data/lv_ghz_3.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_JUN1" SUPERFREE SLOT 2
-LVLAYOUT_JUN1:
-.INCBIN "src/data/lv_jun_1.layout8"
-.ENDS
-
-.SECTION "base_LVLAYOUT_JUN2_special_4_8" SUPERFREE SLOT 2
-LVLAYOUT_JUN2_special_4_8:
-.INCBIN "src/data/lv_jun_2_special_4_8.layout4"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SCR1" SUPERFREE SLOT 2
-LVLAYOUT_SCR1:
-.INCBIN "src/data/lv_scr_1.layout8"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_main" SUPERFREE SLOT 2
-LVLAYOUT_SCR2_main:
-.INCBIN "src/data/lv_scr_2_main.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_upper" SUPERFREE SLOT 2
-LVLAYOUT_SCR2_upper:
-.INCBIN "src/data/lv_scr_2_upper.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_lower" SUPERFREE SLOT 2
-LVLAYOUT_SCR2_lower:
-.INCBIN "src/data/lv_scr_2_lower.layout5"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SCR3" SUPERFREE SLOT 2
-LVLAYOUT_SCR3:
-.INCBIN "src/data/lv_scr_3.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SKY2" SUPERFREE SLOT 2
-LVLAYOUT_SKY2:
-.INCBIN "src/data/lv_sky_2.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_BRI1" SUPERFREE SLOT 2
-LVLAYOUT_BRI1:
-.INCBIN "src/data/lv_bri_1.layout8"
-.ENDS
-
-.SECTION "base_LVLAYOUT_LAB1" SUPERFREE SLOT 2
-LVLAYOUT_LAB1:
-.INCBIN "src/data/lv_lab_1.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_LAB2" SUPERFREE SLOT 2
-LVLAYOUT_LAB2:
-.INCBIN "src/data/lv_lab_2.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SKY1" SUPERFREE SLOT 2
-LVLAYOUT_SKY1:
-.INCBIN "src/data/lv_sky_1.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_BRI2" SUPERFREE SLOT 2
-LVLAYOUT_BRI2:
-.INCBIN "src/data/lv_bri_2.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SKY3_endof_SKY2" SUPERFREE SLOT 2
-LVLAYOUT_SKY3_endof_SKY2:
-.INCBIN "src/data/lv_sky_3_end_sky_2.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_JUN3" SUPERFREE SLOT 2
-LVLAYOUT_JUN3:
-.INCBIN "src/data/lv_jun_3.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_LAB3" SUPERFREE SLOT 2
-LVLAYOUT_LAB3:
-.INCBIN "src/data/lv_lab_3.layout6"
-.ENDS
-
-.SECTION "base_LVLAYOUT_BRI3" SUPERFREE SLOT 2
-LVLAYOUT_BRI3:
-.INCBIN "src/data/lv_bri_3.layout7"
-.ENDS
-
-.SECTION "base_LVLAYOUT_SPECIAL_1_2_3_5_6_7" SUPERFREE SLOT 2
-LVLAYOUT_SPECIAL_1_2_3_5_6_7:
-.INCBIN "src/data/lv_special_1_2_3_5_6_7.layout6"
 .ENDS
 
 .SECTION "base_sonicuncart_table" SLOT 2 SUPERFREE
