@@ -2992,6 +2992,14 @@ main:
    call   clear_sprite_table           ; 00:1C8F - CD E2 05
    call   run_title_screen             ; 00:1C92 - CD 87 12
 
+   ; TEST: Pick a level at random.
+   call random_A
+   -:
+      sub $12
+      jr nc, -
+      add a, $12
+      ld (g_level), a
+
 @main_loop:
    ld     a, (g_level)                 ; 00:1C9F - 3A 3E D2
    cp     $13                          ; 00:1CA2 - FE 13
