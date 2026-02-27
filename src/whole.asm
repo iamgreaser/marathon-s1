@@ -102,8 +102,6 @@ g_level_tilemap_bank db
 g_vdp_scroll_x db   ; D251
 g_vdp_scroll_y db   ; D252
 .  dsb 4
-g_level_scroll_tile_x db   ; D257
-g_level_scroll_tile_y db   ; D258
 g_level_scroll_x_sub db   ; D259
 g_level_scroll_x_pix_lo db   ; D25A
 g_level_scroll_x_pix_hi db   ; D25B
@@ -1331,23 +1329,6 @@ update_active_scroll_pos_and_ptrs:
 
 @camera_was_moving_down:
    ld     (g_vdp_scroll_x), bc         ; 00:0688 - ED 43 51 D2
-   ld     hl, (g_level_scroll_x_pix_lo)  ; 00:068C - 2A 5A D2
-   sla    l                            ; 00:068F - CB 25
-   rl     h                            ; 00:0691 - CB 14
-   sla    l                            ; 00:0693 - CB 25
-   rl     h                            ; 00:0695 - CB 14
-   sla    l                            ; 00:0697 - CB 25
-   rl     h                            ; 00:0699 - CB 14
-   ld     c, h                         ; 00:069B - 4C
-   ld     hl, (g_level_scroll_y_pix_lo)  ; 00:069C - 2A 5D D2
-   sla    l                            ; 00:069F - CB 25
-   rl     h                            ; 00:06A1 - CB 14
-   sla    l                            ; 00:06A3 - CB 25
-   rl     h                            ; 00:06A5 - CB 14
-   sla    l                            ; 00:06A7 - CB 25
-   rl     h                            ; 00:06A9 - CB 14
-   ld     b, h                         ; 00:06AB - 44
-   ld     (g_level_scroll_tile_x), bc  ; 00:06AC - ED 43 57 D2
    ld     hl, (g_level_scroll_x_pix_lo)  ; 00:06B0 - 2A 5A D2
    ld     (g_displayed_level_scroll_x_pix_lo), hl  ; 00:06B3 - 22 6F D2
    ld     hl, (g_level_scroll_y_pix_lo)  ; 00:06B6 - 2A 5D D2
@@ -1704,20 +1685,41 @@ dispatch_scrolling_tile_updates_IRQ:
 
 ;; C = X offset in metatiles
 ;; B = Y offset in metatiles
-;; (g_level_scroll_tile_x).b = base X in metatiles
-;; (g_level_scroll_tile_y).b = base Y in metatiles
+;; (g_level_scroll_x_pix_lo).w = base X in pixels
+;; (g_level_scroll_y_pix_lo).w = base Y in pixels
 get_screen_tile_ptr_in_ram:
    ;; NOTE: I *think* BC is trashable, but I could be wrong, so applying a bit of safety for the time being.
    push bc
-   ;; Apply the tile offset.
-   ld a, (g_level_scroll_tile_y)
-   add a, b
-   ld b, a
-   ld a, (g_level_scroll_tile_x)
-   add a, c
-   ld c, a
-   ;; Now get our pointer!
-   call get_tile_ptr_in_ram_from_C_B
+      push hl
+         ;; Apply the tile offset.
+         ld hl, (g_level_scroll_y_pix_lo)
+         ld a, l
+         and $E0
+         ld l, a
+         ld a, h
+         and $1F
+         or l
+         rlca
+         rlca
+         rlca
+         add a, b
+         ld b, a
+
+         ld hl, (g_level_scroll_x_pix_lo)
+         ld a, l
+         and $E0
+         ld l, a
+         ld a, h
+         and $1F
+         or l
+         rlca
+         rlca
+         rlca
+         add a, c
+         ld c, a
+      pop hl
+      ;; Now get our pointer!
+      call get_tile_ptr_in_ram_from_C_B
    pop bc
    ret
 
@@ -3683,7 +3685,6 @@ load_and_init_level_from_header:
    xor    a                            ; 00:21CC - AF
 
 @dont_clamp_init_x_scroll_left:
-   ld     (g_level_scroll_tile_x), a   ; 00:21CD - 32 57 D2
    ld     e, $00                       ; 00:21D0 - 1E 00
    rrca                                ; 00:21D2 - 0F
    rr     e                            ; 00:21D3 - CB 1B
@@ -3702,7 +3703,6 @@ load_and_init_level_from_header:
    xor    a                            ; 00:21EC - AF
 
 @dont_clamp_init_y_scroll_up:
-   ld     (g_level_scroll_tile_y), a   ; 00:21ED - 32 58 D2
    ld     e, $00                       ; 00:21F0 - 1E 00
    rrca                                ; 00:21F2 - 0F
    rr     e                            ; 00:21F3 - CB 1B
