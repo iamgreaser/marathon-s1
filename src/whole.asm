@@ -20303,7 +20303,6 @@ LVHEAD_14:
 .dw ART_SCR_2000
 .db :ART_SCR_2000
 .db $04, $06, $04, $04                                                              ; 05:580F
-.dw $0869                                                                           ; 05:5813
 .dw LVOBJECTS_SCR2_upper
 .db :LVOBJECTS_SCR2_upper
 .db $04, $00, $20, $00, $04                                                         ; 05:5815
