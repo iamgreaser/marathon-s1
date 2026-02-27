@@ -1412,7 +1412,6 @@ load_scroll_tile_list_buffers:
    exx                                 ; 00:0728 - D9
    ld     de, g_v_tile_scroll_dispatch_table  ; 00:0729 - 11 80 D1
    exx                                 ; 00:072C - D9
-   ld     de, (g_level_width)          ; 00:072D - ED 5B 38 D2
    ld     b, $07                       ; 00:0731 - 06 07
 
 @each_vertical_metatile:
@@ -1460,7 +1459,10 @@ load_scroll_tile_list_buffers:
    ld     (de), a                      ; 00:076C - 12
    inc    e                            ; 00:076D - 1C
    exx                                 ; 00:076E - D9
-   add    hl, de                       ; 00:076F - 19
+   ld a, l
+   add a, $10
+   ld l, a
+   call z, tile_lookup_move_to_next_y_chunk
    djnz   @each_vertical_metatile      ; 00:0770 - 10 C1
 
 @skip_vertical_tile_update:
@@ -1865,7 +1867,7 @@ draw_initial_screen_tiles:
    ;; Handle X discontinuity by moving onto the next chunk if needed.
    ld a, l
    and $0F
-   call z, @move_to_next_x_chunk
+   call z, tile_lookup_move_to_next_x_chunk
    ld     bc, $0008                    ; 00:09F3 - 01 08 00
    ex     de, hl                       ; 00:09F6 - EB
    add    hl, bc                       ; 00:09F7 - 09
@@ -1878,7 +1880,7 @@ draw_initial_screen_tiles:
    ld a, l
    add a, $10
    ld l, a
-   call z, @move_to_next_y_chunk
+   call z, tile_lookup_move_to_next_y_chunk
    add    hl, bc                       ; 00:0A02 - 09
    ex     de, hl                       ; 00:0A03 - EB
    ld     bc, $0100                    ; 00:0A04 - 01 00 01
@@ -1890,13 +1892,13 @@ draw_initial_screen_tiles:
    ei                                  ; 00:0A0E - FB
    ret                                 ; 00:0A0F - C9
 
-@move_to_next_x_chunk:
+tile_lookup_move_to_next_x_chunk:
    xor l
    ld l, a
    inc h
    ret
 
-@move_to_next_y_chunk:
+tile_lookup_move_to_next_y_chunk:
    push hl
       ld hl, (g_level_width)
       add hl, hl
