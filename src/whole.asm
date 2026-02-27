@@ -244,6 +244,7 @@ g_active_object_ptrs dw   ; D37E
 .  dsb 60
 g_temporary_palette_buffer db   ; D3BC
 .  dsb 63
+g_of_saved_hl dw
 object_list db   ; D3FC
 sonic_x_sub db   ; D3FD
 sonic_x db   ; D3FE
@@ -6676,6 +6677,36 @@ fn_of_setbox:
    call fn_of_setbox
 .ENDM
 
+;; Normally 8 bytes, the call is 5 bytes, so each use saves 3 bytes minus the overall 23 byte overhead of the function itself.
+;; Doing it this way to preserve HL, as at least one case of this was not allowed to clobber HL at the time of writing.
+fn_of_set_sprite:
+   ld (g_of_saved_hl), hl
+   pop hl
+   push af
+   ld a, (hl)
+   ld (ix+15), a
+   inc hl
+   ld a, (hl)
+   ld (ix+16), a
+   inc hl
+   pop af
+   push hl
+   ld hl, (g_of_saved_hl)
+   ret
+.MACRO of_set_sprite ARGS spr
+   call fn_of_set_sprite
+   .dw spr
+.ENDM
+
+;; Normally 7 bytes, the call is 3 bytes, so each use saves 4 bytes minus the overall 9 byte overhead of the function itself.
+fn_of_clear_sprite:
+   ld (ix+15), $00
+   ld (ix+16), $00
+   ret
+.MACRO of_clear_sprite
+   call fn_of_clear_sprite
+.ENDM
+
 ;; Normally 17 bytes, the call is 9 bytes, so each use saves 8 bytes minus the overall 12 byte overhead of the function itself.
 fn_of_check_collision_with_sonic:
    ld (ix+13), e
@@ -9037,9 +9068,7 @@ objfunc_01_monitor_rings:
    call   add_A_rings                  ; 01:5B26 - CD AC 39
 
 monitor_common_destroy_after_hit:
-   xor    a                            ; 01:5B29 - AF
-   ld     (ix+15), a                   ; 01:5B2A - DD 77 0F
-   ld     (ix+16), a                   ; 01:5B2D - DD 77 10
+   of_clear_sprite
    ret                                 ; 01:5B30 - C9
 
 monitor_common_set_art_and_go_to_main:
@@ -9048,14 +9077,12 @@ monitor_common_set_art_and_go_to_main:
 
 monitor_common_main:
    call   write_partial_monitor_art    ; 01:5B34 - CD 1D 0C
-   ld     (ix+15), SPRITEMAP_monitor_noise&$FF  ; 01:5B37 - DD 36 0F BF
-   ld     (ix+16), SPRITEMAP_monitor_noise>>8  ; 01:5B3B - DD 36 10 5B
+   of_set_sprite SPRITEMAP_monitor_noise
    ld     a, (g_global_tick_counter)   ; 01:5B3F - 3A 23 D2
    and    $07                          ; 01:5B42 - E6 07
    cp     $05                          ; 01:5B44 - FE 05
    ret    nc                           ; 01:5B46 - D0
-   ld     (ix+15), SPRITEMAP_monitor_unnoisy_surrounds&$FF  ; 01:5B47 - DD 36 0F CC
-   ld     (ix+16), SPRITEMAP_monitor_unnoisy_surrounds>>8  ; 01:5B4B - DD 36 10 5B
+   of_set_sprite SPRITEMAP_monitor_unnoisy_surrounds
    ld     l, (ix+1)                    ; 01:5B4F - DD 6E 01
    ld     h, (ix+2)                    ; 01:5B52 - DD 66 02
    ld     a, (ix+3)                    ; 01:5B55 - DD 7E 03
@@ -9150,9 +9177,7 @@ objfunc_03_monitor_life:
    ld     a, (hl)                      ; 01:5C42 - 7E
    or     c                            ; 01:5C43 - B1
    ld     (hl), a                      ; 01:5C44 - 77
-   xor    a                            ; 01:5C45 - AF
-   ld     (ix+15), a                   ; 01:5C46 - DD 77 0F
-   ld     (ix+16), a                   ; 01:5C49 - DD 77 10
+   of_clear_sprite
    ld     a, $09                       ; 01:5C4C - 3E 09
    rst    $28                          ; 01:5C4E - EF
    ld     a, (g_level)                 ; 01:5C4F - 3A 3E D2
@@ -9431,9 +9456,7 @@ objfunc_06_chaos_emerald:
    and    c                            ; 01:5EA9 - A1
    jr     nz, @destroy_already_collected  ; 01:5EAA - 20 32
    call   reposition_monitor_on_init   ; 01:5EB4 - CD A8 5D
-   xor    a                            ; 01:5EB7 - AF
-   ld     (ix+15), a                   ; 01:5EB8 - DD 77 0F
-   ld     (ix+16), a                   ; 01:5EBB - DD 77 10
+   of_clear_sprite
    of_check_collision_with_sonic $02, $02, $0C, $11
    jr     c, @dont_collect_yet         ; 01:5EC7 - 38 1A
    ld     hl, g_level_has_emerald_mask  ; 01:5EC9 - 21 0B D3
@@ -9456,8 +9479,7 @@ objfunc_06_chaos_emerald:
    ld     a, (g_global_tick_counter)   ; 01:5EE3 - 3A 23 D2
    rrca                                ; 01:5EE6 - 0F
    jr     c, @skip_draw_sprite         ; 01:5EE7 - 38 08
-   ld     (ix+15), SPRITEMAP_monitor_image&$FF  ; 01:5EE9 - DD 36 0F 10
-   ld     (ix+16), SPRITEMAP_monitor_image>>8  ; 01:5EED - DD 36 10 5F
+   of_set_sprite SPRITEMAP_monitor_image
 
 @skip_draw_sprite:
    ld     l, (ix+10)                   ; 01:5EF1 - DD 6E 0A
@@ -10185,8 +10207,7 @@ SPRITEMAP_explosion_frames:
 
 objfunc_0B_platform_semilowering:
    set    5, (ix+24)                   ; 01:69E9 - DD CB 18 EE
-   ld     (ix+15), SPRITEMAP_platform_GHZ&$FF  ; 01:69F5 - DD 36 0F 11
-   ld     (ix+16), SPRITEMAP_platform_GHZ>>8  ; 01:69F9 - DD 36 10 69
+   of_set_sprite SPRITEMAP_platform_GHZ
    ld     a, (sonic_vel_y_hi)          ; 01:69FD - 3A 08 D4
    and    a                            ; 01:6A00 - A7
    jp     m, @not_collided_with_sonic  ; 01:6A01 - FA 2E 6A
@@ -10296,8 +10317,7 @@ objfunc_0D_fireball_pallet:
    ld     hl, $0000                    ; 01:6B06 - 21 00 00
    ld     (tmp_04), hl                 ; 01:6B09 - 22 12 D2
    ld     (tmp_06), hl                 ; 01:6B0C - 22 14 D2
-   ld     (ix+15), l                   ; 01:6B0F - DD 75 0F
-   ld     (ix+16), h                   ; 01:6B12 - DD 74 10
+   of_clear_sprite
    ld     hl, LUT_fireball_BRI3_LAB3   ; 01:6B15 - 21 72 6B
    ld     a, (g_level)                 ; 01:6B18 - 3A 3E D2
    cp     $05                          ; 01:6B1B - FE 05
@@ -10362,9 +10382,8 @@ objfunc_0E_badnik_buzz_bomber:
    ld     d, (ix+3)                    ; 01:6B81 - DD 56 03
    ld     (ix+20), e                   ; 01:6B84 - DD 73 14
    ld     (ix+21), d                   ; 01:6B87 - DD 72 15
+   of_clear_sprite
    xor    a                            ; 01:6B8A - AF
-   ld     (ix+15), a                   ; 01:6B8B - DD 77 0F
-   ld     (ix+16), a                   ; 01:6B8E - DD 77 10
    ld     (ix+18), a                   ; 01:6B91 - DD 77 12
    ld     (ix+7), a                    ; 01:6B94 - DD 77 07
    ld     (ix+8), a                    ; 01:6B97 - DD 77 08
@@ -10417,8 +10436,7 @@ objfunc_0E_badnik_buzz_bomber:
    xor    a                            ; 01:6BFC - AF
    sbc    hl, de                       ; 01:6BFD - ED 52
    jr     nc, @was_not_off_left_side   ; 01:6BFF - 30 17
-   ld     (ix+15), a                   ; 01:6C01 - DD 77 0F
-   ld     (ix+16), a                   ; 01:6C04 - DD 77 10
+   of_clear_sprite
    ld     a, (ix+20)                   ; 01:6C07 - DD 7E 14
    ld     (ix+2), a                    ; 01:6C0A - DD 77 02
    ld     a, (ix+21)                   ; 01:6C0D - DD 7E 15
@@ -11237,8 +11255,7 @@ objfunc_25_animal_capsule:
    ld     a, c                         ; 01:743C - 79
    cp     $03                          ; 01:743D - FE 03
    ret    nz                           ; 01:743F - C0
-   ld     (ix+15), SPRITEMAP_animal_capsule_normal&$FF  ; 01:7440 - DD 36 0F 40
-   ld     (ix+16), SPRITEMAP_animal_capsule_normal>>8  ; 01:7444 - DD 36 10 75
+   of_set_sprite SPRITEMAP_animal_capsule_normal
    bit    1, (iy+iy_06_lvflag01-IYBASE)  ; 01:7448 - FD CB 06 4E
    jr     nz, @spawn_8_explosions      ; 01:744C - 20 12
    set    1, (iy+iy_06_lvflag01-IYBASE)  ; 01:744E - FD CB 06 CE
@@ -11277,9 +11294,7 @@ objfunc_25_animal_capsule:
    set    1, (ix+24)                   ; 01:7489 - DD CB 18 CE
 
 @capsule_already_visibly_broken:
-   xor    a                            ; 01:748D - AF
-   ld     (ix+15), a                   ; 01:748E - DD 77 0F
-   ld     (ix+16), a                   ; 01:7491 - DD 77 10
+   of_clear_sprite
    res    5, (iy+iy_00-IYBASE)         ; 01:7494 - FD CB 00 AE
    ld     a, (g_global_tick_counter)   ; 01:7498 - 3A 23 D2
    and    $0F                          ; 01:749B - E6 0F
@@ -11692,8 +11707,7 @@ boss_generic_update_8hp:
    ld     (ix+10), $60                 ; 01:78CC - DD 36 0A 60
    ld     (ix+11), $FF                 ; 01:78D0 - DD 36 0B FF
    ld     (ix+12), $FF                 ; 01:78D4 - DD 36 0C FF
-   ld     (ix+15), SPRTAB_boss_generic_fly_out&$FF  ; 01:78D8 - DD 36 0F 22
-   ld     (ix+16), SPRTAB_boss_generic_fly_out>>8  ; 01:78DC - DD 36 10 79
+   of_set_sprite SPRTAB_boss_generic_fly_out
    ld     l, (ix+2)                    ; 01:78E0 - DD 6E 02
    ld     h, (ix+3)                    ; 01:78E3 - DD 66 03
    ld     de, (g_level_scroll_x_pix_lo)  ; 01:78E6 - ED 5B 5A D2
@@ -11931,8 +11945,7 @@ objfunc_55_thrown_ring_on_sonic_damage:
    jr     @tick_mod_2_was_not_0        ; 01:7BC0 - 18 06
 
 @tick_mod_2_is_0:
-   ld     (ix+15), a                   ; 01:7BC2 - DD 77 0F
-   ld     (ix+16), a                   ; 01:7BC5 - DD 77 10
+   of_clear_sprite
 
 @tick_mod_2_was_not_0:
    ld     l, (ix+10)                   ; 01:7BC8 - DD 6E 0A
@@ -12105,9 +12118,7 @@ objfunc_26_badnik_chopper:
    and    a                            ; 01:7D05 - A7
    jr     z, @not_hidden               ; 01:7D06 - 28 0B
    dec    (ix+20)                      ; 01:7D08 - DD 35 14
-   xor    a                            ; 01:7D0B - AF
-   ld     (ix+15), a                   ; 01:7D0C - DD 77 0F
-   ld     (ix+16), a                   ; 01:7D0F - DD 77 10
+   of_clear_sprite
    ret                                 ; 01:7D12 - C9
 
 @not_hidden:
@@ -12178,8 +12189,7 @@ objfunc_26_badnik_chopper:
    and    a                            ; 01:7DBB - A7
    jr     z, @not_emerging             ; 01:7DBC - 28 0B
    dec    (ix+17)                      ; 01:7DBE - DD 35 11
-   ld     (ix+15), SPRITEMAP_chopper_emerging&$FF  ; 01:7DC1 - DD 36 0F F7
-   ld     (ix+16), SPRITEMAP_chopper_emerging>>8  ; 01:7DC5 - DD 36 10 7D
+   of_set_sprite SPRITEMAP_chopper_emerging
 
 @not_emerging:
    of_check_collision_with_sonic $04, $02, $08, $0C
@@ -12205,8 +12215,7 @@ objfunc_27_platform_downwards_tall:
    ld     hl, $0058                    ; 01:7E0C - 21 58 00
    ld     (g_camera_sonic_bounds_x1_target), hl  ; 01:7E0F - 22 69 D2
    of_setbox $0C, $10
-   ld     (ix+15), SPRITEMAP_platform_downwards_tall&$FF  ; 01:7E1A - DD 36 0F 89
-   ld     (ix+16), SPRITEMAP_platform_downwards_tall>>8  ; 01:7E1E - DD 36 10 7E
+   of_set_sprite SPRITEMAP_platform_downwards_tall
    bit    0, (ix+24)                   ; 01:7E22 - DD CB 18 46
    jr     nz, platform_downwards_common  ; 01:7E26 - 20 14
    ld     a, (ix+5)                    ; 01:7E28 - DD 7E 05
@@ -12261,8 +12270,7 @@ objfunc_28_platform_downwards_wide:
    ld     hl, $0058                    ; 01:7EA5 - 21 58 00
    ld     (g_camera_sonic_bounds_x1_target), hl  ; 01:7EA8 - 22 69 D2
    of_setbox $1A, $10
-   ld     (ix+15), SPRITEMAP_platform_downwards_wide&$FF  ; 01:7EB3 - DD 36 0F D9
-   ld     (ix+16), SPRITEMAP_platform_downwards_wide>>8  ; 01:7EB7 - DD 36 10 7E
+   of_set_sprite SPRITEMAP_platform_downwards_wide
    bit    0, (ix+24)                   ; 01:7EBB - DD CB 18 46
    jp     nz, platform_downwards_common  ; 01:7EBF - C2 3C 7E
    ld     a, (ix+5)                    ; 01:7EC2 - DD 7E 05
@@ -12404,8 +12412,7 @@ objfunc_29_log:
 
 .SECTION "Bank02" SLOT 2 BANK $02 FORCE ORG $0000
 log_obj_continue:
-   ld     (ix+15), SPRITEMAP_log&$FF   ; 02:8003 - DD 36 0F 22
-   ld     (ix+16), SPRITEMAP_log>>8    ; 02:8007 - DD 36 10 80
+   of_set_sprite SPRITEMAP_log
 
 @sprite_was_set:
    inc    (ix+17)                      ; 02:800B - DD 34 11
@@ -12464,8 +12471,7 @@ objfunc_2C_JUN3_boss:
    call   move_locked_camera_towards_target  ; 02:80B0 - CD A6 7C
    bit    0, (ix+17)                   ; 02:80B3 - DD CB 11 46
    jr     nz, @finished_move_down_entry_animation  ; 02:80B7 - 20 2E
-   ld     (ix+15), SPRTAB_JUN3_boss_facing_left&$FF  ; 02:80B9 - DD 36 0F F4
-   ld     (ix+16), SPRTAB_JUN3_boss_facing_left>>8  ; 02:80BD - DD 36 10 81
+   of_set_sprite SPRTAB_JUN3_boss_facing_left
    ld     (ix+10), $80                 ; 02:80C1 - DD 36 0A 80
    ld     (ix+11), $00                 ; 02:80C5 - DD 36 0B 00
    ld     (ix+12), $00                 ; 02:80C9 - DD 36 0C 00
@@ -12488,8 +12494,7 @@ objfunc_2C_JUN3_boss:
    ld     h, (ix+3)                    ; 02:80F1 - DD 66 03
    bit    1, (ix+17)                   ; 02:80F4 - DD CB 11 4E
    jr     nz, @moving_right            ; 02:80F8 - 20 28
-   ld     (ix+15), SPRTAB_JUN3_boss_facing_left&$FF  ; 02:80FA - DD 36 0F F4
-   ld     (ix+16), SPRTAB_JUN3_boss_facing_left>>8  ; 02:80FE - DD 36 10 81
+   of_set_sprite SPRTAB_JUN3_boss_facing_left
    res    1, (ix+24)                   ; 02:8102 - DD CB 18 8E
    ld     (ix+7), $00                  ; 02:8106 - DD 36 07 00
    ld     (ix+8), $FF                  ; 02:810A - DD 36 08 FF
@@ -12502,8 +12507,7 @@ objfunc_2C_JUN3_boss:
    jp     @continue_to_common_code     ; 02:811F - C3 E7 81
 
 @moving_right:
-   ld     (ix+15), SPRTAB_JUN3_boss_facing_right&$FF  ; 02:8122 - DD 36 0F 06
-   ld     (ix+16), SPRTAB_JUN3_boss_facing_right>>8  ; 02:8126 - DD 36 10 82
+   of_set_sprite SPRTAB_JUN3_boss_facing_right
    set    1, (ix+24)                   ; 02:812A - DD CB 18 CE
    ld     (ix+7), $00                  ; 02:812E - DD 36 07 00
    ld     (ix+8), $01                  ; 02:8132 - DD 36 08 01
@@ -12746,8 +12750,7 @@ objfunc_2E_falling_bridge_piece:
    bit    0, (ix+24)                   ; 02:83CD - DD CB 18 46
    jr     nz, @already_fallen          ; 02:83D1 - 20 54
    xor    a                            ; 02:83D3 - AF
-   ld     (ix+15), a                   ; 02:83D4 - DD 77 0F
-   ld     (ix+16), a                   ; 02:83D7 - DD 77 10
+   of_clear_sprite
    ld     l, a                         ; 02:83DA - 6F
    ld     h, a                         ; 02:83DB - 67
    ld     (tmp_00), hl                 ; 02:83DC - 22 0E D2
@@ -12781,8 +12784,7 @@ objfunc_2E_falling_bridge_piece:
    rst    $28                          ; 02:8426 - EF
 
 @already_fallen:
-   ld     (ix+15), SPRTAB_falling_bridge_piece&$FF  ; 02:8427 - DD 36 0F 81
-   ld     (ix+16), SPRTAB_falling_bridge_piece>>8  ; 02:842B - DD 36 10 84
+   of_set_sprite SPRTAB_falling_bridge_piece
    ld     l, (ix+10)                   ; 02:842F - DD 6E 0A
    ld     h, (ix+11)                   ; 02:8432 - DD 66 0B
    ld     a, (ix+12)                   ; 02:8435 - DD 7E 0C
@@ -12831,8 +12833,7 @@ objfunc_48_BRI3_boss:
    set    5, (ix+24)                   ; 02:8496 - DD CB 18 EE
    of_setbox $1E, $1C
    call   move_locked_camera_towards_target  ; 02:84A2 - CD A6 7C
-   ld     (ix+15), SPRTAB_BRI3_boss&$FF  ; 02:84A5 - DD 36 0F 5A
-   ld     (ix+16), SPRTAB_BRI3_boss>>8  ; 02:84A9 - DD 36 10 86
+   of_set_sprite SPRTAB_BRI3_boss
    bit    0, (ix+24)                   ; 02:84AD - DD CB 18 46
    jr     nz, @already_initialised     ; 02:84B1 - 20 27
    ld     hl, $03A0                    ; 02:84B3 - 21 A0 03
@@ -13362,8 +13363,7 @@ objfunc_3D_spinning_spike_ball:
    ld     (ix+6), h                    ; 02:8962 - DD 74 06
    of_check_collision_with_sonic $04, $02, $08, $0C
    call   nc, damage_sonic             ; 02:896E - D4 FD 35
-   ld     (ix+15), SPRTAB_spinning_spike_ball&$FF  ; 02:8971 - DD 36 0F 87
-   ld     (ix+16), SPRTAB_spinning_spike_ball>>8  ; 02:8975 - DD 36 10 89
+   of_set_sprite SPRTAB_spinning_spike_ball
    inc    (ix+17)                      ; 02:8979 - DD 34 11
    ld     a, (ix+17)                   ; 02:897C - DD 7E 11
    cp     $B4                          ; 02:897F - FE B4
@@ -13483,8 +13483,7 @@ objfunc_3E_giant_spear:
 @dont_draw_this_sprite:
    pop    bc                           ; 02:8B93 - C1
    djnz   @each_potential_sprite       ; 02:8B94 - 10 E9
-   ld     (ix+15), b                   ; 02:8B96 - DD 70 0F
-   ld     (ix+16), b                   ; 02:8B99 - DD 70 10
+   of_clear_sprite
    ld     d, (hl)                      ; 02:8B9C - 56
    ld     e, $04                       ; 02:8B9D - 1E 04
    ld     (tmp_06), de                 ; 02:8B9F - ED 53 14 D2
@@ -13552,8 +13551,7 @@ objfunc_3F_fireball_gargoyle:
 
 @ensure_spriteless_and_unmoving:
    xor    a                            ; 02:8C79 - AF
-   ld     (ix+15), a                   ; 02:8C7A - DD 77 0F
-   ld     (ix+16), a                   ; 02:8C7D - DD 77 10
+   of_clear_sprite
    ld     (ix+7), a                    ; 02:8C80 - DD 77 07
    ld     (ix+8), a                    ; 02:8C83 - DD 77 08
    ld     (ix+9), a                    ; 02:8C86 - DD 77 09
@@ -13570,16 +13568,14 @@ objfunc_3F_fireball_gargoyle:
    ld     (ix+7), $00                  ; 02:8C94 - DD 36 07 00
    ld     (ix+8), $FF                  ; 02:8C98 - DD 36 08 FF
    ld     (ix+9), $FF                  ; 02:8C9C - DD 36 09 FF
-   ld     (ix+15), SPRTAB_gargoyle_fireball_left&$FF  ; 02:8CA0 - DD 36 0F 39
-   ld     (ix+16), SPRTAB_gargoyle_fireball_left>>8  ; 02:8CA4 - DD 36 10 8D
+   of_set_sprite SPRTAB_gargoyle_fireball_left
    jr     @sprtab_and_dir_selected     ; 02:8CA8 - 18 12
 
 @is_facing_right:
    ld     (ix+7), a                    ; 02:8CAA - DD 77 07
    ld     (ix+8), $01                  ; 02:8CAD - DD 36 08 01
    ld     (ix+9), a                    ; 02:8CB1 - DD 77 09
-   ld     (ix+15), SPRTAB_gargoyle_fireball_right&$FF  ; 02:8CB4 - DD 36 0F 41
-   ld     (ix+16), SPRTAB_gargoyle_fireball_right>>8  ; 02:8CB8 - DD 36 10 8D
+   of_set_sprite SPRTAB_gargoyle_fireball_right
 
 @sprtab_and_dir_selected:
    ld     (ix+10), a                   ; 02:8CBC - DD 77 0A
@@ -13809,9 +13805,7 @@ LUT_air_bubble_spawner_initial_chance:
 
 objfunc_42_small_bubble:
    set    5, (ix+24)                   ; 02:8ECA - DD CB 18 EE
-   xor    a                            ; 02:8ECE - AF
-   ld     (ix+15), a                   ; 02:8ECF - DD 77 0F
-   ld     (ix+16), a                   ; 02:8ED2 - DD 77 10
+   of_clear_sprite
    ld     a, (ix+17)                   ; 02:8ED5 - DD 7E 11
    and    $0F                          ; 02:8ED8 - E6 0F
    jr     nz, @move_same_x_dir_as_last_time  ; 02:8EDA - 20 1C
@@ -13997,8 +13991,7 @@ SPRTAB_badnik_burrobot:
 
 objfunc_45_LAB_float_up_platform:
    set    5, (ix+24)                   ; 02:90C0 - DD CB 18 EE
-   ld     (ix+15), SPRTAB_LAB_float_up_platform&$FF  ; 02:90CC - DD 36 0F DE
-   ld     (ix+16), SPRTAB_LAB_float_up_platform>>8  ; 02:90D0 - DD 36 10 91
+   of_set_sprite SPRTAB_LAB_float_up_platform
    bit    1, (ix+24)                   ; 02:90D4 - DD CB 18 4E
    jr     nz, @already_initialised     ; 02:90D8 - 20 26
    of_adjust_pos $0000, $FFFF
@@ -14186,8 +14179,7 @@ objfunc_49_LAB3_boss:
    set    5, (ix+24)                   ; 02:9267 - DD CB 18 EE
    of_setbox $20, $1C
    call   move_locked_camera_towards_target  ; 02:9273 - CD A6 7C
-   ld     (ix+15), SPRTAB_LAB3_boss&$FF  ; 02:9276 - DD 36 0F 93
-   ld     (ix+16), SPRTAB_LAB3_boss>>8  ; 02:927A - DD 36 10 94
+   of_set_sprite SPRTAB_LAB3_boss
    bit    0, (ix+24)                   ; 02:927E - DD CB 18 46
    jr     nz, @already_initialised     ; 02:9282 - 20 2B
    ld     hl, $02D0                    ; 02:9284 - 21 D0 02
@@ -14675,8 +14667,7 @@ SPRTAB_LAB3_boss_rocket_left:
 objfunc_2A_LAB3_boss_rocket_puff:
    set    5, (ix+24)                   ; 02:96A8 - DD CB 18 EE
    xor    a                            ; 02:96AC - AF
-   ld     (ix+15), a                   ; 02:96AD - DD 77 0F
-   ld     (ix+16), a                   ; 02:96B0 - DD 77 10
+   of_clear_sprite
    ld     l, (ix+2)                    ; 02:96B3 - DD 6E 02
    ld     h, (ix+3)                    ; 02:96B6 - DD 66 03
    ld     (tmp_00), hl                 ; 02:96B9 - 22 0E D2
@@ -14710,9 +14701,7 @@ LUT_LAB3_boss_rocket_puff_anim_sprites:
 
 objfunc_20_air_bubble:
    set    5, (ix+24)                   ; 02:96F8 - DD CB 18 EE
-   xor    a                            ; 02:96FC - AF
-   ld     (ix+15), a                   ; 02:96FD - DD 77 0F
-   ld     (ix+16), a                   ; 02:9700 - DD 77 10
+   of_clear_sprite
    ld     a, (iy+g_sprite_count-IYBASE)  ; 02:9703 - FD 7E 0A
    ld     hl, (g_next_avail_vdp_sprite_ptr)  ; 02:9706 - 2A 3C D2
    push   af                           ; 02:9709 - F5
@@ -14883,8 +14872,7 @@ objfunc_20_air_bubble:
 
 objfunc_4C_flipper:
    set    5, (ix+24)                   ; 02:9866 - DD CB 18 EE
-   ld     (ix+15), SPRTAB_flipper_00&$FF  ; 02:986A - DD 36 0F 7E
-   ld     (ix+16), SPRTAB_flipper_00>>8  ; 02:986E - DD 36 10 9A
+   of_set_sprite SPRTAB_flipper_00
    bit    5, (iy+g_inputs_player_1-IYBASE)  ; 02:9872 - FD CB 03 6E
    jr     nz, @retract_flipper         ; 02:9876 - 20 13
    ld     a, (ix+17)                   ; 02:9878 - DD 7E 11
@@ -14926,8 +14914,7 @@ objfunc_4C_flipper:
 @flipper_not_00:
    cp     $04                          ; 02:98D3 - FE 04
    jp     nc, @flipper_not_01          ; 02:98D5 - D2 5E 99
-   ld     (ix+15), SPRTAB_flipper_01&$FF  ; 02:98D8 - DD 36 0F 90
-   ld     (ix+16), SPRTAB_flipper_01>>8  ; 02:98DC - DD 36 10 9A
+   of_set_sprite SPRTAB_flipper_01
    of_check_collision_with_sonic $0F, $08, $1E, $16
    ret    c                            ; 02:98F1 - D8
    ld     bc, LUT_flipper_y_offsets_01  ; 02:98F2 - 01 BE 99
@@ -14974,8 +14961,7 @@ objfunc_4C_flipper:
    ret                                 ; 02:993E - C9
 
 @flipper_not_01:
-   ld     (ix+15), SPRTAB_flipper_02&$FF  ; 02:995E - DD 36 0F A2
-   ld     (ix+16), SPRTAB_flipper_02>>8  ; 02:9962 - DD 36 10 9A
+   of_set_sprite SPRTAB_flipper_02
    of_check_collision_with_sonic $1A, $02, $1E, $16
    ret    c                            ; 02:9977 - D8
    ld     bc, LUT_flipper_y_offsets_02  ; 02:9978 - 01 DE 99
@@ -15079,8 +15065,7 @@ compute_flipper_y_offset:
 
 objfunc_21_special_stage_bouncer:
    set    5, (ix+24)                   ; 02:9AFB - DD CB 18 EE
-   ld     (ix+15), SPRTAB_special_stage_bouncer&$FF  ; 02:9B07 - DD 36 0F 6E
-   ld     (ix+16), SPRTAB_special_stage_bouncer>>8  ; 02:9B0B - DD 36 10 9B
+   of_set_sprite SPRTAB_special_stage_bouncer
    ld     hl, $0001                    ; 02:9B0F - 21 01 00
    ld     a, (ix+18)                   ; 02:9B12 - DD 7E 12
    cp     $60                          ; 02:9B15 - FE 60
@@ -15183,9 +15168,7 @@ objfunc_13_level_change_corridor:
    djnz   @each_corridor_candidate     ; 02:9BCF - 10 E2
 
 @finish_tick:
-   xor    a                            ; 02:9BD1 - AF
-   ld     (ix+15), a                   ; 02:9BD2 - DD 77 0F
-   ld     (ix+16), a                   ; 02:9BD5 - DD 77 10
+   of_clear_sprite
    ret                                 ; 02:9BD8 - C9
 
 LUT_corridor_data:
@@ -15207,8 +15190,7 @@ objfunc_14_SCR_flamer_firing_right:
    ld     (ix+7), $80                  ; 02:9BE8 - DD 36 07 80
    ld     (ix+8), $01                  ; 02:9BEC - DD 36 08 01
    ld     (ix+9), $00                  ; 02:9BF0 - DD 36 09 00
-   ld     (ix+15), SPRTAB_SCR_flame_right&$FF  ; 02:9BF4 - DD 36 0F 69
-   ld     (ix+16), SPRTAB_SCR_flame_right>>8  ; 02:9BF8 - DD 36 10 9C
+   of_set_sprite SPRTAB_SCR_flame_right
 
 @common_entry:
    set    5, (ix+24)                   ; 02:9BFC - DD CB 18 EE
@@ -15249,8 +15231,7 @@ objfunc_14_SCR_flamer_firing_right:
 
 @reset_x_pos_and_be_invisible:
    xor    a                            ; 02:9C58 - AF
-   ld     (ix+15), a                   ; 02:9C59 - DD 77 0F
-   ld     (ix+16), a                   ; 02:9C5C - DD 77 10
+   of_clear_sprite
    ld     (ix+7), a                    ; 02:9C5F - DD 77 07
    ld     (ix+8), a                    ; 02:9C62 - DD 77 08
    ld     (ix+9), a                    ; 02:9C65 - DD 77 09
@@ -15263,8 +15244,7 @@ objfunc_15_SCR_flamer_firing_left:
    ld     (ix+7), $80                  ; 02:9C70 - DD 36 07 80
    ld     (ix+8), $FE                  ; 02:9C74 - DD 36 08 FE
    ld     (ix+9), $FF                  ; 02:9C78 - DD 36 09 FF
-   ld     (ix+15), SPRTAB_SCR_flame_left&$FF  ; 02:9C7C - DD 36 0F 87
-   ld     (ix+16), SPRTAB_SCR_flame_left>>8  ; 02:9C80 - DD 36 10 9C
+   of_set_sprite SPRTAB_SCR_flame_left
    jp     objfunc_14_SCR_flamer_firing_right@common_entry  ; 02:9C84 - C3 FC 9B
 
 SPRTAB_SCR_flame_left:
@@ -15344,9 +15324,7 @@ objfunc_16_SCR_ceiling_flamer:
 
 @skip_sonic_collision_check:
    inc    (ix+17)                      ; 02:9D36 - DD 34 11
-   xor    a                            ; 02:9D39 - AF
-   ld     (ix+15), a                   ; 02:9D3A - DD 77 0F
-   ld     (ix+16), a                   ; 02:9D3D - DD 77 10
+   of_clear_sprite
    ld     a, (ix+17)                   ; 02:9D40 - DD 7E 11
    cp     $70                          ; 02:9D43 - FE 70
    ret    nz                           ; 02:9D45 - C0
@@ -15716,9 +15694,7 @@ objfunc_1A_SCR_zapper:
 @dont_damage_sonic:
    cp     $46                          ; 02:A142 - FE 46
    jr     nc, @show_warning_flash      ; 02:A144 - 30 0A
-   xor    a                            ; 02:A146 - AF
-   ld     (ix+15), a                   ; 02:A147 - DD 77 0F
-   ld     (ix+16), a                   ; 02:A14A - DD 77 10
+   of_clear_sprite
    jp     @update_timer_and_return     ; 02:A14D - C3 59 A1
 
 @show_warning_flash:
@@ -15952,13 +15928,11 @@ objfunc_1D_floorbutton:
    ld     a, (sonic_vel_y_hi)          ; 02:A425 - 3A 08 D4
    and    a                            ; 02:A428 - A7
    jp     m, @button_is_up             ; 02:A429 - FA 64 A4
-   ld     (ix+15), SPRTAB_floorbutton_SCR_down&$FF  ; 02:A42C - DD 36 0F 8B
-   ld     (ix+16), SPRTAB_floorbutton_SCR_down>>8  ; 02:A430 - DD 36 10 A4
+   of_set_sprite SPRTAB_floorbutton_SCR_down
    ld     a, (g_tile_flags_index)      ; 02:A434 - 3A D4 D2
    cp     $03                          ; 02:A437 - FE 03
    jr     nz, @down_not_LAB            ; 02:A439 - 20 08
-   ld     (ix+15), SPRTAB_floorbutton_LAB_down&$FF  ; 02:A43B - DD 36 0F 9B
-   ld     (ix+16), SPRTAB_floorbutton_LAB_down>>8  ; 02:A43F - DD 36 10 A4
+   of_set_sprite SPRTAB_floorbutton_LAB_down
 
 @down_not_LAB:
    ld     bc, $0006                    ; 02:A443 - 01 06 00
@@ -15978,13 +15952,11 @@ objfunc_1D_floorbutton:
 
 @button_is_up:
    res    1, (ix+24)                   ; 02:A464 - DD CB 18 8E
-   ld     (ix+15), SPRTAB_floorbutton_SCR_up&$FF  ; 02:A468 - DD 36 0F 93
-   ld     (ix+16), SPRTAB_floorbutton_SCR_up>>8  ; 02:A46C - DD 36 10 A4
+   of_set_sprite SPRTAB_floorbutton_SCR_up
    ld     a, (g_tile_flags_index)      ; 02:A470 - 3A D4 D2
    cp     $03                          ; 02:A473 - FE 03
    jr     nz, @common_epilogue         ; 02:A475 - 20 08
-   ld     (ix+15), SPRTAB_floorbutton_LAB_up&$FF  ; 02:A477 - DD 36 0F A3
-   ld     (ix+16), SPRTAB_floorbutton_LAB_up>>8  ; 02:A47B - DD 36 10 A4
+   of_set_sprite SPRTAB_floorbutton_LAB_up
 
 @common_epilogue:
    xor    a                            ; 02:A47F - AF
@@ -16367,8 +16339,7 @@ objfunc_22_SCR_boss:
    ld     (ix+1), $00                  ; 02:A8A9 - DD 36 01 00
    ld     (ix+2), l                    ; 02:A8AD - DD 75 02
    ld     (ix+3), h                    ; 02:A8B0 - DD 74 03
-   ld     (ix+15), SPRTAB_robotnik_idling&$FF  ; 02:A8B3 - DD 36 0F F9
-   ld     (ix+16), SPRTAB_robotnik_idling>>8  ; 02:A8B7 - DD 36 10 BA
+   of_set_sprite SPRTAB_robotnik_idling
    inc    (ix+17)                      ; 02:A8BB - DD 34 11
    ld     a, (ix+17)                   ; 02:A8BE - DD 7E 11
    cp     $C0                          ; 02:A8C1 - FE C0
@@ -16380,9 +16351,7 @@ objfunc_22_SCR_boss:
    bit    3, (ix+24)                   ; 02:A8CD - DD CB 18 5E
    jr     nz, @already_lowered_platform_for_sonic  ; 02:A8D1 - 20 18
    ld     (iy+g_inputs_player_1-IYBASE), $FF  ; 02:A8D3 - FD 36 03 FF
-   xor    a                            ; 02:A8D7 - AF
-   ld     (ix+15), a                   ; 02:A8D8 - DD 77 0F
-   ld     (ix+16), a                   ; 02:A8DB - DD 77 10
+   of_clear_sprite
    dec    (ix+17)                      ; 02:A8DE - DD 35 11
    jp     nz, @draw_platform_and_maybe_play_platform_sound  ; 02:A8E1 - C2 74 A9
    set    3, (ix+24)                   ; 02:A8E4 - DD CB 18 DE
@@ -16557,8 +16526,7 @@ objfunc_30_moving_cloud:
    ld     (ix+7), $00                  ; 02:AA4E - DD 36 07 00
    ld     (ix+8), $FD                  ; 02:AA52 - DD 36 08 FD
    ld     (ix+9), $FF                  ; 02:AA56 - DD 36 09 FF
-   ld     (ix+15), $00                 ; 02:AA5A - DD 36 0F 00
-   ld     (ix+16), $00                 ; 02:AA5E - DD 36 10 00
+   of_clear_sprite
    ret                                 ; 02:AA62 - C9
 
 SPRTAB_moving_cloud:
@@ -16611,8 +16579,7 @@ objfunc_31_SKY2_propeller:
    djnz   @each_sprite                 ; 02:AADB - 10 E3
    of_check_collision_with_sonic $02, $02, $05, $14
    call   nc, damage_sonic             ; 02:AAE6 - D4 FD 35
-   ld     (ix+15), $00                 ; 02:AAE9 - DD 36 0F 00
-   ld     (ix+16), $00                 ; 02:AAED - DD 36 10 00
+   of_clear_sprite
    ld     a, (ix+17)                   ; 02:AAF1 - DD 7E 11
    inc    a                            ; 02:AAF4 - 3C
    inc    a                            ; 02:AAF5 - 3C
@@ -16688,8 +16655,7 @@ objfunc_32_badnik_bomb:
    jp     @finish_with_gravity         ; 02:AB9A - C3 6A AC
 
 @do_explosion_final:
-   ld     (ix+15), SPRTAB_badnik_bomb_exploding&$FF  ; 02:AB9D - DD 36 0F 53
-   ld     (ix+16), SPRTAB_badnik_bomb_exploding>>8  ; 02:ABA1 - DD 36 10 AD
+   of_set_sprite SPRTAB_badnik_bomb_exploding
    cp     $67                          ; 02:ABA5 - FE 67
    jp     nz, @finish_with_gravity     ; 02:ABA7 - C2 6A AC
    ld     hl, $FFFE                    ; 02:ABAA - 21 FE FF
@@ -16901,8 +16867,7 @@ objfunc_33_SKY2_cannon:
    ret                                 ; 02:ADF2 - C9
 
 @skip_draw_cannon_shot_puff:
-   ld     (ix+15), a                   ; 02:ADF3 - DD 77 0F
-   ld     (ix+16), a                   ; 02:ADF6 - DD 77 10
+   of_clear_sprite
    inc    (ix+17)                      ; 02:ADF9 - DD 34 11
    ret                                 ; 02:ADFC - C9
 
@@ -16937,8 +16902,7 @@ objfunc_34_SKY2_cannon_shell:
    ld     (ix+10), a                   ; 02:AE6F - DD 77 0A
    ld     (ix+11), a                   ; 02:AE72 - DD 77 0B
    ld     (ix+12), a                   ; 02:AE75 - DD 77 0C
-   ld     (ix+15), SPRTAB_SKY2_cannon_shell&$FF  ; 02:AE78 - DD 36 0F 81
-   ld     (ix+16), SPRTAB_SKY2_cannon_shell>>8  ; 02:AE7C - DD 36 10 AE
+   of_set_sprite SPRTAB_SKY2_cannon_shell
    ret                                 ; 02:AE80 - C9
 
 SPRTAB_SKY2_cannon_shell:
@@ -16964,8 +16928,7 @@ objfunc_35_badnik_orbinaut:
    ld     (ix+7), $F8                  ; 02:AEB5 - DD 36 07 F8
    ld     (ix+8), $FF                  ; 02:AEB9 - DD 36 08 FF
    ld     (ix+9), $FF                  ; 02:AEBD - DD 36 09 FF
-   ld     (ix+15), SPRTAB_orbinaut_base_left&$FF  ; 02:AEC1 - DD 36 0F D5
-   ld     (ix+16), SPRTAB_orbinaut_base_left>>8  ; 02:AEC5 - DD 36 10 B0
+   of_set_sprite SPRTAB_orbinaut_base_left
    ld     hl, $FF80                    ; 02:AEC9 - 21 80 FF
    ld     (tmp_08), hl                 ; 02:AECC - 22 16 D2
    call   @fn_maybe_jettison_balls     ; 02:AECF - CD 98 AF
@@ -16976,8 +16939,7 @@ objfunc_35_badnik_orbinaut:
    ld     (ix+7), $08                  ; 02:AED8 - DD 36 07 08
    ld     (ix+8), $00                  ; 02:AEDC - DD 36 08 00
    ld     (ix+9), $00                  ; 02:AEE0 - DD 36 09 00
-   ld     (ix+15), SPRTAB_orbinaut_base_right&$FF  ; 02:AEE4 - DD 36 0F E7
-   ld     (ix+16), SPRTAB_orbinaut_base_right>>8  ; 02:AEE8 - DD 36 10 B0
+   of_set_sprite SPRTAB_orbinaut_base_right
    ld     hl, $0080                    ; 02:AEEC - 21 80 00
    ld     (tmp_08), hl                 ; 02:AEEF - 22 16 D2
    call   @fn_maybe_jettison_balls     ; 02:AEF2 - CD 98 AF
@@ -17168,8 +17130,7 @@ SPRTAB_orbinaut_base_right:
 
 objfunc_36_badnik_orbinaut_ejected_ball:
    set    5, (ix+24)                   ; 02:B0F4 - DD CB 18 EE
-   ld     (ix+15), $00                 ; 02:B0F8 - DD 36 0F 00
-   ld     (ix+16), $00                 ; 02:B0FC - DD 36 10 00
+   of_clear_sprite
    of_check_collision_with_sonic $02, $06, $04, $0A
    call   nc, damage_sonic             ; 02:B111 - D4 FD 35
    ld     l, (ix+2)                    ; 02:B114 - DD 6E 02
@@ -17225,8 +17186,7 @@ objfunc_37_SKY2_turning_gun:
    set    0, (ix+24)                   ; 02:B17E - DD CB 18 C6
 
 @already_initialised:
-   ld     (ix+15), $00                 ; 02:B182 - DD 36 0F 00
-   ld     (ix+16), $00                 ; 02:B186 - DD 36 10 00
+   of_clear_sprite
    ld     l, (ix+2)                    ; 02:B18A - DD 6E 02
    ld     h, (ix+3)                    ; 02:B18D - DD 66 03
    ld     (tmp_00), hl                 ; 02:B190 - 22 0E D2
@@ -17421,8 +17381,7 @@ objfunc_38_SKY_platform_right:
 @skip_drawing_this_propeller_sprite:
    pop    bc                           ; 02:B360 - C1
    djnz   @each_propeller_sprite       ; 02:B361 - 10 E9
-   ld     (ix+15), SPRTAB_SKY_platform&$FF  ; 02:B363 - DD 36 0F 7B
-   ld     (ix+16), SPRTAB_SKY_platform>>8  ; 02:B367 - DD 36 10 B3
+   of_set_sprite SPRTAB_SKY_platform
    ld     a, (ix+17)                   ; 02:B36B - DD 7E 11
    add    a, $04                       ; 02:B36E - C6 04
    ld     (ix+17), a                   ; 02:B370 - DD 77 11
@@ -17448,8 +17407,7 @@ objfunc_39_SKY2_spike_wall_right:
    set    0, (ix+24)                   ; 02:B3AE - DD CB 18 C6
 
 @already_initialised:
-   ld     (ix+15), SPRTAB_SKY2_spike_wall_right&$FF  ; 02:B3BA - DD 36 0F 5B
-   ld     (ix+16), SPRTAB_SKY2_spike_wall_right>>8  ; 02:B3BE - DD 36 10 B4
+   of_set_sprite SPRTAB_SKY2_spike_wall_right
    of_check_collision_with_sonic $02, $02, $0C, $2E
    call   nc, damage_sonic             ; 02:B3CB - D4 FD 35
    ld     l, (ix+1)                    ; 02:B3CE - DD 6E 01
@@ -17803,8 +17761,7 @@ objfunc_4A_SKY3_boss:
    add    hl, de                       ; 02:B6EF - 19
    ld     (ix+2), l                    ; 02:B6F0 - DD 75 02
    ld     (ix+3), h                    ; 02:B6F3 - DD 74 03
-   ld     (ix+15), SPRTAB_SKY3_boss_jumping&$FF  ; 02:B6F6 - DD 36 0F 1D
-   ld     (ix+16), SPRTAB_SKY3_boss_jumping>>8  ; 02:B6FA - DD 36 10 BB
+   of_set_sprite SPRTAB_SKY3_boss_jumping
    jp     @continue_after_state_execution  ; 02:B6FE - C3 93 B7
 
 @not_state_01_robotnik_jump_start:
@@ -17827,8 +17784,7 @@ objfunc_4A_SKY3_boss:
    ld     (ix+10), l                   ; 02:B720 - DD 75 0A
    ld     (ix+11), h                   ; 02:B723 - DD 74 0B
    ld     (ix+12), c                   ; 02:B726 - DD 71 0C
-   ld     (ix+15), SPRTAB_SKY3_boss_jumping&$FF  ; 02:B729 - DD 36 0F 1D
-   ld     (ix+16), SPRTAB_SKY3_boss_jumping>>8  ; 02:B72D - DD 36 10 BB
+   of_set_sprite SPRTAB_SKY3_boss_jumping
    ld     l, (ix+5)                    ; 02:B731 - DD 6E 05
    ld     h, (ix+6)                    ; 02:B734 - DD 66 06
    dec    hl                           ; 02:B737 - 2B
@@ -18113,14 +18069,11 @@ objfunc_4A_SKY3_boss:
    ld     a, c                         ; 02:B97D - 79
    cp     $2C                          ; 02:B97E - FE 2C
    ret    c                            ; 02:B980 - D8
-   ld     (ix+15), SPRTAB_SKY3_boss_teleporting&$FF  ; 02:B981 - DD 36 0F 77
-   ld     (ix+16), SPRTAB_SKY3_boss_teleporting>>8  ; 02:B985 - DD 36 10 BB
+   of_set_sprite SPRTAB_SKY3_boss_teleporting
    ret                                 ; 02:B989 - C9
 
 @teleported_waiting_to_despawn:
-   xor    a                            ; 02:B98A - AF
-   ld     (ix+15), a                   ; 02:B98B - DD 77 0F
-   ld     (ix+16), a                   ; 02:B98E - DD 77 10
+   of_clear_sprite
    inc    (ix+22)                      ; 02:B991 - DD 34 16
    ld     a, (ix+22)                   ; 02:B994 - DD 7E 16
    cp     $70                          ; 02:B997 - FE 70
@@ -18597,8 +18550,7 @@ objfunc_53_end_controller_start:
    ld     (g_level_scroll_x_pix_lo), de  ; 02:BE92 - ED 53 5A D2
 
 @skip_level_x_scroll:
-   ld     (ix+15), SPRTAB_end_controller_start_flying&$FF  ; 02:BE96 - DD 36 0F 21
-   ld     (ix+16), SPRTAB_end_controller_start_flying>>8  ; 02:BE9A - DD 36 10 BF
+   of_set_sprite SPRTAB_end_controller_start_flying
    bit    0, (ix+24)                   ; 02:BE9E - DD CB 18 46
    jr     nz, @did_not_get_hit_by_sonic  ; 02:BEA2 - 20 33
    of_check_collision_with_sonic $08, $10, $20, $1C
@@ -18631,8 +18583,7 @@ objfunc_53_end_controller_start:
    ld     (ix+10), $40                 ; 02:BEE0 - DD 36 0A 40
    ld     (ix+11), a                   ; 02:BEE4 - DD 77 0B
    ld     (ix+12), a                   ; 02:BEE7 - DD 77 0C
-   ld     (ix+15), SPRTAB_end_controller_start_exploding&$FF  ; 02:BEEA - DD 36 0F 33
-   ld     (ix+16), SPRTAB_end_controller_start_exploding>>8  ; 02:BEEE - DD 36 10 BF
+   of_set_sprite SPRTAB_end_controller_start_exploding
    dec    (ix+17)                      ; 02:BEF2 - DD 35 11
    ret    nz                           ; 02:BEF5 - C0
    call   spawn_explosion              ; 02:BEF6 - CD 3A 7A
@@ -18672,8 +18623,7 @@ objfunc_54_end_controller_good_ending_chaos_emeralds:
    bit    0, (ix+24)                   ; 02:BF56 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:BF5A - 20 22
    xor    a                            ; 02:BF5C - AF
-   ld     (ix+15), a                   ; 02:BF5D - DD 77 0F
-   ld     (ix+16), a                   ; 02:BF60 - DD 77 10
+   of_clear_sprite
    ld     (ix+7), a                    ; 02:BF63 - DD 77 07
    ld     (ix+8), a                    ; 02:BF66 - DD 77 08
    ld     (ix+9), a                    ; 02:BF69 - DD 77 09
