@@ -12323,9 +12323,9 @@ objfunc_29_log:
 @bobbing_was_downwards:
    ld     a, (sonic_vel_y_hi)          ; 01:7F2A - 3A 08 D4
    and    a                            ; 01:7F2D - A7
-   jp     m, log_obj_continue          ; 01:7F2E - FA 03 80
+   jp     m, @sprite_selected          ; 01:7F2E - FA 03 80
    of_check_collision_with_sonic $06, $08, $0A, $10
-   jp     c, log_obj_continue          ; 01:7F3A - DA 03 80
+   jp     c, @sprite_selected          ; 01:7F3A - DA 03 80
    ld     bc, $0010                    ; 01:7F3D - 01 10 00
    ld     e, (ix+10)                   ; 01:7F40 - DD 5E 0A
    ld     d, (ix+11)                   ; 01:7F43 - DD 56 0B
@@ -12413,22 +12413,9 @@ objfunc_29_log:
    add    hl, de                       ; 01:7FD2 - 19
    ld     (ix+15), l                   ; 01:7FD3 - DD 75 0F
    ld     (ix+16), h                   ; 01:7FD6 - DD 74 10
-   jp     log_obj_continue@sprite_was_set  ; 01:7FD9 - 18 30
-.ENDS
+   jr     @sprite_was_set              ; 01:7FD9 - 18 30
 
-.SMSTAG
-.SDSCTAG 0.0, "Sonic 1 Marathon", "", "modified by GreaseMonkey"
-
-.SECTION "Bank01_TMR_SEGA_presum" SLOT 1 BANK $01 FORCE ORG $3FF8
-.db $59, $59 ; 01:7FF8
-.ENDS
-;; Checksum is at 7FFA, 2 bytes.
-.SECTION "Bank01_TMR_SEGA_postsum" SLOT 1 BANK $01 FORCE ORG $3FFC
-.db $76, $70, $00  ; 01:7FFC
-.ENDS
-
-.SECTION "Bank02" SLOT 2 BANK $02 FORCE ORG $0000
-log_obj_continue:
+@sprite_selected:
    of_set_sprite SPRITEMAP_log
 
 @sprite_was_set:
@@ -12447,6 +12434,20 @@ SPRITEMAP_log:
 .db $FF, $FF, $FE, $FF, $FF, $FF, $FF, $FF, $36, $38, $FF, $FF, $FF, $FF, $FF, $FF  ; 02:8032
 .db $FF, $FF, $FF, $FF, $FE, $FF, $FF, $FF, $FF, $FF, $4C, $4E, $FF, $FF, $FF, $FF  ; 02:8042
 .db $FF                                                                             ; 02:8052
+.ENDS
+
+.SMSTAG
+.SDSCTAG 0.0, "Sonic 1 Marathon", "", "modified by GreaseMonkey"
+
+.SECTION "Bank01_TMR_SEGA_presum" SLOT 1 BANK $01 FORCE ORG $3FF8
+.db $59, $59 ; 01:7FF8
+.ENDS
+;; Checksum is at 7FFA, 2 bytes.
+.SECTION "Bank01_TMR_SEGA_postsum" SLOT 1 BANK $01 FORCE ORG $3FFC
+.db $76, $70, $00  ; 01:7FFC
+.ENDS
+
+.SECTION "Bank02" SLOT 2 BANK $02 FORCE ORG $0000
 
 objfunc_2C_JUN3_boss:
    of_disable_world_collisions
