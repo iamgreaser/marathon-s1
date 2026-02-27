@@ -89,9 +89,11 @@ g_level_height dw   ; D23A
 g_next_avail_vdp_sprite_ptr dw   ; D23C
 g_level db   ; D23E
 g_next_bonus_level db   ; D23F
+;; v Grouped
 g_sonic_x_speed_cap_subpx dw   ; D240
 g_sonic_y_jump_velocity dw   ; D242
 g_sonic_y_gravity_acceleration dw   ; D244
+;; ^ Grouped
 g_lives db   ; D246
 g_water_irq_line_state db   ; D247
 g_water_onscreen_y db   ; D248
@@ -6796,15 +6798,6 @@ objfunc_00_sonic:
    bit    4, (ix+24)                   ; 01:4928 - DD CB 18 66
    jp     z, @not_underwater_physics   ; 01:492C - CA 4F 49
    ld     hl, objfunc_00_sonic@sonic_physics_underwater  ; 01:492F - 21 DD 4D
-   ld     de, tmp_00                   ; 01:4932 - 11 0E D2
-   ld     bc, $0009                    ; 01:4935 - 01 09 00
-   ldir                                ; 01:4938 - ED B0
-   ld     hl, $0100                    ; 01:493A - 21 00 01
-   ld     (g_sonic_x_speed_cap_subpx), hl  ; 01:493D - 22 40 D2
-   ld     hl, $FD80                    ; 01:4940 - 21 80 FD
-   ld     (g_sonic_y_jump_velocity), hl  ; 01:4943 - 22 42 D2
-   ld     hl, $0010                    ; 01:4946 - 21 10 00
-   ld     (g_sonic_y_gravity_acceleration), hl  ; 01:4949 - 22 44 D2
    jp     @physics_selected            ; 01:494C - C3 D9 49
 
 @not_underwater_physics:
@@ -6815,56 +6808,35 @@ objfunc_00_sonic:
    jr     nz, @is_special_stage_air_physics  ; 01:4959 - 20 26
 
 @is_normal_physics:
-   ld     hl, objfunc_00_sonic@sonic_physics_main  ; 01:495B - 21 CB 4D
-   ld     de, tmp_00                   ; 01:495E - 11 0E D2
-   ld     bc, $0009                    ; 01:4961 - 01 09 00
-   ldir                                ; 01:4964 - ED B0
-   ld     hl, $0300                    ; 01:4966 - 21 00 03
-   ld     (g_sonic_x_speed_cap_subpx), hl  ; 01:4969 - 22 40 D2
-   ld     hl, $FC80                    ; 01:496C - 21 80 FC
-   ld     (g_sonic_y_jump_velocity), hl  ; 01:496F - 22 42 D2
-   ld     hl, $0038                    ; 01:4972 - 21 38 00
-   ld     (g_sonic_y_gravity_acceleration), hl  ; 01:4975 - 22 44 D2
    ld     hl, (snd_music_saved_tick_tempo)  ; 01:4978 - 2A 0C DC
    ld     (snd_music_tick_tempo), hl   ; 01:497B - 22 0A DC
+   ld     hl, objfunc_00_sonic@sonic_physics_main  ; 01:495B - 21 CB 4D
    jp     @physics_selected            ; 01:497E - C3 D9 49
 
 @is_special_stage_air_physics:
    bit    7, (ix+24)                   ; 01:4981 - DD CB 18 7E
    jr     nz, @is_normal_physics       ; 01:4985 - 20 D4
-   ld     hl, objfunc_00_sonic@sonic_physics_special_stage_airborne  ; 01:4987 - 21 D4 4D
-   ld     de, tmp_00                   ; 01:498A - 11 0E D2
-   ld     bc, $0009                    ; 01:498D - 01 09 00
-   ldir                                ; 01:4990 - ED B0
-   ld     hl, $0C00                    ; 01:4992 - 21 00 0C
-   ld     (g_sonic_x_speed_cap_subpx), hl  ; 01:4995 - 22 40 D2
-   ld     hl, $FC80                    ; 01:4998 - 21 80 FC
-   ld     (g_sonic_y_jump_velocity), hl  ; 01:499B - 22 42 D2
-   ld     hl, $0038                    ; 01:499E - 21 38 00
-   ld     (g_sonic_y_gravity_acceleration), hl  ; 01:49A1 - 22 44 D2
    ld     hl, (snd_music_saved_tick_tempo)  ; 01:49A4 - 2A 0C DC
    ld     (snd_music_tick_tempo), hl   ; 01:49A7 - 22 0A DC
+   ld     hl, objfunc_00_sonic@sonic_physics_special_stage_airborne  ; 01:4987 - 21 D4 4D
    jp     @physics_selected            ; 01:49AA - C3 D9 49
 
 @is_speed_shoes_physics:
-   ld     hl, objfunc_00_sonic@sonic_physics_speed_shoes  ; 01:49AD - 21 E6 4D
-   ld     de, tmp_00                   ; 01:49B0 - 11 0E D2
-   ld     bc, $0009                    ; 01:49B3 - 01 09 00
-   ldir                                ; 01:49B6 - ED B0
-   ld     hl, $0600                    ; 01:49B8 - 21 00 06
-   ld     (g_sonic_x_speed_cap_subpx), hl  ; 01:49BB - 22 40 D2
-   ld     hl, $FC80                    ; 01:49BE - 21 80 FC
-   ld     (g_sonic_y_jump_velocity), hl  ; 01:49C1 - 22 42 D2
-   ld     hl, $0038                    ; 01:49C4 - 21 38 00
-   ld     (g_sonic_y_gravity_acceleration), hl  ; 01:49C7 - 22 44 D2
    ld     hl, (snd_music_saved_tick_tempo)  ; 01:49CA - 2A 0C DC
    inc    hl                           ; 01:49CD - 23
    ld     (snd_music_tick_tempo), hl   ; 01:49CE - 22 0A DC
    ld     a, (g_global_tick_counter)   ; 01:49D1 - 3A 23 D2
    and    $03                          ; 01:49D4 - E6 03
    call   z, @fn_handle_speed_shoes_timer  ; 01:49D6 - CC EC 4F
+   ld     hl, objfunc_00_sonic@sonic_physics_speed_shoes  ; 01:49AD - 21 E6 4D
 
 @physics_selected:
+   ld de, tmp_00
+   ld bc, $0009
+   ldir
+   ld de, g_sonic_x_speed_cap_subpx
+   ld bc, $0006
+   ldir
    bit    1, (iy+g_inputs_player_1-IYBASE)  ; 01:49D9 - FD CB 03 4E
    call   z, @fn_try_to_roll           ; 01:49DD - CC C1 50
    bit    1, (iy+g_inputs_player_1-IYBASE)  ; 01:49E0 - FD CB 03 4E
@@ -7406,18 +7378,22 @@ objfunc_00_sonic:
 @sonic_physics_main:
 .dw $0010, $0030, $0008, $0800                                                      ; 01:4DCB
 .db $02                                                                             ; 01:4DD3
+.dw $0300, $FC80, $0038
 
 @sonic_physics_special_stage_airborne:
 .dw $0010, $0030, $0002, $0800                                                      ; 01:4DD4
 .db $02                                                                             ; 01:4DDC
+.dw $0C00, $FC80, $0038
 
 @sonic_physics_underwater:
 .dw $0004, $000C, $0002, $0200                                                      ; 01:4DDD
 .db $01                                                                             ; 01:4DE5
+.dw $0100, $FD80, $0010
 
 @sonic_physics_speed_shoes:
 .dw $0010, $0030, $0008, $0800                                                      ; 01:4DE6
 .db $02                                                                             ; 01:4DEE
+.dw $0600, $FC80, $0038
 
 @fn_try_collect_ring_in_ring_tile:
    ex     de, hl                       ; 01:4DEF - EB
