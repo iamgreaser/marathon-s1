@@ -5731,12 +5731,12 @@ kill_sonic:
 make_sonic_throw_his_rings:
    xor    a                            ; 00:3644 - AF
    ld     (g_rings_BCD), a             ; 00:3645 - 32 AA D2
+   ld a, $55
    call   spawn_object                 ; 00:3648 - CD 7B 7C
    jr     c, make_sonic_stunned_after_hit  ; 00:364B - 38 31
    push   ix                           ; 00:364D - DD E5
    push   hl                           ; 00:364F - E5
    pop    ix                           ; 00:3650 - DD E1
-   ld     (ix+0), $55                  ; 00:3652 - DD 36 00 55
    ld     (ix+17), $06                 ; 00:3656 - DD 36 11 06
    ld     (ix+18), $00                 ; 00:365A - DD 36 12 00
    ld     hl, (sonic_x)                ; 00:365E - 2A FE D3
@@ -8069,13 +8069,13 @@ objfunc_00_sonic:
    bit    0, (iy+iy_0D-IYBASE)         ; 01:52C4 - FD CB 0D 46
    jr     nz, @good_ending_emeralds_already_spawned  ; 01:52C8 - 20 41
    ld     (hl), $50                    ; 01:52CA - 36 50
+   ld a, $54
    call   spawn_object                 ; 01:52CC - CD 7B 7C
    jp     c, @continue_past_basic_movement_physics  ; 01:52CF - DA 39 4C
    push   ix                           ; 01:52D2 - DD E5
    push   hl                           ; 01:52D4 - E5
    pop    ix                           ; 01:52D5 - DD E1
    xor    a                            ; 01:52D7 - AF
-   ld     (ix+0), $54                  ; 01:52D8 - DD 36 00 54
    ld     (ix+17), a                   ; 01:52DC - DD 77 11
    ld     (ix+24), a                   ; 01:52DF - DD 77 18
    ld     (ix+1), a                    ; 01:52E2 - DD 77 01
@@ -8875,6 +8875,7 @@ objfunc_00_sonic:
 @spawn_falling_bridge_piece:
    push   bc                           ; 01:5893 - C5
    push   de                           ; 01:5894 - D5
+   ld a, $2E
    call   spawn_object                 ; 01:5895 - CD 7B 7C
    pop    de                           ; 01:5898 - D1
    pop    bc                           ; 01:5899 - C1
@@ -8883,7 +8884,6 @@ objfunc_00_sonic:
    push   hl                           ; 01:589D - E5
    pop    ix                           ; 01:589E - DD E1
    xor    a                            ; 01:58A0 - AF
-   ld     (ix+0), $2E                  ; 01:58A1 - DD 36 00 2E
    ld     (ix+1), a                    ; 01:58A5 - DD 77 01
    ld     (ix+2), c                    ; 01:58A8 - DD 71 02
    ld     (ix+3), b                    ; 01:58AB - DD 70 03
@@ -9905,6 +9905,7 @@ objfunc_08_badnik_crabmeat:
    ld     (tmp_04), hl                 ; 01:6638 - 22 12 D2
    ld     hl, $FFFC                    ; 01:663B - 21 FC FF
    ld     (tmp_06), hl                 ; 01:663E - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 01:6641 - CD 7B 7C
    jp     c, @continue                 ; 01:6644 - DA 78 66
    ld     de, $0000                    ; 01:6647 - 11 00 00
@@ -9915,6 +9916,7 @@ objfunc_08_badnik_crabmeat:
    ld     (tmp_04), hl                 ; 01:6652 - 22 12 D2
    ld     hl, $FFFC                    ; 01:6655 - 21 FC FF
    ld     (tmp_06), hl                 ; 01:6658 - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 01:665B - CD 7B 7C
    jr     c, @continue                 ; 01:665E - 38 18
    ld     de, $000E                    ; 01:6660 - 11 0E 00
@@ -10439,6 +10441,7 @@ objfunc_0E_badnik_buzz_bomber:
    ld     a, (ix+17)                   ; 01:6C2A - DD 7E 11
    cp     $20                          ; 01:6C2D - FE 20
    jp     nz, @continue                ; 01:6C2F - C2 A1 6C
+   ld a, $0D
    call   spawn_object                 ; 01:6C32 - CD 7B 7C
    jp     c, @continue                 ; 01:6C35 - DA A1 6C
    push   bc                           ; 01:6C38 - C5
@@ -10450,7 +10453,6 @@ objfunc_0E_badnik_buzz_bomber:
    push   hl                           ; 01:6C47 - E5
    pop    ix                           ; 01:6C48 - DD E1
    xor    a                            ; 01:6C4A - AF
-   ld     (ix+0), $0D                  ; 01:6C4B - DD 36 00 0D
    ld     (ix+1), a                    ; 01:6C4F - DD 77 01
    ld     (ix+2), e                    ; 01:6C52 - DD 73 02
    ld     (ix+3), d                    ; 01:6C55 - DD 72 03
@@ -10734,6 +10736,7 @@ objfunc_11_badnik_newtron:
    ld     a, (ix+23)                   ; 01:6F4A - DD 7E 17
    cp     $64                          ; 01:6F4D - FE 64
    jr     nz, @dont_spawn_fireball     ; 01:6F4F - 20 60
+   ld a, $0D
    call   spawn_object                 ; 01:6F51 - CD 7B 7C
    jp     c, @dont_spawn_fireball      ; 01:6F54 - DA B1 6F
    push   bc                           ; 01:6F57 - C5
@@ -10745,7 +10748,6 @@ objfunc_11_badnik_newtron:
    push   hl                           ; 01:6F66 - E5
    pop    ix                           ; 01:6F67 - DD E1
    xor    a                            ; 01:6F69 - AF
-   ld     (ix+0), $0D                  ; 01:6F6A - DD 36 00 0D
    ld     (ix+1), a                    ; 01:6F6E - DD 77 01
    ld     (ix+2), e                    ; 01:6F71 - DD 73 02
    ld     (ix+3), d                    ; 01:6F74 - DD 72 03
@@ -11289,7 +11291,6 @@ objfunc_25_animal_capsule:
    ret                                 ; 01:74B5 - C9
 
 @animal_spawning_subroutine:
-   ld     (tmp_08), a                  ; 01:74B6 - 32 16 D2
    call   spawn_object                 ; 01:74B9 - CD 7B 7C
    ret    c                            ; 01:74BC - D8
    ld     e, (ix+2)                    ; 01:74BD - DD 5E 02
@@ -11299,8 +11300,6 @@ objfunc_25_animal_capsule:
    push   ix                           ; 01:74C9 - DD E5
    push   hl                           ; 01:74CB - E5
    pop    ix                           ; 01:74CC - DD E1
-   ld     a, (tmp_08)                  ; 01:74CE - 3A 16 D2
-   ld     (ix+0), a                    ; 01:74D1 - DD 77 00
    xor    a                            ; 01:74D4 - AF
    ld     (ix+22), a                   ; 01:74D5 - DD 77 16
    ld     (ix+23), a                   ; 01:74D8 - DD 77 17
@@ -11759,6 +11758,7 @@ boss_render_jet_engine_flame:
    ret                                 ; 01:7A39 - C9
 
 spawn_explosion:
+   ld a, $0A
    call   spawn_object                 ; 01:7A3A - CD 7B 7C
    ret    c                            ; 01:7A3D - D8
    push   hl                           ; 01:7A3E - E5
@@ -11781,7 +11781,6 @@ spawn_explosion:
    push   hl                           ; 01:7A64 - E5
    pop    ix                           ; 01:7A65 - DD E1
    xor    a                            ; 01:7A67 - AF
-   ld     (ix+0), $0A                  ; 01:7A68 - DD 36 00 0A
    ld     (ix+1), a                    ; 01:7A6C - DD 77 01
    ld     hl, (tmp_00)                 ; 01:7A6F - 2A 0E D2
    add    hl, de                       ; 01:7A72 - 19
@@ -12025,15 +12024,34 @@ spawn_object:
    ld     hl, object_list_past_sonic   ; 01:7C7B - 21 16 D4
    ld     de, $001A                    ; 01:7C7E - 11 1A 00
    ld     b, $1F                       ; 01:7C81 - 06 1F
+   push af
 
 @find_free_object:
    ld     a, (hl)                      ; 01:7C83 - 7E
    cp     $FF                          ; 01:7C84 - FE FF
-   ret    z                            ; 01:7C86 - C8
+   jr z, @found_slot
    add    hl, de                       ; 01:7C87 - 19
    djnz   @find_free_object            ; 01:7C88 - 10 F9
+   pop af
    scf                                 ; 01:7C8A - 37
    ret                                 ; 01:7C8B - C9
+
+@found_slot:
+   pop af
+   ;; Set object type
+   ld (hl), a
+   ;; Clear remainder of structure
+   push hl
+      inc hl
+      ld (hl), $00
+      ld e, l
+      ld d, h
+      inc de
+      ld bc, $001A - 2
+      ldir
+   pop hl
+   and a  ; clear carry
+   ret
 
 set_locked_camera_target:
    ld     (g_level_camera_lock_towards_x), hl  ; 01:7C8C - 22 7B D2
@@ -12531,6 +12549,7 @@ objfunc_2C_JUN3_boss:
    ld     a, (g_boss_hits_taken)       ; 02:8185 - 3A EC D2
    cp     $08                          ; 02:8188 - FE 08
    jr     nc, @continue_to_common_code  ; 02:818A - 30 5B
+   ld a, $2B
    call   spawn_object                 ; 02:818C - CD 7B 7C
    ret    c                            ; 02:818F - D8
    ld     e, (ix+2)                    ; 02:8190 - DD 5E 02
@@ -12540,7 +12559,6 @@ objfunc_2C_JUN3_boss:
    push   ix                           ; 02:819C - DD E5
    push   hl                           ; 02:819E - E5
    pop    ix                           ; 02:819F - DD E1
-   ld     (ix+0), $2B                  ; 02:81A1 - DD 36 00 2B
    xor    a                            ; 02:81A5 - AF
    ld     (ix+1), a                    ; 02:81A6 - DD 77 01
    ld     hl, $000B                    ; 02:81A9 - 21 0B 00
@@ -12963,6 +12981,7 @@ objfunc_48_BRI3_boss:
 
 boss_fire_fireball_pallet:
    push   bc                           ; 02:85D1 - C5
+   ld a, $0D
    call   spawn_object                 ; 02:85D2 - CD 7B 7C
    pop    bc                           ; 02:85D5 - C1
    ret    c                            ; 02:85D6 - D8
@@ -12970,7 +12989,6 @@ boss_fire_fireball_pallet:
    push   hl                           ; 02:85D9 - E5
    pop    ix                           ; 02:85DA - DD E1
    xor    a                            ; 02:85DC - AF
-   ld     (ix+0), $0D                  ; 02:85DD - DD 36 00 0D
    ld     hl, (tmp_00)                 ; 02:85E1 - 2A 0E D2
    ld     (ix+1), a                    ; 02:85E4 - DD 77 01
    ld     (ix+2), l                    ; 02:85E7 - DD 75 02
@@ -14098,8 +14116,6 @@ SPRTAB_LAB_float_up_platform:
 .db $FE, $FF, $FF, $FF, $FF, $FF, $16, $18, $1A, $1C, $FF, $FF, $FF                 ; 02:91DE
 
 spawn_bubble:
-   call   spawn_object                 ; 02:91EB - CD 7B 7C
-   ret    c                            ; 02:91EE - D8
    ld     c, $42                       ; 02:91EF - 0E 42
    ld     a, (ix+0)                    ; 02:91F1 - DD 7E 00
    cp     $41                          ; 02:91F4 - FE 41
@@ -14116,6 +14132,8 @@ spawn_bubble:
 
 @not_type_41:
    ld     a, c                         ; 02:9207 - 79
+   call   spawn_object                 ; 02:91EB - CD 7B 7C
+   ret    c                            ; 02:91EE - D8
    ld     e, (ix+2)                    ; 02:9208 - DD 5E 02
    ld     d, (ix+3)                    ; 02:920B - DD 56 03
    ld     c, (ix+5)                    ; 02:920E - DD 4E 05
@@ -14268,13 +14286,13 @@ objfunc_49_LAB3_boss:
    ld     a, (g_boss_hits_taken)       ; 02:9361 - 3A EC D2
    cp     $08                          ; 02:9364 - FE 08
    jp     nc, @continue_to_common_code  ; 02:9366 - D2 F7 93
+   ld a, $2F
    call   spawn_object                 ; 02:9369 - CD 7B 7C
    jp     c, @continue_to_common_code  ; 02:936C - DA F7 93
    push   ix                           ; 02:936F - DD E5
    push   hl                           ; 02:9371 - E5
    pop    ix                           ; 02:9372 - DD E1
    xor    a                            ; 02:9374 - AF
-   ld     (ix+0), $2F                  ; 02:9375 - DD 36 00 2F
    ld     hl, (tmp_00)                 ; 02:9379 - 2A 0E D2
    ld     (ix+1), a                    ; 02:937C - DD 77 01
    ld     (ix+2), l                    ; 02:937F - DD 75 02
@@ -14611,13 +14629,13 @@ objfunc_2F_LAB3_boss_rocket:
    ld     a, (g_global_tick_counter)   ; 02:9641 - 3A 23 D2
    and    $0F                          ; 02:9644 - E6 0F
    ret    nz                           ; 02:9646 - C0
+   ld a, $2A
    call   spawn_object                 ; 02:9647 - CD 7B 7C
    ret    c                            ; 02:964A - D8
    push   ix                           ; 02:964B - DD E5
    push   hl                           ; 02:964D - E5
    pop    ix                           ; 02:964E - DD E1
    xor    a                            ; 02:9650 - AF
-   ld     (ix+0), $2A                  ; 02:9651 - DD 36 00 2A
    ld     hl, (tmp_00)                 ; 02:9655 - 2A 0E D2
    ld     (ix+1), a                    ; 02:9658 - DD 77 01
    ld     (ix+2), l                    ; 02:965B - DD 75 02
@@ -15736,6 +15754,7 @@ objfunc_1B_badnik_ballhog:
    ld     a, (ix+17)                   ; 02:A200 - DD 7E 11
    cp     $ED                          ; 02:A203 - FE ED
    jp     nz, @inc_timer_and_return    ; 02:A205 - C2 CE A2
+   ld a, $1C
    call   spawn_object                 ; 02:A208 - CD 7B 7C
    jp     c, @inc_timer_and_return     ; 02:A20B - DA CE A2
    ld     e, (ix+2)                    ; 02:A20E - DD 5E 02
@@ -15746,7 +15765,6 @@ objfunc_1B_badnik_ballhog:
    push   hl                           ; 02:A21C - E5
    pop    ix                           ; 02:A21D - DD E1
    xor    a                            ; 02:A21F - AF
-   ld     (ix+0), $1C                  ; 02:A220 - DD 36 00 1C
    ld     (ix+1), a                    ; 02:A224 - DD 77 01
    ld     (ix+2), e                    ; 02:A227 - DD 73 02
    ld     (ix+3), d                    ; 02:A22A - DD 72 03
@@ -15784,6 +15802,7 @@ objfunc_1B_badnik_ballhog:
    ld     a, (ix+17)                   ; 02:A276 - DD 7E 11
    cp     $ED                          ; 02:A279 - FE ED
    jr     nz, @inc_timer_and_return    ; 02:A27B - 20 51
+   ld a, $1C
    call   spawn_object                 ; 02:A27D - CD 7B 7C
    jp     c, @inc_timer_and_return     ; 02:A280 - DA CE A2
    ld     e, (ix+2)                    ; 02:A283 - DD 5E 02
@@ -15794,7 +15813,6 @@ objfunc_1B_badnik_ballhog:
    push   hl                           ; 02:A291 - E5
    pop    ix                           ; 02:A292 - DD E1
    xor    a                            ; 02:A294 - AF
-   ld     (ix+0), $1C                  ; 02:A295 - DD 36 00 1C
    ld     (ix+1), a                    ; 02:A299 - DD 77 01
    ld     (ix+2), e                    ; 02:A29C - DD 73 02
    ld     (ix+3), d                    ; 02:A29F - DD 72 03
@@ -16641,6 +16659,7 @@ objfunc_32_badnik_bomb:
    ld     (tmp_04), hl                 ; 02:ABAD - 22 12 D2
    ld     hl, $FFFC                    ; 02:ABB0 - 21 FC FF
    ld     (tmp_06), hl                 ; 02:ABB3 - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 02:ABB6 - CD 7B 7C
    jp     c, @finish_without_gravity   ; 02:ABB9 - DA 76 AC
    ld     de, $0000                    ; 02:ABBC - 11 00 00
@@ -16651,6 +16670,7 @@ objfunc_32_badnik_bomb:
    ld     (tmp_04), hl                 ; 02:ABC7 - 22 12 D2
    ld     hl, $FFFC                    ; 02:ABCA - 21 FC FF
    ld     (tmp_06), hl                 ; 02:ABCD - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 02:ABD0 - CD 7B 7C
    jp     c, @finish_without_gravity   ; 02:ABD3 - DA 76 AC
    ld     de, $0008                    ; 02:ABD6 - 11 08 00
@@ -16660,6 +16680,7 @@ objfunc_32_badnik_bomb:
    ld     (tmp_04), hl                 ; 02:ABE2 - 22 12 D2
    ld     hl, $FFFE                    ; 02:ABE5 - 21 FE FF
    ld     (tmp_06), hl                 ; 02:ABE8 - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 02:ABEB - CD 7B 7C
    jp     c, @finish_without_gravity   ; 02:ABEE - DA 76 AC
    ld     de, $0000                    ; 02:ABF1 - 11 00 00
@@ -16669,6 +16690,7 @@ objfunc_32_badnik_bomb:
    ld     (tmp_04), hl                 ; 02:ABFD - 22 12 D2
    ld     hl, $FFFE                    ; 02:AC00 - 21 FE FF
    ld     (tmp_06), hl                 ; 02:AC03 - 22 14 D2
+   ld a, $0D
    call   spawn_object                 ; 02:AC06 - CD 7B 7C
    jp     c, @finish_without_gravity   ; 02:AC09 - DA 76 AC
    ld     de, $0008                    ; 02:AC0C - 11 08 00
@@ -16743,7 +16765,6 @@ init_fireball_object:
    ld     b, h                         ; 02:ACA9 - 44
    pop    ix                           ; 02:ACAA - DD E1
    xor    a                            ; 02:ACAC - AF
-   ld     (ix+0), $0D                  ; 02:ACAD - DD 36 00 0D
    ld     (ix+1), a                    ; 02:ACB1 - DD 77 01
    ld     (ix+2), e                    ; 02:ACB4 - DD 73 02
    ld     (ix+3), d                    ; 02:ACB7 - DD 72 03
@@ -16806,6 +16827,7 @@ objfunc_33_SKY2_cannon:
    ld     a, (ix+17)                   ; 02:AD90 - DD 7E 11
    cp     $64                          ; 02:AD93 - FE 64
    jr     nz, @skip_spawn_cannon_shell  ; 02:AD95 - 20 46
+   ld a, $34
    call   spawn_object                 ; 02:AD97 - CD 7B 7C
    jr     c, @skip_spawn_cannon_shell  ; 02:AD9A - 38 41
    push   ix                           ; 02:AD9C - DD E5
@@ -16816,7 +16838,6 @@ objfunc_33_SKY2_cannon:
    push   hl                           ; 02:ADAA - E5
    pop    ix                           ; 02:ADAB - DD E1
    xor    a                            ; 02:ADAD - AF
-   ld     (ix+0), $34                  ; 02:ADAE - DD 36 00 34
    ld     (ix+1), a                    ; 02:ADB2 - DD 77 01
    ld     hl, $0004                    ; 02:ADB5 - 21 04 00
    add    hl, de                       ; 02:ADB8 - 19
@@ -17049,6 +17070,7 @@ objfunc_35_badnik_orbinaut:
 
 @fn_jettison_ball:
    ld     (hl), $FE                    ; 02:AFDB - 36 FE
+   ld a, $36
    call   spawn_object                 ; 02:AFDD - CD 7B 7C
    ret    c                            ; 02:AFE0 - D8
    push   ix                           ; 02:AFE1 - DD E5
@@ -17059,7 +17081,6 @@ objfunc_35_badnik_orbinaut:
    push   hl                           ; 02:AFEF - E5
    pop    ix                           ; 02:AFF0 - DD E1
    xor    a                            ; 02:AFF2 - AF
-   ld     (ix+0), $36                  ; 02:AFF3 - DD 36 00 36
    ld     (ix+1), a                    ; 02:AFF7 - DD 77 01
    ld     hl, $0012                    ; 02:AFFA - 21 12 00
    add    hl, de                       ; 02:AFFD - 19
@@ -17617,6 +17638,7 @@ SPRTAB_platform_y_oscillate_BRI:
 shoot_straight_fireball:
    push   bc                           ; 02:B5C2 - C5
    push   de                           ; 02:B5C3 - D5
+   ld a, $0D
    call   spawn_object                 ; 02:B5C4 - CD 7B 7C
    pop    de                           ; 02:B5C7 - D1
    pop    bc                           ; 02:B5C8 - C1
@@ -17634,7 +17656,6 @@ shoot_straight_fireball:
    ld     b, h                         ; 02:B5DD - 44
    pop    ix                           ; 02:B5DE - DD E1
    xor    a                            ; 02:B5E0 - AF
-   ld     (ix+0), $0D                  ; 02:B5E1 - DD 36 00 0D
    ld     (ix+1), a                    ; 02:B5E5 - DD 77 01
    ld     (ix+2), e                    ; 02:B5E8 - DD 73 02
    ld     (ix+3), d                    ; 02:B5EB - DD 72 03
@@ -18094,13 +18115,13 @@ objfunc_4A_SKY3_boss:
 @fn_spawn_electric_ball_at_fixed_pos:
    bit    5, (iy+iy_08_lvflag03-IYBASE)  ; 02:B9D5 - FD CB 08 6E
    ret    nz                           ; 02:B9D9 - C0
+   ld a, $47
    call   spawn_object                 ; 02:B9DA - CD 7B 7C
    ret    c                            ; 02:B9DD - D8
    push   ix                           ; 02:B9DE - DD E5
    push   hl                           ; 02:B9E0 - E5
    pop    ix                           ; 02:B9E1 - DD E1
    xor    a                            ; 02:B9E3 - AF
-   ld     (ix+0), $47                  ; 02:B9E4 - DD 36 00 47
    ld     (ix+1), a                    ; 02:B9E8 - DD 77 01
    ld     hl, $0420                    ; 02:B9EB - 21 20 04
    ld     (ix+2), l                    ; 02:B9EE - DD 75 02
