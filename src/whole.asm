@@ -1952,6 +1952,9 @@ unpack_level_layout_into_ram:
             ld h, b
             call load_level_chunk@ENTRY_POINT
          pop hl
+         ;; TODO: Actually handle the ramsave section --GM
+         inc hl
+         inc hl
       pop bc
       ld a, c
       call set_rompage_2

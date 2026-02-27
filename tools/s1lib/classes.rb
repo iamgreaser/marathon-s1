@@ -70,6 +70,24 @@ class Chunk
     [@uncompressed_1d].hash
   end
 
+  def emit_section(chunk_name)
+    s = ""
+    s << ".SECTION \"base_#{chunk_name}\" SLOT 2 SUPERFREE\n"
+    s << "#{chunk_name}:\n"
+    s << ".DB " + compressed.map{|v| "$" + (v+0x100).to_s(16).upcase[1..]}.join(", ") + "\n"
+    s << ".ENDS\n"
+    s
+  end
+
+  def emit_ramsection(chunksave_name)
+    assert ring_count >= 1
+    s = ""
+    s << ".RAMSECTION \"ram_#{chunksave_name}\" SLOT 4 FREE\n"
+    s << "#{chunksave_name} dsb #{ram_save_byte_count}\n"
+    s << ".ENDS\n"
+    s
+  end
+
   def compressed
     unless @compressed
       @compressed = newcmp_pack(uncompressed_1d)
@@ -78,12 +96,22 @@ class Chunk
     @compressed
   end
 
-  def emit_section(chunk_name)
-    s = ""
-    s << ".SECTION \"base_#{chunk_name}\" SLOT 2 SUPERFREE\n"
-    s << "#{chunk_name}:\n"
-    s << ".DB " + compressed.map{|v| "$" + (v+0x100).to_s(16).upcase[1..]}.join(", ") + "\n"
-    s << ".ENDS\n"
-    s
+  def ram_save_byte_count
+    (ring_count+7)/8
+  end
+
+  def ring_count
+    unless @ring_count
+      accum = 0
+      @uncompressed_1d.each do |v|
+        # The engine checks 0x79 through 0x7F, and also 0xF9 through 0xFF, even though only 0x79 through 0x7B is used in this case. Go figure.
+        if (v & 0x7F) >= 0x79
+          accum += 1 if (v & 0x01) != 0
+          accum += 1 if (v & 0x02) != 0
+        end
+      end
+      @ring_count = accum
+    end
+    @ring_count
   end
 end
