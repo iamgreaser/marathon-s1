@@ -3222,6 +3222,28 @@ load_and_run_level:
    ld     (hl), a                      ; 00:1E4C - 77
    add    hl, de                       ; 00:1E4D - 19
    djnz   @loop_clear_some_sprite_table_entries  ; 00:1E4E - 10 F8
+
+   .IF 0
+      ;; STRESS TEST: Load the first level chunk every frame.
+      ld hl, g_level_header_copy+1+(6*2)+2
+      ld e, (hl)
+      inc hl
+      ld d, (hl)
+      inc hl
+      ld a, (hl)
+      call set_rompage_2
+      ex de, hl
+      ld e, (hl)
+      inc hl
+      ld d, (hl)
+      inc hl
+      ld a, (hl)
+      call set_rompage_2
+      ex de, hl
+      ld de, g_level_layout
+      call load_level_chunk@ENTRY_POINT
+   .ENDIF
+
    ld a, $02
    call set_rompage_2
    call   draw_HUD_sprites             ; 00:1E60 - CD 5A 2E
