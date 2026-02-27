@@ -55,23 +55,17 @@ def main
     # Build chunks
     prev_chunk_count = $next_chunk_idx
     ptr_list = []
-    layout.each_chunk(CHUNK_SIZE) do |cx, cy, unc_chunk|
-      chunk = newcmp_pack(unc_chunk)
-      #chunk = ext_zx0_pack(unc_chunk)
-
+    layout.each_chunk(CHUNK_SIZE) do |cx, cy, chunk|
       $total_chunked_bytes += PER_PTR_COST
       unless $used_chunks.has_key?(chunk)
         $total_chunked_bytes += PER_CHUNK_COST
-        $total_chunked_bytes += chunk.length
+        $total_chunked_bytes += chunk.compressed.length
         chunk_name = "chunk_#{($next_chunk_idx+0x10000).to_s(16).upcase[1..]}"
         $used_chunks[chunk] = chunk_name
         #pp chunk
         #puts chunk.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")
         puts ""
-        puts ".SECTION \"base_#{chunk_name}\" SLOT 2 SUPERFREE"
-        puts "#{chunk_name}:"
-        puts ".DB " + chunk.map{|v| "$" + (v+0x100).to_s(16).upcase[1..]}.join(", ")
-        puts ".ENDS"
+        puts chunk.emit_section(chunk_name).rstrip("\n")
         $next_chunk_idx += 1
       end
       ptr_list << $used_chunks[chunk]
