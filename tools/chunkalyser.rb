@@ -130,6 +130,7 @@ def main
             end
           end
         end
+        chunk << 0xDF  # End-of-stream marker
 
         total_chunked_bytes += PER_PTR_COST
         unless used_chunks.has_key?(chunk)
@@ -165,7 +166,7 @@ def main
 
   # SANITY CHECK: Ensure E0 upwards are unused
   0x100.times do |i|
-    assert (not used_bytes.include? i) if i >= 0xE0
+    assert (not used_bytes.include? i) if i >= 0xDF
     #puts "unused #{i.to_s(16).upcase}" unless used_bytes.include? i
   end
 end
