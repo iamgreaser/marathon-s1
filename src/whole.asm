@@ -6933,8 +6933,7 @@ objfunc_00_sonic:
    ld     (sonic_y), hl                ; 01:4A97 - 22 01 D4
 
 @skip_adjust_y_pos_after_roll:
-   ld     (ix+13), $18                 ; 01:4A9A - DD 36 0D 18
-   ld     (ix+14), $20                 ; 01:4A9E - DD 36 0E 20
+   of_setbox $18, $20
    ld     hl, (sonic_vel_x_sub)        ; 01:4AA2 - 2A 03 D4
    ld     b, (ix+9)                    ; 01:4AA5 - DD 46 09
    ld     c, $00                       ; 01:4AA8 - 0E 00
@@ -8125,8 +8124,7 @@ objfunc_00_sonic:
    ld     (sonic_y), hl                ; 01:533C - 22 01 D4
 
 @skip_adjust_y_pos_before_roll:
-   ld     (ix+13), $18                 ; 01:533F - DD 36 0D 18
-   ld     (ix+14), $18                 ; 01:5343 - DD 36 0E 18
+   of_setbox $18, $18
    ld     hl, (sonic_vel_x_sub)        ; 01:5347 - 2A 03 D4
    ld     b, (ix+9)                    ; 01:534A - DD 46 09
    ld     c, $00                       ; 01:534D - 0E 00
