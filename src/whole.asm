@@ -6740,6 +6740,23 @@ fn_of_adjust_pos:
    call fn_of_adjust_pos
 .ENDM
 
+;; Normally 4 bytes, the call is 3 bytes, so each use saves 1 byte minus the overall 5 byte overhead of the function itself.
+fn_of_disable_world_collisions:
+   set 5, (ix+24)
+   ret
+.MACRO of_disable_world_collisions
+   call fn_of_disable_world_collisions
+.ENDM
+
+;; Normally 4 bytes, the call is 3 bytes, so each use saves 1 byte minus the overall 5 byte overhead of the function itself.
+fn_of_enable_world_collisions:
+   res 5, (ix+24)
+   ret
+.MACRO of_enable_world_collisions
+   call fn_of_enable_world_collisions
+.ENDM
+
+
 ;;
 ;; OBJFUNCS
 ;;
@@ -6754,7 +6771,7 @@ objfunc_00_sonic:
    ld     a, (sonic_brake_sound_cooldown_timer_ix_22)  ; 01:48DE - 3A 12 D4
    and    a                            ; 01:48E1 - A7
    call   nz, @fn_handle_brake_sound_cooldown_timer  ; 01:48E2 - C4 F0 4F
-   res    5, (ix+24)                   ; 01:48E5 - DD CB 18 AE
+   of_enable_world_collisions
    bit    6, (iy+iy_06_lvflag01-IYBASE)  ; 01:48E9 - FD CB 06 76
    call   nz, @fn_handle_damage_stun_and_input_suppression  ; 01:48ED - C4 0A 51
    ld     a, (g_directional_input_suppression_timer)  ; 01:48F0 - 3A 8C D2
@@ -8271,7 +8288,7 @@ objfunc_00_sonic:
    jp     @continue_without_jumping_from_rolling  ; 01:5439 - C3 AC 4B
 
 @sonic_is_dying:
-   set    5, (ix+24)                   ; 01:543C - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (g_level_restart_countdown_timer)  ; 01:5440 - 3A 87 D2
    cp     $60                          ; 01:5443 - FE 60
    jr     z, @skip_sonic_vel_change_on_death  ; 01:5445 - 28 63
@@ -10008,7 +10025,7 @@ SPRITEMAP_crabmeat_frames:
 .db $FF, $FF, $FF                                                                   ; 01:6739
 
 objfunc_09_platform_swing:
-   set    5, (ix+24)                   ; 01:673C - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, $0020                    ; 01:6740 - 21 20 00
    ld     (g_camera_sonic_bounds_x0_target), hl  ; 01:6743 - 22 67 D2
    ld     hl, $0048                    ; 01:6746 - 21 48 00
@@ -10142,7 +10159,7 @@ SPRITEMAP_platform_BRI:
 .db $FE, $FF, $FF, $FF, $FF, $FF, $6C, $6E, $6C, $6E, $FF, $FF, $FF, $FF            ; 01:6931
 
 objfunc_0A_explosion:
-   set    5, (ix+24)                   ; 01:693F - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+21)                   ; 01:6943 - DD 7E 15
    cp     $AA                          ; 01:6946 - FE AA
    jr     z, @skip_sonic_bounce_off_top  ; 01:6948 - 28 43
@@ -10206,7 +10223,7 @@ SPRITEMAP_explosion_frames:
 .db $FF, $FF, $FF, $FF, $7C, $7E, $FF, $FF, $FF, $FF, $FF                           ; 01:69DE
 
 objfunc_0B_platform_semilowering:
-   set    5, (ix+24)                   ; 01:69E9 - DD CB 18 EE
+   of_disable_world_collisions
    of_set_sprite SPRITEMAP_platform_GHZ
    ld     a, (sonic_vel_y_hi)          ; 01:69FD - 3A 08 D4
    and    a                            ; 01:6A00 - A7
@@ -10245,7 +10262,7 @@ objfunc_0B_platform_semilowering:
    ret                                 ; 01:6A46 - C9
 
 objfunc_0C_platform_fall_on_touch:
-   set    5, (ix+24)                   ; 01:6A47 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+22)                   ; 01:6A4B - DD 7E 16
    add    a, (ix+23)                   ; 01:6A4E - DD 86 17
    ld     (ix+23), a                   ; 01:6A51 - DD 77 17
@@ -10295,7 +10312,7 @@ objfunc_0C_platform_fall_on_touch:
    ret                                 ; 01:6AC0 - C9
 
 objfunc_0D_fireball_pallet:
-   set    5, (ix+24)                   ; 01:6AC1 - DD CB 18 EE
+   of_disable_world_collisions
    of_check_collision_with_sonic $03, $03, $02, $02
    call   nc, damage_sonic             ; 01:6AD6 - D4 FD 35
    ld     l, (ix+10)                   ; 01:6AD9 - DD 6E 0A
@@ -10375,7 +10392,7 @@ LUT_fireball_BRI3_LAB3:
 .db $34, $36                                                                        ; 01:6B72
 
 objfunc_0E_badnik_buzz_bomber:
-   set    5, (ix+24)                   ; 01:6B74 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 01:6B78 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:6B7C - 20 2D
    ld     e, (ix+2)                    ; 01:6B7E - DD 5E 02
@@ -10555,7 +10572,7 @@ SPRITEMAP_buzz_bomber_frames:
 .db $12, $14, $16, $FF, $FF, $FF, $30, $34, $FF, $FF, $FF, $FF                      ; 01:6D59
 
 objfunc_0F_platform_horizontal:
-   set    5, (ix+24)                   ; 01:6D65 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (g_level)                 ; 01:6D69 - 3A 3E D2
    cp     $07                          ; 01:6D6C - FE 07
    jr     z, @level_was_JUN2_dont_break_the_camera  ; 01:6D6E - 28 18
@@ -10632,7 +10649,7 @@ objfunc_0F_platform_horizontal:
    ret                                 ; 01:6E0B - C9
 
 objfunc_10_badnik_motobug:
-   res    5, (ix+24)                   ; 01:6E0C - DD CB 18 AE
+   of_enable_world_collisions
    ld     e, (ix+18)                   ; 01:6E18 - DD 5E 12
    ld     d, $00                       ; 01:6E1B - 16 00
 
@@ -10723,7 +10740,7 @@ SPRITEMAP_motobug_frames:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $6C, $6E, $FF, $FF, $FF, $FF, $FF                 ; 01:6EFB
 
 objfunc_11_badnik_newtron:
-   set    5, (ix+24)                   ; 01:6F08 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+17)                   ; 01:6F14 - DD 7E 11
    cp     $02                          ; 01:6F17 - FE 02
    jr     z, @state_02                 ; 01:6F19 - 28 03
@@ -10825,7 +10842,7 @@ SPRITEMAP_newtron:
 .db $FF, $FF, $40, $42, $FF, $FF, $FF, $FF, $FE, $62, $FF, $FF, $FF, $FF, $FF       ; 01:6FFD
 
 objfunc_12_GHZ_boss:
-   set    5, (ix+24)                   ; 01:700C - DD CB 18 EE
+   of_disable_world_collisions
    of_setbox $20, $1C
    call   move_locked_camera_towards_target  ; 01:7018 - CD A6 7C
    bit    0, (ix+17)                   ; 01:701B - DD CB 11 46
@@ -11132,7 +11149,7 @@ PAL2_boss:
 .INCBIN "src/data/boss.pal2"
 
 objfunc_25_animal_capsule:
-   set    5, (ix+24)                   ; 01:732C - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 01:7330 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7334 - 20 14
    of_adjust_pos $0000, $0010
@@ -11373,7 +11390,7 @@ animal_capsule_UNK_0757C:
 .db $00, $00, $00, $00, $4D, $19, $4F, $19                                          ; 01:758C
 
 objfunc_24_animal_1:
-   res    5, (ix+24)                   ; 01:7594 - DD CB 18 AE
+   of_enable_world_collisions
    of_setbox $0C, $10
    bit    7, (ix+24)                   ; 01:75A0 - DD CB 18 7E
    jr     z, @was_not_on_floor         ; 01:75A4 - 28 0C
@@ -11460,7 +11477,7 @@ SPRITEMAP_animal_1:
 .db $FF                                                                             ; 01:7698
 
 objfunc_23_animal_0:
-   res    5, (ix+24)                   ; 01:7699 - DD CB 18 AE
+   of_enable_world_collisions
    of_setbox $0C, $20
    ld     hl, SPRITEMAP_animal_0_airborne_GHZ  ; 01:76A5 - 21 60 77
    ld     a, (g_tile_flags_index)      ; 01:76A8 - 3A D4 D2
@@ -11829,7 +11846,7 @@ spawn_explosion:
    ret                                 ; 01:7AA6 - C9
 
 objfunc_4B_throw_sonic_into_a_pit_GHZ2:
-   set    5, (ix+24)                   ; 01:7AA7 - DD CB 18 EE
+   of_disable_world_collisions
    of_check_collision_with_sonic $00, $00, $40, $40
    ret    c                            ; 01:7ABC - D8
    bit    6, (iy+iy_06_lvflag01-IYBASE)  ; 01:7ABD - FD CB 06 76
@@ -11854,7 +11871,7 @@ objfunc_4B_throw_sonic_into_a_pit_GHZ2:
    ret                                 ; 01:7AEC - C9
 
 objfunc_50_flower_raiser:
-   set    5, (ix+24)                   ; 01:7AED - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 01:7AF1 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7AF5 - 20 0C
    ld     (ix+17), $32                 ; 01:7AF7 - DD 36 11 32
@@ -11921,7 +11938,7 @@ UNK_07B85:
 .db $00, $01, $08, $00, $02, $03, $78, $00, $01, $04, $08, $00, $02, $03, $78, $00  ; 01:7B85
 
 objfunc_55_thrown_ring_on_sonic_damage:
-   set    5, (ix+24)                   ; 01:7B95 - DD CB 18 EE
+   of_disable_world_collisions
    set    0, (iy+iy_09-IYBASE)         ; 01:7B99 - FD CB 09 C6
    ld     a, (g_global_tick_counter)   ; 01:7B9D - 3A 23 D2
    and    $01                          ; 01:7BA0 - E6 01
@@ -12113,7 +12130,7 @@ put_sonic_y_pos_on_platform:
    ret                                 ; 01:7CF5 - C9
 
 objfunc_26_badnik_chopper:
-   set    5, (ix+24)                   ; 01:7CF6 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+20)                   ; 01:7D02 - DD 7E 14
    and    a                            ; 01:7D05 - A7
    jr     z, @not_hidden               ; 01:7D06 - 28 0B
@@ -12209,7 +12226,7 @@ SPRITEMAP_chopper_emerging:
 .db $FF, $FF, $FF, $FF, $68, $6A, $FF, $FF, $FF, $FF, $FF                           ; 01:7DF7
 
 objfunc_27_platform_downwards_tall:
-   set    5, (ix+24)                   ; 01:7E02 - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, $0030                    ; 01:7E06 - 21 30 00
    ld     (g_camera_sonic_bounds_x0_target), hl  ; 01:7E09 - 22 67 D2
    ld     hl, $0058                    ; 01:7E0C - 21 58 00
@@ -12264,7 +12281,7 @@ SPRITEMAP_platform_downwards_tall:
 .db $FF, $FF                                                                        ; 01:7E99
 
 objfunc_28_platform_downwards_wide:
-   set    5, (ix+24)                   ; 01:7E9B - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, $0030                    ; 01:7E9F - 21 30 00
    ld     (g_camera_sonic_bounds_x0_target), hl  ; 01:7EA2 - 22 67 D2
    ld     hl, $0058                    ; 01:7EA5 - 21 58 00
@@ -12285,7 +12302,7 @@ SPRITEMAP_platform_downwards_wide:
 .db $FE, $FF, $FF, $FF, $FF, $FF, $6C, $6E, $6E, $48, $FF, $FF, $FF                 ; 01:7ED9
 
 objfunc_29_log:
-   set    5, (ix+24)                   ; 01:7EE6 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 01:7EF2 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7EF6 - 20 14
    of_adjust_pos $0000, $FFE8
@@ -12432,7 +12449,7 @@ SPRITEMAP_log:
 .db $FF                                                                             ; 02:8052
 
 objfunc_2C_JUN3_boss:
-   set    5, (ix+24)                   ; 02:8053 - DD CB 18 EE
+   of_disable_world_collisions
    of_setbox $20, $1C
    bit    0, (ix+24)                   ; 02:805F - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8063 - 20 4B
@@ -12604,7 +12621,7 @@ SPRTAB_JUN3_boss_facing_right:
 .db $72, $FF                                                                        ; 02:8216
 
 objfunc_2B_JUN3_boss_bomb:
-   res    5, (ix+24)                   ; 02:8218 - DD CB 18 AE
+   of_enable_world_collisions
    of_check_collision_with_sonic $02, $02, $0C, $10
    call   nc, damage_sonic             ; 02:822D - D4 FD 35
    ld     l, (ix+7)                    ; 02:8230 - DD 6E 07
@@ -12746,7 +12763,7 @@ SPRTAB_spikeses:
 .db $FF, $FF, $FF                                                                   ; 02:83BE
 
 objfunc_2E_falling_bridge_piece:
-   set    5, (ix+24)                   ; 02:83C1 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:83CD - DD CB 18 46
    jr     nz, @already_fallen          ; 02:83D1 - 20 54
    xor    a                            ; 02:83D3 - AF
@@ -12830,7 +12847,7 @@ UNK_0848E:
 .db $00, $00, $00, $00, $00, $00, $00, $00                                          ; 02:848E
 
 objfunc_48_BRI3_boss:
-   set    5, (ix+24)                   ; 02:8496 - DD CB 18 EE
+   of_disable_world_collisions
    of_setbox $1E, $1C
    call   move_locked_camera_towards_target  ; 02:84A2 - CD A6 7C
    of_set_sprite SPRTAB_BRI3_boss
@@ -13043,7 +13060,7 @@ SPRTAB_BRI3_boss:
 .db $68, $FF                                                                        ; 02:866A
 
 objfunc_4E_seesaw:
-   set    5, (ix+24)                   ; 02:866C - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:8670 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8674 - 20 18
    ld     (ix+17), $1C                 ; 02:8676 - DD 36 11 1C
@@ -13261,7 +13278,7 @@ LUT_sprite_weight:
 .db $3C, $3E, $FF                                                                   ; 02:8834
 
 objfunc_3C_badnik_jaws:
-   set    5, (ix+24)                   ; 02:8837 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+17)                   ; 02:883B - DD 7E 11
    cp     $80                          ; 02:883E - FE 80
    jr     nc, @go_left                 ; 02:8840 - 30 31
@@ -13313,7 +13330,7 @@ SPRTAB_jaws:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $0E, $10, $0C, $FF, $FF, $FF, $FF                 ; 02:88EE
 
 objfunc_3D_spinning_spike_ball:
-   set    5, (ix+24)                   ; 02:88FB - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:8907 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:890B - 20 24
    ld     l, (ix+2)                    ; 02:890D - DD 6E 02
@@ -13400,7 +13417,7 @@ LUT_spinning_spike_ball_xy_positions:
 .db $3F, $F7, $40, $F9, $40, $FC, $40, $FE                                          ; 02:8AEE
 
 objfunc_3E_giant_spear:
-   set    5, (ix+24)                   ; 02:8AF6 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:8AFA - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8AFE - 20 14
    of_adjust_pos $000C, $0000
@@ -13520,7 +13537,7 @@ LUT_giant_spear_anim_frames_n_y:
 .db $12, $20, $FF, $00, $FF, $00, $1E, $30                                          ; 02:8C0E
 
 objfunc_3F_fireball_gargoyle:
-   res    5, (ix+24)                   ; 02:8C16 - DD CB 18 AE
+   of_enable_world_collisions
    bit    0, (ix+24)                   ; 02:8C22 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8C26 - 20 46
    of_adjust_pos $000A, $0008
@@ -13636,7 +13653,7 @@ SPRTAB_gargoyle_fireball_right:
 .db $30, $FF, $FF, $FF, $FF, $FF, $FF                                               ; 02:8D41
 
 objfunc_40_waterline:
-   set    5, (ix+24)                   ; 02:8D48 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+17)                   ; 02:8D4C - DD 7E 11
    ld     e, a                         ; 02:8D4F - 5F
    ld     d, $00                       ; 02:8D50 - 16 00
@@ -13753,7 +13770,7 @@ LUT_waterline_y_vel_steps:
 .db $02, $04, $08, $10, $18, $28, $38, $38, $38, $38, $28, $18, $10, $08, $04, $02  ; 02:8E46
 
 objfunc_41_air_bubble_spawner:
-   set    5, (ix+24)                   ; 02:8E56 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (ix+18)                   ; 02:8E5A - DD 7E 12
    and    $7F                          ; 02:8E5D - E6 7F
    jr     nz, @skip_attempt_spawn_air_bubble  ; 02:8E5F - 20 11
@@ -13804,7 +13821,7 @@ LUT_air_bubble_spawner_initial_chance:
 .db $01, $00, $01, $01, $00, $01, $00, $01                                          ; 02:8EC2
 
 objfunc_42_small_bubble:
-   set    5, (ix+24)                   ; 02:8ECA - DD CB 18 EE
+   of_disable_world_collisions
    of_clear_sprite
    ld     a, (ix+17)                   ; 02:8ED5 - DD 7E 11
    and    $0F                          ; 02:8ED8 - E6 0F
@@ -13990,7 +14007,7 @@ SPRTAB_badnik_burrobot:
 .db $6C, $6E, $FF, $FF, $FF, $FF, $FF                                               ; 02:90B9
 
 objfunc_45_LAB_float_up_platform:
-   set    5, (ix+24)                   ; 02:90C0 - DD CB 18 EE
+   of_disable_world_collisions
    of_set_sprite SPRTAB_LAB_float_up_platform
    bit    1, (ix+24)                   ; 02:90D4 - DD CB 18 4E
    jr     nz, @already_initialised     ; 02:90D8 - 20 26
@@ -14176,7 +14193,7 @@ spawn_bubble:
 .db $42, $20, $20, $20, $42, $20, $20, $20, $42, $20, $20, $20, $42, $20, $20, $20  ; 02:9257
 
 objfunc_49_LAB3_boss:
-   set    5, (ix+24)                   ; 02:9267 - DD CB 18 EE
+   of_disable_world_collisions
    of_setbox $20, $1C
    call   move_locked_camera_towards_target  ; 02:9273 - CD A6 7C
    of_set_sprite SPRTAB_LAB3_boss
@@ -14419,7 +14436,7 @@ SPRTAB_LAB3_boss:
 .db $68, $FF                                                                        ; 02:94A3
 
 objfunc_2F_LAB3_boss_rocket:
-   set    5, (ix+24)                   ; 02:94A5 - DD CB 18 EE
+   of_disable_world_collisions
    of_check_collision_with_sonic $04, $04, $08, $0A
    call   nc, damage_sonic             ; 02:94BA - D4 FD 35
    bit    1, (ix+24)                   ; 02:94BD - DD CB 18 4E
@@ -14665,7 +14682,7 @@ SPRTAB_LAB3_boss_rocket_left:
 .db $56, $58, $FF, $FF, $FF, $FF, $FF, $FF, $5A, $5C, $FF, $FF, $FF, $FF, $FF, $FF  ; 02:9698
 
 objfunc_2A_LAB3_boss_rocket_puff:
-   set    5, (ix+24)                   ; 02:96A8 - DD CB 18 EE
+   of_disable_world_collisions
    xor    a                            ; 02:96AC - AF
    of_clear_sprite
    ld     l, (ix+2)                    ; 02:96B3 - DD 6E 02
@@ -14700,7 +14717,7 @@ LUT_LAB3_boss_rocket_puff_anim_sprites:
 .db $1C, $1E, $5E                                                                   ; 02:96F5
 
 objfunc_20_air_bubble:
-   set    5, (ix+24)                   ; 02:96F8 - DD CB 18 EE
+   of_disable_world_collisions
    of_clear_sprite
    ld     a, (iy+g_sprite_count-IYBASE)  ; 02:9703 - FD 7E 0A
    ld     hl, (g_next_avail_vdp_sprite_ptr)  ; 02:9706 - 2A 3C D2
@@ -14871,7 +14888,7 @@ objfunc_20_air_bubble:
    ret                                 ; 02:9865 - C9
 
 objfunc_4C_flipper:
-   set    5, (ix+24)                   ; 02:9866 - DD CB 18 EE
+   of_disable_world_collisions
    of_set_sprite SPRTAB_flipper_00
    bit    5, (iy+g_inputs_player_1-IYBASE)  ; 02:9872 - FD CB 03 6E
    jr     nz, @retract_flipper         ; 02:9876 - 20 13
@@ -15064,7 +15081,7 @@ compute_flipper_y_offset:
    ret                                 ; 02:9AFA - C9
 
 objfunc_21_special_stage_bouncer:
-   set    5, (ix+24)                   ; 02:9AFB - DD CB 18 EE
+   of_disable_world_collisions
    of_set_sprite SPRTAB_special_stage_bouncer
    ld     hl, $0001                    ; 02:9B0F - 21 01 00
    ld     a, (ix+18)                   ; 02:9B12 - DD 7E 12
@@ -15120,7 +15137,7 @@ SPRTAB_special_stage_bouncer:
 .db $08, $0A, $28, $2A, $FF, $FF, $FF                                               ; 02:9B6E
 
 objfunc_13_level_change_corridor:
-   set    5, (ix+24)                   ; 02:9B75 - DD CB 18 EE
+   of_disable_world_collisions
    of_check_collision_with_sonic $00, $00, $1E, $60
    jr     c, @finish_tick              ; 02:9B8A - 38 45
    ld     l, (ix+2)                    ; 02:9B8C - DD 6E 02
@@ -15193,7 +15210,7 @@ objfunc_14_SCR_flamer_firing_right:
    of_set_sprite SPRTAB_SCR_flame_right
 
 @common_entry:
-   set    5, (ix+24)                   ; 02:9BFC - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:9C00 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:9C04 - 20 13
    ld     a, (ix+2)                    ; 02:9C06 - DD 7E 02
@@ -15251,7 +15268,7 @@ SPRTAB_SCR_flame_left:
 .db $2C, $2E, $FF, $FF, $FF, $FF, $FF                                               ; 02:9C87
 
 objfunc_16_SCR_ceiling_flamer:
-   set    5, (ix+24)                   ; 02:9C8E - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:9C92 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:9C96 - 20 2A
    of_adjust_pos $000C, $0012
@@ -15356,7 +15373,7 @@ LUT_ceiling_flame_sprites_22:
 .db $00, $16, $1E, $10, $1E, $0A, $1E, $04, $00, $18, $1E, $12, $1E, $0C, $1E, $06  ; 02:9DEA
 
 objfunc_17_SCR_door_open_on_left:
-   set    5, (ix+24)                   ; 02:9DFA - DD CB 18 EE
+   of_disable_world_collisions
    call   door_common_prep             ; 02:9DFE - CD D4 9E
    ld     a, (ix+17)                   ; 02:9E01 - DD 7E 11
    cp     $28                          ; 02:9E04 - FE 28
@@ -15523,7 +15540,7 @@ SPRTAB_SCR_door_open_on_left:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $FF                                               ; 02:9F5B
 
 objfunc_18_SCR_door_open_on_right:
-   set    5, (ix+24)                   ; 02:9F62 - DD CB 18 EE
+   of_disable_world_collisions
    call   door_common_prep             ; 02:9F66 - CD D4 9E
    ld     a, (ix+17)                   ; 02:9F69 - DD 7E 11
    cp     $28                          ; 02:9F6C - FE 28
@@ -15596,7 +15613,7 @@ SPRTAB_SCR_door_open_on_right:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $FF                                               ; 02:A01E
 
 objfunc_19_SCR_door_open_on_both_sides:
-   set    5, (ix+24)                   ; 02:A025 - DD CB 18 EE
+   of_disable_world_collisions
    call   door_common_prep             ; 02:A029 - CD D4 9E
    ld     a, (ix+17)                   ; 02:A02C - DD 7E 11
    cp     $28                          ; 02:A02F - FE 28
@@ -15669,7 +15686,7 @@ SPRTAB_SCR_door_open_on_both_sides:
 .db $FF, $FF, $FF, $FF, $FF, $FF, $FF                                               ; 02:A0E1
 
 objfunc_1A_SCR_zapper:
-   set    5, (ix+24)                   ; 02:A0E8 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:A0F4 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A0F8 - 20 24
    of_adjust_pos $0018, $0010
@@ -15858,7 +15875,7 @@ SPRTAB_ballhog_right:
 .db $FF                                                                             ; 02:A33B
 
 objfunc_1C_badnik_ballhog_bomb:
-   res    5, (ix+24)                   ; 02:A33C - DD CB 18 AE
+   of_enable_world_collisions
    of_check_collision_with_sonic $01, $01, $0A, $0F
    call   nc, damage_sonic             ; 02:A351 - D4 FD 35
    bit    7, (ix+24)                   ; 02:A354 - DD CB 18 7E
@@ -15978,7 +15995,7 @@ SPRTAB_floorbutton_LAB_up:
 .db $34, $36, $FF, $FF, $FF, $FF, $FF, $FF                                          ; 02:A4A3
 
 objfunc_1E_SCR_door_from_button:
-   set    5, (ix+24)                   ; 02:A4AB - DD CB 18 EE
+   of_disable_world_collisions
    call   door_common_prep             ; 02:A4AF - CD D4 9E
    ld     a, (ix+17)                   ; 02:A4B2 - DD 7E 11
    cp     $28                          ; 02:A4B5 - FE 28
@@ -16458,7 +16475,7 @@ SPRTAB_SCR_boss_platform:
 .db $74, $76, $76, $78, $FF, $FF, $FF                                               ; 02:A9C0
 
 objfunc_30_moving_cloud:
-   set    5, (ix+24)                   ; 02:A9C7 - DD CB 18 EE
+   of_disable_world_collisions
    ld     a, (iy+g_sprite_count-IYBASE)  ; 02:A9CB - FD 7E 0A
    ld     hl, (g_next_avail_vdp_sprite_ptr)  ; 02:A9CE - 2A 3C D2
    push   af                           ; 02:A9D1 - F5
@@ -16533,7 +16550,7 @@ SPRTAB_moving_cloud:
 .db $40, $42, $44, $46, $FF, $FF, $FF                                               ; 02:AA63
 
 objfunc_31_SKY2_propeller:
-   set    5, (ix+24)                   ; 02:AA6A - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:AA76 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AA7A - 20 24
    of_adjust_pos $000F, $FFFA
@@ -16815,7 +16832,7 @@ SPRTAB_badnik_bomb_exploding:
 .db $FF, $FF, $32, $34, $FF, $FF, $FF, $FF, $FF                                     ; 02:AD63
 
 objfunc_33_SKY2_cannon:
-   set    5, (ix+24)                   ; 02:AD6C - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:AD70 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AD74 - 20 1A
    of_adjust_pos $FFFC, $0000
@@ -16881,7 +16898,7 @@ SPRTAB_SKY2_cannon_shot_puff:
 .db $FF                                                                             ; 02:AE34
 
 objfunc_34_SKY2_cannon_shell:
-   set    5, (ix+24)                   ; 02:AE35 - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, (g_level_scroll_x_pix_lo)  ; 02:AE41 - 2A 5A D2
    ld     de, $0110                    ; 02:AE44 - 11 10 01
    add    hl, de                       ; 02:AE47 - 19
@@ -16909,7 +16926,7 @@ SPRTAB_SKY2_cannon_shell:
 .db $02, $04, $FF, $FF, $FF, $FF, $FF                                               ; 02:AE81
 
 objfunc_35_badnik_orbinaut:
-   set    5, (ix+24)                   ; 02:AE88 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:AE8C - DD CB 18 46
    jr     nz, @already_initialised     ; 02:AE90 - 20 14
    ld     (ix+17), $00                 ; 02:AE92 - DD 36 11 00
@@ -17129,7 +17146,7 @@ SPRTAB_orbinaut_base_right:
 .db $FE, $FF, $FF, $FF, $FF, $FF, $FE, $20, $22, $FF, $FF, $FF, $FF                 ; 02:B0E7
 
 objfunc_36_badnik_orbinaut_ejected_ball:
-   set    5, (ix+24)                   ; 02:B0F4 - DD CB 18 EE
+   of_disable_world_collisions
    of_clear_sprite
    of_check_collision_with_sonic $02, $06, $04, $0A
    call   nc, damage_sonic             ; 02:B111 - D4 FD 35
@@ -17177,7 +17194,7 @@ objfunc_36_badnik_orbinaut_ejected_ball:
    ret                                 ; 02:B16B - C9
 
 objfunc_37_SKY2_turning_gun:
-   set    5, (ix+24)                   ; 02:B16C - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:B170 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B174 - 20 0C
    call   random_A                     ; 02:B176 - CD 25 06
@@ -17298,7 +17315,7 @@ LUT_SKY2_turning_gun_bullet_directions:
 .db $00, $01, $F8, $18, $00, $FE, $00, $00, $F2, $07, $00, $FF, $00, $FF, $F7, $F6  ; 02:B287
 
 objfunc_38_SKY_platform_right:
-   set    5, (ix+24)                   ; 02:B297 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:B29B - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B29F - 20 16
    ld     a, (ix+4)                    ; 02:B2A1 - DD 7E 04
@@ -17397,7 +17414,7 @@ LUT_SKY_platform_right_propeller_sprites:
 .db $08, $1C, $18, $3C, $08, $1E, $18, $3E, $08, $38, $18, $3A, $0C, $1A, $00, $FF  ; 02:B388
 
 objfunc_39_SKY2_spike_wall_right:
-   set    5, (ix+24)                   ; 02:B398 - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:B39C - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B3A0 - 20 10
    ld     l, (ix+2)                    ; 02:B3A2 - DD 6E 02
@@ -17476,7 +17493,7 @@ SPRTAB_SKY2_spike_wall_right:
 .db $FF, $FF                                                                        ; 02:B46B
 
 objfunc_3A_SKY_fixed_gun:
-   set    5, (ix+24)                   ; 02:B46D - DD CB 18 EE
+   of_disable_world_collisions
    bit    0, (ix+24)                   ; 02:B471 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B475 - 20 15
    ld     bc, $0000                    ; 02:B477 - 01 00 00
@@ -17555,7 +17572,7 @@ LUT_SKY_fixed_gun_dir_setup:
 .dw $0180, $0018, $0010, $0000                                                      ; 02:B506
 
 objfunc_3B_platform_y_oscillate:
-   set    5, (ix+24)                   ; 02:B50E - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, SPRTAB_SKY_platform      ; 02:B512 - 21 7B B3
    ld     a, (g_tile_flags_index)      ; 02:B515 - 3A D4 D2
    cp     $01                          ; 02:B518 - FE 01
@@ -17694,7 +17711,7 @@ shoot_straight_fireball:
 
 objfunc_4A_SKY3_boss:
    of_setbox $1E, $2F
-   set    5, (ix+24)                   ; 02:B63C - DD CB 18 EE
+   of_disable_world_collisions
    bit    2, (ix+24)                   ; 02:B640 - DD CB 18 56
    jp     nz, @start_robotnik_running_away  ; 02:B644 - C2 21 B8
    call   move_locked_camera_towards_target  ; 02:B647 - CD A6 7C
@@ -17904,7 +17921,7 @@ objfunc_4A_SKY3_boss:
 @start_robotnik_running_away:
    bit    3, (ix+24)                   ; 02:B821 - DD CB 18 5E
    jp     nz, @suppress_inputs_and_let_robotnik_exit  ; 02:B825 - C2 5B B9
-   res    5, (ix+24)                   ; 02:B828 - DD CB 18 AE
+   of_enable_world_collisions
    ld     a, (ix+17)                   ; 02:B82C - DD 7E 11
    cp     $0F                          ; 02:B82F - FE 0F
    jr     nc, @skip_end_of_glass_crack_anim  ; 02:B831 - 30 37
@@ -18194,7 +18211,7 @@ SPRTAB_SKY3_boss_teleporting:
 .db $FE, $FF, $FF, $FF, $FF, $FF, $FE, $44, $46, $FF, $FF, $FF, $FF                 ; 02:BB77
 
 objfunc_46_SKY3_vertical_zappers:
-   set    5, (ix+24)                   ; 02:BB84 - DD CB 18 EE
+   of_disable_world_collisions
    ld     hl, $0008                    ; 02:BB88 - 21 08 00
    ld     (g_camera_sonic_bounds_y0_target), hl  ; 02:BB8B - 22 6B D2
    bit    0, (ix+24)                   ; 02:BB8E - DD CB 18 46
@@ -18367,7 +18384,7 @@ LUT_SKY3_vertical_zapper_track_ball_sprites:
 .db $40, $42                                                                        ; 02:BCDD
 
 objfunc_47_SKY3_electric_ball:
-   set    5, (ix+24)                   ; 02:BCDF - DD CB 18 EE
+   of_disable_world_collisions
    set    5, (iy+iy_08_lvflag03-IYBASE)  ; 02:BCE3 - FD CB 08 EE
    ld     hl, $0202                    ; 02:BCE7 - 21 02 02
    ld     (tmp_06), hl                 ; 02:BCEA - 22 14 D2
@@ -18488,7 +18505,7 @@ SPRTAB_SKY3_electric_ball:
 .db $FF, $FF, $FF, $FF, $60, $62, $FF, $FF, $FF, $FF, $FF                           ; 02:BDEE
 
 objfunc_53_end_controller_start:
-   set    5, (ix+24)                   ; 02:BDF9 - DD CB 18 EE
+   of_disable_world_collisions
    ld     (iy+g_inputs_player_1-IYBASE), $FF  ; 02:BDFD - FD 36 03 FF
    bit    1, (ix+24)                   ; 02:BE01 - DD CB 18 4E
    jr     nz, @already_initialised     ; 02:BE05 - 20 1F
@@ -18616,7 +18633,7 @@ SPRTAB_end_controller_start_exploding:
 .db $72, $FF, $5C, $5E, $FF, $FF, $FF, $FF, $FF                                     ; 02:BF43
 
 objfunc_54_end_controller_good_ending_chaos_emeralds:
-   set    5, (ix+24)                   ; 02:BF4C - DD CB 18 EE
+   of_disable_world_collisions
    ld hl, MONART_chaos_emerald
    ld a, :MONART_chaos_emerald
    call   write_partial_monitor_art    ; 02:BF53 - CD 1D 0C
