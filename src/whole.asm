@@ -1940,6 +1940,7 @@ unpack_level_layout_into_ram:
       ld a, (g_committed_rompage_2)
       ld c, a
       push bc
+         ;; Load the chunk
          ld c, (hl)
          inc hl
          ld b, (hl)
@@ -1952,9 +1953,17 @@ unpack_level_layout_into_ram:
             ld h, b
             call load_level_chunk@ENTRY_POINT
          pop hl
-         ;; TODO: Actually handle the ramsave section --GM
+         ;; Load the ramsave section
+         dec d
+         ld c, (hl)
          inc hl
+         ld b, (hl)
          inc hl
+         push hl
+            ld l, c
+            ld h, b
+            call load_ramsave
+         pop hl
       pop bc
       ld a, c
       call set_rompage_2
@@ -2010,6 +2019,42 @@ load_level_chunk:
    pop hl
    inc hl
    jp @each_input
+
+load_ramsave:
+   ld bc, $0000  ; B is for $100 bytes, C is a blank mask to read from
+@each_layout_byte:
+   ld a, (de)
+   and $7F
+   cp $79
+   jp c, @no_rings
+   ; HGFEDCBA
+   rra  ; -HGFEDCB -> A
+   call c, @fn_apply_ring
+   rra  ; A-HGFEDC -> B
+   call c, @fn_apply_ring
+   rla  ; -HGFEDCB -> A
+   rla  ; HGFEDCBA
+   ld (de), a
+@no_rings:
+   inc de
+   djnz @each_layout_byte
+
+   ret
+
+   ;; CF: set if we want to keep the ring or clear if we don't
+@fn_apply_ring:
+   rrc c
+   call z, @fn_fetch_next_mask
+   ; 1 if we don't want it, 0 if we do. Complement it.
+   ccf
+   ; 0 if we don't want it, 1 if we do.
+   ret
+@fn_fetch_next_mask:
+   ld c, (hl)
+   inc hl
+   scf
+   rrc c
+   ret
 
 fade_screen_to_black:
    ld a, $02
