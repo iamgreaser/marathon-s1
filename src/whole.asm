@@ -18,10 +18,13 @@ BANKS 16
 
 .INCLUDE "src/chunked_layouts.asm"
 
-.DEF IYBASE $D200
+.DEF IYBASE iy_00
 
-.RAMSECTION "RAMSection" SLOT 4 FORCE ORGA $C000
+.RAMSECTION "RAMSection_level_layout" SLOT 4 FREE ALIGN $0100
 g_level_layout dsb 4096   ; C000
+.ENDS
+
+.RAMSECTION "RAMSection" SLOT 4 FREE
 g_sprite_table db   ; D000
 g_sprite_table_0_y db   ; D001
 .  dsb 34
@@ -1687,86 +1690,99 @@ dispatch_scrolling_tile_updates_IRQ:
 ;; B = Y offset in metatiles
 ;; (g_level_scroll_x_pix_lo).w = base X in pixels
 ;; (g_level_scroll_y_pix_lo).w = base Y in pixels
+;; A, BC, DE trashable; HL is where we return into
 get_screen_tile_ptr_in_ram:
-   ;; NOTE: I *think* BC is trashable, but I could be wrong, so applying a bit of safety for the time being.
-   push bc
-      push hl
-         ;; Apply the tile offset.
-         ld hl, (g_level_scroll_y_pix_lo)
-         ld a, l
-         and $E0
-         ld l, a
-         ld a, h
-         and $1F
-         or l
-         rlca
-         rlca
-         rlca
-         add a, b
-         ld b, a
-
-         ld hl, (g_level_scroll_x_pix_lo)
-         ld a, l
-         and $E0
-         ld l, a
-         ld a, h
-         and $1F
-         or l
-         rlca
-         rlca
-         rlca
-         add a, c
-         ld c, a
-      pop hl
-      ;; Now get our pointer!
-      call get_tile_ptr_in_ram_from_C_B
-   pop bc
-   ret
-
-get_tile_ptr_in_ram_from_C_B:
-   ;; Get the upper 4 bits of the Y tile offset to get the Y chunk index
-   ;; Then multiply by 2 and feed through g_ram_layout_ptrs_per_y to get the pointer to the chunks for this
-   ld a, b
-   rrca
-   rrca
-   rrca
-   and $1E
-   add a, <g_ram_layout_ptrs_per_y
-   ld l, a
-   ld a, $00
-   adc a, >g_ram_layout_ptrs_per_y
-   ld h, a
-   ld e, (hl)
-   inc hl
-   ld d, (hl)
-   ex de, hl
-
-   ;; Get the upper 4 bits of the X tile offset to get the X chunk index
-   ;; Add this to the high byte of the pointer to get us to the actual chunk
-   ld a, c
-   rlca
-   rlca
-   rlca
-   rlca
-   and $0F
-   add a, h
-   ld h, a
-
-   ;; Get the lower 4 bits of the Y tile offset to get its position in the chunk
-   ;; Make sure they're up the top of the byte
-   ld a, b
-   add a, a
-   add a, a
-   add a, a
-   add a, a
-   ld e, a
-   ;; Get the lower 4 bits of the X tile offset and add them in
-   ld a, c
-   and $0F
-   add a, e
-   ld e, a
+   ;; Convert to BC = X metatiles offset, DE = Y metatiles offset
+   ld e, b
    ld d, $00
-   ;; Apply this offset and get our metatile index!
+   ld b, d
+
+   ;; Apply the tile offset
+   ld hl, (g_level_scroll_y_pix_lo)
+   xor a
+   add hl, hl
+   adc a, a
+   add hl, hl
+   adc a, a
+   add hl, hl
+   adc a, a
+   ld l, h
+   ld h, a
+   add hl, de
+   ex de, hl
+   ;; DE = Y metatiles
+
+   ld hl, (g_level_scroll_x_pix_lo)
+   xor a
+   add hl, hl
+   adc a, a
+   add hl, hl
+   adc a, a
+   add hl, hl
+   adc a, a
+   ld l, h
+   ld h, a
+   add hl, bc
+   ;; HL = X metatiles
+
+   ;; Now get our pointer!
+   ;; FALL THROUGH
+get_tile_ptr_in_ram_from_HL_DE:
+   ;; Move X to BC to free up HL
+   ld c, l
+   ld b, h
+
+   ;; BC = X
+   ;; DE = Y
+
+   ;; Get a pointer to the start of this row of chunks
+   ld a, e
+   and $F0
+   ld l, a
+   ;; also clear the upper bits of E as we won't need them for much longer
+   xor e
+   ;; and pre-shift into E
+   rlca
+   rlca
+   rlca
+   rlca
+   ld e, a
+   ld a, d
+   ;; D is now free to be clobbered
+   and $0F
+   or l
+   rlca
+   rlca
+   rlca
+   rlca
+   ;; Apply offset to table, stashing E briefly
+   ld a, e
+   ld de, g_ram_layout_ptrs_per_y
+   add hl, de
+   ld e, a
+   ;; Grab pointer to our row
+   ld a, (hl)
+   inc hl
+   ld h, (hl)
+   ld l, a
+
+   ;; Get our offset
+   ld a, c
+   and $F0
+   ld d, a
+   ;; also clear the upper bits and merge into E
+   xor c
+   or e
+   ld e, a
+   ld a, b
+   and $0F
+   or d
+   rlca
+   rlca
+   rlca
+   rlca
+   ld d, a
+   ;; Apply this to the offset
    add hl, de
    ret                                 ; 00:0965 - C9
 
@@ -1777,7 +1793,8 @@ draw_initial_screen_tiles:
    ld     bc, $0000                    ; 00:0977 - 01 00 00
    call   get_screen_tile_ptr_in_ram   ; 00:097A - CD D5 08
    ld     de, $3800                    ; 00:097D - 11 00 38
-   ld     b, $06                       ; 00:0980 - 06 06
+   ;; BC gets trashed and that affects things, so we have to clear C as well as set B to our loop length
+   ld     bc, $0600
 
 @each_metatile_y:
    push   bc                           ; 00:0982 - C5
@@ -5879,24 +5896,37 @@ get_obj_level_tile_ptr_in_ram:
    ;; Compute our tile offsets
    ld l, (ix+5)
    ld h, (ix+6)
+   xor a
    add hl, de
+   adc a, a
    add hl, hl
+   adc a, a
    add hl, hl
+   adc a, a
    add hl, hl
+   adc a, a
+   ld l, h
+   ld h, a
    ex de, hl
-   ;; DE = Y
+   ;; DE = Y metatiles
+
    ld l, (ix+2)
    ld h, (ix+3)
+   xor a
    add hl, bc
+   adc a, a
    add hl, hl
+   adc a, a
    add hl, hl
+   adc a, a
    add hl, hl
-   ;; HL = X
-   ;; Put X in C, Y in B
-   ld c, h
-   ld b, d
+   adc a, a
+   ld l, h
+   ld h, a
+   ;; HL = X metatiles
+
    ;; Now get the tile pointer from that.
-   jp get_tile_ptr_in_ram_from_C_B
+   jp get_tile_ptr_in_ram_from_HL_DE
 
 update_sonic_3bpp_sprite:
    ld     de, (g_new_sonic_sprite_ptr)  ; 00:37E0 - ED 5B 8F D2
