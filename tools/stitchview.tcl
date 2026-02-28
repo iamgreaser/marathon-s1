@@ -66,8 +66,9 @@ set ::pal3_specs {
 }
 
 proc main {} {
-   init_widgets
-   init_tilemap_images
+   puts "widgets: [time { init_widgets }]"
+   puts "tilemap images: [time { init_tilemap_images }]"
+   puts "levels: [time { init_levels }]"
 }
 
 proc init_widgets {} {
@@ -81,9 +82,7 @@ proc init_widgets {} {
 }
 
 proc init_tilemap_images {} {
-   array set ::tilemap {}
-   set dumpx 0
-   set dumpy 0
+   array set ::tilemaps {}
    foreach tms $::tilemap_specs {
       # Retrieve all info we need at the moment
       lassign $tms tm_key tm_label tm_fname
@@ -196,16 +195,69 @@ proc init_tilemap_images {} {
          lappend tmap $img
       }
 
-      # TEST: Dump tile data into the canvas
-      foreach img $tmap {
-         .canvas create image $dumpx $dumpy -image $img -anchor nw
-         incr dumpy 32
-         if {$dumpy > $::screen_ly-32} {
-            set dumpy 0
-            incr dumpx 32
-         }
+      # Save this tilemap for use
+      set ::tilemaps($tm_key) $tmap
+   }
+}
+
+proc init_levels {} {
+   #foreach ls $::layout_specs { load_level_layout $ls }
+   load_level_layout [lindex $::layout_specs 0]
+}
+
+proc load_level_layout {ls} {
+   lassign $ls ls_key ls_fname tm_key
+   set tilemap $::tilemaps($tm_key)
+   set width_shift [string index $ls_fname end]
+   set width_mt [expr {1<<$width_shift}]
+   set height_mt [expr {4096>>$width_shift}]
+   puts "$ls_key $tm_key $width_mt $height_mt"
+
+   # Load the data
+   set fp [open $ls_fname rb]
+   try {
+      binary scan [read $fp] cu* cmpdata
+   } finally {
+      close $fp
+   }
+
+   # Decompress the data
+   set uncdata [list]
+   set rle_prev -1
+   set rle_pending 0
+   foreach b $cmpdata {
+      if {$rle_pending} {
+         # Handle the special case
+         if {$b == 0} { incr b 256 }
+         lappend uncdata {*}[lrepeat $b $rle_prev]
+         set rle_pending 0
+         set rle_prev -1
+      } elseif {$b != $rle_prev} {
+         lappend uncdata $b
+         set rle_prev $b
+      } else {
+         set rle_pending 1
       }
    }
+
+   puts [llength $uncdata]
+   # Pad that one 2 KB level (SKY2) to 4 KB
+   while {[llength $uncdata] < 4096} {
+      lappend uncdata 0
+   }
+
+   # Put it on the canvas!
+   set width_px [expr {$width_mt*32}]
+   set height_px [expr {$height_mt*32}]
+   set ti 0
+   for {set py 0} {$py < $height_px} {incr py 32} {
+      for {set px 0} {$px < $width_px} {incr px 32} {
+         set v [lindex $uncdata $ti]
+         incr ti
+         .canvas create image $px $py -image [lindex $tilemap $v]
+      }
+   }
+
 }
 
 main {*}$argv
