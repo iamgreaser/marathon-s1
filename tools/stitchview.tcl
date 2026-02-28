@@ -79,6 +79,29 @@ proc init_widgets {} {
    grid .canvas -sticky nswe
    grid rowconfigure . 0 -weight 1
    grid columnconfigure . 0 -weight 1
+
+   set ::drag_pos {}
+   bind .canvas <ButtonPress-1> { on_drag_start %x %y }
+   bind .canvas <ButtonRelease-1> { on_drag_stop %x %y }
+   bind .canvas <Motion> { on_drag_step %x %y }
+}
+
+proc on_drag_start {x y} {
+   set ::drag_pos [list $x $y]
+}
+
+proc on_drag_stop {x y} {
+   set ::drag_pos {}
+}
+
+proc on_drag_step {x y} {
+   if {$::drag_pos ne {}} {
+      lassign $::drag_pos old_x old_y
+      set dx [expr {$x-$old_x}]
+      set dy [expr {$y-$old_y}]
+      set ::drag_pos [list $x $y]
+      .canvas move all $dx $dy
+   }
 }
 
 proc init_tilemap_images {} {
@@ -257,7 +280,6 @@ proc load_level_layout {ls} {
          .canvas create image $px $py -image [lindex $tilemap $v]
       }
    }
-
 }
 
 main {*}$argv
