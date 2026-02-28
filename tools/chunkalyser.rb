@@ -19,27 +19,90 @@ PER_CHUNK_COST = 0
 
 # Here's everything we need to load and their labels!
 LAYOUT_SPECS = [
-  LayoutSpec[name: "LVLAYOUT_GHZ1_ENDING", fname: "src/data/lv_ghz_1_ending.layout8"],
-  LayoutSpec[name: "LVLAYOUT_GHZ2", fname: "src/data/lv_ghz_2.layout7"],
-  LayoutSpec[name: "LVLAYOUT_GHZ3", fname: "src/data/lv_ghz_3.layout7"],
-  LayoutSpec[name: "LVLAYOUT_JUN1", fname: "src/data/lv_jun_1.layout8"],
-  LayoutSpec[name: "LVLAYOUT_JUN2_special_4_8", fname: "src/data/lv_jun_2_special_4_8.layout4"],
-  LayoutSpec[name: "LVLAYOUT_SCR1", fname: "src/data/lv_scr_1.layout8"],
-  LayoutSpec[name: "LVLAYOUT_SCR2_main", fname: "src/data/lv_scr_2_main.layout7"],
-  LayoutSpec[name: "LVLAYOUT_SCR2_upper", fname: "src/data/lv_scr_2_upper.layout6"],
-  LayoutSpec[name: "LVLAYOUT_SCR2_lower", fname: "src/data/lv_scr_2_lower.layout5"],
-  LayoutSpec[name: "LVLAYOUT_SCR3", fname: "src/data/lv_scr_3.layout6"],
-  LayoutSpec[name: "LVLAYOUT_SKY2", fname: "src/data/lv_sky_2.layout6"],
-  LayoutSpec[name: "LVLAYOUT_BRI1", fname: "src/data/lv_bri_1.layout8"],
-  LayoutSpec[name: "LVLAYOUT_LAB1", fname: "src/data/lv_lab_1.layout6"],
-  LayoutSpec[name: "LVLAYOUT_LAB2", fname: "src/data/lv_lab_2.layout6"],
-  LayoutSpec[name: "LVLAYOUT_SKY1", fname: "src/data/lv_sky_1.layout7"],
-  LayoutSpec[name: "LVLAYOUT_BRI2", fname: "src/data/lv_bri_2.layout7"],
-  LayoutSpec[name: "LVLAYOUT_SKY3_endof_SKY2", fname: "src/data/lv_sky_3_end_sky_2.layout6"],
-  LayoutSpec[name: "LVLAYOUT_JUN3", fname: "src/data/lv_jun_3.layout6"],
-  LayoutSpec[name: "LVLAYOUT_LAB3", fname: "src/data/lv_lab_3.layout6"],
-  LayoutSpec[name: "LVLAYOUT_BRI3", fname: "src/data/lv_bri_3.layout7"],
-  LayoutSpec[name: "LVLAYOUT_SPECIAL_1_2_3_5_6_7", fname: "src/data/lv_special_1_2_3_5_6_7.layout6"],
+  LayoutSpec[
+    name: "LVLAYOUT_GHZ1_ENDING",
+    fname: "src/data/lv_ghz_1_ending.layout8",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_GHZ2",
+    fname: "src/data/lv_ghz_2.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_GHZ3",
+    fname: "src/data/lv_ghz_3.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_JUN1",
+    fname: "src/data/lv_jun_1.layout8",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_JUN2_special_4_8",
+    fname: "src/data/lv_jun_2_special_4_8.layout4",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR1",
+    fname: "src/data/lv_scr_1.layout8",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR2_main",
+    fname: "src/data/lv_scr_2_main.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR2_upper",
+    fname: "src/data/lv_scr_2_upper.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR2_lower",
+    fname: "src/data/lv_scr_2_lower.layout5",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR3",
+    fname: "src/data/lv_scr_3.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SKY2",
+    fname: "src/data/lv_sky_2.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_BRI1",
+    fname: "src/data/lv_bri_1.layout8",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB1",
+    fname: "src/data/lv_lab_1.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB2",
+    fname: "src/data/lv_lab_2.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SKY1",
+    fname: "src/data/lv_sky_1.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_BRI2",
+    fname: "src/data/lv_bri_2.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SKY3_endof_SKY2",
+    fname: "src/data/lv_sky_3_end_sky_2.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_JUN3",
+    fname: "src/data/lv_jun_3.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB3",
+    fname: "src/data/lv_lab_3.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_BRI3",
+    fname: "src/data/lv_bri_3.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SPECIAL_1_2_3_5_6_7",
+    fname: "src/data/lv_special_1_2_3_5_6_7.layout6",
+  ],
 ]
 
 def main
