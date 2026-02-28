@@ -8,29 +8,53 @@ wm title . "stitch-view"
 set ::screen_lx 2560
 set ::screen_ly 1920
 
-set ::layout_specs {
-  {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ}
-  {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ}
-  {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ}
-  {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI}
-  {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI}
-  {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI}
-  {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN}
-  {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN}
-  {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN}
-  {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB}
-  {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB}
-  {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB}
-  {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR}
-  {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR}
-  {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR}
-  {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR}
-  {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR}
-  {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY}
-  {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY}
-  {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3}
-  {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special}
+set ::layout_boxes {
+   {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140}
+   {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340}
+   {LVLAYOUT_GHZ3 0x0001 0x0A00 0x00E8 0x0340}
+   {LVLAYOUT_BRI1 0x0001 0x1F00 0x0001 0x0140}
+   {LVLAYOUT_BRI2 0x0001 0x0F00 0x0001 0x0340}
+   {LVLAYOUT_BRI3 0x0001 0x0F00 0x0300 0x0340}
+   {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120}
+   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0001 0x1F20}
+   {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480}
+   {LVLAYOUT_LAB1 0x0001 0x0700 0x0001 0x0740}
+   {LVLAYOUT_LAB2 0x0001 0x0700 0x0001 0x0740}
+   {LVLAYOUT_LAB3 0x0001 0x0700 0x0001 0x0740}
+   {LVLAYOUT_SCR1 0x0001 0x1E00 0x0001 0x0120}
+   {LVLAYOUT_SCR2_main 0x0001 0x0F00 0x0001 0x0340}
+   {LVLAYOUT_SCR2_upper 0x0001 0x0700 0x0001 0x0740}
+   {LVLAYOUT_SCR2_lower 0x0001 0x0300 0x0001 0x0AA0}
+   {LVLAYOUT_SCR3 0x0001 0x0700 0x0220 0x0740}
+   {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340}
+   {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640}
+   {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740}
+   {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120}
 }
+
+set ::layout_specs {
+   {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ}
+   {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ}
+   {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ}
+   {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI}
+   {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI}
+   {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI}
+   {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN}
+   {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN}
+   {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN}
+   {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB}
+   {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB}
+   {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB}
+   {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR}
+   {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR}
+   {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR}
+   {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR}
+   {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR}
+   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY}
+   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY}
+   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3}
+}
+# {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special}
 
 set ::tilemap_specs {
    {GHZ LVTILEMAP_GHZ src/data/lv_ghz.tilemap}
@@ -81,6 +105,7 @@ proc init_widgets {} {
    grid columnconfigure . 0 -weight 1
 
    set ::drag_pos {}
+   set ::drag_tag {}
    bind .canvas <ButtonPress-1> { on_drag_start %x %y }
    bind .canvas <ButtonRelease-1> { on_drag_stop %x %y }
    bind .canvas <Motion> { on_drag_step %x %y }
@@ -88,6 +113,14 @@ proc init_widgets {} {
 
 proc on_drag_start {x y} {
    set ::drag_pos [list $x $y]
+   set pick_item [.canvas find overlapping $x $y $x $y]
+   set ::drag_tag {}
+   if {$pick_item ne {}} {
+      set pick_item [lindex $pick_item 0]
+      set ::drag_tag [lindex [.canvas itemcget $pick_item -tags] 0]
+      #puts "tag <$::drag_tag>"
+   }
+   #puts "pick <$pick_item>"
 }
 
 proc on_drag_stop {x y} {
@@ -100,7 +133,12 @@ proc on_drag_step {x y} {
       set dx [expr {$x-$old_x}]
       set dy [expr {$y-$old_y}]
       set ::drag_pos [list $x $y]
-      .canvas move all $dx $dy
+      if {$::drag_tag ne {}} {
+         # TODO: Metatile snapping --GM
+         .canvas move $::drag_tag $dx $dy
+      } else {
+         .canvas move all $dx $dy
+      }
    }
 }
 
@@ -227,12 +265,13 @@ proc init_levels {} {
    set ::next_layout_row_y 0
    set ::next_layout_x 0
    set ::next_layout_y 0
-   foreach ls $::layout_specs { load_level_layout $ls }
+   foreach lbs $::layout_boxes { load_level_layout $lbs }
    #load_level_layout [lindex $::layout_specs 0]
 }
 
-proc load_level_layout {ls} {
-   lassign $ls ls_key ls_fname tm_key
+proc load_level_layout {lbs} {
+   lassign $lbs ls_key x0 x1 y0 y1
+   lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname tm_key
    set tilemap $::tilemaps($tm_key)
    set width_shift [string index $ls_fname end]
    set width_mt [expr {1<<$width_shift}]
@@ -240,15 +279,29 @@ proc load_level_layout {ls} {
    set width_px [expr {$width_mt*32}]
    set height_px [expr {$height_mt*32}]
 
-   if {$::next_layout_x+$width_px > 0x10000} {
+   # Adjust virtual width + height
+   puts "<$x0 $x1 $y0 $y1>"
+   set x0_mt [expr {$x0>>5}]
+   set y0_mt [expr {$y0>>5}]
+   set x1_mt [expr {(($x1+256-1)>>5)+1}]
+   set y1_mt [expr {(($y1+192-1)>>5)+1}]
+   set x0_px [expr {$x0_mt<<5}]
+   set y0_px [expr {$y0_mt<<5}]
+   set x1_px [expr {$x1_mt<<5}]
+   set y1_px [expr {$y1_mt<<5}]
+   set vwidth_mt [expr {$x1_mt-$x0_mt}]
+   set vheight_mt [expr {$y1_mt-$y0_mt}]
+   set vwidth_px [expr {$vwidth_mt*32}]
+   set vheight_px [expr {$vheight_mt*32}]
+
+   if {$::next_layout_x+$vwidth_px > 0x10000} {
       set ::next_layout_x 0
       set ::next_layout_y $::next_layout_row_y
    }
    set base_x $::next_layout_x
    set base_y $::next_layout_y
-   set ::next_layout_row_y [expr {max($::next_layout_row_y, $base_y+$height_px)}]
-   incr ::next_layout_x $width_px
-   #puts "$ls_key $tm_key $width_mt $height_mt $base_x $base_y"
+   set ::next_layout_row_y [expr {max($::next_layout_row_y, $base_y+$vheight_px)}]
+   puts "$ls_key $tm_key $width_mt $height_mt $vwidth_mt $vheight_mt $base_x $base_y"
 
    # Load the data
    set fp [open $ls_fname rb]
@@ -285,13 +338,22 @@ proc load_level_layout {ls} {
 
    # Put it on the canvas!
    set ti 0
+   set eff_width_px 0
    for {set py 0} {$py < $height_px} {incr py 32} {
       for {set px 0} {$px < $width_px} {incr px 32} {
          set v [lindex $uncdata $ti]
          incr ti
-         .canvas create image [expr {$base_x+$px}] [expr {$base_y+$py}] -image [lindex $tilemap $v] -tags [list $ls_key]
+         if {$py >= $y0_px && $py < $y1_px} {
+            if {$px >= $x0_px && $px < $x1_px} {
+               if {$v != 0} {
+                  set eff_width_px [expr {max($eff_width_px, $px-$x0_mt+32)}]
+                  .canvas create image [expr {$base_x+$px-$x0_mt}] [expr {$base_y+$py-$y0_mt}] -image [lindex $tilemap $v] -tags [list $ls_key]
+               }
+            }
+         }
       }
    }
+   incr ::next_layout_x $eff_width_px
 }
 
 main {*}$argv
