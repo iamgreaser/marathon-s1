@@ -8999,7 +8999,7 @@ consume_ring:
    ex de, hl
    ;; DE contains the number of rings we need to skip.
    ;; And now we scan.
-   ;; D still contains our chunk address high byte, so we can index the ramsave buffers that way.
+   ;; H still contains our chunk address high byte, so we can index the ramsave buffers that way.
    ld a, h
    sub >g_level_layout
    add a, a
@@ -9007,7 +9007,7 @@ consume_ring:
    add a, <g_ramsave_buffers
    ld l, a
    ld a, $00
-   add a, >g_ramsave_buffers
+   adc a, >g_ramsave_buffers
    ld h, a
    ;; Dereference the pointer.
    ld a, (hl)
