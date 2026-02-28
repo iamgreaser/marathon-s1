@@ -9,26 +9,26 @@ set ::screen_lx 2560
 set ::screen_ly 1920
 
 set ::layout_boxes {
-   {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140}
-   {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340}
-   {LVLAYOUT_GHZ3 0x0001 0x0A00 0x00E8 0x0340}
-   {LVLAYOUT_BRI1 0x0001 0x1F00 0x0001 0x0140}
-   {LVLAYOUT_BRI2 0x0001 0x0F00 0x0001 0x0340}
-   {LVLAYOUT_BRI3 0x0001 0x0F00 0x0300 0x0340}
-   {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120}
-   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0001 0x1F20}
-   {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480}
-   {LVLAYOUT_LAB1 0x0001 0x0700 0x0001 0x0740}
-   {LVLAYOUT_LAB2 0x0001 0x0700 0x0001 0x0740}
-   {LVLAYOUT_LAB3 0x0001 0x0700 0x0001 0x0740}
-   {LVLAYOUT_SCR1 0x0001 0x1E00 0x0001 0x0120}
-   {LVLAYOUT_SCR2_main 0x0001 0x0F00 0x0001 0x0340}
-   {LVLAYOUT_SCR2_upper 0x0001 0x0700 0x0001 0x0740}
-   {LVLAYOUT_SCR2_lower 0x0001 0x0300 0x0001 0x0AA0}
-   {LVLAYOUT_SCR3 0x0001 0x0700 0x0220 0x0740}
-   {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340}
-   {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640}
-   {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120}
+   {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 -4 317}
+   {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340 0 8}
+   {LVLAYOUT_GHZ3 0x0001 0x0A00 0x00E8 0x0340 -18 0}
+   {LVLAYOUT_BRI1 0x0001 0x1F00 0x0001 0x0140 -6 -8}
+   {LVLAYOUT_BRI2 0x0001 0x0F00 0x0001 0x0340 -16 -18}
+   {LVLAYOUT_BRI3 0x0001 0x0F00 0x0300 0x0340 0 14}
+   {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120 -6 -9}
+   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0001 0x1F20 0 -243}
+   {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480 0 113}
+   {LVLAYOUT_LAB1 0x0001 0x0700 0x0001 0x0740 0 0}
+   {LVLAYOUT_LAB2 0x0001 0x0700 0x0001 0x0740 0 -2}
+   {LVLAYOUT_LAB3 0x0001 0x0700 0x0001 0x0740 0 -25}
+   {LVLAYOUT_SCR1 0x0001 0x1E00 0x0001 0x0120 -19 13}
+   {LVLAYOUT_SCR2_main 0x0001 0x0F00 0x0001 0x0340 -13 -14}
+   {LVLAYOUT_SCR2_upper 0x0001 0x0700 0x0001 0x0740 -4 -58}
+   {LVLAYOUT_SCR2_lower 0x0001 0x0300 0x0001 0x0AA0 -64 82}
+   {LVLAYOUT_SCR3 0x0001 0x0700 0x0220 0x0740 15 -106}
+   {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340 -18 -44}
+   {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640 -24 -20}
+   {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120 0 0}
 }
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740}
 
@@ -119,6 +119,8 @@ proc on_drag_start {x y} {
    set ::drag_tag {}
    set ::drag_accum_dx 16
    set ::drag_accum_dy 16
+   set ::drag_dx_count 0
+   set ::drag_dy_count 0
    if {$pick_item ne {}} {
       set pick_item [lindex $pick_item 0]
       set ::drag_tag [lindex [.canvas itemcget $pick_item -tags] 0]
@@ -128,6 +130,9 @@ proc on_drag_start {x y} {
 }
 
 proc on_drag_stop {x y} {
+   if {$::drag_tag ne {}} {
+      puts "drag counts $::drag_dx_count $::drag_dy_count"
+   }
    set ::drag_pos {}
 }
 
@@ -144,18 +149,22 @@ proc on_drag_step {x y} {
          set dy 0
          while {$::drag_accum_x < 0} {
             incr dx -32
+            incr ::drag_dx_count -1
             incr ::drag_accum_x 32
          }
          while {$::drag_accum_y < 0} {
             incr dy -32
+            incr ::drag_dy_count -1
             incr ::drag_accum_y 32
          }
          while {$::drag_accum_x >= 32} {
             incr dx 32
+            incr ::drag_dx_count 1
             incr ::drag_accum_x -32
          }
          while {$::drag_accum_y >= 32} {
             incr dy 32
+            incr ::drag_dy_count 1
             incr ::drag_accum_y -32
          }
          .canvas move $::drag_tag $dx $dy
@@ -299,16 +308,25 @@ proc init_tilemap_images {} {
 }
 
 proc init_levels {} {
+   set ::min_layout_x [expr {0x20000}]
+   set ::max_layout_x [expr {-0x10000}]
+   set ::min_layout_y [expr {0x20000}]
+   set ::max_layout_y [expr {-0x10000}]
    set ::next_layout_row_y 0
    set ::next_layout_x 0
    set ::next_layout_y 0
    foreach lbs $::layout_boxes { load_level_layout $lbs }
    #load_level_layout [lindex $::layout_specs 0]
    puts [format "end X: %04X (%5d)" $::next_layout_x $::next_layout_x]
+   puts [format "end Y: %04X (%5d) mt=%3d" $::next_layout_y $::next_layout_y [expr {$::next_layout_y>>5}]]
+   puts [format "min X: %04X (%5d)" $::min_layout_x $::min_layout_x]
+   puts [format "max X: %04X (%5d)" $::max_layout_x $::max_layout_x]
+   puts [format "min Y: %04X (%5d)" $::min_layout_y $::min_layout_y]
+   puts [format "max Y: %04X (%5d)" $::max_layout_y $::max_layout_y]
 }
 
 proc load_level_layout {lbs} {
-   lassign $lbs ls_key x0 x1 y0 y1
+   lassign $lbs ls_key x0 x1 y0 y1 delta_mt_x delta_mt_y
    lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname tm_key
    set tilemap $::tilemaps($tm_key)
    set width_shift [string index $ls_fname end]
@@ -317,8 +335,12 @@ proc load_level_layout {lbs} {
    set width_px [expr {$width_mt*32}]
    set height_px [expr {$height_mt*32}]
 
+   # Apply offset
+   incr ::next_layout_x [expr {$delta_mt_x*32}]
+   incr ::next_layout_y [expr {$delta_mt_y*32}]
+   #incr ::next_layout_row_y [expr {$delta_mt_y*32}]
+
    # Adjust virtual width + height
-   puts "<$x0 $x1 $y0 $y1>"
    set x0_mt [expr {$x0>>5}]
    set y0_mt [expr {$y0>>5}]
    set x1_mt [expr {(($x1+256-1)>>5)+1}]
@@ -385,6 +407,10 @@ proc load_level_layout {lbs} {
             if {$px >= $x0_px && $px < $x1_px} {
                if {$v != 0} {
                   set eff_width_px [expr {max($eff_width_px, $px-$x0_px+32)}]
+                  set ::min_layout_x [expr {min($::min_layout_x, $base_x+$px+$x0_px)}]
+                  set ::max_layout_x [expr {max($::max_layout_x, $base_x+$px+$x0_px+32)}]
+                  set ::min_layout_y [expr {min($::min_layout_y, $base_y+$py+$y0_px)}]
+                  set ::max_layout_y [expr {max($::max_layout_y, $base_y+$py+$y0_px+32)}]
                   .canvas create image [expr {$base_x+$px-$x0_px}] [expr {$base_y+$py-$y0_px}] -image [lindex $tilemap $v] -tags [list $ls_key]
                }
             }
