@@ -10,10 +10,11 @@ I've got stuff split into chunks now. So, from here...
    - Have a function which finds a chunk that needs updating, then call that 4 times during initialisation and once during a gameplay update.
    - Select an initial offset based on the initial camera position.
    - (possible later optimisation) Consider applying hysteresis so that one can't easily flick between triggering 3 chunk loads per frame.
-- [ ] Pre-allocate parts of RAM paired with each chunk pointer, and use that for tracking ring consumption.
+- [x] Pre-allocate parts of RAM paired with each chunk pointer, and use that for tracking ring consumption.
    - Use one bit per ring.
    - Read this during chunk loading so we know which bits to ditch.
    - Consider using a separate variant of the RLE loader which is used for generating the resulting bit mask.
+      - Actual approach right now is to update the mask whenever a ring is collected and to find the relevant offset and set the first 0 bit in the designated ramsave area.
 
 ----
 
@@ -24,3 +25,12 @@ Still not sure if I'll go for an ECS approach for this one. It could be useful f
 ----
 
 And then of course I have to stitch it into one giant level. That object system overhaul really does need to happen to make this possible, unless I decide I'm going to prune or reset earlier objects.
+
+Prerequisites:
+
+- [ ] There must only be one checkpoint position, not one per level.
+   - This also means I have to get rid of the checkpoint flags array.
+   - The position coordinates also have to be a 16-bit pair indicating a pixel position.
+   - We can assume that a checkpoint position of ($0000, $0000) means it isn't set, so we won't need to keep a flag around for that.
+   - If we switch the level header field to use 16-bit pairs in the same way, then we shouldn't have to modify the code as much.
+      - But do I look like I'm afraid of modifying critical code here? I'm overhauling a key part of the engine.

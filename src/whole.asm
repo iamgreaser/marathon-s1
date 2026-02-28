@@ -251,6 +251,7 @@ g_temporary_palette_buffer db   ; D3BC
 ; New stuff should go here.
 ;
 g_of_saved_hl dw
+g_ramsave_buffers dsw 16
 g_ram_layout_ptrs_per_y dsw 16  ; Use this to compute Y offsets into the layout in RAM for the time being.
 
 object_list db   ; D3FC
@@ -1936,10 +1937,18 @@ unpack_level_layout_into_ram:
    ld     de, g_level_layout
    ;; Load our 16 chunks.
    ld b, $10
+   ld ix, g_ramsave_buffers
    @each_chunk:
       ld a, (g_committed_rompage_2)
       ld c, a
       push bc
+         ;; Load the pointer to the ramsave section
+         ld c, (hl)
+         inc hl
+         ld b, (hl)
+         inc hl
+         ld (ix+0), c
+         ld (ix+1), b
          ;; Load the chunk
          ld c, (hl)
          inc hl
@@ -1948,22 +1957,21 @@ unpack_level_layout_into_ram:
          ld a, (hl)
          inc hl
          call set_rompage_2
+         push de
          push hl
             ld l, c
             ld h, b
             call load_level_chunk@ENTRY_POINT
          pop hl
+         pop de
          ;; Load the ramsave section
-         dec d
-         ld c, (hl)
-         inc hl
-         ld b, (hl)
-         inc hl
          push hl
-            ld l, c
-            ld h, b
+            ld l, (ix+0)
+            ld h, (ix+1)
             call load_ramsave
          pop hl
+         inc ix
+         inc ix
       pop bc
       ld a, c
       call set_rompage_2
@@ -2020,6 +2028,8 @@ load_level_chunk:
    inc hl
    jp @each_input
 
+   ;; HL = ramsave section
+   ;; DE = chunk
 load_ramsave:
    ld bc, $0000  ; B is for $100 bytes, C is a blank mask to read from
 @each_layout_byte:
@@ -7408,6 +7418,8 @@ objfunc_00_sonic:
 
 @fn_try_collect_ring_in_ring_tile:
    ex     de, hl                       ; 01:4DEF - EB
+
+   ;; Ensure Sonic is in the right Y position
    ld     hl, (sonic_y)                ; 01:4DF0 - 2A 01 D4
    ld     bc, (g_level_scroll_y_pix_lo)  ; 01:4DF3 - ED 4B 5D D2
    and    a                            ; 01:4DF7 - A7
@@ -7417,6 +7429,9 @@ objfunc_00_sonic:
    and    a                            ; 01:4DFE - A7
    sbc    hl, bc                       ; 01:4DFF - ED 42
    ret    c                            ; 01:4E01 - D8
+
+   ;; Compute which side Sonic is meant to be, left or right
+   ;; Turn this into a bit mask, $01 or $02
    ld     hl, (sonic_x)                ; 01:4E02 - 2A FE D3
    ld     bc, $000C                    ; 01:4E05 - 01 0C 00
    add    hl, bc                       ; 01:4E08 - 09
@@ -7429,18 +7444,25 @@ objfunc_00_sonic:
    rrca                                ; 01:4E0F - 0F
    and    $01                          ; 01:4E10 - E6 01
    inc    a                            ; 01:4E12 - 3C
+
+   ;; Check if that bit is set
    ld     b, a                         ; 01:4E13 - 47
    ld     a, c                         ; 01:4E14 - 79
    and    b                            ; 01:4E15 - A0
    ret    z                            ; 01:4E16 - C8
+
+   ;; Collect it!
+   ;; Compute X sparkle position
    ld     a, l                         ; 01:4E17 - 7D
    and    $F0                          ; 01:4E18 - E6 F0
    ld     l, a                         ; 01:4E1A - 6F
    ld     (g_screen_tile_replace_x), hl  ; 01:4E1B - 22 AB D2
    ld     (g_ring_sparkle_sprite_x), hl  ; 01:4E1E - 22 1D D3
-   ld     a, c                         ; 01:4E21 - 79
-   xor    b                            ; 01:4E22 - A8
-   ld     (de), a                      ; 01:4E23 - 12
+
+   ;; Consume the ring
+   call consume_ring
+
+   ;; Compute Y sparkle position
    ld     hl, (sonic_y)                ; 01:4E24 - 2A 01 D4
    ld     bc, $0008                    ; 01:4E27 - 01 08 00
    add    hl, bc                       ; 01:4E2A - 09
@@ -7450,10 +7472,14 @@ objfunc_00_sonic:
    ld     l, a                         ; 01:4E30 - 6F
    ld     (g_screen_tile_replace_y), hl  ; 01:4E31 - 22 AD D2
    ld     (g_ring_sparkle_sprite_y), hl  ; 01:4E34 - 22 1F D3
+
+   ;; Set timers and tile replacement
    ld     a, $06                       ; 01:4E37 - 3E 06
    ld     (g_ring_sparkle_sprite_countdown_timer), a  ; 01:4E39 - 32 21 D3
    ld     hl, TILEREPLACE_ring_blanking  ; 01:4E3C - 21 5D 59
    ld     (g_screen_tile_replace_data_ptr), hl  ; 01:4E3F - 22 AF D2
+
+   ;; Add the rings to the counter
    ld     a, $01                       ; 01:4E42 - 3E 01
    call   add_A_rings                  ; 01:4E44 - CD AC 39
    ret                                 ; 01:4E47 - C9
@@ -8921,6 +8947,100 @@ CODEPTRTAB_sonic_tile_specials:
 .dw objfunc_00_sonic@special_08_underwater, objfunc_00_sonic@special_09_spring_up_12_px_t, objfunc_00_sonic@special_0A_GHZ2_falling_sfx, objfunc_00_sonic@special_0B_teleport, objfunc_00_sonic@special_0C_underwater_accel_left_8_subpx_t2, objfunc_00_sonic@special_0D_slide_right_5_px_t, objfunc_00_sonic@special_0E_slide_right_6_px_t, objfunc_00_sonic@special_0F_slide_left_5_px_t  ; 01:58F5
 .dw objfunc_00_sonic@special_10_slide_left_6_px_t, objfunc_00_sonic@special_11_bumper_special_stage, objfunc_00_sonic@special_12_spring_up_10_px_t_special_stage, objfunc_00_sonic@special_13_spring_up_12_px_t_special_stage, objfunc_00_sonic@special_14_spring_up_14_px_t_special_stage, objfunc_00_sonic@special_15_bouncebar_middle_special_stage, objfunc_00_sonic@special_16_bouncebar_end_special_stage, objfunc_00_sonic@special_17_SKY1_lightning  ; 01:5905
 .dw objfunc_00_sonic@special_18_collapsing_bridge_both_sides, objfunc_00_sonic@special_19_collapsing_bridge_right_only, objfunc_00_sonic@special_1A_collapsing_bridge_left_only, objfunc_00_sonic@special_1B_upwards_offscreen_input_suppressor  ; 01:5915
+
+   ;; B = mask
+   ;; DE = pointer into chunk
+consume_ring:
+   ;; Let HL be the number of rings that came before us.
+   ld hl, $0000
+   ld a, (de)
+   bit 1, b
+   jr z, @cannot_be_pair
+   bit 0, a
+   jr z, @cannot_be_pair
+   inc l
+@cannot_be_pair:
+
+   ;; Consume the ring on the tile
+   ld a, (de)
+   xor b
+   ld (de), a
+   ;; B is now free.
+
+   ;; Compute the remaining length, and skip if we are at the start.
+   ld a, e
+   and a
+   jr z, @skip_seeking
+   ld b, a
+
+@each_input_byte:
+   dec e
+   ld a, (de)
+   and $7F
+   cp $79
+   jr c, @not_rings
+
+   ;; Count the number of rings.
+   ;; C is free, use that.
+   ld c, a
+   xor a
+   rrc c
+   adc a, $00
+   rrc c
+   adc a, l
+   ld l, a
+   ld a, h
+   adc a, $00
+   ld h, a
+@not_rings:
+   djnz @each_input_byte
+
+@skip_seeking:
+   ex de, hl
+   ;; DE contains the number of rings we need to skip.
+   ;; And now we scan.
+   ;; D still contains our chunk address high byte, so we can index the ramsave buffers that way.
+   ld a, h
+   sub >g_level_layout
+   add a, a
+   ;; The above won't carry, but the below might.
+   add a, <g_ramsave_buffers
+   ld l, a
+   ld a, $00
+   add a, >g_ramsave_buffers
+   ld h, a
+   ;; Dereference the pointer.
+   ld a, (hl)
+   inc hl
+   ld h, (hl)
+   ld l, a
+   ;; HL = ramsave buffer
+
+   ;; C = mask
+   ;; B = currently fetched byte
+   ld c, $80
+@each_ramsave_bit:
+   rlc c
+   call c, @fn_fetch_ramsave_bit
+   ld a, b
+   and c
+   jr nz, @each_ramsave_bit
+   ;; Found a gap. Decrement the count and advance if we are done.
+   dec de
+   bit 7, d
+   jp z, @each_ramsave_bit
+
+   ;; Store it!
+   dec hl
+   ld a, (hl)
+   or c
+   ld (hl), a
+   ret
+
+@fn_fetch_ramsave_bit:
+   ld b, (hl)
+   inc hl
+   ret
 
 SPRITEMAP_sonic_normal:
 .db $B4, $B6, $B8, $FF, $FF, $FF, $BA, $BC, $BE, $FF, $FF, $FF, $FF, $FF            ; 01:591D

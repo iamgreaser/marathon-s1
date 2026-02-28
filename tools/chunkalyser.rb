@@ -90,9 +90,9 @@ def main
     outdata << ".SECTION \"base_#{layout.name}\" SLOT 2 SUPERFREE\n"
     outdata << "#{layout.name}:\n"
     ptr_list.each do |(ptr_name, ramsave_name)|
+      outdata << ".DW #{ramsave_name}\n"
       outdata << ".DW #{ptr_name}\n"
       outdata << ".DB :#{ptr_name}\n"
-      outdata << ".DW #{ramsave_name}\n"
     end
     outdata << ".ENDS\n"
     #layout.unpacked_2d.each{|row| puts row.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")}

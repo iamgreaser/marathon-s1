@@ -130,42 +130,43 @@ chunk_000F:
 
 .SECTION "base_LVLAYOUT_GHZ1_ENDING" SLOT 2 SUPERFREE
 LVLAYOUT_GHZ1_ENDING:
+.DW chunksave_0000
 .DW chunk_0000
 .DB :chunk_0000
-.DW chunksave_0000
+.DW chunksave_0001
 .DW chunk_0001
 .DB :chunk_0001
-.DW chunksave_0001
+.DW chunksave_0002
 .DW chunk_0002
 .DB :chunk_0002
-.DW chunksave_0002
+.DW chunksave_0003
 .DW chunk_0003
 .DB :chunk_0003
-.DW chunksave_0003
+.DW chunksave_0004
 .DW chunk_0004
 .DB :chunk_0004
-.DW chunksave_0004
+.DW chunksave_0005
 .DW chunk_0005
 .DB :chunk_0005
-.DW chunksave_0005
+.DW chunksave_0006
 .DW chunk_0006
 .DB :chunk_0006
-.DW chunksave_0006
+.DW chunksave_0007
 .DW chunk_0007
 .DB :chunk_0007
-.DW chunksave_0007
+.DW chunksave_0008
 .DW chunk_0008
 .DB :chunk_0008
-.DW chunksave_0008
+.DW chunksave_0009
 .DW chunk_0009
 .DB :chunk_0009
-.DW chunksave_0009
+.DW chunksave_000A
 .DW chunk_000A
 .DB :chunk_000A
-.DW chunksave_000A
+.DW chunksave_000B
 .DW chunk_000B
 .DB :chunk_000B
-.DW chunksave_000B
+.DW 0
 .DW chunk_000C
 .DB :chunk_000C
 .DW 0
@@ -177,7 +178,6 @@ LVLAYOUT_GHZ1_ENDING:
 .DW 0
 .DW chunk_000F
 .DB :chunk_000F
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0010" SLOT 2 SUPERFREE
@@ -285,42 +285,43 @@ chunk_001E:
 
 .SECTION "base_LVLAYOUT_GHZ2" SLOT 2 SUPERFREE
 LVLAYOUT_GHZ2:
+.DW chunksave_000C
 .DW chunk_0010
 .DB :chunk_0010
-.DW chunksave_000C
+.DW chunksave_000D
 .DW chunk_0011
 .DB :chunk_0011
-.DW chunksave_000D
+.DW chunksave_000E
 .DW chunk_0012
 .DB :chunk_0012
-.DW chunksave_000E
+.DW 0
 .DW chunk_0013
 .DB :chunk_0013
-.DW 0
+.DW chunksave_000F
 .DW chunk_0014
 .DB :chunk_0014
-.DW chunksave_000F
+.DW 0
 .DW chunk_0015
 .DB :chunk_0015
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
+.DW chunksave_0010
 .DW chunk_0017
 .DB :chunk_0017
-.DW chunksave_0010
+.DW 0
 .DW chunk_0018
 .DB :chunk_0018
 .DW 0
 .DW chunk_0019
 .DB :chunk_0019
-.DW 0
+.DW chunksave_0011
 .DW chunk_001A
 .DB :chunk_001A
-.DW chunksave_0011
+.DW chunksave_0012
 .DW chunk_001B
 .DB :chunk_001B
-.DW chunksave_0012
+.DW 0
 .DW chunk_001C
 .DB :chunk_001C
 .DW 0
@@ -332,7 +333,6 @@ LVLAYOUT_GHZ2:
 .DW 0
 .DW chunk_001E
 .DB :chunk_001E
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_001F" SLOT 2 SUPERFREE
@@ -397,6 +397,7 @@ chunk_002A:
 
 .SECTION "base_LVLAYOUT_GHZ3" SLOT 2 SUPERFREE
 LVLAYOUT_GHZ3:
+.DW 0
 .DW chunk_001F
 .DB :chunk_001F
 .DW 0
@@ -444,7 +445,6 @@ LVLAYOUT_GHZ3:
 .DW 0
 .DW chunk_002A
 .DB :chunk_002A
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_002B" SLOT 2 SUPERFREE
@@ -552,30 +552,31 @@ chunk_0039:
 
 .SECTION "base_LVLAYOUT_JUN1" SLOT 2 SUPERFREE
 LVLAYOUT_JUN1:
+.DW chunksave_0013
 .DW chunk_002B
 .DB :chunk_002B
-.DW chunksave_0013
+.DW chunksave_0014
 .DW chunk_002C
 .DB :chunk_002C
-.DW chunksave_0014
+.DW 0
 .DW chunk_002D
 .DB :chunk_002D
-.DW 0
+.DW chunksave_0015
 .DW chunk_002E
 .DB :chunk_002E
-.DW chunksave_0015
+.DW 0
 .DW chunk_002F
 .DB :chunk_002F
 .DW 0
 .DW chunk_0030
 .DB :chunk_0030
-.DW 0
+.DW chunksave_0016
 .DW chunk_0031
 .DB :chunk_0031
-.DW chunksave_0016
+.DW chunksave_0017
 .DW chunk_0032
 .DB :chunk_0032
-.DW chunksave_0017
+.DW 0
 .DW chunk_0033
 .DB :chunk_0033
 .DW 0
@@ -584,13 +585,13 @@ LVLAYOUT_JUN1:
 .DW 0
 .DW chunk_0035
 .DB :chunk_0035
-.DW 0
+.DW chunksave_0018
 .DW chunk_0036
 .DB :chunk_0036
-.DW chunksave_0018
+.DW chunksave_0019
 .DW chunk_0037
 .DB :chunk_0037
-.DW chunksave_0019
+.DW 0
 .DW chunk_0038
 .DB :chunk_0038
 .DW 0
@@ -599,7 +600,6 @@ LVLAYOUT_JUN1:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_003A" SLOT 2 SUPERFREE
@@ -718,21 +718,22 @@ chunksave_0024 dsb 1
 
 .SECTION "base_LVLAYOUT_JUN2_special_4_8" SLOT 2 SUPERFREE
 LVLAYOUT_JUN2_special_4_8:
+.DW chunksave_001A
 .DW chunk_003A
 .DB :chunk_003A
-.DW chunksave_001A
+.DW chunksave_001B
 .DW chunk_003B
 .DB :chunk_003B
-.DW chunksave_001B
+.DW chunksave_001C
 .DW chunk_003C
 .DB :chunk_003C
-.DW chunksave_001C
+.DW chunksave_001D
 .DW chunk_003D
 .DB :chunk_003D
-.DW chunksave_001D
+.DW chunksave_001E
 .DW chunk_003E
 .DB :chunk_003E
-.DW chunksave_001E
+.DW 0
 .DW chunk_003F
 .DB :chunk_003F
 .DW 0
@@ -747,25 +748,24 @@ LVLAYOUT_JUN2_special_4_8:
 .DW 0
 .DW chunk_0041
 .DB :chunk_0041
-.DW 0
+.DW chunksave_001F
 .DW chunk_0042
 .DB :chunk_0042
-.DW chunksave_001F
+.DW chunksave_0020
 .DW chunk_0043
 .DB :chunk_0043
-.DW chunksave_0020
+.DW chunksave_0021
 .DW chunk_0044
 .DB :chunk_0044
-.DW chunksave_0021
+.DW chunksave_0022
 .DW chunk_0045
 .DB :chunk_0045
-.DW chunksave_0022
+.DW chunksave_0023
 .DW chunk_0046
 .DB :chunk_0046
-.DW chunksave_0023
+.DW chunksave_0024
 .DW chunk_0047
 .DB :chunk_0047
-.DW chunksave_0024
 .ENDS
 
 .SECTION "base_chunk_0048" SLOT 2 SUPERFREE
@@ -861,33 +861,34 @@ chunk_0052:
 
 .SECTION "base_LVLAYOUT_SCR1" SLOT 2 SUPERFREE
 LVLAYOUT_SCR1:
+.DW chunksave_0025
 .DW chunk_0048
 .DB :chunk_0048
-.DW chunksave_0025
+.DW chunksave_0026
 .DW chunk_0049
 .DB :chunk_0049
-.DW chunksave_0026
+.DW chunksave_0027
 .DW chunk_004A
 .DB :chunk_004A
-.DW chunksave_0027
+.DW chunksave_0028
 .DW chunk_004B
 .DB :chunk_004B
-.DW chunksave_0028
+.DW chunksave_0029
 .DW chunk_004C
 .DB :chunk_004C
-.DW chunksave_0029
+.DW chunksave_002A
 .DW chunk_004D
 .DB :chunk_004D
-.DW chunksave_002A
+.DW chunksave_002B
 .DW chunk_004E
 .DB :chunk_004E
-.DW chunksave_002B
+.DW chunksave_002C
 .DW chunk_004F
 .DB :chunk_004F
-.DW chunksave_002C
+.DW chunksave_002D
 .DW chunk_0050
 .DB :chunk_0050
-.DW chunksave_002D
+.DW 0
 .DW chunk_0051
 .DB :chunk_0051
 .DW 0
@@ -908,7 +909,6 @@ LVLAYOUT_SCR1:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0053" SLOT 2 SUPERFREE
@@ -1025,6 +1025,7 @@ chunk_0062:
 
 .SECTION "base_LVLAYOUT_SCR2_main" SLOT 2 SUPERFREE
 LVLAYOUT_SCR2_main:
+.DW 0
 .DW chunk_0053
 .DB :chunk_0053
 .DW 0
@@ -1033,37 +1034,37 @@ LVLAYOUT_SCR2_main:
 .DW 0
 .DW chunk_0055
 .DB :chunk_0055
-.DW 0
+.DW chunksave_002E
 .DW chunk_0056
 .DB :chunk_0056
-.DW chunksave_002E
+.DW chunksave_002F
 .DW chunk_0057
 .DB :chunk_0057
-.DW chunksave_002F
+.DW chunksave_0030
 .DW chunk_0058
 .DB :chunk_0058
-.DW chunksave_0030
+.DW 0
 .DW chunk_0059
 .DB :chunk_0059
 .DW 0
 .DW chunk_005A
 .DB :chunk_005A
-.DW 0
+.DW chunksave_0031
 .DW chunk_005B
 .DB :chunk_005B
-.DW chunksave_0031
+.DW chunksave_0032
 .DW chunk_005C
 .DB :chunk_005C
-.DW chunksave_0032
+.DW chunksave_0033
 .DW chunk_005D
 .DB :chunk_005D
-.DW chunksave_0033
+.DW chunksave_0034
 .DW chunk_005E
 .DB :chunk_005E
-.DW chunksave_0034
+.DW chunksave_0035
 .DW chunk_005F
 .DB :chunk_005F
-.DW chunksave_0035
+.DW 0
 .DW chunk_0060
 .DB :chunk_0060
 .DW 0
@@ -1072,7 +1073,6 @@ LVLAYOUT_SCR2_main:
 .DW 0
 .DW chunk_0062
 .DB :chunk_0062
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0063" SLOT 2 SUPERFREE
@@ -1157,6 +1157,7 @@ chunk_0072:
 
 .SECTION "base_LVLAYOUT_SCR2_upper" SLOT 2 SUPERFREE
 LVLAYOUT_SCR2_upper:
+.DW 0
 .DW chunk_0063
 .DB :chunk_0063
 .DW 0
@@ -1204,7 +1205,6 @@ LVLAYOUT_SCR2_upper:
 .DW 0
 .DW chunk_0072
 .DB :chunk_0072
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0073" SLOT 2 SUPERFREE
@@ -1249,6 +1249,7 @@ chunk_007A:
 
 .SECTION "base_LVLAYOUT_SCR2_lower" SLOT 2 SUPERFREE
 LVLAYOUT_SCR2_lower:
+.DW 0
 .DW chunk_0073
 .DB :chunk_0073
 .DW 0
@@ -1296,7 +1297,6 @@ LVLAYOUT_SCR2_lower:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_007B" SLOT 2 SUPERFREE
@@ -1403,6 +1403,7 @@ chunk_0088:
 
 .SECTION "base_LVLAYOUT_SCR3" SLOT 2 SUPERFREE
 LVLAYOUT_SCR3:
+.DW 0
 .DW chunk_0016
 .DB :chunk_0016
 .DW 0
@@ -1417,40 +1418,39 @@ LVLAYOUT_SCR3:
 .DW 0
 .DW chunk_007D
 .DB :chunk_007D
-.DW 0
+.DW chunksave_0036
 .DW chunk_007E
 .DB :chunk_007E
-.DW chunksave_0036
+.DW chunksave_0037
 .DW chunk_007F
 .DB :chunk_007F
-.DW chunksave_0037
+.DW chunksave_0038
 .DW chunk_0080
 .DB :chunk_0080
-.DW chunksave_0038
+.DW 0
 .DW chunk_0081
 .DB :chunk_0081
-.DW 0
+.DW chunksave_0039
 .DW chunk_0082
 .DB :chunk_0082
-.DW chunksave_0039
+.DW chunksave_003A
 .DW chunk_0083
 .DB :chunk_0083
-.DW chunksave_003A
+.DW chunksave_003B
 .DW chunk_0084
 .DB :chunk_0084
-.DW chunksave_003B
+.DW 0
 .DW chunk_0085
 .DB :chunk_0085
-.DW 0
+.DW chunksave_003C
 .DW chunk_0086
 .DB :chunk_0086
-.DW chunksave_003C
+.DW chunksave_003D
 .DW chunk_0087
 .DB :chunk_0087
-.DW chunksave_003D
+.DW 0
 .DW chunk_0088
 .DB :chunk_0088
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0089" SLOT 2 SUPERFREE
@@ -1495,6 +1495,7 @@ chunk_0090:
 
 .SECTION "base_LVLAYOUT_SKY2" SLOT 2 SUPERFREE
 LVLAYOUT_SKY2:
+.DW 0
 .DW chunk_0089
 .DB :chunk_0089
 .DW 0
@@ -1542,7 +1543,6 @@ LVLAYOUT_SKY2:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_0091" SLOT 2 SUPERFREE
@@ -1647,36 +1647,37 @@ chunk_009C:
 
 .SECTION "base_LVLAYOUT_BRI1" SLOT 2 SUPERFREE
 LVLAYOUT_BRI1:
+.DW chunksave_003E
 .DW chunk_0091
 .DB :chunk_0091
-.DW chunksave_003E
+.DW chunksave_003F
 .DW chunk_0092
 .DB :chunk_0092
-.DW chunksave_003F
+.DW chunksave_0040
 .DW chunk_0093
 .DB :chunk_0093
-.DW chunksave_0040
+.DW chunksave_0041
 .DW chunk_0094
 .DB :chunk_0094
-.DW chunksave_0041
+.DW chunksave_0042
 .DW chunk_0095
 .DB :chunk_0095
-.DW chunksave_0042
+.DW chunksave_0043
 .DW chunk_0096
 .DB :chunk_0096
-.DW chunksave_0043
+.DW chunksave_0044
 .DW chunk_0097
 .DB :chunk_0097
-.DW chunksave_0044
+.DW chunksave_0045
 .DW chunk_0098
 .DB :chunk_0098
-.DW chunksave_0045
+.DW chunksave_0046
 .DW chunk_0099
 .DB :chunk_0099
-.DW chunksave_0046
+.DW chunksave_0047
 .DW chunk_009A
 .DB :chunk_009A
-.DW chunksave_0047
+.DW 0
 .DW chunk_009B
 .DB :chunk_009B
 .DW 0
@@ -1694,7 +1695,6 @@ LVLAYOUT_BRI1:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_009D" SLOT 2 SUPERFREE
@@ -1791,36 +1791,37 @@ chunk_00A8:
 
 .SECTION "base_LVLAYOUT_LAB1" SLOT 2 SUPERFREE
 LVLAYOUT_LAB1:
+.DW chunksave_0048
 .DW chunk_009D
 .DB :chunk_009D
-.DW chunksave_0048
+.DW chunksave_0049
 .DW chunk_009E
 .DB :chunk_009E
-.DW chunksave_0049
+.DW chunksave_004A
 .DW chunk_009F
 .DB :chunk_009F
-.DW chunksave_004A
+.DW 0
 .DW chunk_00A0
 .DB :chunk_00A0
-.DW 0
+.DW chunksave_004B
 .DW chunk_00A1
 .DB :chunk_00A1
-.DW chunksave_004B
+.DW chunksave_004C
 .DW chunk_00A2
 .DB :chunk_00A2
-.DW chunksave_004C
+.DW chunksave_004D
 .DW chunk_00A3
 .DB :chunk_00A3
-.DW chunksave_004D
+.DW chunksave_004E
 .DW chunk_00A4
 .DB :chunk_00A4
-.DW chunksave_004E
+.DW 0
 .DW chunk_00A5
 .DB :chunk_00A5
-.DW 0
+.DW chunksave_004F
 .DW chunk_00A6
 .DB :chunk_00A6
-.DW chunksave_004F
+.DW 0
 .DW chunk_00A7
 .DB :chunk_00A7
 .DW 0
@@ -1838,7 +1839,6 @@ LVLAYOUT_LAB1:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00A9" SLOT 2 SUPERFREE
@@ -1963,6 +1963,7 @@ chunksave_0059 dsb 2
 
 .SECTION "base_LVLAYOUT_LAB2" SLOT 2 SUPERFREE
 LVLAYOUT_LAB2:
+.DW 0
 .DW chunk_00A9
 .DB :chunk_00A9
 .DW 0
@@ -1974,43 +1975,42 @@ LVLAYOUT_LAB2:
 .DW 0
 .DW chunk_00AC
 .DB :chunk_00AC
-.DW 0
+.DW chunksave_0050
 .DW chunk_00AD
 .DB :chunk_00AD
-.DW chunksave_0050
+.DW chunksave_0051
 .DW chunk_00AE
 .DB :chunk_00AE
-.DW chunksave_0051
+.DW chunksave_0052
 .DW chunk_00AF
 .DB :chunk_00AF
-.DW chunksave_0052
+.DW chunksave_0053
 .DW chunk_00B0
 .DB :chunk_00B0
-.DW chunksave_0053
+.DW chunksave_0054
 .DW chunk_00B1
 .DB :chunk_00B1
-.DW chunksave_0054
+.DW 0
 .DW chunk_00B2
 .DB :chunk_00B2
-.DW 0
+.DW chunksave_0055
 .DW chunk_00B3
 .DB :chunk_00B3
-.DW chunksave_0055
+.DW chunksave_0056
 .DW chunk_00B4
 .DB :chunk_00B4
-.DW chunksave_0056
+.DW chunksave_0057
 .DW chunk_00B5
 .DB :chunk_00B5
-.DW chunksave_0057
+.DW 0
 .DW chunk_00B6
 .DB :chunk_00B6
-.DW 0
+.DW chunksave_0058
 .DW chunk_00B7
 .DB :chunk_00B7
-.DW chunksave_0058
+.DW chunksave_0059
 .DW chunk_00B8
 .DB :chunk_00B8
-.DW chunksave_0059
 .ENDS
 
 .SECTION "base_chunk_00B9" SLOT 2 SUPERFREE
@@ -2135,21 +2135,22 @@ chunk_00C8:
 
 .SECTION "base_LVLAYOUT_SKY1" SLOT 2 SUPERFREE
 LVLAYOUT_SKY1:
+.DW chunksave_005A
 .DW chunk_00B9
 .DB :chunk_00B9
-.DW chunksave_005A
+.DW chunksave_005B
 .DW chunk_00BA
 .DB :chunk_00BA
-.DW chunksave_005B
+.DW chunksave_005C
 .DW chunk_00BB
 .DB :chunk_00BB
-.DW chunksave_005C
+.DW 0
 .DW chunk_00BC
 .DB :chunk_00BC
-.DW 0
+.DW chunksave_005D
 .DW chunk_00BD
 .DB :chunk_00BD
-.DW chunksave_005D
+.DW 0
 .DW chunk_00BE
 .DB :chunk_00BE
 .DW 0
@@ -2158,31 +2159,30 @@ LVLAYOUT_SKY1:
 .DW 0
 .DW chunk_00C0
 .DB :chunk_00C0
-.DW 0
+.DW chunksave_005E
 .DW chunk_00C1
 .DB :chunk_00C1
-.DW chunksave_005E
+.DW chunksave_005F
 .DW chunk_00C2
 .DB :chunk_00C2
-.DW chunksave_005F
+.DW chunksave_0060
 .DW chunk_00C3
 .DB :chunk_00C3
-.DW chunksave_0060
+.DW chunksave_0061
 .DW chunk_00C4
 .DB :chunk_00C4
-.DW chunksave_0061
+.DW chunksave_0062
 .DW chunk_00C5
 .DB :chunk_00C5
-.DW chunksave_0062
+.DW chunksave_0063
 .DW chunk_00C6
 .DB :chunk_00C6
-.DW chunksave_0063
+.DW 0
 .DW chunk_00C7
 .DB :chunk_00C7
 .DW 0
 .DW chunk_00C8
 .DB :chunk_00C8
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00C9" SLOT 2 SUPERFREE
@@ -2270,6 +2270,7 @@ chunk_00D3:
 
 .SECTION "base_LVLAYOUT_BRI2" SLOT 2 SUPERFREE
 LVLAYOUT_BRI2:
+.DW 0
 .DW chunk_0016
 .DB :chunk_0016
 .DW 0
@@ -2293,31 +2294,30 @@ LVLAYOUT_BRI2:
 .DW 0
 .DW chunk_00CB
 .DB :chunk_00CB
-.DW 0
+.DW chunksave_0064
 .DW chunk_00CC
 .DB :chunk_00CC
-.DW chunksave_0064
+.DW chunksave_0065
 .DW chunk_00CD
 .DB :chunk_00CD
-.DW chunksave_0065
+.DW chunksave_0066
 .DW chunk_00CE
 .DB :chunk_00CE
-.DW chunksave_0066
+.DW chunksave_0067
 .DW chunk_00CF
 .DB :chunk_00CF
-.DW chunksave_0067
+.DW chunksave_0068
 .DW chunk_00D0
 .DB :chunk_00D0
-.DW chunksave_0068
+.DW chunksave_0069
 .DW chunk_00D1
 .DB :chunk_00D1
-.DW chunksave_0069
+.DW chunksave_006A
 .DW chunk_00D2
 .DB :chunk_00D2
-.DW chunksave_006A
+.DW 0
 .DW chunk_00D3
 .DB :chunk_00D3
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00D4" SLOT 2 SUPERFREE
@@ -2372,6 +2372,7 @@ chunk_00DD:
 
 .SECTION "base_LVLAYOUT_SKY3_endof_SKY2" SLOT 2 SUPERFREE
 LVLAYOUT_SKY3_endof_SKY2:
+.DW 0
 .DW chunk_00D4
 .DB :chunk_00D4
 .DW 0
@@ -2419,7 +2420,6 @@ LVLAYOUT_SKY3_endof_SKY2:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00DE" SLOT 2 SUPERFREE
@@ -2464,6 +2464,7 @@ chunk_00E5:
 
 .SECTION "base_LVLAYOUT_JUN3" SLOT 2 SUPERFREE
 LVLAYOUT_JUN3:
+.DW 0
 .DW chunk_00DE
 .DB :chunk_00DE
 .DW 0
@@ -2511,7 +2512,6 @@ LVLAYOUT_JUN3:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00E6" SLOT 2 SUPERFREE
@@ -2551,6 +2551,7 @@ chunk_00EC:
 
 .SECTION "base_LVLAYOUT_LAB3" SLOT 2 SUPERFREE
 LVLAYOUT_LAB3:
+.DW 0
 .DW chunk_0016
 .DB :chunk_0016
 .DW 0
@@ -2598,7 +2599,6 @@ LVLAYOUT_LAB3:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00ED" SLOT 2 SUPERFREE
@@ -2623,6 +2623,7 @@ chunk_00F0:
 
 .SECTION "base_LVLAYOUT_BRI3" SLOT 2 SUPERFREE
 LVLAYOUT_BRI3:
+.DW 0
 .DW chunk_0016
 .DB :chunk_0016
 .DW 0
@@ -2670,7 +2671,6 @@ LVLAYOUT_BRI3:
 .DW 0
 .DW chunk_0016
 .DB :chunk_0016
-.DW 0
 .ENDS
 
 .SECTION "base_chunk_00F1" SLOT 2 SUPERFREE
@@ -2787,54 +2787,54 @@ chunk_0100:
 
 .SECTION "base_LVLAYOUT_SPECIAL_1_2_3_5_6_7" SLOT 2 SUPERFREE
 LVLAYOUT_SPECIAL_1_2_3_5_6_7:
+.DW 0
 .DW chunk_00F1
 .DB :chunk_00F1
-.DW 0
+.DW chunksave_006B
 .DW chunk_00F2
 .DB :chunk_00F2
-.DW chunksave_006B
+.DW 0
 .DW chunk_00F3
 .DB :chunk_00F3
 .DW 0
 .DW chunk_00F4
 .DB :chunk_00F4
-.DW 0
+.DW chunksave_006C
 .DW chunk_00F5
 .DB :chunk_00F5
-.DW chunksave_006C
+.DW chunksave_006D
 .DW chunk_00F6
 .DB :chunk_00F6
-.DW chunksave_006D
+.DW 0
 .DW chunk_00F7
 .DB :chunk_00F7
 .DW 0
 .DW chunk_00F8
 .DB :chunk_00F8
-.DW 0
+.DW chunksave_006E
 .DW chunk_00F9
 .DB :chunk_00F9
-.DW chunksave_006E
+.DW chunksave_006F
 .DW chunk_00FA
 .DB :chunk_00FA
-.DW chunksave_006F
+.DW 0
 .DW chunk_00FB
 .DB :chunk_00FB
 .DW 0
 .DW chunk_00FC
 .DB :chunk_00FC
-.DW 0
+.DW chunksave_0070
 .DW chunk_00FD
 .DB :chunk_00FD
-.DW chunksave_0070
+.DW chunksave_0071
 .DW chunk_00FE
 .DB :chunk_00FE
-.DW chunksave_0071
+.DW chunksave_0072
 .DW chunk_00FF
 .DB :chunk_00FF
-.DW chunksave_0072
+.DW 0
 .DW chunk_0100
 .DB :chunk_0100
-.DW 0
 .ENDS
 
 ;; TOTAL SIZE: 36276 -> 34209
