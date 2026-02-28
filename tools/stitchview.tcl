@@ -224,8 +224,11 @@ proc init_tilemap_images {} {
 }
 
 proc init_levels {} {
-   #foreach ls $::layout_specs { load_level_layout $ls }
-   load_level_layout [lindex $::layout_specs 0]
+   set ::next_layout_row_y 0
+   set ::next_layout_x 0
+   set ::next_layout_y 0
+   foreach ls $::layout_specs { load_level_layout $ls }
+   #load_level_layout [lindex $::layout_specs 0]
 }
 
 proc load_level_layout {ls} {
@@ -234,7 +237,18 @@ proc load_level_layout {ls} {
    set width_shift [string index $ls_fname end]
    set width_mt [expr {1<<$width_shift}]
    set height_mt [expr {4096>>$width_shift}]
-   puts "$ls_key $tm_key $width_mt $height_mt"
+   set width_px [expr {$width_mt*32}]
+   set height_px [expr {$height_mt*32}]
+
+   if {$::next_layout_x+$width_px > 0x10000} {
+      set ::next_layout_x 0
+      set ::next_layout_y $::next_layout_row_y
+   }
+   set base_x $::next_layout_x
+   set base_y $::next_layout_y
+   set ::next_layout_row_y [expr {max($::next_layout_row_y, $base_y+$height_px)}]
+   incr ::next_layout_x $width_px
+   #puts "$ls_key $tm_key $width_mt $height_mt $base_x $base_y"
 
    # Load the data
    set fp [open $ls_fname rb]
@@ -263,21 +277,19 @@ proc load_level_layout {ls} {
       }
    }
 
-   puts [llength $uncdata]
-   # Pad that one 2 KB level (SKY2) to 4 KB
+   #puts [llength $uncdata]
+   # Pad that one 2 KB level (SCR2 lower) to 4 KB
    while {[llength $uncdata] < 4096} {
       lappend uncdata 0
    }
 
    # Put it on the canvas!
-   set width_px [expr {$width_mt*32}]
-   set height_px [expr {$height_mt*32}]
    set ti 0
    for {set py 0} {$py < $height_px} {incr py 32} {
       for {set px 0} {$px < $width_px} {incr px 32} {
          set v [lindex $uncdata $ti]
          incr ti
-         .canvas create image $px $py -image [lindex $tilemap $v]
+         .canvas create image [expr {$base_x+$px}] [expr {$base_y+$py}] -image [lindex $tilemap $v] -tags [list $ls_key]
       }
    }
 }
