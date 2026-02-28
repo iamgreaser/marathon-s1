@@ -34,3 +34,5 @@ Prerequisites:
    - We can assume that a checkpoint position of ($0000, $0000) means it isn't set, so we won't need to keep a flag around for that.
    - If we switch the level header field to use 16-bit pairs in the same way, then we shouldn't have to modify the code as much.
       - But do I look like I'm afraid of modifying critical code here? I'm overhauling a key part of the engine.
+
+The transition from the SKY2 corridor to the SKY2 ending or even straight to SKY3 has the problem that the inside is actually bigger than the outside. So SKY2 needs to be bigger for any of this to be even remotely sane. Also the design of SKY2 is subtly different in the top-right corner of SKY1, so that'll need reconciling. (I'll favour the SKY2 design.)
