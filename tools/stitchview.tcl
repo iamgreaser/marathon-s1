@@ -167,6 +167,15 @@ proc on_drag_step {x y} {
 
 proc init_tilemap_images {} {
    array set ::tilemaps {}
+
+   # Load ring art
+   set fp [open src/data/ringart_00.ringart rb]
+   try {
+      binary scan [read $fp 128] iu* ringdata
+   } finally {
+      close $fp
+   }
+
    foreach tms $::tilemap_specs {
       # Retrieve all info we need at the moment
       lassign $tms tm_key tm_label tm_fname
@@ -212,24 +221,6 @@ proc init_tilemap_images {} {
          close $fp
       }
 
-      # Convert literals
-      for {set li 0} {$li < [llength $literals]} {incr li} {
-         set v [lindex $literals $li]
-         set pixels [list]
-         for {set x 0} {$x < 8} {incr x} {
-            set p [expr {
-               (($v>>7) & 0x01)
-               | (($v>>14) & 0x02)
-               | (($v>>21) & 0x04)
-               | (($v>>28) & 0x08)
-            }]
-            set p [lindex $pal $p]
-            lappend pixels $p
-            set v [expr {($v&0x7F7F7F7F)<<1}]
-         }
-         lset literals $li $pixels
-      }
-
       # Decompress!
       set mask 1
       set mi 0
@@ -260,6 +251,29 @@ proc init_tilemap_images {} {
             lappend tiledata [lindex $literals $v]
          }
          set mask [expr {$mask>>1}]
+      }
+
+      # Insert ring data
+      for {set i 0} {$i < 32} {incr i} {
+         lset tiledata [expr {(0xFC*8)+$i}] [lindex $ringdata $i]
+      }
+
+      # Convert data
+      for {set i 0} {$i < [llength $tiledata]} {incr i} {
+         set v [lindex $tiledata $i]
+         set pixels [list]
+         for {set x 0} {$x < 8} {incr x} {
+            set p [expr {
+               (($v>>7) & 0x01)
+               | (($v>>14) & 0x02)
+               | (($v>>21) & 0x04)
+               | (($v>>28) & 0x08)
+            }]
+            set p [lindex $pal $p]
+            lappend pixels $p
+            set v [expr {($v&0x7F7F7F7F)<<1}]
+         }
+         lset tiledata $i $pixels
       }
 
       # Load the tilemap
