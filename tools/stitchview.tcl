@@ -106,6 +106,8 @@ proc init_widgets {} {
 
    set ::drag_pos {}
    set ::drag_tag {}
+   set ::drag_accum_dx 16
+   set ::drag_accum_dy 16
    bind .canvas <ButtonPress-1> { on_drag_start %x %y }
    bind .canvas <ButtonRelease-1> { on_drag_stop %x %y }
    bind .canvas <Motion> { on_drag_step %x %y }
@@ -115,6 +117,8 @@ proc on_drag_start {x y} {
    set ::drag_pos [list $x $y]
    set pick_item [.canvas find overlapping $x $y $x $y]
    set ::drag_tag {}
+   set ::drag_accum_dx 16
+   set ::drag_accum_dy 16
    if {$pick_item ne {}} {
       set pick_item [lindex $pick_item 0]
       set ::drag_tag [lindex [.canvas itemcget $pick_item -tags] 0]
@@ -134,7 +138,26 @@ proc on_drag_step {x y} {
       set dy [expr {$y-$old_y}]
       set ::drag_pos [list $x $y]
       if {$::drag_tag ne {}} {
-         # TODO: Metatile snapping --GM
+         incr ::drag_accum_x $dx
+         incr ::drag_accum_y $dy
+         set dx 0
+         set dy 0
+         while {$::drag_accum_x < 0} {
+            incr dx -32
+            incr ::drag_accum_x 32
+         }
+         while {$::drag_accum_y < 0} {
+            incr dy -32
+            incr ::drag_accum_y 32
+         }
+         while {$::drag_accum_x >= 32} {
+            incr dx 32
+            incr ::drag_accum_x -32
+         }
+         while {$::drag_accum_y >= 32} {
+            incr dy 32
+            incr ::drag_accum_y -32
+         }
          .canvas move $::drag_tag $dx $dy
       } else {
          .canvas move all $dx $dy
