@@ -323,6 +323,9 @@ proc init_levels {} {
    puts [format "max X: %04X (%5d)" $::max_layout_x $::max_layout_x]
    puts [format "min Y: %04X (%5d)" $::min_layout_y $::min_layout_y]
    puts [format "max Y: %04X (%5d)" $::max_layout_y $::max_layout_y]
+
+   # Move the view down to suit the first level
+   .canvas move all 0 [expr {-32*[lindex $::layout_boxes 0 6]}]
 }
 
 proc load_level_layout {lbs} {
