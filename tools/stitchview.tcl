@@ -28,9 +28,9 @@ set ::layout_boxes {
    {LVLAYOUT_SCR3 0x0001 0x0700 0x0220 0x0740}
    {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340}
    {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640}
-   {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740}
    {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120}
 }
+# {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740}
 
 set ::layout_specs {
    {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ}
@@ -267,6 +267,7 @@ proc init_levels {} {
    set ::next_layout_y 0
    foreach lbs $::layout_boxes { load_level_layout $lbs }
    #load_level_layout [lindex $::layout_specs 0]
+   puts [format "end X: %04X (%5d)" $::next_layout_x $::next_layout_x]
 }
 
 proc load_level_layout {lbs} {
@@ -346,8 +347,8 @@ proc load_level_layout {lbs} {
          if {$py >= $y0_px && $py < $y1_px} {
             if {$px >= $x0_px && $px < $x1_px} {
                if {$v != 0} {
-                  set eff_width_px [expr {max($eff_width_px, $px-$x0_mt+32)}]
-                  .canvas create image [expr {$base_x+$px-$x0_mt}] [expr {$base_y+$py-$y0_mt}] -image [lindex $tilemap $v] -tags [list $ls_key]
+                  set eff_width_px [expr {max($eff_width_px, $px-$x0_px+32)}]
+                  .canvas create image [expr {$base_x+$px-$x0_px}] [expr {$base_y+$py-$y0_px}] -image [lindex $tilemap $v] -tags [list $ls_key]
                }
             }
          }
