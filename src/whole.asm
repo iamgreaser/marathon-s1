@@ -2073,17 +2073,21 @@ fade_screen_to_black:
    res    0, (iy+iy_00-IYBASE)         ; 00:0A53 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:0A57 - CD 1C 03
    ld     (iy+g_sprite_count-IYBASE), a  ; 00:0A5A - FD 77 0A
-   ld     b, $04                       ; 00:0A5D - 06 04
+   ld de, g_temporary_palette_buffer
+   ld hl, (g_current_displayed_palette_0)
+   ld bc, $0010
+   ldir
+   ld hl, (g_current_displayed_palette_1)
+   ld bc, $0010
+   ldir
 
+   ld     b, $04                       ; 00:0A5D - 06 04
 @each_fade_step:
    push   bc                           ; 00:0A5F - C5
-   ld     hl, (g_current_displayed_palette_0)  ; 00:0A60 - 2A 30 D2
-   ld     de, g_temporary_palette_buffer  ; 00:0A63 - 11 BC D3
-   ld     b, $10                       ; 00:0A66 - 06 10
-   call   palette_fade_to_black        ; 00:0A68 - CD 90 0A
-   ld     hl, (g_current_displayed_palette_1)  ; 00:0A6B - 2A 32 D2
-   ld     b, $10                       ; 00:0A6E - 06 10
-   call   palette_fade_to_black        ; 00:0A70 - CD 90 0A
+   ld hl, g_temporary_palette_buffer
+   ld de, PAL_all_00
+   ld b, $20
+   call palette_fade_to_target
    ld     hl, g_temporary_palette_buffer  ; 00:0A73 - 21 BC D3
    ld     a, $03                       ; 00:0A76 - 3E 03
    call   signal_load_palettes         ; 00:0A78 - CD 33 03
@@ -2099,19 +2103,71 @@ fade_screen_to_black:
    djnz   @each_fade_step              ; 00:0A8D - 10 D0
    ret                                 ; 00:0A8F - C9
 
-palette_fade_to_black:
-   ld a, (hl)
+   ;; Fades a palette one step towards the target palette.
+   ;; HL = current palette ptr + what the new palette ends up being
+   ;; DE = target palette ptr (read only)
+   ;; B = number of entries to update
+palette_fade_to_target:
+   ;; The math for this is kinda weird.
+   ;; Ideally, we initially want:
+   ;; 01 = decrement
+   ;; 10 = stay the same
+   ;; 11 = increment
+   ;; From there we subtract 10 and *then* apply it to the result.
+   ;;
+   ;; But before we do that...
+   ;;
+   ;; That low bit is 1 if they need to change.
+   ;; Which is, XOR the two values together and then OR the bits together.
+   ld a, (de)
+   xor (hl)
    ld c, a
    rrca
    or c
    and %010101
-   neg
-   add a, c
-   ld (de), a
-   inc    hl                           ; 00:0AA9 - 23
-   inc    de                           ; 00:0AAA - 13
-   djnz   palette_fade_to_black        ; 00:0AAB - 10 E3
-   ret                                 ; 00:0AAD - C9
+   ld c, a
+   ;; The high bit is more complex.
+   ;; We use a special case to simplify the logic - if we get 00 as a result, we force the high bit to 1 later.
+   ;; -- If src is 00, it's always 1.
+   ;; -- If src is 11, it's always 0.
+   ;; -- Otherwise, it's the high bit of the target.
+   ;;
+   ;; So first, we put the high bit of the target in IF the two bits in src differ.
+   ;; Otherwise the high bit is 0 at this point.
+   ld a, (hl)
+   rlca
+   xor (hl)
+   ex de, hl
+   and (hl)
+   ex de, hl
+   and %101010
+   or c
+   ld c, a
+
+   ;; Then, if src=0, put a 1 bit in.
+   ld a, (hl)
+   rlca
+   or (hl)
+   cpl
+   and %101010
+   or c
+   ld c, a
+
+   ;; SPECIAL CASE: If the low bit is 0, force the high bit to be 1.
+   ld a, c
+   cpl
+   rlca
+   and %101010
+   or c
+   ;; Finally, apply it!
+   sub %101010
+   add (hl)
+   ld (hl), a
+   ;; Move to the next entry.
+   inc hl
+   inc de
+   djnz palette_fade_to_target
+   ret
 
 fade_screen_down_to_palette:
    ld     (tmp_06), hl                 ; 00:0AAE - 22 14 D2
@@ -2142,52 +2198,11 @@ fade_screen_down_to_palette:
    ld     b, $04                       ; 00:0AFA - 06 04
 
 @each_fade_step:
-   push   bc                           ; 00:0AFC - C5
-   ld     hl, (tmp_06)                 ; 00:0AFD - 2A 14 D2
-   ld     de, g_temporary_palette_buffer  ; 00:0B00 - 11 BC D3
+   ld     de, (tmp_06)                 ; 00:0AFD - 2A 14 D2
+   ld     hl, g_temporary_palette_buffer  ; 00:0B00 - 11 BC D3
    ld     b, $20                       ; 00:0B03 - 06 20
+   call palette_fade_to_target
 
-@each_color:
-   push   bc                           ; 00:0B05 - C5
-   ld     a, (hl)                      ; 00:0B06 - 7E
-   and    $03                          ; 00:0B07 - E6 03
-   ld     b, a                         ; 00:0B09 - 47
-   ld     a, (de)                      ; 00:0B0A - 1A
-   and    $03                          ; 00:0B0B - E6 03
-   cp     b                            ; 00:0B0D - B8
-   jr     z, @clamp_red                ; 00:0B0E - 28 01
-   dec    a                            ; 00:0B10 - 3D
-
-@clamp_red:
-   ld     c, a                         ; 00:0B11 - 4F
-   ld     a, (hl)                      ; 00:0B12 - 7E
-   and    $0C                          ; 00:0B13 - E6 0C
-   ld     b, a                         ; 00:0B15 - 47
-   ld     a, (de)                      ; 00:0B16 - 1A
-   and    $0C                          ; 00:0B17 - E6 0C
-   cp     b                            ; 00:0B19 - B8
-   jr     z, @clamp_green              ; 00:0B1A - 28 02
-   sub    $04                          ; 00:0B1C - D6 04
-
-@clamp_green:
-   or     c                            ; 00:0B1E - B1
-   ld     c, a                         ; 00:0B1F - 4F
-   ld     a, (hl)                      ; 00:0B20 - 7E
-   and    $30                          ; 00:0B21 - E6 30
-   ld     b, a                         ; 00:0B23 - 47
-   ld     a, (de)                      ; 00:0B24 - 1A
-   and    $30                          ; 00:0B25 - E6 30
-   cp     b                            ; 00:0B27 - B8
-   jr     z, @clamp_blue               ; 00:0B28 - 28 02
-   sub    $10                          ; 00:0B2A - D6 10
-
-@clamp_blue:
-   or     c                            ; 00:0B2C - B1
-   ld     (de), a                      ; 00:0B2D - 12
-   inc    hl                           ; 00:0B2E - 23
-   inc    de                           ; 00:0B2F - 13
-   pop    bc                           ; 00:0B30 - C1
-   djnz   @each_color                  ; 00:0B31 - 10 D2
    ld     hl, g_temporary_palette_buffer  ; 00:0B33 - 21 BC D3
    ld     a, $03                       ; 00:0B36 - 3E 03
    call   signal_load_palettes         ; 00:0B38 - CD 33 03
@@ -2246,51 +2261,11 @@ _palette_fade_up_common:
 
 --:
    push   bc                           ; 00:0BAE - C5
-   ld     hl, (tmp_06)                 ; 00:0BAF - 2A 14 D2
-   ld     de, g_temporary_palette_buffer  ; 00:0BB2 - 11 BC D3
+   ld de, (tmp_06)
+   ld hl, g_temporary_palette_buffer
    ld     b, $20                       ; 00:0BB5 - 06 20
+   call palette_fade_to_target
 
--:
-   push   bc                           ; 00:0BB7 - C5
-   ld     a, (hl)                      ; 00:0BB8 - 7E
-   and    $03                          ; 00:0BB9 - E6 03
-   ld     b, a                         ; 00:0BBB - 47
-   ld     a, (de)                      ; 00:0BBC - 1A
-   and    $03                          ; 00:0BBD - E6 03
-   cp     b                            ; 00:0BBF - B8
-   jr     nc, @clamp_red               ; 00:0BC0 - 30 01
-   inc    a                            ; 00:0BC2 - 3C
-
-@clamp_red:
-   ld     c, a                         ; 00:0BC3 - 4F
-   ld     a, (hl)                      ; 00:0BC4 - 7E
-   and    $0C                          ; 00:0BC5 - E6 0C
-   ld     b, a                         ; 00:0BC7 - 47
-   ld     a, (de)                      ; 00:0BC8 - 1A
-   and    $0C                          ; 00:0BC9 - E6 0C
-   cp     b                            ; 00:0BCB - B8
-   jr     nc, @clamp_green             ; 00:0BCC - 30 02
-   add    a, $04                       ; 00:0BCE - C6 04
-
-@clamp_green:
-   or     c                            ; 00:0BD0 - B1
-   ld     c, a                         ; 00:0BD1 - 4F
-   ld     a, (hl)                      ; 00:0BD2 - 7E
-   and    $30                          ; 00:0BD3 - E6 30
-   ld     b, a                         ; 00:0BD5 - 47
-   ld     a, (de)                      ; 00:0BD6 - 1A
-   and    $30                          ; 00:0BD7 - E6 30
-   cp     b                            ; 00:0BD9 - B8
-   jr     nc, @clamp_blue              ; 00:0BDA - 30 02
-   add    a, $10                       ; 00:0BDC - C6 10
-
-@clamp_blue:
-   or     c                            ; 00:0BDE - B1
-   ld     (de), a                      ; 00:0BDF - 12
-   inc    hl                           ; 00:0BE0 - 23
-   inc    de                           ; 00:0BE1 - 13
-   pop    bc                           ; 00:0BE2 - C1
-   djnz   -                            ; 00:0BE3 - 10 D2
    ld     hl, g_temporary_palette_buffer  ; 00:0BE5 - 21 BC D3
    ld     a, $03                       ; 00:0BE8 - 3E 03
    call   signal_load_palettes         ; 00:0BEA - CD 33 03
@@ -3513,7 +3488,7 @@ update_signpost_timer:
    jr     nc, @level_was_bonus         ; 00:1FEB - 30 28
    bit    0, (iy+iy_07_lvflag02-IYBASE)  ; 00:1FED - FD CB 07 46
    jr     z, @level_was_normal_no_bonus  ; 00:1FF1 - 28 1B
-   ld     hl, LUT_02047_all7F          ; 00:1FF3 - 21 47 20
+   ld     hl, PAL_all_3F               ; 00:1FF3 - 21 47 20
    call   palette_fade_up              ; 00:1FF6 - CD 60 0B
    ld     a, (g_level)                 ; 00:1FF9 - 3A 3E D2
    push   af                           ; 00:1FFC - F5
@@ -3570,9 +3545,13 @@ signpost_func_bonus_stage:
    set    0, (iy+iy_07_lvflag02-IYBASE)  ; 00:2042 - FD CB 07 C6
    ret                                 ; 00:2046 - C9
 
-LUT_02047_all7F:
-.db $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F  ; 00:2047
-.db $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F  ; 00:2057
+PAL_all_00:
+.db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+PAL_all_3F:
+.db $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F  ; 00:2047
+.db $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F, $3F  ; 00:2057
 
 handle_level_restart_countdown_timer:
    dec    a                            ; 00:2067 - 3D
@@ -4203,7 +4182,7 @@ run_ending_and_credits:
    djnz   @each_chaos_emerald_pair_spinning  ; 00:2666 - 10 C6
    pop    bc                           ; 00:2668 - C1
    djnz   @good_ending_chaos_emeralds_spin_animation  ; 00:2669 - 10 A5
-   ld     hl, LUT_02047_all7F          ; 00:266B - 21 47 20
+   ld     hl, PAL_all_3F               ; 00:266B - 21 47 20
    call   palette_fade_up              ; 00:266E - CD 60 0B
    ld     (iy+g_sprite_count-IYBASE), $00  ; 00:2671 - FD 36 0A 00
    ld     hl, ARTMAP_05_69A9           ; 00:267D - 21 A9 69
