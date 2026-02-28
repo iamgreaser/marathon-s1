@@ -2100,29 +2100,14 @@ fade_screen_to_black:
    ret                                 ; 00:0A8F - C9
 
 palette_fade_to_black:
-   ld     a, (hl)                      ; 00:0A90 - 7E
-   and    $03                          ; 00:0A91 - E6 03
-   jr     z, @clamp_red                ; 00:0A93 - 28 01
-   dec    a                            ; 00:0A95 - 3D
-
-@clamp_red:
-   ld     c, a                         ; 00:0A96 - 4F
-   ld     a, (hl)                      ; 00:0A97 - 7E
-   and    $0C                          ; 00:0A98 - E6 0C
-   jr     z, @clamp_green              ; 00:0A9A - 28 02
-   sub    $04                          ; 00:0A9C - D6 04
-
-@clamp_green:
-   or     c                            ; 00:0A9E - B1
-   ld     c, a                         ; 00:0A9F - 4F
-   ld     a, (hl)                      ; 00:0AA0 - 7E
-   and    $30                          ; 00:0AA1 - E6 30
-   jr     z, @clamp_blue               ; 00:0AA3 - 28 02
-   sub    $10                          ; 00:0AA5 - D6 10
-
-@clamp_blue:
-   or     c                            ; 00:0AA7 - B1
-   ld     (de), a                      ; 00:0AA8 - 12
+   ld a, (hl)
+   ld c, a
+   rrca
+   or c
+   and %010101
+   neg
+   add a, c
+   ld (de), a
    inc    hl                           ; 00:0AA9 - 23
    inc    de                           ; 00:0AAA - 13
    djnz   palette_fade_to_black        ; 00:0AAB - 10 E3
