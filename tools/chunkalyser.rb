@@ -150,7 +150,8 @@ def main
     #layout.unpacked_2d.each{|row| puts row.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")}
     base_y += layout.height_mt
   end
-  puts ";; final base #{base_x} #{base_y}"
+  $outdata << ";; final base #{base_x} #{base_y}\n"
+  $outdata << $quadtree.emit_body
   $outdata << "\n"
   $outdata << ";; TOTAL SIZE: #{$total_rle_bytes} -> #{$total_chunked_bytes}\n"
   $outdata << ";; RAM CONSUMPTION: 3072 -> #{$total_ram_save_bytes}\n"

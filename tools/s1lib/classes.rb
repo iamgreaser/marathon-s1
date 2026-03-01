@@ -146,8 +146,17 @@ end
 
 class QuadTree
   class Node
+    @@next_node_idx = 0
     def initialize(shift_amt)
       @shift_amt = shift_amt
+    end
+
+    def node_name
+      unless @node_name
+        @node_name = "qt_#{(@@next_node_idx+0x10000).to_s(16).upcase[1..]}"
+        @@next_node_idx += 1
+      end
+      @node_name
     end
   end
 
@@ -166,6 +175,14 @@ class QuadTree
 
     def cost
       0
+    end
+
+    def node_name
+      "0"
+    end
+
+    def emit_body
+      ""
     end
 
     def used_child(cx, cy, v)
@@ -217,6 +234,14 @@ class QuadTree
     def cost
       8 + @buckets.flatten.map(&:cost).sum
     end
+
+    def emit_body
+      s = ""
+      s << "#{node_name}:\n"
+      s << ".DW " + @buckets.flatten.map{ |bucket| bucket.node_name }.join(", ") + "\n"
+      @buckets.flatten.each{ |bucket| s << bucket.emit_body }
+      s
+    end
   end
 
   class UsedNode < Node
@@ -246,6 +271,16 @@ class QuadTree
     def cost
       5
     end
+
+    def emit_body
+      (ptr_name, ramsave_name,) = @v
+      s = ""
+      s << "#{node_name}:\n"
+      s << ".DW #{ramsave_name}\n"
+      s << ".DW #{ptr_name}\n"
+      s << ".DB :#{ptr_name}\n"
+      s
+    end
   end
 
   def initialize
@@ -262,5 +297,13 @@ class QuadTree
 
   def cost
     @root.cost
+  end
+
+  def emit_body
+    s = "\n"
+    s << ".SECTION \"layout_quadtree\" SLOT 2 SUPERFREE\n"
+    s << @root.emit_body
+    s << ".ENDS\n"
+    s
   end
 end
