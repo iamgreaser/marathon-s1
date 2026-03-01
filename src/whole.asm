@@ -20,8 +20,8 @@ BANKS 16
 
 .DEF IYBASE iy_00
 
-.RAMSECTION "RAMSection_level_layout" SLOT 4 FREE ALIGN $0100
-g_level_layout dsb 4096   ; C000
+.RAMSECTION "RAMSection_level_layout" SLOT 4 FREE ALIGN $0400
+g_level_layout dsb 1024   ; C000
 .ENDS
 
 .RAMSECTION "RAMSection" SLOT 4 FREE
@@ -251,8 +251,11 @@ g_temporary_palette_buffer db   ; D3BC
 ; New stuff should go here.
 ;
 g_of_saved_hl dw
-g_ramsave_buffers dsw 16
-g_ram_layout_ptrs_per_y dsw 16  ; Use this to compute Y offsets into the layout in RAM for the time being.
+g_level_base_coords dw
+;; Level chunk information, [2y][2x] arrangement:
+;; db xchunk<<1, ychunk<<1
+;; dw ramsave_buffer_ram_ptr
+g_level_chunk_info_buffers dsw 4*4
 
 object_list db   ; D3FC
 sonic_x_sub db   ; D3FD
@@ -1729,64 +1732,32 @@ get_screen_tile_ptr_in_ram:
    ;; Now get our pointer!
    ;; FALL THROUGH
 get_tile_ptr_in_ram_from_HL_DE:
-   ;; Move X to BC to free up HL
-   ld c, l
-   ld b, h
-
-   ;; BC = X
-   ;; DE = Y
-
-   ;; Get a pointer to the start of this row of chunks
-   ld a, e
-   and $F0
-   ld l, a
-   ;; also clear the upper bits of E as we won't need them for much longer
-   xor e
-   ;; and pre-shift into E
-   rlca
-   rlca
-   rlca
-   rlca
-   ld e, a
-   ld a, d
-   ;; D is now free to be clobbered
-   and $0F
-   or l
-   rlca
-   rlca
-   rlca
-   rlca
-   ld l, a
+   ;; We only care about the low 5 bits, so H and D are free.
+   ;; Compute the high byte.
    ld h, $00
-   ;; Apply offset to table, stashing E briefly
    ld a, e
-   ld de, g_ram_layout_ptrs_per_y
-   add hl, hl
-   add hl, de
-   ld e, a
-   ;; Grab pointer to our row
-   ld a, (hl)
-   inc hl
-   ld h, (hl)
+   or $EF
+   add a, $10
+   rl h
+   ld a, l
+   or $EF
+   add a, $10
+   rl h
+   ;; Compute the low byte.
+   ld a, l
+   and $0F
+   ld l, a
+   ld a, e
+   and $0F
+   rlca
+   rlca
+   rlca
+   rlca
+   or l
    ld l, a
 
-   ;; Get our offset
-   ld a, c
-   and $F0
-   ld d, a
-   ;; also clear the upper bits and merge into E
-   xor c
-   or e
-   ld e, a
-   ld a, b
-   and $0F
-   or d
-   rlca
-   rlca
-   rlca
-   rlca
-   ld d, a
    ;; Apply this to the offset
+   ld de, g_level_layout
    add hl, de
    ret                                 ; 00:0965 - C9
 
@@ -1921,15 +1892,16 @@ draw_initial_screen_tiles:
 
 tile_lookup_move_to_next_x_chunk:
    ld a, l
-   dec a
-   and $F0
+   sub $10
    ld l, a
-   inc h
+   ld a, h
+   xor $01
+   ld h, a
    ret
 
 tile_lookup_move_to_next_y_chunk:
-   ld a, (g_level_width_chunks)
-   add a, h
+   ld a, h
+   xor $02
    ld h, a
    ret
 
@@ -1992,89 +1964,153 @@ fetch_level_chunk_info_from_quadtree:
    ret
 
 unpack_level_layout_into_ram:
-   ld     de, g_level_layout
-   ;; Load our 16 chunks.
-   ld b, $10
-   ld ix, g_ramsave_buffers
-   ld (tmp_00), hl
-   ld a, (g_level_width_chunks)
-   ld c, a
+   ;; Store the base coordinates.
+   ld (g_level_base_coords), hl
+
+   ;; Blank the chunk IDs.
+   ld de, g_level_chunk_info_buffers
+   ld b, 4*4
+   ld a, $FF
+   @clear_each_chunk_id:
+      ld (de), a
+      inc de
+      djnz @clear_each_chunk_id
+
+   ;; Load 4 chunks
+   ld b, $04
    @each_chunk:
-      push hl
       push bc
-         ;; Fetch from the quadtree
-         call fetch_level_chunk_info_from_quadtree
-         ;; Load the pointer to the ramsave section
-         ld c, (hl)
-         inc hl
-         ld b, (hl)
-         inc hl
-         ld (ix+0), c
-         ld (ix+1), b
-         ;; Load the chunk
-         ld c, (hl)
-         inc hl
-         ld b, (hl)
-         inc hl
-         ld a, (hl)
-         inc hl
-         call set_rompage_2
-         push de
-         push hl
-            ld l, c
-            ld h, b
-            call load_level_chunk@ENTRY_POINT
-         pop hl
-         pop de
-         ;; Load the ramsave section
-         push hl
-            ld l, (ix+0)
-            ld h, (ix+1)
-            call load_ramsave
-         pop hl
-         inc ix
-         inc ix
+      call refresh_one_chunk
       pop bc
-      pop hl
-      ;; Advance X
-      inc l
-      inc l
-      dec c
-      jr nz, @not_next_row
-         ;; Reached end. Next row!
-         ld hl, (tmp_00)
-         inc h
-         inc h
-         ld (tmp_00), hl
-         ld a, (g_level_width_chunks)
-         ld c, a
-      @not_next_row:
       djnz @each_chunk
+   ret
 
+refresh_one_chunk:
+   ;; C = X offset
+   ;; B = Y offset
 
-   ;; Prepare the Y table offsets.
-   ld a, (g_level_width_chunks)
+   ;; Chunk indices: base coord + ((camera-OFFSET)&$FE00)
+   ;; OFFSET is not $0100. It seems ($0080,$0060) might be it?
+   ld hl, (g_level_base_coords)
+
+   ;; Compute X chunk index
+   push hl
+      ld hl, (g_level_scroll_x_pix_lo)
+      ld de, -$0080
+      add hl, de
+      ld a, h
+   pop hl
+   ;and $FE
+   add a, l
+   ld c, a
+
+   ;; Compute Y chunk index
+   push hl
+      ld hl, (g_level_scroll_y_pix_lo)
+      ld de, -$0080
+      add hl, de
+      ld a, h
+   pop hl
+   and $FE
+   add a, h
    ld b, a
-   ld c, $00
-   ld de, g_level_layout
-   ld hl, g_ram_layout_ptrs_per_y
-   ;; It's fine to fill all 16 entries even if the latter entries technically overflow.
-   ;; (Although that means you cannot Y-wrap levels yet!)
-   ;; DE = ptr value to write
-   ;; BC = ptr value delta to apply each row
-   ;; HL = place to write pointers
-   ;; A = times to do this
-   ld a, $10
-   @each_y_row_ptr:
-      ld (hl), e
-      inc hl
-      ld (hl), d
-      inc hl
-      ex de, hl
-      add hl, bc
-      ex de, hl
-      dec a
-      jr nz, @each_y_row_ptr
+
+   call @fn_try_this_chunk
+   ret c
+   inc c
+   inc c
+   call @fn_try_this_chunk
+   ret c
+   inc b
+   inc b
+   call @fn_try_this_chunk
+   ret c
+   dec c
+   dec c
+   jp @fn_try_this_chunk
+
+@fn_try_this_chunk:
+   push bc
+   call @fn_try_this_chunk_nopush
+   pop bc
+   ret
+
+@fn_try_this_chunk_nopush:
+   ;; Compute the relevant offset
+   ld hl, $0000
+   ld a, b
+   rra
+   rra
+   rl l
+   ld a, c
+   rra
+   rra
+   rl l
+   ld a, l
+   rlc l
+   rlc l
+   push hl
+   pop ix
+   ld h, a
+   ld l, $00
+   push de
+      ld de, g_level_chunk_info_buffers
+      add ix, de
+      ld de, g_level_layout
+      add hl, de
+   pop de
+   ;; IX = level info chunk buffer
+   ;; HL = pointer to chunk in RAM layout buffer
+
+   ;; Compare to see if this is already what we want
+   ;; Compares clear carry when zero flag is set.
+   ld a, (ix+2)
+   cp c
+   jr nz, @cache_not_matched
+   ld a, (ix+3)
+   cp b
+   ret z
+   @cache_not_matched:
+   ;; Write the current coordinates into the cache.
+   ld (ix+2), c
+   ld (ix+3), b
+   ;; Now use BC to fetch from the quadtree.
+   ex de, hl
+   ld l, c
+   ld h, b
+   call fetch_level_chunk_info_from_quadtree
+   ;; BC is now trashable.
+   ;; Load the pointer to the ramsave section
+   ld c, (hl)
+   inc hl
+   ld b, (hl)
+   inc hl
+   ld (ix+0), c
+   ld (ix+1), b
+   ;; Load the chunk
+   ld c, (hl)
+   inc hl
+   ld b, (hl)
+   inc hl
+   ld a, (hl)
+   inc hl
+   call set_rompage_2
+   push de
+   push hl
+      ld l, c
+      ld h, b
+      call load_level_chunk@ENTRY_POINT
+   pop hl
+   pop de
+   ;; Load the ramsave section
+   push hl
+      ld l, (ix+0)
+      ld h, (ix+1)
+      call load_ramsave
+   pop hl
+
+   ;; Set carry flag to signal that we processed a chunk
+   scf
    ret
 
 ;; DE = target in RAM
@@ -3339,6 +3375,7 @@ load_and_run_level:
       ld de, g_level_layout
       call load_level_chunk@ENTRY_POINT
    .ENDIF
+   call refresh_one_chunk
 
    ld a, $02
    call set_rompage_2
@@ -9039,11 +9076,13 @@ consume_ring:
    ld a, h
    sub >g_level_layout
    add a, a
+   add a, a
+   add a, $02
    ;; The above won't carry, but the below might.
-   add a, <g_ramsave_buffers
+   add a, <g_level_chunk_info_buffers
    ld l, a
    ld a, $00
-   adc a, >g_ramsave_buffers
+   adc a, >g_level_chunk_info_buffers
    ld h, a
    ;; Dereference the pointer.
    ld a, (hl)
