@@ -3,4 +3,5 @@ Regressions known at this stage:
 - Sonic can actually jump repeatedly while an animal capsule is exploding.
 - The LAB1 life monitor always shows as a life monitor.
 - Left-entry-only and right-entry-only doors are weirdly offset to the left.
+   - This seems to have "fixed itself"...? Keep an eye on this one.
 
