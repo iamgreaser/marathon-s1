@@ -126,12 +126,16 @@ def main
 
   base_x = 0
   base_y = 0
+  $quadtree = QuadTree.new
   LAYOUT_SPECS.each do |layout|
+    $outdata << ";; base #{base_x} #{base_y}\n"
     # Build chunks
     prev_chunk_count = $next_chunk_idx
     ptr_list = []
     layout.each_chunk(CHUNK_SIZE) do |cx, cy, chunk|
-      ptr_list << chunk.add!
+      chunk_data = chunk.add!
+      $quadtree.set(base_x+cx, base_y+cy, chunk_data)
+      ptr_list << chunk_data
     end
 
     $outdata << "\n"
@@ -146,6 +150,7 @@ def main
     #layout.unpacked_2d.each{|row| puts row.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")}
     base_y += layout.height_mt
   end
+  puts ";; final base #{base_x} #{base_y}"
   $outdata << "\n"
   $outdata << ";; TOTAL SIZE: #{$total_rle_bytes} -> #{$total_chunked_bytes}\n"
   $outdata << ";; RAM CONSUMPTION: 3072 -> #{$total_ram_save_bytes}\n"
@@ -156,6 +161,8 @@ def main
     assert (not $used_bytes.include? i) if i >= 0x7C and i <= 0x7F  # reserved in the original engine for ring purposes
     #puts "unused #{i.to_s(16).upcase}" unless $used_bytes.include? i
   end
+
+  $outdata << ";; quadtree cost: #{$quadtree.cost}\n"
 
   puts $outdata
 end

@@ -143,3 +143,124 @@ class Chunk
     @ring_count
   end
 end
+
+class QuadTree
+  class Node
+    def initialize(shift_amt)
+      @shift_amt = shift_amt
+    end
+  end
+
+  class EmptyNode < Node
+    def get(cx, cy)
+      nil
+    end
+
+    def set(cx, cy, v)
+      used_child(cx, cy, v)
+    end
+
+    def empty?
+      true
+    end
+
+    def cost
+      0
+    end
+
+    def used_child(cx, cy, v)
+      #puts "used #{@shift_amt} #{cx} #{cy}"
+      if @shift_amt == 0
+        assert cx == 0 and cy == 0
+        UsedNode.new(v)
+      else
+        SplitNode.new(@shift_amt).set(cx, cy, v)
+      end
+    end
+  end
+
+  class SplitNode < Node
+    def initialize(shift_amt)
+      super(shift_amt)
+      @buckets = [
+        [EmptyNode.new(shift_amt-1), EmptyNode.new(shift_amt-1)],
+        [EmptyNode.new(shift_amt-1), EmptyNode.new(shift_amt-1)],
+      ]
+    end
+
+    def get(cx, cy)
+      cxi = (cx < (1<<(@shift_amt-1)) ? 0 : 1)
+      cyi = (cy < (1<<(@shift_amt-1)) ? 0 : 1)
+      cx -= cxi<<(@shift_amt-1)
+      cy -= cyi<<(@shift_amt-1)
+      @buckets[cyi][cxi].get(cx, cy)
+    end
+
+    def set(cx, cy, v)
+      cxi = (cx < (1<<(@shift_amt-1)) ? 0 : 1)
+      cyi = (cy < (1<<(@shift_amt-1)) ? 0 : 1)
+      cx -= cxi<<(@shift_amt-1)
+      cy -= cyi<<(@shift_amt-1)
+      if v
+        @buckets[cyi][cxi] = @buckets[cyi][cxi].set(cx, cy, v)
+        self
+      else
+        @buckets[cyi][cxi].get(cx, cy)
+        self
+      end
+    end
+
+    def empty?
+      false
+    end
+
+    def cost
+      8 + @buckets.flatten.map(&:cost).sum
+    end
+  end
+
+  class UsedNode < Node
+    def initialize(v)
+      super(0)
+      @v = v
+    end
+
+    def get(cx, cy)
+      @v
+    end
+
+    def set(cx, cy, v)
+      assert cx == 0 and cy == 0
+      if v
+        @v = v
+        self
+      else
+        EmptyNode.new
+      end
+    end
+
+    def empty?
+      false
+    end
+
+    def cost
+      5
+    end
+  end
+
+  def initialize
+    @root = EmptyNode.new(7)
+  end
+
+  def get(cx, cy)
+    @root.get(cx, cy)
+  end
+
+  def set(cx, cy, v)
+    @root = @root.set(cx, cy, v)
+  end
+
+  def cost
+    @root.cost
+  end
+end
