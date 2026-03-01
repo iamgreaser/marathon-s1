@@ -3871,6 +3871,13 @@ load_and_init_level_from_header:
    push   hl                           ; 00:2211 - E5
    ex     de, hl                       ; 00:2212 - EB
    call   unpack_level_layout_into_ram  ; 00:2243 - CD 10 0A
+   ;; HACK: Unlock the camera
+   ld hl, $0001
+   ld (g_level_limit_x0), hl
+   ld (g_level_limit_y0), hl
+   ld hl, $FEFF ; If it's $FFFF, Sonic dies
+   ld (g_level_limit_x1), hl
+   ld (g_level_limit_y1), hl
    pop    hl                           ; 00:2246 - E1
    ld     e, (hl)                      ; 00:2247 - 5E
    inc    hl                           ; 00:2248 - 23
