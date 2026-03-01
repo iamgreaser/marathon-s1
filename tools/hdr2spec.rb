@@ -21,7 +21,7 @@ LEVEL_NAMES = [
   "SCR2/from_upper_corridor",
   "SCR2/from_lower_corridor",
   "SKY2_end",
-  "SKY2_end/DUPLICATE", # duplicated pointer, this is exactly the same level
+  nil, #"SKY2_end/DUPLICATE", # duplicated pointer, this is exactly the same level - we're going to omit it instead
   "special1", "special2", "special3", "special4",
   "special5", "special6", "special7", "special8",
 ]
@@ -31,16 +31,15 @@ def main(rom_fname)
     fp.seek(PTR_HEADERS)
     header_rel_ptrs = fp.read(HEADER_COUNT*2).unpack("S<"*HEADER_COUNT)
     headers = header_rel_ptrs.zip(LEVEL_NAMES).map do |(relptr, lvname)|
-      if relptr == 0
+      if not lvname
         nil
       else
         fp.seek(PTR_HEADERS+relptr)
-        hdr = LevelHeader.new(fp)
+        hdr = LevelHeader.new(fp, lvname)
         hdr
       end
-      p [lvname, hdr]
     end
-    #headers.each{|hdr| p hdr}
+    headers.each{|hdr| p hdr}
   end
   pp LVFLAGREVMAP
 end
@@ -71,7 +70,8 @@ class LevelHeader
     0x37
   end
 
-  def initialize(fp)
+  def initialize(fp, lvname)
+    @lvname = lvname
     (
       @tflagi,
       size_lx, size_ly,
@@ -82,7 +82,7 @@ class LevelHeader
       @art0_ptr,
       art2_bank, @art2_ptr,
       pal_basei, pal_cyc_tick_period, pal_cyc_len, pal_cyc_basei,
-      @objects_ptr,
+      objects_ptr,
       flag05, flag06, flag07, flag08,
       @musici,
     ) = fp.read(header_size).unpack("C S<S< S<S<S<S< CC S<S< S< S< CS< CCCC S< CCCC c")
@@ -93,7 +93,11 @@ class LevelHeader
     @layout_slice = [layout_ptr, layout_len]
     @tilemap_ptr += 0x04<<14
 
-    @objects_ptr += PTR_HEADERS
+    objects_ptr += PTR_HEADERS
+    fp.seek(objects_ptr)
+    (objects_count,) = fp.read(1).unpack("C")
+    @objects = (0...objects_count).map{ fp.read(3).unpack("CCC") }
+
     @pal = [pal_basei, [pal_cyc_basei, pal_cyc_len], pal_cyc_tick_period]
     @flags = Set.new
     [flag05, flag06, flag07, flag08].zip(LVFLAGMAP).each do |mask, flagmap|
