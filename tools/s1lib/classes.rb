@@ -71,6 +71,33 @@ class Chunk
     [@uncompressed_1d].hash
   end
 
+  def add!
+    $total_chunked_bytes += PER_PTR_COST
+    unless $used_chunks.has_key?(self)
+      $total_chunked_bytes += PER_CHUNK_COST
+      $total_chunked_bytes += compressed.length
+      chunk_name = "chunk_#{($next_chunk_idx+0x10000).to_s(16).upcase[1..]}"
+      $used_chunks[self] = chunk_name
+      #pp self
+      #puts self.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")
+      $outdata << "\n"
+      $outdata << emit_section(chunk_name)
+      $next_chunk_idx += 1
+    end
+    ram_save_bytes = ram_save_byte_count
+    if ram_save_bytes >= 1
+      $total_ram_save_bytes += ram_save_bytes
+      chunksave_name = "chunksave_#{($next_ram_save_idx+0x10000).to_s(16).upcase[1..]}"
+      $next_ram_save_idx += 1
+      $outdata << "\n"
+      $outdata << emit_ramsection(chunksave_name)
+      #puts ";; chunk #{$used_chunks[self]} bytes = #{ram_save_bytes}"
+    else
+      chunksave_name = 0
+    end
+    [$used_chunks[self], chunksave_name]
+  end
+
   def emit_section(chunk_name)
     s = ""
     s << ".SECTION \"base_#{chunk_name}\" SLOT 2 SUPERFREE\n"
