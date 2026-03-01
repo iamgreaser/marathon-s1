@@ -129,6 +129,7 @@ def main
   $quadtree = QuadTree.new
   LAYOUT_SPECS.each do |layout|
     $outdata << ";; base #{base_x} #{base_y}\n"
+    $outdata << ".DEF #{layout.name} 0+((#{base_x}|(#{base_y}<<8))<<1)\n"
     # Build chunks
     prev_chunk_count = $next_chunk_idx
     ptr_list = []
@@ -138,17 +139,9 @@ def main
       ptr_list << chunk_data
     end
 
-    $outdata << "\n"
-    $outdata << ".SECTION \"base_#{layout.name}\" SLOT 2 SUPERFREE\n"
-    $outdata << "#{layout.name}:\n"
-    ptr_list.each do |(ptr_name, ramsave_name)|
-      $outdata << ".DW #{ramsave_name}\n"
-      $outdata << ".DW #{ptr_name}\n"
-      $outdata << ".DB :#{ptr_name}\n"
-    end
-    $outdata << ".ENDS\n"
     #layout.unpacked_2d.each{|row| puts row.map{|v| (v+0x100).to_s(16).upcase[1..]}.join("")}
-    base_y += layout.height_mt
+    assert layout.height_mt % 16 == 0
+    base_y += layout.height_mt>>4
   end
   $outdata << ";; final base #{base_x} #{base_y}\n"
   $outdata << $quadtree.emit_body

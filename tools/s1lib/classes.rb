@@ -302,6 +302,11 @@ class QuadTree
   def emit_body
     s = "\n"
     s << ".SECTION \"layout_quadtree\" SLOT 2 SUPERFREE\n"
+    s << "qt_default_node:\n"
+    s << ".DW 0\n"
+    s << ".DW chunk_0000\n"
+    s << ".DB :chunk_0000\n"
+    s << "qt_root:\n"
     s << @root.emit_body
     s << ".ENDS\n"
     s

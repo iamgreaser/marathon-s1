@@ -6,6 +6,7 @@ chunk_0000:
 .DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $F6, $DF
 .ENDS
 ;; base 0 0
+.DEF LVLAYOUT_GHZ1_ENDING 0+((0|(0<<8))<<1)
 
 .SECTION "base_chunk_0001" SLOT 2 SUPERFREE
 chunk_0001:
@@ -134,59 +135,8 @@ chunk_000F:
 chunk_0010:
 .DB $00, $FF, $FC, $1B, $00, $FE, $1B, $00, $EA, $1D, $00, $FC, $2C, $00, $EC, $22, $00, $FC, $02, $E3, $00, $E7, $01, $E3, $00, $E7, $01, $E3, $00, $E7, $01, $E3, $00, $E7, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_GHZ1_ENDING" SLOT 2 SUPERFREE
-LVLAYOUT_GHZ1_ENDING:
-.DW chunksave_0000
-.DW chunk_0001
-.DB :chunk_0001
-.DW chunksave_0001
-.DW chunk_0002
-.DB :chunk_0002
-.DW chunksave_0002
-.DW chunk_0003
-.DB :chunk_0003
-.DW chunksave_0003
-.DW chunk_0004
-.DB :chunk_0004
-.DW chunksave_0004
-.DW chunk_0005
-.DB :chunk_0005
-.DW chunksave_0005
-.DW chunk_0006
-.DB :chunk_0006
-.DW chunksave_0006
-.DW chunk_0007
-.DB :chunk_0007
-.DW chunksave_0007
-.DW chunk_0008
-.DB :chunk_0008
-.DW chunksave_0008
-.DW chunk_0009
-.DB :chunk_0009
-.DW chunksave_0009
-.DW chunk_000A
-.DB :chunk_000A
-.DW chunksave_000A
-.DW chunk_000B
-.DB :chunk_000B
-.DW chunksave_000B
-.DW chunk_000C
-.DB :chunk_000C
-.DW 0
-.DW chunk_000D
-.DB :chunk_000D
-.DW 0
-.DW chunk_000E
-.DB :chunk_000E
-.DW 0
-.DW chunk_000F
-.DB :chunk_000F
-.DW 0
-.DW chunk_0010
-.DB :chunk_0010
-.ENDS
-;; base 0 16
+;; base 0 1
+.DEF LVLAYOUT_GHZ2 0+((0|(1<<8))<<1)
 
 .SECTION "base_chunk_0011" SLOT 2 SUPERFREE
 chunk_0011:
@@ -285,59 +235,8 @@ chunk_001D:
 chunk_001E:
 .DB $00, $ED, $01, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E6, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_GHZ2" SLOT 2 SUPERFREE
-LVLAYOUT_GHZ2:
-.DW chunksave_000C
-.DW chunk_0011
-.DB :chunk_0011
-.DW chunksave_000D
-.DW chunk_0012
-.DB :chunk_0012
-.DW chunksave_000E
-.DW chunk_0013
-.DB :chunk_0013
-.DW 0
-.DW chunk_0014
-.DB :chunk_0014
-.DW chunksave_000F
-.DW chunk_0015
-.DB :chunk_0015
-.DW 0
-.DW chunk_0016
-.DB :chunk_0016
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW chunksave_0010
-.DW chunk_0017
-.DB :chunk_0017
-.DW 0
-.DW chunk_0018
-.DB :chunk_0018
-.DW 0
-.DW chunk_0019
-.DB :chunk_0019
-.DW chunksave_0011
-.DW chunk_001A
-.DB :chunk_001A
-.DW chunksave_0012
-.DW chunk_001B
-.DB :chunk_001B
-.DW 0
-.DW chunk_001C
-.DB :chunk_001C
-.DW 0
-.DW chunk_001D
-.DB :chunk_001D
-.DW 0
-.DW chunk_001E
-.DB :chunk_001E
-.DW 0
-.DW chunk_001E
-.DB :chunk_001E
-.ENDS
-;; base 0 48
+;; base 0 3
+.DEF LVLAYOUT_GHZ3 0+((0|(3<<8))<<1)
 
 .SECTION "base_chunk_001F" SLOT 2 SUPERFREE
 chunk_001F:
@@ -398,59 +297,8 @@ chunk_0029:
 chunk_002A:
 .DB $B1, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $00, $FF, $EC, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_GHZ3" SLOT 2 SUPERFREE
-LVLAYOUT_GHZ3:
-.DW 0
-.DW chunk_001F
-.DB :chunk_001F
-.DW 0
-.DW chunk_0020
-.DB :chunk_0020
-.DW 0
-.DW chunk_0021
-.DB :chunk_0021
-.DW 0
-.DW chunk_0022
-.DB :chunk_0022
-.DW 0
-.DW chunk_0023
-.DB :chunk_0023
-.DW 0
-.DW chunk_0024
-.DB :chunk_0024
-.DW 0
-.DW chunk_0025
-.DB :chunk_0025
-.DW 0
-.DW chunk_0025
-.DB :chunk_0025
-.DW 0
-.DW chunk_0026
-.DB :chunk_0026
-.DW 0
-.DW chunk_0027
-.DB :chunk_0027
-.DW 0
-.DW chunk_0028
-.DB :chunk_0028
-.DW 0
-.DW chunk_0029
-.DB :chunk_0029
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
-.ENDS
-;; base 0 80
+;; base 0 5
+.DEF LVLAYOUT_JUN1 0+((0|(5<<8))<<1)
 
 .SECTION "base_chunk_002B" SLOT 2 SUPERFREE
 chunk_002B:
@@ -554,59 +402,8 @@ chunk_0038:
 chunk_0039:
 .DB $00, $FD, $38, $00, $EC, $39, $38, $00, $EB, $3A, $3A, $00, $EB, $3B, $65, $00, $EB, $65, $67, $00, $EB, $66, $66, $00, $EB, $68, $46, $01, $E3, $00, $E5, $03, $47, $03, $E3, $00, $E5, $03, $E5, $00, $E5, $03, $E5, $00, $E5, $0A, $E5, $00, $E5, $82, $E5, $00, $E5, $83, $E5, $00, $E5, $83, $83, $00, $EB, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_JUN1" SLOT 2 SUPERFREE
-LVLAYOUT_JUN1:
-.DW chunksave_0013
-.DW chunk_002B
-.DB :chunk_002B
-.DW chunksave_0014
-.DW chunk_002C
-.DB :chunk_002C
-.DW 0
-.DW chunk_002D
-.DB :chunk_002D
-.DW chunksave_0015
-.DW chunk_002E
-.DB :chunk_002E
-.DW 0
-.DW chunk_002F
-.DB :chunk_002F
-.DW 0
-.DW chunk_0030
-.DB :chunk_0030
-.DW chunksave_0016
-.DW chunk_0031
-.DB :chunk_0031
-.DW chunksave_0017
-.DW chunk_0032
-.DB :chunk_0032
-.DW 0
-.DW chunk_0033
-.DB :chunk_0033
-.DW 0
-.DW chunk_0034
-.DB :chunk_0034
-.DW 0
-.DW chunk_0035
-.DB :chunk_0035
-.DW chunksave_0018
-.DW chunk_0036
-.DB :chunk_0036
-.DW chunksave_0019
-.DW chunk_0037
-.DB :chunk_0037
-.DW 0
-.DW chunk_0038
-.DB :chunk_0038
-.DW 0
-.DW chunk_0039
-.DB :chunk_0039
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 96
+;; base 0 6
+.DEF LVLAYOUT_JUN2_special_4_8 0+((0|(6<<8))<<1)
 
 .SECTION "base_chunk_003A" SLOT 2 SUPERFREE
 chunk_003A:
@@ -721,59 +518,8 @@ chunk_0047:
 .RAMSECTION "ram_chunksave_0024" SLOT 4 FREE
 chunksave_0024 dsb 1
 .ENDS
-
-.SECTION "base_LVLAYOUT_JUN2_special_4_8" SLOT 2 SUPERFREE
-LVLAYOUT_JUN2_special_4_8:
-.DW chunksave_001A
-.DW chunk_003A
-.DB :chunk_003A
-.DW chunksave_001B
-.DW chunk_003B
-.DB :chunk_003B
-.DW chunksave_001C
-.DW chunk_003C
-.DB :chunk_003C
-.DW chunksave_001D
-.DW chunk_003D
-.DB :chunk_003D
-.DW chunksave_001E
-.DW chunk_003E
-.DB :chunk_003E
-.DW 0
-.DW chunk_003F
-.DB :chunk_003F
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0040
-.DB :chunk_0040
-.DW 0
-.DW chunk_0041
-.DB :chunk_0041
-.DW chunksave_001F
-.DW chunk_0042
-.DB :chunk_0042
-.DW chunksave_0020
-.DW chunk_0043
-.DB :chunk_0043
-.DW chunksave_0021
-.DW chunk_0044
-.DB :chunk_0044
-.DW chunksave_0022
-.DW chunk_0045
-.DB :chunk_0045
-.DW chunksave_0023
-.DW chunk_0046
-.DB :chunk_0046
-.DW chunksave_0024
-.DW chunk_0047
-.DB :chunk_0047
-.ENDS
-;; base 0 352
+;; base 0 22
+.DEF LVLAYOUT_SCR1 0+((0|(22<<8))<<1)
 
 .SECTION "base_chunk_0048" SLOT 2 SUPERFREE
 chunk_0048:
@@ -865,59 +611,8 @@ chunk_0051:
 chunk_0052:
 .DB $00, $FF, $FF, $FF, $FF, $E9, $31, $E4, $00, $E6, $01, $E4, $00, $E6, $01, $E4, $00, $E6, $01, $E4, $00, $E6, $01, $E4, $00, $E6, $01, $E4, $00, $E6, $01, $E4, $00, $E6, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SCR1" SLOT 2 SUPERFREE
-LVLAYOUT_SCR1:
-.DW chunksave_0025
-.DW chunk_0048
-.DB :chunk_0048
-.DW chunksave_0026
-.DW chunk_0049
-.DB :chunk_0049
-.DW chunksave_0027
-.DW chunk_004A
-.DB :chunk_004A
-.DW chunksave_0028
-.DW chunk_004B
-.DB :chunk_004B
-.DW chunksave_0029
-.DW chunk_004C
-.DB :chunk_004C
-.DW chunksave_002A
-.DW chunk_004D
-.DB :chunk_004D
-.DW chunksave_002B
-.DW chunk_004E
-.DB :chunk_004E
-.DW chunksave_002C
-.DW chunk_004F
-.DB :chunk_004F
-.DW chunksave_002D
-.DW chunk_0050
-.DB :chunk_0050
-.DW 0
-.DW chunk_0051
-.DB :chunk_0051
-.DW 0
-.DW chunk_0052
-.DB :chunk_0052
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 368
+;; base 0 23
+.DEF LVLAYOUT_SCR2_main 0+((0|(23<<8))<<1)
 
 .SECTION "base_chunk_0053" SLOT 2 SUPERFREE
 chunk_0053:
@@ -1030,59 +725,8 @@ chunk_0061:
 chunk_0062:
 .DB $01, $FF, $FF, $FF, $01, $2E, $E4, $01, $E5, $4E, $2E, $2E, $2C, $2A, $2B, $2D, $2D, $01, $E1, $14, $15, $01, $01, $4E, $01, $0B, $05, $70, $70, $06, $A5, $01, $E1, $00, $13, $14, $15, $4E, $4E, $01, $71, $E1, $A5, $70, $E1, $3B, $00, $00, $13, $90, $AC, $AC, $A9, $A9, $AB, $A9, $A1, $AD, $AF, $E0, $39, $3A, $3B, $00, $00, $93, $9D, $9B, $92, $9E, $92, $A8, $AD, $AF, $E0, $01, $43, $39, $41, $31, $95, $95, $99, $99, $96, $99, $A2, $AD, $AF, $E0, $01, $26, $01, $E0, $70, $70, $01, $4E, $4E, $01, $A5, $71, $E1, $01, $27, $26, $26, $0B, $03, $04, $0A, $2C, $2A, $2B, $A5, $01, $E2, $28, $24, $25, $0B, $0A, $0B, $0A, $01, $E0, $A5, $01, $E1, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_main" SLOT 2 SUPERFREE
-LVLAYOUT_SCR2_main:
-.DW 0
-.DW chunk_0053
-.DB :chunk_0053
-.DW 0
-.DW chunk_0054
-.DB :chunk_0054
-.DW 0
-.DW chunk_0055
-.DB :chunk_0055
-.DW chunksave_002E
-.DW chunk_0056
-.DB :chunk_0056
-.DW chunksave_002F
-.DW chunk_0057
-.DB :chunk_0057
-.DW chunksave_0030
-.DW chunk_0058
-.DB :chunk_0058
-.DW 0
-.DW chunk_0059
-.DB :chunk_0059
-.DW 0
-.DW chunk_005A
-.DB :chunk_005A
-.DW chunksave_0031
-.DW chunk_005B
-.DB :chunk_005B
-.DW chunksave_0032
-.DW chunk_005C
-.DB :chunk_005C
-.DW chunksave_0033
-.DW chunk_005D
-.DB :chunk_005D
-.DW chunksave_0034
-.DW chunk_005E
-.DB :chunk_005E
-.DW chunksave_0035
-.DW chunk_005F
-.DB :chunk_005F
-.DW 0
-.DW chunk_0060
-.DB :chunk_0060
-.DW 0
-.DW chunk_0061
-.DB :chunk_0061
-.DW 0
-.DW chunk_0062
-.DB :chunk_0062
-.ENDS
-;; base 0 400
+;; base 0 25
+.DEF LVLAYOUT_SCR2_upper 0+((0|(25<<8))<<1)
 
 .SECTION "base_chunk_0063" SLOT 2 SUPERFREE
 chunk_0063:
@@ -1163,59 +807,8 @@ chunk_0071:
 chunk_0072:
 .DB $31, $E1, $B8, $31, $E2, $25, $01, $E6, $86, $01, $E8, $02, $01, $E0, $86, $02, $01, $02, $23, $22, $23, $01, $E2, $02, $02, $01, $01, $86, $01, $4E, $01, $25, $21, $21, $01, $E6, $86, $01, $4E, $01, $E6, $23, $2D, $01, $01, $86, $02, $01, $05, $01, $E5, $27, $01, $E0, $86, $01, $2A, $2B, $01, $E5, $28, $01, $29, $01, $86, $01, $01, $0B, $01, $E6, $70, $E0, $86, $70, $70, $06, $01, $E5, $26, $1C, $1D, $1E, $86, $1C, $1D, $1E, $01, $E5, $25, $00, $E0, $85, $00, $E0, $01, $2E, $01, $E3, $A3, $52, $00, $00, $84, $00, $51, $00, $26, $2D, $01, $E3, $00, $E1, $83, $00, $B7, $00, $25, $01, $E4, $31, $E1, $86, $30, $2F, $31, $01, $E6, $2E, $2C, $01, $86, $0B, $0A, $4E, $01, $E6, $2E, $2C, $01, $86, $0B, $0A, $4E, $01, $E5, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_upper" SLOT 2 SUPERFREE
-LVLAYOUT_SCR2_upper:
-.DW 0
-.DW chunk_0063
-.DB :chunk_0063
-.DW 0
-.DW chunk_0064
-.DB :chunk_0064
-.DW 0
-.DW chunk_0065
-.DB :chunk_0065
-.DW 0
-.DW chunk_0066
-.DB :chunk_0066
-.DW 0
-.DW chunk_0067
-.DB :chunk_0067
-.DW 0
-.DW chunk_0068
-.DB :chunk_0068
-.DW 0
-.DW chunk_0069
-.DB :chunk_0069
-.DW 0
-.DW chunk_006A
-.DB :chunk_006A
-.DW 0
-.DW chunk_006B
-.DB :chunk_006B
-.DW 0
-.DW chunk_006C
-.DB :chunk_006C
-.DW 0
-.DW chunk_006D
-.DB :chunk_006D
-.DW 0
-.DW chunk_006E
-.DB :chunk_006E
-.DW 0
-.DW chunk_006F
-.DB :chunk_006F
-.DW 0
-.DW chunk_0070
-.DB :chunk_0070
-.DW 0
-.DW chunk_0071
-.DB :chunk_0071
-.DW 0
-.DW chunk_0072
-.DB :chunk_0072
-.ENDS
-;; base 0 464
+;; base 0 29
+.DEF LVLAYOUT_SCR2_lower 0+((0|(29<<8))<<1)
 
 .SECTION "base_chunk_0073" SLOT 2 SUPERFREE
 chunk_0073:
@@ -1256,59 +849,8 @@ chunk_0079:
 chunk_007A:
 .DB $67, $66, $76, $00, $00, $75, $65, $65, $A3, $51, $00, $85, $00, $8D, $02, $01, $00, $E0, $51, $00, $00, $52, $00, $E1, $84, $00, $8D, $02, $01, $30, $2F, $73, $00, $00, $74, $31, $E2, $83, $31, $B3, $01, $01, $0B, $0A, $8C, $00, $00, $8D, $02, $23, $02, $2D, $2C, $86, $01, $E1, $0B, $0A, $8C, $00, $00, $8D, $26, $27, $01, $86, $01, $86, $01, $E1, $0B, $0A, $8C, $00, $00, $8D, $27, $28, $01, $86, $01, $E3, $0B, $0A, $8C, $00, $5A, $8D, $28, $07, $01, $86, $01, $E3, $0B, $0A, $8C, $00, $00, $8D, $02, $08, $01, $86, $4E, $4E, $01, $E1, $67, $66, $A3, $00, $00, $A4, $65, $E0, $85, $65, $26, $01, $E1, $52, $51, $00, $E2, $51, $00, $84, $00, $21, $01, $E1, $2F, $31, $E5, $83, $31, $29, $01, $E1, $0A, $2C, $2A, $2A, $29, $01, $01, $26, $26, $86, $01, $03, $04, $01, $E0, $0A, $01, $E2, $1B, $25, $27, $86, $01, $05, $06, $01, $E0, $0A, $01, $E4, $28, $86, $01, $E3, $00, $FD, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SCR2_lower" SLOT 2 SUPERFREE
-LVLAYOUT_SCR2_lower:
-.DW 0
-.DW chunk_0073
-.DB :chunk_0073
-.DW 0
-.DW chunk_0074
-.DB :chunk_0074
-.DW 0
-.DW chunk_0075
-.DB :chunk_0075
-.DW 0
-.DW chunk_0076
-.DB :chunk_0076
-.DW 0
-.DW chunk_0077
-.DB :chunk_0077
-.DW 0
-.DW chunk_0078
-.DB :chunk_0078
-.DW 0
-.DW chunk_0079
-.DB :chunk_0079
-.DW 0
-.DW chunk_007A
-.DB :chunk_007A
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 592
+;; base 0 37
+.DEF LVLAYOUT_SCR3 0+((0|(37<<8))<<1)
 
 .SECTION "base_chunk_007B" SLOT 2 SUPERFREE
 chunk_007B:
@@ -1411,59 +953,8 @@ chunksave_003D dsb 3
 chunk_0088:
 .DB $01, $0B, $0A, $01, $8C, $00, $00, $01, $E7, $0B, $0A, $26, $8C, $00, $00, $02, $2D, $01, $E5, $0B, $0A, $25, $8C, $00, $00, $01, $E7, $0B, $0A, $23, $8C, $52, $00, $29, $29, $01, $E5, $0B, $0A, $25, $8C, $00, $00, $70, $E6, $01, $0B, $0A, $01, $8C, $00, $51, $71, $E6, $01, $0B, $0A, $2D, $8C, $00, $00, $01, $23, $26, $01, $E4, $0B, $0A, $2A, $8C, $00, $00, $01, $24, $25, $01, $E4, $0B, $0A, $2E, $8C, $00, $00, $70, $E6, $01, $0B, $0A, $26, $8C, $00, $00, $71, $E6, $02, $02, $0A, $25, $8C, $51, $00, $26, $01, $E5, $65, $67, $66, $65, $A3, $00, $00, $27, $01, $E5, $52, $00, $E3, $28, $01, $E5, $31, $30, $2F, $31, $E1, $01, $E6, $23, $0B, $0A, $2C, $2B, $02, $29, $29, $01, $E5, $21, $0B, $0A, $01, $EA, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SCR3" SLOT 2 SUPERFREE
-LVLAYOUT_SCR3:
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_007B
-.DB :chunk_007B
-.DW 0
-.DW chunk_007C
-.DB :chunk_007C
-.DW 0
-.DW chunk_007C
-.DB :chunk_007C
-.DW 0
-.DW chunk_007D
-.DB :chunk_007D
-.DW chunksave_0036
-.DW chunk_007E
-.DB :chunk_007E
-.DW chunksave_0037
-.DW chunk_007F
-.DB :chunk_007F
-.DW chunksave_0038
-.DW chunk_0080
-.DB :chunk_0080
-.DW 0
-.DW chunk_0081
-.DB :chunk_0081
-.DW chunksave_0039
-.DW chunk_0082
-.DB :chunk_0082
-.DW chunksave_003A
-.DW chunk_0083
-.DB :chunk_0083
-.DW chunksave_003B
-.DW chunk_0084
-.DB :chunk_0084
-.DW 0
-.DW chunk_0085
-.DB :chunk_0085
-.DW chunksave_003C
-.DW chunk_0086
-.DB :chunk_0086
-.DW chunksave_003D
-.DW chunk_0087
-.DB :chunk_0087
-.DW 0
-.DW chunk_0088
-.DB :chunk_0088
-.ENDS
-;; base 0 656
+;; base 0 41
+.DEF LVLAYOUT_SKY2 0+((0|(41<<8))<<1)
 
 .SECTION "base_chunk_0089" SLOT 2 SUPERFREE
 chunk_0089:
@@ -1504,59 +995,8 @@ chunk_008F:
 chunk_0090:
 .DB $01, $45, $89, $8A, $00, $E9, $43, $4A, $00, $EB, $4A, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F6, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SKY2" SLOT 2 SUPERFREE
-LVLAYOUT_SKY2:
-.DW 0
-.DW chunk_0089
-.DB :chunk_0089
-.DW 0
-.DW chunk_008A
-.DB :chunk_008A
-.DW 0
-.DW chunk_008B
-.DB :chunk_008B
-.DW 0
-.DW chunk_008C
-.DB :chunk_008C
-.DW 0
-.DW chunk_008D
-.DB :chunk_008D
-.DW 0
-.DW chunk_008E
-.DB :chunk_008E
-.DW 0
-.DW chunk_008F
-.DB :chunk_008F
-.DW 0
-.DW chunk_0090
-.DB :chunk_0090
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 720
+;; base 0 45
+.DEF LVLAYOUT_BRI1 0+((0|(45<<8))<<1)
 
 .SECTION "base_chunk_0091" SLOT 2 SUPERFREE
 chunk_0091:
@@ -1657,59 +1097,8 @@ chunk_009B:
 chunk_009C:
 .DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $11, $EA, $00, $E0, $19, $EA, $00, $E0, $19, $EA, $00, $E0, $19, $EA, $00, $E0, $19, $EA, $00, $E0, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_BRI1" SLOT 2 SUPERFREE
-LVLAYOUT_BRI1:
-.DW chunksave_003E
-.DW chunk_0091
-.DB :chunk_0091
-.DW chunksave_003F
-.DW chunk_0092
-.DB :chunk_0092
-.DW chunksave_0040
-.DW chunk_0093
-.DB :chunk_0093
-.DW chunksave_0041
-.DW chunk_0094
-.DB :chunk_0094
-.DW chunksave_0042
-.DW chunk_0095
-.DB :chunk_0095
-.DW chunksave_0043
-.DW chunk_0096
-.DB :chunk_0096
-.DW chunksave_0044
-.DW chunk_0097
-.DB :chunk_0097
-.DW chunksave_0045
-.DW chunk_0098
-.DB :chunk_0098
-.DW chunksave_0046
-.DW chunk_0099
-.DB :chunk_0099
-.DW chunksave_0047
-.DW chunk_009A
-.DB :chunk_009A
-.DW 0
-.DW chunk_009B
-.DB :chunk_009B
-.DW 0
-.DW chunk_009C
-.DB :chunk_009C
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 736
+;; base 0 46
+.DEF LVLAYOUT_LAB1 0+((0|(46<<8))<<1)
 
 .SECTION "base_chunk_009D" SLOT 2 SUPERFREE
 chunk_009D:
@@ -1802,59 +1191,8 @@ chunk_00A7:
 chunk_00A8:
 .DB $03, $1C, $4C, $4E, $4E, $07, $E8, $0D, $1C, $0C, $15, $4E, $07, $E8, $4E, $1C, $43, $47, $4B, $07, $E8, $4E, $23, $4F, $4B, $4E, $07, $E8, $42, $00, $43, $47, $43, $07, $E8, $3C, $3C, $4E, $4B, $4E, $07, $E8, $06, $43, $07, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_LAB1" SLOT 2 SUPERFREE
-LVLAYOUT_LAB1:
-.DW chunksave_0048
-.DW chunk_009D
-.DB :chunk_009D
-.DW chunksave_0049
-.DW chunk_009E
-.DB :chunk_009E
-.DW chunksave_004A
-.DW chunk_009F
-.DB :chunk_009F
-.DW 0
-.DW chunk_00A0
-.DB :chunk_00A0
-.DW chunksave_004B
-.DW chunk_00A1
-.DB :chunk_00A1
-.DW chunksave_004C
-.DW chunk_00A2
-.DB :chunk_00A2
-.DW chunksave_004D
-.DW chunk_00A3
-.DB :chunk_00A3
-.DW chunksave_004E
-.DW chunk_00A4
-.DB :chunk_00A4
-.DW 0
-.DW chunk_00A5
-.DB :chunk_00A5
-.DW chunksave_004F
-.DW chunk_00A6
-.DB :chunk_00A6
-.DW 0
-.DW chunk_00A7
-.DB :chunk_00A7
-.DW 0
-.DW chunk_00A8
-.DB :chunk_00A8
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 800
+;; base 0 50
+.DEF LVLAYOUT_LAB2 0+((0|(50<<8))<<1)
 
 .SECTION "base_chunk_00A9" SLOT 2 SUPERFREE
 chunk_00A9:
@@ -1975,59 +1313,8 @@ chunk_00B8:
 .RAMSECTION "ram_chunksave_0059" SLOT 4 FREE
 chunksave_0059 dsb 2
 .ENDS
-
-.SECTION "base_LVLAYOUT_LAB2" SLOT 2 SUPERFREE
-LVLAYOUT_LAB2:
-.DW 0
-.DW chunk_00A9
-.DB :chunk_00A9
-.DW 0
-.DW chunk_00AA
-.DB :chunk_00AA
-.DW 0
-.DW chunk_00AB
-.DB :chunk_00AB
-.DW 0
-.DW chunk_00AC
-.DB :chunk_00AC
-.DW chunksave_0050
-.DW chunk_00AD
-.DB :chunk_00AD
-.DW chunksave_0051
-.DW chunk_00AE
-.DB :chunk_00AE
-.DW chunksave_0052
-.DW chunk_00AF
-.DB :chunk_00AF
-.DW chunksave_0053
-.DW chunk_00B0
-.DB :chunk_00B0
-.DW chunksave_0054
-.DW chunk_00B1
-.DB :chunk_00B1
-.DW 0
-.DW chunk_00B2
-.DB :chunk_00B2
-.DW chunksave_0055
-.DW chunk_00B3
-.DB :chunk_00B3
-.DW chunksave_0056
-.DW chunk_00B4
-.DB :chunk_00B4
-.DW chunksave_0057
-.DW chunk_00B5
-.DB :chunk_00B5
-.DW 0
-.DW chunk_00B6
-.DB :chunk_00B6
-.DW chunksave_0058
-.DW chunk_00B7
-.DB :chunk_00B7
-.DW chunksave_0059
-.DW chunk_00B8
-.DB :chunk_00B8
-.ENDS
-;; base 0 864
+;; base 0 54
+.DEF LVLAYOUT_SKY1 0+((0|(54<<8))<<1)
 
 .SECTION "base_chunk_00B9" SLOT 2 SUPERFREE
 chunk_00B9:
@@ -2148,59 +1435,8 @@ chunk_00C7:
 chunk_00C8:
 .DB $D2, $00, $FC, $CD, $D3, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F5, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SKY1" SLOT 2 SUPERFREE
-LVLAYOUT_SKY1:
-.DW chunksave_005A
-.DW chunk_00B9
-.DB :chunk_00B9
-.DW chunksave_005B
-.DW chunk_00BA
-.DB :chunk_00BA
-.DW chunksave_005C
-.DW chunk_00BB
-.DB :chunk_00BB
-.DW 0
-.DW chunk_00BC
-.DB :chunk_00BC
-.DW chunksave_005D
-.DW chunk_00BD
-.DB :chunk_00BD
-.DW 0
-.DW chunk_00BE
-.DB :chunk_00BE
-.DW 0
-.DW chunk_00BF
-.DB :chunk_00BF
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DW chunksave_005E
-.DW chunk_00C1
-.DB :chunk_00C1
-.DW chunksave_005F
-.DW chunk_00C2
-.DB :chunk_00C2
-.DW chunksave_0060
-.DW chunk_00C3
-.DB :chunk_00C3
-.DW chunksave_0061
-.DW chunk_00C4
-.DB :chunk_00C4
-.DW chunksave_0062
-.DW chunk_00C5
-.DB :chunk_00C5
-.DW chunksave_0063
-.DW chunk_00C6
-.DB :chunk_00C6
-.DW 0
-.DW chunk_00C7
-.DB :chunk_00C7
-.DW 0
-.DW chunk_00C8
-.DB :chunk_00C8
-.ENDS
-;; base 0 896
+;; base 0 56
+.DEF LVLAYOUT_BRI2 0+((0|(56<<8))<<1)
 
 .SECTION "base_chunk_00C9" SLOT 2 SUPERFREE
 chunk_00C9:
@@ -2284,59 +1520,8 @@ chunksave_006A dsb 3
 chunk_00D3:
 .DB $00, $E9, $5E, $61, $5F, $00, $EE, $39, $11, $EC, $18, $19, $EC, $18, $19, $EC, $18, $19, $EC, $18, $19, $EC, $18, $19, $EC, $42, $ED, $43, $FF, $FF, $FF, $EA, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_BRI2" SLOT 2 SUPERFREE
-LVLAYOUT_BRI2:
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00C9
-.DB :chunk_00C9
-.DW 0
-.DW chunk_00CA
-.DB :chunk_00CA
-.DW 0
-.DW chunk_00CB
-.DB :chunk_00CB
-.DW chunksave_0064
-.DW chunk_00CC
-.DB :chunk_00CC
-.DW chunksave_0065
-.DW chunk_00CD
-.DB :chunk_00CD
-.DW chunksave_0066
-.DW chunk_00CE
-.DB :chunk_00CE
-.DW chunksave_0067
-.DW chunk_00CF
-.DB :chunk_00CF
-.DW chunksave_0068
-.DW chunk_00D0
-.DB :chunk_00D0
-.DW chunksave_0069
-.DW chunk_00D1
-.DB :chunk_00D1
-.DW chunksave_006A
-.DW chunk_00D2
-.DB :chunk_00D2
-.DW 0
-.DW chunk_00D3
-.DB :chunk_00D3
-.ENDS
-;; base 0 928
+;; base 0 58
+.DEF LVLAYOUT_SKY3_endof_SKY2 0+((0|(58<<8))<<1)
 
 .SECTION "base_chunk_00D4" SLOT 2 SUPERFREE
 chunk_00D4:
@@ -2387,59 +1572,8 @@ chunk_00DC:
 chunk_00DD:
 .DB $00, $FF, $FF, $EB, $06, $03, $06, $E9, $00, $00, $06, $03, $55, $06, $55, $06, $E0, $55, $06, $E2, $00, $00, $57, $03, $06, $52, $06, $56, $06, $52, $06, $57, $56, $55, $52, $06, $00, $00, $09, $0A, $09, $E9, $00, $00, $0B, $EB, $00, $00, $4B, $50, $4E, $4D, $4B, $4D, $4B, $50, $00, $E5, $4E, $4C, $4B, $51, $4F, $51, $4E, $51, $2B, $E0, $00, $E2, $01, $02, $01, $E9, $00, $00, $59, $03, $56, $06, $57, $06, $E0, $57, $06, $56, $56, $06, $06, $00, $00, $06, $03, $06, $52, $06, $56, $06, $56, $06, $55, $06, $56, $06, $06, $00, $00, $59, $03, $55, $57, $52, $57, $55, $06, $E2, $00, $E1, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SKY3_endof_SKY2" SLOT 2 SUPERFREE
-LVLAYOUT_SKY3_endof_SKY2:
-.DW 0
-.DW chunk_00D4
-.DB :chunk_00D4
-.DW 0
-.DW chunk_00D5
-.DB :chunk_00D5
-.DW 0
-.DW chunk_00D6
-.DB :chunk_00D6
-.DW 0
-.DW chunk_00D7
-.DB :chunk_00D7
-.DW 0
-.DW chunk_00D8
-.DB :chunk_00D8
-.DW 0
-.DW chunk_00D9
-.DB :chunk_00D9
-.DW 0
-.DW chunk_00DA
-.DB :chunk_00DA
-.DW 0
-.DW chunk_00DB
-.DB :chunk_00DB
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00DC
-.DB :chunk_00DC
-.DW 0
-.DW chunk_00DD
-.DB :chunk_00DD
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 992
+;; base 0 62
+.DEF LVLAYOUT_JUN3 0+((0|(62<<8))<<1)
 
 .SECTION "base_chunk_00DE" SLOT 2 SUPERFREE
 chunk_00DE:
@@ -2480,59 +1614,8 @@ chunk_00E4:
 chunk_00E5:
 .DB $00, $FD, $82, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $EA, $83, $E0, $00, $FF, $FF, $E8, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_JUN3" SLOT 2 SUPERFREE
-LVLAYOUT_JUN3:
-.DW 0
-.DW chunk_00DE
-.DB :chunk_00DE
-.DW 0
-.DW chunk_00DF
-.DB :chunk_00DF
-.DW 0
-.DW chunk_00E0
-.DB :chunk_00E0
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00E1
-.DB :chunk_00E1
-.DW 0
-.DW chunk_00E2
-.DB :chunk_00E2
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00E3
-.DB :chunk_00E3
-.DW 0
-.DW chunk_00E4
-.DB :chunk_00E4
-.DW 0
-.DW chunk_00E5
-.DB :chunk_00E5
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 1056
+;; base 0 66
+.DEF LVLAYOUT_LAB3 0+((0|(66<<8))<<1)
 
 .SECTION "base_chunk_00E6" SLOT 2 SUPERFREE
 chunk_00E6:
@@ -2568,59 +1651,8 @@ chunk_00EB:
 chunk_00EC:
 .DB $4F, $ED, $07, $FF, $FF, $FF, $FF, $F9, $00, $FF, $FF, $EB, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_LAB3" SLOT 2 SUPERFREE
-LVLAYOUT_LAB3:
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00E6
-.DB :chunk_00E6
-.DW 0
-.DW chunk_00E7
-.DB :chunk_00E7
-.DW 0
-.DW chunk_00E8
-.DB :chunk_00E8
-.DW 0
-.DW chunk_00E9
-.DB :chunk_00E9
-.DW 0
-.DW chunk_00EA
-.DB :chunk_00EA
-.DW 0
-.DW chunk_00EB
-.DB :chunk_00EB
-.DW 0
-.DW chunk_00EC
-.DB :chunk_00EC
-.DW 0
-.DW chunk_00EC
-.DB :chunk_00EC
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 1120
+;; base 0 70
+.DEF LVLAYOUT_BRI3 0+((0|(70<<8))<<1)
 
 .SECTION "base_chunk_00ED" SLOT 2 SUPERFREE
 chunk_00ED:
@@ -2641,59 +1673,8 @@ chunk_00EF:
 chunk_00F0:
 .DB $00, $FF, $FF, $FF, $EA, $6E, $6A, $00, $EB, $53, $5F, $5C, $5D, $63, $00, $E8, $6A, $5E, $61, $5F, $00, $E9, $6F, $63, $00, $EB, $11, $E8, $00, $E2, $19, $E8, $00, $E2, $42, $E8, $00, $E2, $43, $E8, $00, $E2, $43, $E8, $00, $E2, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_BRI3" SLOT 2 SUPERFREE
-LVLAYOUT_BRI3:
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_00ED
-.DB :chunk_00ED
-.DW 0
-.DW chunk_00EE
-.DB :chunk_00EE
-.DW 0
-.DW chunk_00EF
-.DB :chunk_00EF
-.DW 0
-.DW chunk_00F0
-.DB :chunk_00F0
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.DW 0
-.DW chunk_0000
-.DB :chunk_0000
-.ENDS
-;; base 0 1152
+;; base 0 72
+.DEF LVLAYOUT_SPECIAL_1_2_3_5_6_7 0+((0|(72<<8))<<1)
 
 .SECTION "base_chunk_00F1" SLOT 2 SUPERFREE
 chunk_00F1:
@@ -2806,61 +1787,14 @@ chunksave_0072 dsb 7
 chunk_0100:
 .DB $2C, $FF, $FF, $FB, $15, $ED, $21, $22, $23, $21, $22, $23, $20, $21, $23, $20, $00, $E3, $1D, $ED, $00, $22, $23, $22, $21, $23, $22, $20, $23, $00, $E4, $24, $ED, $2C, $FF, $FF, $EB, $DF
 .ENDS
-
-.SECTION "base_LVLAYOUT_SPECIAL_1_2_3_5_6_7" SLOT 2 SUPERFREE
-LVLAYOUT_SPECIAL_1_2_3_5_6_7:
-.DW 0
-.DW chunk_00F1
-.DB :chunk_00F1
-.DW chunksave_006B
-.DW chunk_00F2
-.DB :chunk_00F2
-.DW 0
-.DW chunk_00F3
-.DB :chunk_00F3
-.DW 0
-.DW chunk_00F4
-.DB :chunk_00F4
-.DW chunksave_006C
-.DW chunk_00F5
-.DB :chunk_00F5
-.DW chunksave_006D
-.DW chunk_00F6
-.DB :chunk_00F6
-.DW 0
-.DW chunk_00F7
-.DB :chunk_00F7
-.DW 0
-.DW chunk_00F8
-.DB :chunk_00F8
-.DW chunksave_006E
-.DW chunk_00F9
-.DB :chunk_00F9
-.DW chunksave_006F
-.DW chunk_00FA
-.DB :chunk_00FA
-.DW 0
-.DW chunk_00FB
-.DB :chunk_00FB
-.DW 0
-.DW chunk_00FC
-.DB :chunk_00FC
-.DW chunksave_0070
-.DW chunk_00FD
-.DB :chunk_00FD
-.DW chunksave_0071
-.DW chunk_00FE
-.DB :chunk_00FE
-.DW chunksave_0072
-.DW chunk_00FF
-.DB :chunk_00FF
-.DW 0
-.DW chunk_0100
-.DB :chunk_0100
-.ENDS
-;; final base 0 1216
+;; final base 0 76
 
 .SECTION "layout_quadtree" SLOT 2 SUPERFREE
+qt_default_node:
+.DW 0
+.DW chunk_0000
+.DB :chunk_0000
+qt_root:
 qt_0000:
 .DW qt_0001, 0, qt_0002, 0
 qt_0001:
@@ -2868,511 +1802,1345 @@ qt_0001:
 qt_0003:
 .DW qt_0005, 0, qt_0006, 0
 qt_0005:
-.DW qt_0007, qt_0008, 0, 0
+.DW qt_0007, qt_0008, qt_0009, 0
 qt_0007:
-.DW qt_0009, qt_000A, 0, 0
-qt_0009:
-.DW qt_000B, qt_000C, 0, 0
-qt_000B:
-.DW qt_000D, qt_000E, 0, 0
-qt_000D:
+.DW qt_000A, qt_000B, qt_000C, qt_000D
+qt_000A:
+.DW qt_000E, qt_000F, qt_0010, qt_0011
+qt_000E:
+.DW qt_0012, qt_0013, qt_0014, qt_0015
+qt_0012:
 .DW chunksave_0000
 .DW chunk_0001
 .DB :chunk_0001
-qt_000E:
+qt_0013:
 .DW chunksave_0001
 .DW chunk_0002
 .DB :chunk_0002
-qt_000C:
-.DW qt_000F, qt_0010, 0, 0
-qt_000F:
-.DW chunksave_0002
-.DW chunk_0003
-.DB :chunk_0003
-qt_0010:
-.DW chunksave_0003
-.DW chunk_0004
-.DB :chunk_0004
-qt_000A:
-.DW qt_0011, qt_0012, 0, 0
-qt_0011:
-.DW qt_0013, qt_0014, 0, 0
-qt_0013:
-.DW chunksave_0004
-.DW chunk_0005
-.DB :chunk_0005
 qt_0014:
-.DW chunksave_0005
-.DW chunk_0006
-.DB :chunk_0006
-qt_0012:
-.DW qt_0015, qt_0016, 0, 0
-qt_0015:
-.DW chunksave_0006
-.DW chunk_0007
-.DB :chunk_0007
-qt_0016:
-.DW chunksave_0007
-.DW chunk_0008
-.DB :chunk_0008
-qt_0008:
-.DW qt_0017, qt_0018, 0, 0
-qt_0017:
-.DW qt_0019, qt_001A, 0, 0
-qt_0019:
-.DW qt_001B, qt_001C, 0, 0
-qt_001B:
-.DW chunksave_0008
-.DW chunk_0009
-.DB :chunk_0009
-qt_001C:
-.DW chunksave_0009
-.DW chunk_000A
-.DB :chunk_000A
-qt_001A:
-.DW qt_001D, qt_001E, 0, 0
-qt_001D:
-.DW chunksave_000A
-.DW chunk_000B
-.DB :chunk_000B
-qt_001E:
-.DW chunksave_000B
-.DW chunk_000C
-.DB :chunk_000C
-qt_0018:
-.DW qt_001F, qt_0020, 0, 0
-qt_001F:
-.DW qt_0021, qt_0022, 0, 0
-qt_0021:
-.DW 0
-.DW chunk_000D
-.DB :chunk_000D
-qt_0022:
-.DW 0
-.DW chunk_000E
-.DB :chunk_000E
-qt_0020:
-.DW qt_0023, qt_0024, 0, 0
-qt_0023:
-.DW 0
-.DW chunk_000F
-.DB :chunk_000F
-qt_0024:
-.DW 0
-.DW chunk_0010
-.DB :chunk_0010
-qt_0006:
-.DW qt_0025, 0, 0, 0
-qt_0025:
-.DW qt_0026, qt_0027, 0, 0
-qt_0026:
-.DW qt_0028, qt_0029, 0, 0
-qt_0028:
-.DW qt_002A, qt_002B, qt_002C, qt_002D
-qt_002A:
 .DW chunksave_000C
 .DW chunk_0011
 .DB :chunk_0011
-qt_002B:
+qt_0015:
 .DW chunksave_000D
 .DW chunk_0012
 .DB :chunk_0012
-qt_002C:
-.DW 0
-.DW chunk_0018
-.DB :chunk_0018
-qt_002D:
-.DW 0
-.DW chunk_0019
-.DB :chunk_0019
-qt_0029:
-.DW qt_002E, qt_002F, qt_0030, qt_0031
-qt_002E:
+qt_000F:
+.DW qt_0016, qt_0017, qt_0018, qt_0019
+qt_0016:
+.DW chunksave_0002
+.DW chunk_0003
+.DB :chunk_0003
+qt_0017:
+.DW chunksave_0003
+.DW chunk_0004
+.DB :chunk_0004
+qt_0018:
 .DW chunksave_000E
 .DW chunk_0013
 .DB :chunk_0013
-qt_002F:
+qt_0019:
 .DW 0
 .DW chunk_0014
 .DB :chunk_0014
-qt_0030:
-.DW chunksave_0011
-.DW chunk_001A
-.DB :chunk_001A
-qt_0031:
-.DW chunksave_0012
-.DW chunk_001B
-.DB :chunk_001B
-qt_0027:
-.DW qt_0032, qt_0033, 0, 0
-qt_0032:
-.DW qt_0034, qt_0035, qt_0036, qt_0037
-qt_0034:
-.DW chunksave_000F
-.DW chunk_0015
-.DB :chunk_0015
-qt_0035:
+qt_0010:
+.DW qt_001A, qt_001B, qt_001C, qt_001D
+qt_001A:
 .DW 0
-.DW chunk_0016
-.DB :chunk_0016
-qt_0036:
+.DW chunk_0018
+.DB :chunk_0018
+qt_001B:
 .DW 0
-.DW chunk_001C
-.DB :chunk_001C
-qt_0037:
-.DW 0
-.DW chunk_001D
-.DB :chunk_001D
-qt_0033:
-.DW 0, qt_0038, qt_0039, qt_003A
-qt_0038:
-.DW chunksave_0010
-.DW chunk_0017
-.DB :chunk_0017
-qt_0039:
-.DW 0
-.DW chunk_001E
-.DB :chunk_001E
-qt_003A:
-.DW 0
-.DW chunk_001E
-.DB :chunk_001E
-qt_0004:
-.DW 0, 0, qt_003B, 0
-qt_003B:
-.DW qt_003C, 0, 0, 0
-qt_003C:
-.DW qt_003D, qt_003E, 0, 0
-qt_003D:
-.DW qt_003F, qt_0040, 0, 0
-qt_003F:
-.DW qt_0041, qt_0042, qt_0043, qt_0044
-qt_0041:
+.DW chunk_0019
+.DB :chunk_0019
+qt_001C:
 .DW 0
 .DW chunk_001F
 .DB :chunk_001F
-qt_0042:
+qt_001D:
 .DW 0
 .DW chunk_0020
 .DB :chunk_0020
-qt_0043:
-.DW 0
-.DW chunk_0026
-.DB :chunk_0026
-qt_0044:
-.DW 0
-.DW chunk_0027
-.DB :chunk_0027
-qt_0040:
-.DW qt_0045, qt_0046, qt_0047, qt_0048
-qt_0045:
+qt_0011:
+.DW qt_001E, qt_001F, qt_0020, qt_0021
+qt_001E:
+.DW chunksave_0011
+.DW chunk_001A
+.DB :chunk_001A
+qt_001F:
+.DW chunksave_0012
+.DW chunk_001B
+.DB :chunk_001B
+qt_0020:
 .DW 0
 .DW chunk_0021
 .DB :chunk_0021
-qt_0046:
+qt_0021:
 .DW 0
 .DW chunk_0022
 .DB :chunk_0022
-qt_0047:
+qt_000B:
+.DW qt_0022, qt_0023, qt_0024, qt_0025
+qt_0022:
+.DW qt_0026, qt_0027, qt_0028, qt_0029
+qt_0026:
+.DW chunksave_0004
+.DW chunk_0005
+.DB :chunk_0005
+qt_0027:
+.DW chunksave_0005
+.DW chunk_0006
+.DB :chunk_0006
+qt_0028:
+.DW chunksave_000F
+.DW chunk_0015
+.DB :chunk_0015
+qt_0029:
+.DW 0
+.DW chunk_0016
+.DB :chunk_0016
+qt_0023:
+.DW qt_002A, qt_002B, 0, qt_002C
+qt_002A:
+.DW chunksave_0006
+.DW chunk_0007
+.DB :chunk_0007
+qt_002B:
+.DW chunksave_0007
+.DW chunk_0008
+.DB :chunk_0008
+qt_002C:
+.DW chunksave_0010
+.DW chunk_0017
+.DB :chunk_0017
+qt_0024:
+.DW qt_002D, qt_002E, qt_002F, qt_0030
+qt_002D:
+.DW 0
+.DW chunk_001C
+.DB :chunk_001C
+qt_002E:
+.DW 0
+.DW chunk_001D
+.DB :chunk_001D
+qt_002F:
+.DW 0
+.DW chunk_0023
+.DB :chunk_0023
+qt_0030:
+.DW 0
+.DW chunk_0024
+.DB :chunk_0024
+qt_0025:
+.DW qt_0031, qt_0032, qt_0033, qt_0034
+qt_0031:
+.DW 0
+.DW chunk_001E
+.DB :chunk_001E
+qt_0032:
+.DW 0
+.DW chunk_001E
+.DB :chunk_001E
+qt_0033:
+.DW 0
+.DW chunk_0025
+.DB :chunk_0025
+qt_0034:
+.DW 0
+.DW chunk_0025
+.DB :chunk_0025
+qt_000C:
+.DW qt_0035, qt_0036, qt_0037, 0
+qt_0035:
+.DW qt_0038, qt_0039, qt_003A, qt_003B
+qt_0038:
+.DW 0
+.DW chunk_0026
+.DB :chunk_0026
+qt_0039:
+.DW 0
+.DW chunk_0027
+.DB :chunk_0027
+qt_003A:
+.DW chunksave_0013
+.DW chunk_002B
+.DB :chunk_002B
+qt_003B:
+.DW chunksave_0014
+.DW chunk_002C
+.DB :chunk_002C
+qt_0036:
+.DW qt_003C, qt_003D, qt_003E, qt_003F
+qt_003C:
 .DW 0
 .DW chunk_0028
 .DB :chunk_0028
-qt_0048:
+qt_003D:
 .DW 0
 .DW chunk_0029
 .DB :chunk_0029
 qt_003E:
-.DW qt_0049, qt_004A, 0, 0
-qt_0049:
-.DW qt_004B, qt_004C, qt_004D, qt_004E
-qt_004B:
 .DW 0
-.DW chunk_0023
-.DB :chunk_0023
-qt_004C:
-.DW 0
-.DW chunk_0024
-.DB :chunk_0024
-qt_004D:
+.DW chunk_002D
+.DB :chunk_002D
+qt_003F:
+.DW chunksave_0015
+.DW chunk_002E
+.DB :chunk_002E
+qt_0037:
+.DW qt_0040, 0, qt_0041, 0
+qt_0040:
+.DW chunksave_001A
+.DW chunk_003A
+.DB :chunk_003A
+qt_0041:
+.DW chunksave_001B
+.DW chunk_003B
+.DB :chunk_003B
+qt_000D:
+.DW qt_0042, qt_0043, 0, 0
+qt_0042:
+.DW qt_0044, qt_0045, qt_0046, qt_0047
+qt_0044:
 .DW 0
 .DW chunk_002A
 .DB :chunk_002A
-qt_004E:
+qt_0045:
+.DW 0
+.DW chunk_002A
+.DB :chunk_002A
+qt_0046:
+.DW 0
+.DW chunk_002F
+.DB :chunk_002F
+qt_0047:
+.DW 0
+.DW chunk_0030
+.DB :chunk_0030
+qt_0043:
+.DW qt_0048, qt_0049, qt_004A, qt_004B
+qt_0048:
+.DW 0
+.DW chunk_002A
+.DB :chunk_002A
+qt_0049:
 .DW 0
 .DW chunk_002A
 .DB :chunk_002A
 qt_004A:
-.DW qt_004F, qt_0050, qt_0051, qt_0052
-qt_004F:
-.DW 0
-.DW chunk_0025
-.DB :chunk_0025
+.DW chunksave_0016
+.DW chunk_0031
+.DB :chunk_0031
+qt_004B:
+.DW chunksave_0017
+.DW chunk_0032
+.DB :chunk_0032
+qt_0008:
+.DW qt_004C, qt_004D, qt_004E, qt_004F
+qt_004C:
+.DW qt_0050, qt_0051, 0, 0
 qt_0050:
-.DW 0
-.DW chunk_0025
-.DB :chunk_0025
-qt_0051:
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
+.DW qt_0052, qt_0053, 0, 0
 qt_0052:
-.DW 0
-.DW chunk_002A
-.DB :chunk_002A
-qt_0002:
-.DW qt_0053, 0, qt_0054, 0
+.DW chunksave_0008
+.DW chunk_0009
+.DB :chunk_0009
 qt_0053:
-.DW 0, 0, qt_0055, 0
+.DW chunksave_0009
+.DW chunk_000A
+.DB :chunk_000A
+qt_0051:
+.DW qt_0054, qt_0055, 0, 0
+qt_0054:
+.DW chunksave_000A
+.DW chunk_000B
+.DB :chunk_000B
 qt_0055:
+.DW chunksave_000B
+.DW chunk_000C
+.DB :chunk_000C
+qt_004D:
 .DW qt_0056, qt_0057, 0, 0
 qt_0056:
 .DW qt_0058, qt_0059, 0, 0
 qt_0058:
+.DW 0
+.DW chunk_000D
+.DB :chunk_000D
+qt_0059:
+.DW 0
+.DW chunk_000E
+.DB :chunk_000E
+qt_0057:
 .DW qt_005A, qt_005B, 0, 0
 qt_005A:
+.DW 0
+.DW chunk_000F
+.DB :chunk_000F
+qt_005B:
+.DW 0
+.DW chunk_0010
+.DB :chunk_0010
+qt_004E:
 .DW qt_005C, qt_005D, 0, 0
 qt_005C:
-.DW chunksave_0013
-.DW chunk_002B
-.DB :chunk_002B
-qt_005D:
-.DW chunksave_0014
-.DW chunk_002C
-.DB :chunk_002C
-qt_005B:
-.DW qt_005E, qt_005F, 0, 0
+.DW 0, 0, qt_005E, qt_005F
 qt_005E:
-.DW 0
-.DW chunk_002D
-.DB :chunk_002D
-qt_005F:
-.DW chunksave_0015
-.DW chunk_002E
-.DB :chunk_002E
-qt_0059:
-.DW qt_0060, qt_0061, 0, 0
-qt_0060:
-.DW qt_0062, qt_0063, 0, 0
-qt_0062:
-.DW 0
-.DW chunk_002F
-.DB :chunk_002F
-qt_0063:
-.DW 0
-.DW chunk_0030
-.DB :chunk_0030
-qt_0061:
-.DW qt_0064, qt_0065, 0, 0
-qt_0064:
-.DW chunksave_0016
-.DW chunk_0031
-.DB :chunk_0031
-qt_0065:
-.DW chunksave_0017
-.DW chunk_0032
-.DB :chunk_0032
-qt_0057:
-.DW qt_0066, qt_0067, 0, 0
-qt_0066:
-.DW qt_0068, qt_0069, 0, 0
-qt_0068:
-.DW qt_006A, qt_006B, 0, 0
-qt_006A:
 .DW 0
 .DW chunk_0033
 .DB :chunk_0033
-qt_006B:
+qt_005F:
 .DW 0
 .DW chunk_0034
 .DB :chunk_0034
-qt_0069:
-.DW qt_006C, qt_006D, 0, 0
-qt_006C:
+qt_005D:
+.DW 0, 0, qt_0060, qt_0061
+qt_0060:
 .DW 0
 .DW chunk_0035
 .DB :chunk_0035
-qt_006D:
+qt_0061:
 .DW chunksave_0018
 .DW chunk_0036
 .DB :chunk_0036
-qt_0067:
-.DW qt_006E, qt_006F, 0, 0
-qt_006E:
-.DW qt_0070, qt_0071, 0, 0
-qt_0070:
+qt_004F:
+.DW qt_0062, qt_0063, 0, 0
+qt_0062:
+.DW 0, 0, qt_0064, qt_0065
+qt_0064:
 .DW chunksave_0019
 .DW chunk_0037
 .DB :chunk_0037
-qt_0071:
+qt_0065:
 .DW 0
 .DW chunk_0038
 .DB :chunk_0038
-qt_006F:
-.DW qt_0072, 0, 0, 0
-qt_0072:
+qt_0063:
+.DW 0, 0, qt_0066, 0
+qt_0066:
 .DW 0
 .DW chunk_0039
 .DB :chunk_0039
-qt_0054:
-.DW qt_0073, 0, qt_0074, 0
-qt_0073:
-.DW qt_0075, 0, qt_0076, 0
-qt_0075:
-.DW qt_0077, 0, qt_0078, 0
-qt_0077:
-.DW qt_0079, 0, qt_007A, 0
-qt_0079:
-.DW qt_007B, 0, qt_007C, 0
-qt_007B:
-.DW chunksave_001A
-.DW chunk_003A
-.DB :chunk_003A
-qt_007C:
-.DW chunksave_001B
-.DW chunk_003B
-.DB :chunk_003B
-qt_007A:
-.DW qt_007D, 0, qt_007E, 0
-qt_007D:
+qt_0009:
+.DW qt_0067, 0, qt_0068, 0
+qt_0067:
+.DW qt_0069, 0, qt_006A, 0
+qt_0069:
+.DW qt_006B, 0, qt_006C, 0
+qt_006B:
 .DW chunksave_001C
 .DW chunk_003C
 .DB :chunk_003C
-qt_007E:
+qt_006C:
 .DW chunksave_001D
 .DW chunk_003D
 .DB :chunk_003D
-qt_0078:
-.DW qt_007F, 0, 0, 0
-qt_007F:
-.DW qt_0080, 0, qt_0081, 0
-qt_0080:
+qt_006A:
+.DW qt_006D, 0, qt_006E, 0
+qt_006D:
 .DW chunksave_001E
 .DW chunk_003E
 .DB :chunk_003E
-qt_0081:
+qt_006E:
 .DW 0
 .DW chunk_003F
 .DB :chunk_003F
-qt_0076:
-.DW qt_0082, 0, qt_0083, 0
-qt_0082:
-.DW qt_0084, 0, qt_0085, 0
-qt_0084:
-.DW qt_0086, 0, qt_0087, 0
-qt_0086:
+qt_0068:
+.DW 0, 0, qt_006F, 0
+qt_006F:
+.DW qt_0070, 0, qt_0071, 0
+qt_0070:
 .DW 0
 .DW chunk_0040
 .DB :chunk_0040
-qt_0087:
+qt_0071:
 .DW 0
 .DW chunk_0041
 .DB :chunk_0041
-qt_0085:
-.DW qt_0088, 0, qt_0089, 0
-qt_0088:
+qt_0006:
+.DW qt_0072, qt_0073, qt_0074, 0
+qt_0072:
+.DW qt_0075, 0, qt_0076, qt_0077
+qt_0075:
+.DW qt_0078, 0, qt_0079, 0
+qt_0078:
+.DW qt_007A, 0, qt_007B, 0
+qt_007A:
 .DW chunksave_001F
 .DW chunk_0042
 .DB :chunk_0042
-qt_0089:
+qt_007B:
 .DW chunksave_0020
 .DW chunk_0043
 .DB :chunk_0043
-qt_0083:
-.DW qt_008A, 0, qt_008B, 0
-qt_008A:
-.DW qt_008C, 0, qt_008D, 0
-qt_008C:
+qt_0079:
+.DW qt_007C, 0, qt_007D, 0
+qt_007C:
 .DW chunksave_0021
 .DW chunk_0044
 .DB :chunk_0044
-qt_008D:
+qt_007D:
 .DW chunksave_0022
 .DW chunk_0045
 .DB :chunk_0045
-qt_008B:
-.DW qt_008E, 0, qt_008F, 0
-qt_008E:
+qt_0076:
+.DW qt_007E, 0, qt_007F, qt_0080
+qt_007E:
+.DW qt_0081, 0, qt_0082, 0
+qt_0081:
 .DW chunksave_0023
 .DW chunk_0046
 .DB :chunk_0046
-qt_008F:
+qt_0082:
 .DW chunksave_0024
 .DW chunk_0047
 .DB :chunk_0047
-qt_0074:
-.DW 0, 0, qt_0090, qt_0091
+qt_007F:
+.DW qt_0083, qt_0084, qt_0085, qt_0086
+qt_0083:
+.DW chunksave_0025
+.DW chunk_0048
+.DB :chunk_0048
+qt_0084:
+.DW chunksave_0026
+.DW chunk_0049
+.DB :chunk_0049
+qt_0085:
+.DW 0
+.DW chunk_0053
+.DB :chunk_0053
+qt_0086:
+.DW 0
+.DW chunk_0054
+.DB :chunk_0054
+qt_0080:
+.DW qt_0087, qt_0088, qt_0089, qt_008A
+qt_0087:
+.DW chunksave_0027
+.DW chunk_004A
+.DB :chunk_004A
+qt_0088:
+.DW chunksave_0028
+.DW chunk_004B
+.DB :chunk_004B
+qt_0089:
+.DW 0
+.DW chunk_0055
+.DB :chunk_0055
+qt_008A:
+.DW chunksave_002E
+.DW chunk_0056
+.DB :chunk_0056
+qt_0077:
+.DW 0, 0, qt_008B, qt_008C
+qt_008B:
+.DW qt_008D, qt_008E, qt_008F, qt_0090
+qt_008D:
+.DW chunksave_0029
+.DW chunk_004C
+.DB :chunk_004C
+qt_008E:
+.DW chunksave_002A
+.DW chunk_004D
+.DB :chunk_004D
+qt_008F:
+.DW chunksave_002F
+.DW chunk_0057
+.DB :chunk_0057
 qt_0090:
-.DW 0, 0, qt_0092, qt_0093
+.DW chunksave_0030
+.DW chunk_0058
+.DB :chunk_0058
+qt_008C:
+.DW qt_0091, qt_0092, qt_0093, qt_0094
+qt_0091:
+.DW chunksave_002B
+.DW chunk_004E
+.DB :chunk_004E
 qt_0092:
-.DW 0, 0, qt_0094, qt_0095
+.DW chunksave_002C
+.DW chunk_004F
+.DB :chunk_004F
+qt_0093:
+.DW 0
+.DW chunk_0059
+.DB :chunk_0059
 qt_0094:
+.DW 0
+.DW chunk_005A
+.DB :chunk_005A
+qt_0073:
+.DW 0, 0, qt_0095, 0
+qt_0095:
 .DW 0, 0, qt_0096, qt_0097
 qt_0096:
-.DW chunksave_0070
-.DW chunk_00FD
-.DB :chunk_00FD
-qt_0097:
-.DW chunksave_0071
-.DW chunk_00FE
-.DB :chunk_00FE
-qt_0095:
-.DW 0, 0, qt_0098, qt_0099
+.DW qt_0098, qt_0099, 0, 0
 qt_0098:
-.DW chunksave_0072
-.DW chunk_00FF
-.DB :chunk_00FF
+.DW chunksave_002D
+.DW chunk_0050
+.DB :chunk_0050
 qt_0099:
 .DW 0
-.DW chunk_0100
-.DB :chunk_0100
-qt_0093:
-.DW 0, 0, qt_009A, qt_009B
+.DW chunk_0051
+.DB :chunk_0051
+qt_0097:
+.DW qt_009A, 0, 0, 0
 qt_009A:
-.DW 0, 0, qt_009C, qt_009D
-qt_009C:
-.DW chunksave_0068
-.DW chunk_00D0
-.DB :chunk_00D0
-qt_009D:
-.DW chunksave_0069
-.DW chunk_00D1
-.DB :chunk_00D1
-qt_009B:
-.DW 0, 0, qt_009E, qt_009F
-qt_009E:
-.DW chunksave_006A
-.DW chunk_00D2
-.DB :chunk_00D2
-qt_009F:
 .DW 0
-.DW chunk_00D3
-.DB :chunk_00D3
-qt_0091:
-.DW 0, 0, qt_00A0, 0
-qt_00A0:
-.DW 0, 0, qt_00A1, qt_00A2
-qt_00A1:
-.DW 0, 0, qt_00A3, qt_00A4
+.DW chunk_0052
+.DB :chunk_0052
+qt_0074:
+.DW qt_009B, qt_009C, qt_009D, 0
+qt_009B:
+.DW qt_009E, qt_009F, qt_00A0, qt_00A1
+qt_009E:
+.DW qt_00A2, qt_00A3, qt_00A4, qt_00A5
+qt_00A2:
+.DW chunksave_0031
+.DW chunk_005B
+.DB :chunk_005B
 qt_00A3:
+.DW chunksave_0032
+.DW chunk_005C
+.DB :chunk_005C
+qt_00A4:
+.DW 0
+.DW chunk_0063
+.DB :chunk_0063
+qt_00A5:
+.DW 0
+.DW chunk_0064
+.DB :chunk_0064
+qt_009F:
+.DW qt_00A6, qt_00A7, qt_00A8, qt_00A9
+qt_00A6:
+.DW chunksave_0033
+.DW chunk_005D
+.DB :chunk_005D
+qt_00A7:
+.DW chunksave_0034
+.DW chunk_005E
+.DB :chunk_005E
+qt_00A8:
+.DW 0
+.DW chunk_0065
+.DB :chunk_0065
+qt_00A9:
+.DW 0
+.DW chunk_0066
+.DB :chunk_0066
+qt_00A0:
+.DW qt_00AA, qt_00AB, qt_00AC, qt_00AD
+qt_00AA:
+.DW 0
+.DW chunk_0067
+.DB :chunk_0067
+qt_00AB:
+.DW 0
+.DW chunk_0068
+.DB :chunk_0068
+qt_00AC:
+.DW 0
+.DW chunk_006B
+.DB :chunk_006B
+qt_00AD:
+.DW 0
+.DW chunk_006C
+.DB :chunk_006C
+qt_00A1:
+.DW qt_00AE, qt_00AF, qt_00B0, qt_00B1
+qt_00AE:
+.DW 0
+.DW chunk_0069
+.DB :chunk_0069
+qt_00AF:
+.DW 0
+.DW chunk_006A
+.DB :chunk_006A
+qt_00B0:
+.DW 0
+.DW chunk_006D
+.DB :chunk_006D
+qt_00B1:
+.DW 0
+.DW chunk_006E
+.DB :chunk_006E
+qt_009C:
+.DW qt_00B2, qt_00B3, 0, 0
+qt_00B2:
+.DW qt_00B4, qt_00B5, 0, 0
+qt_00B4:
+.DW chunksave_0035
+.DW chunk_005F
+.DB :chunk_005F
+qt_00B5:
+.DW 0
+.DW chunk_0060
+.DB :chunk_0060
+qt_00B3:
+.DW qt_00B6, qt_00B7, 0, 0
+qt_00B6:
+.DW 0
+.DW chunk_0061
+.DB :chunk_0061
+qt_00B7:
+.DW 0
+.DW chunk_0062
+.DB :chunk_0062
+qt_009D:
+.DW qt_00B8, qt_00B9, qt_00BA, 0
+qt_00B8:
+.DW qt_00BB, qt_00BC, qt_00BD, qt_00BE
+qt_00BB:
+.DW 0
+.DW chunk_006F
+.DB :chunk_006F
+qt_00BC:
+.DW 0
+.DW chunk_0070
+.DB :chunk_0070
+qt_00BD:
+.DW 0
+.DW chunk_0073
+.DB :chunk_0073
+qt_00BE:
+.DW 0
+.DW chunk_0074
+.DB :chunk_0074
+qt_00B9:
+.DW qt_00BF, qt_00C0, 0, 0
+qt_00BF:
+.DW 0
+.DW chunk_0071
+.DB :chunk_0071
+qt_00C0:
+.DW 0
+.DW chunk_0072
+.DB :chunk_0072
+qt_00BA:
+.DW qt_00C1, qt_00C2, qt_00C3, qt_00C4
+qt_00C1:
+.DW 0
+.DW chunk_0075
+.DB :chunk_0075
+qt_00C2:
+.DW 0
+.DW chunk_0076
+.DB :chunk_0076
+qt_00C3:
+.DW 0
+.DW chunk_0077
+.DB :chunk_0077
+qt_00C4:
+.DW 0
+.DW chunk_0078
+.DB :chunk_0078
+qt_0004:
+.DW qt_00C5, 0, qt_00C6, 0
+qt_00C5:
+.DW qt_00C7, 0, qt_00C8, qt_00C9
+qt_00C7:
+.DW qt_00CA, 0, qt_00CB, 0
+qt_00CA:
+.DW qt_00CC, 0, 0, 0
+qt_00CC:
+.DW qt_00CD, qt_00CE, 0, 0
+qt_00CD:
+.DW 0
+.DW chunk_0079
+.DB :chunk_0079
+qt_00CE:
+.DW 0
+.DW chunk_007A
+.DB :chunk_007A
+qt_00CB:
+.DW qt_00CF, qt_00D0, qt_00D1, qt_00D2
+qt_00CF:
+.DW 0, 0, 0, qt_00D3
+qt_00D3:
+.DW 0
+.DW chunk_007B
+.DB :chunk_007B
+qt_00D0:
+.DW 0, 0, qt_00D4, qt_00D5
+qt_00D4:
+.DW 0
+.DW chunk_007C
+.DB :chunk_007C
+qt_00D5:
+.DW 0
+.DW chunk_007C
+.DB :chunk_007C
+qt_00D1:
+.DW qt_00D6, qt_00D7, qt_00D8, qt_00D9
+qt_00D6:
+.DW 0
+.DW chunk_007D
+.DB :chunk_007D
+qt_00D7:
+.DW chunksave_0036
+.DW chunk_007E
+.DB :chunk_007E
+qt_00D8:
+.DW 0
+.DW chunk_0081
+.DB :chunk_0081
+qt_00D9:
+.DW chunksave_0039
+.DW chunk_0082
+.DB :chunk_0082
+qt_00D2:
+.DW qt_00DA, qt_00DB, qt_00DC, qt_00DD
+qt_00DA:
+.DW chunksave_0037
+.DW chunk_007F
+.DB :chunk_007F
+qt_00DB:
+.DW chunksave_0038
+.DW chunk_0080
+.DB :chunk_0080
+qt_00DC:
+.DW chunksave_003A
+.DW chunk_0083
+.DB :chunk_0083
+qt_00DD:
+.DW chunksave_003B
+.DW chunk_0084
+.DB :chunk_0084
+qt_00C8:
+.DW qt_00DE, 0, qt_00DF, qt_00E0
+qt_00DE:
+.DW qt_00E1, qt_00E2, qt_00E3, qt_00E4
+qt_00E1:
+.DW qt_00E5, qt_00E6, qt_00E7, qt_00E8
+qt_00E5:
+.DW 0
+.DW chunk_0085
+.DB :chunk_0085
+qt_00E6:
+.DW chunksave_003C
+.DW chunk_0086
+.DB :chunk_0086
+qt_00E7:
+.DW 0
+.DW chunk_0089
+.DB :chunk_0089
+qt_00E8:
+.DW 0
+.DW chunk_008A
+.DB :chunk_008A
+qt_00E2:
+.DW qt_00E9, qt_00EA, qt_00EB, qt_00EC
+qt_00E9:
+.DW chunksave_003D
+.DW chunk_0087
+.DB :chunk_0087
+qt_00EA:
+.DW 0
+.DW chunk_0088
+.DB :chunk_0088
+qt_00EB:
+.DW 0
+.DW chunk_008B
+.DB :chunk_008B
+qt_00EC:
+.DW 0
+.DW chunk_008C
+.DB :chunk_008C
+qt_00E3:
+.DW qt_00ED, qt_00EE, 0, 0
+qt_00ED:
+.DW 0
+.DW chunk_008D
+.DB :chunk_008D
+qt_00EE:
+.DW 0
+.DW chunk_008E
+.DB :chunk_008E
+qt_00E4:
+.DW qt_00EF, qt_00F0, 0, 0
+qt_00EF:
+.DW 0
+.DW chunk_008F
+.DB :chunk_008F
+qt_00F0:
+.DW 0
+.DW chunk_0090
+.DB :chunk_0090
+qt_00DF:
+.DW qt_00F1, qt_00F2, qt_00F3, qt_00F4
+qt_00F1:
+.DW 0, 0, qt_00F5, qt_00F6
+qt_00F5:
+.DW chunksave_003E
+.DW chunk_0091
+.DB :chunk_0091
+qt_00F6:
+.DW chunksave_003F
+.DW chunk_0092
+.DB :chunk_0092
+qt_00F2:
+.DW 0, 0, qt_00F7, qt_00F8
+qt_00F7:
+.DW chunksave_0040
+.DW chunk_0093
+.DB :chunk_0093
+qt_00F8:
+.DW chunksave_0041
+.DW chunk_0094
+.DB :chunk_0094
+qt_00F3:
+.DW qt_00F9, qt_00FA, qt_00FB, qt_00FC
+qt_00F9:
+.DW chunksave_0048
+.DW chunk_009D
+.DB :chunk_009D
+qt_00FA:
+.DW chunksave_0049
+.DW chunk_009E
+.DB :chunk_009E
+qt_00FB:
+.DW chunksave_004B
+.DW chunk_00A1
+.DB :chunk_00A1
+qt_00FC:
+.DW chunksave_004C
+.DW chunk_00A2
+.DB :chunk_00A2
+qt_00F4:
+.DW qt_00FD, qt_00FE, qt_00FF, qt_0100
+qt_00FD:
+.DW chunksave_004A
+.DW chunk_009F
+.DB :chunk_009F
+qt_00FE:
+.DW 0
+.DW chunk_00A0
+.DB :chunk_00A0
+qt_00FF:
+.DW chunksave_004D
+.DW chunk_00A3
+.DB :chunk_00A3
+qt_0100:
+.DW chunksave_004E
+.DW chunk_00A4
+.DB :chunk_00A4
+qt_00E0:
+.DW qt_0101, qt_0102, 0, 0
+qt_0101:
+.DW 0, 0, qt_0103, qt_0104
+qt_0103:
+.DW chunksave_0042
+.DW chunk_0095
+.DB :chunk_0095
+qt_0104:
+.DW chunksave_0043
+.DW chunk_0096
+.DB :chunk_0096
+qt_0102:
+.DW 0, 0, qt_0105, qt_0106
+qt_0105:
+.DW chunksave_0044
+.DW chunk_0097
+.DB :chunk_0097
+qt_0106:
+.DW chunksave_0045
+.DW chunk_0098
+.DB :chunk_0098
+qt_00C9:
+.DW 0, 0, qt_0107, 0
+qt_0107:
+.DW qt_0108, qt_0109, 0, 0
+qt_0108:
+.DW 0, 0, qt_010A, qt_010B
+qt_010A:
 .DW chunksave_0046
 .DW chunk_0099
 .DB :chunk_0099
-qt_00A4:
+qt_010B:
 .DW chunksave_0047
 .DW chunk_009A
 .DB :chunk_009A
-qt_00A2:
-.DW 0, 0, qt_00A5, qt_00A6
-qt_00A5:
+qt_0109:
+.DW 0, 0, qt_010C, qt_010D
+qt_010C:
 .DW 0
 .DW chunk_009B
 .DB :chunk_009B
-qt_00A6:
+qt_010D:
 .DW 0
 .DW chunk_009C
 .DB :chunk_009C
+qt_00C6:
+.DW qt_010E, 0, qt_010F, 0
+qt_010E:
+.DW qt_0110, 0, qt_0111, qt_0112
+qt_0110:
+.DW qt_0113, qt_0114, qt_0115, qt_0116
+qt_0113:
+.DW qt_0117, qt_0118, 0, 0
+qt_0117:
+.DW 0
+.DW chunk_00A5
+.DB :chunk_00A5
+qt_0118:
+.DW chunksave_004F
+.DW chunk_00A6
+.DB :chunk_00A6
+qt_0114:
+.DW qt_0119, qt_011A, 0, 0
+qt_0119:
+.DW 0
+.DW chunk_00A7
+.DB :chunk_00A7
+qt_011A:
+.DW 0
+.DW chunk_00A8
+.DB :chunk_00A8
+qt_0115:
+.DW qt_011B, qt_011C, qt_011D, qt_011E
+qt_011B:
+.DW 0
+.DW chunk_00A9
+.DB :chunk_00A9
+qt_011C:
+.DW 0
+.DW chunk_00AA
+.DB :chunk_00AA
+qt_011D:
+.DW chunksave_0050
+.DW chunk_00AD
+.DB :chunk_00AD
+qt_011E:
+.DW chunksave_0051
+.DW chunk_00AE
+.DB :chunk_00AE
+qt_0116:
+.DW qt_011F, qt_0120, qt_0121, qt_0122
+qt_011F:
+.DW 0
+.DW chunk_00AB
+.DB :chunk_00AB
+qt_0120:
+.DW 0
+.DW chunk_00AC
+.DB :chunk_00AC
+qt_0121:
+.DW chunksave_0052
+.DW chunk_00AF
+.DB :chunk_00AF
+qt_0122:
+.DW chunksave_0053
+.DW chunk_00B0
+.DB :chunk_00B0
+qt_0111:
+.DW qt_0123, qt_0124, qt_0125, qt_0126
+qt_0123:
+.DW qt_0127, qt_0128, qt_0129, qt_012A
+qt_0127:
+.DW chunksave_0054
+.DW chunk_00B1
+.DB :chunk_00B1
+qt_0128:
+.DW 0
+.DW chunk_00B2
+.DB :chunk_00B2
+qt_0129:
+.DW chunksave_0057
+.DW chunk_00B5
+.DB :chunk_00B5
+qt_012A:
+.DW 0
+.DW chunk_00B6
+.DB :chunk_00B6
+qt_0124:
+.DW qt_012B, qt_012C, qt_012D, qt_012E
+qt_012B:
+.DW chunksave_0055
+.DW chunk_00B3
+.DB :chunk_00B3
+qt_012C:
+.DW chunksave_0056
+.DW chunk_00B4
+.DB :chunk_00B4
+qt_012D:
+.DW chunksave_0058
+.DW chunk_00B7
+.DB :chunk_00B7
+qt_012E:
+.DW chunksave_0059
+.DW chunk_00B8
+.DB :chunk_00B8
+qt_0125:
+.DW qt_012F, qt_0130, qt_0131, qt_0132
+qt_012F:
+.DW chunksave_005A
+.DW chunk_00B9
+.DB :chunk_00B9
+qt_0130:
+.DW chunksave_005B
+.DW chunk_00BA
+.DB :chunk_00BA
+qt_0131:
+.DW chunksave_005E
+.DW chunk_00C1
+.DB :chunk_00C1
+qt_0132:
+.DW chunksave_005F
+.DW chunk_00C2
+.DB :chunk_00C2
+qt_0126:
+.DW qt_0133, qt_0134, qt_0135, qt_0136
+qt_0133:
+.DW chunksave_005C
+.DW chunk_00BB
+.DB :chunk_00BB
+qt_0134:
+.DW 0
+.DW chunk_00BC
+.DB :chunk_00BC
+qt_0135:
+.DW chunksave_0060
+.DW chunk_00C3
+.DB :chunk_00C3
+qt_0136:
+.DW chunksave_0061
+.DW chunk_00C4
+.DB :chunk_00C4
+qt_0112:
+.DW 0, 0, qt_0137, qt_0138
+qt_0137:
+.DW qt_0139, qt_013A, qt_013B, qt_013C
+qt_0139:
+.DW chunksave_005D
+.DW chunk_00BD
+.DB :chunk_00BD
+qt_013A:
+.DW 0
+.DW chunk_00BE
+.DB :chunk_00BE
+qt_013B:
+.DW chunksave_0062
+.DW chunk_00C5
+.DB :chunk_00C5
+qt_013C:
+.DW chunksave_0063
+.DW chunk_00C6
+.DB :chunk_00C6
+qt_0138:
+.DW qt_013D, qt_013E, qt_013F, qt_0140
+qt_013D:
+.DW 0
+.DW chunk_00BF
+.DB :chunk_00BF
+qt_013E:
+.DW 0
+.DW chunk_00C0
+.DB :chunk_00C0
+qt_013F:
+.DW 0
+.DW chunk_00C7
+.DB :chunk_00C7
+qt_0140:
+.DW 0
+.DW chunk_00C8
+.DB :chunk_00C8
+qt_010F:
+.DW qt_0141, qt_0142, qt_0143, 0
+qt_0141:
+.DW qt_0144, qt_0145, qt_0146, qt_0147
+qt_0144:
+.DW 0, 0, qt_0148, qt_0149
+qt_0148:
+.DW chunksave_0064
+.DW chunk_00CC
+.DB :chunk_00CC
+qt_0149:
+.DW chunksave_0065
+.DW chunk_00CD
+.DB :chunk_00CD
+qt_0145:
+.DW 0, 0, qt_014A, qt_014B
+qt_014A:
+.DW chunksave_0066
+.DW chunk_00CE
+.DB :chunk_00CE
+qt_014B:
+.DW chunksave_0067
+.DW chunk_00CF
+.DB :chunk_00CF
+qt_0146:
+.DW qt_014C, qt_014D, qt_014E, qt_014F
+qt_014C:
+.DW 0
+.DW chunk_00D4
+.DB :chunk_00D4
+qt_014D:
+.DW 0
+.DW chunk_00D5
+.DB :chunk_00D5
+qt_014E:
+.DW 0
+.DW chunk_00D8
+.DB :chunk_00D8
+qt_014F:
+.DW 0
+.DW chunk_00D9
+.DB :chunk_00D9
+qt_0147:
+.DW qt_0150, qt_0151, qt_0152, qt_0153
+qt_0150:
+.DW 0
+.DW chunk_00D6
+.DB :chunk_00D6
+qt_0151:
+.DW 0
+.DW chunk_00D7
+.DB :chunk_00D7
+qt_0152:
+.DW 0
+.DW chunk_00DA
+.DB :chunk_00DA
+qt_0153:
+.DW 0
+.DW chunk_00DB
+.DB :chunk_00DB
+qt_0142:
+.DW qt_0154, qt_0155, 0, 0
+qt_0154:
+.DW 0, qt_0156, qt_0157, qt_0158
+qt_0156:
+.DW 0
+.DW chunk_00C9
+.DB :chunk_00C9
+qt_0157:
+.DW chunksave_0068
+.DW chunk_00D0
+.DB :chunk_00D0
+qt_0158:
+.DW chunksave_0069
+.DW chunk_00D1
+.DB :chunk_00D1
+qt_0155:
+.DW qt_0159, qt_015A, qt_015B, qt_015C
+qt_0159:
+.DW 0
+.DW chunk_00CA
+.DB :chunk_00CA
+qt_015A:
+.DW 0
+.DW chunk_00CB
+.DB :chunk_00CB
+qt_015B:
+.DW chunksave_006A
+.DW chunk_00D2
+.DB :chunk_00D2
+qt_015C:
+.DW 0
+.DW chunk_00D3
+.DB :chunk_00D3
+qt_0143:
+.DW qt_015D, 0, qt_015E, qt_015F
+qt_015D:
+.DW 0, 0, qt_0160, qt_0161
+qt_0160:
+.DW 0
+.DW chunk_00DC
+.DB :chunk_00DC
+qt_0161:
+.DW 0
+.DW chunk_00DD
+.DB :chunk_00DD
+qt_015E:
+.DW qt_0162, qt_0163, qt_0164, qt_0165
+qt_0162:
+.DW 0
+.DW chunk_00DE
+.DB :chunk_00DE
+qt_0163:
+.DW 0
+.DW chunk_00DF
+.DB :chunk_00DF
+qt_0164:
+.DW 0
+.DW chunk_00E1
+.DB :chunk_00E1
+qt_0165:
+.DW 0
+.DW chunk_00E2
+.DB :chunk_00E2
+qt_015F:
+.DW qt_0166, 0, 0, 0
+qt_0166:
+.DW 0
+.DW chunk_00E0
+.DB :chunk_00E0
+qt_0002:
+.DW qt_0167, 0, 0, 0
+qt_0167:
+.DW qt_0168, 0, 0, 0
+qt_0168:
+.DW qt_0169, 0, qt_016A, 0
+qt_0169:
+.DW qt_016B, 0, qt_016C, 0
+qt_016B:
+.DW qt_016D, qt_016E, qt_016F, qt_0170
+qt_016D:
+.DW qt_0171, qt_0172, 0, 0
+qt_0171:
+.DW 0
+.DW chunk_00E3
+.DB :chunk_00E3
+qt_0172:
+.DW 0
+.DW chunk_00E4
+.DB :chunk_00E4
+qt_016E:
+.DW qt_0173, 0, 0, 0
+qt_0173:
+.DW 0
+.DW chunk_00E5
+.DB :chunk_00E5
+qt_016F:
+.DW 0, 0, qt_0174, qt_0175
+qt_0174:
+.DW 0
+.DW chunk_00E6
+.DB :chunk_00E6
+qt_0175:
+.DW 0
+.DW chunk_00E7
+.DB :chunk_00E7
+qt_0170:
+.DW 0, 0, qt_0176, qt_0177
+qt_0176:
+.DW 0
+.DW chunk_00E8
+.DB :chunk_00E8
+qt_0177:
+.DW 0
+.DW chunk_00E9
+.DB :chunk_00E9
+qt_016C:
+.DW qt_0178, qt_0179, qt_017A, qt_017B
+qt_0178:
+.DW qt_017C, qt_017D, 0, 0
+qt_017C:
+.DW 0
+.DW chunk_00EA
+.DB :chunk_00EA
+qt_017D:
+.DW 0
+.DW chunk_00EB
+.DB :chunk_00EB
+qt_0179:
+.DW qt_017E, qt_017F, 0, 0
+qt_017E:
+.DW 0
+.DW chunk_00EC
+.DB :chunk_00EC
+qt_017F:
+.DW 0
+.DW chunk_00EC
+.DB :chunk_00EC
+qt_017A:
+.DW 0, 0, qt_0180, qt_0181
+qt_0180:
+.DW 0
+.DW chunk_00ED
+.DB :chunk_00ED
+qt_0181:
+.DW 0
+.DW chunk_00EE
+.DB :chunk_00EE
+qt_017B:
+.DW 0, 0, qt_0182, qt_0183
+qt_0182:
+.DW 0
+.DW chunk_00EF
+.DB :chunk_00EF
+qt_0183:
+.DW 0
+.DW chunk_00F0
+.DB :chunk_00F0
+qt_016A:
+.DW qt_0184, 0, 0, 0
+qt_0184:
+.DW qt_0185, qt_0186, qt_0187, qt_0188
+qt_0185:
+.DW qt_0189, qt_018A, qt_018B, qt_018C
+qt_0189:
+.DW 0
+.DW chunk_00F1
+.DB :chunk_00F1
+qt_018A:
+.DW chunksave_006B
+.DW chunk_00F2
+.DB :chunk_00F2
+qt_018B:
+.DW chunksave_006C
+.DW chunk_00F5
+.DB :chunk_00F5
+qt_018C:
+.DW chunksave_006D
+.DW chunk_00F6
+.DB :chunk_00F6
+qt_0186:
+.DW qt_018D, qt_018E, qt_018F, qt_0190
+qt_018D:
+.DW 0
+.DW chunk_00F3
+.DB :chunk_00F3
+qt_018E:
+.DW 0
+.DW chunk_00F4
+.DB :chunk_00F4
+qt_018F:
+.DW 0
+.DW chunk_00F7
+.DB :chunk_00F7
+qt_0190:
+.DW 0
+.DW chunk_00F8
+.DB :chunk_00F8
+qt_0187:
+.DW qt_0191, qt_0192, qt_0193, qt_0194
+qt_0191:
+.DW chunksave_006E
+.DW chunk_00F9
+.DB :chunk_00F9
+qt_0192:
+.DW chunksave_006F
+.DW chunk_00FA
+.DB :chunk_00FA
+qt_0193:
+.DW chunksave_0070
+.DW chunk_00FD
+.DB :chunk_00FD
+qt_0194:
+.DW chunksave_0071
+.DW chunk_00FE
+.DB :chunk_00FE
+qt_0188:
+.DW qt_0195, qt_0196, qt_0197, qt_0198
+qt_0195:
+.DW 0
+.DW chunk_00FB
+.DB :chunk_00FB
+qt_0196:
+.DW 0
+.DW chunk_00FC
+.DB :chunk_00FC
+qt_0197:
+.DW chunksave_0072
+.DW chunk_00FF
+.DB :chunk_00FF
+qt_0198:
+.DW 0
+.DW chunk_0100
+.DB :chunk_0100
 .ENDS
 
 ;; TOTAL SIZE: 36276 -> 34214
 ;; RAM CONSUMPTION: 3072 -> 279
-;; quadtree cost: 1072
+;; quadtree cost: 2483
