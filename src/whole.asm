@@ -17,6 +17,7 @@ BANKS 16
 .ENDRO
 
 .INCLUDE "src/chunked_layouts.asm"
+.INCLUDE "src/object_specs.asm"
 
 .DEF IYBASE iy_00
 
@@ -86,7 +87,6 @@ g_current_displayed_palette_1 dw   ; D232
 .  dsb 1
 g_committed_rompage_2 db   ; D236
 .  dsb 1
-g_level_width_chunks db
 
 g_next_avail_vdp_sprite_ptr dw   ; D23C
 g_level db   ; D23E
@@ -240,7 +240,7 @@ g_credits_sprites db   ; D322
 g_per_level_checkpoint_positions dw   ; D32E
 .  dsb 36
 g_level_header_copy db   ; D354
-.  dsb 37
+.  dsb 38
 g_object_ptrs dw   ; D37C
 g_active_object_ptrs dw   ; D37E
 .  dsb 60
@@ -251,7 +251,6 @@ g_temporary_palette_buffer db   ; D3BC
 ; New stuff should go here.
 ;
 g_of_saved_hl dw
-g_level_base_coords dw
 ;; Level chunk information, [2y][2x] arrangement:
 ;; db xchunk<<1, ychunk<<1
 ;; dw ramsave_buffer_ram_ptr
@@ -1964,9 +1963,6 @@ fetch_level_chunk_info_from_quadtree:
    ret
 
 unpack_level_layout_into_ram:
-   ;; Store the base coordinates.
-   ld (g_level_base_coords), hl
-
    ;; Blank the chunk IDs.
    ld de, g_level_chunk_info_buffers
    ld b, 4*4
@@ -2069,8 +2065,8 @@ refresh_one_chunk:
    ld (ix+3), b
    ;; Now use BC to fetch from the quadtree.
    ex de, hl
-   ld hl, (g_level_base_coords)
-   add hl, bc
+   ld l, c
+   ld h, b
    call fetch_level_chunk_info_from_quadtree
    ;; BC is now trashable.
    ;; Load the pointer to the ramsave section
@@ -3348,26 +3344,6 @@ load_and_run_level:
    add    hl, de                       ; 00:1E4D - 19
    djnz   @loop_clear_some_sprite_table_entries  ; 00:1E4E - 10 F8
 
-   .IF 0
-      ;; STRESS TEST: Load the first level chunk every frame.
-      ld hl, g_level_header_copy+2+(4*2)+2
-      ld e, (hl)
-      inc hl
-      ld d, (hl)
-      inc hl
-      ld a, (hl)
-      call set_rompage_2
-      ex de, hl
-      ld e, (hl)
-      inc hl
-      ld d, (hl)
-      inc hl
-      ld a, (hl)
-      call set_rompage_2
-      ex de, hl
-      ld de, g_level_layout
-      call load_level_chunk@ENTRY_POINT
-   .ENDIF
    call refresh_one_chunk
 
    ld a, $02
@@ -3712,7 +3688,7 @@ load_and_init_level_from_header:
    res    0, (iy+iy_00-IYBASE)         ; 00:20D3 - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:20D7 - CD 1C 03
    ld     de, g_level_header_copy      ; 00:20DA - 11 54 D3
-   ld     bc, $0026                    ; 00:20DD - 01 28 00
+   ld     bc, $0027                    ; 00:20DD - 01 28 00
    ldir                                ; 00:20E0 - ED B0
    ld     hl, g_level_header_copy      ; 00:20E2 - 21 54 D3
    push   hl                           ; 00:20E5 - E5
@@ -3793,9 +3769,6 @@ load_and_init_level_from_header:
    ld     a, (hl)                      ; 00:217E - 7E
    ld     (g_tile_flags_index), a      ; 00:217F - 32 D4 D2
    inc    hl                           ; 00:2182 - 23
-   ld a, (hl)
-   ld (g_level_width_chunks), a
-   inc hl
    ld     de, g_level_limit_x0         ; 00:2193 - 11 73 D2
    ld     bc, $0008                    ; 00:2196 - 01 08 00
    ldir                                ; 00:2199 - ED B0
@@ -3807,6 +3780,8 @@ load_and_init_level_from_header:
    ex     de, hl                       ; 00:21A4 - EB
    pop    hl                           ; 00:21A5 - E1
    and    c                            ; 00:21A6 - A1
+   ;; FIXME: Checkpoint logic needs simplifying and also needs to handle 16-bit-pair coordinates --GM
+   .IF 0
    jr     z, @checkpoint_not_set       ; 00:21A7 - 28 1B
    cpl                                 ; 00:21A9 - 2F
    ld     c, a                         ; 00:21AA - 4F
@@ -3825,45 +3800,42 @@ load_and_init_level_from_header:
    add    hl, de                       ; 00:21C3 - 19
 
 @checkpoint_not_set:
+   .ENDIF
    ld     (tmp_08), hl                 ; 00:21C4 - 22 16 D2
-   ld     a, (hl)                      ; 00:21C7 - 7E
-   sub    $03                          ; 00:21C8 - D6 03
-   jr     nc, @dont_clamp_init_x_scroll_left  ; 00:21CA - 30 01
-   xor    a                            ; 00:21CC - AF
 
+   pop ix
+
+   ;; Camera X
+   ld l, (ix+0)
+   ld h, (ix+1)
+   ld bc, $03<<5
+   and a  ; clear carry
+   sbc hl, bc
+   jr nc, @dont_clamp_init_x_scroll_left
+      ld hl, $0000
 @dont_clamp_init_x_scroll_left:
-   ld     e, $00                       ; 00:21D0 - 1E 00
-   rrca                                ; 00:21D2 - 0F
-   rr     e                            ; 00:21D3 - CB 1B
-   rrca                                ; 00:21D5 - 0F
-   rr     e                            ; 00:21D6 - CB 1B
-   rrca                                ; 00:21D8 - 0F
-   rr     e                            ; 00:21D9 - CB 1B
-   and    $1F                          ; 00:21DB - E6 1F
-   ld     d, a                         ; 00:21DD - 57
-   ld     (g_level_scroll_x_pix_lo), de  ; 00:21DE - ED 53 5A D2
-   ld     (g_displayed_level_scroll_x_pix_lo), de  ; 00:21E2 - ED 53 6F D2
-   inc    hl                           ; 00:21E6 - 23
-   ld     a, (hl)                      ; 00:21E7 - 7E
-   sub    $03                          ; 00:21E8 - D6 03
-   jr     nc, @dont_clamp_init_y_scroll_up  ; 00:21EA - 30 01
-   xor    a                            ; 00:21EC - AF
+   ld (g_level_scroll_x_pix_lo), hl
+   ld (g_displayed_level_scroll_x_pix_lo), hl
 
+   ;; Camera Y
+   ld l, (ix+2)
+   ld h, (ix+3)
+   ld bc, $03<<5
+   and a  ; clear carry
+   sbc hl, bc
+   jr nc, @dont_clamp_init_y_scroll_up
+      ld hl, $0000
 @dont_clamp_init_y_scroll_up:
-   ld     e, $00                       ; 00:21F0 - 1E 00
-   rrca                                ; 00:21F2 - 0F
-   rr     e                            ; 00:21F3 - CB 1B
-   rrca                                ; 00:21F5 - 0F
-   rr     e                            ; 00:21F6 - CB 1B
-   rrca                                ; 00:21F8 - 0F
-   rr     e                            ; 00:21F9 - CB 1B
-   and    $1F                          ; 00:21FB - E6 1F
-   ld     d, a                         ; 00:21FD - 57
-   ld     (g_level_scroll_y_pix_lo), de  ; 00:21FE - ED 53 5D D2
-   ld     (g_displayed_level_scroll_y_pix_lo), de  ; 00:2202 - ED 53 71 D2
-   pop    hl                           ; 00:2206 - E1
-   inc    hl                           ; 00:2207 - 23
-   inc    hl                           ; 00:2208 - 23
+   ld (g_level_scroll_y_pix_lo), hl
+   ld (g_displayed_level_scroll_y_pix_lo), hl
+
+   push ix
+   pop hl
+   inc hl
+   inc hl
+   inc hl
+   inc hl
+
    ld     e, (hl)                      ; 00:2209 - 5E
    inc    hl                           ; 00:220A - 23
    ld     d, (hl)                      ; 00:220B - 56
@@ -4049,32 +4021,22 @@ load_object_list:
 
 load_object_from_level_spec:
    ld     (ix+0), a                    ; 00:235E - DD 77 00
-   ld     a, (hl)                      ; 00:2361 - 7E
+   xor a
+   ld (ix+1), a
+   ld (ix+4), a
+   ld a, (hl)
+   inc hl
+   ld (ix+2), a
+   ld a, (hl)
+   inc hl
+   ld (ix+3), a
+   ld a, (hl)
+   inc hl
+   ld (ix+5), a
+   ld a, (hl)
+   inc hl
+   ld (ix+6), a
    exx                                 ; 00:2362 - D9
-   ld     l, a                         ; 00:2363 - 6F
-   ld     h, $00                       ; 00:2364 - 26 00
-   ld     (ix+1), h                    ; 00:2366 - DD 74 01
-   add    hl, hl                       ; 00:2369 - 29
-   add    hl, hl                       ; 00:236A - 29
-   add    hl, hl                       ; 00:236B - 29
-   add    hl, hl                       ; 00:236C - 29
-   add    hl, hl                       ; 00:236D - 29
-   ld     (ix+2), l                    ; 00:236E - DD 75 02
-   ld     (ix+3), h                    ; 00:2371 - DD 74 03
-   exx                                 ; 00:2374 - D9
-   inc    hl                           ; 00:2375 - 23
-   ld     a, (hl)                      ; 00:2376 - 7E
-   exx                                 ; 00:2377 - D9
-   ld     l, a                         ; 00:2378 - 6F
-   ld     h, $00                       ; 00:2379 - 26 00
-   ld     (ix+4), h                    ; 00:237B - DD 74 04
-   add    hl, hl                       ; 00:237E - 29
-   add    hl, hl                       ; 00:237F - 29
-   add    hl, hl                       ; 00:2380 - 29
-   add    hl, hl                       ; 00:2381 - 29
-   add    hl, hl                       ; 00:2382 - 29
-   ld     (ix+5), l                    ; 00:2383 - DD 75 05
-   ld     (ix+6), h                    ; 00:2386 - DD 74 06
    push   ix                           ; 00:2389 - DD E5
    pop    hl                           ; 00:238B - E1
    ld     de, $0007                    ; 00:238C - 11 07 00
@@ -4087,7 +4049,6 @@ load_object_from_level_spec:
    inc    hl                           ; 00:2394 - 23
    djnz   -                            ; 00:2395 - 10 FC
    exx                                 ; 00:2397 - D9
-   inc    hl                           ; 00:2398 - 23
    add    ix, de                       ; 00:2399 - DD 19
    ret                                 ; 00:239B - C9
 
@@ -20222,9 +20183,9 @@ level_headers:
 .dw 0
 
 LVHEAD_00:
-.db $00, $10
+.db $00
 .dw $0040, $18C0, $0020, $0140
-.db $08, $0B                                                                        ; 05:55D7
+.dw $0100, $0160
 .dw LVLAYOUT_GHZ1_ENDING
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
@@ -20238,9 +20199,9 @@ LVHEAD_00:
 .db $04, $00, $20, $00, $00                                                         ; 05:55EA
 
 LVHEAD_01:
-.db $00, $08
-.dw $0001, $0CA0, $0001, $0340
-.db $02, $03                                                                        ; 05:55FC
+.db $00
+.dw $0001, $0CA0, $0201, $0540
+.dw $0040, $0260
 .dw LVLAYOUT_GHZ2
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
@@ -20254,9 +20215,9 @@ LVHEAD_01:
 .db $04, $00, $20, $00, $00                                                         ; 05:560F
 
 LVHEAD_02:
-.db $00, $08
-.dw $0001, $0A00, $00E8, $0340
-.db $07, $16                                                                        ; 05:5621
+.db $00
+.dw $0001, $0A00, $06E8, $0940
+.dw $00E0, $08C0
 .dw LVLAYOUT_GHZ3
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
@@ -20270,9 +20231,9 @@ LVHEAD_02:
 .db $00, $00, $00, $00, $00                                                         ; 05:5634
 
 LVHEAD_12:
-.db $00, $10
+.db $00
 .dw $1A40, $1D00, $00E0, $00E8
-.db $D9, $0A                                                                        ; 05:5646
+.dw $1B20, $0140
 .dw LVLAYOUT_GHZ1_ENDING
 .dw LVTILEMAP_GHZ
 .db :LVTILEMAP_GHZ
@@ -20286,9 +20247,9 @@ LVHEAD_12:
 .db $00, $00, $00, $00, $FF                                                         ; 05:5659
 
 LVHEAD_03:
-.db $01, $10
-.dw $0001, $1F00, $0001, $0140
-.db $03, $0C                                                                        ; 05:566B
+.db $01
+.dw $0001, $1F00, $0A01, $0B40
+.dw $0060, $0B80
 .dw LVLAYOUT_BRI1
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
@@ -20302,9 +20263,9 @@ LVHEAD_03:
 .db $04, $00, $20, $00, $01                                                         ; 05:567E
 
 LVHEAD_04:
-.db $01, $08
-.dw $0001, $0F00, $0001, $0340
-.db $02, $1C                                                                        ; 05:5690
+.db $01
+.dw $0001, $0F00, $0C01, $0F40
+.dw $0040, $0F80
 .dw LVLAYOUT_BRI2
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
@@ -20319,9 +20280,9 @@ LVHEAD_04:
 .db $04, $00, $20, $00, $01
 
 LVHEAD_05:
-.db $01, $08
-.dw $0001, $0F00, $0300, $0340
-.db $06, $1B                                                                        ; 05:56B5
+.db $01
+.dw $0001, $0F00, $1300, $1340
+.dw $00C0, $1360
 .dw LVLAYOUT_BRI3
 .dw LVTILEMAP_BRI
 .db :LVTILEMAP_BRI
@@ -20335,9 +20296,9 @@ LVHEAD_05:
 .db $00, $00, $00, $00, $01                                                         ; 05:56C8
 
 LVHEAD_06:
-.db $02, $10
-.dw $0001, $1F00, $0001, $0120
-.db $02, $0B                                                                        ; 05:56DA
+.db $02
+.dw $0001, $1F00, $1401, $1520
+.dw $0040, $1560
 .dw LVLAYOUT_JUN1
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
@@ -20351,9 +20312,9 @@ LVHEAD_06:
 .db $04, $00, $20, $00, $02                                                         ; 05:56ED
 
 LVHEAD_07:
-.db $02, $01
-.dw $0001, $0100, $0001, $1F20
-.db $02, $FA                                                                        ; 05:56FF
+.db $02
+.dw $0001, $0100, $1601, $3520
+.dw $0040, $3540
 .dw LVLAYOUT_JUN2_special_4_8
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
@@ -20368,9 +20329,9 @@ LVHEAD_07:
 .db $04, $00, $20, $00, $02
 
 LVHEAD_08:
-.db $02, $04
-.dw $0001, $0700, $0001, $0480
-.db $03, $21                                                                        ; 05:5724
+.db $02
+.dw $0001, $0700, $3601, $3A80
+.dw $0060, $3A20
 .dw LVLAYOUT_JUN3
 .dw LVTILEMAP_JUN
 .db :LVTILEMAP_JUN
@@ -20384,9 +20345,9 @@ LVHEAD_08:
 .db $00, $00, $00, $00, $02                                                         ; 05:5737
 
 LVHEAD_09:
-.db $03, $04
-.dw $0001, $0700, $0001, $0740
-.db $02, $05                                                                        ; 05:5749
+.db $03
+.dw $0001, $0700, $3E01, $4540
+.dw $0040, $3EA0
 .dw LVLAYOUT_LAB1
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
@@ -20400,9 +20361,9 @@ LVHEAD_09:
 .db $04, $80, $20, $00, $03                                                         ; 05:575C
 
 LVHEAD_0A:
-.db $03, $04
-.dw $0001, $0700, $0001, $0740
-.db $03, $09                                                                        ; 05:576E
+.db $03
+.dw $0001, $0700, $4601, $4D40
+.dw $0060, $4720
 .dw LVLAYOUT_LAB2
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
@@ -20416,9 +20377,9 @@ LVHEAD_0A:
 .db $04, $80, $20, $00, $03                                                         ; 05:5781
 
 LVHEAD_0B:
-.db $03, $04
-.dw $0001, $0700, $0001, $0740
-.db $03, $25                                                                        ; 05:5793
+.db $03
+.dw $0001, $0700, $4E01, $5540
+.dw $0060, $52A0
 .dw LVLAYOUT_LAB3
 .dw LVTILEMAP_LAB
 .db :LVTILEMAP_LAB
@@ -20432,9 +20393,9 @@ LVHEAD_0B:
 .db $00, $80, $10, $00, $03                                                         ; 05:57A6
 
 LVHEAD_0C:
-.db $04, $10
-.dw $0001, $1E00, $0001, $0120
-.db $03, $0B                                                                        ; 05:57B8
+.db $04
+.dw $0001, $1E00, $5601, $5720
+.dw $0060, $5760
 .dw LVLAYOUT_SCR1
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20448,9 +20409,9 @@ LVHEAD_0C:
 .db $04, $00, $20, $00, $04                                                         ; 05:57CB
 
 LVHEAD_0D:
-.db $04, $08
-.dw $0001, $0F00, $0001, $0340
-.db $04, $16                                                                        ; 05:57DD
+.db $04
+.dw $0001, $0F00, $5801, $5B40
+.dw $0080, $5AC0
 .dw LVLAYOUT_SCR2_main
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20464,9 +20425,9 @@ LVHEAD_0D:
 .db $04, $00, $20, $00, $04                                                         ; 05:57F0
 
 LVHEAD_14:
-.db $04, $04
-.dw $0001, $0700, $0001, $0740
-.db $03, $3D                                                                        ; 05:5802
+.db $04
+.dw $0001, $0700, $7801, $7F40
+.dw $0060, $7FA0
 .dw LVLAYOUT_SCR2_upper
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20480,9 +20441,9 @@ LVHEAD_14:
 .db $04, $00, $20, $00, $04                                                         ; 05:5815
 
 LVHEAD_15:
-.db $04, $02
-.dw $0001, $0300, $0001, $0AA0
-.db $03, $03                                                                        ; 05:5827
+.db $04
+.dw $0001, $0300, $8001, $8AA0
+.dw $0060, $8060
 .dw LVLAYOUT_SCR2_lower
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20496,9 +20457,9 @@ LVHEAD_15:
 .db $04, $00, $20, $00, $04                                                         ; 05:583A
 
 LVHEAD_0E:
-.db $04, $04
-.dw $0001, $0700, $0220, $0740
-.db $03, $36                                                                        ; 05:584C
+.db $04
+.dw $0001, $0700, $5E20, $6340
+.dw $0060, $62C0
 .dw LVLAYOUT_SCR3
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20512,9 +20473,9 @@ LVHEAD_0E:
 .db $04, $00, $00, $00, $04                                                         ; 05:585F
 
 LVHEAD_18:
-.db $04, $08
-.dw $0001, $0F00, $0001, $0340
-.db $7B, $03                                                                        ; 05:5871
+.db $04
+.dw $0001, $0F00, $5801, $5B40
+.dw $0F60, $5860
 .dw LVLAYOUT_SCR2_main
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20528,9 +20489,9 @@ LVHEAD_18:
 .db $04, $00, $20, $00, $04                                                         ; 05:5884
 
 LVHEAD_19:
-.db $04, $08
-.dw $0001, $0F00, $0001, $0340
-.db $7B, $1B                                                                        ; 05:5896
+.db $04
+.dw $0001, $0F00, $5801, $5B40
+.dw $0F60, $5B60
 .dw LVLAYOUT_SCR2_main
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20544,9 +20505,9 @@ LVHEAD_19:
 .db $04, $00, $20, $00, $04                                                         ; 05:58A9
 
 LVHEAD_16:
-.db $04, $08
-.dw $0001, $0F00, $0001, $0340
-.db $50, $10                                                                        ; 05:58BB
+.db $04
+.dw $0001, $0F00, $5801, $5B40
+.dw $0A00, $5A00
 .dw LVLAYOUT_SCR2_main
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20560,9 +20521,9 @@ LVHEAD_16:
 .db $04, $00, $20, $00, $04                                                         ; 05:58CE
 
 LVHEAD_17:
-.db $04, $04
-.dw $0001, $0700, $0001, $0740
-.db $27, $1C                                                                        ; 05:58E0
+.db $04
+.dw $0001, $0700, $7801, $7F40
+.dw $04E0, $7B80
 .dw LVLAYOUT_SCR2_upper
 .dw LVTILEMAP_SCR
 .db :LVTILEMAP_SCR
@@ -20576,9 +20537,9 @@ LVHEAD_17:
 .db $04, $00, $20, $00, $04                                                         ; 05:58F3
 
 LVHEAD_0F:
-.db $05, $08
-.dw $0001, $0F00, $0001, $0340
-.db $02, $1D                                                                        ; 05:5905
+.db $05
+.dw $0001, $0F00, $6401, $6740
+.dw $0040, $67A0
 .dw LVLAYOUT_SKY1
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
@@ -20592,9 +20553,9 @@ LVHEAD_0F:
 .db $04, $00, $22, $00, $04                                                         ; 05:5918
 
 LVHEAD_10:
-.db $05, $04
-.dw $0001, $0700, $0001, $0640
-.db $0A, $17                                                                        ; 05:592A
+.db $05
+.dw $0001, $0700, $6801, $6E40
+.dw $0140, $6AE0
 .dw LVLAYOUT_SKY2
 .dw LVTILEMAP_SKY
 .db :LVTILEMAP_SKY
@@ -20609,9 +20570,9 @@ LVHEAD_10:
 .db $00, $00, $20, $00, $05
 
 LVHEAD_11:
-.db $07, $04
-.dw $0001, $0700, $0001, $0120
-.db $02, $01                                                                        ; 05:594F
+.db $07
+.dw $0001, $0700, $7001, $7120
+.dw $0040, $7020
 .dw LVLAYOUT_SKY3_endof_SKY2
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
@@ -20626,9 +20587,9 @@ LVHEAD_11:
 
 LVHEAD_1A:
 LVHEAD_1B:
-.db $07, $04
-.dw $0001, $0700, $0001, $0740
-.db $03, $3B                                                                        ; 05:5974
+.db $07
+.dw $0001, $0700, $7001, $7740
+.dw $0060, $7760
 .dw LVLAYOUT_SKY3_endof_SKY2
 .dw LVTILEMAP_SKY_3
 .db :LVTILEMAP_SKY_3
@@ -20642,9 +20603,9 @@ LVHEAD_1B:
 .db $00, $00, $00, $00, $04                                                         ; 05:5987
 
 LVHEAD_1C:
-.db $06, $04
-.dw $0001, $0700, $0001, $0240
-.db $02, $06                                                                        ; 05:5999
+.db $06
+.dw $0001, $0700, $9001, $9240
+.dw $0040, $90C0
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20658,9 +20619,9 @@ LVHEAD_1C:
 .db $04, $00, $21, $00, $10                                                         ; 05:59AC
 
 LVHEAD_1D:
-.db $06, $04
-.dw $0001, $0700, $0320, $05C0
-.db $02, $1E                                                                        ; 05:59BE
+.db $06
+.dw $0001, $0700, $9320, $95C0
+.dw $0040, $93C0
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20674,9 +20635,9 @@ LVHEAD_1D:
 .db $04, $00, $21, $00, $10                                                         ; 05:59D1
 
 LVHEAD_1E:
-.db $06, $04
-.dw $0001, $0700, $0680, $0740
-.db $03, $3B                                                                        ; 05:59E3
+.db $06
+.dw $0001, $0700, $9680, $9740
+.dw $0060, $9760
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20690,9 +20651,9 @@ LVHEAD_1E:
 .db $04, $00, $21, $00, $10                                                         ; 05:59F6
 
 LVHEAD_1F:
-.db $06, $01
-.dw $0001, $0100, $0001, $1F20
-.db $06, $04                                                                        ; 05:5A08
+.db $06
+.dw $0001, $0100, $1601, $3520
+.dw $00C0, $1680
 .dw LVLAYOUT_JUN2_special_4_8
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20706,9 +20667,9 @@ LVHEAD_1F:
 .db $04, $00, $21, $00, $10                                                         ; 05:5A1B
 
 LVHEAD_20:
-.db $06, $04
-.dw $0001, $0700, $0001, $0240
-.db $02, $06                                                                        ; 05:5A2D
+.db $06
+.dw $0001, $0700, $9001, $9240
+.dw $0040, $90C0
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20722,9 +20683,9 @@ LVHEAD_20:
 .db $04, $00, $21, $00, $10                                                         ; 05:5A40
 
 LVHEAD_21:
-.db $06, $04
-.dw $0001, $0700, $0320, $05C0
-.db $02, $1E                                                                        ; 05:5A52
+.db $06
+.dw $0001, $0700, $9320, $95C0
+.dw $0040, $93C0
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20738,9 +20699,9 @@ LVHEAD_21:
 .db $04, $00, $21, $00, $10                                                         ; 05:5A65
 
 LVHEAD_22:
-.db $06, $04
-.dw $0001, $0700, $0680, $0740
-.db $03, $3B                                                                        ; 05:5A77
+.db $06
+.dw $0001, $0700, $9680, $9740
+.dw $0060, $9760
 .dw LVLAYOUT_SPECIAL_1_2_3_5_6_7
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20754,9 +20715,9 @@ LVHEAD_22:
 .db $04, $00, $21, $00, $10                                                         ; 05:5A8A
 
 LVHEAD_23:
-.db $06, $01
-.dw $0001, $0100, $0001, $1F20
-.db $06, $04                                                                        ; 05:5A9C
+.db $06
+.dw $0001, $0100, $1601, $3520
+.dw $00C0, $1680
 .dw LVLAYOUT_JUN2_special_4_8
 .dw LVTILEMAP_special
 .db :LVTILEMAP_special
@@ -20768,157 +20729,6 @@ LVHEAD_23:
 .dw LVOBJECTS_SPECIAL_8
 .db :LVOBJECTS_SPECIAL_8
 .db $04, $00, $21, $00, $10                                                         ; 05:5AAF
-
-.ENDS
-
-.SECTION "base_LVOBJECTS_GHZ1" SUPERFREE SLOT 2
-LVOBJECTS_GHZ1:
-.INCBIN "src/data/lv_ghz_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_GHZ2" SUPERFREE SLOT 2
-LVOBJECTS_GHZ2:
-.INCBIN "src/data/lv_ghz_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_GHZ3" SUPERFREE SLOT 2
-LVOBJECTS_GHZ3:
-.INCBIN "src/data/lv_ghz_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_BRI1" SUPERFREE SLOT 2
-LVOBJECTS_BRI1:
-.INCBIN "src/data/lv_bri_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_BRI2" SUPERFREE SLOT 2
-LVOBJECTS_BRI2:
-.INCBIN "src/data/lv_bri_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_BRI3" SUPERFREE SLOT 2
-LVOBJECTS_BRI3:
-.INCBIN "src/data/lv_bri_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_JUN1" SUPERFREE SLOT 2
-LVOBJECTS_JUN1:
-.INCBIN "src/data/lv_jun_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_JUN2" SUPERFREE SLOT 2
-LVOBJECTS_JUN2:
-.INCBIN "src/data/lv_jun_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_JUN3" SUPERFREE SLOT 2
-LVOBJECTS_JUN3:
-.INCBIN "src/data/lv_jun_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_LAB1" SUPERFREE SLOT 2
-LVOBJECTS_LAB1:
-.INCBIN "src/data/lv_lab_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_LAB2" SUPERFREE SLOT 2
-LVOBJECTS_LAB2:
-.INCBIN "src/data/lv_lab_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_LAB3" SUPERFREE SLOT 2
-LVOBJECTS_LAB3:
-.INCBIN "src/data/lv_lab_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SCR1" SUPERFREE SLOT 2
-LVOBJECTS_SCR1:
-.INCBIN "src/data/lv_scr_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SCR2_main" SUPERFREE SLOT 2
-LVOBJECTS_SCR2_main:
-.INCBIN "src/data/lv_scr_2_main.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SCR2_upper" SUPERFREE SLOT 2
-LVOBJECTS_SCR2_upper:
-.INCBIN "src/data/lv_scr_2_upper.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SCR2_lower" SUPERFREE SLOT 2
-LVOBJECTS_SCR2_lower:
-.INCBIN "src/data/lv_scr_2_lower.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SCR3" SUPERFREE SLOT 2
-LVOBJECTS_SCR3:
-.INCBIN "src/data/lv_scr_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SKY1" SUPERFREE SLOT 2
-LVOBJECTS_SKY1:
-.INCBIN "src/data/lv_sky_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SKY2" SUPERFREE SLOT 2
-LVOBJECTS_SKY2:
-.INCBIN "src/data/lv_sky_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SKY3" SUPERFREE SLOT 2
-LVOBJECTS_SKY3:
-.INCBIN "src/data/lv_sky_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SKY2_end" SUPERFREE SLOT 2
-LVOBJECTS_SKY2_end:
-.INCBIN "src/data/lv_sky_2_end.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_1" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_1:
-.INCBIN "src/data/lv_special_1.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_2" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_2:
-.INCBIN "src/data/lv_special_2.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_3" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_3:
-.INCBIN "src/data/lv_special_3.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_4" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_4:
-.INCBIN "src/data/lv_special_4.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_5" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_5:
-.INCBIN "src/data/lv_special_5.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_6" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_6:
-.INCBIN "src/data/lv_special_6.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_7" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_7:
-.INCBIN "src/data/lv_special_7.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_SPECIAL_8" SUPERFREE SLOT 2
-LVOBJECTS_SPECIAL_8:
-.INCBIN "src/data/lv_special_8.objects"
-.ENDS
-
-.SECTION "base_LVOBJECTS_ENDING" SUPERFREE SLOT 2
-LVOBJECTS_ENDING:
-.INCBIN "src/data/lv_ending.objects"
 .ENDS
 
 .SECTION "base_ARTMAP_05_6000" SUPERFREE SLOT 2

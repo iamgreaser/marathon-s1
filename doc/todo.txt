@@ -15,6 +15,7 @@ I've got stuff split into chunks now. So, from here...
    - Read this during chunk loading so we know which bits to ditch.
    - Consider using a separate variant of the RLE loader which is used for generating the resulting bit mask.
       - Actual approach right now is to update the mask whenever a ring is collected and to find the relevant offset and set the first 0 bit in the designated ramsave area.
+- [x] Get rid of the relative offset and place objects + Sonic in their absolute pixel locations.
 
 ----
 
@@ -34,5 +35,8 @@ Prerequisites:
    - We can assume that a checkpoint position of ($0000, $0000) means it isn't set, so we won't need to keep a flag around for that.
    - If we switch the level header field to use 16-bit pairs in the same way, then we shouldn't have to modify the code as much.
       - But do I look like I'm afraid of modifying critical code here? I'm overhauling a key part of the engine.
+- [ ] Buttons will need to have their flag index explicitly specified.
+- [ ] Compress objects in RAM to the bare minimum needed to operate that particular object's functionality.
+- [ ] Attach objects to chunks and have some space spare for dynamically-created objects.
 
 The transition from the SKY2 corridor to the SKY2 ending or even straight to SKY3 has the problem that the inside is actually bigger than the outside. So SKY2 needs to be bigger for any of this to be even remotely sane. Also the design of SKY2 is subtly different in the top-right corner of SKY1, so that'll need reconciling. (I'll favour the SKY2 design.)
