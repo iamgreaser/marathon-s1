@@ -1970,7 +1970,7 @@ unpack_level_layout_into_ram:
    ;; Blank the chunk IDs.
    ld de, g_level_chunk_info_buffers
    ld b, 4*4
-   ld a, $FF
+   ld a, $EF
    @clear_each_chunk_id:
       ld (de), a
       inc de
@@ -1989,30 +1989,23 @@ refresh_one_chunk:
    ;; C = X offset
    ;; B = Y offset
 
-   ;; Chunk indices: base coord + ((camera-OFFSET)&$FE00)
+   ;; Chunk indices: ((camera-OFFSET)&$FE00)
    ;; OFFSET is not $0100. It seems ($0080,$0060) might be it?
-   ld hl, (g_level_base_coords)
 
    ;; Compute X chunk index
-   push hl
-      ld hl, (g_level_scroll_x_pix_lo)
-      ld de, -$0080
-      add hl, de
-      ld a, h
-   pop hl
-   ;and $FE
-   add a, l
+   ld hl, (g_level_scroll_x_pix_lo)
+   ld de, -$0080
+   add hl, de
+   ld a, h
+   and $FE
    ld c, a
 
    ;; Compute Y chunk index
-   push hl
-      ld hl, (g_level_scroll_y_pix_lo)
-      ld de, -$0080
-      add hl, de
-      ld a, h
-   pop hl
+   ld hl, (g_level_scroll_y_pix_lo)
+   ld de, -$0060
+   add hl, de
+   ld a, h
    and $FE
-   add a, h
    ld b, a
 
    call @fn_try_this_chunk
@@ -2051,16 +2044,16 @@ refresh_one_chunk:
    rlc l
    push hl
    pop ix
+   ;; IX = level info chunk buffer
    ld h, a
    ld l, $00
+   ;; HL = pointer to chunk in RAM layout buffer
    push de
       ld de, g_level_chunk_info_buffers
       add ix, de
       ld de, g_level_layout
       add hl, de
    pop de
-   ;; IX = level info chunk buffer
-   ;; HL = pointer to chunk in RAM layout buffer
 
    ;; Compare to see if this is already what we want
    ;; Compares clear carry when zero flag is set.
@@ -2076,8 +2069,8 @@ refresh_one_chunk:
    ld (ix+3), b
    ;; Now use BC to fetch from the quadtree.
    ex de, hl
-   ld l, c
-   ld h, b
+   ld hl, (g_level_base_coords)
+   add hl, bc
    call fetch_level_chunk_info_from_quadtree
    ;; BC is now trashable.
    ;; Load the pointer to the ramsave section
