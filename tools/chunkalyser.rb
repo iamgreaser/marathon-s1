@@ -32,12 +32,40 @@ LAYOUT_SPECS = [
     layout_fname: "src/data/lv_ghz_3.layout7",
   ],
   LayoutSpec[
+    name: "LVLAYOUT_BRI1",
+    layout_fname: "src/data/lv_bri_1.layout8",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_BRI2",
+    layout_fname: "src/data/lv_bri_2.layout7",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_BRI3",
+    layout_fname: "src/data/lv_bri_3.layout7",
+  ],
+  LayoutSpec[
     name: "LVLAYOUT_JUN1",
     layout_fname: "src/data/lv_jun_1.layout8",
   ],
   LayoutSpec[
     name: "LVLAYOUT_JUN2_special_4_8",
     layout_fname: "src/data/lv_jun_2_special_4_8.layout4",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_JUN3",
+    layout_fname: "src/data/lv_jun_3.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB1",
+    layout_fname: "src/data/lv_lab_1.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB2",
+    layout_fname: "src/data/lv_lab_2.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_LAB3",
+    layout_fname: "src/data/lv_lab_3.layout6",
   ],
   LayoutSpec[
     name: "LVLAYOUT_SCR1",
@@ -60,44 +88,16 @@ LAYOUT_SPECS = [
     layout_fname: "src/data/lv_scr_3.layout6",
   ],
   LayoutSpec[
-    name: "LVLAYOUT_SKY2",
-    layout_fname: "src/data/lv_sky_2.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_BRI1",
-    layout_fname: "src/data/lv_bri_1.layout8",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_LAB1",
-    layout_fname: "src/data/lv_lab_1.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_LAB2",
-    layout_fname: "src/data/lv_lab_2.layout6",
-  ],
-  LayoutSpec[
     name: "LVLAYOUT_SKY1",
     layout_fname: "src/data/lv_sky_1.layout7",
   ],
   LayoutSpec[
-    name: "LVLAYOUT_BRI2",
-    layout_fname: "src/data/lv_bri_2.layout7",
+    name: "LVLAYOUT_SKY2",
+    layout_fname: "src/data/lv_sky_2.layout6",
   ],
   LayoutSpec[
     name: "LVLAYOUT_SKY3_endof_SKY2",
     layout_fname: "src/data/lv_sky_3_end_sky_2.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_JUN3",
-    layout_fname: "src/data/lv_jun_3.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_LAB3",
-    layout_fname: "src/data/lv_lab_3.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_BRI3",
-    layout_fname: "src/data/lv_bri_3.layout7",
   ],
   LayoutSpec[
     name: "LVLAYOUT_SPECIAL_1_2_3_5_6_7",
