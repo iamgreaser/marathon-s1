@@ -6,7 +6,7 @@ Chunk streaming:
 
 I've got stuff split into chunks now. So, from here...
 
-- [ ] Reduce the level layout part of RAM to a 2x2 chunk region, and load chunks on demand.
+- [x] Reduce the level layout part of RAM to a 2x2 chunk region, and load chunks on demand.
    - Have a function which finds a chunk that needs updating, then call that 4 times during initialisation and once during a gameplay update.
    - Select an initial offset based on the initial camera position.
    - (possible later optimisation) Consider applying hysteresis so that one can't easily flick between triggering 3 chunk loads per frame.
