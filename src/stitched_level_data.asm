@@ -153,7 +153,7 @@ LVHEAD_09:
 .db :ART_LAB_0000
 .dw ART_LAB_2000
 .db :ART_LAB_2000
-.db $03, $05, $03, $02
+.db $03, $05, $03, $03
 .dw LVOBJECTS_LAB1
 .db :LVOBJECTS_LAB1
 .db $04, $80, $20, $00, $03
@@ -168,7 +168,7 @@ LVHEAD_0A:
 .db :ART_LAB_0000
 .dw ART_LAB_2000
 .db :ART_LAB_2000
-.db $03, $05, $03, $02
+.db $03, $05, $03, $03
 .dw LVOBJECTS_LAB2
 .db :LVOBJECTS_LAB2
 .db $04, $80, $20, $00, $03
@@ -183,7 +183,7 @@ LVHEAD_0B:
 .db :ART_LAB_0000
 .dw ART_LAB_2000
 .db :ART_LAB_2000
-.db $03, $05, $03, $02
+.db $03, $05, $03, $03
 .dw LVOBJECTS_LAB3
 .db :LVOBJECTS_LAB3
 .db $00, $80, $10, $00, $03

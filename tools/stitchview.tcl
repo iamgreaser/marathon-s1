@@ -68,13 +68,13 @@ set ::layout_specs {
       LVHEAD_08 0x03 0x21 {02 02 05 03 02 00 00 00 00 02}
    }}}
    {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects LVOBJECTS_LAB1 {
-      LVHEAD_09 0x02 0x05 {03 03 05 03 02 04 80 20 00 03}
+      LVHEAD_09 0x02 0x05 {03 03 05 03 03 04 80 20 00 03}
    }}}
    {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB {src/data/lv_lab_2.objects LVOBJECTS_LAB2 {
-      LVHEAD_0A 0x03 0x09 {03 03 05 03 02 04 80 20 00 03}
+      LVHEAD_0A 0x03 0x09 {03 03 05 03 03 04 80 20 00 03}
    }}}
    {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects LVOBJECTS_LAB3 {
-      LVHEAD_0B 0x03 0x25 {03 03 05 03 02 00 80 10 00 03}
+      LVHEAD_0B 0x03 0x25 {03 03 05 03 03 00 80 10 00 03}
    }}}
    {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects LVOBJECTS_SCR1 {
       LVHEAD_0C 0x03 0x0B {04 04 06 04 04 04 00 20 00 04}
