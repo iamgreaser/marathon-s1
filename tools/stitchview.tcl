@@ -37,26 +37,26 @@ set ::layout_boxes {
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120 0 0}
 
 set ::layout_specs {
-   {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ {src/data/lv_ghz_1.objects}}
-   {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ {src/data/lv_ghz_2.objects}}
-   {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ {src/data/lv_ghz_3.objects}}
-   {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI {src/data/lv_bri_1.objects}}
-   {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI {src/data/lv_bri_2.objects}}
-   {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI {src/data/lv_bri_3.objects}}
-   {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN {src/data/lv_jun_1.objects}}
-   {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN {src/data/lv_jun_2.objects}}
-   {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN {src/data/lv_jun_3.objects}}
-   {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects}}
-   {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB {src/data/lv_lab_2.objects}}
-   {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects}}
-   {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects}}
-   {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR {src/data/lv_scr_2_main.objects}}
-   {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR {src/data/lv_scr_2_upper.objects}}
-   {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR {src/data/lv_scr_2_lower.objects}}
-   {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects}}
-   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects}}
-   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects}}
-   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects src/data/lv_sky_3.objects}}
+   {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ {src/data/lv_ghz_1.objects {0x08 0x0B}}}
+   {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ {src/data/lv_ghz_2.objects {0x02 0x03}}}
+   {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ {src/data/lv_ghz_3.objects {0x07 0x16}}}
+   {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI {src/data/lv_bri_1.objects {0x03 0x0C}}}
+   {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI {src/data/lv_bri_2.objects {0x02 0x1C}}}
+   {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI {src/data/lv_bri_3.objects {0x06 0x1B}}}
+   {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN {src/data/lv_jun_1.objects {0x02 0x0B}}}
+   {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN {src/data/lv_jun_2.objects {0x02 0xFA}}}
+   {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN {src/data/lv_jun_3.objects {0x03 0x21}}}
+   {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects {0x02 0x05}}}
+   {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB {src/data/lv_lab_2.objects {0x03 0x09}}}
+   {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects {0x03 0x25}}}
+   {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects {0x03 0x0B}}}
+   {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR {src/data/lv_scr_2_main.objects {0x04 0x16 0x7B 0x03 0x7B 0x1B 0x50 0x10}}}
+   {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR {src/data/lv_scr_2_upper.objects {0x03 0x3D 0x27 0x1C}}}
+   {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR {src/data/lv_scr_2_lower.objects {0x03 0x03}}}
+   {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects {0x03 0x36}}}
+   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects {0x02 0x1D}}}
+   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects {0x0A 0x17}}}
+   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects {0x03 0x3B} src/data/lv_sky_3.objects {0x02 0x01}}}
 }
 # {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special}
 
@@ -334,7 +334,7 @@ proc init_levels {} {
 
 proc load_level_layout {lbs} {
    lassign $lbs ls_key x0 x1 y0 y1 delta_mt_x delta_mt_y
-   lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname tm_key objects_fname_list
+   lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname tm_key objects_spec_list
    set tilemap $::tilemaps($tm_key)
    set width_shift [string index $ls_fname end]
    set width_mt [expr {1<<$width_shift}]
@@ -432,9 +432,23 @@ proc load_level_layout {lbs} {
    }
 
    # Load objects
-   foreach fname $objects_fname_list {
+   foreach {fname spawn_list} $objects_spec_list {
       set fp [open $fname rb]
       try {
+         foreach {spawnx spawny} $spawn_list {
+            set spawnx [expr {($spawnx<<5)+($base_x-$x0_px)}]
+            set spawny [expr {($spawny<<5)+($base_y-$y0_px)}]
+            .canvas create rectangle \
+               [expr {$spawnx+4}] \
+               [expr {$spawny+4}] \
+               [expr {$spawnx+28}] \
+               [expr {$spawny+28}] \
+               -fill #FF0000 \
+               -outline #FFFFFF \
+               -tags [list $ls_key spawn obj obj_rect] \
+               ;
+         }
+
          binary scan [read $fp 1] cu obj_count
          for {set oi 1} {$oi < $obj_count} {incr oi} {
             set obx {}
