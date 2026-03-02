@@ -580,8 +580,8 @@ irq_start:
    bit    5, (iy+iy_00-IYBASE)         ; 00:015B - FD CB 00 6E
    call   z, @fn_update_palette        ; 00:015F - CC 74 01
    ld     a, (g_screen_tile_replace_x_hi)  ; 00:0162 - 3A AC D2
-   and    $80                          ; 00:0165 - E6 80
-   call   z, apply_screen_tilemap_patch  ; 00:0167 - CC B0 38
+   cp $FF
+   call nz, apply_screen_tilemap_patch
    ld     a, $FF                       ; 00:016A - 3E FF
    ld     (g_screen_tile_replace_x_hi), a  ; 00:016C - 32 AC D2
    set    0, (iy+iy_00-IYBASE)         ; 00:016F - FD CB 00 C6
