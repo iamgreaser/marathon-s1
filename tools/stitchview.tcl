@@ -95,15 +95,15 @@ set ::layout_specs {
    {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects LVOBJECTS_SCR3 {
       LVHEAD_0E 0x03 0x36 {04 04 06 04 04 04 00 00 00 04}
    }}}
-   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects LVOBJECTS_SCR3 {
+   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects LVOBJECTS_SKY1 {
       LVHEAD_0F 0x02 0x1D {05 05 06 04 05 04 00 22 00 04}
    }}}
-   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects LVOBJECTS_SCR3 {
+   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects LVOBJECTS_SKY2 {
       LVHEAD_10 0x0A 0x17 {05 05 06 04 08 00 00 20 00 05}
    }}}
-   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects LVOBJECTS_SCR3 {
+   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects LVOBJECTS_SKY2_end {
       {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {07 06 08 04 06 00 00 00 00 04}
-   } src/data/lv_sky_3.objects LVOBJECTS_SCR3 {
+   } src/data/lv_sky_3.objects LVOBJECTS_SKY3 {
       LVHEAD_11 0x02 0x01 {07 06 08 04 06 00 00 00 00 04}
    }}}
    {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_1.objects LVOBJECTS_SPECIAL_1 {
@@ -393,7 +393,8 @@ proc init_levels {} {
    lappend ::codegen_headers {level_headers:}
    lappend ::codegen_headers {.dw LVHEAD_00, LVHEAD_01, LVHEAD_02, LVHEAD_03, LVHEAD_04, LVHEAD_05, LVHEAD_06, LVHEAD_07}
    lappend ::codegen_headers {.dw LVHEAD_08, LVHEAD_09, LVHEAD_0A, LVHEAD_0B, LVHEAD_0C, LVHEAD_0D, LVHEAD_0E, LVHEAD_0F}
-   lappend ::codegen_headers {.dw LVHEAD_10, LVHEAD_11, LVHEAD_12, 0, LVHEAD_14, LVHEAD_15, LVHEAD_16, LVHEAD_17}
+   # TODO: Consider reinstating the ending level header (level $12)... or just wish it farewell. --GM
+   lappend ::codegen_headers {.dw LVHEAD_10, LVHEAD_11, 0, 0, LVHEAD_14, LVHEAD_15, LVHEAD_16, LVHEAD_17}
    lappend ::codegen_headers {.dw LVHEAD_18, LVHEAD_19, LVHEAD_1A, LVHEAD_1B, LVHEAD_1C, LVHEAD_1D, LVHEAD_1E, LVHEAD_1F}
    lappend ::codegen_headers {.dw LVHEAD_20, LVHEAD_21, LVHEAD_22, LVHEAD_23, 0}
 
@@ -418,11 +419,16 @@ proc init_levels {} {
    # Clean up duplicates, generate a quadtree and all that jazz
    finalise_chunks
 
-   if {0} {
-      puts [join $::codegen_lines "\n"]
-      puts [join $::codegen_headers "\n"]
-      puts [join $::codegen_quadtree "\n"]
-      puts [join $::codegen_sections "\n"]
+   if {1} {
+      set fp [open src/stitched_level_data.asm wb]
+      try {
+         puts $fp [join $::codegen_lines "\n"]
+         puts $fp [join $::codegen_headers "\n"]
+         puts $fp [join $::codegen_quadtree "\n"]
+         puts $fp [join $::codegen_sections "\n"]
+      } finally {
+         close $fp
+      }
    }
 
    # Move the view down to suit the first level
@@ -536,6 +542,7 @@ proc load_level_layout {lbs} {
 
    # Load objects
    foreach {fname obj_label header_list} $objects_spec_list {
+      puts $fname
       set fp [open $fname rb]
       try {
          foreach {header_labels spawnx spawny header_spec} $header_list {
@@ -573,6 +580,10 @@ proc load_level_layout {lbs} {
          }
 
          binary scan [read $fp 1] cu obj_count
+         lappend ::codegen_sections ""
+         lappend ::codegen_sections ".SECTION \"base_${obj_label}\" SLOT 2 SUPERFREE"
+         lappend ::codegen_sections "${obj_label}:"
+         lappend ::codegen_sections ".DB ${obj_count}"
          for {set oi 1} {$oi < $obj_count} {incr oi} {
             set obx {}
             set oby {}
@@ -580,6 +591,8 @@ proc load_level_layout {lbs} {
             # TODO: Track this in an array --GM
             set obx [expr {($obx<<5)+($base_x-$x0_px)}]
             set oby [expr {($oby<<5)+($base_y-$y0_px)}]
+            lappend ::codegen_sections [format ".DB \$%02X" $obtype]
+            lappend ::codegen_sections [format ".DW \$%04X, \$%04X" $obx $oby]
             .canvas create rectangle \
                [expr {$obx+4}] \
                [expr {$oby+8}] \
@@ -598,6 +611,7 @@ proc load_level_layout {lbs} {
                -tags [list $ls_key obj obj_text] \
                ;
          }
+         lappend ::codegen_sections ".ENDS"
       } finally {
          close $fp
       }
