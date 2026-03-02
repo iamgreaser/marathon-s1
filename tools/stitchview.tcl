@@ -17,8 +17,8 @@ set ::layout_boxes {
    {LVLAYOUT_BRI2 0x0001 0x0F00 0x0001 0x0340 -16 -18}
    {LVLAYOUT_BRI3 0x0001 0x0F00 0x0300 0x0340 0 14}
    {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120 -6 -9}
-   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0001 0x1F20 -6 -243}
-   {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480 0 113}
+   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0E61 0x1F20 -6 -128}
+   {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480 0 -2}
    {LVLAYOUT_LAB1 0x0001 0x0700 0x0001 0x0740 0 0}
    {LVLAYOUT_LAB2 0x0001 0x0700 0x0001 0x0740 0 -2}
    {LVLAYOUT_LAB3 0x0001 0x0700 0x0001 0x0740 0 -25}
@@ -30,6 +30,8 @@ set ::layout_boxes {
    {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340 -18 -44}
    {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640 21 -3}
    {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740 16 0}
+   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 0x0001 0x0700 0x0001 0x0740 16 0}
+   {LVLAYOUT_SPECIAL_4_8 0x0001 0x0100 0x0001 0x0F20 0 0}
 }
 # SKY2 end
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740 0 0}
@@ -57,8 +59,9 @@ set ::layout_specs {
    {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects {0x02 0x1D}}}
    {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects {0x0A 0x17}}}
    {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects {0x03 0x3B} src/data/lv_sky_3.objects {0x02 0x01}}}
+   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_5.objects {0x02 0x06} src/data/lv_special_6.objects {0x02 0x1E} src/data/lv_special_7.objects {0x03 0x3B}}}
+   {LVLAYOUT_SPECIAL_4_8 src/data/lv_jun_2_special_4_8.layout4 special {src/data/lv_special_8.objects {0x06 0x04}}}
 }
-# {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special}
 
 set ::tilemap_specs {
    {GHZ LVTILEMAP_GHZ src/data/lv_ghz.tilemap}
