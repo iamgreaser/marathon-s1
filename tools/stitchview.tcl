@@ -513,7 +513,6 @@ proc load_level_layout {lbs} {
                [expr {max(1,$base_y)}] [expr {$base_y+$y1_px-$y0_px-(192-1)}] \
                ]
             puts [format ".dw $%04X, $%04X" $spawnx $spawny]
-            puts [format ".dw %s" $ls_key]
             puts [format ".dw LVTILEMAP_%s" $tm_key]
             puts [format ".db :LVTILEMAP_%s" $tm_key]
             puts [format ".dw ART_%s_0000" $tm_key]
