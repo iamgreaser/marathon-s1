@@ -3566,6 +3566,69 @@ update_signpost_timer:
    jp     (hl)                         ; 00:1FC3 - E9
 
 @go_to_next_level:
+   ;; Advance to next level
+   ld hl, g_level
+   inc (hl)
+   ld a, (hl)
+   add a, a
+   ld l, a
+   ld h, $00
+
+   ;; Work out if we're doing the ending somehow?
+   ld de, level_headers
+   add hl, de
+   ld a, :level_headers
+   call set_rompage_2
+   ld a, (hl)
+   inc hl
+   ld h, (hl)
+   ld l, a
+   or h
+   ;; Use the old behaviour for now.
+   jp z, @go_to_not_next_level
+
+   ;; Copy this header.
+   ld de, g_level_header_copy
+   ld bc, _sizeof_g_level_header_copy
+   ldir
+
+   ;; Clear the object list.
+   ;; NOTE: Probably overkill.
+   ld hl, object_list_past_sonic
+   ld de, object_list_past_sonic+2
+   ld (hl), $FF
+   inc hl
+   ld (hl), $00
+   ld bc, $001A-2
+   ldir
+   ld hl, object_list_past_sonic
+   ld bc, $001A*(32-2)
+   ldir
+
+   ;; Deactivate all objects.
+   ;; NOTE: Possibly but might not actually be overkill.
+   ld hl, g_active_object_ptrs
+   ld de, g_active_object_ptrs+1
+   ld bc, 0+(32*2)-1
+   ld (hl), $00
+   ldir
+
+   ;; Load the new objects.
+   ld hl, g_level_header_copy+1+(2*6)+(3*3)+4  ; offset to object pointer
+   ld e, (hl)
+   inc hl
+   ld d, (hl)
+   inc hl
+   ld a, (hl)
+   call set_rompage_2
+   ex de, hl
+   call load_object_list_skipping_sonic
+
+   ;; Return happy
+   ld a, $01
+   ret
+
+@go_to_not_next_level:
    call   fade_screen_to_black         ; 00:1FC4 - CD 40 0A
    pop    hl                           ; 00:1FC7 - E1
    res    5, (iy+iy_00-IYBASE)         ; 00:1FC8 - FD CB 00 AE
@@ -3996,6 +4059,11 @@ load_and_init_level_from_header:
    set    5, (iy+iy_06_lvflag01-IYBASE)  ; 00:2326 - FD CB 06 EE
    ret                                 ; 00:232A - C9
 
+load_object_list_skipping_sonic:
+   ld ix, object_list_past_sonic
+   ld de, $001A
+   jr load_object_list@skip_sonic
+
 load_object_list:
    push   hl                           ; 00:232B - E5
    ld     ix, object_list              ; 00:232C - DD 21 FC D3
@@ -4005,6 +4073,7 @@ load_object_list:
    ld     a, $00                       ; 00:2338 - 3E 00
    call   load_object_from_level_spec  ; 00:233A - CD 5E 23
    pop    hl                           ; 00:233D - E1
+@skip_sonic:
    ld     a, (hl)                      ; 00:233E - 7E
    inc    hl                           ; 00:233F - 23
    ld     (g_object_count), a          ; 00:2340 - 32 F2 D2
@@ -9657,6 +9726,12 @@ SPRITEMAP_monitor_image:
 .db $5C, $5E, $FF, $FF, $FF, $FF, $FF                                               ; 01:5F10
 
 objfunc_07_signpost:
+   ;; TEST: Force-load the next level.
+   ld a, $01
+   ld (g_signpost_tickdown_counter), a
+   ld (ix+0), $FF  ; Free this slot.
+   ret
+
    bit    0, (ix+17)                   ; 01:5F1F - DD CB 11 46
    jr     nz, @art_already_loaded      ; 01:5F23 - 20 1F
    res    7, (iy+iy_06_lvflag01-IYBASE)  ; 01:5F25 - FD CB 06 BE

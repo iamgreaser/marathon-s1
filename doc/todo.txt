@@ -40,3 +40,18 @@ Prerequisites:
 - [ ] Attach objects to chunks and have some space spare for dynamically-created objects.
 
 The transition from the SKY2 corridor to the SKY2 ending or even straight to SKY3 has the problem that the inside is actually bigger than the outside. So SKY2 needs to be bigger for any of this to be even remotely sane. Also the design of SKY2 is subtly different in the top-right corner of SKY1, so that'll need reconciling. (I'll favour the SKY2 design.)
+
+----
+
+MVP SUGGESTION (if I fail to get it working perfectly):
+
+Signposts and animal capsules should, once activated, immediately advance the level with the following effects:
+- Increment the level number.
+- If the art has changed, load the new art.
+- If the palette has changed, load the new palette.
+- Update the level flags.
+- Clear the water level and load the object list.
+
+I do, however, need to make sure that the metatile physics are consistent when transitioning between areas.
+
+... failing that, I could force vanilla-style level transitions on e.g. animal capsules. (Without the score tally of course.)
