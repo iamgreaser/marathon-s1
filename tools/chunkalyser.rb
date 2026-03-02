@@ -76,14 +76,6 @@ LAYOUT_SPECS = [
     layout_fname: "src/data/lv_scr_2_main.layout7",
   ],
   LayoutSpec[
-    name: "LVLAYOUT_SCR2_upper",
-    layout_fname: "src/data/lv_scr_2_upper.layout6",
-  ],
-  LayoutSpec[
-    name: "LVLAYOUT_SCR2_lower",
-    layout_fname: "src/data/lv_scr_2_lower.layout5",
-  ],
-  LayoutSpec[
     name: "LVLAYOUT_SCR3",
     layout_fname: "src/data/lv_scr_3.layout6",
   ],
@@ -98,6 +90,14 @@ LAYOUT_SPECS = [
   LayoutSpec[
     name: "LVLAYOUT_SKY3_endof_SKY2",
     layout_fname: "src/data/lv_sky_3_end_sky_2.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR2_upper",
+    layout_fname: "src/data/lv_scr_2_upper.layout6",
+  ],
+  LayoutSpec[
+    name: "LVLAYOUT_SCR2_lower",
+    layout_fname: "src/data/lv_scr_2_lower.layout5",
   ],
   LayoutSpec[
     name: "LVLAYOUT_SPECIAL_1_2_3_5_6_7",
