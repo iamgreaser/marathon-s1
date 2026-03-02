@@ -3728,7 +3728,8 @@ load_and_init_level_from_header:
    ld     hl, g_level_has_checkpoint_mask  ; 00:2117 - 21 11 D3
    call   calc_level_offset_HL_and_mask_C  ; 00:211A - CD 02 0C
    ex     de, hl                       ; 00:211D - EB
-   ld     hl, $0800                    ; 00:211E - 21 00 08
+   ;ld     hl, $0800                    ; 00:211E - 21 00 08
+   ld hl, $FF00
    ld     a, (g_level)                 ; 00:2121 - 3A 3E D2
    cp     $09                          ; 00:2124 - FE 09
    jr     c, @not_water_level_index    ; 00:2126 - 38 12
