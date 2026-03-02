@@ -29,6 +29,7 @@ def main(rom_fname)
   puts "ROM filename: #{rom_fname.inspect}"
   $base_coords_by_layout = {}
   $objects_names = {}
+  $total_objects = 0
   open(rom_fname, "rb") do |fp|
     fp.seek(PTR_HEADERS)
     header_rel_ptrs = fp.read(HEADER_COUNT*2).unpack("S<"*HEADER_COUNT)
@@ -50,6 +51,7 @@ def main(rom_fname)
     #headers.each{|hdr| p hdr}
   end
   pp LVFLAGREVMAP
+  puts ";; Total objects: #{$total_objects}"
 end
 
 # uXY means "unknown, (ix+X) bit Y"
@@ -112,6 +114,7 @@ class LevelHeader
     @objects_ptr += PTR_HEADERS
     fp.seek(@objects_ptr)
     (objects_count,) = fp.read(1).unpack("C")
+    $total_objects += objects_count unless @lvname.match?("/")
     @objects = (0...objects_count).map{ fp.read(3).unpack("CCC") }
 
     @pal = [pal_basei, [pal_cyc_basei, pal_cyc_len], pal_cyc_tick_period]
