@@ -8,6 +8,7 @@ Regressions known at this stage:
 
 - (almost?) All of the boss fights are broken right now due to locking to specific coordinates. None of the bosses have the expected absolute coordinates for locking the camera or potentially detecting *when* to lock the camera.
 - All teleporters and corridors are broken.
+- The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
 
 Stuff which will result in a regression if I'm not careful:
 
