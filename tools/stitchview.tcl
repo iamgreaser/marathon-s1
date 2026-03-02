@@ -380,6 +380,8 @@ proc init_tilemap_images {} {
 proc init_levels {} {
    set ::chunk_map [dict create]
    set ::chunk_key_list [list]
+   set ::next_quadtree_node_idx 1
+   set ::quadtree {}
 
    set ::codegen_lines [list]
    set ::codegen_headers [list]
@@ -614,6 +616,7 @@ proc put_metatile {mtx mty v} {
    if {![dict exists $::chunk_map $ckey]} {
       # Don't create a chunk just to mark a 0 tile as 0
       if {$v == 0} { return }
+      set ::quadtree [add_quadtree_node $::quadtree 6 $cx $cy $ckey]
       #puts [format "new chunk %02X,%02X" $cx $cy]
       dict set ::chunk_map $ckey [lrepeat 256 0]
       lappend ::chunk_key_list $ckey
@@ -623,23 +626,45 @@ proc put_metatile {mtx mty v} {
    dict set ::chunk_map $ckey $chunk
 }
 
+proc add_quadtree_node {node level cx cy ckey} {
+   if {$level == -1} {
+      if {!($cx == 0 && $cy == 0)} { error "invalid quadtree leaf $cx,$cy" }
+      set node $ckey
+   } else {
+      if {$node eq {}} {
+         set node [list [list {} {}] [list {} {}]]
+      }
+      set bucket_x [expr {$cx>>$level}]
+      set bucket_y [expr {$cy>>$level}]
+      if {!(($bucket_x>>1) == 0 && ($bucket_y>>1) == 0)} { error "invalid quadtree bucket $bucket_x,$bucket_y for level $level split $cx,$cy" }
+      set cx [expr {$cx-($bucket_x<<$level)}]
+      set cy [expr {$cy-($bucket_y<<$level)}]
+
+      incr level -1
+      lset node $bucket_y $bucket_x [add_quadtree_node \
+         [lindex $node $bucket_y $bucket_x] \
+         $level $cx $cy $ckey]
+   }
+   return $node
+}
+
 proc finalise_chunks {} {
    # Collect redundant chunks
    # Also, allocate chunk 0 to the all-0 chunk
-   set uniqchunklist [list [lrepeat 256 0]]
-   set uniqchunkmap [dict create [lrepeat 256 0] 0]
+   set ::uniqchunklist [list [lrepeat 256 0]]
+   set ::uniqchunkmap [dict create [lrepeat 256 0] 0]
    foreach ckey $::chunk_key_list {
       set chunk [dict get $::chunk_map $ckey]
-      if {![dict exists $uniqchunkmap $chunk]} {
-         dict set uniqchunkmap $chunk [llength $uniqchunklist]
-         lappend uniqchunklist $chunk
+      if {![dict exists $::uniqchunkmap $chunk]} {
+         dict set ::uniqchunkmap $chunk [llength $::uniqchunklist]
+         lappend ::uniqchunklist $chunk
       }
    }
-   puts "Unique chunks: [llength $uniqchunklist]/[expr {[llength $::chunk_key_list]+1}]"
+   puts "Unique chunks: [llength $::uniqchunklist]/[expr {[llength $::chunk_key_list]+1}]"
 
    # Compress the chunk data and append it
    set ci 0
-   foreach unc_chunk $uniqchunklist {
+   foreach unc_chunk $::uniqchunklist {
       set chunk_name [format "chunk_%04X" $ci]
       lappend ::codegen_sections ""
       lappend ::codegen_sections ".SECTION \"base_${chunk_name}\" SLOT 2 SUPERFREE"
@@ -689,7 +714,7 @@ proc finalise_chunks {} {
       incr ci
    }
 
-   # Build the quadtree
+   # Read the quadtree
    lappend ::codegen_quadtree ""
    lappend ::codegen_quadtree {.SECTION "layout_quadtree" SLOT 2 SUPERFREE}
    lappend ::codegen_quadtree {qt_default_node:}
@@ -697,10 +722,68 @@ proc finalise_chunks {} {
    lappend ::codegen_quadtree {.DW chunk_0000}
    lappend ::codegen_quadtree {.DB :chunk_0000}
 
-   set ::qt_next_idx 0
-   lappend ::codegen_quadtree {qt_root:}
+   set ::next_chunksave_idx 0
+   set ::qt_next_idx 1
+   generate_quadtree_section $::quadtree 1
 
    lappend ::codegen_quadtree {.ENDS}
+}
+
+proc generate_quadtree_section {node is_root} {
+   if {$is_root} {
+      set node_name "qt_root"
+      if {$node eq {}} { error "root quadtree node cannot be empty!" }
+   } elseif {$node eq {}} {
+      return "0"
+   } else {
+      set node_name [format "qt_%04X" $::next_quadtree_node_idx]
+      incr ::next_quadtree_node_idx
+   }
+
+   if {[llength $node] == 1} {
+      # Leaf
+      set ckey $node
+      set chunk [dict get $::chunk_map $ckey]
+      set chunk_uniqidx [dict get $::uniqchunkmap $chunk]
+      set chunk_name [format "chunk_%04X" ${chunk_uniqidx}]
+      set ring_count 0
+      foreach b $chunk {
+         switch -exact -- [format %02X $b] {
+            79 { incr ring_count }
+            7A { incr ring_count }
+            7B { incr ring_count 2 }
+         }
+      }
+      set chunksave_size_bits $ring_count
+      set chunksave_size [expr {($chunksave_size_bits+7)/8}]
+      if {$chunksave_size == 0} {
+         set chunksave_name "0"
+      } else {
+         set chunksave_name [format "chunksave_%04X" $::next_chunksave_idx]
+         incr ::next_chunksave_idx
+         lappend ::codegen_sections ""
+         lappend ::codegen_sections ".RAMSECTION \"ram_${chunksave_name}\" SLOT 4 FREE"
+         lappend ::codegen_sections "${chunksave_name} dsb ${chunksave_size}"
+         lappend ::codegen_sections ".ENDS"
+      }
+      lappend ::codegen_quadtree "${node_name}:"
+      lappend ::codegen_quadtree ".DW ${chunksave_name}"
+      lappend ::codegen_quadtree ".DW ${chunk_name}"
+      lappend ::codegen_quadtree ".DB :${chunk_name}"
+
+   } else {
+      # Split
+      set children [list]
+      foreach row $node {
+         foreach child $row {
+            lappend children [generate_quadtree_section $child 0]
+         }
+      }
+      lappend ::codegen_quadtree "${node_name}:"
+      lappend ::codegen_quadtree ".DW [join $children ","]"
+   }
+
+   return $node_name
 }
 
 main {*}$argv
