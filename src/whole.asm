@@ -3267,8 +3267,9 @@ load_and_run_level:
    ld     hl, (g_global_tick_counter)  ; 00:1D4E - 2A 23 D2
    inc    hl                           ; 00:1D51 - 23
    ld     (g_global_tick_counter), hl  ; 00:1D52 - 22 23 D2
-   bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1D5D - FD CB 05 56
-   call   nz, update_ring_tiles        ; 00:1D61 - C4 79 38
+   ;bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1D5D - FD CB 05 56
+   ;call   nz, update_ring_tiles        ; 00:1D61 - C4 79 38
+   call update_ring_tiles
    ld     hl, $0060                    ; 00:1D64 - 21 60 00
    ld     (g_camera_sonic_bounds_x0), hl  ; 00:1D67 - 22 5F D2
    ld     hl, $0088                    ; 00:1D6A - 21 88 00
@@ -3290,8 +3291,9 @@ load_and_run_level:
 @main_level_loop:
    res    0, (iy+iy_00-IYBASE)         ; 00:1DAE - FD CB 00 86
    call   wait_until_irq_ticked        ; 00:1DB2 - CD 1C 03
-   bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1DBD - FD CB 05 56
-   call   nz, update_ring_tiles        ; 00:1DC1 - C4 79 38
+   ;bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1DBD - FD CB 05 56
+   ;call   nz, update_ring_tiles        ; 00:1DC1 - C4 79 38
+   call update_ring_tiles
    bit    3, (iy+iy_06_lvflag01-IYBASE)  ; 00:1DC4 - FD CB 06 5E
    call   nz, tick_game_time           ; 00:1DC8 - C4 03 3A
    ld     a, (g_global_tick_counter)   ; 00:1DCB - 3A 23 D2
@@ -3328,7 +3330,8 @@ load_and_run_level:
    call   nz, apply_bottom_up_scroll_ratchet  ; 00:1E20 - C4 FF 1E
    call   update_palette_cycle         ; 00:1E23 - CD C9 23
    bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1E26 - FD CB 05 56
-   call   nz, update_ring_tile_art_timer_and_index  ; 00:1E2A - C4 9C 23
+   ;call   nz, update_ring_tile_art_timer_and_index  ; 00:1E2A - C4 9C 23
+   call  update_ring_tile_art_timer_and_index
    xor    a                            ; 00:1E2D - AF
    ld     (g_sonic_sprite_index_override), a  ; 00:1E2E - 32 02 D3
    ld     (g_frontmost_sprite_table_offs), a  ; 00:1E31 - 32 DE D2
@@ -3390,7 +3393,8 @@ handle_game_paused:
    call   wait_until_irq_ticked        ; 00:1EAB - CD 1C 03
    ld     (iy+g_sprite_count-IYBASE), a  ; 00:1EAE - FD 77 0A
    bit    2, (iy+iy_05_lvflag00-IYBASE)  ; 00:1EB9 - FD CB 05 56
-   call   nz, update_ring_tiles        ; 00:1EBD - C4 79 38
+   ;call   nz, update_ring_tiles        ; 00:1EBD - C4 79 38
+   call update_ring_tiles
    call   update_palette_cycle         ; 00:1EC0 - CD C9 23
    call   update_ring_tile_art_timer_and_index  ; 00:1EC3 - CD 9C 23
    bit    3, (iy+iy_07_lvflag02-IYBASE)  ; 00:1EC6 - FD CB 07 5E
