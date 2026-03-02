@@ -2024,9 +2024,11 @@ refresh_one_chunk:
    jp @fn_try_this_chunk
 
 @fn_try_this_chunk:
+   push ix
    push bc
    call @fn_try_this_chunk_nopush
    pop bc
+   pop ix
    ret
 
 @fn_try_this_chunk_nopush:
@@ -2100,6 +2102,9 @@ refresh_one_chunk:
    push hl
       ld l, (ix+0)
       ld h, (ix+1)
+      ;ld a, l
+      ;or h
+      ;-: jr nz, -
       call load_ramsave
    pop hl
 
@@ -9040,9 +9045,12 @@ consume_ring:
    ;; H still contains our chunk address high byte, so we can index the ramsave buffers that way.
    ld a, h
    sub >g_level_layout
+   ;; SANITY CHECK
+   cp $04
+   -: jr nc, -
+   ;; Continue!
    add a, a
    add a, a
-   add a, $02
    ;; The above won't carry, but the below might.
    add a, <g_level_chunk_info_buffers
    ld l, a
@@ -9055,6 +9063,12 @@ consume_ring:
    ld h, (hl)
    ld l, a
    ;; HL = ramsave buffer
+   ;; SANITY CHECK: Must be a RAM address!
+   ld a, h
+   cp $C0
+   -: jr c, -
+   cp $E0
+   -: jr nc, -
 
    ;; C = mask
    ;; B = currently fetched byte

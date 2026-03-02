@@ -4,7 +4,6 @@ Regressions known at this stage:
 - The LAB1 life monitor always shows as a life monitor.
 - Left-entry-only and right-entry-only doors are weirdly offset to the left.
    - This seems to have "fixed itself"...? Keep an eye on this one.
-- The chunksave mechanism is broken and rings keep reappearing when chunks reload for some reason.
 - LAB1 and LAB2 start with Sonic being in an underwater state. It seems once you hit the waterline or close to it it fixes itself.
 
 - (almost?) All of the boss fights are broken right now due to locking to specific coordinates. None of the bosses have the expected absolute coordinates for locking the camera or potentially detecting *when* to lock the camera.
