@@ -10,7 +10,7 @@ set ::screen_lx 2560
 set ::screen_ly 1920
 
 set ::layout_boxes {
-   {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 -4 317}
+   {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 0 317}
    {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340 0 8}
    {LVLAYOUT_GHZ3 0x0001 0x0A00 0x00E8 0x0340 -18 0}
    {LVLAYOUT_BRI1 0x0001 0x1F00 0x0001 0x0140 -6 -8}
@@ -39,28 +39,91 @@ set ::layout_boxes {
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120 0 0}
 
 set ::layout_specs {
-   {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ {src/data/lv_ghz_1.objects {0x08 0x0B}}}
-   {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ {src/data/lv_ghz_2.objects {0x02 0x03}}}
-   {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ {src/data/lv_ghz_3.objects {0x07 0x16}}}
-   {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI {src/data/lv_bri_1.objects {0x03 0x0C}}}
-   {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI {src/data/lv_bri_2.objects {0x02 0x1C}}}
-   {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI {src/data/lv_bri_3.objects {0x06 0x1B}}}
-   {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN {src/data/lv_jun_1.objects {0x02 0x0B}}}
-   {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN {src/data/lv_jun_2.objects {0x02 0xFA}}}
-   {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN {src/data/lv_jun_3.objects {0x03 0x21}}}
-   {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects {0x02 0x05}}}
-   {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB {src/data/lv_lab_2.objects {0x03 0x09}}}
-   {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects {0x03 0x25}}}
-   {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects {0x03 0x0B}}}
-   {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR {src/data/lv_scr_2_main.objects {0x04 0x16 0x7B 0x03 0x7B 0x1B 0x50 0x10}}}
-   {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR {src/data/lv_scr_2_upper.objects {0x03 0x3D 0x27 0x1C}}}
-   {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR {src/data/lv_scr_2_lower.objects {0x03 0x03}}}
-   {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects {0x03 0x36}}}
-   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects {0x02 0x1D}}}
-   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects {0x0A 0x17}}}
-   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects {0x03 0x3B} src/data/lv_sky_3.objects {0x02 0x01}}}
-   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_5.objects {0x02 0x06} src/data/lv_special_6.objects {0x02 0x1E} src/data/lv_special_7.objects {0x03 0x3B}}}
-   {LVLAYOUT_SPECIAL_4_8 src/data/lv_jun_2_special_4_8.layout4 special {src/data/lv_special_8.objects {0x06 0x04}}}
+
+   {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ {src/data/lv_ghz_1.objects LVOBJECTS_GHZ1 {
+      LVHEAD_00 0x08 0x0B {00 00 0A 03 00 04 00 20 00 00}
+   }}}
+   {LVLAYOUT_GHZ2 src/data/lv_ghz_2.layout7 GHZ {src/data/lv_ghz_2.objects LVOBJECTS_GHZ2 {
+      LVHEAD_01 0x02 0x03 {00 00 0A 03 00 04 00 20 00 00}
+   }}}
+   {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ {src/data/lv_ghz_3.objects LVOBJECTS_GHZ3 {
+      LVHEAD_02 0x07 0x16 {00 00 0A 03 00 00 00 00 00 00}
+   }}}
+   {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI {src/data/lv_bri_1.objects LVOBJECTS_BRI1 {
+      LVHEAD_03 0x03 0x0C {01 01 08 03 01 04 00 20 00 01}
+   }}}
+   {LVLAYOUT_BRI2 src/data/lv_bri_2.layout7 BRI {src/data/lv_bri_2.objects LVOBJECTS_BRI2 {
+      LVHEAD_04 0x02 0x1C {01 01 08 03 01 04 00 20 00 01}
+   }}}
+   {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI {src/data/lv_bri_3.objects LVOBJECTS_BRI3 {
+      LVHEAD_05 0x06 0x1B {01 01 08 03 01 00 00 00 00 01}
+   }}}
+   {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN {src/data/lv_jun_1.objects LVOBJECTS_JUN1 {
+      LVHEAD_06 0x02 0x0B {02 02 05 03 02 04 00 20 00 02}
+   }}}
+   {LVLAYOUT_JUN2_special_4_8 src/data/lv_jun_2_special_4_8.layout4 JUN {src/data/lv_jun_2.objects LVOBJECTS_JUN2 {
+      LVHEAD_07 0x02 0xFA {02 02 05 03 02 04 00 20 00 02}
+   }}}
+   {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN {src/data/lv_jun_3.objects LVOBJECTS_JUN3 {
+      LVHEAD_08 0x03 0x21 {02 02 05 03 02 00 00 00 00 02}
+   }}}
+   {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects LVOBJECTS_LAB1 {
+      LVHEAD_09 0x02 0x05 {03 03 05 03 02 04 80 20 00 03}
+   }}}
+   {LVLAYOUT_LAB2 src/data/lv_lab_2.layout6 LAB {src/data/lv_lab_2.objects LVOBJECTS_LAB2 {
+      LVHEAD_0A 0x03 0x09 {03 03 05 03 02 04 80 20 00 03}
+   }}}
+   {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects LVOBJECTS_LAB3 {
+      LVHEAD_0B 0x03 0x25 {03 03 05 03 02 00 80 10 00 03}
+   }}}
+   {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects LVOBJECTS_SCR1 {
+      LVHEAD_0C 0x03 0x0B {04 04 06 04 04 04 00 20 00 04}
+   }}}
+   {LVLAYOUT_SCR2_main src/data/lv_scr_2_main.layout7 SCR {src/data/lv_scr_2_main.objects LVOBJECTS_SCR2_main {
+      LVHEAD_0D 0x04 0x16 {04 04 06 04 04 04 00 20 00 04}
+      LVHEAD_18 0x7B 0x03 {04 04 06 04 04 04 00 20 00 04}
+      LVHEAD_19 0x7B 0x1B {04 04 06 04 04 04 00 20 00 04}
+      LVHEAD_16 0x50 0x10 {04 04 06 04 04 04 00 20 00 04}
+   }}}
+   {LVLAYOUT_SCR2_upper src/data/lv_scr_2_upper.layout6 SCR {src/data/lv_scr_2_upper.objects LVOBJECTS_SCR2_upper {
+      LVHEAD_14 0x03 0x3D {04 04 06 04 04 04 00 20 00 04}
+      LVHEAD_17 0x27 0x1C {04 04 06 04 04 04 00 20 00 04}
+   }}}
+   {LVLAYOUT_SCR2_lower src/data/lv_scr_2_lower.layout5 SCR {src/data/lv_scr_2_lower.objects LVOBJECTS_SCR2_lower {
+      LVHEAD_15 0x03 0x03 {04 04 06 04 04 04 00 20 00 04}
+   }}}
+   {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects LVOBJECTS_SCR3 {
+      LVHEAD_0E 0x03 0x36 {04 04 06 04 04 04 00 00 00 04}
+   }}}
+   {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects LVOBJECTS_SCR3 {
+      LVHEAD_0F 0x02 0x1D {05 05 06 04 05 04 00 22 00 04}
+   }}}
+   {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects LVOBJECTS_SCR3 {
+      LVHEAD_10 0x0A 0x17 {05 05 06 04 08 00 00 20 00 05}
+   }}}
+   {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects LVOBJECTS_SCR3 {
+      {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {07 06 08 04 06 00 00 00 00 04}
+   } src/data/lv_sky_3.objects LVOBJECTS_SCR3 {
+      LVHEAD_11 0x02 0x01 {07 06 08 04 06 00 00 00 00 04}
+   }}}
+   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_1.objects LVOBJECTS_SPECIAL_1 {
+      LVHEAD_1C 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_5.objects LVOBJECTS_SPECIAL_5 {
+      LVHEAD_20 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_2.objects LVOBJECTS_SPECIAL_2 {
+      LVHEAD_1D 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_6.objects LVOBJECTS_SPECIAL_6 {
+      LVHEAD_21 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_3.objects LVOBJECTS_SPECIAL_3 {
+      LVHEAD_1E 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_7.objects LVOBJECTS_SPECIAL_7 {
+      LVHEAD_22 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
+   }}}
+   {LVLAYOUT_SPECIAL_4_8 src/data/lv_jun_2_special_4_8.layout4 special {src/data/lv_special_4.objects LVOBJECTS_SPECIAL_4 {
+      LVHEAD_1F 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
+   } src/data/lv_special_8.objects LVOBJECTS_SPECIAL_8 {
+      LVHEAD_23 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
+   }}}
 }
 
 set ::tilemap_specs {
@@ -371,7 +434,7 @@ proc load_level_layout {lbs} {
    set base_x $::next_layout_x
    set base_y $::next_layout_y
    set ::next_layout_row_y [expr {max($::next_layout_row_y, $base_y+$vheight_px)}]
-   puts "$ls_key $tm_key $width_mt $height_mt $vwidth_mt $vheight_mt $base_x $base_y"
+   puts ";; $ls_key $tm_key $width_mt $height_mt $vwidth_mt $vheight_mt $base_x $base_y"
 
    # Load the data
    set fp [open $ls_fname rb]
@@ -417,10 +480,10 @@ proc load_level_layout {lbs} {
             if {$px >= $x0_px && $px < $x1_px} {
                if {$v != 0} {
                   set eff_width_px [expr {max($eff_width_px, $px-$x0_px+32)}]
-                  set ::min_layout_x [expr {min($::min_layout_x, $base_x+$px+$x0_px)}]
-                  set ::max_layout_x [expr {max($::max_layout_x, $base_x+$px+$x0_px+32)}]
-                  set ::min_layout_y [expr {min($::min_layout_y, $base_y+$py+$y0_px)}]
-                  set ::max_layout_y [expr {max($::max_layout_y, $base_y+$py+$y0_px+32)}]
+                  set ::min_layout_x [expr {min($::min_layout_x, $base_x+$px-$x0_px)}]
+                  set ::max_layout_x [expr {max($::max_layout_x, $base_x+$px-$x0_px+32)}]
+                  set ::min_layout_y [expr {min($::min_layout_y, $base_y+$py-$y0_px)}]
+                  set ::max_layout_y [expr {max($::max_layout_y, $base_y+$py-$y0_px+32)}]
                   .canvas create image \
                      [expr {$base_x+$px-$x0_px}] \
                      [expr {$base_y+$py-$y0_px}] \
@@ -435,12 +498,33 @@ proc load_level_layout {lbs} {
    }
 
    # Load objects
-   foreach {fname spawn_list} $objects_spec_list {
+   foreach {fname obj_label header_list} $objects_spec_list {
       set fp [open $fname rb]
       try {
-         foreach {spawnx spawny} $spawn_list {
+         foreach {header_labels spawnx spawny header_spec} $header_list {
             set spawnx [expr {($spawnx<<5)+($base_x-$x0_px)}]
             set spawny [expr {($spawny<<5)+($base_y-$y0_px)}]
+            foreach lbl $header_labels {
+               puts "${lbl}:"
+            }
+            puts [format ".db $%s" [lindex $header_spec 0]]
+            puts [format ".dw $%04X, $%04X, $%04X, $%04X" \
+               [expr {max(1,$base_x)}] [expr {$base_x+$x1_px-$x0_px-(256-1)}] \
+               [expr {max(1,$base_y)}] [expr {$base_y+$y1_px-$y0_px-(192-1)}] \
+               ]
+            puts [format ".dw $%04X, $%04X" $spawnx $spawny]
+            puts [format ".dw %s" $ls_key]
+            puts [format ".dw LVTILEMAP_%s" $tm_key]
+            puts [format ".db :LVTILEMAP_%s" $tm_key]
+            puts [format ".dw ART_%s_0000" $tm_key]
+            puts [format ".db :ART_%s_0000" $tm_key]
+            puts [format ".dw ART_%s_2000" $tm_key]
+            puts [format ".db :ART_%s_2000" $tm_key]
+            puts [format ".db $%s, $%s, $%s, $%s" {*}[lrange $header_spec 1 4]]
+            puts [format ".dw %s" $obj_label]
+            puts [format ".db :%s" $obj_label]
+            puts [format ".db $%s, $%s, $%s, $%s, $%s" {*}[lrange $header_spec 5 9]]
+            puts ""
             .canvas create rectangle \
                [expr {$spawnx+4}] \
                [expr {$spawny+4}] \
