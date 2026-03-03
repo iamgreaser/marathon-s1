@@ -3566,6 +3566,10 @@ update_signpost_timer:
    jp     (hl)                         ; 00:1FC3 - E9
 
 @go_to_next_level:
+   ;; If we're making Sonic run off the screen, use the vanilla level change handling.
+   bit 1, (iy+iy_06_lvflag01-IYBASE)
+   jp nz, @go_to_not_next_level
+
    ;; Advance to next level
    ld hl, g_level
    inc (hl)
