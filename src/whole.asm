@@ -133,6 +133,8 @@ g_level_limit_y0 dw   ; D277
 g_level_limit_y1 dw   ; D279
 g_level_camera_lock_towards_x dw   ; D27B
 g_level_camera_lock_towards_y dw   ; D27D
+
+;; v Group
 g_chaos_emeralds_collected db   ; D27F
 g_level_lives_collected db   ; D280
 g_special_stages_attempted db   ; D281
@@ -141,6 +143,9 @@ g_sonic_died_at_least_once db   ; D283
 g_continues db   ; D284
 g_special_stage_ring_bonus_mult_big_endian_hi db   ; D285
 g_special_stage_ring_bonus_mult_big_endian_lo db   ; D286
+;; ^ Group
+
+;; v Group
 g_level_restart_countdown_timer db   ; D287
 g_current_signpost db   ; D288
 g_signpost_tickdown_counter db   ; D289
@@ -162,6 +167,8 @@ g_y_oscillate_baseline_target dw   ; D29F
 g_y_oscillate_sub db   ; D2A1
 g_y_oscillate_pix db   ; D2A2
 g_y_oscillate_pix_hi db   ; D2A3
+;; ^ Group
+
 g_palette_cycle_tick_remain db   ; D2A4
 g_palette_cycle_tick_period db   ; D2A5
 g_palette_cycle_index db   ; D2A6
@@ -228,14 +235,14 @@ g_ending_special_bonus_BCD_big_endian db   ; D2FF
 .  dsb 2
 g_sonic_sprite_index_override db   ; D302
 .  dsb 2
+;; v Group
 g_level_lives_collected_mask db   ; D305
 .  dsb 5
 g_level_has_emerald_mask db   ; D30B
 .  dsb 5
-g_level_has_checkpoint_mask db   ; D311
-.  dsb 5
 g_level_button_toggled_on_mask db   ; D317
 .  dsb 5
+;; ^ Group
 g_ring_sparkle_sprite_x db   ; D31D
 .  dsb 1
 g_ring_sparkle_sprite_y db   ; D31F
@@ -243,8 +250,6 @@ g_ring_sparkle_sprite_y db   ; D31F
 g_ring_sparkle_sprite_countdown_timer db   ; D321
 g_credits_sprites db   ; D322
 .  dsb 11
-g_per_level_checkpoint_positions dw   ; D32E
-.  dsb 36
 g_level_header_copy dsb 37
 g_object_ptrs dw   ; D37C
 g_active_object_ptrs dw   ; D37E
@@ -257,9 +262,12 @@ g_temporary_palette_buffer db   ; D3BC
 ;
 g_of_saved_hl dw
 ;; Level chunk information, [2y][2x] arrangement:
-;; db xchunk<<1, ychunk<<1
 ;; dw ramsave_buffer_ram_ptr
+;; db xchunk<<1, ychunk<<1
 g_level_chunk_info_buffers dsw 4*4
+;; Checkpoint position, $0000,$0000 = no checkpoint
+g_level_checkpoint_x_pix dw
+g_level_checkpoint_y_pix dw
 
 object_list db   ; D3FC
 sonic_x_sub db   ; D3FD
@@ -2702,14 +2710,9 @@ run_game_over_screen:
    jr     @each_continue_countdown_number  ; 00:14CA - 18 C4
 
 @clear_level_checkpoint_and_continue:
-   ld     hl, g_level_has_checkpoint_mask  ; 00:14CC - 21 11 D3
-   call   calc_level_offset_HL_and_mask_C  ; 00:14CF - CD 02 0C
-   ld     a, c                         ; 00:14D2 - 79
-   cpl                                 ; 00:14D3 - 2F
-   ld     c, a                         ; 00:14D4 - 4F
-   ld     a, (hl)                      ; 00:14D5 - 7E
-   and    c                            ; 00:14D6 - A1
-   ld     (hl), a                      ; 00:14D7 - 77
+   ld hl, $0000
+   ld (g_level_checkpoint_x_pix), hl
+   ld (g_level_checkpoint_y_pix), hl
    ld     hl, g_continues              ; 00:14D8 - 21 84 D2
    dec    (hl)                         ; 00:14DB - 35
    scf                                 ; 00:14DC - 37
@@ -3163,7 +3166,7 @@ main:
    ld     (g_global_tick_counter), a   ; 00:1C61 - 32 23 D2
    ld     (iy+iy_0D-IYBASE), a         ; 00:1C64 - FD 77 0D
    ld     hl, g_chaos_emeralds_collected  ; 00:1C67 - 21 7F D2
-   ld     b, $08                       ; 00:1C6A - 06 08
+   ld     b, g_special_stage_ring_bonus_mult_big_endian_lo+1-g_chaos_emeralds_collected
    call   fill_ram_at_hl_for_b_bytes_with_a  ; 00:1C6C - CD E8 1C
    ld     hl, iy_00                    ; 00:1C6F - 21 00 D2
    ld     b, $0E                       ; 00:1C72 - 06 0E
@@ -3172,7 +3175,7 @@ main:
    ld     b, $04                       ; 00:1C7A - 06 04
    call   fill_ram_at_hl_for_b_bytes_with_a  ; 00:1C7C - CD E8 1C
    ld     hl, g_level_lives_collected_mask  ; 00:1C7F - 21 05 D3
-   ld     b, $18                       ; 00:1C82 - 06 18
+   ld     b, $12                       ; 00:1C82 - 06 18
    call   fill_ram_at_hl_for_b_bytes_with_a  ; 00:1C84 - CD E8 1C
    res    0, (iy+iy_02-IYBASE)         ; 00:1C87 - FD CB 02 86
    res    1, (iy+iy_02-IYBASE)         ; 00:1C8B - FD CB 02 8E
@@ -3628,6 +3631,11 @@ update_signpost_timer:
    ex de, hl
    call load_object_list_skipping_sonic
 
+   ;; Clear the checkpoint.
+   ld hl, $0000
+   ld (g_level_checkpoint_x_pix), hl
+   ld (g_level_checkpoint_y_pix), hl
+
    ;; Return happy
    ld a, $01
    ret
@@ -3790,11 +3798,9 @@ load_and_init_level_from_header:
    ld     (g_water_irq_line_state), a  ; 00:2109 - 32 47 D2
    ld     (g_water_onscreen_y), a      ; 00:210C - 32 48 D2
    ld     hl, g_level_restart_countdown_timer  ; 00:210F - 21 87 D2
-   ld     b, $1D                       ; 00:2112 - 06 1D
+   ;ld     b, $1D                       ; 00:2112 - 06 1D
+   ld     b, g_y_oscillate_pix_hi+1-g_level_restart_countdown_timer
    call   fill_ram_at_hl_for_b_bytes_with_a  ; 00:2114 - CD E8 1C
-   ld     hl, g_level_has_checkpoint_mask  ; 00:2117 - 21 11 D3
-   call   calc_level_offset_HL_and_mask_C  ; 00:211A - CD 02 0C
-   ex     de, hl                       ; 00:211D - EB
    ;ld     hl, $0800                    ; 00:211E - 21 00 08
    ld hl, $FF00
    ld     a, (g_level)                 ; 00:2121 - 3A 3E D2
@@ -3803,8 +3809,13 @@ load_and_init_level_from_header:
    cp     $0B                          ; 00:2128 - FE 0B
    jr     z, @is_fully_underwater_level_index  ; 00:212A - 28 06
    jr     nc, @not_water_level_index   ; 00:212C - 30 0C
-   ld     a, (de)                      ; 00:212E - 1A
-   and    c                            ; 00:212F - A1
+
+   ld de, (g_level_checkpoint_x_pix)
+   ld a, e
+   or d
+   ld de, (g_level_checkpoint_y_pix)
+   or e
+   or d
    jr     z, @not_water_level_index    ; 00:2130 - 28 08
 
 @is_fully_underwater_level_index:
@@ -3854,41 +3865,40 @@ load_and_init_level_from_header:
    ld     de, g_level_limit_x0         ; 00:2193 - 11 73 D2
    ld     bc, $0008                    ; 00:2196 - 01 08 00
    ldir                                ; 00:2199 - ED B0
+   ;; HL = spawn point
+   ld (tmp_08), hl
+   inc hl
+   inc hl
+   inc hl
+   inc hl
    push   hl                           ; 00:219B - E5
-   push   hl                           ; 00:219C - E5
-   ld     hl, g_level_has_checkpoint_mask  ; 00:219D - 21 11 D3
-   call   calc_level_offset_HL_and_mask_C  ; 00:21A0 - CD 02 0C
-   ld     a, (hl)                      ; 00:21A3 - 7E
-   ex     de, hl                       ; 00:21A4 - EB
-   pop    hl                           ; 00:21A5 - E1
-   and    c                            ; 00:21A6 - A1
-   ;; FIXME: Checkpoint logic needs simplifying and also needs to handle 16-bit-pair coordinates --GM
-   .IF 0
-   jr     z, @checkpoint_not_set       ; 00:21A7 - 28 1B
-   cpl                                 ; 00:21A9 - 2F
-   ld     c, a                         ; 00:21AA - 4F
-   ld     a, (de)                      ; 00:21AB - 1A
-   and    c                            ; 00:21AC - A1
-   ld     (de), a                      ; 00:21AD - 12
+
+   ;; Check if a checkpoint is set
+   ld de, (g_level_checkpoint_x_pix)
+   ld a, e
+   or d
+   ld de, (g_level_checkpoint_y_pix)
+   or e
+   or d
+   jr z, @checkpoint_not_set
+
    ld     hl, LUT_bonus_stage_time_limits  ; 00:21AE - 21 02 24
    ld     de, g_time_mins              ; 00:21B1 - 11 CE D2
    ld     bc, $0003                    ; 00:21B4 - 01 03 00
    ldir                                ; 00:21B7 - ED B0
-   ld     a, (g_level)                 ; 00:21B9 - 3A 3E D2
-   add    a, a                         ; 00:21BC - 87
-   ld     e, a                         ; 00:21BD - 5F
-   ld     d, $00                       ; 00:21BE - 16 00
-   ld     hl, g_per_level_checkpoint_positions  ; 00:21C0 - 21 2E D3
-   add    hl, de                       ; 00:21C3 - 19
+   ld hl, g_level_checkpoint_x_pix
+   ld (tmp_08), hl
 
 @checkpoint_not_set:
-   .ENDIF
-   ld     (tmp_08), hl                 ; 00:21C4 - 22 16 D2
+   ld ix, (tmp_08)
 
-   pop ix
+   ;; Force the low 5 bits of the camera coords to 0
+   ;; Otherwise, scrolling tends to desync with the initial screen draw
 
    ;; Camera X
-   ld l, (ix+0)
+   ld a, (ix+0)
+   and $E0
+   ld l, a
    ld h, (ix+1)
    ld bc, $03<<5
    and a  ; clear carry
@@ -3900,7 +3910,9 @@ load_and_init_level_from_header:
    ld (g_displayed_level_scroll_x_pix_lo), hl
 
    ;; Camera Y
-   ld l, (ix+2)
+   ld a, (ix+2)
+   and $E0
+   ld l, a
    ld h, (ix+3)
    ld bc, $03<<5
    and a  ; clear carry
@@ -3911,13 +3923,7 @@ load_and_init_level_from_header:
    ld (g_level_scroll_y_pix_lo), hl
    ld (g_displayed_level_scroll_y_pix_lo), hl
 
-   push ix
    pop hl
-   inc hl
-   inc hl
-   inc hl
-   inc hl
-
    push   hl                           ; 00:2211 - E5
    call   unpack_level_layout_into_ram  ; 00:2243 - CD 10 0A
    ;; HACK: Unlock the camera
@@ -9517,34 +9523,14 @@ objfunc_51_monitor_checkpoint:
    jr     c, @continue_into_common_main  ; 01:5D43 - 38 35
    call   handle_sonic_monitor_collision  ; 01:5D45 - CD EB 5D
    jr     c, @continue_into_common_main  ; 01:5D48 - 38 30
-   ld     hl, g_level_has_checkpoint_mask  ; 01:5D4A - 21 11 D3
-   call   calc_level_offset_HL_and_mask_C  ; 01:5D4D - CD 02 0C
-   ld     a, (hl)                      ; 01:5D50 - 7E
-   or     c                            ; 01:5D51 - B1
-   ld     (hl), a                      ; 01:5D52 - 77
-   ld     a, (g_level)                 ; 01:5D53 - 3A 3E D2
-   add    a, a                         ; 01:5D56 - 87
-   ld     e, a                         ; 01:5D57 - 5F
-   ld     d, $00                       ; 01:5D58 - 16 00
-   ld     hl, g_per_level_checkpoint_positions  ; 01:5D5A - 21 2E D3
-   add    hl, de                       ; 01:5D5D - 19
-   ex     de, hl                       ; 01:5D5E - EB
    ld     l, (ix+2)                    ; 01:5D5F - DD 6E 02
    ld     h, (ix+3)                    ; 01:5D62 - DD 66 03
-   add    hl, hl                       ; 01:5D65 - 29
-   add    hl, hl                       ; 01:5D66 - 29
-   add    hl, hl                       ; 01:5D67 - 29
-   ld     a, h                         ; 01:5D68 - 7C
-   ld     (de), a                      ; 01:5D69 - 12
-   inc    de                           ; 01:5D6A - 13
+   ld (g_level_checkpoint_x_pix), hl
    ld     l, (ix+5)                    ; 01:5D6B - DD 6E 05
    ld     h, (ix+6)                    ; 01:5D6E - DD 66 06
-   add    hl, hl                       ; 01:5D71 - 29
-   add    hl, hl                       ; 01:5D72 - 29
-   add    hl, hl                       ; 01:5D73 - 29
-   ld     a, h                         ; 01:5D74 - 7C
-   dec    a                            ; 01:5D75 - 3D
-   ld     (de), a                      ; 01:5D76 - 12
+   ld de, -$0020
+   add hl, de
+   ld (g_level_checkpoint_y_pix), hl
    jp     monitor_common_destroy_after_hit  ; 01:5D77 - C3 29 5B
 
 @continue_into_common_main:

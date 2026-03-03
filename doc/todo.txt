@@ -29,7 +29,7 @@ And then of course I have to stitch it into one giant level. That object system 
 
 Prerequisites:
 
-- [ ] There must only be one checkpoint position, not one per level.
+- [x] There must only be one checkpoint position, not one per level.
    - This also means I have to get rid of the checkpoint flags array.
    - The position coordinates also have to be a 16-bit pair indicating a pixel position.
    - We can assume that a checkpoint position of ($0000, $0000) means it isn't set, so we won't need to keep a flag around for that.
