@@ -16503,14 +16503,22 @@ objfunc_22_SCR_boss:
    of_setbox $1E, $2F
    bit    0, (ix+24)                   ; 02:A7F5 - DD CB 18 46
    jr     nz, @already_initialised     ; 02:A7F9 - 20 35
-   ld     hl, $0340                    ; 02:A7FB - 21 40 03
+   ;; [$0340, $0540], $0220 when spawning at $0480, $0280 + offset of $0000, $0000
+   ld l, (ix+2)
+   ld h, (ix+3)
+   ld de, $FEC0
+   add hl, de
    ld     (g_level_limit_x0), hl       ; 02:A7FE - 22 73 D2
-   ld     hl, $0540                    ; 02:A801 - 21 40 05
+   ld de, $0200
+   add hl, de
    ld     (g_level_limit_x1), hl       ; 02:A804 - 22 75 D2
    ld     hl, (g_level_scroll_y_pix_lo)  ; 02:A807 - 2A 5D D2
    ld     (g_level_limit_y0), hl       ; 02:A80A - 22 77 D2
    ld     (g_level_limit_y1), hl       ; 02:A80D - 22 79 D2
-   ld     hl, $0220                    ; 02:A810 - 21 20 02
+   ld l, (ix+5)
+   ld h, (ix+6)
+   ld de, $FFA0
+   add hl, de
    ld     (g_level_camera_lock_towards_y), hl  ; 02:A813 - 22 7D D2
    ld hl, ART_0C_EF3F
    ld a, :ART_0C_EF3F
@@ -16552,9 +16560,13 @@ objfunc_22_SCR_boss:
    ld     (ix+7), c                    ; 02:A866 - DD 71 07
    ld     (ix+8), b                    ; 02:A869 - DD 70 08
    ld     (ix+9), a                    ; 02:A86C - DD 77 09
+   ; X=$05A0 when x1 limit is $0540
+   ld hl, (g_level_limit_x1)
+   ld de, $0060
+   add hl, de
+   ex de, hl
    ld     l, (ix+2)                    ; 02:A86F - DD 6E 02
    ld     h, (ix+3)                    ; 02:A872 - DD 66 03
-   ld     de, $05A0                    ; 02:A875 - 11 A0 05
    xor    a                            ; 02:A878 - AF
    sbc    hl, de                       ; 02:A879 - ED 52
    jp     c, @draw_platform_and_maybe_play_platform_sound  ; 02:A87B - DA 74 A9
@@ -16570,11 +16582,23 @@ objfunc_22_SCR_boss:
 @finished_running_to_platform:
    bit    2, (ix+24)                   ; 02:A893 - DD CB 18 56
    jr     nz, @already_rode_platform_up  ; 02:A897 - 20 34
-   ld     hl, $0530                    ; 02:A899 - 21 30 05
-   ld     de, $0220                    ; 02:A89C - 11 20 02
+   ; $0530, $0220 when (x1, y lock) limit is $0540, $0220
+   ; But make sure we aren't locked already!
+   ld hl, (g_level_camera_lock_towards_x)
+   ld a, l
+   or h
+   jr nz, @camera_x_already_locked
+   ld hl, (g_level_limit_x1)
+   ld bc, $FFF0
+   add hl, bc
+   ld de, (g_level_camera_lock_towards_y)
    call   set_locked_camera_target     ; 02:A89F - CD 8C 7C
+@camera_x_already_locked:
    ld     (iy+g_inputs_player_1-IYBASE), $FF  ; 02:A8A2 - FD 36 03 FF
-   ld     hl, $05A0                    ; 02:A8A6 - 21 A0 05
+   ; X=$05A0 when x lock is $0530
+   ld hl, (g_level_camera_lock_towards_x)
+   ld bc, $0070
+   add hl, bc
    ld     (ix+1), $00                  ; 02:A8A9 - DD 36 01 00
    ld     (ix+2), l                    ; 02:A8AD - DD 75 02
    ld     (ix+3), h                    ; 02:A8B0 - DD 74 03
@@ -16598,20 +16622,30 @@ objfunc_22_SCR_boss:
 
 @already_lowered_platform_for_sonic:
    bit    4, (ix+24)                   ; 02:A8EB - DD CB 18 66
-   jr     nz, @sonic_already_landed_on_platform_and_level_is_ending  ; 02:A8EF - 20 7A
+   jp nz, @sonic_already_landed_on_platform_and_level_is_ending
    ld     de, (sonic_x)                ; 02:A8F1 - ED 5B FE D3
-   ld     hl, $0596                    ; 02:A8F5 - 21 96 05
+   ;; $0596 when x lock is $0530
+   ld hl, (g_level_camera_lock_towards_x)
+   ld bc, $0066
+   add hl, bc
    and    a                            ; 02:A8F8 - A7
    sbc    hl, de                       ; 02:A8F9 - ED 52
-   jr     nc, @draw_platform_and_maybe_play_platform_sound  ; 02:A8FB - 30 77
-   ld     hl, $05C0                    ; 02:A8FD - 21 C0 05
+   jp nc, @draw_platform_and_maybe_play_platform_sound
+   ;; $05C0 when x lock is $0530
+   ld hl, (g_level_camera_lock_towards_x)
+   ld bc, $0090
+   add hl, bc
    xor    a                            ; 02:A900 - AF
    sbc    hl, de                       ; 02:A901 - ED 52
    jr     c, @draw_platform_and_maybe_play_platform_sound  ; 02:A903 - 38 6F
    or     (ix+17)                      ; 02:A905 - DD B6 11
    jr     nz, @platform_not_at_bottom_yet  ; 02:A908 - 20 13
+   ;; $028D when y lock is $0220
+   ld hl, (g_level_camera_lock_towards_y)
+   ld bc, $006D
+   add hl, bc
+   ex de, hl
    ld     hl, (sonic_y)                ; 02:A90A - 2A 01 D4
-   ld     de, $028D                    ; 02:A90D - 11 8D 02
    xor    a                            ; 02:A910 - AF
    sbc    hl, de                       ; 02:A911 - ED 52
    jr     c, @draw_platform_and_maybe_play_platform_sound  ; 02:A913 - 38 5F
@@ -16623,12 +16657,18 @@ objfunc_22_SCR_boss:
 @platform_not_at_bottom_yet:
    ld     a, $80                       ; 02:A91D - 3E 80
    ld     (sonic_flags_ix_24), a       ; 02:A91F - 32 14 D4
-   ld     hl, $05A0                    ; 02:A922 - 21 A0 05
+   ; X=$05A0 when x lock is $0530
+   ld hl, (g_level_camera_lock_towards_x)
+   ld bc, $0070
+   add hl, bc
    ld     (sonic_x), hl                ; 02:A925 - 22 FE D3
    ld     (iy+g_inputs_player_1-IYBASE), $FF  ; 02:A928 - FD 36 03 FF
    ld     e, (ix+17)                   ; 02:A92C - DD 5E 11
    ld     d, $00                       ; 02:A92F - 16 00
-   ld     hl, $028E                    ; 02:A931 - 21 8E 02
+   ;; $028E when y lock is $0220
+   ld hl, (g_level_camera_lock_towards_y)
+   ld bc, $006E
+   add hl, bc
    xor    a                            ; 02:A934 - AF
    sbc    hl, de                       ; 02:A935 - ED 52
    ld     (sonic_y_sub), a             ; 02:A937 - 32 00 D4
@@ -16661,7 +16701,10 @@ objfunc_22_SCR_boss:
 @draw_platform_and_maybe_play_platform_sound:
    ld     e, (ix+17)                   ; 02:A974 - DD 5E 11
    ld     d, $00                       ; 02:A977 - 16 00
-   ld     hl, $0280                    ; 02:A979 - 21 80 02
+   ;; $0280 when y lock is $0220
+   ld hl, (g_level_camera_lock_towards_y)
+   ld bc, $0060
+   add hl, bc
    xor    a                            ; 02:A97C - AF
    sbc    hl, de                       ; 02:A97D - ED 52
    ld     (ix+4), a                    ; 02:A97F - DD 77 04
@@ -16669,14 +16712,28 @@ objfunc_22_SCR_boss:
    ld     (ix+6), h                    ; 02:A985 - DD 74 06
    ld     e, (ix+17)                   ; 02:A988 - DD 5E 11
    ld     d, $00                       ; 02:A98B - 16 00
-   ld     hl, $02AF                    ; 02:A98D - 21 AF 02
+   ;; $02AF when y lock is $0220
+   ld hl, (g_level_camera_lock_towards_y)
+   ld bc, $008F
+   add hl, bc
    and    a                            ; 02:A990 - A7
    sbc    hl, de                       ; 02:A991 - ED 52
    ld     bc, (g_level_scroll_y_pix_lo)  ; 02:A993 - ED 4B 5D D2
    and    a                            ; 02:A997 - A7
    sbc    hl, bc                       ; 02:A998 - ED 42
    ex     de, hl                       ; 02:A99A - EB
-   ld     hl, $05A0                    ; 02:A99B - 21 A0 05
+   ;; $05A0 when x lock is $0530
+   ld hl, (g_level_camera_lock_towards_x)
+   ld a, l
+   or h
+   jr nz, @skip_use_x1_relative_instead
+      ;; Use X1 value (originally $0540) minus $0010 instead
+      ld hl, (g_level_limit_x1)
+      ld bc, $FFF0
+      add hl, bc
+   @skip_use_x1_relative_instead:
+   ld bc, $0070
+   add hl, bc
    ld     bc, (g_level_scroll_x_pix_lo)  ; 02:A99E - ED 4B 5A D2
    and    a                            ; 02:A9A2 - A7
    sbc    hl, bc                       ; 02:A9A3 - ED 42

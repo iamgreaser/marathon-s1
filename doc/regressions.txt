@@ -10,11 +10,10 @@ Regressions known at this stage:
       - [x] GHZ3
       - [x] BRI3
       - [x] JUN3
-      - [ ] LAB3
-         - Camera lock fixed, but absolute positions need to be made relative.
-      - [ ] SCR3
+      - [x] LAB3
+      - [x] SCR3
       - [ ] SKY3
-         - First camera lock, but a lot of absolute positions result in a lot of breakage.
+         - First camera lock fixed, but a lot of absolute positions result in a lot of breakage.
 - All teleporters and corridors are broken.
 - Bosses locking the screen position when Sonic jumps a bit high usually results in death when Sonic attempts to land.
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
