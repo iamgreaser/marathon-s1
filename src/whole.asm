@@ -17983,7 +17983,9 @@ objfunc_4A_SKY3_boss:
    bit    2, (ix+24)                   ; 02:B640 - DD CB 18 56
    jp     nz, @start_robotnik_running_away  ; 02:B644 - C2 21 B8
    call   move_locked_camera_towards_target  ; 02:B647 - CD A6 7C
-   call   @fn_update_damage            ; 02:B64A - CD E6 B7
+   ;; Don't update damage until we're initialised
+   bit 0, (ix+24)
+   call nz, @fn_update_damage
    bit    0, (ix+24)                   ; 02:B64D - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B651 - 20 44
    ;; $0350, $0120 when spawning at $0420, $0160 + offset of $0000, $0000
@@ -18166,8 +18168,12 @@ objfunc_4A_SKY3_boss:
    ret    z                            ; 02:B7F8 - C8
 
 @sonic_is_rolling_to_damage_us:
+   ; X=$0410 when x lock is $0350
+   ld hl, (g_level_camera_lock_towards_x)
+   ld de, $00C0
+   add hl, de
+   ex de, hl
    ld     hl, (sonic_x)                ; 02:B7F9 - 2A FE D3
-   ld     de, $0410                    ; 02:B7FC - 11 10 04
    and    a                            ; 02:B7FF - A7
    sbc    hl, de                       ; 02:B800 - ED 52
    ret    c                            ; 02:B802 - D8
@@ -18207,11 +18213,31 @@ objfunc_4A_SKY3_boss:
    inc    hl                           ; 02:B840 - 23
    ld     d, (hl)                      ; 02:B841 - 56
    inc    hl                           ; 02:B842 - 23
+   ;; X when x0 limit is $0350
+   ;; base X + x0 limit - $0350
+   push hl
+      ld hl, (g_level_limit_x0)
+      ex de, hl
+      add hl, de
+      ld de, -$0350
+      add hl, de
+      ex de, hl
+   pop hl
    ld     (g_screen_tile_replace_x), de  ; 02:B843 - ED 53 AB D2
    ld     e, (hl)                      ; 02:B847 - 5E
    inc    hl                           ; 02:B848 - 23
    ld     d, (hl)                      ; 02:B849 - 56
    inc    hl                           ; 02:B84A - 23
+   ;; Y when y lock is $0120
+   ;; base Y + y lock - $0120
+   push hl
+      ld hl, (g_level_camera_lock_towards_y)
+      ex de, hl
+      add hl, de
+      ld de, -$0120
+      add hl, de
+      ex de, hl
+   pop hl
    ld     (g_screen_tile_replace_y), de  ; 02:B84B - ED 53 AD D2
    ld     (g_screen_tile_replace_data_ptr), hl  ; 02:B84F - 22 AF D2
    inc    (ix+17)                      ; 02:B852 - DD 34 11
@@ -18225,9 +18251,12 @@ objfunc_4A_SKY3_boss:
    ld     (g_level_limit_x1), hl       ; 02:B867 - 22 75 D2
 
 @skip_end_of_glass_crack_anim:
+   ; X=$05E0 when x0 limit is $0350
+   ld hl, (g_level_limit_x0)
+   ld de, $0290
+   add hl, de
    ld     e, (ix+2)                    ; 02:B86A - DD 5E 02
    ld     d, (ix+3)                    ; 02:B86D - DD 56 03
-   ld     hl, $05E0                    ; 02:B870 - 21 E0 05
    xor    a                            ; 02:B873 - AF
    sbc    hl, de                       ; 02:B874 - ED 52
    jr     nc, @x_not_at_teleporter     ; 02:B876 - 30 05
@@ -18303,13 +18332,23 @@ objfunc_4A_SKY3_boss:
    ld     (ix+7), a                    ; 02:B904 - DD 77 07
    ld     (ix+8), a                    ; 02:B907 - DD 77 08
    ld     (ix+9), a                    ; 02:B90A - DD 77 09
-   ld     (ix+17), $E0                 ; 02:B90D - DD 36 11 E0
-   ld     (ix+18), $05                 ; 02:B911 - DD 36 12 05
-   ld     (ix+19), $60                 ; 02:B915 - DD 36 13 60
-   ld     (ix+20), $01                 ; 02:B919 - DD 36 14 01
-   ld     hl, $0550                    ; 02:B91D - 21 50 05
-   ld     de, $0120                    ; 02:B920 - 11 20 01
-   call   set_locked_camera_target     ; 02:B923 - CD 8C 7C
+   ;; $05E0, $0160 when (x0 limit, y lock) is $0350, $0120
+   ld hl, (g_level_limit_x0)
+   ld de, $0290
+   add hl, de
+   ld (ix+17), l
+   ld (ix+18), h
+   ld hl, (g_level_camera_lock_towards_y)
+   ld de, $0040
+   add hl, de
+   ld (ix+19), l
+   ld (ix+20), h
+   ;; $0550, $0120 when (x0 limit, y lock) is $0350, $0120
+   ld hl, (g_level_limit_x0)
+   ld bc, $0200
+   add hl, bc
+   ld de, (g_level_camera_lock_towards_y)
+   call set_locked_camera_target
    set    3, (ix+24)                   ; 02:B926 - DD CB 18 DE
    jp     @suppress_inputs_and_let_robotnik_exit  ; 02:B92A - C3 5B B9
 
@@ -18410,11 +18449,16 @@ objfunc_4A_SKY3_boss:
    pop    ix                           ; 02:B9E1 - DD E1
    xor    a                            ; 02:B9E3 - AF
    ld     (ix+1), a                    ; 02:B9E8 - DD 77 01
-   ld     hl, $0420                    ; 02:B9EB - 21 20 04
+   ; $0420, $012F when (x lock, y lock) is $0350, $0120
+   ld hl, (g_level_camera_lock_towards_x)
+   ld de, $00D0
+   add hl, de
    ld     (ix+2), l                    ; 02:B9EE - DD 75 02
    ld     (ix+3), h                    ; 02:B9F1 - DD 74 03
    ld     (ix+4), a                    ; 02:B9F4 - DD 77 04
-   ld     hl, $012F                    ; 02:B9F7 - 21 2F 01
+   ld hl, (g_level_camera_lock_towards_y)
+   ld de, $000F
+   add hl, de
    ld     (ix+5), l                    ; 02:B9FA - DD 75 05
    ld     (ix+6), h                    ; 02:B9FD - DD 74 06
    pop    ix                           ; 02:BA18 - DD E1
