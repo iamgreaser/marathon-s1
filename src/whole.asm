@@ -12717,7 +12717,13 @@ objfunc_2C_JUN3_boss:
    ld     (ix+12), $00                 ; 02:80C9 - DD 36 0C 00
    ld     l, (ix+5)                    ; 02:80CD - DD 6E 05
    ld     h, (ix+6)                    ; 02:80D0 - DD 66 06
-   ld     de, $0058                    ; 02:80D3 - 11 58 00
+   ;; Y=$0058 when camera locked at Y=$0048
+   push hl
+   ld hl, (g_level_camera_lock_towards_y)
+   ld de, $0010
+   add hl, de
+   ex de, hl
+   pop hl
    xor    a                            ; 02:80D6 - AF
    sbc    hl, de                       ; 02:80D7 - ED 52
    ret    c                            ; 02:80D9 - D8
@@ -12739,7 +12745,13 @@ objfunc_2C_JUN3_boss:
    ld     (ix+7), $00                  ; 02:8106 - DD 36 07 00
    ld     (ix+8), $FF                  ; 02:810A - DD 36 08 FF
    ld     (ix+9), $FF                  ; 02:810E - DD 36 09 FF
-   ld     de, $021C                    ; 02:8112 - 11 1C 02
+   ;; X=$021C when camera locked at Y=$01F0
+   push hl
+   ld hl, (g_level_camera_lock_towards_x)
+   ld de, $002C
+   add hl, de
+   ex de, hl
+   pop hl
    and    a                            ; 02:8115 - A7
    sbc    hl, de                       ; 02:8116 - ED 52
    jp     nc, @continue_to_common_code  ; 02:8118 - D2 E7 81
@@ -12752,7 +12764,13 @@ objfunc_2C_JUN3_boss:
    ld     (ix+7), $00                  ; 02:812E - DD 36 07 00
    ld     (ix+8), $01                  ; 02:8132 - DD 36 08 01
    ld     (ix+9), $00                  ; 02:8136 - DD 36 09 00
-   ld     de, $02AA                    ; 02:813A - 11 AA 02
+   ;; X=$02AA when camera locked at Y=$01F0
+   push hl
+   ld hl, (g_level_camera_lock_towards_x)
+   ld de, $00BA
+   add hl, de
+   ex de, hl
+   pop hl
    and    a                            ; 02:813D - A7
    sbc    hl, de                       ; 02:813E - ED 52
    jp     c, @continue_to_common_code  ; 02:8140 - DA E7 81
