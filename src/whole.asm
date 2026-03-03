@@ -13096,16 +13096,20 @@ objfunc_48_BRI3_boss:
    ld     d, $00                       ; 02:84E8 - 16 00
    ld     hl, LUT_BRI3_boss_entrances  ; 02:84EA - 21 32 86
    add    hl, de                       ; 02:84ED - 19
-   ld     a, (hl)                      ; 02:84EE - 7E
+   ld a, (g_level_camera_lock_towards_x+0)
+   add a, (hl)
    ld     (ix+2), a                    ; 02:84EF - DD 77 02
    inc    hl                           ; 02:84F2 - 23
-   ld     a, (hl)                      ; 02:84F3 - 7E
+   ld a, (g_level_camera_lock_towards_x+1)
+   adc a, (hl)
    inc    hl                           ; 02:84F4 - 23
    ld     (ix+3), a                    ; 02:84F5 - DD 77 03
-   ld     a, (hl)                      ; 02:84F8 - 7E
+   ld a, (g_level_camera_lock_towards_y+0)
+   add a, (hl)
    inc    hl                           ; 02:84F9 - 23
    ld     (ix+5), a                    ; 02:84FA - DD 77 05
-   ld     a, (hl)                      ; 02:84FD - 7E
+   ld a, (g_level_camera_lock_towards_y+1)
+   adc a, (hl)
    inc    hl                           ; 02:84FE - 23
    ld     (ix+6), a                    ; 02:84FF - DD 77 06
    inc    (ix+17)                      ; 02:8502 - DD 34 11
@@ -13117,7 +13121,10 @@ objfunc_48_BRI3_boss:
    ld     (ix+10), $80                 ; 02:850B - DD 36 0A 80
    ld     (ix+11), $FF                 ; 02:850F - DD 36 0B FF
    ld     (ix+12), $FF                 ; 02:8513 - DD 36 0C FF
-   ld     hl, $0380                    ; 02:8517 - 21 80 03
+   ;; Y=$0380 relative to a camera lock of Y=$0300
+   ld hl, (g_level_camera_lock_towards_y)
+   ld de, $0080
+   add hl, de
    ld     e, (ix+5)                    ; 02:851A - DD 5E 05
    ld     d, (ix+6)                    ; 02:851D - DD 56 06
    xor    a                            ; 02:8520 - AF
@@ -13200,7 +13207,10 @@ objfunc_48_BRI3_boss:
    ld     (ix+10), $80                 ; 02:85AA - DD 36 0A 80
    ld     (ix+11), $00                 ; 02:85AE - DD 36 0B 00
    ld     (ix+12), $00                 ; 02:85B2 - DD 36 0C 00
-   ld     hl, $03C0                    ; 02:85B6 - 21 C0 03
+   ;; Y=$03C0 relative to a camera lock of Y=$0300
+   ld hl, (g_level_camera_lock_towards_y)
+   ld de, $00C0
+   add hl, de
    ld     e, (ix+5)                    ; 02:85B9 - DD 5E 05
    ld     d, (ix+6)                    ; 02:85BC - DD 56 06
    xor    a                            ; 02:85BF - AF
@@ -13256,8 +13266,10 @@ boss_fire_fireball_pallet:
    pop    ix                           ; 02:862F - DD E1
    ret                                 ; 02:8631 - C9
 
+;; Relative to a camera lock at $03A0, $0300
 LUT_BRI3_boss_entrances:
-.dw $03D4, $03C0, $0444, $03C0                                                      ; 02:8632
+.dw $0034, $00C0, $00A4, $00C0
+;.dw $03D4, $03C0, $0444, $03C0                                                      ; 02:8632
 
 LUT_BRI3_boss_pallet_velocities_left:
 .dw $0000, $FFF6, $FEC0, $FC00, $FE60, $FD80, $FDC0, $FF00                          ; 02:863A

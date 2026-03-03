@@ -7,8 +7,7 @@ Regressions known at this stage:
 - (almost?) All of the boss fights are broken right now due to locking to specific coordinates. None of the bosses have the expected absolute coordinates for locking the camera or potentially detecting *when* to lock the camera.
    - Fixed boss fights:
       - [x] GHZ3
-      - [ ] BRI3
-         - Camera lock fixed, but absolute positions need to be made relative.
+      - [x] BRI3
       - [ ] JUN3
          - Camera lock fixed, but absolute positions need to be made relative.
       - [ ] LAB3
