@@ -5,20 +5,13 @@ Regressions known at this stage:
 - The LAB1 life monitor always shows as a life monitor.
 - Left-entry-only and right-entry-only doors are weirdly offset to the left.
    - This seems to have "fixed itself"...? Keep an eye on this one.
-- (almost?) All of the boss fights are broken right now due to locking to specific coordinates. None of the bosses have the expected absolute coordinates for locking the camera or potentially detecting *when* to lock the camera.
-   - Fixed boss fights:
-      - [x] GHZ3
-      - [x] BRI3
-      - [x] JUN3
-      - [x] LAB3
-      - [x] SCR3
-      - [ ] SKY3
-         - First camera lock fixed, but a lot of absolute positions result in a lot of breakage.
 - All teleporters and corridors are broken.
 - Bosses locking the screen position when Sonic jumps a bit high usually results in death when Sonic attempts to land.
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
 - The LAB1 to LAB2 transition currently results in the waterline being internally higher than it should be which results in Sonic drowning while not being visibly underwater if one goes for the rings + shield area.
 - Likewise, the LAB2 to LAB3 transition results in Sonic not being underwater at all. And if this were fixed half-arsedly and the level-number-kludge were ripped out, Sonic would start drowning.
+- SKY3: The button Robotnik jumps on isn't drawn. I'm not sure how to do this one relatively yet, as the logic is in Robotnik's code.
+- SKY3: Sonic can't teleport out (as per all teleporters being broken).
 
 Stuff which will result in a regression if I'm not careful:
 

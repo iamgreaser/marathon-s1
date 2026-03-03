@@ -18530,20 +18530,34 @@ objfunc_46_SKY3_vertical_zappers:
    set    0, (ix+24)                   ; 02:BBA3 - DD CB 18 C6
 
 @already_initialised:
-   ld     hl, $0390                    ; 02:BBA7 - 21 90 03
+   ;; $0390 when X is $03C0
+   ld l, (ix+2)
+   ld h, (ix+3)
+   ld de, $FFD0
+   add hl, de
    ld     (tmp_00), hl                 ; 02:BBAA - 22 0E D2
    ld     l, (ix+17)                   ; 02:BBAD - DD 6E 11
    ld     h, $00                       ; 02:BBB0 - 26 00
    ld     (tmp_04), hl                 ; 02:BBB2 - 22 12 D2
    ld     l, h                         ; 02:BBB5 - 6C
    ld     (tmp_06), hl                 ; 02:BBB6 - 22 14 D2
-   ld     de, $011A                    ; 02:BBB9 - 11 1A 01
+   ;; $011A when Y is $0160
+   ld l, (ix+5)
+   ld h, (ix+6)
+   ld de, $FFBA
+   add hl, de
+   ex de, hl
    ld     hl, LUT_SKY3_vertical_zapper_track_ball_sprites  ; 02:BBBC - 21 DD BC
    call   @fn_draw_sprite_pair         ; 02:BBBF - CD A5 BC
    ld     e, (ix+17)                   ; 02:BBC2 - DD 5E 11
    ld     d, $00                       ; 02:BBC5 - 16 00
    ld     (tmp_04), de                 ; 02:BBC7 - ED 53 12 D2
-   ld     de, $01D2                    ; 02:BBCB - 11 D2 01
+   ;; $01D2 when Y is $0160
+   ld l, (ix+5)
+   ld h, (ix+6)
+   ld de, $0072
+   add hl, de
+   ex de, hl
    ld     hl, LUT_SKY3_vertical_zapper_track_ball_sprites  ; 02:BBCE - 21 DD BC
    call   @fn_draw_sprite_pair         ; 02:BBD1 - CD A5 BC
    bit    4, (iy+iy_08_lvflag03-IYBASE)  ; 02:BBD4 - FD CB 08 66
@@ -18559,7 +18573,14 @@ objfunc_46_SKY3_vertical_zappers:
    ld     hl, LUT_SKY3_vertical_zapper_vzap_sprites  ; 02:BBEA - 21 C7 BC
    add    hl, de                       ; 02:BBED - 19
    ld     b, $0A                       ; 02:BBEE - 06 0A
-   ld     de, $0130                    ; 02:BBF0 - 11 30 01
+   ;; $0130 when Y is $0160
+   push hl
+      ld l, (ix+5)
+      ld h, (ix+6)
+      ld de, $FFD0
+      add hl, de
+      ex de, hl
+   pop hl
 
 @each_vzap_sprite_pair:
    push   bc                           ; 02:BBF3 - C5
@@ -18573,7 +18594,11 @@ objfunc_46_SKY3_vertical_zappers:
    pop    hl                           ; 02:BBFF - E1
    pop    bc                           ; 02:BC00 - C1
    djnz   @each_vzap_sprite_pair       ; 02:BC01 - 10 F0
-   ld     hl, $0390                    ; 02:BC03 - 21 90 03
+   ;; $0390 when X is $03C0
+   ld l, (ix+2)
+   ld h, (ix+3)
+   ld bc, $FFD0
+   add hl, bc
    ld     c, (ix+17)                   ; 02:BC06 - DD 4E 11
    ld     b, $00                       ; 02:BC09 - 06 00
    add    hl, bc                       ; 02:BC0B - 09
