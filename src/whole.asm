@@ -11068,9 +11068,10 @@ objfunc_12_GHZ_boss:
    ld     (ix+18), a                   ; 01:704B - DD 77 12
    ld     (ix+20), LUT_GHZ3boss_seq_01_fly_high_left&$FF  ; 01:704E - DD 36 14 A1
    ld     (ix+21), LUT_GHZ3boss_seq_01_fly_high_left>>8  ; 01:7052 - DD 36 15 72
-   ld     hl, $0760                    ; 01:7056 - 21 60 07
-   ld     de, $00E8                    ; 01:7059 - 11 E8 00
-   call   set_locked_camera_target     ; 01:705C - CD 8C 7C
+   ;; $0760, $00E8 when spawning at $0920, $0100 + offset of $0000, $FFF8
+   ld hl, $FE40
+   ld de, $FFF0
+   call set_obj_relative_locked_camera_target
    set    0, (ix+17)                   ; 01:705F - DD CB 11 C6
 
 @already_initialised:
@@ -11934,7 +11935,9 @@ boss_generic_update_8hp:
    sbc    hl, de                       ; 01:78EC - ED 52
    ret    c                            ; 01:78EE - D8
    ld     (ix+0), $FF                  ; 01:78EF - DD 36 00 FF
-   ld     hl, $2000                    ; 01:78F3 - 21 00 20
+   ;ld     hl, $2000                    ; 01:78F3 - 21 00 20
+   ;ld     (g_level_limit_x1), hl       ; 01:78F6 - 22 75 D2
+   ld     hl, $FEFF                    ; 01:78F3 - 21 00 20
    ld     (g_level_limit_x1), hl       ; 01:78F6 - 22 75 D2
    ld     hl, $0000                    ; 01:78F9 - 21 00 00
    ld     (g_level_camera_lock_towards_x), hl  ; 01:78FC - 22 7B D2
@@ -12285,6 +12288,15 @@ spawn_object:
    and a  ; clear carry
    ret
 
+set_obj_relative_locked_camera_target:
+   ld c, (ix+2)
+   ld b, (ix+3)
+   add hl, bc
+   ex de, hl
+   ld c, (ix+5)
+   ld b, (ix+6)
+   add hl, bc
+   ex de, hl
 set_locked_camera_target:
    ld     (g_level_camera_lock_towards_x), hl  ; 01:7C8C - 22 7B D2
    ld     (g_level_camera_lock_towards_y), de  ; 01:7C8F - ED 53 7D D2
@@ -12665,8 +12677,13 @@ objfunc_2C_JUN3_boss:
    of_setbox $20, $1C
    bit    0, (ix+24)                   ; 02:805F - DD CB 18 46
    jr     nz, @already_initialised     ; 02:8063 - 20 4B
+   ;; $00E0 when spawning at Y=$0020
+   ld l, (ix+5)
+   ld h, (ix+6)
+   ld bc, $00C0
+   add hl, bc
+   ex de, hl
    ld     hl, (sonic_y)                ; 02:8065 - 2A 01 D4
-   ld     de, $00E0                    ; 02:8068 - 11 E0 00
    and    a                            ; 02:806B - A7
    sbc    hl, de                       ; 02:806C - ED 52
    ret    nc                           ; 02:806E - D0
@@ -12684,16 +12701,10 @@ objfunc_2C_JUN3_boss:
    rst    $18                          ; 02:8089 - DF
    xor    a                            ; 02:808A - AF
    ld     (g_boss_hits_taken), a       ; 02:808B - 32 EC D2
-   ld     hl, (g_level_scroll_x_pix_lo)  ; 02:808E - 2A 5A D2
-   ld     (g_level_limit_x0), hl       ; 02:8091 - 22 73 D2
-   ld     (g_level_limit_x1), hl       ; 02:8094 - 22 75 D2
-   ld     hl, (g_level_scroll_y_pix_lo)  ; 02:8097 - 2A 5D D2
-   ld     (g_level_limit_y0), hl       ; 02:809A - 22 77 D2
-   ld     (g_level_limit_y1), hl       ; 02:809D - 22 79 D2
-   ld     hl, $01F0                    ; 02:80A0 - 21 F0 01
-   ld     (g_level_camera_lock_towards_x), hl  ; 02:80A3 - 22 7B D2
-   ld     hl, $0048                    ; 02:80A6 - 21 48 00
-   ld     (g_level_camera_lock_towards_y), hl  ; 02:80A9 - 22 7D D2
+   ;; $01F0, $0048 when spawning at $0260, $0020 + offset of $0000, $0000
+   ld hl, $FF90
+   ld de, $0028
+   call set_obj_relative_locked_camera_target
    set    0, (ix+24)                   ; 02:80AC - DD CB 18 C6
 
 @already_initialised:
@@ -13056,9 +13067,10 @@ objfunc_48_BRI3_boss:
    of_set_sprite SPRTAB_BRI3_boss
    bit    0, (ix+24)                   ; 02:84AD - DD CB 18 46
    jr     nz, @already_initialised     ; 02:84B1 - 20 27
-   ld     hl, $03A0                    ; 02:84B3 - 21 A0 03
-   ld     de, $0300                    ; 02:84B6 - 11 00 03
-   call   set_locked_camera_target     ; 02:84B9 - CD 8C 7C
+   ;; $03A0, $0300 when spawning at $0460, $0340 + offset of $0000, $0000
+   ld hl, 0xFF40
+   ld de, 0xFFC0
+   call set_obj_relative_locked_camera_target
    ld hl, ART_0C_E508
    ld a, :ART_0C_E508
    ld de, $2000
@@ -14391,9 +14403,10 @@ objfunc_49_LAB3_boss:
    of_set_sprite SPRTAB_LAB3_boss
    bit    0, (ix+24)                   ; 02:927E - DD CB 18 46
    jr     nz, @already_initialised     ; 02:9282 - 20 2B
-   ld     hl, $02D0                    ; 02:9284 - 21 D0 02
-   ld     de, $0290                    ; 02:9287 - 11 90 02
-   call   set_locked_camera_target     ; 02:928A - CD 8C 7C
+   ;; $02D0, $0290 when spawning at $0340, $02E0 + offset of $0000, $0000
+   ld hl, $FF90
+   ld de, $FFB0
+   call set_obj_relative_locked_camera_target
    set    1, (iy+iy_09-IYBASE)         ; 02:928D - FD CB 09 CE
    ld hl, ART_0C_E508
    ld a, :ART_0C_E508
@@ -17878,9 +17891,10 @@ objfunc_4A_SKY3_boss:
    call   @fn_update_damage            ; 02:B64A - CD E6 B7
    bit    0, (ix+24)                   ; 02:B64D - DD CB 18 46
    jr     nz, @already_initialised     ; 02:B651 - 20 44
-   ld     hl, $0350                    ; 02:B653 - 21 50 03
-   ld     de, $0120                    ; 02:B656 - 11 20 01
-   call   set_locked_camera_target     ; 02:B659 - CD 8C 7C
+   ;; $0350, $0120 when spawning at $0420, $0160 + offset of $0000, $0000
+   ld hl, $FF30
+   ld de, $FFC0
+   call set_obj_relative_locked_camera_target
    of_adjust_pos $0008, $0010
    ld     l, (ix+2)                    ; 02:B65C - DD 6E 02
    ld     h, (ix+3)                    ; 02:B65F - DD 66 03
@@ -18111,7 +18125,8 @@ objfunc_4A_SKY3_boss:
    jr     nz, @skip_end_of_glass_crack_anim  ; 02:B85A - 20 0E
    set    5, (iy+iy_00-IYBASE)         ; 02:B85C - FD CB 00 EE
    res    1, (iy+iy_02-IYBASE)         ; 02:B860 - FD CB 02 8E
-   ld     hl, $0550                    ; 02:B864 - 21 50 05
+   ;ld     hl, $0550                    ; 02:B864 - 21 50 05
+   ld hl, $FEFF
    ld     (g_level_limit_x1), hl       ; 02:B867 - 22 75 D2
 
 @skip_end_of_glass_crack_anim:
