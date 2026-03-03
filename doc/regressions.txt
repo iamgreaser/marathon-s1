@@ -18,6 +18,8 @@ Regressions known at this stage:
 - All teleporters and corridors are broken.
 - Bosses locking the screen position when Sonic jumps a bit high usually results in death when Sonic attempts to land.
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
+- The LAB1 to LAB2 transition currently results in the waterline being internally higher than it should be which results in Sonic drowning while not being visibly underwater if one goes for the rings + shield area.
+- Likewise, the LAB2 to LAB3 transition results in Sonic not being underwater at all. And if this were fixed half-arsedly and the level-number-kludge were ripped out, Sonic would start drowning.
 
 Stuff which will result in a regression if I'm not careful:
 

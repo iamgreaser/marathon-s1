@@ -14462,17 +14462,20 @@ objfunc_49_LAB3_boss:
    ld     d, $00                       ; 02:92BB - 16 00
    ld     hl, LUT_LAB3_boss_entrance_positions_xy  ; 02:92BD - 21 7B 94
    add    hl, de                       ; 02:92C0 - 19
-   ld     a, (hl)                      ; 02:92C1 - 7E
+   ld a, (g_level_camera_lock_towards_x+0)
+   add a, (hl)
    ld     (ix+2), a                    ; 02:92C2 - DD 77 02
    inc    hl                           ; 02:92C5 - 23
-   ld     a, (hl)                      ; 02:92C6 - 7E
+   ld a, (g_level_camera_lock_towards_x+1)
+   adc a, (hl)
    inc    hl                           ; 02:92C7 - 23
    ld     (ix+3), a                    ; 02:92C8 - DD 77 03
-   ld     a, (hl)                      ; 02:92CB - 7E
+   ld a, (g_level_camera_lock_towards_y+0)
+   add a, (hl)
    inc    hl                           ; 02:92CC - 23
    ld     (ix+5), a                    ; 02:92CD - DD 77 05
-   ld     a, (hl)                      ; 02:92D0 - 7E
-   inc    hl                           ; 02:92D1 - 23
+   ld a, (g_level_camera_lock_towards_y+1)
+   adc a, (hl)
    ld     (ix+6), a                    ; 02:92D2 - DD 77 06
    inc    (ix+17)                      ; 02:92D5 - DD 34 11
    jp     @continue_to_common_code     ; 02:92D8 - C3 F7 93
@@ -14504,6 +14507,8 @@ objfunc_49_LAB3_boss:
    inc    hl                           ; 02:930B - 23
    ld     h, (hl)                      ; 02:930C - 66
    ld     l, a                         ; 02:930D - 6F
+   ld de, (g_level_camera_lock_towards_y)
+   add hl, de
    ld     e, (ix+5)                    ; 02:930E - DD 5E 05
    ld     d, (ix+6)                    ; 02:9311 - DD 56 06
    and    a                            ; 02:9314 - A7
@@ -14584,6 +14589,8 @@ objfunc_49_LAB3_boss:
    inc    hl                           ; 02:93D8 - 23
    ld     h, (hl)                      ; 02:93D9 - 66
    ld     l, a                         ; 02:93DA - 6F
+   ld de, (g_level_camera_lock_towards_y)
+   add hl, de
    ld     e, (ix+5)                    ; 02:93DB - DD 5E 05
    ld     d, (ix+6)                    ; 02:93DE - DD 56 06
    xor    a                            ; 02:93E1 - AF
@@ -14650,14 +14657,15 @@ objfunc_49_LAB3_boss:
    rst    $28                          ; 02:9477 - EF
    jp     @continue_to_common_code     ; 02:9478 - C3 F7 93
 
+;; All relative to a camera lock of $02D0, $0290.
 LUT_LAB3_boss_entrance_positions_xy:
-.dw $033C, $0360, $02EC, $0260, $038C, $0260                                        ; 02:947B
+.dw $006C, $00D0, $001C, $FFD0, $00BC, $FFD0                                        ; 02:947B
 
 LUT_LAB3_boss_target_y_positions:
-.dw $0328, $02B0, $02B0                                                             ; 02:9487
+.dw $0098, $0020, $0020                                                             ; 02:9487
 
 LUT_LAB3_boss_exit_y_positions:
-.dw $0360, $0260, $0260                                                             ; 02:948D
+.dw $00D0, $FFD0, $FFD0                                                             ; 02:948D
 
 SPRTAB_LAB3_boss:
 .db $20, $22, $24, $26, $28, $FF, $40, $42, $44, $46, $48, $FF, $60, $62, $64, $66  ; 02:9493
