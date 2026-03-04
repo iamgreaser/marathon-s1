@@ -10,7 +10,7 @@ set ::screen_lx 2560
 set ::screen_ly 1920
 
 # *.tilemap = separate in slot 2
-# *.tilespecials = combined in slot 2
+# *.tilespecials = separate in slot 2
 # *.tileflags = combined in slot 0 or slot 1 (go with the latter for now)
 set ::tileset_specs {
    {GHZ src/data/lv_ghz}
@@ -439,6 +439,52 @@ proc init_levels {} {
 
    # Clean up duplicates, generate a quadtree and all that jazz
    finalise_chunks
+
+   # Add tileset specs
+   set ptrlut_tileflags [list]
+   set ptrlut_tilespecials [list]
+   # NOTE: Space is still fairly tight here.
+   set bank 1
+   foreach tss $::tileset_specs {
+      lassign $tss ts_key ts_fname_base
+      lassign $::tilesets($ts_key) tileflags tilemap tilespecials art0_fname pal
+
+      lappend ::codegen_sections ""
+      lappend ::codegen_sections ".SECTION \"base_LVTILEFLAGS_${ts_key}\" SLOT ${bank} BANK ${bank}"
+      lappend ::codegen_sections "LVTILEFLAGS_${ts_key}:"
+      set line [join [lmap b $tileflags {format {$%02X} $b}] ", "]
+      lappend ::codegen_sections ".DB $line"
+      lappend ::codegen_sections ".ENDS"
+
+      lappend ::codegen_sections ""
+      lappend ::codegen_sections ".SECTION \"base_LVTILESPECIALS_${ts_key}\" SLOT 2 SUPERFREE"
+      lappend ::codegen_sections "LVTILESPECIALS_${ts_key}:"
+      set line [join [lmap b $tilespecials {format {$%02X} $b}] ", "]
+      lappend ::codegen_sections ".DB $line"
+      lappend ::codegen_sections ".ENDS"
+
+      lappend ptrlut_tileflags "LVTILEFLAGS_${ts_key}"
+      lappend ptrlut_tilespecials "LVTILESPECIALS_${ts_key}"
+
+      #set bank [expr {($bank+1)%2}]
+   }
+
+   lappend ::codegen_sections ""
+   lappend ::codegen_sections ".SECTION \"base_PTRLUT_level_tile_flags\" SLOT 1 BANK 1"
+   lappend ::codegen_sections "PTRLUT_level_tile_flags:"
+   set line [join $ptrlut_tileflags ", "]
+   lappend ::codegen_sections ".DW $line"
+   lappend ::codegen_sections ".ENDS"
+
+   lappend ::codegen_sections ""
+   lappend ::codegen_sections ".SECTION \"base_level_specials\" SLOT 2 SUPERFREE"
+   lappend ::codegen_sections "level_specials:"
+   foreach name $ptrlut_tilespecials {
+      lappend ::codegen_sections ".DW $name"
+      lappend ::codegen_sections ".DB :$name"
+   }
+   lappend ::codegen_sections ".ENDS"
+
 
    if {1} {
       set fp [open src/stitched_level_data.asm wb]
