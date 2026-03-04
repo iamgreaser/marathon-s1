@@ -227,7 +227,59 @@ proc on_drag_step {x y} {
 }
 
 proc init_tilesets {} {
-   # TODO! --GM
+   array set ::tilesets {}
+
+   foreach tss $::tileset_specs {
+      lassign $tss ts_key ts_fname_base
+
+      # Build some filenames
+      set tileflags_fname "${ts_fname_base}.tileflags"
+      set tilemap_fname "${ts_fname_base}.tilemap"
+      set tilespecials_fname "${ts_fname_base}.tilespecials"
+      set art0_fname "${ts_fname_base}.art0000"
+      set pal3_fname "${ts_fname_base}.pal3"
+      # Special case
+      if {$ts_key eq "LAB"} {
+         set pal3_fname src/data/lv_lab_combined_above_water.pal3
+      }
+
+      # Load some data in preparation
+
+      # Palette
+      set fp [open $pal3_fname rb]
+      try {
+         binary scan [read $fp 32] cu* pal
+      } finally {
+         close $fp
+      }
+
+      # Tileflags
+      set fp [open $tileflags_fname rb]
+      try {
+         binary scan [read $fp] cu* tileflags
+      } finally {
+         close $fp
+      }
+
+      # Tilemap
+      set fp [open $tilemap_fname rb]
+      try {
+         binary scan [read $fp] cu* tilemap
+      } finally {
+         close $fp
+      }
+
+      # Tilespecials
+      set fp [open $tilespecials_fname rb]
+      try {
+         binary scan [read $fp] cu* tilespecials
+      } finally {
+         close $fp
+      }
+
+      set ::tilesets($ts_key) [list $tileflags $tilemap $tilespecials $art0_fname $pal]
+
+   }
 }
 
 proc init_tilemap_images {} {
@@ -244,21 +296,8 @@ proc init_tilemap_images {} {
    foreach tss $::tileset_specs {
       # Retrieve all info we need at the moment
       lassign $tss ts_key ts_fname_base
-      set tilemap_fname "${ts_fname_base}.tilemap"
-      set art0_fname "${ts_fname_base}.art0000"
-      set pal3_fname "${ts_fname_base}.pal3"
-      # Special case
-      if {$ts_key eq "LAB"} {
-         set pal3_fname src/data/lv_lab_combined_above_water.pal3
-      }
+      lassign $::tilesets($ts_key) tileflags tilemap tilespecials art0_fname pal
 
-      # Load the palette
-      set fp [open $pal3_fname rb]
-      try {
-         binary scan [read $fp 32] cu* pal
-      } finally {
-         close $fp
-      }
       # Convert palette
       # And yes, I know it's faster to do a PPM image and load it raw, but I *am* running this on a supercomputer.
       for {set i 0} {$i < 32} {incr i} {
@@ -267,14 +306,6 @@ proc init_tilemap_images {} {
          set cg [expr {(($v>>2)&0x3)*0x5}]
          set cb [expr {(($v>>4)&0x3)*0x5}]
          lset pal $i [format "#%01x%01x%01x" $cr $cg $cb]
-      }
-
-      # Load the tilemap
-      set fp [open $tilemap_fname rb]
-      try {
-         binary scan [read $fp] cu* tilemap
-      } finally {
-         close $fp
       }
 
       # Load the tileset
