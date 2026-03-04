@@ -9,7 +9,6 @@ wm title . "stitch-view"
 set ::screen_lx 2560
 set ::screen_ly 1920
 
-# TODO: Use these! --GM
 # *.tilemap = separate in slot 2
 # *.tilespecials = combined in slot 2
 # *.tileflags = combined in slot 0 or slot 1 (go with the latter for now)
@@ -141,41 +140,9 @@ set ::layout_specs {
    }}}
 }
 
-set ::tilemap_specs {
-   {GHZ LVTILEMAP_GHZ src/data/lv_ghz.tilemap}
-   {BRI LVTILEMAP_BRI src/data/lv_bri.tilemap}
-   {JUN LVTILEMAP_JUN src/data/lv_jun.tilemap}
-   {LAB LVTILEMAP_LAB src/data/lv_lab.tilemap}
-   {SCR LVTILEMAP_SCR src/data/lv_scr.tilemap}
-   {SKY LVTILEMAP_SKY src/data/lv_sky.tilemap}
-   {SKY_3 LVTILEMAP_SKY_3 src/data/lv_sky_3.tilemap}
-   {special LVTILEMAP_special src/data/lv_special.tilemap}
-}
-
-set ::lvart0_specs {
-   {GHZ ART_GHZ_0000 src/data/lv_ghz.art0000}
-   {BRI ART_BRI_0000 src/data/lv_bri.art0000}
-   {JUN ART_JUN_0000 src/data/lv_jun.art0000}
-   {LAB ART_LAB_0000 src/data/lv_lab.art0000}
-   {SCR ART_SCR_0000 src/data/lv_scr.art0000}
-   {SKY ART_SKY_0000 src/data/lv_sky.art0000}
-   {SKY_3 ART_SKY3_0000 src/data/lv_sky_3.art0000}
-   {special ART_special_0000 src/data/lv_special.art0000}
-}
-
-set ::pal3_specs {
-   {GHZ LVPAL3_GHZ src/data/lv_ghz.pal3}
-   {BRI LVPAL3_BRI src/data/lv_bri.pal3}
-   {JUN LVPAL3_JUN src/data/lv_jun.pal3}
-   {LAB LVPAL3_LAB src/data/lv_lab_combined_above_water.pal3}
-   {SCR LVPAL3_SCR src/data/lv_scr.pal3}
-   {SKY LVPAL3_SKY src/data/lv_sky.pal3}
-   {SKY_3 LVPAL3_SKY_3 src/data/lv_sky_3.pal3}
-   {special LVPAL3_special src/data/lv_special.pal3}
-}
-
 proc main {} {
    puts "widgets: [time { init_widgets }]"
+   puts "tilesets: [time { init_tilesets }]"
    puts "tilemap images: [time { init_tilemap_images }]"
    puts "levels: [time { init_levels }]"
 }
@@ -259,6 +226,10 @@ proc on_drag_step {x y} {
    }
 }
 
+proc init_tilesets {} {
+   # TODO! --GM
+}
+
 proc init_tilemap_images {} {
    array set ::tilemaps {}
 
@@ -270,12 +241,16 @@ proc init_tilemap_images {} {
       close $fp
    }
 
-   foreach tms $::tilemap_specs {
+   foreach tss $::tileset_specs {
       # Retrieve all info we need at the moment
-      lassign $tms tm_key tm_label tm_fname
-      lassign [lsearch -inline -exact -index 0 $::lvart0_specs $tm_key] _ art0_label art0_fname
-      lassign [lsearch -inline -exact -index 0 $::pal3_specs $tm_key] _ pal3_label pal3_fname
-      lassign [lsearch -inline -exact -index 0 $::tilemap_specs $tm_key] _ tilemap_label tilemap_fname
+      lassign $tss ts_key ts_fname_base
+      set tilemap_fname "${ts_fname_base}.tilemap"
+      set art0_fname "${ts_fname_base}.art0000"
+      set pal3_fname "${ts_fname_base}.pal3"
+      # Special case
+      if {$ts_key eq "LAB"} {
+         set pal3_fname src/data/lv_lab_combined_above_water.pal3
+      }
 
       # Load the palette
       set fp [open $pal3_fname rb]
@@ -388,7 +363,7 @@ proc init_tilemap_images {} {
       }
 
       # Save this tilemap for use
-      set ::tilemaps($tm_key) $tmap
+      set ::tilemaps($ts_key) $tmap
    }
 }
 
@@ -452,8 +427,8 @@ proc init_levels {} {
 
 proc load_level_layout {lbs} {
    lassign $lbs ls_key x0 x1 y0 y1 delta_mt_x delta_mt_y
-   lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname tm_key objects_spec_list
-   set tilemap $::tilemaps($tm_key)
+   lassign [lsearch -inline -exact -index 0 $::layout_specs $ls_key] _ ls_fname ts_key objects_spec_list
+   set tilemap $::tilemaps($ts_key)
    set width_shift [string index $ls_fname end]
    set width_mt [expr {1<<$width_shift}]
    set height_mt [expr {4096>>$width_shift}]
@@ -486,7 +461,7 @@ proc load_level_layout {lbs} {
    set base_x $::next_layout_x
    set base_y $::next_layout_y
    set ::next_layout_row_y [expr {max($::next_layout_row_y, $base_y+$vheight_px)}]
-   puts ";; $ls_key $tm_key $width_mt $height_mt $vwidth_mt $vheight_mt $base_x $base_y"
+   puts ";; $ls_key $ts_key $width_mt $height_mt $vwidth_mt $vheight_mt $base_x $base_y"
 
    # Load the data
    set fp [open $ls_fname rb]
@@ -573,12 +548,12 @@ proc load_level_layout {lbs} {
                [expr {max(1,$base_y)}] [expr {$base_y+$y1_px-$y0_px-(192-1)}] \
                ]
             lappend ::codegen_headers [format ".dw $%04X, $%04X" $spawnx $spawny]
-            lappend ::codegen_headers [format ".dw LVTILEMAP_%s" $tm_key]
-            lappend ::codegen_headers [format ".db :LVTILEMAP_%s" $tm_key]
-            lappend ::codegen_headers [format ".dw ART_%s_0000" $tm_key]
-            lappend ::codegen_headers [format ".db :ART_%s_0000" $tm_key]
-            lappend ::codegen_headers [format ".dw ART_%s_2000" $tm_key]
-            lappend ::codegen_headers [format ".db :ART_%s_2000" $tm_key]
+            lappend ::codegen_headers [format ".dw LVTILEMAP_%s" $ts_key]
+            lappend ::codegen_headers [format ".db :LVTILEMAP_%s" $ts_key]
+            lappend ::codegen_headers [format ".dw ART_%s_0000" $ts_key]
+            lappend ::codegen_headers [format ".db :ART_%s_0000" $ts_key]
+            lappend ::codegen_headers [format ".dw ART_%s_2000" $ts_key]
+            lappend ::codegen_headers [format ".db :ART_%s_2000" $ts_key]
             lappend ::codegen_headers [format ".db $%s, $%s, $%s, $%s" {*}[lrange $header_spec 1 4]]
             lappend ::codegen_headers [format ".dw %s" $obj_label]
             lappend ::codegen_headers [format ".db :%s" $obj_label]
