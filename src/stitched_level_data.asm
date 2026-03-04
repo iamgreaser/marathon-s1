@@ -51,7 +51,7 @@ LVHEAD_02:
 .db $00, $0A, $03, $00
 .dw LVOBJECTS_GHZ3
 .db :LVOBJECTS_GHZ3
-.db $00, $00, $00, $00, $00
+.db $04, $00, $20, $00, $00
 
 LVHEAD_03:
 .db $01
@@ -96,7 +96,7 @@ LVHEAD_05:
 .db $01, $08, $03, $01
 .dw LVOBJECTS_BRI3
 .db :LVOBJECTS_BRI3
-.db $00, $00, $00, $00, $01
+.db $04, $00, $20, $00, $01
 
 LVHEAD_06:
 .db $02
@@ -141,7 +141,7 @@ LVHEAD_08:
 .db $02, $05, $03, $02
 .dw LVOBJECTS_JUN3
 .db :LVOBJECTS_JUN3
-.db $00, $00, $00, $00, $02
+.db $04, $00, $20, $00, $02
 
 LVHEAD_09:
 .db $03
@@ -186,7 +186,7 @@ LVHEAD_0B:
 .db $03, $05, $03, $03
 .dw LVOBJECTS_LAB3
 .db :LVOBJECTS_LAB3
-.db $00, $80, $10, $00, $03
+.db $04, $80, $30, $00, $03
 
 LVHEAD_0C:
 .db $04
@@ -321,7 +321,7 @@ LVHEAD_0E:
 .db $04, $06, $04, $04
 .dw LVOBJECTS_SCR3
 .db :LVOBJECTS_SCR3
-.db $04, $00, $00, $00, $04
+.db $04, $00, $20, $00, $04
 
 LVHEAD_0F:
 .db $05
@@ -351,7 +351,7 @@ LVHEAD_10:
 .db $05, $06, $04, $08
 .dw LVOBJECTS_SKY2
 .db :LVOBJECTS_SKY2
-.db $00, $00, $20, $00, $05
+.db $04, $00, $20, $00, $05
 
 LVHEAD_1A:
 LVHEAD_1B:
@@ -367,7 +367,7 @@ LVHEAD_1B:
 .db $06, $08, $04, $06
 .dw LVOBJECTS_SKY2_end
 .db :LVOBJECTS_SKY2_end
-.db $00, $00, $00, $00, $04
+.db $04, $00, $20, $00, $04
 
 LVHEAD_11:
 .db $07
@@ -382,7 +382,7 @@ LVHEAD_11:
 .db $06, $08, $04, $06
 .dw LVOBJECTS_SKY3
 .db :LVOBJECTS_SKY3
-.db $00, $00, $00, $00, $04
+.db $04, $00, $20, $00, $04
 
 LVHEAD_1C:
 .db $06

@@ -47,7 +47,7 @@ set ::layout_specs {
       LVHEAD_01 0x02 0x03 {00 00 0A 03 00 04 00 20 00 00}
    }}}
    {LVLAYOUT_GHZ3 src/data/lv_ghz_3.layout7 GHZ {src/data/lv_ghz_3.objects LVOBJECTS_GHZ3 {
-      LVHEAD_02 0x07 0x16 {00 00 0A 03 00 00 00 00 00 00}
+      LVHEAD_02 0x07 0x16 {00 00 0A 03 00 04 00 20 00 00}
    }}}
    {LVLAYOUT_BRI1 src/data/lv_bri_1.layout8 BRI {src/data/lv_bri_1.objects LVOBJECTS_BRI1 {
       LVHEAD_03 0x03 0x0C {01 01 08 03 01 04 00 20 00 01}
@@ -56,7 +56,7 @@ set ::layout_specs {
       LVHEAD_04 0x02 0x1C {01 01 08 03 01 04 00 20 00 01}
    }}}
    {LVLAYOUT_BRI3 src/data/lv_bri_3.layout7 BRI {src/data/lv_bri_3.objects LVOBJECTS_BRI3 {
-      LVHEAD_05 0x06 0x1B {01 01 08 03 01 00 00 00 00 01}
+      LVHEAD_05 0x06 0x1B {01 01 08 03 01 04 00 20 00 01}
    }}}
    {LVLAYOUT_JUN1 src/data/lv_jun_1.layout8 JUN {src/data/lv_jun_1.objects LVOBJECTS_JUN1 {
       LVHEAD_06 0x02 0x0B {02 02 05 03 02 04 00 20 00 02}
@@ -65,7 +65,7 @@ set ::layout_specs {
       LVHEAD_07 0x02 0xFA {02 02 05 03 02 04 00 20 00 02}
    }}}
    {LVLAYOUT_JUN3 src/data/lv_jun_3.layout6 JUN {src/data/lv_jun_3.objects LVOBJECTS_JUN3 {
-      LVHEAD_08 0x03 0x21 {02 02 05 03 02 00 00 00 00 02}
+      LVHEAD_08 0x03 0x21 {02 02 05 03 02 04 00 20 00 02}
    }}}
    {LVLAYOUT_LAB1 src/data/lv_lab_1.layout6 LAB {src/data/lv_lab_1.objects LVOBJECTS_LAB1 {
       LVHEAD_09 0x02 0x05 {03 03 05 03 03 04 80 20 00 03}
@@ -74,7 +74,7 @@ set ::layout_specs {
       LVHEAD_0A 0x03 0x09 {03 03 05 03 03 04 80 20 00 03}
    }}}
    {LVLAYOUT_LAB3 src/data/lv_lab_3.layout6 LAB {src/data/lv_lab_3.objects LVOBJECTS_LAB3 {
-      LVHEAD_0B 0x03 0x25 {03 03 05 03 03 00 80 10 00 03}
+      LVHEAD_0B 0x03 0x25 {03 03 05 03 03 04 80 30 00 03}
    }}}
    {LVLAYOUT_SCR1 src/data/lv_scr_1.layout8 SCR {src/data/lv_scr_1.objects LVOBJECTS_SCR1 {
       LVHEAD_0C 0x03 0x0B {04 04 06 04 04 04 00 20 00 04}
@@ -93,18 +93,18 @@ set ::layout_specs {
       LVHEAD_15 0x03 0x03 {04 04 06 04 04 04 00 20 00 04}
    }}}
    {LVLAYOUT_SCR3 src/data/lv_scr_3.layout6 SCR {src/data/lv_scr_3.objects LVOBJECTS_SCR3 {
-      LVHEAD_0E 0x03 0x36 {04 04 06 04 04 04 00 00 00 04}
+      LVHEAD_0E 0x03 0x36 {04 04 06 04 04 04 00 20 00 04}
    }}}
    {LVLAYOUT_SKY1 src/data/lv_sky_1.layout7 SKY {src/data/lv_sky_1.objects LVOBJECTS_SKY1 {
       LVHEAD_0F 0x02 0x1D {05 05 06 04 05 04 00 22 00 04}
    }}}
    {LVLAYOUT_SKY2 src/data/lv_sky_2.layout6 SKY {src/data/lv_sky_2.objects LVOBJECTS_SKY2 {
-      LVHEAD_10 0x0A 0x17 {05 05 06 04 08 00 00 20 00 05}
+      LVHEAD_10 0x0A 0x17 {05 05 06 04 08 04 00 20 00 05}
    }}}
    {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects LVOBJECTS_SKY2_end {
-      {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {07 06 08 04 06 00 00 00 00 04}
+      {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {07 06 08 04 06 04 00 20 00 04}
    } src/data/lv_sky_3.objects LVOBJECTS_SKY3 {
-      LVHEAD_11 0x02 0x01 {07 06 08 04 06 00 00 00 00 04}
+      LVHEAD_11 0x02 0x01 {07 06 08 04 06 04 00 20 00 04}
    }}}
    {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_1.objects LVOBJECTS_SPECIAL_1 {
       LVHEAD_1C 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
