@@ -285,6 +285,9 @@ proc init_tilesets {} {
 proc init_tilemap_images {} {
    array set ::tilemaps {}
 
+   set uniq_rows [dict create]
+   set ts_uniq_rows_count 0
+
    # Load ring art
    set fp [open src/data/ringart_00.ringart rb]
    try {
@@ -297,6 +300,8 @@ proc init_tilemap_images {} {
       # Retrieve all info we need at the moment
       lassign $tss ts_key ts_fname_base
       lassign $::tilesets($ts_key) tileflags tilemap tilespecials art0_fname pal
+
+      set ts_uniq_rows [dict create]
 
       # Convert palette
       # And yes, I know it's faster to do a PPM image and load it raw, but I *am* running this on a supercomputer.
@@ -337,7 +342,10 @@ proc init_tilemap_images {} {
          }
          if {($mask & 1) == 0} {
             # Literal
-            lappend tiledata [lindex $literals $li]
+            set row [lindex $literals $li]
+            lappend tiledata $row
+            dict incr uniq_rows $row
+            dict incr ts_uniq_rows $row
             incr li
          } else {
             # Copy
@@ -395,7 +403,11 @@ proc init_tilemap_images {} {
 
       # Save this tilemap for use
       set ::tilemaps($ts_key) $tmap
+
+      incr ts_uniq_rows_count [dict size $ts_uniq_rows]
    }
+
+   puts "Unique rows: [dict size $uniq_rows]/$ts_uniq_rows_count"
 }
 
 proc init_levels {} {
