@@ -1356,6 +1356,19 @@ update_active_scroll_pos_and_ptrs:
    ld     (g_displayed_level_scroll_y_pix_lo), hl  ; 00:06B9 - 22 71 D2
    ret                                 ; 00:06BC - C9
 
+get_level_tile_flags_ptr:
+   ld a, (g_tile_flags_index)
+   add a, a
+   ld c, a
+   ld b, $00
+   ld hl, PTRLUT_level_tile_flags
+   add hl, bc
+   ld a, (hl)
+   inc hl
+   ld h, (hl)
+   ld l, a
+   ret
+
 load_scroll_tile_list_buffers:
    bit    5, (iy+iy_00-IYBASE)         ; 00:06BD - FD CB 00 6E
    ret    z                            ; 00:06C1 - C8
@@ -1363,16 +1376,7 @@ load_scroll_tile_list_buffers:
    ld a, (g_level_tilemap_bank)
    call set_rompage_2
    ei                                  ; 00:06D3 - FB
-   ld     a, (g_tile_flags_index)      ; 00:06D4 - 3A D4 D2
-   add    a, a                         ; 00:06D7 - 87
-   ld     c, a                         ; 00:06D8 - 4F
-   ld     b, $00                       ; 00:06D9 - 06 00
-   ld     hl, PTRLUT_level_tile_flags  ; 00:06DB - 21 65 3A
-   add    hl, bc                       ; 00:06DE - 09
-   ld     a, (hl)                      ; 00:06DF - 7E
-   inc    hl                           ; 00:06E0 - 23
-   ld     h, (hl)                      ; 00:06E1 - 66
-   ld     l, a                         ; 00:06E2 - 6F
+   call get_level_tile_flags_ptr
    ld     (tmp_02), hl                 ; 00:06E3 - 22 10 D2
    bit    0, (iy+iy_02-IYBASE)         ; 00:06E6 - FD CB 02 46
    jp     z, @skip_vertical_tile_update  ; 00:06EA - CA 72 07
@@ -1798,16 +1802,7 @@ draw_initial_screen_tiles:
    ld     a, (hl)                      ; 00:098A - 7E
    exx                                 ; 00:098B - D9
    ld     e, a                         ; 00:098C - 5F
-   ld     a, (g_tile_flags_index)      ; 00:098D - 3A D4 D2
-   add    a, a                         ; 00:0990 - 87
-   ld     c, a                         ; 00:0991 - 4F
-   ld     b, $00                       ; 00:0992 - 06 00
-   ld     hl, PTRLUT_level_tile_flags  ; 00:0994 - 21 65 3A
-   add    hl, bc                       ; 00:0997 - 09
-   ld     a, (hl)                      ; 00:0998 - 7E
-   inc    hl                           ; 00:0999 - 23
-   ld     h, (hl)                      ; 00:099A - 66
-   ld     l, a                         ; 00:099B - 6F
+   call get_level_tile_flags_ptr
    ld     d, $00                       ; 00:099C - 16 00
    add    hl, de                       ; 00:099E - 19
    ld     a, (hl)                      ; 00:099F - 7E
@@ -5642,16 +5637,7 @@ collide_with_world_horizontally:
    call   get_obj_level_tile_ptr_in_ram  ; 00:3349 - CD F9 36
    ld     e, (hl)                      ; 00:334C - 5E
    ld     d, $00                       ; 00:334D - 16 00
-   ld     a, (g_tile_flags_index)      ; 00:334F - 3A D4 D2
-   add    a, a                         ; 00:3352 - 87
-   ld     c, a                         ; 00:3353 - 4F
-   ld     b, d                         ; 00:3354 - 42
-   ld     hl, PTRLUT_level_tile_flags  ; 00:3355 - 21 65 3A
-   add    hl, bc                       ; 00:3358 - 09
-   ld     a, (hl)                      ; 00:3359 - 7E
-   inc    hl                           ; 00:335A - 23
-   ld     h, (hl)                      ; 00:335B - 66
-   ld     l, a                         ; 00:335C - 6F
+   call get_level_tile_flags_ptr
    add    hl, de                       ; 00:335D - 19
    ld     a, (hl)                      ; 00:335E - 7E
    and    $3F                          ; 00:335F - E6 3F
@@ -5767,16 +5753,7 @@ collide_with_world_vertically:
    call   get_obj_level_tile_ptr_in_ram  ; 00:3421 - CD F9 36
    ld     e, (hl)                      ; 00:3424 - 5E
    ld     d, $00                       ; 00:3425 - 16 00
-   ld     a, (g_tile_flags_index)      ; 00:3427 - 3A D4 D2
-   add    a, a                         ; 00:342A - 87
-   ld     c, a                         ; 00:342B - 4F
-   ld     b, d                         ; 00:342C - 42
-   ld     hl, PTRLUT_level_tile_flags  ; 00:342D - 21 65 3A
-   add    hl, bc                       ; 00:3430 - 09
-   ld     a, (hl)                      ; 00:3431 - 7E
-   inc    hl                           ; 00:3432 - 23
-   ld     h, (hl)                      ; 00:3433 - 66
-   ld     l, a                         ; 00:3434 - 6F
+   call get_level_tile_flags_ptr
    add    hl, de                       ; 00:3435 - 19
    ld     a, (hl)                      ; 00:3436 - 7E
    and    $3F                          ; 00:3437 - E6 3F
@@ -11904,16 +11881,7 @@ objfunc_29_log:
    call   get_obj_level_tile_ptr_in_ram  ; 01:7F5D - CD F9 36
    ld     e, (hl)                      ; 01:7F60 - 5E
    ld     d, $00                       ; 01:7F61 - 16 00
-   ld     a, (g_tile_flags_index)      ; 01:7F63 - 3A D4 D2
-   add    a, a                         ; 01:7F66 - 87
-   ld     c, a                         ; 01:7F67 - 4F
-   ld     b, d                         ; 01:7F68 - 42
-   ld     hl, PTRLUT_level_tile_flags  ; 01:7F69 - 21 65 3A
-   add    hl, bc                       ; 01:7F6C - 09
-   ld     a, (hl)                      ; 01:7F6D - 7E
-   inc    hl                           ; 01:7F6E - 23
-   ld     h, (hl)                      ; 01:7F6F - 66
-   ld     l, a                         ; 01:7F70 - 6F
+   call get_level_tile_flags_ptr
    add    hl, de                       ; 01:7F71 - 19
    ld     a, (hl)                      ; 01:7F72 - 7E
    and    $3F                          ; 01:7F73 - E6 3F
@@ -13605,16 +13573,7 @@ objfunc_45_LAB_float_up_platform:
    call   get_obj_level_tile_ptr_in_ram  ; 02:9106 - CD F9 36
    ld     e, (hl)                      ; 02:9109 - 5E
    ld     d, $00                       ; 02:910A - 16 00
-   ld     a, (g_tile_flags_index)      ; 02:910C - 3A D4 D2
-   add    a, a                         ; 02:910F - 87
-   ld     c, a                         ; 02:9110 - 4F
-   ld     b, d                         ; 02:9111 - 42
-   ld     hl, PTRLUT_level_tile_flags  ; 02:9112 - 21 65 3A
-   add    hl, bc                       ; 02:9115 - 09
-   ld     a, (hl)                      ; 02:9116 - 7E
-   inc    hl                           ; 02:9117 - 23
-   ld     h, (hl)                      ; 02:9118 - 66
-   ld     l, a                         ; 02:9119 - 6F
+   call get_level_tile_flags_ptr
    add    hl, de                       ; 02:911A - 19
    ld     a, (hl)                      ; 02:911B - 7E
    and    $3F                          ; 02:911C - E6 3F
