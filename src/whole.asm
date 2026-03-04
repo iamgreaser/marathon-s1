@@ -169,11 +169,13 @@ g_y_oscillate_pix db   ; D2A2
 g_y_oscillate_pix_hi db   ; D2A3
 ;; ^ Group
 
+;; v Group
 g_palette_cycle_tick_remain db   ; D2A4
 g_palette_cycle_tick_period db   ; D2A5
 g_palette_cycle_index db   ; D2A6
 g_palette_cycle_length db   ; D2A7
 g_palette_cycle_baseptr dw   ; D2A8
+;; ^ Group
 g_rings_BCD db   ; D2AA
 g_screen_tile_replace_x db   ; D2AB
 g_screen_tile_replace_x_hi db   ; D2AC
@@ -3599,6 +3601,24 @@ update_signpost_timer:
    ld bc, _sizeof_g_level_header_copy
    ldir
 
+   ;; Clear the checkpoint.
+   ld hl, $0000
+   ld (g_level_checkpoint_x_pix), hl
+   ld (g_level_checkpoint_y_pix), hl
+
+   ;; Unlock the camera
+   ld hl, $0001
+   ld (g_level_limit_x0), hl
+   ld (g_level_limit_y0), hl
+   ld hl, $FEFF ; If it's $FFFF, Sonic dies
+   ld (g_level_limit_x1), hl
+   ld (g_level_limit_y1), hl
+   ld hl, $0000
+   ld (g_level_camera_lock_towards_x), hl
+   ld (g_level_camera_lock_towards_y), hl
+   set 0, (iy+iy_02-IYBASE)  ; Expect X scroll
+   set 1, (iy+iy_02-IYBASE)  ; Expect Y scroll
+
    ;; Clear the object list.
    ;; NOTE: Probably overkill.
    ld hl, object_list_past_sonic
@@ -3620,21 +3640,89 @@ update_signpost_timer:
    ld (hl), $00
    ldir
 
+   ;; Handle the next tilemap and tileflags, and update art if necessary
+   ld hl, g_level_header_copy
+   ld a, (g_tile_flags_index)
+   cp (hl)
+   jr z, @skip_loading_graphics_and_tilesets
+   ld a, (hl)
+
+   ;; Load tilemap and art
+   ld (g_tile_flags_index), a
+   ld hl, g_level_header_copy+1+(2*6)
+   call load_tilemap_and_art_from_header
+
+   ;; Handle the next palette
+   ld hl, g_level_header_copy+1+(2*6)+(3*3)   ; offset to palette
+   call load_palette_from_header
+@skip_loading_graphics_and_tilesets:
+
    ;; Load the new objects.
-   ld hl, g_level_header_copy+1+(2*6)+(3*3)+4  ; offset to object pointer
+   ld hl, g_level_header_copy+1+(2*6)+(3*3)+4   ; offset to object list
    ld e, (hl)
    inc hl
    ld d, (hl)
    inc hl
    ld a, (hl)
    call set_rompage_2
+   inc hl
+   push hl
    ex de, hl
    call load_object_list_skipping_sonic
+   pop hl
 
-   ;; Clear the checkpoint.
-   ld hl, $0000
-   ld (g_level_checkpoint_x_pix), hl
-   ld (g_level_checkpoint_y_pix), hl
+   ;; Update *some* header flags.
+   ;; These are the only ones that matter:
+   ;; .db $04, $00, $20, $00
+   ;; .db $04, $00, $21, $00
+   ;; .db $04, $00, $22, $00
+   ;; .db $04, $80, $20, $00
+   ;; .db $04, $80, $30, $00
+   ;; flag 05.b7
+   ;; flag 06.b0
+   ;; flag 06.b1
+   ;; flag 06.b4
+   res 7, (iy+iy_06_lvflag01-IYBASE)
+   res 0, (iy+iy_07_lvflag02-IYBASE)
+   res 1, (iy+iy_07_lvflag02-IYBASE)
+   res 4, (iy+iy_07_lvflag02-IYBASE)
+   inc hl
+   ld a, (hl)
+   and $80
+   or (iy+iy_06_lvflag01-IYBASE)
+   ld (iy+iy_06_lvflag01-IYBASE), a
+   inc hl
+   ld a, (hl)
+   and $13
+   or (iy+iy_07_lvflag02-IYBASE)
+   ld (iy+iy_07_lvflag02-IYBASE), a
+   inc hl
+   inc hl
+
+   ;; Update the music.
+   ld a, (g_level_music)
+   cp (hl)
+   ld a, (hl)
+   jr z, @skip_update_music
+   ld (g_level_music), a
+   rst $18
+@skip_update_music:
+   inc hl
+
+   ;; See if there are any water level changes to do
+   xor a
+   ld (g_water_onscreen_y), a
+   ld (g_water_level_onscreen_y), a
+   ld hl, $FF00
+   ld a, (g_level)
+   cp $0B
+   jr nz, @not_fully_underwater
+   ld a, $FF
+   ld (g_water_onscreen_y), a
+   ld hl, $0020
+@not_fully_underwater:
+   ld (g_water_level_y), hl
+   ;; TODO! --GM
 
    ;; Return happy
    ld a, $01
@@ -3934,89 +4022,8 @@ load_and_init_level_from_header:
    ld (g_level_limit_x1), hl
    ld (g_level_limit_y1), hl
    pop    hl                           ; 00:2246 - E1
-   ld     e, (hl)                      ; 00:2247 - 5E
-   inc    hl                           ; 00:2248 - 23
-   ld     d, (hl)                      ; 00:2249 - 56
-   inc    hl                           ; 00:224A - 23
-   ld a, (hl)
-   inc hl
-   ld (g_level_tilemap_ptr), de
-   ld (g_level_tilemap_bank), a
-   ld     e, (hl)                      ; 00:2254 - 5E
-   inc    hl                           ; 00:2255 - 23
-   ld     d, (hl)                      ; 00:2256 - 56
-   inc    hl                           ; 00:2257 - 23
-   ld a, (hl)
-   inc hl
-   push   hl                           ; 00:2258 - E5
-   ex     de, hl                       ; 00:2259 - EB
-   ld     de, $0000                    ; 00:225A - 11 00 00
-   call load_art
-   pop    hl                           ; 00:2262 - E1
-   ld     e, (hl)                      ; 00:2265 - 5E
-   inc    hl                           ; 00:2266 - 23
-   ld     d, (hl)                      ; 00:2267 - 56
-   inc    hl                           ; 00:2268 - 23
-   ld a, (hl)
-   inc hl
-   push   hl                           ; 00:2269 - E5
-   ex     de, hl                       ; 00:226A - EB
-   ld     de, $2000                    ; 00:226B - 11 00 20
-   call load_art
-   pop    hl                           ; 00:2271 - E1
-   ld     a, (hl)                      ; 00:2272 - 7E
-   push   hl                           ; 00:2273 - E5
-   add    a, a                         ; 00:2274 - 87
-   ld     e, a                         ; 00:2275 - 5F
-   ld     d, $00                       ; 00:2276 - 16 00
-   ld     hl, LUT_base_PAL3s           ; 00:2278 - 21 7C 62
-   add    hl, de                       ; 00:227B - 19
-   di                                  ; 00:227C - F3
-   ld a, $02
-   call set_rompage_2
-   ei                                  ; 00:228D - FB
-   ld     a, (hl)                      ; 00:228E - 7E
-   inc    hl                           ; 00:228F - 23
-   ld     h, (hl)                      ; 00:2290 - 66
-   ld     l, a                         ; 00:2291 - 6F
-   ld     a, $03                       ; 00:2292 - 3E 03
-   call   signal_load_palettes         ; 00:2294 - CD 33 03
-   res    0, (iy+iy_00-IYBASE)         ; 00:2297 - FD CB 00 86
-   call   wait_until_irq_ticked        ; 00:229B - CD 1C 03
-   call   draw_initial_screen_tiles    ; 00:229E - CD 66 09
-   pop    hl                           ; 00:22A1 - E1
-   inc    hl                           ; 00:22A2 - 23
-   ld     de, g_palette_cycle_tick_remain  ; 00:22A3 - 11 A4 D2
-   ld     a, (hl)                      ; 00:22A6 - 7E
-   ld     (de), a                      ; 00:22A7 - 12
-   inc    de                           ; 00:22A8 - 13
-   ld     (de), a                      ; 00:22A9 - 12
-   inc    de                           ; 00:22AA - 13
-   inc    hl                           ; 00:22AB - 23
-   xor    a                            ; 00:22AC - AF
-   ld     (de), a                      ; 00:22AD - 12
-   inc    de                           ; 00:22AE - 13
-   ld     a, (hl)                      ; 00:22AF - 7E
-   ld     (de), a                      ; 00:22B0 - 12
-   inc    hl                           ; 00:22B1 - 23
-   ld     a, (hl)                      ; 00:22B2 - 7E
-   ex     de, hl                       ; 00:22B3 - EB
-   add    a, a                         ; 00:22B4 - 87
-   ld     c, a                         ; 00:22B5 - 4F
-   ld     b, $00                       ; 00:22B6 - 06 00
-   ld     hl, LUT_PAL1_cycles          ; 00:22B8 - 21 8C 62
-   add    hl, bc                       ; 00:22BB - 09
-   di                                  ; 00:22BC - F3
-   ld a, $02
-   call set_rompage_2
-   ei                                  ; 00:22CD - FB
-   ld     a, (hl)                      ; 00:22CE - 7E
-   inc    hl                           ; 00:22CF - 23
-   ld     h, (hl)                      ; 00:22D0 - 66
-   ld     l, a                         ; 00:22D1 - 6F
-   ld     (g_palette_cycle_baseptr), hl  ; 00:22D2 - 22 A8 D2
-   ex     de, hl                       ; 00:22D5 - EB
-   inc    hl                           ; 00:22D6 - 23
+   call load_tilemap_and_art_from_header
+   call load_palette_from_header
    ld     e, (hl)                      ; 00:22D7 - 5E
    inc    hl                           ; 00:22D8 - 23
    ld     d, (hl)                      ; 00:22D9 - 56
@@ -4068,6 +4075,91 @@ load_and_init_level_from_header:
    ret    z                            ; 00:2325 - C8
    set    5, (iy+iy_06_lvflag01-IYBASE)  ; 00:2326 - FD CB 06 EE
    ret                                 ; 00:232A - C9
+
+load_tilemap_and_art_from_header:
+   ld     e, (hl)                      ; 00:2247 - 5E
+   inc    hl                           ; 00:2248 - 23
+   ld     d, (hl)                      ; 00:2249 - 56
+   inc    hl                           ; 00:224A - 23
+   ld a, (hl)
+   inc hl
+   ld (g_level_tilemap_ptr), de
+   ld (g_level_tilemap_bank), a
+   ld     e, (hl)                      ; 00:2254 - 5E
+   inc    hl                           ; 00:2255 - 23
+   ld     d, (hl)                      ; 00:2256 - 56
+   inc    hl                           ; 00:2257 - 23
+   ld a, (hl)
+   inc hl
+   push   hl                           ; 00:2258 - E5
+   ex     de, hl                       ; 00:2259 - EB
+   ld     de, $0000                    ; 00:225A - 11 00 00
+   call load_art
+   pop    hl                           ; 00:2262 - E1
+   ld     e, (hl)                      ; 00:2265 - 5E
+   inc    hl                           ; 00:2266 - 23
+   ld     d, (hl)                      ; 00:2267 - 56
+   inc    hl                           ; 00:2268 - 23
+   ld a, (hl)
+   inc hl
+   push   hl                           ; 00:2269 - E5
+   ex     de, hl                       ; 00:226A - EB
+   ld     de, $2000                    ; 00:226B - 11 00 20
+   call load_art
+   pop    hl                           ; 00:2271 - E1
+   ret
+
+load_palette_from_header:
+   ld     a, (hl)                      ; 00:2272 - 7E
+   push   hl                           ; 00:2273 - E5
+   add    a, a                         ; 00:2274 - 87
+   ld     e, a                         ; 00:2275 - 5F
+   ld     d, $00                       ; 00:2276 - 16 00
+   ld     hl, LUT_base_PAL3s           ; 00:2278 - 21 7C 62
+   add    hl, de                       ; 00:227B - 19
+   ld a, $02
+   call set_rompage_2
+   ld     a, (hl)                      ; 00:228E - 7E
+   inc    hl                           ; 00:228F - 23
+   ld     h, (hl)                      ; 00:2290 - 66
+   ld     l, a                         ; 00:2291 - 6F
+   ld     a, $03                       ; 00:2292 - 3E 03
+   call   signal_load_palettes         ; 00:2294 - CD 33 03
+   res    0, (iy+iy_00-IYBASE)         ; 00:2297 - FD CB 00 86
+   call   wait_until_irq_ticked        ; 00:229B - CD 1C 03
+   call   draw_initial_screen_tiles    ; 00:229E - CD 66 09
+   pop    hl                           ; 00:22A1 - E1
+   inc    hl                           ; 00:22A2 - 23
+   ld     de, g_palette_cycle_tick_remain  ; 00:22A3 - 11 A4 D2
+   ld     a, (hl)                      ; 00:22A6 - 7E
+   ld     (de), a                      ; 00:22A7 - 12
+   inc    de                           ; 00:22A8 - 13
+   ld     (de), a                      ; 00:22A9 - 12
+   inc    de                           ; 00:22AA - 13
+   inc    hl                           ; 00:22AB - 23
+   xor    a                            ; 00:22AC - AF
+   ld     (de), a                      ; 00:22AD - 12
+   inc    de                           ; 00:22AE - 13
+   ld     a, (hl)                      ; 00:22AF - 7E
+   ld     (de), a                      ; 00:22B0 - 12
+   inc    hl                           ; 00:22B1 - 23
+   ld     a, (hl)                      ; 00:22B2 - 7E
+   ex     de, hl                       ; 00:22B3 - EB
+   add    a, a                         ; 00:22B4 - 87
+   ld     c, a                         ; 00:22B5 - 4F
+   ld     b, $00                       ; 00:22B6 - 06 00
+   ld     hl, LUT_PAL1_cycles          ; 00:22B8 - 21 8C 62
+   add    hl, bc                       ; 00:22BB - 09
+   ld a, $02
+   call set_rompage_2
+   ld     a, (hl)                      ; 00:22CE - 7E
+   inc    hl                           ; 00:22CF - 23
+   ld     h, (hl)                      ; 00:22D0 - 66
+   ld     l, a                         ; 00:22D1 - 6F
+   ld     (g_palette_cycle_baseptr), hl  ; 00:22D2 - 22 A8 D2
+   ex     de, hl                       ; 00:22D5 - EB
+   inc    hl                           ; 00:22D6 - 23
+   ret
 
 load_object_list_skipping_sonic:
    ld ix, object_list_past_sonic
@@ -11342,6 +11434,9 @@ PAL2_boss:
 .INCBIN "src/data/boss.pal2"
 
 objfunc_25_animal_capsule:
+   jp objfunc_07_signpost
+   ;; Disabled for now. Will remove following code and animal objfuncs soon. For now, force-semi-load next level.
+
    of_disable_world_collisions
    bit    0, (ix+24)                   ; 01:7330 - DD CB 18 46
    jr     nz, @already_initialised     ; 01:7334 - 20 14
