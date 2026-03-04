@@ -9,6 +9,21 @@ wm title . "stitch-view"
 set ::screen_lx 2560
 set ::screen_ly 1920
 
+# TODO: Use these! --GM
+# *.tilemap = separate in slot 2
+# *.tilespecials = combined in slot 2
+# *.tileflags = combined in slot 0 or slot 1 (go with the latter for now)
+set ::tileset_specs {
+   {GHZ src/data/lv_ghz}
+   {BRI src/data/lv_bri}
+   {JUN src/data/lv_jun}
+   {LAB src/data/lv_lab}
+   {SCR src/data/lv_scr}
+   {SKY src/data/lv_sky}
+   {special src/data/lv_special}
+   {SKY_3 src/data/lv_sky_3}
+}
+
 set ::layout_boxes {
    {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 0 317}
    {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340 0 8}
