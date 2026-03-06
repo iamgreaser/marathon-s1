@@ -20371,10 +20371,10 @@ ART_SKY_3_2000:
 .INCBIN "src/data/lv_sky.art2000"
 .ENDS
 
-.SECTION "base_ART_09_A511" SUPERFREE SLOT 2
-ART_special_2000:
-.INCBIN "src/data/lv_special.art2000"
-.ENDS
+;.SECTION "base_ART_09_A511" SUPERFREE SLOT 2
+;ART_special_2000:
+;.INCBIN "src/data/lv_special.art2000"
+;.ENDS
 
 .SECTION "base_ART_09_AEB1" SUPERFREE SLOT 2
 ART_boss_1_2000:
@@ -20441,10 +20441,10 @@ ART_SKY_3_0000:
 .INCBIN "src/data/lv_sky_3.art0000"
 .ENDS
 
-.SECTION "base_ART_0C_C7FE" SUPERFREE SLOT 2
-ART_special_0000:
-.INCBIN "src/data/lv_special.art0000"
-.ENDS
+;.SECTION "base_ART_0C_C7FE" SUPERFREE SLOT 2
+;ART_special_0000:
+;.INCBIN "src/data/lv_special.art0000"
+;.ENDS
 
 .SECTION "base_ART_0C_DA28" SUPERFREE SLOT 2
 ART_0C_DA28:

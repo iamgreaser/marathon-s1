@@ -19,9 +19,9 @@ set ::tileset_specs {
    {LAB src/data/lv_lab}
    {SCR src/data/lv_scr}
    {SKY src/data/lv_sky}
-   {special src/data/lv_special}
    {SKY_3 src/data/lv_sky_3}
 }
+# {special src/data/lv_special}
 
 set ::layout_boxes {
    {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 0 317}
@@ -44,16 +44,16 @@ set ::layout_boxes {
    {LVLAYOUT_SKY1 0x0001 0x0F00 0x0001 0x0340 -18 -44}
    {LVLAYOUT_SKY2 0x0001 0x0700 0x0001 0x0640 21 -3}
    {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740 16 0}
-   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 0x0001 0x0700 0x0001 0x0740 16 0}
-   {LVLAYOUT_SPECIAL_4_8 0x0001 0x0100 0x0001 0x0F20 0 0}
 }
+# Special stages
+# {LVLAYOUT_SPECIAL_1_2_3_5_6_7 0x0001 0x0700 0x0001 0x0740 16 0}
+# {LVLAYOUT_SPECIAL_4_8 0x0001 0x0100 0x0001 0x0F20 0 0}
 # SKY2 end
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0740 0 0}
 # SKY3
 # {LVLAYOUT_SKY3_endof_SKY2 0x0001 0x0700 0x0001 0x0120 0 0}
 
 set ::layout_specs {
-
    {LVLAYOUT_GHZ1_ENDING src/data/lv_ghz_1_ending.layout8 GHZ {src/data/lv_ghz_1.objects LVOBJECTS_GHZ1 {
       LVHEAD_00 0x08 0x0B {00 00 0A 03 00 04 00 20 00 00}
    }}}
@@ -120,25 +120,27 @@ set ::layout_specs {
    } src/data/lv_sky_3.objects LVOBJECTS_SKY3 {
       LVHEAD_11 0x02 0x01 {07 06 08 04 06 04 00 20 00 04}
    }}}
-   {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_1.objects LVOBJECTS_SPECIAL_1 {
-      LVHEAD_1C 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_5.objects LVOBJECTS_SPECIAL_5 {
-      LVHEAD_20 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_2.objects LVOBJECTS_SPECIAL_2 {
-      LVHEAD_1D 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_6.objects LVOBJECTS_SPECIAL_6 {
-      LVHEAD_21 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_3.objects LVOBJECTS_SPECIAL_3 {
-      LVHEAD_1E 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_7.objects LVOBJECTS_SPECIAL_7 {
-      LVHEAD_22 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
-   }}}
-   {LVLAYOUT_SPECIAL_4_8 src/data/lv_jun_2_special_4_8.layout4 special {src/data/lv_special_4.objects LVOBJECTS_SPECIAL_4 {
-      LVHEAD_1F 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
-   } src/data/lv_special_8.objects LVOBJECTS_SPECIAL_8 {
-      LVHEAD_23 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
-   }}}
 }
+
+# Special stages
+# {LVLAYOUT_SPECIAL_1_2_3_5_6_7 src/data/lv_special_1_2_3_5_6_7.layout6 special {src/data/lv_special_1.objects LVOBJECTS_SPECIAL_1 {
+#    LVHEAD_1C 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_5.objects LVOBJECTS_SPECIAL_5 {
+#    LVHEAD_20 0x02 0x06 {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_2.objects LVOBJECTS_SPECIAL_2 {
+#    LVHEAD_1D 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_6.objects LVOBJECTS_SPECIAL_6 {
+#    LVHEAD_21 0x02 0x1E {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_3.objects LVOBJECTS_SPECIAL_3 {
+#    LVHEAD_1E 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_7.objects LVOBJECTS_SPECIAL_7 {
+#    LVHEAD_22 0x03 0x3B {06 07 01 01 07 04 00 21 00 10}
+# }}}
+# {LVLAYOUT_SPECIAL_4_8 src/data/lv_jun_2_special_4_8.layout4 special {src/data/lv_special_4.objects LVOBJECTS_SPECIAL_4 {
+#    LVHEAD_1F 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
+# } src/data/lv_special_8.objects LVOBJECTS_SPECIAL_8 {
+#    LVHEAD_23 0x06 0x04 {06 07 01 01 07 04 00 21 00 10}
+# }}}
 
 proc main {} {
    puts "widgets: [time { init_widgets }]"
@@ -442,8 +444,10 @@ proc init_levels {} {
    lappend ::codegen_headers {.dw LVHEAD_08, LVHEAD_09, LVHEAD_0A, LVHEAD_0B, LVHEAD_0C, LVHEAD_0D, LVHEAD_0E, LVHEAD_0F}
    # TODO: Consider reinstating the ending level header (level $12)... or just wish it farewell. --GM
    lappend ::codegen_headers {.dw LVHEAD_10, LVHEAD_11, 0, 0, LVHEAD_14, LVHEAD_15, LVHEAD_16, LVHEAD_17}
-   lappend ::codegen_headers {.dw LVHEAD_18, LVHEAD_19, LVHEAD_1A, LVHEAD_1B, LVHEAD_1C, LVHEAD_1D, LVHEAD_1E, LVHEAD_1F}
-   lappend ::codegen_headers {.dw LVHEAD_20, LVHEAD_21, LVHEAD_22, LVHEAD_23, 0}
+   lappend ::codegen_headers {.dw LVHEAD_18, LVHEAD_19, LVHEAD_1A, LVHEAD_1B, 0, 0, 0, 0}
+   lappend ::codegen_headers {.dw 0, 0, 0, 0, 0}
+   #lappend ::codegen_headers {.dw LVHEAD_18, LVHEAD_19, LVHEAD_1A, LVHEAD_1B, LVHEAD_1C, LVHEAD_1D, LVHEAD_1E, LVHEAD_1F}
+   #lappend ::codegen_headers {.dw LVHEAD_20, LVHEAD_21, LVHEAD_22, LVHEAD_23, 0}
 
    set ::min_layout_x [expr {0x20000}]
    set ::max_layout_x [expr {-0x10000}]
