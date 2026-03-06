@@ -228,6 +228,8 @@ proc on_drag_step {x y} {
 
 proc init_tilesets {} {
    array set ::tilesets {}
+   array set ::tileset_indices {}
+   set next_ts_idx 0
 
    foreach tss $::tileset_specs {
       lassign $tss ts_key ts_fname_base
@@ -278,7 +280,8 @@ proc init_tilesets {} {
       }
 
       set ::tilesets($ts_key) [list $tileflags $tilemap $tilespecials $art0_fname $pal]
-
+      set ::tileset_indices($ts_key) $next_ts_idx
+      incr next_ts_idx
    }
 }
 
@@ -609,6 +612,7 @@ proc load_level_layout {lbs} {
    # Put it on the canvas!
    set ti 0
    set eff_width_px 0
+   set ts_idx $::tileset_indices($ts_key)
    for {set py 0} {$py < $height_px} {incr py 32} {
       for {set px 0} {$px < $width_px} {incr px 32} {
          set v [lindex $uncdata $ti]
@@ -621,7 +625,7 @@ proc load_level_layout {lbs} {
                   if {($global_px|$global_py)&0x1F} { error [format "unaligned coords %04X,%04X", $global_px, $global_py] }
                   set global_mtx [expr {$global_px>>5}]
                   set global_mty [expr {$global_py>>5}]
-                  put_metatile $global_mtx $global_mty $v
+                  put_metatile $global_mtx $global_mty $v $ts_idx
                   set eff_width_px [expr {max($eff_width_px, $px-$x0_px+32)}]
                   set ::min_layout_x [expr {min($::min_layout_x, $global_px)}]
                   set ::max_layout_x [expr {max($::max_layout_x, $global_px+32)}]
@@ -718,7 +722,12 @@ proc load_level_layout {lbs} {
    incr ::next_layout_x $eff_width_px
 }
 
-proc put_metatile {mtx mty v} {
+proc put_metatile {mtx mty v ts_idx} {
+   # Apply tileset number except when tile is 0x00
+   if {$v != 0} {
+      set v [expr {$v|($ts_idx<<8)}]
+   }
+
    set cx [expr {$mtx>>4}]
    set cy [expr {$mty>>4}]
    set subx [expr {$mtx&0xF}]
@@ -783,9 +792,11 @@ proc finalise_chunks {} {
       lappend ::codegen_sections "${chunk_name}:"
 
       # This is an RLE compressor.
-      set rle_runs [list [list [lindex $unc_chunk 0] 0]]
+      set rle_runs [list [list [expr {[lindex $unc_chunk 0]&0xFF}] 0]]
       set ri 0
-      foreach b $unc_chunk {
+      foreach cell $unc_chunk {
+         set ts_idx [expr {$cell>>8}]
+         set b [expr {$cell&0xFF}]
          if {[lindex $rle_runs $ri 0] != $b} {
             lappend rle_runs [list $b 0]
             incr ri
@@ -833,6 +844,7 @@ proc finalise_chunks {} {
    lappend ::codegen_quadtree {.DW 0}
    lappend ::codegen_quadtree {.DW chunk_0000}
    lappend ::codegen_quadtree {.DB :chunk_0000}
+   lappend ::codegen_quadtree {.DB 0}
 
    set ::next_chunksave_idx 0
    set ::qt_next_idx 1
@@ -854,18 +866,36 @@ proc generate_quadtree_section {node is_root} {
 
    if {[llength $node] == 1} {
       # Leaf
+      set ts_indices [list 0]
+      set ts_counts_map [dict create 0 0]
       set ckey $node
       set chunk [dict get $::chunk_map $ckey]
       set chunk_uniqidx [dict get $::uniqchunkmap $chunk]
       set chunk_name [format "chunk_%04X" ${chunk_uniqidx}]
       set ring_count 0
-      foreach b $chunk {
+      foreach cell $chunk {
+         set ts [expr {$cell>>8}]
+         set b [expr {$cell&0xFF}]
+         # Compute rings
          switch -exact -- [format %02X $b] {
             79 { incr ring_count }
             7A { incr ring_count }
             7B { incr ring_count 2 }
          }
+         # Compute which tileset is more common
+         if {$b != 0 && !($b >= 0x79 && $b <= 0x7B)} {
+            if {![dict exists $ts_counts_map $ts]} {
+               lappend ts_indices $ts
+            }
+            dict incr ts_counts_map $ts
+         }
       }
+      # Work out which tileset we're using
+      set chunk_ts_pair [lsort -integer -decreasing -index 0 [lmap ts $ts_indices {
+         list [dict get $ts_counts_map $ts] $ts
+      }]]
+      set chunk_ts [lindex $chunk_ts_pair 0 1]
+
       set chunksave_size_bits $ring_count
       set chunksave_size [expr {($chunksave_size_bits+7)/8}]
       if {$chunksave_size == 0} {
@@ -882,6 +912,7 @@ proc generate_quadtree_section {node is_root} {
       lappend ::codegen_quadtree ".DW ${chunksave_name}"
       lappend ::codegen_quadtree ".DW ${chunk_name}"
       lappend ::codegen_quadtree ".DB :${chunk_name}"
+      lappend ::codegen_quadtree ".DB ${chunk_ts}"
 
    } else {
       # Split

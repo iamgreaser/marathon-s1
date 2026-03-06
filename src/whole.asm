@@ -2091,6 +2091,12 @@ refresh_one_chunk:
    inc hl
    ld a, (hl)
    inc hl
+   push af
+      ;; Get the tileset index before we move ahead!
+      ld a, (hl)
+      inc hl
+      ld (ix+4), a
+   pop af
    call set_rompage_2
    push de
    push hl

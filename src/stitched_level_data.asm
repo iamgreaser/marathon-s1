@@ -444,24 +444,29 @@ qt_default_node:
 .DW 0
 .DW chunk_0000
 .DB :chunk_0000
+.DB 0
 qt_0007:
 .DW 0
 .DW chunk_0004
 .DB :chunk_0004
+.DB 0
 qt_0008:
 .DW 0
 .DW chunk_0005
 .DB :chunk_0005
+.DB 0
 qt_0006:
 .DW 0,0,qt_0007,qt_0008
 qt_000A:
 .DW 0
 .DW chunk_0006
 .DB :chunk_0006
+.DB 0
 qt_000B:
 .DW 0
 .DW chunk_0009
 .DB :chunk_0009
+.DB 0
 qt_0009:
 .DW 0,0,qt_000A,qt_000B
 qt_0005:
@@ -470,10 +475,12 @@ qt_000E:
 .DW 0
 .DW chunk_0001
 .DB :chunk_0001
+.DB 0
 qt_000F:
 .DW chunksave_0000
 .DW chunk_0007
 .DB :chunk_0007
+.DB 0
 qt_000D:
 .DW 0,0,qt_000E,qt_000F
 qt_000C:
@@ -482,20 +489,24 @@ qt_0012:
 .DW chunksave_0001
 .DW chunk_000A
 .DB :chunk_000A
+.DB 0
 qt_0013:
 .DW chunksave_0002
 .DW chunk_000B
 .DB :chunk_000B
+.DB 0
 qt_0011:
 .DW qt_0012,qt_0013,0,0
 qt_0015:
 .DW chunksave_0003
 .DW chunk_000C
 .DB :chunk_000C
+.DB 0
 qt_0016:
 .DW chunksave_0004
 .DW chunk_000D
 .DB :chunk_000D
+.DB 0
 qt_0014:
 .DW qt_0015,qt_0016,0,0
 qt_0010:
@@ -504,20 +515,24 @@ qt_0019:
 .DW chunksave_0005
 .DW chunk_000E
 .DB :chunk_000E
+.DB 0
 qt_001A:
 .DW chunksave_0006
 .DW chunk_000F
 .DB :chunk_000F
+.DB 0
 qt_0018:
 .DW qt_0019,qt_001A,0,0
 qt_001C:
 .DW chunksave_0007
 .DW chunk_0010
 .DB :chunk_0010
+.DB 0
 qt_001D:
 .DW chunksave_0008
 .DW chunk_0016
 .DB :chunk_0016
+.DB 0
 qt_001B:
 .DW qt_001C,qt_001D,0,0
 qt_0017:
@@ -528,16 +543,19 @@ qt_0021:
 .DW 0
 .DW chunk_0002
 .DB :chunk_0002
+.DB 0
 qt_0022:
 .DW 0
 .DW chunk_0003
 .DB :chunk_0003
+.DB 0
 qt_0020:
 .DW 0,0,qt_0021,qt_0022
 qt_0024:
 .DW 0
 .DW chunk_0008
 .DB :chunk_0008
+.DB 0
 qt_0023:
 .DW 0,0,qt_0024,0
 qt_001F:
@@ -546,20 +564,24 @@ qt_0027:
 .DW chunksave_0009
 .DW chunk_0011
 .DB :chunk_0011
+.DB 0
 qt_0028:
 .DW chunksave_000A
 .DW chunk_0012
 .DB :chunk_0012
+.DB 0
 qt_0026:
 .DW qt_0027,qt_0028,0,0
 qt_002A:
 .DW chunksave_000B
 .DW chunk_0013
 .DB :chunk_0013
+.DB 0
 qt_002B:
 .DW chunksave_000C
 .DW chunk_0014
 .DB :chunk_0014
+.DB 0
 qt_0029:
 .DW qt_002A,qt_002B,0,0
 qt_0025:
@@ -568,56 +590,68 @@ qt_002E:
 .DW chunksave_000D
 .DW chunk_0015
 .DB :chunk_0015
+.DB 0
 qt_002F:
 .DW chunksave_000E
 .DW chunk_0017
 .DB :chunk_0017
+.DB 0
 qt_0030:
 .DW 0
 .DW chunk_001D
 .DB :chunk_001D
+.DB 0
 qt_0031:
 .DW 0
 .DW chunk_001E
 .DB :chunk_001E
+.DB 0
 qt_002D:
 .DW qt_002E,qt_002F,qt_0030,qt_0031
 qt_0033:
 .DW chunksave_000F
 .DW chunk_0018
 .DB :chunk_0018
+.DB 0
 qt_0034:
 .DW chunksave_0010
 .DW chunk_0019
 .DB :chunk_0019
+.DB 0
 qt_0035:
 .DW 0
 .DW chunk_001F
 .DB :chunk_001F
+.DB 0
 qt_0036:
 .DW chunksave_0011
 .DW chunk_0020
 .DB :chunk_0020
+.DB 0
 qt_0032:
 .DW qt_0033,qt_0034,qt_0035,qt_0036
 qt_0038:
 .DW 0
 .DW chunk_0025
 .DB :chunk_0025
+.DB 0
 qt_0039:
 .DW 0
 .DW chunk_0026
 .DB :chunk_0026
+.DB 0
 qt_0037:
 .DW qt_0038,qt_0039,0,0
 qt_003B:
 .DW 0
 .DW chunk_0027
 .DB :chunk_0027
+.DB 0
 qt_003C:
 .DW 0
 .DW chunk_0028
 .DB :chunk_0028
+.DB 0
 qt_003A:
 .DW qt_003B,qt_003C,0,0
 qt_002C:
@@ -630,56 +664,68 @@ qt_0041:
 .DW 0
 .DW chunk_001A
 .DB :chunk_001A
+.DB 0
 qt_0042:
 .DW 0
 .DW chunk_001B
 .DB :chunk_001B
+.DB 0
 qt_0043:
 .DW chunksave_0012
 .DW chunk_0021
 .DB :chunk_0021
+.DB 0
 qt_0044:
 .DW chunksave_0013
 .DW chunk_0022
 .DB :chunk_0022
+.DB 0
 qt_0040:
 .DW qt_0041,qt_0042,qt_0043,qt_0044
 qt_0046:
 .DW 0
 .DW chunk_001C
 .DB :chunk_001C
+.DB 0
 qt_0047:
 .DW 0
 .DW chunk_002F
 .DB :chunk_002F
+.DB 0
 qt_0048:
 .DW 0
 .DW chunk_0023
 .DB :chunk_0023
+.DB 0
 qt_0049:
 .DW 0
 .DW chunk_0024
 .DB :chunk_0024
+.DB 0
 qt_0045:
 .DW qt_0046,qt_0047,qt_0048,qt_0049
 qt_004B:
 .DW 0
 .DW chunk_0029
 .DB :chunk_0029
+.DB 0
 qt_004C:
 .DW 0
 .DW chunk_0029
 .DB :chunk_0029
+.DB 0
 qt_004A:
 .DW qt_004B,qt_004C,0,0
 qt_004E:
 .DW 0
 .DW chunk_0029
 .DB :chunk_0029
+.DB 0
 qt_004F:
 .DW 0
 .DW chunk_002A
 .DB :chunk_002A
+.DB 0
 qt_004D:
 .DW qt_004E,qt_004F,0,0
 qt_003F:
@@ -688,36 +734,44 @@ qt_0052:
 .DW 0
 .DW chunk_002E
 .DB :chunk_002E
+.DB 0
 qt_0053:
 .DW 0
 .DW chunk_002B
 .DB :chunk_002B
+.DB 0
 qt_0054:
 .DW 0
 .DW chunk_0030
 .DB :chunk_0030
+.DB 0
 qt_0055:
 .DW 0
 .DW chunk_0031
 .DB :chunk_0031
+.DB 0
 qt_0051:
 .DW qt_0052,qt_0053,qt_0054,qt_0055
 qt_0057:
 .DW 0
 .DW chunk_002C
 .DB :chunk_002C
+.DB 0
 qt_0058:
 .DW 0
 .DW chunk_002D
 .DB :chunk_002D
+.DB 0
 qt_0059:
 .DW 0
 .DW chunk_0032
 .DB :chunk_0032
+.DB 0
 qt_005A:
 .DW 0
 .DW chunk_0033
 .DB :chunk_0033
+.DB 0
 qt_0056:
 .DW qt_0057,qt_0058,qt_0059,qt_005A
 qt_0050:
@@ -728,12 +782,14 @@ qt_005E:
 .DW 0
 .DW chunk_0036
 .DB :chunk_0036
+.DB 1
 qt_005D:
 .DW 0,0,qt_005E,0
 qt_0060:
 .DW 0
 .DW chunk_0034
 .DB :chunk_0034
+.DB 1
 qt_005F:
 .DW 0,0,qt_0060,0
 qt_005C:
@@ -742,20 +798,24 @@ qt_0063:
 .DW chunksave_0014
 .DW chunk_003D
 .DB :chunk_003D
+.DB 1
 qt_0064:
 .DW chunksave_0015
 .DW chunk_003F
 .DB :chunk_003F
+.DB 1
 qt_0062:
 .DW qt_0063,qt_0064,0,0
 qt_0066:
 .DW chunksave_0016
 .DW chunk_0040
 .DB :chunk_0040
+.DB 1
 qt_0067:
 .DW chunksave_0017
 .DW chunk_0037
 .DB :chunk_0037
+.DB 1
 qt_0065:
 .DW qt_0066,qt_0067,0,0
 qt_0061:
@@ -764,20 +824,24 @@ qt_006A:
 .DW chunksave_0018
 .DW chunk_0038
 .DB :chunk_0038
+.DB 1
 qt_006B:
 .DW chunksave_0019
 .DW chunk_0039
 .DB :chunk_0039
+.DB 1
 qt_0069:
 .DW qt_006A,qt_006B,0,0
 qt_006D:
 .DW chunksave_001A
 .DW chunk_003A
 .DB :chunk_003A
+.DB 1
 qt_006E:
 .DW 0
 .DW chunk_0041
 .DB :chunk_0041
+.DB 1
 qt_006C:
 .DW qt_006D,qt_006E,0,0
 qt_0068:
@@ -792,28 +856,34 @@ qt_0074:
 .DW 0
 .DW chunk_0078
 .DB :chunk_0078
+.DB 2
 qt_0075:
 .DW 0
 .DW chunk_0075
 .DB :chunk_0075
+.DB 2
 qt_0073:
 .DW 0,0,qt_0074,qt_0075
 qt_0077:
 .DW 0
 .DW chunk_0073
 .DB :chunk_0073
+.DB 2
 qt_0078:
 .DW 0
 .DW chunk_0074
 .DB :chunk_0074
+.DB 3
 qt_0079:
 .DW 0
 .DW chunk_0076
 .DB :chunk_0076
+.DB 2
 qt_007A:
 .DW chunksave_001B
 .DW chunk_0077
 .DB :chunk_0077
+.DB 3
 qt_0076:
 .DW qt_0077,qt_0078,qt_0079,qt_007A
 qt_0072:
@@ -822,20 +892,24 @@ qt_007D:
 .DW 0
 .DW chunk_0065
 .DB :chunk_0065
+.DB 2
 qt_007E:
 .DW 0
 .DW chunk_0067
 .DB :chunk_0067
+.DB 2
 qt_007C:
 .DW 0,qt_007D,0,qt_007E
 qt_0080:
 .DW chunksave_001C
 .DW chunk_0069
 .DB :chunk_0069
+.DB 2
 qt_0081:
 .DW 0
 .DW chunk_006B
 .DB :chunk_006B
+.DB 2
 qt_007F:
 .DW 0,qt_0080,0,qt_0081
 qt_007B:
@@ -844,46 +918,56 @@ qt_0084:
 .DW 0
 .DW chunk_0066
 .DB :chunk_0066
+.DB 2
 qt_0085:
 .DW 0
 .DW chunk_0079
 .DB :chunk_0079
+.DB 2
 qt_0086:
 .DW 0
 .DW chunk_0068
 .DB :chunk_0068
+.DB 2
 qt_0087:
 .DW 0
 .DW chunk_007B
 .DB :chunk_007B
+.DB 2
 qt_0083:
 .DW qt_0084,qt_0085,qt_0086,qt_0087
 qt_0089:
 .DW 0
 .DW chunk_007A
 .DB :chunk_007A
+.DB 2
 qt_008A:
 .DW chunksave_001D
 .DW chunk_0084
 .DB :chunk_0084
+.DB 3
 qt_008B:
 .DW 0
 .DW chunk_007C
 .DB :chunk_007C
+.DB 2
 qt_008C:
 .DW 0
 .DW chunk_0089
 .DB :chunk_0089
+.DB 3
 qt_0088:
 .DW qt_0089,qt_008A,qt_008B,qt_008C
 qt_008E:
 .DW 0
 .DW chunk_006A
 .DB :chunk_006A
+.DB 2
 qt_008F:
 .DW chunksave_001E
 .DW chunk_006C
 .DB :chunk_006C
+.DB 2
 qt_008D:
 .DW qt_008E,0,qt_008F,0
 qt_0082:
@@ -896,6 +980,7 @@ qt_0094:
 .DW 0
 .DW chunk_0035
 .DB :chunk_0035
+.DB 1
 qt_0093:
 .DW 0,0,qt_0094,0
 qt_0092:
@@ -904,20 +989,24 @@ qt_0097:
 .DW 0
 .DW chunk_0049
 .DB :chunk_0049
+.DB 1
 qt_0098:
 .DW chunksave_001F
 .DW chunk_0048
 .DB :chunk_0048
+.DB 1
 qt_0096:
 .DW 0,0,qt_0097,qt_0098
 qt_009A:
 .DW chunksave_0020
 .DW chunk_0046
 .DB :chunk_0046
+.DB 1
 qt_009B:
 .DW chunksave_0021
 .DW chunk_0047
 .DB :chunk_0047
+.DB 1
 qt_0099:
 .DW 0,0,qt_009A,qt_009B
 qt_0095:
@@ -926,20 +1015,24 @@ qt_009E:
 .DW chunksave_0022
 .DW chunk_003B
 .DB :chunk_003B
+.DB 1
 qt_009F:
 .DW chunksave_0023
 .DW chunk_003C
 .DB :chunk_003C
+.DB 1
 qt_009D:
 .DW qt_009E,qt_009F,0,0
 qt_00A1:
 .DW chunksave_0024
 .DW chunk_003E
 .DB :chunk_003E
+.DB 1
 qt_00A2:
 .DW chunksave_0025
 .DW chunk_0042
 .DB :chunk_0042
+.DB 1
 qt_00A0:
 .DW qt_00A1,qt_00A2,0,0
 qt_009C:
@@ -948,20 +1041,24 @@ qt_00A5:
 .DW chunksave_0026
 .DW chunk_004A
 .DB :chunk_004A
+.DB 1
 qt_00A6:
 .DW chunksave_0027
 .DW chunk_004B
 .DB :chunk_004B
+.DB 1
 qt_00A4:
 .DW qt_00A5,qt_00A6,0,0
 qt_00A8:
 .DW chunksave_0028
 .DW chunk_004C
 .DB :chunk_004C
+.DB 1
 qt_00A9:
 .DW chunksave_0029
 .DW chunk_004D
 .DB :chunk_004D
+.DB 1
 qt_00A7:
 .DW qt_00A8,qt_00A9,0,0
 qt_00A3:
@@ -972,20 +1069,24 @@ qt_00AD:
 .DW chunksave_002A
 .DW chunk_0044
 .DB :chunk_0044
+.DB 1
 qt_00AE:
 .DW chunksave_002B
 .DW chunk_0043
 .DB :chunk_0043
+.DB 1
 qt_00AC:
 .DW 0,0,qt_00AD,qt_00AE
 qt_00B0:
 .DW 0
 .DW chunk_0045
 .DB :chunk_0045
+.DB 1
 qt_00B1:
 .DW 0
 .DW chunk_0051
 .DB :chunk_0051
+.DB 1
 qt_00AF:
 .DW 0,0,qt_00B0,qt_00B1
 qt_00AB:
@@ -994,20 +1095,24 @@ qt_00B4:
 .DW 0
 .DW chunk_0052
 .DB :chunk_0052
+.DB 1
 qt_00B5:
 .DW 0
 .DW chunk_0053
 .DB :chunk_0053
+.DB 1
 qt_00B3:
 .DW 0,0,qt_00B4,qt_00B5
 qt_00B7:
 .DW chunksave_002C
 .DW chunk_0054
 .DB :chunk_0054
+.DB 2
 qt_00B8:
 .DW chunksave_002D
 .DW chunk_0061
 .DB :chunk_0061
+.DB 2
 qt_00B6:
 .DW 0,0,qt_00B7,qt_00B8
 qt_00B2:
@@ -1016,20 +1121,24 @@ qt_00BB:
 .DW 0
 .DW chunk_004E
 .DB :chunk_004E
+.DB 1
 qt_00BC:
 .DW 0
 .DW chunk_004F
 .DB :chunk_004F
+.DB 1
 qt_00BA:
 .DW qt_00BB,qt_00BC,0,0
 qt_00BE:
 .DW 0
 .DW chunk_0050
 .DB :chunk_0050
+.DB 1
 qt_00BF:
 .DW 0
 .DW chunk_0055
 .DB :chunk_0055
+.DB 1
 qt_00BD:
 .DW qt_00BE,qt_00BF,0,0
 qt_00B9:
@@ -1038,16 +1147,19 @@ qt_00C2:
 .DW 0
 .DW chunk_0055
 .DB :chunk_0055
+.DB 1
 qt_00C3:
 .DW 0
 .DW chunk_0055
 .DB :chunk_0055
+.DB 1
 qt_00C1:
 .DW qt_00C2,qt_00C3,0,0
 qt_00C5:
 .DW 0
 .DW chunk_0056
 .DB :chunk_0056
+.DB 1
 qt_00C4:
 .DW qt_00C5,0,0,0
 qt_00C0:
@@ -1060,20 +1172,24 @@ qt_00CA:
 .DW 0
 .DW chunk_0057
 .DB :chunk_0057
+.DB 2
 qt_00CB:
 .DW chunksave_002E
 .DW chunk_0058
 .DB :chunk_0058
+.DB 2
 qt_00C9:
 .DW 0,0,qt_00CA,qt_00CB
 qt_00CD:
 .DW 0
 .DW chunk_0059
 .DB :chunk_0059
+.DB 2
 qt_00CE:
 .DW chunksave_002F
 .DW chunk_005A
 .DB :chunk_005A
+.DB 2
 qt_00CC:
 .DW 0,0,qt_00CD,qt_00CE
 qt_00C8:
@@ -1082,20 +1198,24 @@ qt_00D1:
 .DW chunksave_0030
 .DW chunk_005B
 .DB :chunk_005B
+.DB 2
 qt_00D2:
 .DW chunksave_0031
 .DW chunk_005C
 .DB :chunk_005C
+.DB 2
 qt_00D0:
 .DW 0,0,qt_00D1,qt_00D2
 qt_00D4:
 .DW 0
 .DW chunk_005D
 .DB :chunk_005D
+.DB 2
 qt_00D5:
 .DW 0
 .DW chunk_005E
 .DB :chunk_005E
+.DB 2
 qt_00D3:
 .DW 0,0,qt_00D4,qt_00D5
 qt_00CF:
@@ -1106,34 +1226,41 @@ qt_00D9:
 .DW chunksave_0032
 .DW chunk_006D
 .DB :chunk_006D
+.DB 2
 qt_00DA:
 .DW 0
 .DW chunk_006F
 .DB :chunk_006F
+.DB 2
 qt_00D8:
 .DW 0,qt_00D9,0,qt_00DA
 qt_00DC:
 .DW chunksave_0033
 .DW chunk_0062
 .DB :chunk_0062
+.DB 2
 qt_00DD:
 .DW chunksave_0034
 .DW chunk_005F
 .DB :chunk_005F
+.DB 2
 qt_00DB:
 .DW 0,0,qt_00DC,qt_00DD
 qt_00DF:
 .DW 0
 .DW chunk_0071
 .DB :chunk_0071
+.DB 2
 qt_00E0:
 .DW chunksave_0035
 .DW chunk_0060
 .DB :chunk_0060
+.DB 2
 qt_00E1:
 .DW 0
 .DW chunk_0063
 .DB :chunk_0063
+.DB 2
 qt_00DE:
 .DW 0,qt_00DF,qt_00E0,qt_00E1
 qt_00D7:
@@ -1142,20 +1269,24 @@ qt_00E4:
 .DW 0
 .DW chunk_006E
 .DB :chunk_006E
+.DB 2
 qt_00E5:
 .DW chunksave_0036
 .DW chunk_0070
 .DB :chunk_0070
+.DB 2
 qt_00E3:
 .DW qt_00E4,0,qt_00E5,0
 qt_00E7:
 .DW chunksave_0037
 .DW chunk_0072
 .DB :chunk_0072
+.DB 2
 qt_00E8:
 .DW chunksave_0038
 .DW chunk_0064
 .DB :chunk_0064
+.DB 2
 qt_00E6:
 .DW qt_00E7,0,qt_00E8,0
 qt_00E2:
@@ -1172,36 +1303,44 @@ qt_00EF:
 .DW 0
 .DW chunk_007D
 .DB :chunk_007D
+.DB 3
 qt_00F0:
 .DW 0
 .DW chunk_007E
 .DB :chunk_007E
+.DB 3
 qt_00F1:
 .DW chunksave_0039
 .DW chunk_0080
 .DB :chunk_0080
+.DB 3
 qt_00F2:
 .DW chunksave_003A
 .DW chunk_0081
 .DB :chunk_0081
+.DB 3
 qt_00EE:
 .DW qt_00EF,qt_00F0,qt_00F1,qt_00F2
 qt_00F4:
 .DW 0
 .DW chunk_007E
 .DB :chunk_007E
+.DB 3
 qt_00F5:
 .DW 0
 .DW chunk_007F
 .DB :chunk_007F
+.DB 3
 qt_00F6:
 .DW 0
 .DW chunk_0082
 .DB :chunk_0082
+.DB 3
 qt_00F7:
 .DW 0
 .DW chunk_0083
 .DB :chunk_0083
+.DB 3
 qt_00F3:
 .DW qt_00F4,qt_00F5,qt_00F6,qt_00F7
 qt_00ED:
@@ -1210,36 +1349,44 @@ qt_00FA:
 .DW 0
 .DW chunk_008E
 .DB :chunk_008E
+.DB 3
 qt_00FB:
 .DW 0
 .DW chunk_008F
 .DB :chunk_008F
+.DB 3
 qt_00FC:
 .DW 0
 .DW chunk_0091
 .DB :chunk_0091
+.DB 3
 qt_00FD:
 .DW 0
 .DW chunk_0092
 .DB :chunk_0092
+.DB 3
 qt_00F9:
 .DW qt_00FA,qt_00FB,qt_00FC,qt_00FD
 qt_00FF:
 .DW 0
 .DW chunk_008F
 .DB :chunk_008F
+.DB 3
 qt_0100:
 .DW 0
 .DW chunk_0090
 .DB :chunk_0090
+.DB 3
 qt_0101:
 .DW chunksave_003B
 .DW chunk_0093
 .DB :chunk_0093
+.DB 3
 qt_0102:
 .DW 0
 .DW chunk_0094
 .DB :chunk_0094
+.DB 3
 qt_00FE:
 .DW qt_00FF,qt_0100,qt_0101,qt_0102
 qt_00F8:
@@ -1248,42 +1395,51 @@ qt_0105:
 .DW chunksave_003C
 .DW chunk_0085
 .DB :chunk_0085
+.DB 3
 qt_0106:
 .DW chunksave_003D
 .DW chunk_0086
 .DB :chunk_0086
+.DB 3
 qt_0107:
 .DW 0
 .DW chunk_008A
 .DB :chunk_008A
+.DB 3
 qt_0108:
 .DW chunksave_003E
 .DW chunk_008B
 .DB :chunk_008B
+.DB 3
 qt_0104:
 .DW qt_0105,qt_0106,qt_0107,qt_0108
 qt_010A:
 .DW chunksave_003F
 .DW chunk_0087
 .DB :chunk_0087
+.DB 3
 qt_010B:
 .DW 0
 .DW chunk_0088
 .DB :chunk_0088
+.DB 3
 qt_010C:
 .DW 0
 .DW chunk_008C
 .DB :chunk_008C
+.DB 3
 qt_010D:
 .DW 0
 .DW chunk_008D
 .DB :chunk_008D
+.DB 3
 qt_0109:
 .DW qt_010A,qt_010B,qt_010C,qt_010D
 qt_010F:
 .DW 0
 .DW chunk_009D
 .DB :chunk_009D
+.DB 3
 qt_010E:
 .DW 0,qt_010F,0,0
 qt_0103:
@@ -1292,56 +1448,68 @@ qt_0112:
 .DW chunksave_0040
 .DW chunk_0095
 .DB :chunk_0095
+.DB 3
 qt_0113:
 .DW chunksave_0041
 .DW chunk_0096
 .DB :chunk_0096
+.DB 3
 qt_0114:
 .DW chunksave_0042
 .DW chunk_0099
 .DB :chunk_0099
+.DB 3
 qt_0115:
 .DW chunksave_0043
 .DW chunk_009A
 .DB :chunk_009A
+.DB 3
 qt_0111:
 .DW qt_0112,qt_0113,qt_0114,qt_0115
 qt_0117:
 .DW chunksave_0044
 .DW chunk_0097
 .DB :chunk_0097
+.DB 3
 qt_0118:
 .DW 0
 .DW chunk_0098
 .DB :chunk_0098
+.DB 3
 qt_0119:
 .DW chunksave_0045
 .DW chunk_009B
 .DB :chunk_009B
+.DB 3
 qt_011A:
 .DW chunksave_0046
 .DW chunk_009C
 .DB :chunk_009C
+.DB 3
 qt_0116:
 .DW qt_0117,qt_0118,qt_0119,qt_011A
 qt_011C:
 .DW 0
 .DW chunk_009E
 .DB :chunk_009E
+.DB 3
 qt_011D:
 .DW 0
 .DW chunk_009F
 .DB :chunk_009F
+.DB 3
 qt_011B:
 .DW qt_011C,qt_011D,0,0
 qt_011F:
 .DW 0
 .DW chunk_00A0
 .DB :chunk_00A0
+.DB 3
 qt_0120:
 .DW 0
 .DW chunk_00A1
 .DB :chunk_00A1
+.DB 3
 qt_011E:
 .DW qt_011F,qt_0120,0,0
 qt_0110:
@@ -1352,36 +1520,44 @@ qt_0124:
 .DW 0
 .DW chunk_00A2
 .DB :chunk_00A2
+.DB 3
 qt_0125:
 .DW 0
 .DW chunk_00A3
 .DB :chunk_00A3
+.DB 3
 qt_0126:
 .DW 0
 .DW chunk_00A6
 .DB :chunk_00A6
+.DB 3
 qt_0127:
 .DW 0
 .DW chunk_00A7
 .DB :chunk_00A7
+.DB 3
 qt_0123:
 .DW qt_0124,qt_0125,qt_0126,qt_0127
 qt_0129:
 .DW chunksave_0047
 .DW chunk_00A4
 .DB :chunk_00A4
+.DB 4
 qt_012A:
 .DW chunksave_0048
 .DW chunk_00A5
 .DB :chunk_00A5
+.DB 4
 qt_012B:
 .DW 0
 .DW chunk_00A8
 .DB :chunk_00A8
+.DB 3
 qt_012C:
 .DW 0
 .DW chunk_00A9
 .DB :chunk_00A9
+.DB 3
 qt_0128:
 .DW qt_0129,qt_012A,qt_012B,qt_012C
 qt_0122:
@@ -1390,20 +1566,24 @@ qt_012F:
 .DW chunksave_0049
 .DW chunk_00AA
 .DB :chunk_00AA
+.DB 4
 qt_0130:
 .DW chunksave_004A
 .DW chunk_00AB
 .DB :chunk_00AB
+.DB 4
 qt_012E:
 .DW qt_012F,qt_0130,0,0
 qt_0132:
 .DW chunksave_004B
 .DW chunk_00AC
 .DB :chunk_00AC
+.DB 4
 qt_0133:
 .DW chunksave_004C
 .DW chunk_00AD
 .DB :chunk_00AD
+.DB 4
 qt_0131:
 .DW qt_0132,qt_0133,0,0
 qt_012D:
@@ -1416,16 +1596,19 @@ qt_0138:
 .DW 0
 .DW chunk_00C6
 .DB :chunk_00C6
+.DB 4
 qt_0137:
 .DW 0,0,0,qt_0138
 qt_013A:
 .DW 0
 .DW chunk_00CB
 .DB :chunk_00CB
+.DB 4
 qt_013B:
 .DW 0
 .DW chunk_00D0
 .DB :chunk_00D0
+.DB 4
 qt_0139:
 .DW 0,qt_013A,0,qt_013B
 qt_0136:
@@ -1434,64 +1617,78 @@ qt_013E:
 .DW 0
 .DW chunk_00C7
 .DB :chunk_00C7
+.DB 4
 qt_013F:
 .DW 0
 .DW chunk_00C8
 .DB :chunk_00C8
+.DB 4
 qt_013D:
 .DW 0,0,qt_013E,qt_013F
 qt_0141:
 .DW 0
 .DW chunk_00EF
 .DB :chunk_00EF
+.DB 4
 qt_0142:
 .DW 0
 .DW chunk_00EB
 .DB :chunk_00EB
+.DB 4
 qt_0143:
 .DW 0
 .DW chunk_00C9
 .DB :chunk_00C9
+.DB 4
 qt_0144:
 .DW 0
 .DW chunk_00CA
 .DB :chunk_00CA
+.DB 4
 qt_0140:
 .DW qt_0141,qt_0142,qt_0143,qt_0144
 qt_0146:
 .DW 0
 .DW chunk_00CC
 .DB :chunk_00CC
+.DB 4
 qt_0147:
 .DW 0
 .DW chunk_00CD
 .DB :chunk_00CD
+.DB 4
 qt_0148:
 .DW 0
 .DW chunk_00D1
 .DB :chunk_00D1
+.DB 4
 qt_0149:
 .DW 0
 .DW chunk_00D2
 .DB :chunk_00D2
+.DB 4
 qt_0145:
 .DW qt_0146,qt_0147,qt_0148,qt_0149
 qt_014B:
 .DW 0
 .DW chunk_00CE
 .DB :chunk_00CE
+.DB 4
 qt_014C:
 .DW chunksave_004D
 .DW chunk_00CF
 .DB :chunk_00CF
+.DB 4
 qt_014D:
 .DW 0
 .DW chunk_00D3
 .DB :chunk_00D3
+.DB 4
 qt_014E:
 .DW 0
 .DW chunk_00D4
 .DB :chunk_00D4
+.DB 4
 qt_014A:
 .DW qt_014B,qt_014C,qt_014D,qt_014E
 qt_013C:
@@ -1502,20 +1699,24 @@ qt_0152:
 .DW chunksave_004E
 .DW chunk_00AE
 .DB :chunk_00AE
+.DB 4
 qt_0153:
 .DW chunksave_004F
 .DW chunk_00AF
 .DB :chunk_00AF
+.DB 4
 qt_0151:
 .DW qt_0152,qt_0153,0,0
 qt_0155:
 .DW chunksave_0050
 .DW chunk_00B0
 .DB :chunk_00B0
+.DB 4
 qt_0156:
 .DW 0
 .DW chunk_00B1
 .DB :chunk_00B1
+.DB 4
 qt_0154:
 .DW qt_0155,qt_0156,0,0
 qt_0150:
@@ -1524,56 +1725,68 @@ qt_0159:
 .DW 0
 .DW chunk_00BA
 .DB :chunk_00BA
+.DB 4
 qt_015A:
 .DW 0
 .DW chunk_00B3
 .DB :chunk_00B3
+.DB 4
 qt_0158:
 .DW 0,0,qt_0159,qt_015A
 qt_015C:
 .DW 0
 .DW chunk_00B4
 .DB :chunk_00B4
+.DB 4
 qt_015D:
 .DW chunksave_0051
 .DW chunk_00B5
 .DB :chunk_00B5
+.DB 4
 qt_015B:
 .DW 0,0,qt_015C,qt_015D
 qt_015F:
 .DW chunksave_0052
 .DW chunk_00B2
 .DB :chunk_00B2
+.DB 4
 qt_0160:
 .DW chunksave_0053
 .DW chunk_00BB
 .DB :chunk_00BB
+.DB 4
 qt_0161:
 .DW 0
 .DW chunk_00C2
 .DB :chunk_00C2
+.DB 4
 qt_0162:
 .DW 0
 .DW chunk_00C3
 .DB :chunk_00C3
+.DB 4
 qt_015E:
 .DW qt_015F,qt_0160,qt_0161,qt_0162
 qt_0164:
 .DW chunksave_0054
 .DW chunk_00BC
 .DB :chunk_00BC
+.DB 4
 qt_0165:
 .DW chunksave_0055
 .DW chunk_00BD
 .DB :chunk_00BD
+.DB 4
 qt_0166:
 .DW 0
 .DW chunk_00C4
 .DB :chunk_00C4
+.DB 4
 qt_0167:
 .DW 0
 .DW chunk_00C4
 .DB :chunk_00C4
+.DB 4
 qt_0163:
 .DW qt_0164,qt_0165,qt_0166,qt_0167
 qt_0157:
@@ -1584,60 +1797,73 @@ qt_016B:
 .DW chunksave_0056
 .DW chunk_00B6
 .DB :chunk_00B6
+.DB 4
 qt_016C:
 .DW chunksave_0057
 .DW chunk_00B7
 .DB :chunk_00B7
+.DB 4
 qt_016A:
 .DW 0,0,qt_016B,qt_016C
 qt_016E:
 .DW 0
 .DW chunk_00D5
 .DB :chunk_00D5
+.DB 4
 qt_016F:
 .DW 0
 .DW chunk_00B8
 .DB :chunk_00B8
+.DB 4
 qt_0170:
 .DW 0
 .DW chunk_00B9
 .DB :chunk_00B9
+.DB 4
 qt_016D:
 .DW 0,qt_016E,qt_016F,qt_0170
 qt_0172:
 .DW chunksave_0058
 .DW chunk_00BE
 .DB :chunk_00BE
+.DB 4
 qt_0173:
 .DW 0
 .DW chunk_00BF
 .DB :chunk_00BF
+.DB 4
 qt_0174:
 .DW 0
 .DW chunk_00C4
 .DB :chunk_00C4
+.DB 4
 qt_0175:
 .DW 0
 .DW chunk_00C4
 .DB :chunk_00C4
+.DB 4
 qt_0171:
 .DW qt_0172,qt_0173,qt_0174,qt_0175
 qt_0177:
 .DW 0
 .DW chunk_00C0
 .DB :chunk_00C0
+.DB 4
 qt_0178:
 .DW 0
 .DW chunk_00C1
 .DB :chunk_00C1
+.DB 4
 qt_0179:
 .DW 0
 .DW chunk_00C4
 .DB :chunk_00C4
+.DB 4
 qt_017A:
 .DW 0
 .DW chunk_00C5
 .DB :chunk_00C5
+.DB 4
 qt_0176:
 .DW qt_0177,qt_0178,qt_0179,qt_017A
 qt_0169:
@@ -1646,54 +1872,66 @@ qt_017D:
 .DW 0
 .DW chunk_00D6
 .DB :chunk_00D6
+.DB 4
 qt_017E:
 .DW 0
 .DW chunk_00D7
 .DB :chunk_00D7
+.DB 4
 qt_017F:
 .DW 0
 .DW chunk_00DA
 .DB :chunk_00DA
+.DB 4
 qt_0180:
 .DW 0
 .DW chunk_00DB
 .DB :chunk_00DB
+.DB 4
 qt_017C:
 .DW qt_017D,qt_017E,qt_017F,qt_0180
 qt_0182:
 .DW 0
 .DW chunk_00D8
 .DB :chunk_00D8
+.DB 4
 qt_0183:
 .DW 0
 .DW chunk_00D9
 .DB :chunk_00D9
+.DB 4
 qt_0184:
 .DW 0
 .DW chunk_00DC
 .DB :chunk_00DC
+.DB 4
 qt_0185:
 .DW 0
 .DW chunk_00DD
 .DB :chunk_00DD
+.DB 4
 qt_0181:
 .DW qt_0182,qt_0183,qt_0184,qt_0185
 qt_0187:
 .DW 0
 .DW chunk_00DE
 .DB :chunk_00DE
+.DB 4
 qt_0188:
 .DW 0
 .DW chunk_00DF
 .DB :chunk_00DF
+.DB 4
 qt_0189:
 .DW 0
 .DW chunk_00E0
 .DB :chunk_00E0
+.DB 4
 qt_018A:
 .DW 0
 .DW chunk_00E1
 .DB :chunk_00E1
+.DB 4
 qt_0186:
 .DW qt_0187,qt_0188,qt_0189,qt_018A
 qt_017B:
@@ -1702,16 +1940,19 @@ qt_018D:
 .DW 0
 .DW chunk_00E2
 .DB :chunk_00E2
+.DB 4
 qt_018E:
 .DW 0
 .DW chunk_00E5
 .DB :chunk_00E5
+.DB 4
 qt_018C:
 .DW 0,qt_018D,0,qt_018E
 qt_0190:
 .DW 0
 .DW chunk_00E8
 .DB :chunk_00E8
+.DB 4
 qt_018F:
 .DW 0,qt_0190,0,0
 qt_018B:
@@ -1720,28 +1961,34 @@ qt_0193:
 .DW 0
 .DW chunk_00E3
 .DB :chunk_00E3
+.DB 4
 qt_0194:
 .DW 0
 .DW chunk_00E4
 .DB :chunk_00E4
+.DB 4
 qt_0195:
 .DW 0
 .DW chunk_00E6
 .DB :chunk_00E6
+.DB 4
 qt_0196:
 .DW 0
 .DW chunk_00E7
 .DB :chunk_00E7
+.DB 4
 qt_0192:
 .DW qt_0193,qt_0194,qt_0195,qt_0196
 qt_0198:
 .DW 0
 .DW chunk_00E9
 .DB :chunk_00E9
+.DB 4
 qt_0199:
 .DW 0
 .DW chunk_00EA
 .DB :chunk_00EA
+.DB 4
 qt_0197:
 .DW qt_0198,qt_0199,0,0
 qt_0191:
@@ -1756,24 +2003,29 @@ qt_019F:
 .DW chunksave_0059
 .DW chunk_0102
 .DB :chunk_0102
+.DB 5
 qt_01A0:
 .DW chunksave_005A
 .DW chunk_0103
 .DB :chunk_0103
+.DB 5
 qt_019E:
 .DW 0,qt_019F,0,qt_01A0
 qt_01A2:
 .DW chunksave_005B
 .DW chunk_00FB
 .DB :chunk_00FB
+.DB 5
 qt_01A3:
 .DW chunksave_005C
 .DW chunk_00FC
 .DB :chunk_00FC
+.DB 5
 qt_01A4:
 .DW chunksave_005D
 .DW chunk_0104
 .DB :chunk_0104
+.DB 5
 qt_01A1:
 .DW qt_01A2,qt_01A3,qt_01A4,0
 qt_019D:
@@ -1782,40 +2034,48 @@ qt_01A7:
 .DW 0
 .DW chunk_00F9
 .DB :chunk_00F9
+.DB 5
 qt_01A8:
 .DW 0
 .DW chunk_00FA
 .DB :chunk_00FA
+.DB 5
 qt_01A6:
 .DW 0,0,qt_01A7,qt_01A8
 qt_01AA:
 .DW 0
 .DW chunk_00F8
 .DB :chunk_00F8
+.DB 5
 qt_01A9:
 .DW 0,0,0,qt_01AA
 qt_01AC:
 .DW chunksave_005E
 .DW chunk_00FD
 .DB :chunk_00FD
+.DB 5
 qt_01AD:
 .DW chunksave_005F
 .DW chunk_00FE
 .DB :chunk_00FE
+.DB 5
 qt_01AB:
 .DW qt_01AC,qt_01AD,0,0
 qt_01AF:
 .DW chunksave_0060
 .DW chunk_0101
 .DB :chunk_0101
+.DB 5
 qt_01B0:
 .DW 0
 .DW chunk_00FF
 .DB :chunk_00FF
+.DB 5
 qt_01B1:
 .DW 0
 .DW chunk_0105
 .DB :chunk_0105
+.DB 5
 qt_01AE:
 .DW qt_01AF,qt_01B0,qt_01B1,0
 qt_01A5:
@@ -1824,44 +2084,53 @@ qt_01B4:
 .DW chunksave_0061
 .DW chunk_00EC
 .DB :chunk_00EC
+.DB 4
 qt_01B5:
 .DW chunksave_0062
 .DW chunk_00ED
 .DB :chunk_00ED
+.DB 4
 qt_01B6:
 .DW chunksave_0063
 .DW chunk_00F0
 .DB :chunk_00F0
+.DB 4
 qt_01B7:
 .DW chunksave_0064
 .DW chunk_00F1
 .DB :chunk_00F1
+.DB 4
 qt_01B3:
 .DW qt_01B4,qt_01B5,qt_01B6,qt_01B7
 qt_01B9:
 .DW 0
 .DW chunk_00EE
 .DB :chunk_00EE
+.DB 4
 qt_01BA:
 .DW chunksave_0065
 .DW chunk_00F2
 .DB :chunk_00F2
+.DB 4
 qt_01B8:
 .DW qt_01B9,0,qt_01BA,0
 qt_01BC:
 .DW chunksave_0066
 .DW chunk_00F3
 .DB :chunk_00F3
+.DB 4
 qt_01BD:
 .DW chunksave_0067
 .DW chunk_00F4
 .DB :chunk_00F4
+.DB 4
 qt_01BB:
 .DW qt_01BC,qt_01BD,0,0
 qt_01BF:
 .DW 0
 .DW chunk_00F5
 .DB :chunk_00F5
+.DB 4
 qt_01BE:
 .DW qt_01BF,0,0,0
 qt_01B2:
@@ -1872,28 +2141,33 @@ qt_01C3:
 .DW 0
 .DW chunk_00F6
 .DB :chunk_00F6
+.DB 5
 qt_01C4:
 .DW 0
 .DW chunk_00F7
 .DB :chunk_00F7
+.DB 5
 qt_01C2:
 .DW 0,0,qt_01C3,qt_01C4
 qt_01C6:
 .DW 0
 .DW chunk_0106
 .DB :chunk_0106
+.DB 5
 qt_01C5:
 .DW 0,0,0,qt_01C6
 qt_01C8:
 .DW 0
 .DW chunk_0100
 .DB :chunk_0100
+.DB 5
 qt_01C7:
 .DW qt_01C8,0,0,0
 qt_01CA:
 .DW 0
 .DW chunk_010A
 .DB :chunk_010A
+.DB 5
 qt_01C9:
 .DW 0,qt_01CA,0,0
 qt_01C1:
@@ -1902,40 +2176,48 @@ qt_01CD:
 .DW 0
 .DW chunk_0107
 .DB :chunk_0107
+.DB 5
 qt_01CE:
 .DW 0
 .DW chunk_0108
 .DB :chunk_0108
+.DB 5
 qt_01CC:
 .DW 0,0,qt_01CD,qt_01CE
 qt_01D0:
 .DW 0
 .DW chunk_0109
 .DB :chunk_0109
+.DB 5
 qt_01D1:
 .DW 0
 .DW chunk_010E
 .DB :chunk_010E
+.DB 7
 qt_01CF:
 .DW 0,0,qt_01D0,qt_01D1
 qt_01D3:
 .DW 0
 .DW chunk_010B
 .DB :chunk_010B
+.DB 5
 qt_01D4:
 .DW 0
 .DW chunk_010C
 .DB :chunk_010C
+.DB 5
 qt_01D2:
 .DW qt_01D3,qt_01D4,0,0
 qt_01D6:
 .DW 0
 .DW chunk_010D
 .DB :chunk_010D
+.DB 5
 qt_01D7:
 .DW 0
 .DW chunk_0112
 .DB :chunk_0112
+.DB 7
 qt_01D5:
 .DW qt_01D6,qt_01D7,0,0
 qt_01CB:
@@ -1944,10 +2226,12 @@ qt_01DA:
 .DW 0
 .DW chunk_0116
 .DB :chunk_0116
+.DB 7
 qt_01DB:
 .DW 0
 .DW chunk_0119
 .DB :chunk_0119
+.DB 7
 qt_01D9:
 .DW 0,qt_01DA,0,qt_01DB
 qt_01D8:
@@ -1960,44 +2244,53 @@ qt_01E0:
 .DW 0
 .DW chunk_010F
 .DB :chunk_010F
+.DB 7
 qt_01E1:
 .DW 0
 .DW chunk_0110
 .DB :chunk_0110
+.DB 7
 qt_01DF:
 .DW 0,0,qt_01E0,qt_01E1
 qt_01E3:
 .DW 0
 .DW chunk_0111
 .DB :chunk_0111
+.DB 7
 qt_01E4:
 .DW 0
 .DW chunk_011B
 .DB :chunk_011B
+.DB 6
 qt_01E2:
 .DW 0,0,qt_01E3,qt_01E4
 qt_01E6:
 .DW 0
 .DW chunk_0113
 .DB :chunk_0113
+.DB 7
 qt_01E7:
 .DW 0
 .DW chunk_0114
 .DB :chunk_0114
+.DB 7
 qt_01E5:
 .DW qt_01E6,qt_01E7,0,0
 qt_01E9:
 .DW 0
 .DW chunk_0115
 .DB :chunk_0115
+.DB 7
 qt_01EA:
 .DW chunksave_0068
 .DW chunk_0120
 .DB :chunk_0120
+.DB 6
 qt_01EB:
 .DW chunksave_0069
 .DW chunk_0125
 .DB :chunk_0125
+.DB 6
 qt_01E8:
 .DW qt_01E9,qt_01EA,0,qt_01EB
 qt_01DE:
@@ -2006,56 +2299,68 @@ qt_01EE:
 .DW chunksave_006A
 .DW chunk_011C
 .DB :chunk_011C
+.DB 6
 qt_01EF:
 .DW chunksave_006B
 .DW chunk_011D
 .DB :chunk_011D
+.DB 6
 qt_01ED:
 .DW 0,0,qt_01EE,qt_01EF
 qt_01F1:
 .DW 0
 .DW chunk_011E
 .DB :chunk_011E
+.DB 6
 qt_01F2:
 .DW chunksave_006C
 .DW chunk_011F
 .DB :chunk_011F
+.DB 6
 qt_01F0:
 .DW 0,0,qt_01F1,qt_01F2
 qt_01F4:
 .DW chunksave_006D
 .DW chunk_0121
 .DB :chunk_0121
+.DB 6
 qt_01F5:
 .DW chunksave_006E
 .DW chunk_0122
 .DB :chunk_0122
+.DB 6
 qt_01F6:
 .DW chunksave_006F
 .DW chunk_0126
 .DB :chunk_0126
+.DB 6
 qt_01F7:
 .DW chunksave_0070
 .DW chunk_0127
 .DB :chunk_0127
+.DB 6
 qt_01F3:
 .DW qt_01F4,qt_01F5,qt_01F6,qt_01F7
 qt_01F9:
 .DW 0
 .DW chunk_0123
 .DB :chunk_0123
+.DB 6
 qt_01FA:
 .DW chunksave_0071
 .DW chunk_0124
 .DB :chunk_0124
+.DB 6
 qt_01FB:
 .DW 0
 .DW chunk_0128
 .DB :chunk_0128
+.DB 6
 qt_01FC:
 .DW chunksave_0072
 .DW chunk_0129
 .DB :chunk_0129
+.DB 6
 qt_01F8:
 .DW qt_01F9,qt_01FA,qt_01FB,qt_01FC
 qt_01EC:
@@ -2064,24 +2369,29 @@ qt_01FF:
 .DW 0
 .DW chunk_0117
 .DB :chunk_0117
+.DB 7
 qt_0200:
 .DW 0
 .DW chunk_0118
 .DB :chunk_0118
+.DB 7
 qt_0201:
 .DW 0
 .DW chunk_011A
 .DB :chunk_011A
+.DB 7
 qt_01FE:
 .DW qt_01FF,qt_0200,qt_0201,0
 qt_0203:
 .DW chunksave_0073
 .DW chunk_012A
 .DB :chunk_012A
+.DB 6
 qt_0204:
 .DW 0
 .DW chunk_012F
 .DB :chunk_012F
+.DB 6
 qt_0202:
 .DW 0,qt_0203,0,qt_0204
 qt_01FD:
@@ -2090,42 +2400,51 @@ qt_0207:
 .DW chunksave_0074
 .DW chunk_012B
 .DB :chunk_012B
+.DB 6
 qt_0208:
 .DW chunksave_0075
 .DW chunk_012C
 .DB :chunk_012C
+.DB 6
 qt_0209:
 .DW 0
 .DW chunk_0130
 .DB :chunk_0130
+.DB 6
 qt_020A:
 .DW 0
 .DW chunk_0131
 .DB :chunk_0131
+.DB 6
 qt_0206:
 .DW qt_0207,qt_0208,qt_0209,qt_020A
 qt_020C:
 .DW chunksave_0076
 .DW chunk_012D
 .DB :chunk_012D
+.DB 6
 qt_020D:
 .DW chunksave_0077
 .DW chunk_012E
 .DB :chunk_012E
+.DB 6
 qt_020E:
 .DW 0
 .DW chunk_0132
 .DB :chunk_0132
+.DB 6
 qt_020F:
 .DW chunksave_0078
 .DW chunk_0133
 .DB :chunk_0133
+.DB 6
 qt_020B:
 .DW qt_020C,qt_020D,qt_020E,qt_020F
 qt_0211:
 .DW 0
 .DW chunk_0139
 .DB :chunk_0139
+.DB 6
 qt_0210:
 .DW 0,qt_0211,0,0
 qt_0205:
@@ -2136,16 +2455,19 @@ qt_0215:
 .DW chunksave_0079
 .DW chunk_0134
 .DB :chunk_0134
+.DB 6
 qt_0214:
 .DW 0,0,qt_0215,0
 qt_0217:
 .DW chunksave_007A
 .DW chunk_0135
 .DB :chunk_0135
+.DB 6
 qt_0218:
 .DW chunksave_007B
 .DW chunk_0136
 .DB :chunk_0136
+.DB 6
 qt_0216:
 .DW qt_0217,0,qt_0218,0
 qt_0213:
@@ -2154,16 +2476,19 @@ qt_021B:
 .DW chunksave_007C
 .DW chunk_0137
 .DB :chunk_0137
+.DB 6
 qt_021C:
 .DW chunksave_007D
 .DW chunk_0138
 .DB :chunk_0138
+.DB 6
 qt_021A:
 .DW qt_021B,0,qt_021C,0
 qt_021E:
 .DW 0
 .DW chunk_013A
 .DB :chunk_013A
+.DB 6
 qt_021D:
 .DW qt_021E,0,0,0
 qt_0219:
