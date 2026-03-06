@@ -245,7 +245,7 @@ g_ring_sparkle_sprite_y db   ; D31F
 g_ring_sparkle_sprite_countdown_timer db   ; D321
 g_credits_sprites db   ; D322
 .  dsb 11
-g_level_header_copy dsb 37
+g_level_header_copy dsb 34
 g_object_ptrs dw   ; D37C
 g_active_object_ptrs dw   ; D37E
 .  dsb 60
@@ -3641,12 +3641,12 @@ update_signpost_timer:
    call load_tilemap_and_art_from_header
 
    ;; Handle the next palette
-   ld hl, g_level_header_copy+1+(2*6)+(3*3)   ; offset to palette
+   ld hl, g_level_header_copy+1+(2*6)+(2*3)   ; offset to palette
    call load_palette_from_header
 @skip_loading_graphics_and_tilesets:
 
    ;; Load the new objects.
-   ld hl, g_level_header_copy+1+(2*6)+(3*3)+4   ; offset to object list
+   ld hl, g_level_header_copy+1+(2*6)+(2*3)+4   ; offset to object list
    ld e, (hl)
    inc hl
    ld d, (hl)
@@ -4065,12 +4065,23 @@ load_and_init_level_from_header:
    ret                                 ; 00:232A - C9
 
 load_tilemap_and_art_from_header:
-   ld     e, (hl)                      ; 00:2247 - 5E
-   inc    hl                           ; 00:2248 - 23
-   ld     d, (hl)                      ; 00:2249 - 56
-   inc    hl                           ; 00:224A - 23
-   ld a, (hl)
-   inc hl
+   push hl
+      ld a, (g_tile_flags_index)
+      ld l, a
+      add a, l
+      add a, l
+      ld l, a
+      ld h, $00
+      ld a, :level_tilemaps
+      call set_rompage_2
+      ld de, level_tilemaps
+      add hl, de
+      ld     e, (hl)                      ; 00:2247 - 5E
+      inc    hl                           ; 00:2248 - 23
+      ld     d, (hl)                      ; 00:2249 - 56
+      inc    hl                           ; 00:224A - 23
+      ld a, (hl)
+   pop hl
    ld (g_level_tilemap_ptr), de
    ld (g_level_tilemap_bank), a
    ld     e, (hl)                      ; 00:2254 - 5E
@@ -19633,46 +19644,6 @@ MONART_checkpoint:
 .SECTION "base_MONART_continue" SUPERFREE SLOT 2
 MONART_continue:
 .INCBIN "src/data/mon_continue.monart"
-.ENDS
-
-.SECTION "base_LVTILEMAP_GHZ" SUPERFREE SLOT 2
-LVTILEMAP_GHZ:
-.INCBIN "src/data/lv_ghz.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_BRI" SUPERFREE SLOT 2
-LVTILEMAP_BRI:
-.INCBIN "src/data/lv_bri.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_JUN" SUPERFREE SLOT 2
-LVTILEMAP_JUN:
-.INCBIN "src/data/lv_jun.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_LAB" SUPERFREE SLOT 2
-LVTILEMAP_LAB:
-.INCBIN "src/data/lv_lab.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_SCR" SUPERFREE SLOT 2
-LVTILEMAP_SCR:
-.INCBIN "src/data/lv_scr.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_SKY" SUPERFREE SLOT 2
-LVTILEMAP_SKY:
-.INCBIN "src/data/lv_sky.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_SKY_3" SUPERFREE SLOT 2
-LVTILEMAP_SKY_3:
-.INCBIN "src/data/lv_sky_3.tilemap"
-.ENDS
-
-.SECTION "base_LVTILEMAP_special" SUPERFREE SLOT 2
-LVTILEMAP_special:
-.INCBIN "src/data/lv_special.tilemap"
 .ENDS
 
 .SECTION "base_ARTMAP_05_6000" SUPERFREE SLOT 2

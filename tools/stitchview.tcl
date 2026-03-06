@@ -455,6 +455,7 @@ proc init_levels {} {
    # Add tileset specs
    set ptrlut_tileflags [list]
    set ptrlut_tilespecials [list]
+   set ptrlut_tilemaps [list]
    # NOTE: Space is still fairly tight here.
    set bank 1
    foreach tss $::tileset_specs {
@@ -475,8 +476,19 @@ proc init_levels {} {
       lappend ::codegen_sections ".DB $line"
       lappend ::codegen_sections ".ENDS"
 
+      lappend ::codegen_sections ""
+      lappend ::codegen_sections ".SECTION \"base_LVTILEMAP_${ts_key}\" SLOT 2 SUPERFREE"
+      lappend ::codegen_sections "LVTILEMAP_${ts_key}:"
+      for {set i 0} {$i < [llength $tilemap]} {incr i 16} {
+         set bslice [lrange $tilemap $i [expr {$i+16-1}]]
+         set line [join [lmap b $bslice {format {$%02X} $b}] ", "]
+         lappend ::codegen_sections ".DB $line"
+      }
+      lappend ::codegen_sections ".ENDS"
+
       lappend ptrlut_tileflags "LVTILEFLAGS_${ts_key}"
       lappend ptrlut_tilespecials "LVTILESPECIALS_${ts_key}"
+      lappend ptrlut_tilemaps "LVTILEMAP_${ts_key}"
 
       #set bank [expr {($bank+1)%2}]
    }
@@ -492,6 +504,15 @@ proc init_levels {} {
    lappend ::codegen_sections ".SECTION \"base_level_specials\" SLOT 2 SUPERFREE"
    lappend ::codegen_sections "level_specials:"
    foreach name $ptrlut_tilespecials {
+      lappend ::codegen_sections ".DW $name"
+      lappend ::codegen_sections ".DB :$name"
+   }
+   lappend ::codegen_sections ".ENDS"
+
+   lappend ::codegen_sections ""
+   lappend ::codegen_sections ".SECTION \"base_level_tilemaps\" SLOT 2 SUPERFREE"
+   lappend ::codegen_sections "level_tilemaps:"
+   foreach name $ptrlut_tilemaps {
       lappend ::codegen_sections ".DW $name"
       lappend ::codegen_sections ".DB :$name"
    }
@@ -637,8 +658,6 @@ proc load_level_layout {lbs} {
                [expr {max(1,$base_y)}] [expr {$base_y+$y1_px-$y0_px-(192-1)}] \
                ]
             lappend ::codegen_headers [format ".dw $%04X, $%04X" $spawnx $spawny]
-            lappend ::codegen_headers [format ".dw LVTILEMAP_%s" $ts_key]
-            lappend ::codegen_headers [format ".db :LVTILEMAP_%s" $ts_key]
             lappend ::codegen_headers [format ".dw ART_%s_0000" $ts_key]
             lappend ::codegen_headers [format ".db :ART_%s_0000" $ts_key]
             lappend ::codegen_headers [format ".dw ART_%s_2000" $ts_key]
