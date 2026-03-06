@@ -1351,8 +1351,8 @@ update_active_scroll_pos_and_ptrs:
    ld     (g_displayed_level_scroll_y_pix_lo), hl  ; 00:06B9 - 22 71 D2
    ret                                 ; 00:06BC - C9
 
-get_level_tile_flags_ptr:
-   ld a, (g_tile_flags_index)
+get_level_tile_flags_ptr_from_C:
+   ld a, c
    add a, a
    ld c, a
    ld b, $00
@@ -1371,7 +1371,9 @@ load_scroll_tile_list_buffers:
    ld a, (g_level_tilemap_bank)
    call set_rompage_2
    ei                                  ; 00:06D3 - FB
-   call get_level_tile_flags_ptr
+   ld a, (g_tile_flags_index)
+   ld c, a
+   call get_level_tile_flags_ptr_from_C
    ld     (tmp_02), hl                 ; 00:06E3 - 22 10 D2
    bit    0, (iy+iy_02-IYBASE)         ; 00:06E6 - FD CB 02 46
    jp     z, @skip_vertical_tile_update  ; 00:06EA - CA 72 07
@@ -1708,6 +1710,7 @@ dispatch_scrolling_tile_updates_IRQ:
 ;; (g_level_scroll_x_pix_lo).w = base X in pixels
 ;; (g_level_scroll_y_pix_lo).w = base Y in pixels
 ;; A, BC, DE trashable; HL is where we return into
+;; We also return C as the chunk's tileset index for physics calculations (although this is more useful for get_obj_level_tile_ptr_in_ram)
 get_screen_tile_ptr_in_ram:
    ;; Convert to BC = X metatiles offset, DE = Y metatiles offset
    ld e, b
@@ -1746,6 +1749,36 @@ get_screen_tile_ptr_in_ram:
    ;; FALL THROUGH
 get_tile_ptr_in_ram_from_HL_DE:
    ;; We only care about the low 5 bits, so H and D are free.
+
+   ;; Get the index into the chunk info buffers.
+   ld c, $00
+   ;; Compute the Y bit.
+   ld a, e
+   or $E0
+   add a, $10
+   rl c
+   ;; Compute the X bit.
+   ld a, l
+   or $E0
+   add a, $10
+   rl c
+   ld a, c
+   ;; Compute offset.
+   add a, a
+   add a, a
+   add a, a
+   add a, $04  ; we want $04 which points to the relevant index
+   ;; Compute pointer.
+   add a, <g_level_chunk_info_buffers
+   push hl
+      ld l, a
+      ld a, >g_level_chunk_info_buffers
+      adc a, $00
+      ld h, a
+      ;; Fetch from pointer.
+      ld c, (hl)
+   pop hl
+
    ;; Compute the high byte.
    ld h, $00
    ld a, e
@@ -1797,7 +1830,9 @@ draw_initial_screen_tiles:
    ld     a, (hl)                      ; 00:098A - 7E
    exx                                 ; 00:098B - D9
    ld     e, a                         ; 00:098C - 5F
-   call get_level_tile_flags_ptr
+   ld a, (g_tile_flags_index)
+   ld c, a
+   call get_level_tile_flags_ptr_from_C
    ld     d, $00                       ; 00:099C - 16 00
    add    hl, de                       ; 00:099E - 19
    ld     a, (hl)                      ; 00:099F - 7E
@@ -5650,7 +5685,7 @@ collide_with_world_horizontally:
    call   get_obj_level_tile_ptr_in_ram  ; 00:3349 - CD F9 36
    ld     e, (hl)                      ; 00:334C - 5E
    ld     d, $00                       ; 00:334D - 16 00
-   call get_level_tile_flags_ptr
+   call get_level_tile_flags_ptr_from_C
    add    hl, de                       ; 00:335D - 19
    ld     a, (hl)                      ; 00:335E - 7E
    and    $3F                          ; 00:335F - E6 3F
@@ -5766,7 +5801,7 @@ collide_with_world_vertically:
    call   get_obj_level_tile_ptr_in_ram  ; 00:3421 - CD F9 36
    ld     e, (hl)                      ; 00:3424 - 5E
    ld     d, $00                       ; 00:3425 - 16 00
-   call get_level_tile_flags_ptr
+   call get_level_tile_flags_ptr_from_C
    add    hl, de                       ; 00:3435 - 19
    ld     a, (hl)                      ; 00:3436 - 7E
    and    $3F                          ; 00:3437 - E6 3F
@@ -6158,6 +6193,9 @@ explode_object_IX:
    call   add_CHL_points_to_score_in_BCD  ; 00:36F5 - CD D8 39
    ret                                 ; 00:36F8 - C9
 
+;; IX points to an object
+;; A, BC, DE trashable; HL is where we return into
+;; We also return C as the chunk's tileset index for physics calculations
 get_obj_level_tile_ptr_in_ram:
    ;; Compute our tile offsets
    ld l, (ix+5)
@@ -7045,10 +7083,9 @@ objfunc_00_sonic:
    ld     de, $0010                    ; 01:49F2 - 11 10 00
    call   get_obj_level_tile_ptr_in_ram  ; 01:49F5 - CD F9 36
    ld     e, (hl)                      ; 01:49F8 - 5E
-   ld a, (g_tile_flags_index)
-   ld d, a
+   ld a, c
    add a, a
-   add a, d
+   add a, c
    ld d, $00
    ld     l, a                         ; 01:49FF - 6F
    ld     h, d                         ; 01:4A00 - 62
@@ -11881,7 +11918,7 @@ objfunc_29_log:
    call   get_obj_level_tile_ptr_in_ram  ; 01:7F5D - CD F9 36
    ld     e, (hl)                      ; 01:7F60 - 5E
    ld     d, $00                       ; 01:7F61 - 16 00
-   call get_level_tile_flags_ptr
+   call get_level_tile_flags_ptr_from_C
    add    hl, de                       ; 01:7F71 - 19
    ld     a, (hl)                      ; 01:7F72 - 7E
    and    $3F                          ; 01:7F73 - E6 3F
@@ -13559,7 +13596,7 @@ objfunc_45_LAB_float_up_platform:
    call   get_obj_level_tile_ptr_in_ram  ; 02:9106 - CD F9 36
    ld     e, (hl)                      ; 02:9109 - 5E
    ld     d, $00                       ; 02:910A - 16 00
-   call get_level_tile_flags_ptr
+   call get_level_tile_flags_ptr_from_C
    add    hl, de                       ; 02:911A - 19
    ld     a, (hl)                      ; 02:911B - 7E
    and    $3F                          ; 02:911C - E6 3F
