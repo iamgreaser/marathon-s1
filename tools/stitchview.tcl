@@ -30,8 +30,8 @@ set ::layout_boxes {
    {LVLAYOUT_BRI1 0x0001 0x1F00 0x0001 0x0140 -6 -8}
    {LVLAYOUT_BRI2 0x0001 0x0F00 0x0001 0x0340 -16 -18}
    {LVLAYOUT_BRI3 0x0001 0x0F00 0x0300 0x0340 0 14}
-   {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120 -6 -9}
-   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0E61 0x1F20 -6 -128}
+   {LVLAYOUT_JUN1 0x0001 0x1F00 0x0001 0x0120 -1 -9}
+   {LVLAYOUT_JUN2_special_4_8 0x0001 0x0100 0x0E61 0x1F20 -4 -128}
    {LVLAYOUT_JUN3 0x0001 0x0700 0x0001 0x0480 0 -2}
    {LVLAYOUT_LAB1 0x0001 0x0700 0x0001 0x0740 0 0}
    {LVLAYOUT_LAB2 0x0001 0x0700 0x0001 0x0740 0 -2}
@@ -145,6 +145,10 @@ proc main {} {
    puts "tilesets: [time { init_tilesets }]"
    puts "tilemap images: [time { init_tilemap_images }]"
    puts "levels: [time { init_levels }]"
+   puts "grid: [time { init_grid }]"
+
+   # Move the view down to suit the first level
+   .canvas move all 0 [expr {-32*[lindex $::layout_boxes 0 6]}]
 }
 
 proc init_widgets {} {
@@ -223,6 +227,13 @@ proc on_drag_step {x y} {
       } else {
          .canvas move all $dx $dy
       }
+   }
+}
+
+proc init_grid {} {
+   for {set i 0} {$i <= 0x10000} {incr i 0x200} {
+      .canvas create line $i 0 $i 0x10000 -fill #000000 -tag {grid}
+      .canvas create line 0 $i 0x10000 $i -fill #000000 -tag {grid}
    }
 }
 
@@ -533,9 +544,6 @@ proc init_levels {} {
          close $fp
       }
    }
-
-   # Move the view down to suit the first level
-   .canvas move all 0 [expr {-32*[lindex $::layout_boxes 0 6]}]
 }
 
 proc load_level_layout {lbs} {
