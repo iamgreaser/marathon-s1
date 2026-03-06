@@ -259,7 +259,9 @@ g_of_saved_hl dw
 ;; Level chunk information, [2y][2x] arrangement:
 ;; dw ramsave_buffer_ram_ptr
 ;; db xchunk<<1, ychunk<<1
-g_level_chunk_info_buffers dsw 4*4
+;; db tileset (TODO)
+;; db UNUSED, UNUSED, UNUSED
+g_level_chunk_info_buffers dsw 8*4
 ;; Checkpoint position, $0000,$0000 = no checkpoint
 g_level_checkpoint_x_pix dw
 g_level_checkpoint_y_pix dw
@@ -1968,7 +1970,7 @@ fetch_level_chunk_info_from_quadtree:
 unpack_level_layout_into_ram:
    ;; Blank the chunk IDs.
    ld de, g_level_chunk_info_buffers
-   ld b, 4*4
+   ld b, 8*4
    ld a, $EF
    @clear_each_chunk_id:
       ld (de), a
@@ -2041,6 +2043,7 @@ refresh_one_chunk:
    rra
    rl l
    ld a, l
+   rlc l
    rlc l
    rlc l
    push hl
@@ -9175,6 +9178,7 @@ consume_ring:
    cp $04
    -: jr nc, -
    ;; Continue!
+   add a, a
    add a, a
    add a, a
    ;; The above won't carry, but the below might.
