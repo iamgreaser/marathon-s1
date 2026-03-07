@@ -8,7 +8,6 @@ Regressions known at this stage:
 - All teleporters and corridors are broken.
    - SCR2 corridors do not spawn objects.
    - SKY2 corridor does not work. This would be a nice way to move everything over to the left to make room for more levels...
-- Bosses locking the screen position when Sonic jumps a bit high usually results in death when Sonic attempts to land.
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
 - SKY3: The button Robotnik jumps on isn't drawn. I'm not sure how to do this one relatively yet, as the logic is in Robotnik's code.
 - SKY3: Sonic can't teleport out (as per all teleporters being broken).

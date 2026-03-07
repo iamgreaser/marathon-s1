@@ -5345,6 +5345,8 @@ move_camera_towards_locked_y:
    jr     c, @target_is_above_lock     ; 00:312A - 38 0A
    inc    de                           ; 00:312C - 13
    ld     (g_level_limit_y0), de       ; 00:312D - ED 53 77 D2
+   ;; Make sure we lock towards the lower bounds so Sonic doesn't die if jumping up and the lock is moving downwards
+   ld de, (g_level_camera_lock_towards_y)
    ld     (g_level_limit_y1), de       ; 00:3131 - ED 53 79 D2
    ret                                 ; 00:3135 - C9
 
