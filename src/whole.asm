@@ -3195,7 +3195,7 @@ main:
    ld     (g_next_life_bonus_10000s_BCD), a  ; 00:1C55 - 32 FD D2
    ld     a, $1C                       ; 00:1C58 - 3E 1C
    ld     (g_next_bonus_level), a      ; 00:1C5A - 32 3F D2
-   ld a, $0A  ; LEVEL SELECT CHEAT
+   ld a, $00  ; LEVEL SELECT CHEAT
    ld (g_level), a
    xor a
    ld     (g_global_tick_counter), a   ; 00:1C61 - 32 23 D2
@@ -3679,6 +3679,9 @@ update_signpost_timer:
    cp (hl)
    jr z, @skip_loading_graphics_and_tilesets
    ld a, (hl)
+
+   ;; Temporarily disable water while loading art, otherwise the interrupt clobbers everything
+   res 7, (iy+iy_06_lvflag01-IYBASE)
 
    ;; Load tilemap and art
    ld (g_tile_flags_index), a
