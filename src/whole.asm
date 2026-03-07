@@ -628,6 +628,7 @@ irq_start:
    ld     hl, PAL2_lv_lab_under_water  ; 00:01C4 - 21 4B 02
    bit    4, (iy+iy_07_lvflag02-IYBASE)  ; 00:01C7 - FD CB 07 66
    jr     z, @load_this_underwater_palette  ; 00:01CB - 28 03
+@load_LAB3_underwater_palette:
    ld     hl, PAL2_lv_lab_3_under_water  ; 00:01CD - 21 6B 02
 
 @load_this_underwater_palette:
@@ -3194,7 +3195,7 @@ main:
    ld     (g_next_life_bonus_10000s_BCD), a  ; 00:1C55 - 32 FD D2
    ld     a, $1C                       ; 00:1C58 - 3E 1C
    ld     (g_next_bonus_level), a      ; 00:1C5A - 32 3F D2
-   ld a, $00  ; LEVEL SELECT CHEAT
+   ld a, $0A  ; LEVEL SELECT CHEAT
    ld (g_level), a
    xor a
    ld     (g_global_tick_counter), a   ; 00:1C61 - 32 23 D2
@@ -3742,18 +3743,18 @@ update_signpost_timer:
    inc hl
 
    ;; See if there are any water level changes to do
-   xor a
-   ld (g_water_onscreen_y), a
-   ld (g_water_level_onscreen_y), a
    ld hl, $FF00
+   ld c, $00
    ld a, (g_level)
    cp $0B
    jr nz, @not_fully_underwater
-   ld a, $FF
-   ld (g_water_onscreen_y), a
+   ld c, $FF
    ld hl, $0020
 @not_fully_underwater:
    ld (g_water_level_y), hl
+   ld a, c
+   ld (g_water_onscreen_y), a
+   ld (g_water_level_onscreen_y), a
    ;; TODO! --GM
 
    ;; Return happy

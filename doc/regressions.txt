@@ -8,11 +8,10 @@ Regressions known at this stage:
 - All teleporters and corridors are broken.
 - Bosses locking the screen position when Sonic jumps a bit high usually results in death when Sonic attempts to land.
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
-- The LAB2 to LAB3 transition results in Sonic not appearing to be underwater.
 - SKY3: The button Robotnik jumps on isn't drawn. I'm not sure how to do this one relatively yet, as the logic is in Robotnik's code.
 - SKY3: Sonic can't teleport out (as per all teleporters being broken).
 - Transitions across different tilesets are currently implemented by blindly switching everything over when a level change occurs. This results in some jank and potentially being unable to enter a level without dying first, or maybe you're just going to end up stuck in junk.
-   - The graphical transition to SCR1 seems mostly fine other than the palette going full early-198x-tape-loading-bars.
+   - The LAB3 to SCR1 transition results in borked graphics after the palette goes full early-198x-tape-loading-bars.
 
 Stuff which will result in a regression if I'm not careful:
 
