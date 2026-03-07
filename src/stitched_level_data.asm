@@ -309,7 +309,7 @@ LVHEAD_10:
 
 LVHEAD_1A:
 LVHEAD_1B:
-.db $07
+.db $06
 .dw $D9C0, $E0C1, $0001, $0741
 .dw $DA20, $0760
 .dw ART_SKY_3_0000
@@ -322,7 +322,7 @@ LVHEAD_1B:
 .db $04, $00, $20, $00, $04
 
 LVHEAD_11:
-.db $07
+.db $06
 .dw $D9C0, $E0C1, $0001, $0741
 .dw $DA00, $0020
 .dw ART_SKY_3_0000

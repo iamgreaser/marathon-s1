@@ -116,9 +116,9 @@ set ::layout_specs {
       LVHEAD_10 0x0A 0x17 {05 05 06 04 08 04 00 20 00 05}
    }}}
    {LVLAYOUT_SKY3_endof_SKY2 src/data/lv_sky_3_end_sky_2.layout6 SKY_3 {src/data/lv_sky_2_end.objects LVOBJECTS_SKY2_end {
-      {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {07 06 08 04 06 04 00 20 00 04}
+      {LVHEAD_1A LVHEAD_1B} 0x03 0x3B {06 06 08 04 06 04 00 20 00 04}
    } src/data/lv_sky_3.objects LVOBJECTS_SKY3 {
-      LVHEAD_11 0x02 0x01 {07 06 08 04 06 04 00 20 00 04}
+      LVHEAD_11 0x02 0x01 {06 06 08 04 06 04 00 20 00 04}
    }}}
 }
 
