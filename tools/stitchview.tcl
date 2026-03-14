@@ -196,15 +196,25 @@ proc set_tileset {ts_idx} {
       foreach ts_spec $::tileset_specs {
          set ts_key [lindex $ts_spec 0]
          set tilemap $::tilemaps($ts_key)
-         for {set i 0} {$i < 256} {incr i} {
-            .canvas itemconfigure tfull_${ts_key}_${i} -image [lindex $tilemap $i]
+         foreach id [.canvas find withtag ttset_${ts_key}] {
+            set tags [.canvas itemcget $id -tags]
+            set tfull_tag [lsearch -inline -glob $tags tfull/*]
+            lassign [split $tfull_tag /] _ _ tidx
+            .canvas itemconfigure $id -image [lindex $tilemap $tidx]
          }
       }
    } else {
       set ts_key [lindex $::tileset_specs $ts_idx 0]
       set tilemap $::tilemaps($ts_key)
-      for {set i 0} {$i < 256} {incr i} {
-         .canvas itemconfigure tbyte_${i} -image [lindex $tilemap $i]
+      foreach ts_spec $::tileset_specs {
+         set from_ts_key [lindex $ts_spec 0]
+         foreach id [.canvas find withtag ttset_${from_ts_key}] {
+            set tags [.canvas itemcget $id -tags]
+            set tfull_tag [lsearch -inline -glob $tags tfull/*]
+            lassign [split $tfull_tag /] _ _ tidx
+            set tidx [lindex $::tileset_map_from_byte($ts_key) [lindex $::tileset_map_to_byte($from_ts_key) $tidx]]
+            .canvas itemconfigure $id -image [lindex $tilemap $tidx]
+         }
       }
    }
 }
@@ -281,23 +291,36 @@ proc on_tmap_drag_stop {x y} {
       set newpos [list [expr {int([.alltiles.canvas canvasx $x]/32)}] [expr {int([.alltiles.canvas canvasy $y]/32)}]]
       lassign $::drag_pos ox oy
       lassign $newpos nx ny
-      if {$oy == $ny && $ox != $nx} {
-         if {$ox == 0 || ($ox >= 0x79 && $ox <= 0x7F)} {
+      if {$oy == $ny && $ox != $nx && $oy <= [llength $::tileset_specs]} {
+         set ts_key [lindex $::tileset_specs $oy 0]
+         set len [llength $::tilemaps($ts_key)]
+         if {$ox >= $len || $nx >= $len} {
+            # Out of range.
+         } elseif {$ox == 0 || ($ox >= 0x79 && $ox <= 0x7F)} {
             # Not remappable.
          } elseif {$nx == 0 || ($nx >= 0x79 && $nx <= 0x7F)} {
             # Not remappable.
          } else {
             # Swap the two around!
-            puts "swap"
-            .alltiles.canvas itemconfigure tmaptile_${oy}_${ox} -tags [list old]
-            .alltiles.canvas itemconfigure tmaptile_${ny}_${nx} -tags [list new]
-            .alltiles.canvas moveto old [expr {$nx*32}] [expr {$ny*32}]
-            .alltiles.canvas moveto new [expr {$ox*32}] [expr {$oy*32}]
-            .alltiles.canvas itemconfigure old -tags [list tmaptile_${ny}_${nx}]
-            .alltiles.canvas itemconfigure new -tags [list tmaptile_${oy}_${ox}]
+            puts "swap $ts_key"
+            # ox, nx = positional X to be swapped
+            # oi, ni = image to be swapped
+            set oi [lindex $::tileset_map_from_byte($ts_key) $ox]
+            set ni [lindex $::tileset_map_from_byte($ts_key) $nx]
+            lset ::tileset_map_from_byte($ts_key) $ox $ni
+            lset ::tileset_map_from_byte($ts_key) $nx $oi
+            lset ::tileset_map_to_byte($ts_key) $oi $nx
+            lset ::tileset_map_to_byte($ts_key) $ni $ox
+            # Reposition everything!
+            for {set imgx 0} {$imgx <= $len} {incr imgx} {
+               set posx [lindex $::tileset_map_to_byte($ts_key) $imgx]
+               .alltiles.canvas moveto tmaptile_${oy}_${imgx} [expr {$posx*32}] [expr {$oy*32}]
+            }
+            # Update main canvas!
+            set_tileset $::current_ts_idx
          }
       }
-      puts "drag from $ox,$oy to $nx,$ny"
+      #puts "drag from $ox,$oy to $nx,$ny"
    }
    set ::drag_pos {}
 }
@@ -312,6 +335,7 @@ proc init_grid {} {
 proc init_tilesets {} {
    array set ::tilesets {}
    array set ::tileset_indices {}
+   array set ::tileset_remap {}
    set next_ts_idx 0
 
    foreach tss $::tileset_specs {
@@ -362,8 +386,14 @@ proc init_tilesets {} {
          close $fp
       }
 
+      set map_iota [list]
+      for {set i 0} {$i < [llength $tilemap]} {incr i} {
+         lappend map_iota $i
+      }
       set ::tilesets($ts_key) [list $tileflags $tilemap $tilespecials $art0_fname $pal]
       set ::tileset_indices($ts_key) $next_ts_idx
+      set ::tileset_map_to_byte($ts_key) $map_iota
+      set ::tileset_map_from_byte($ts_key) $map_iota
       incr next_ts_idx
    }
 }
@@ -729,7 +759,7 @@ proc load_level_layout {lbs} {
                      $global_py \
                      -anchor nw \
                      -image [lindex $tilemap $v] \
-                     -tags [list $ls_key tbyte_${v} tfull_${ts_key}_${v}] \
+                     -tags [list $ls_key tbyte_${v} tfull/${ts_key}/${v} ttset_${ts_key} tfulldata] \
                      ;
                }
             }
