@@ -182,8 +182,8 @@ proc init_widgets {} {
    .alltiles.canvas configure -xscrollcommand {.alltiles.sx_canvas set}
    grid .alltiles.canvas -sticky nswe
    grid .alltiles.sx_canvas -sticky we
-   grid rowconfigure . 0 -weight 1
-   grid columnconfigure . 0 -weight 1
+   grid rowconfigure .alltiles 0 -weight 1
+   grid columnconfigure .alltiles 0 -weight 1
    bind .alltiles.canvas <ButtonPress-1> { on_tmap_drag_start %x %y }
    bind .alltiles.canvas <ButtonRelease-1> { on_tmap_drag_stop %x %y }
    after idle { after 100 { raise .alltiles } }
