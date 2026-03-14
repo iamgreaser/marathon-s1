@@ -169,6 +169,21 @@ proc init_widgets {} {
    bind .canvas <ButtonPress-1> { on_drag_start %x %y }
    bind .canvas <ButtonRelease-1> { on_drag_stop %x %y }
    bind .canvas <Motion> { on_drag_step %x %y }
+
+   # Set up a tile reorderer thing
+   toplevel .alltiles
+   set lx [expr {256*32}]
+   set ly [expr {[llength $::tileset_specs]*32}]
+   canvas .alltiles.canvas -width $::screen_lx -height $ly -scrollregion [list 0 0 $lx $ly]
+   ttk::scrollbar .alltiles.sx_canvas -orient horizontal -command {.alltiles.canvas xview}
+   .alltiles.canvas configure -xscrollcommand {.alltiles.sx_canvas set}
+   grid .alltiles.canvas -sticky nswe
+   grid .alltiles.sx_canvas -sticky we
+   grid rowconfigure . 0 -weight 1
+   grid columnconfigure . 0 -weight 1
+   bind .alltiles.canvas <ButtonPress-1> { on_tmap_drag_start %x %y }
+   bind .alltiles.canvas <ButtonRelease-1> { on_tmap_drag_stop %x %y }
+   after idle { after 100 { raise .alltiles } }
 }
 
 proc on_drag_start {x y} {
@@ -230,6 +245,38 @@ proc on_drag_step {x y} {
          .canvas move all $dx $dy
       }
    }
+}
+
+proc on_tmap_drag_start {x y} {
+   set ::drag_pos [list [expr {int([.alltiles.canvas canvasx $x]/32)}] [expr {int([.alltiles.canvas canvasy $y]/32)}]]
+}
+
+proc on_tmap_drag_stop {x y} {
+   if {$::drag_pos ne {}} {
+      set cx [.alltiles.canvas canvasx $x]
+      set cy [.alltiles.canvas canvasy $y]
+      set newpos [list [expr {int([.alltiles.canvas canvasx $x]/32)}] [expr {int([.alltiles.canvas canvasy $y]/32)}]]
+      lassign $::drag_pos ox oy
+      lassign $newpos nx ny
+      if {$oy == $ny && $ox != $nx} {
+         if {$ox == 0 || ($ox >= 0x79 && $ox <= 0x7F)} {
+            # Not remappable.
+         } elseif {$nx == 0 || ($nx >= 0x79 && $nx <= 0x7F)} {
+            # Not remappable.
+         } else {
+            # Swap the two around!
+            puts "swap"
+            .alltiles.canvas itemconfigure tmaptile_${oy}_${ox} -tags [list old]
+            .alltiles.canvas itemconfigure tmaptile_${ny}_${nx} -tags [list new]
+            .alltiles.canvas moveto old [expr {$nx*32}] [expr {$ny*32}]
+            .alltiles.canvas moveto new [expr {$ox*32}] [expr {$oy*32}]
+            .alltiles.canvas itemconfigure old -tags [list tmaptile_${ny}_${nx}]
+            .alltiles.canvas itemconfigure new -tags [list tmaptile_${oy}_${ox}]
+         }
+      }
+      puts "drag from $ox,$oy to $nx,$ny"
+   }
+   set ::drag_pos {}
 }
 
 proc init_grid {} {
@@ -312,6 +359,7 @@ proc init_tilemap_images {} {
       close $fp
    }
 
+   set ts_idx 0
    foreach tss $::tileset_specs {
       # Retrieve all info we need at the moment
       lassign $tss ts_key ts_fname_base
@@ -415,10 +463,20 @@ proc init_tilemap_images {} {
             }
          }
          lappend tmap $img
+         set x [expr {($toffs/16)}]
+         set y $ts_idx
+         .alltiles.canvas create image \
+            [expr {($toffs/16)*32}] \
+            [expr {$ts_idx*32}] \
+            -anchor nw \
+            -image $img \
+            -tags [list tmaptile_${y}_${x}] \
+            ;
       }
 
       # Save this tilemap for use
       set ::tilemaps($ts_key) $tmap
+      incr ts_idx
 
       incr ts_uniq_rows_count [dict size $ts_uniq_rows]
    }
