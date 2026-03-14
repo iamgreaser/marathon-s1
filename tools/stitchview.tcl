@@ -169,6 +169,9 @@ proc init_widgets {} {
    bind .canvas <ButtonPress-1> { on_drag_start %x %y }
    bind .canvas <ButtonRelease-1> { on_drag_stop %x %y }
    bind .canvas <Motion> { on_drag_step %x %y }
+   for {set i 0} {$i <= [llength $::tileset_specs]} {incr i} {
+      bind . <KeyPress-${i}> [list set_tileset [expr {$i-1}]]
+   }
 
    # Set up a tile reorderer thing
    toplevel .alltiles
@@ -184,6 +187,26 @@ proc init_widgets {} {
    bind .alltiles.canvas <ButtonPress-1> { on_tmap_drag_start %x %y }
    bind .alltiles.canvas <ButtonRelease-1> { on_tmap_drag_stop %x %y }
    after idle { after 100 { raise .alltiles } }
+}
+
+set ::current_ts_idx -1
+proc set_tileset {ts_idx} {
+   set ::current_ts_idx $ts_idx
+   if {$ts_idx < 0} {
+      foreach ts_spec $::tileset_specs {
+         set ts_key [lindex $ts_spec 0]
+         set tilemap $::tilemaps($ts_key)
+         for {set i 0} {$i < 256} {incr i} {
+            .canvas itemconfigure tfull_${ts_key}_${i} -image [lindex $tilemap $i]
+         }
+      }
+   } else {
+      set ts_key [lindex $::tileset_specs $ts_idx 0]
+      set tilemap $::tilemaps($ts_key)
+      for {set i 0} {$i < 256} {incr i} {
+         .canvas itemconfigure tbyte_${i} -image [lindex $tilemap $i]
+      }
+   }
 }
 
 proc on_drag_start {x y} {
@@ -706,7 +729,7 @@ proc load_level_layout {lbs} {
                      $global_py \
                      -anchor nw \
                      -image [lindex $tilemap $v] \
-                     -tags [list $ls_key] \
+                     -tags [list $ls_key tbyte_${v} tfull_${ts_key}_${v}] \
                      ;
                }
             }
