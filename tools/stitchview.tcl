@@ -525,6 +525,42 @@ proc init_tilemap_images {} {
             -image $img \
             -tags [list tmaptile_${y}_${x}] \
             ;
+         set tflags [lindex $tileflags $x]
+         set tspecial [lindex $tilespecials $x]
+         if {$tspecial eq {}} { set tspecial 0 }
+         if {$tflags eq {}} { set tflags 0 }
+         .alltiles.canvas create text \
+            [expr {($toffs/16)*32+1}] \
+            [expr {$ts_idx*32-4+1}] \
+            -anchor nw \
+            -text [format %02X $tflags] \
+            -fill "#000" \
+            -tags [list tmaptile_${y}_${x}] \
+            ;
+         .alltiles.canvas create text \
+            [expr {($toffs/16)*32+1}] \
+            [expr {$ts_idx*32+36+1}] \
+            -anchor sw \
+            -text [format %02X $tspecial] \
+            -fill "#000" \
+            -tags [list tmaptile_${y}_${x}] \
+            ;
+         .alltiles.canvas create text \
+            [expr {($toffs/16)*32}] \
+            [expr {$ts_idx*32-4}] \
+            -anchor nw \
+            -text [format %02X $tflags] \
+            -fill "#88F" \
+            -tags [list tmaptile_${y}_${x}] \
+            ;
+         .alltiles.canvas create text \
+            [expr {($toffs/16)*32}] \
+            [expr {$ts_idx*32+36}] \
+            -anchor sw \
+            -text [format %02X $tspecial] \
+            -fill "#F88" \
+            -tags [list tmaptile_${y}_${x}] \
+            ;
       }
 
       # Save this tilemap for use
