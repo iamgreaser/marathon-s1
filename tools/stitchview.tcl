@@ -23,6 +23,26 @@ set ::tileset_specs {
 }
 # {special src/data/lv_special}
 
+array set ::tileset_map_to_byte {}
+array set ::tileset_map_from_byte {}
+try {
+   source src/tileset_reordering.tcl
+   puts "Loaded tileset reordering"
+} trap {POSIX ENOENT} {} {
+   puts "Creating new tileset reordering"
+   set map_iota [list]
+   for {set i 0} {$i < 0x100} {incr i} {
+      lappend map_iota $i
+   }
+   foreach ts_ent $::tileset_specs {
+      set ts_key [lindex $ts_ent 0]
+      set ::tileset_map_to_byte($ts_key) $map_iota
+      set ::tileset_map_from_byte($ts_key) $map_iota
+      unset ts_key
+   }
+   unset map_iota
+}
+
 set ::layout_boxes {
    {LVLAYOUT_GHZ1_ENDING 0x0040 0x18C0 0x0020 0x0140 0 317}
    {LVLAYOUT_GHZ2 0x0001 0x0CA0 0x0001 0x0340 0 8}
@@ -177,16 +197,36 @@ proc init_widgets {} {
    toplevel .alltiles
    set lx [expr {256*32}]
    set ly [expr {[llength $::tileset_specs]*32}]
-   canvas .alltiles.canvas -width $::screen_lx -height $ly -scrollregion [list 0 0 $lx $ly]
-   ttk::scrollbar .alltiles.sx_canvas -orient horizontal -command {.alltiles.canvas xview}
-   .alltiles.canvas configure -xscrollcommand {.alltiles.sx_canvas set}
-   grid .alltiles.canvas -sticky nswe
-   grid .alltiles.sx_canvas -sticky we
+   foreach cidx {0 1} {
+      canvas .alltiles.canvas${cidx} -width $::screen_lx -height $ly -scrollregion [list 0 0 $lx $ly]
+      ttk::scrollbar .alltiles.sx_canvas${cidx} -orient horizontal -command [list .alltiles.canvas${cidx} xview]
+      .alltiles.canvas${cidx} configure -xscrollcommand [list .alltiles.sx_canvas${cidx} set]
+      grid .alltiles.canvas${cidx} -sticky nswe
+      grid .alltiles.sx_canvas${cidx} -sticky we
+      bind .alltiles.canvas${cidx} <ButtonPress-3> [list on_tmap_drag_start ${cidx} %x %y]
+      bind .alltiles.canvas${cidx} <ButtonPress-1> [list on_tmap_drag_stop ${cidx} %x %y]
+   }
+   bind .alltiles <Control-KeyPress-s> { save_reordering }
    grid rowconfigure .alltiles 0 -weight 1
+   grid rowconfigure .alltiles 2 -weight 1
    grid columnconfigure .alltiles 0 -weight 1
-   bind .alltiles.canvas <ButtonPress-1> { on_tmap_drag_start %x %y }
-   bind .alltiles.canvas <ButtonRelease-1> { on_tmap_drag_stop %x %y }
    after idle { after 100 { raise .alltiles } }
+}
+
+proc save_reordering {} {
+   puts "Saving reordering..."
+   set fp [open src/tileset_reordering.tcl.tmp wb]
+   try {
+      foreach ts_ent $::tileset_specs {
+         set ts_key [lindex $ts_ent 0]
+         puts $fp "set ::tileset_map_to_byte($ts_key) [list $::tileset_map_to_byte($ts_key)]"
+         puts $fp "set ::tileset_map_from_byte($ts_key) [list $::tileset_map_from_byte($ts_key)]"
+      }
+   } finally {
+      close $fp
+   }
+   file rename -force -- src/tileset_reordering.tcl.tmp src/tileset_reordering.tcl
+   puts "Saved reordering!"
 }
 
 set ::current_ts_idx -1
@@ -280,15 +320,15 @@ proc on_drag_step {x y} {
    }
 }
 
-proc on_tmap_drag_start {x y} {
-   set ::drag_pos [list [expr {int([.alltiles.canvas canvasx $x]/32)}] [expr {int([.alltiles.canvas canvasy $y]/32)}]]
+proc on_tmap_drag_start {this_cidx x y} {
+   set ::drag_pos [list [expr {int([.alltiles.canvas${this_cidx} canvasx $x]/32)}] [expr {int([.alltiles.canvas${this_cidx} canvasy $y]/32)}]]
 }
 
-proc on_tmap_drag_stop {x y} {
+proc on_tmap_drag_stop {this_cidx x y} {
    if {$::drag_pos ne {}} {
-      set cx [.alltiles.canvas canvasx $x]
-      set cy [.alltiles.canvas canvasy $y]
-      set newpos [list [expr {int([.alltiles.canvas canvasx $x]/32)}] [expr {int([.alltiles.canvas canvasy $y]/32)}]]
+      set cx [.alltiles.canvas${this_cidx} canvasx $x]
+      set cy [.alltiles.canvas${this_cidx} canvasy $y]
+      set newpos [list [expr {int([.alltiles.canvas${this_cidx} canvasx $x]/32)}] [expr {int([.alltiles.canvas${this_cidx} canvasy $y]/32)}]]
       lassign $::drag_pos ox oy
       lassign $newpos nx ny
       if {$oy == $ny && $ox != $nx && $oy <= [llength $::tileset_specs]} {
@@ -314,7 +354,8 @@ proc on_tmap_drag_stop {x y} {
             # Reposition everything!
             for {set imgx 0} {$imgx <= $len} {incr imgx} {
                set posx [lindex $::tileset_map_to_byte($ts_key) $imgx]
-               .alltiles.canvas moveto tmaptile_${oy}_${imgx} [expr {$posx*32}] [expr {$oy*32}]
+               .alltiles.canvas0 moveto tmaptile_${oy}_${imgx} [expr {$posx*32}] [expr {$oy*32}]
+               .alltiles.canvas1 moveto tmaptile_${oy}_${imgx} [expr {$posx*32}] [expr {$oy*32}]
             }
             # Update main canvas!
             set_tileset $::current_ts_idx
@@ -386,14 +427,8 @@ proc init_tilesets {} {
          close $fp
       }
 
-      set map_iota [list]
-      for {set i 0} {$i < [llength $tilemap]} {incr i} {
-         lappend map_iota $i
-      }
       set ::tilesets($ts_key) [list $tileflags $tilemap $tilespecials $art0_fname $pal]
       set ::tileset_indices($ts_key) $next_ts_idx
-      set ::tileset_map_to_byte($ts_key) $map_iota
-      set ::tileset_map_from_byte($ts_key) $map_iota
       incr next_ts_idx
    }
 }
@@ -518,49 +553,52 @@ proc init_tilemap_images {} {
          lappend tmap $img
          set x [expr {($toffs/16)}]
          set y $ts_idx
-         .alltiles.canvas create image \
-            [expr {($toffs/16)*32}] \
-            [expr {$ts_idx*32}] \
-            -anchor nw \
-            -image $img \
-            -tags [list tmaptile_${y}_${x}] \
-            ;
+         set eff_x [lindex $::tileset_map_to_byte($ts_key) $x]
          set tflags [lindex $tileflags $x]
          set tspecial [lindex $tilespecials $x]
          if {$tspecial eq {}} { set tspecial 0 }
          if {$tflags eq {}} { set tflags 0 }
-         .alltiles.canvas create text \
-            [expr {($toffs/16)*32+1}] \
-            [expr {$ts_idx*32-4+1}] \
-            -anchor nw \
-            -text [format %02X $tflags] \
-            -fill "#000" \
-            -tags [list tmaptile_${y}_${x}] \
-            ;
-         .alltiles.canvas create text \
-            [expr {($toffs/16)*32+1}] \
-            [expr {$ts_idx*32+36+1}] \
-            -anchor sw \
-            -text [format %02X $tspecial] \
-            -fill "#000" \
-            -tags [list tmaptile_${y}_${x}] \
-            ;
-         .alltiles.canvas create text \
-            [expr {($toffs/16)*32}] \
-            [expr {$ts_idx*32-4}] \
-            -anchor nw \
-            -text [format %02X $tflags] \
-            -fill "#88F" \
-            -tags [list tmaptile_${y}_${x}] \
-            ;
-         .alltiles.canvas create text \
-            [expr {($toffs/16)*32}] \
-            [expr {$ts_idx*32+36}] \
-            -anchor sw \
-            -text [format %02X $tspecial] \
-            -fill "#F88" \
-            -tags [list tmaptile_${y}_${x}] \
-            ;
+         foreach cidx {0 1} {
+            .alltiles.canvas${cidx} create image \
+               [expr {$eff_x*32}] \
+               [expr {$y*32}] \
+               -anchor nw \
+               -image $img \
+               -tags [list tmaptile_${y}_${x}] \
+               ;
+            .alltiles.canvas${cidx} create text \
+               [expr {$eff_x*32+1}] \
+               [expr {$y*32-4+1}] \
+               -anchor nw \
+               -text [format %02X $tflags] \
+               -fill "#000" \
+               -tags [list tmaptile_${y}_${x}] \
+               ;
+            .alltiles.canvas${cidx} create text \
+               [expr {$eff_x*32+1}] \
+               [expr {$y*32+36+1}] \
+               -anchor sw \
+               -text [format %02X $tspecial] \
+               -fill "#000" \
+               -tags [list tmaptile_${y}_${x}] \
+               ;
+            .alltiles.canvas${cidx} create text \
+               [expr {$eff_x*32}] \
+               [expr {$y*32-4}] \
+               -anchor nw \
+               -text [format %02X $tflags] \
+               -fill "#88F" \
+               -tags [list tmaptile_${y}_${x}] \
+               ;
+            .alltiles.canvas${cidx} create text \
+               [expr {$eff_x*32}] \
+               [expr {$y*32+36}] \
+               -anchor sw \
+               -text [format %02X $tspecial] \
+               -fill "#F88" \
+               -tags [list tmaptile_${y}_${x}] \
+               ;
+         }
       }
 
       # Save this tilemap for use
