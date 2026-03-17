@@ -229,6 +229,17 @@ proc save_reordering {} {
    puts "Saved reordering!"
 }
 
+proc remap_out {ts_key input} {
+   set result [list]
+   for {set i 0} {$i < [llength $input]} {incr i} {
+      set alt_i [lindex $::tileset_map_from_byte($ts_key) $i]
+      set v [lindex $input $alt_i]
+      if {$v eq {}} { set v 0 }
+      lappend result $v
+   }
+   return $result
+}
+
 set ::current_ts_idx -1
 proc set_tileset {ts_idx} {
    set ::current_ts_idx $ts_idx
@@ -668,21 +679,22 @@ proc init_levels {} {
       lappend ::codegen_sections ""
       lappend ::codegen_sections ".SECTION \"base_LVTILEFLAGS_${ts_key}\" SLOT ${bank} BANK ${bank}"
       lappend ::codegen_sections "LVTILEFLAGS_${ts_key}:"
-      set line [join [lmap b $tileflags {format {$%02X} $b}] ", "]
+      set line [join [lmap b [remap_out $ts_key $tileflags] {format {$%02X} $b}] ", "]
       lappend ::codegen_sections ".DB $line"
       lappend ::codegen_sections ".ENDS"
 
       lappend ::codegen_sections ""
       lappend ::codegen_sections ".SECTION \"base_LVTILESPECIALS_${ts_key}\" SLOT 2 SUPERFREE"
       lappend ::codegen_sections "LVTILESPECIALS_${ts_key}:"
-      set line [join [lmap b $tilespecials {format {$%02X} $b}] ", "]
+      set line [join [lmap b [remap_out $ts_key $tilespecials] {format {$%02X} $b}] ", "]
       lappend ::codegen_sections ".DB $line"
       lappend ::codegen_sections ".ENDS"
 
       lappend ::codegen_sections ""
       lappend ::codegen_sections ".SECTION \"base_LVTILEMAP_${ts_key}\" SLOT 2 SUPERFREE"
       lappend ::codegen_sections "LVTILEMAP_${ts_key}:"
-      for {set i 0} {$i < [llength $tilemap]} {incr i 16} {
+      for {set basei 0} {$basei < [llength $tilemap]} {incr basei 16} {
+         set i [expr {16*[lindex $::tileset_map_from_byte($ts_key) [expr {$basei/16}]]}]
          set bslice [lrange $tilemap $i [expr {$i+16-1}]]
          set line [join [lmap b $bslice {format {$%02X} $b}] ", "]
          lappend ::codegen_sections ".DB $line"
@@ -922,6 +934,7 @@ proc load_level_layout {lbs} {
 proc put_metatile {mtx mty v ts_idx} {
    # Apply tileset number except when tile is 0x00
    if {$v != 0} {
+      set v [lindex $::tileset_map_to_byte([lindex $::tileset_specs $ts_idx 0]) $v]
       set v [expr {$v|($ts_idx<<8)}]
    }
 
