@@ -23,7 +23,7 @@ LVHEAD_00:
 
 LVHEAD_01:
 .db $00
-.dw $1980, $2621, $28A0, $2BE1
+.dw $1980, $25E1, $28A0, $2BE1
 .dw $19C0, $2900
 .dw ART_GHZ_0000
 .db :ART_GHZ_0000
@@ -49,7 +49,7 @@ LVHEAD_02:
 
 LVHEAD_03:
 .db $01
-.dw $2F20, $4E21, $27A0, $28E1
+.dw $2F20, $4D21, $27A0, $28E1
 .dw $2F80, $2920
 .dw ART_BRI_0000
 .db :ART_BRI_0000
@@ -62,8 +62,8 @@ LVHEAD_03:
 
 LVHEAD_04:
 .db $01
-.dw $44C0, $53C1, $2560, $28A1
-.dw $4500, $28E0
+.dw $45C0, $54C1, $2560, $28A1
+.dw $4600, $28E0
 .dw ART_BRI_0000
 .db :ART_BRI_0000
 .dw ART_BRI_2000
@@ -75,8 +75,8 @@ LVHEAD_04:
 
 LVHEAD_05:
 .db $01
-.dw $54C0, $63C1, $2720, $2761
-.dw $5580, $2780
+.dw $55C0, $64C1, $2720, $2761
+.dw $5680, $2780
 .dw ART_BRI_0000
 .db :ART_BRI_0000
 .dw ART_BRI_2000
@@ -88,8 +88,8 @@ LVHEAD_05:
 
 LVHEAD_06:
 .db $02
-.dw $5C00, $7B01, $2600, $2721
-.dw $5C40, $2760
+.dw $5D00, $7C01, $2600, $2721
+.dw $5D40, $2760
 .dw ART_JUN_0000
 .db :ART_JUN_0000
 .dw ART_JUN_2000
@@ -101,8 +101,8 @@ LVHEAD_06:
 
 LVHEAD_07:
 .db $02
-.dw $7880, $7981, $1600, $26C1
-.dw $78C0, $26E0
+.dw $7980, $7A81, $1600, $26C1
+.dw $79C0, $26E0
 .dw ART_JUN_0000
 .db :ART_JUN_0000
 .dw ART_JUN_2000
@@ -114,8 +114,8 @@ LVHEAD_07:
 
 LVHEAD_08:
 .db $02
-.dw $7A80, $8181, $15C0, $1A41
-.dw $7AE0, $19E0
+.dw $7B80, $8281, $15C0, $1A41
+.dw $7BE0, $19E0
 .dw ART_JUN_0000
 .db :ART_JUN_0000
 .dw ART_JUN_2000
@@ -127,8 +127,8 @@ LVHEAD_08:
 
 LVHEAD_09:
 .db $03
-.dw $8000, $8701, $15C0, $1D01
-.dw $8040, $1660
+.dw $8100, $8801, $15C0, $1D01
+.dw $8140, $1660
 .dw ART_LAB_0000
 .db :ART_LAB_0000
 .dw ART_LAB_2000
@@ -140,8 +140,8 @@ LVHEAD_09:
 
 LVHEAD_0A:
 .db $03
-.dw $8800, $8F01, $1580, $1CC1
-.dw $8860, $16A0
+.dw $8900, $9001, $1580, $1CC1
+.dw $8960, $16A0
 .dw ART_LAB_0000
 .db :ART_LAB_0000
 .dw ART_LAB_2000
@@ -153,8 +153,8 @@ LVHEAD_0A:
 
 LVHEAD_0B:
 .db $03
-.dw $9000, $9701, $1260, $19A1
-.dw $9060, $1700
+.dw $9100, $9681, $1260, $19A1
+.dw $9160, $1700
 .dw ART_LAB_0000
 .db :ART_LAB_0000
 .dw ART_LAB_2000
@@ -166,8 +166,8 @@ LVHEAD_0B:
 
 LVHEAD_0C:
 .db $04
-.dw $95A0, $B3A1, $1400, $1521
-.dw $9600, $1560
+.dw $96A0, $B441, $1400, $1521
+.dw $9700, $1560
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -179,8 +179,8 @@ LVHEAD_0C:
 
 LVHEAD_0D:
 .db $04
-.dw $A8E0, $B7E1, $1240, $1581
-.dw $A960, $1500
+.dw $AA40, $B941, $1240, $1581
+.dw $AAC0, $1500
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -192,8 +192,8 @@ LVHEAD_0D:
 
 LVHEAD_18:
 .db $04
-.dw $A8E0, $B7E1, $1240, $1581
-.dw $B840, $12A0
+.dw $AA40, $B941, $1240, $1581
+.dw $B9A0, $12A0
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -205,8 +205,8 @@ LVHEAD_18:
 
 LVHEAD_19:
 .db $04
-.dw $A8E0, $B7E1, $1240, $1581
-.dw $B840, $15A0
+.dw $AA40, $B941, $1240, $1581
+.dw $B9A0, $15A0
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -218,8 +218,8 @@ LVHEAD_19:
 
 LVHEAD_16:
 .db $04
-.dw $A8E0, $B7E1, $1240, $1581
-.dw $B2E0, $1440
+.dw $AA40, $B941, $1240, $1581
+.dw $B440, $1440
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -231,8 +231,8 @@ LVHEAD_16:
 
 LVHEAD_14:
 .db $04
-.dw $B860, $BF61, $0B00, $1241
-.dw $B8C0, $12A0
+.dw $B9C0, $C0C1, $0B00, $1241
+.dw $BA20, $12A0
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -244,8 +244,8 @@ LVHEAD_14:
 
 LVHEAD_17:
 .db $04
-.dw $B860, $BF61, $0B00, $1241
-.dw $BD40, $0E80
+.dw $B9C0, $C0C1, $0B00, $1241
+.dw $BEA0, $0E80
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -257,8 +257,8 @@ LVHEAD_17:
 
 LVHEAD_15:
 .db $04
-.dw $B860, $BB61, $1540, $1FE1
-.dw $B8C0, $15A0
+.dw $B9C0, $BCC1, $1540, $1FE1
+.dw $BA20, $15A0
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -270,8 +270,8 @@ LVHEAD_15:
 
 LVHEAD_0E:
 .db $04
-.dw $BE40, $C541, $0800, $0D21
-.dw $BEA0, $0CA0
+.dw $C1A0, $C8A1, $0800, $0D21
+.dw $C200, $0CA0
 .dw ART_SCR_0000
 .db :ART_SCR_0000
 .dw ART_SCR_2000
@@ -283,8 +283,8 @@ LVHEAD_0E:
 
 LVHEAD_0F:
 .db $05
-.dw $C400, $D301, $0280, $05C1
-.dw $C440, $0620
+.dw $C760, $D661, $0280, $05C1
+.dw $C7A0, $0620
 .dw ART_SKY_0000
 .db :ART_SKY_0000
 .dw ART_SKY_2000
@@ -296,8 +296,8 @@ LVHEAD_0F:
 
 LVHEAD_10:
 .db $05
-.dw $D100, $D801, $0001, $0641
-.dw $D240, $02E0
+.dw $D460, $DB61, $0001, $0641
+.dw $D5A0, $02E0
 .dw ART_SKY_0000
 .db :ART_SKY_0000
 .dw ART_SKY_2000
@@ -310,8 +310,8 @@ LVHEAD_10:
 LVHEAD_1A:
 LVHEAD_1B:
 .db $06
-.dw $D9C0, $E0C1, $0001, $0741
-.dw $DA20, $0760
+.dw $DD20, $E421, $0001, $0341
+.dw $DD80, $0760
 .dw ART_SKY_3_0000
 .db :ART_SKY_3_0000
 .dw ART_SKY_3_2000
@@ -323,8 +323,8 @@ LVHEAD_1B:
 
 LVHEAD_11:
 .db $06
-.dw $D9C0, $E0C1, $0001, $0741
-.dw $DA00, $0020
+.dw $DD20, $E421, $0001, $0341
+.dw $DD60, $0020
 .dw ART_SKY_3_0000
 .db :ART_SKY_3_0000
 .dw ART_SKY_3_2000
@@ -750,8 +750,8 @@ qt_0002:
 .DW 0,0,qt_0003,qt_003D
 qt_0074:
 .DW 0
-.DW chunk_0078
-.DB :chunk_0078
+.DW chunk_0079
+.DB :chunk_0079
 .DB 2
 qt_0073:
 .DW 0,0,0,qt_0074
@@ -762,62 +762,62 @@ qt_0076:
 .DB 2
 qt_0077:
 .DW 0
-.DW chunk_0075
-.DB :chunk_0075
-.DB 2
-qt_0078:
-.DW 0
 .DW chunk_0076
 .DB :chunk_0076
 .DB 2
-qt_0079:
+qt_0078:
 .DW 0
 .DW chunk_0077
 .DB :chunk_0077
 .DB 2
 qt_0075:
-.DW qt_0076,qt_0077,qt_0078,qt_0079
+.DW 0,qt_0076,qt_0077,qt_0078
 qt_0072:
 .DW 0,0,qt_0073,qt_0075
-qt_007C:
+qt_007B:
 .DW 0
 .DW chunk_0065
 .DB :chunk_0065
 .DB 2
-qt_007D:
+qt_007C:
 .DW 0
 .DW chunk_0066
 .DB :chunk_0066
 .DB 2
-qt_007E:
+qt_007D:
 .DW 0
 .DW chunk_0067
 .DB :chunk_0067
 .DB 2
-qt_007F:
+qt_007E:
 .DW 0
 .DW chunk_0068
 .DB :chunk_0068
 .DB 2
-qt_007B:
-.DW qt_007C,qt_007D,qt_007E,qt_007F
-qt_0081:
-.DW 0
-.DW chunk_0079
-.DB :chunk_0079
-.DB 2
-qt_0082:
+qt_007A:
+.DW qt_007B,qt_007C,qt_007D,qt_007E
+qt_0080:
 .DW 0
 .DW chunk_007A
 .DB :chunk_007A
 .DB 2
-qt_0083:
+qt_0081:
 .DW 0
 .DW chunk_007B
 .DB :chunk_007B
 .DB 2
-qt_0080:
-.DW qt_0081,0,qt_0082,qt_0083
+qt_0082:
+.DW 0
+.DW chunk_007C
+.DB :chunk_007C
+.DB 2
+qt_0083:
+.DW 0
+.DW chunk_007D
+.DB :chunk_007D
+.DB 2
+qt_007F:
+.DW qt_0080,qt_0081,qt_0082,qt_0083
 qt_0085:
 .DW chunksave_001B
 .DW chunk_0069
@@ -840,10 +840,10 @@ qt_0088:
 .DB 2
 qt_0084:
 .DW qt_0085,qt_0086,qt_0087,qt_0088
-qt_007A:
-.DW qt_007B,qt_0080,qt_0084,0
+qt_0079:
+.DW qt_007A,qt_007F,qt_0084,0
 qt_0071:
-.DW 0,qt_0072,0,qt_007A
+.DW 0,qt_0072,0,qt_0079
 qt_0070:
 .DW 0,0,0,qt_0071
 qt_008D:
@@ -894,12 +894,12 @@ qt_0098:
 qt_0096:
 .DW qt_0097,qt_0098,0,0
 qt_009A:
-.DW chunksave_0022
+.DW 0
 .DW chunk_003E
 .DB :chunk_003E
 .DB 1
 qt_009B:
-.DW chunksave_0023
+.DW chunksave_0022
 .DW chunk_0042
 .DB :chunk_0042
 .DB 1
@@ -908,24 +908,24 @@ qt_0099:
 qt_0095:
 .DW qt_0096,qt_0099,0,0
 qt_009E:
-.DW chunksave_0024
+.DW chunksave_0023
 .DW chunk_004A
 .DB :chunk_004A
 .DB 1
 qt_009F:
-.DW chunksave_0025
+.DW chunksave_0024
 .DW chunk_004B
 .DB :chunk_004B
 .DB 1
 qt_009D:
 .DW qt_009E,qt_009F,0,0
 qt_00A1:
-.DW chunksave_0026
+.DW 0
 .DW chunk_004C
 .DB :chunk_004C
 .DB 1
 qt_00A2:
-.DW chunksave_0027
+.DW chunksave_0025
 .DW chunk_004D
 .DB :chunk_004D
 .DB 1
@@ -936,21 +936,21 @@ qt_009C:
 qt_008A:
 .DW qt_008B,qt_008E,qt_0095,qt_009C
 qt_00A6:
-.DW chunksave_0028
-.DW chunk_0044
-.DB :chunk_0044
+.DW chunksave_0026
+.DW chunk_0045
+.DB :chunk_0045
 .DB 1
 qt_00A7:
-.DW chunksave_0029
-.DW chunk_0043
-.DB :chunk_0043
+.DW chunksave_0027
+.DW chunk_0044
+.DB :chunk_0044
 .DB 1
 qt_00A5:
 .DW 0,0,qt_00A6,qt_00A7
 qt_00A9:
 .DW 0
-.DW chunk_0045
-.DB :chunk_0045
+.DW chunk_0043
+.DB :chunk_0043
 .DB 1
 qt_00AA:
 .DW 0
@@ -974,14 +974,14 @@ qt_00AE:
 qt_00AC:
 .DW 0,0,qt_00AD,qt_00AE
 qt_00B0:
-.DW chunksave_002A
+.DW chunksave_0028
 .DW chunk_0054
 .DB :chunk_0054
 .DB 2
 qt_00B1:
-.DW chunksave_002B
-.DW chunk_0062
-.DB :chunk_0062
+.DW chunksave_0029
+.DW chunk_0061
+.DB :chunk_0061
 .DB 2
 qt_00AF:
 .DW 0,0,qt_00B0,qt_00B1
@@ -1039,26 +1039,26 @@ qt_00A3:
 qt_0089:
 .DW qt_008A,qt_00A3,0,0
 qt_00C3:
-.DW 0
-.DW chunk_0057
-.DB :chunk_0057
+.DW chunksave_002A
+.DW chunk_0062
+.DB :chunk_0062
 .DB 2
 qt_00C4:
-.DW chunksave_002C
-.DW chunk_0058
-.DB :chunk_0058
+.DW chunksave_002B
+.DW chunk_0057
+.DB :chunk_0057
 .DB 2
 qt_00C2:
 .DW 0,0,qt_00C3,qt_00C4
 qt_00C6:
-.DW 0
-.DW chunk_0059
-.DB :chunk_0059
+.DW chunksave_002C
+.DW chunk_0058
+.DB :chunk_0058
 .DB 2
 qt_00C7:
 .DW 0
-.DW chunk_005A
-.DB :chunk_005A
+.DW chunk_0059
+.DB :chunk_0059
 .DB 2
 qt_00C5:
 .DW 0,0,qt_00C6,qt_00C7
@@ -1066,25 +1066,25 @@ qt_00C1:
 .DW 0,0,qt_00C2,qt_00C5
 qt_00CA:
 .DW chunksave_002D
-.DW chunk_005B
-.DB :chunk_005B
+.DW chunk_005A
+.DB :chunk_005A
 .DB 2
 qt_00CB:
 .DW chunksave_002E
-.DW chunk_005C
-.DB :chunk_005C
+.DW chunk_005B
+.DB :chunk_005B
 .DB 2
 qt_00C9:
 .DW 0,0,qt_00CA,qt_00CB
 qt_00CD:
-.DW 0
-.DW chunk_005D
-.DB :chunk_005D
+.DW chunksave_002F
+.DW chunk_005C
+.DB :chunk_005C
 .DB 2
 qt_00CE:
 .DW 0
-.DW chunk_005E
-.DB :chunk_005E
+.DW chunk_005D
+.DB :chunk_005D
 .DB 2
 qt_00CC:
 .DW 0,0,qt_00CD,qt_00CE
@@ -1094,32 +1094,32 @@ qt_00C0:
 .DW qt_00C1,qt_00C8,0,0
 qt_00D2:
 .DW 0
-.DW chunk_005F
-.DB :chunk_005F
+.DW chunk_005E
+.DB :chunk_005E
 .DB 2
 qt_00D3:
-.DW chunksave_002F
-.DW chunk_0060
-.DB :chunk_0060
+.DW chunksave_0030
+.DW chunk_0063
+.DB :chunk_0063
 .DB 2
 qt_00D1:
 .DW 0,0,qt_00D2,qt_00D3
 qt_00D5:
-.DW chunksave_0030
-.DW chunk_0061
-.DB :chunk_0061
+.DW chunksave_0031
+.DW chunk_005F
+.DB :chunk_005F
 .DB 2
 qt_00D6:
-.DW 0
-.DW chunk_0063
-.DB :chunk_0063
+.DW chunksave_0032
+.DW chunk_0060
+.DB :chunk_0060
 .DB 2
 qt_00D4:
 .DW 0,0,qt_00D5,qt_00D6
 qt_00D0:
 .DW 0,0,qt_00D1,qt_00D4
 qt_00D9:
-.DW chunksave_0031
+.DW chunksave_0033
 .DW chunk_006D
 .DB :chunk_006D
 .DB 2
@@ -1134,7 +1134,7 @@ qt_00DB:
 .DB :chunk_006F
 .DB 2
 qt_00DC:
-.DW chunksave_0032
+.DW chunksave_0034
 .DW chunk_0070
 .DB :chunk_0070
 .DB 2
@@ -1146,7 +1146,7 @@ qt_00DE:
 .DB :chunk_0071
 .DB 2
 qt_00DF:
-.DW chunksave_0033
+.DW chunksave_0035
 .DW chunk_0072
 .DB :chunk_0072
 .DB 2
@@ -1156,7 +1156,7 @@ qt_00E0:
 .DB :chunk_0064
 .DB 2
 qt_00E1:
-.DW chunksave_0034
+.DW chunksave_0036
 .DW chunk_0073
 .DB :chunk_0073
 .DB 2
@@ -1174,45 +1174,45 @@ qt_0001:
 .DW qt_0002,qt_006F,0,0
 qt_00E8:
 .DW 0
-.DW chunk_007C
-.DB :chunk_007C
+.DW chunk_0075
+.DB :chunk_0075
 .DB 3
 qt_00E9:
 .DW 0
-.DW chunk_007D
-.DB :chunk_007D
-.DB 3
-qt_00EA:
-.DW chunksave_0035
 .DW chunk_007E
 .DB :chunk_007E
 .DB 3
+qt_00EA:
+.DW chunksave_0037
+.DW chunk_0078
+.DB :chunk_0078
+.DB 3
 qt_00EB:
-.DW chunksave_0036
-.DW chunk_007F
-.DB :chunk_007F
+.DW chunksave_0038
+.DW chunk_0081
+.DB :chunk_0081
 .DB 3
 qt_00E7:
 .DW qt_00E8,qt_00E9,qt_00EA,qt_00EB
 qt_00ED:
 .DW 0
-.DW chunk_007D
-.DB :chunk_007D
+.DW chunk_007F
+.DB :chunk_007F
 .DB 3
 qt_00EE:
 .DW 0
-.DW chunk_007D
-.DB :chunk_007D
+.DW chunk_007F
+.DB :chunk_007F
 .DB 3
 qt_00EF:
-.DW chunksave_0037
-.DW chunk_0080
-.DB :chunk_0080
+.DW chunksave_0039
+.DW chunk_0082
+.DB :chunk_0082
 .DB 3
 qt_00F0:
 .DW 0
-.DW chunk_0081
-.DB :chunk_0081
+.DW chunk_0083
+.DB :chunk_0083
 .DB 3
 qt_00EC:
 .DW qt_00ED,qt_00EE,qt_00EF,qt_00F0
@@ -1220,161 +1220,161 @@ qt_00E6:
 .DW 0,0,qt_00E7,qt_00EC
 qt_00F3:
 .DW 0
-.DW chunk_008A
-.DB :chunk_008A
+.DW chunk_0080
+.DB :chunk_0080
 .DB 3
 qt_00F4:
 .DW 0
-.DW chunk_008B
-.DB :chunk_008B
+.DW chunk_008F
+.DB :chunk_008F
 .DB 3
 qt_00F5:
 .DW 0
-.DW chunk_008D
-.DB :chunk_008D
+.DW chunk_0084
+.DB :chunk_0084
 .DB 3
 qt_00F6:
 .DW 0
-.DW chunk_008E
-.DB :chunk_008E
+.DW chunk_0092
+.DB :chunk_0092
 .DB 3
 qt_00F2:
 .DW qt_00F3,qt_00F4,qt_00F5,qt_00F6
 qt_00F8:
 .DW 0
-.DW chunk_008C
-.DB :chunk_008C
+.DW chunk_0090
+.DB :chunk_0090
 .DB 3
 qt_00F9:
 .DW 0
-.DW chunk_008C
-.DB :chunk_008C
+.DW chunk_0090
+.DB :chunk_0090
 .DB 3
 qt_00FA:
 .DW 0
-.DW chunk_008F
-.DB :chunk_008F
+.DW chunk_0093
+.DB :chunk_0093
 .DB 3
 qt_00FB:
-.DW chunksave_0038
-.DW chunk_0090
-.DB :chunk_0090
+.DW chunksave_003A
+.DW chunk_0094
+.DB :chunk_0094
 .DB 3
 qt_00F7:
 .DW qt_00F8,qt_00F9,qt_00FA,qt_00FB
 qt_00F1:
 .DW 0,0,qt_00F2,qt_00F7
 qt_00FE:
-.DW chunksave_0039
-.DW chunk_0082
-.DB :chunk_0082
+.DW chunksave_003B
+.DW chunk_0085
+.DB :chunk_0085
 .DB 3
 qt_00FF:
-.DW chunksave_003A
-.DW chunk_0083
-.DB :chunk_0083
-.DB 3
-qt_0100:
-.DW 0
+.DW chunksave_003C
 .DW chunk_0086
 .DB :chunk_0086
 .DB 3
+qt_0100:
+.DW 0
+.DW chunk_008A
+.DB :chunk_008A
+.DB 3
 qt_0101:
-.DW chunksave_003B
-.DW chunk_0087
-.DB :chunk_0087
+.DW 0
+.DW chunk_008B
+.DB :chunk_008B
 .DB 3
 qt_00FD:
 .DW qt_00FE,qt_00FF,qt_0100,qt_0101
 qt_0103:
-.DW chunksave_003C
-.DW chunk_0084
-.DB :chunk_0084
+.DW chunksave_003D
+.DW chunk_0087
+.DB :chunk_0087
 .DB 3
 qt_0104:
-.DW chunksave_003D
-.DW chunk_0085
-.DB :chunk_0085
-.DB 3
-qt_0105:
-.DW 0
+.DW chunksave_003E
 .DW chunk_0088
 .DB :chunk_0088
 .DB 3
+qt_0105:
+.DW chunksave_003F
+.DW chunk_008C
+.DB :chunk_008C
+.DB 3
 qt_0106:
 .DW 0
-.DW chunk_0089
-.DB :chunk_0089
+.DW chunk_008D
+.DB :chunk_008D
 .DB 3
 qt_0102:
 .DW qt_0103,qt_0104,qt_0105,qt_0106
 qt_00FC:
 .DW qt_00FD,qt_0102,0,0
 qt_0109:
-.DW chunksave_003E
-.DW chunk_0091
-.DB :chunk_0091
+.DW 0
+.DW chunk_0089
+.DB :chunk_0089
 .DB 3
 qt_010A:
-.DW chunksave_003F
-.DW chunk_0092
-.DB :chunk_0092
-.DB 3
-qt_010B:
 .DW chunksave_0040
-.DW chunk_0095
-.DB :chunk_0095
-.DB 3
-qt_010C:
-.DW 0
 .DW chunk_0096
 .DB :chunk_0096
+.DB 3
+qt_010B:
+.DW 0
+.DW chunk_008E
+.DB :chunk_008E
+.DB 3
+qt_010C:
+.DW chunksave_0041
+.DW chunk_009A
+.DB :chunk_009A
 .DB 3
 qt_0108:
 .DW qt_0109,qt_010A,qt_010B,qt_010C
 qt_010E:
-.DW chunksave_0041
-.DW chunk_0093
-.DB :chunk_0093
-.DB 3
-qt_010F:
 .DW chunksave_0042
-.DW chunk_0094
-.DB :chunk_0094
-.DB 3
-qt_0110:
-.DW chunksave_0043
 .DW chunk_0097
 .DB :chunk_0097
 .DB 3
-qt_0111:
-.DW chunksave_0044
+qt_010F:
+.DW chunksave_0043
 .DW chunk_0098
 .DB :chunk_0098
+.DB 3
+qt_0110:
+.DW chunksave_0044
+.DW chunk_009B
+.DB :chunk_009B
+.DB 3
+qt_0111:
+.DW chunksave_0045
+.DW chunk_009C
+.DB :chunk_009C
 .DB 3
 qt_010D:
 .DW qt_010E,qt_010F,qt_0110,qt_0111
 qt_0113:
 .DW 0
-.DW chunk_0099
-.DB :chunk_0099
+.DW chunk_009E
+.DB :chunk_009E
 .DB 3
 qt_0114:
 .DW 0
-.DW chunk_009A
-.DB :chunk_009A
+.DW chunk_009F
+.DB :chunk_009F
 .DB 3
 qt_0112:
 .DW qt_0113,qt_0114,0,0
 qt_0116:
 .DW 0
-.DW chunk_009B
-.DB :chunk_009B
+.DW chunk_00A0
+.DB :chunk_00A0
 .DB 3
 qt_0117:
 .DW 0
-.DW chunk_009C
-.DB :chunk_009C
+.DW chunk_00A1
+.DB :chunk_00A1
 .DB 3
 qt_0115:
 .DW qt_0116,qt_0117,0,0
@@ -1384,751 +1384,739 @@ qt_00E5:
 .DW qt_00E6,qt_00F1,qt_00FC,qt_0107
 qt_011B:
 .DW 0
-.DW chunk_009D
-.DB :chunk_009D
+.DW chunk_0091
+.DB :chunk_0091
 .DB 3
 qt_011C:
 .DW 0
-.DW chunk_009E
-.DB :chunk_009E
+.DW chunk_00A3
+.DB :chunk_00A3
 .DB 3
 qt_011D:
 .DW 0
-.DW chunk_00A1
-.DB :chunk_00A1
+.DW chunk_0095
+.DB :chunk_0095
 .DB 3
 qt_011E:
 .DW 0
-.DW chunk_00A2
-.DB :chunk_00A2
+.DW chunk_00A6
+.DB :chunk_00A6
 .DB 3
 qt_011A:
 .DW qt_011B,qt_011C,qt_011D,qt_011E
 qt_0120:
 .DW 0
-.DW chunk_009F
-.DB :chunk_009F
+.DW chunk_00A4
+.DB :chunk_00A4
 .DB 3
 qt_0121:
-.DW chunksave_0045
-.DW chunk_00A0
-.DB :chunk_00A0
+.DW chunksave_0046
+.DW chunk_00A5
+.DB :chunk_00A5
 .DB 4
 qt_0122:
 .DW 0
-.DW chunk_00A3
-.DB :chunk_00A3
+.DW chunk_00A7
+.DB :chunk_00A7
 .DB 3
 qt_0123:
 .DW 0
-.DW chunk_00A3
-.DB :chunk_00A3
+.DW chunk_00A8
+.DB :chunk_00A8
 .DB 3
 qt_011F:
 .DW qt_0120,qt_0121,qt_0122,qt_0123
 qt_0119:
 .DW 0,0,qt_011A,qt_011F
 qt_0126:
-.DW chunksave_0046
-.DW chunk_00A4
-.DB :chunk_00A4
+.DW chunksave_0047
+.DW chunk_00A9
+.DB :chunk_00A9
 .DB 4
 qt_0127:
-.DW chunksave_0047
-.DW chunk_00A5
-.DB :chunk_00A5
+.DW chunksave_0048
+.DW chunk_00AA
+.DB :chunk_00AA
 .DB 4
 qt_0125:
 .DW qt_0126,qt_0127,0,0
 qt_0129:
-.DW chunksave_0048
-.DW chunk_00A6
-.DB :chunk_00A6
+.DW chunksave_0049
+.DW chunk_00AB
+.DB :chunk_00AB
 .DB 4
 qt_012A:
-.DW chunksave_0049
-.DW chunk_00A7
-.DB :chunk_00A7
+.DW chunksave_004A
+.DW chunk_00AC
+.DB :chunk_00AC
 .DB 4
 qt_0128:
 .DW qt_0129,qt_012A,0,0
 qt_0124:
 .DW 0,0,qt_0125,qt_0128
-qt_0118:
-.DW qt_0119,qt_0124,0,0
-qt_00E4:
-.DW 0,0,qt_00E5,qt_0118
-qt_012F:
+qt_012D:
 .DW 0
-.DW chunk_00C3
-.DB :chunk_00C3
-.DB 4
+.DW chunk_0099
+.DB :chunk_0099
+.DB 3
+qt_012E:
+.DW chunksave_004B
+.DW chunk_009D
+.DB :chunk_009D
+.DB 3
+qt_012C:
+.DW qt_012D,0,qt_012E,0
 qt_0130:
 .DW 0
-.DW chunk_00C4
-.DB :chunk_00C4
-.DB 4
-qt_012E:
-.DW 0,0,qt_012F,qt_0130
-qt_0132:
-.DW 0
-.DW chunk_00E8
-.DB :chunk_00E8
-.DB 4
-qt_0133:
-.DW 0
-.DW chunk_00C5
-.DB :chunk_00C5
-.DB 4
-qt_0134:
-.DW 0
-.DW chunk_00C6
-.DB :chunk_00C6
-.DB 4
-qt_0131:
-.DW 0,qt_0132,qt_0133,qt_0134
-qt_0136:
-.DW 0
-.DW chunk_00C8
-.DB :chunk_00C8
-.DB 4
-qt_0137:
+.DW chunk_00A2
+.DB :chunk_00A2
+.DB 3
+qt_012F:
+.DW qt_0130,0,0,0
+qt_012B:
+.DW qt_012C,0,qt_012F,0
+qt_0118:
+.DW qt_0119,qt_0124,qt_012B,0
+qt_00E4:
+.DW 0,0,qt_00E5,qt_0118
+qt_0135:
 .DW 0
 .DW chunk_00C9
 .DB :chunk_00C9
 .DB 4
-qt_0138:
-.DW 0
-.DW chunk_00CD
-.DB :chunk_00CD
-.DB 4
-qt_0139:
-.DW 0
-.DW chunk_00CE
-.DB :chunk_00CE
-.DB 4
-qt_0135:
-.DW qt_0136,qt_0137,qt_0138,qt_0139
-qt_013B:
+qt_0136:
 .DW 0
 .DW chunk_00CA
 .DB :chunk_00CA
 .DB 4
-qt_013C:
+qt_0134:
+.DW 0,0,qt_0135,qt_0136
+qt_0138:
 .DW 0
 .DW chunk_00CB
 .DB :chunk_00CB
 .DB 4
-qt_013D:
+qt_0139:
+.DW 0
+.DW chunk_00CC
+.DB :chunk_00CC
+.DB 4
+qt_0137:
+.DW 0,0,qt_0138,qt_0139
+qt_013B:
+.DW 0
+.DW chunk_00CE
+.DB :chunk_00CE
+.DB 4
+qt_013C:
 .DW 0
 .DW chunk_00CF
 .DB :chunk_00CF
 .DB 4
-qt_013E:
-.DW 0
-.DW chunk_00D0
-.DB :chunk_00D0
-.DB 4
-qt_013A:
-.DW qt_013B,qt_013C,qt_013D,qt_013E
-qt_012D:
-.DW qt_012E,qt_0131,qt_0135,qt_013A
-qt_012C:
-.DW 0,0,0,qt_012D
-qt_0142:
-.DW chunksave_004A
-.DW chunk_00A8
-.DB :chunk_00A8
-.DB 4
-qt_0143:
-.DW chunksave_004B
-.DW chunk_00A9
-.DB :chunk_00A9
-.DB 4
-qt_0141:
-.DW qt_0142,qt_0143,0,0
-qt_0145:
-.DW chunksave_004C
-.DW chunk_00AA
-.DB :chunk_00AA
-.DB 4
-qt_0146:
-.DW chunksave_004D
-.DW chunk_00AB
-.DB :chunk_00AB
-.DB 4
-qt_0144:
-.DW qt_0145,qt_0146,0,0
-qt_0140:
-.DW 0,0,qt_0141,qt_0144
-qt_0149:
-.DW 0
-.DW chunk_00B6
-.DB :chunk_00B6
-.DB 4
-qt_014A:
-.DW 0
-.DW chunk_00AE
-.DB :chunk_00AE
-.DB 4
-qt_0148:
-.DW 0,0,qt_0149,qt_014A
-qt_014C:
-.DW 0
-.DW chunk_00AF
-.DB :chunk_00AF
-.DB 4
-qt_014D:
-.DW chunksave_004E
-.DW chunk_00B0
-.DB :chunk_00B0
-.DB 4
-qt_014B:
-.DW 0,0,qt_014C,qt_014D
-qt_014F:
-.DW 0
-.DW chunk_00AC
-.DB :chunk_00AC
-.DB 4
-qt_0150:
-.DW chunksave_004F
-.DW chunk_00AD
-.DB :chunk_00AD
-.DB 4
-qt_0151:
-.DW 0
-.DW chunk_00BE
-.DB :chunk_00BE
-.DB 4
-qt_0152:
-.DW 0
-.DW chunk_00BF
-.DB :chunk_00BF
-.DB 4
-qt_014E:
-.DW qt_014F,qt_0150,qt_0151,qt_0152
-qt_0154:
-.DW chunksave_0050
-.DW chunk_00B7
-.DB :chunk_00B7
-.DB 4
-qt_0155:
-.DW chunksave_0051
-.DW chunk_00B8
-.DB :chunk_00B8
-.DB 4
-qt_0156:
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DB 4
-qt_0157:
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DB 4
-qt_0153:
-.DW qt_0154,qt_0155,qt_0156,qt_0157
-qt_0147:
-.DW qt_0148,qt_014B,qt_014E,qt_0153
-qt_013F:
-.DW qt_0140,qt_0147,0,0
-qt_015B:
-.DW chunksave_0052
-.DW chunk_00B1
-.DB :chunk_00B1
-.DB 4
-qt_015C:
-.DW chunksave_0053
-.DW chunk_00B2
-.DB :chunk_00B2
-.DB 4
-qt_015A:
-.DW 0,0,qt_015B,qt_015C
-qt_015E:
-.DW 0
-.DW chunk_00B3
-.DB :chunk_00B3
-.DB 4
-qt_015F:
-.DW 0
-.DW chunk_00B4
-.DB :chunk_00B4
-.DB 4
-qt_015D:
-.DW 0,0,qt_015E,qt_015F
-qt_0161:
-.DW chunksave_0054
-.DW chunk_00B9
-.DB :chunk_00B9
-.DB 4
-qt_0162:
-.DW 0
-.DW chunk_00BA
-.DB :chunk_00BA
-.DB 4
-qt_0163:
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DB 4
-qt_0164:
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DB 4
-qt_0160:
-.DW qt_0161,qt_0162,qt_0163,qt_0164
-qt_0166:
-.DW 0
-.DW chunk_00BB
-.DB :chunk_00BB
-.DB 4
-qt_0167:
-.DW 0
-.DW chunk_00BC
-.DB :chunk_00BC
-.DB 4
-qt_0168:
-.DW 0
-.DW chunk_00C0
-.DB :chunk_00C0
-.DB 4
-qt_0169:
-.DW 0
-.DW chunk_00C1
-.DB :chunk_00C1
-.DB 4
-qt_0165:
-.DW qt_0166,qt_0167,qt_0168,qt_0169
-qt_0159:
-.DW qt_015A,qt_015D,qt_0160,qt_0165
-qt_016C:
-.DW 0
-.DW chunk_00D2
-.DB :chunk_00D2
-.DB 4
-qt_016D:
+qt_013D:
 .DW 0
 .DW chunk_00D3
 .DB :chunk_00D3
 .DB 4
-qt_016E:
-.DW 0
-.DW chunk_00B5
-.DB :chunk_00B5
-.DB 4
-qt_016F:
-.DW 0
-.DW chunk_00D6
-.DB :chunk_00D6
-.DB 4
-qt_016B:
-.DW qt_016C,qt_016D,qt_016E,qt_016F
-qt_0171:
+qt_013E:
 .DW 0
 .DW chunk_00D4
 .DB :chunk_00D4
 .DB 4
-qt_0172:
+qt_013A:
+.DW qt_013B,qt_013C,qt_013D,qt_013E
+qt_0140:
+.DW 0
+.DW chunk_00D0
+.DB :chunk_00D0
+.DB 4
+qt_0141:
+.DW 0
+.DW chunk_00D1
+.DB :chunk_00D1
+.DB 4
+qt_0142:
 .DW 0
 .DW chunk_00D5
 .DB :chunk_00D5
 .DB 4
-qt_0173:
+qt_0143:
 .DW 0
-.DW chunk_00D7
-.DB :chunk_00D7
+.DW chunk_00D6
+.DB :chunk_00D6
 .DB 4
-qt_0174:
+qt_013F:
+.DW qt_0140,qt_0141,qt_0142,qt_0143
+qt_0133:
+.DW qt_0134,qt_0137,qt_013A,qt_013F
+qt_0132:
+.DW 0,0,0,qt_0133
+qt_0147:
+.DW chunksave_004C
+.DW chunk_00AD
+.DB :chunk_00AD
+.DB 4
+qt_0148:
+.DW chunksave_004D
+.DW chunk_00AE
+.DB :chunk_00AE
+.DB 4
+qt_0146:
+.DW qt_0147,qt_0148,0,0
+qt_014A:
+.DW chunksave_004E
+.DW chunk_00AF
+.DB :chunk_00AF
+.DB 4
+qt_014B:
+.DW chunksave_004F
+.DW chunk_00B0
+.DB :chunk_00B0
+.DB 4
+qt_0149:
+.DW qt_014A,qt_014B,0,0
+qt_0145:
+.DW 0,0,qt_0146,qt_0149
+qt_014E:
+.DW 0
+.DW chunk_00BB
+.DB :chunk_00BB
+.DB 4
+qt_014D:
+.DW 0,0,0,qt_014E
+qt_0150:
+.DW 0
+.DW chunk_00B3
+.DB :chunk_00B3
+.DB 4
+qt_0151:
+.DW 0
+.DW chunk_00B4
+.DB :chunk_00B4
+.DB 4
+qt_014F:
+.DW 0,0,qt_0150,qt_0151
+qt_0153:
+.DW 0
+.DW chunk_00B1
+.DB :chunk_00B1
+.DB 4
+qt_0154:
+.DW chunksave_0050
+.DW chunk_00B2
+.DB :chunk_00B2
+.DB 4
+qt_0155:
+.DW 0
+.DW chunk_00C4
+.DB :chunk_00C4
+.DB 4
+qt_0152:
+.DW qt_0153,qt_0154,0,qt_0155
+qt_0157:
+.DW chunksave_0051
+.DW chunk_00BC
+.DB :chunk_00BC
+.DB 4
+qt_0158:
+.DW chunksave_0052
+.DW chunk_00BD
+.DB :chunk_00BD
+.DB 4
+qt_0159:
+.DW 0
+.DW chunk_00C5
+.DB :chunk_00C5
+.DB 4
+qt_015A:
+.DW 0
+.DW chunk_00C6
+.DB :chunk_00C6
+.DB 4
+qt_0156:
+.DW qt_0157,qt_0158,qt_0159,qt_015A
+qt_014C:
+.DW qt_014D,qt_014F,qt_0152,qt_0156
+qt_0144:
+.DW qt_0145,qt_014C,0,0
+qt_015E:
+.DW chunksave_0053
+.DW chunk_00B5
+.DB :chunk_00B5
+.DB 4
+qt_015F:
+.DW chunksave_0054
+.DW chunk_00B6
+.DB :chunk_00B6
+.DB 4
+qt_015D:
+.DW 0,0,qt_015E,qt_015F
+qt_0161:
+.DW chunksave_0055
+.DW chunk_00B7
+.DB :chunk_00B7
+.DB 4
+qt_0162:
+.DW 0
+.DW chunk_00B8
+.DB :chunk_00B8
+.DB 4
+qt_0160:
+.DW 0,0,qt_0161,qt_0162
+qt_0164:
+.DW chunksave_0056
+.DW chunk_00BE
+.DB :chunk_00BE
+.DB 4
+qt_0165:
+.DW chunksave_0057
+.DW chunk_00BF
+.DB :chunk_00BF
+.DB 4
+qt_0166:
+.DW 0
+.DW chunk_00C6
+.DB :chunk_00C6
+.DB 4
+qt_0167:
+.DW 0
+.DW chunk_00C6
+.DB :chunk_00C6
+.DB 4
+qt_0163:
+.DW qt_0164,qt_0165,qt_0166,qt_0167
+qt_0169:
+.DW 0
+.DW chunk_00C0
+.DB :chunk_00C0
+.DB 4
+qt_016A:
+.DW 0
+.DW chunk_00C1
+.DB :chunk_00C1
+.DB 4
+qt_016B:
+.DW 0
+.DW chunk_00C6
+.DB :chunk_00C6
+.DB 4
+qt_016C:
+.DW 0
+.DW chunk_00C6
+.DB :chunk_00C6
+.DB 4
+qt_0168:
+.DW qt_0169,qt_016A,qt_016B,qt_016C
+qt_015C:
+.DW qt_015D,qt_0160,qt_0163,qt_0168
+qt_016F:
 .DW 0
 .DW chunk_00D8
 .DB :chunk_00D8
 .DB 4
 qt_0170:
-.DW qt_0171,qt_0172,qt_0173,qt_0174
-qt_0176:
-.DW 0
-.DW chunk_00BD
-.DB :chunk_00BD
-.DB 4
-qt_0177:
-.DW 0
-.DW chunk_00DA
-.DB :chunk_00DA
-.DB 4
-qt_0178:
-.DW 0
-.DW chunk_00C2
-.DB :chunk_00C2
-.DB 4
-qt_0179:
-.DW 0
-.DW chunk_00DC
-.DB :chunk_00DC
-.DB 4
-qt_0175:
-.DW qt_0176,qt_0177,qt_0178,qt_0179
-qt_017B:
-.DW 0
-.DW chunk_00DB
-.DB :chunk_00DB
-.DB 4
-qt_017C:
-.DW 0
-.DW chunk_00D1
-.DB :chunk_00D1
-.DB 4
-qt_017A:
-.DW qt_017B,0,qt_017C,0
-qt_016A:
-.DW qt_016B,qt_0170,qt_0175,qt_017A
-qt_017F:
-.DW 0
-.DW chunk_00DD
-.DB :chunk_00DD
-.DB 4
-qt_0180:
-.DW 0
-.DW chunk_00DE
-.DB :chunk_00DE
-.DB 4
-qt_0181:
-.DW 0
-.DW chunk_00DF
-.DB :chunk_00DF
-.DB 4
-qt_0182:
-.DW 0
-.DW chunk_00E0
-.DB :chunk_00E0
-.DB 4
-qt_017E:
-.DW qt_017F,qt_0180,qt_0181,qt_0182
-qt_0184:
-.DW 0
-.DW chunk_00D1
-.DB :chunk_00D1
-.DB 4
-qt_0185:
-.DW 0
-.DW chunk_00E1
-.DB :chunk_00E1
-.DB 4
-qt_0183:
-.DW qt_0184,0,qt_0185,0
-qt_0187:
-.DW 0
-.DW chunk_00E2
-.DB :chunk_00E2
-.DB 4
-qt_0188:
-.DW 0
-.DW chunk_00E3
-.DB :chunk_00E3
-.DB 4
-qt_0186:
-.DW qt_0187,qt_0188,0,0
-qt_018A:
 .DW 0
 .DW chunk_00D9
 .DB :chunk_00D9
 .DB 4
-qt_0189:
-.DW qt_018A,0,0,0
-qt_017D:
-.DW qt_017E,qt_0183,qt_0186,qt_0189
-qt_0158:
-.DW qt_0159,qt_016A,0,qt_017D
-qt_012B:
-.DW 0,qt_012C,qt_013F,qt_0158
-qt_00E3:
-.DW qt_00E4,qt_012B,0,0
-qt_0190:
-.DW chunksave_0055
-.DW chunk_00F4
-.DB :chunk_00F4
-.DB 5
-qt_0191:
-.DW chunksave_0056
-.DW chunk_00F5
-.DB :chunk_00F5
-.DB 5
-qt_0192:
-.DW chunksave_0057
-.DW chunk_00FC
-.DB :chunk_00FC
-.DB 5
-qt_018F:
-.DW qt_0190,qt_0191,qt_0192,0
-qt_018E:
-.DW 0,0,0,qt_018F
-qt_0195:
+qt_0171:
 .DW 0
-.DW chunk_00F2
-.DB :chunk_00F2
-.DB 5
-qt_0196:
-.DW 0
-.DW chunk_00F1
-.DB :chunk_00F1
-.DB 5
-qt_0194:
-.DW 0,0,qt_0195,qt_0196
-qt_0198:
-.DW 0
-.DW chunk_00F3
-.DB :chunk_00F3
-.DB 5
-qt_0197:
-.DW 0,0,qt_0198,0
-qt_019A:
-.DW chunksave_0058
-.DW chunk_00F6
-.DB :chunk_00F6
-.DB 5
-qt_019B:
-.DW chunksave_0059
-.DW chunk_00F7
-.DB :chunk_00F7
-.DB 5
-qt_0199:
-.DW qt_019A,qt_019B,0,0
-qt_019D:
-.DW chunksave_005A
-.DW chunk_00F8
-.DB :chunk_00F8
-.DB 5
-qt_019E:
-.DW chunksave_005B
-.DW chunk_00FA
-.DB :chunk_00FA
-.DB 5
-qt_019F:
-.DW 0
-.DW chunk_00FD
-.DB :chunk_00FD
-.DB 5
-qt_01A0:
-.DW 0
-.DW chunk_00FE
-.DB :chunk_00FE
-.DB 5
-qt_019C:
-.DW qt_019D,qt_019E,qt_019F,qt_01A0
-qt_0193:
-.DW qt_0194,qt_0197,qt_0199,qt_019C
-qt_01A3:
-.DW chunksave_005C
-.DW chunk_00E4
-.DB :chunk_00E4
+.DW chunk_00B9
+.DB :chunk_00B9
 .DB 4
-qt_01A4:
-.DW chunksave_005D
-.DW chunk_00E5
-.DB :chunk_00E5
+qt_0172:
+.DW 0
+.DW chunk_00BA
+.DB :chunk_00BA
 .DB 4
-qt_01A5:
+qt_016E:
+.DW qt_016F,qt_0170,qt_0171,qt_0172
+qt_0174:
+.DW 0
+.DW chunk_00DA
+.DB :chunk_00DA
+.DB 4
+qt_0175:
+.DW 0
+.DW chunk_00DB
+.DB :chunk_00DB
+.DB 4
+qt_0176:
+.DW 0
+.DW chunk_00DD
+.DB :chunk_00DD
+.DB 4
+qt_0177:
+.DW 0
+.DW chunk_00DE
+.DB :chunk_00DE
+.DB 4
+qt_0173:
+.DW qt_0174,qt_0175,qt_0176,qt_0177
+qt_0179:
+.DW 0
+.DW chunk_00C2
+.DB :chunk_00C2
+.DB 4
+qt_017A:
+.DW 0
+.DW chunk_00C3
+.DB :chunk_00C3
+.DB 4
+qt_017B:
 .DW 0
 .DW chunk_00C7
 .DB :chunk_00C7
 .DB 4
-qt_01A6:
-.DW chunksave_005E
-.DW chunk_00E9
-.DB :chunk_00E9
+qt_017C:
+.DW 0
+.DW chunk_00C8
+.DB :chunk_00C8
 .DB 4
-qt_01A2:
-.DW qt_01A3,qt_01A4,qt_01A5,qt_01A6
-qt_01A8:
-.DW chunksave_005F
+qt_0178:
+.DW qt_0179,qt_017A,qt_017B,qt_017C
+qt_017E:
+.DW 0
+.DW chunk_00E0
+.DB :chunk_00E0
+.DB 4
+qt_017F:
+.DW 0
+.DW chunk_00E1
+.DB :chunk_00E1
+.DB 4
+qt_017D:
+.DW qt_017E,0,qt_017F,0
+qt_016D:
+.DW qt_016E,qt_0173,qt_0178,qt_017D
+qt_0182:
+.DW 0
+.DW chunk_00E2
+.DB :chunk_00E2
+.DB 4
+qt_0183:
+.DW 0
+.DW chunk_00E3
+.DB :chunk_00E3
+.DB 4
+qt_0184:
+.DW 0
+.DW chunk_00E5
+.DB :chunk_00E5
+.DB 4
+qt_0185:
+.DW 0
 .DW chunk_00E6
 .DB :chunk_00E6
 .DB 4
-qt_01A9:
+qt_0181:
+.DW qt_0182,qt_0183,qt_0184,qt_0185
+qt_0187:
+.DW 0
+.DW chunk_00E4
+.DB :chunk_00E4
+.DB 4
+qt_0188:
 .DW 0
 .DW chunk_00E7
 .DB :chunk_00E7
 .DB 4
-qt_01AA:
-.DW chunksave_0060
+qt_0186:
+.DW qt_0187,0,qt_0188,0
+qt_018A:
+.DW 0
+.DW chunk_00E8
+.DB :chunk_00E8
+.DB 4
+qt_018B:
+.DW 0
+.DW chunk_00E9
+.DB :chunk_00E9
+.DB 4
+qt_0189:
+.DW qt_018A,qt_018B,0,0
+qt_018D:
+.DW 0
 .DW chunk_00EA
 .DB :chunk_00EA
 .DB 4
-qt_01AB:
-.DW 0
-.DW chunk_00EB
-.DB :chunk_00EB
-.DB 4
-qt_01A7:
-.DW qt_01A8,qt_01A9,qt_01AA,qt_01AB
-qt_01AD:
-.DW chunksave_0061
-.DW chunk_00CC
-.DB :chunk_00CC
-.DB 4
-qt_01AE:
-.DW chunksave_0062
-.DW chunk_00EC
-.DB :chunk_00EC
-.DB 4
-qt_01AF:
-.DW 0
-.DW chunk_00D1
-.DB :chunk_00D1
-.DB 4
-qt_01AC:
-.DW qt_01AD,qt_01AE,qt_01AF,0
-qt_01B1:
-.DW chunksave_0063
-.DW chunk_00ED
-.DB :chunk_00ED
-.DB 4
-qt_01B2:
-.DW 0
-.DW chunk_00EE
-.DB :chunk_00EE
-.DB 4
-qt_01B0:
-.DW qt_01B1,qt_01B2,0,0
-qt_01A1:
-.DW qt_01A2,qt_01A7,qt_01AC,qt_01B0
-qt_018D:
-.DW qt_018E,qt_0193,qt_01A1,0
-qt_01B6:
-.DW 0
-.DW chunk_00FF
-.DB :chunk_00FF
-.DB 5
-qt_01B7:
-.DW 0
-.DW chunk_0100
-.DB :chunk_0100
-.DB 5
-qt_01B8:
-.DW 0
-.DW chunk_00EF
-.DB :chunk_00EF
-.DB 5
-qt_01B9:
-.DW 0
-.DW chunk_00F0
-.DB :chunk_00F0
-.DB 5
-qt_01B5:
-.DW qt_01B6,qt_01B7,qt_01B8,qt_01B9
-qt_01BB:
-.DW 0
-.DW chunk_0101
-.DB :chunk_0101
-.DB 5
-qt_01BC:
-.DW 0
-.DW chunk_0102
-.DB :chunk_0102
-.DB 5
-qt_01BD:
-.DW 0
-.DW chunk_0103
-.DB :chunk_0103
-.DB 5
-qt_01BE:
+qt_018C:
+.DW qt_018D,0,0,0
+qt_0180:
+.DW qt_0181,qt_0186,qt_0189,qt_018C
+qt_015B:
+.DW qt_015C,qt_016D,0,qt_0180
+qt_0131:
+.DW 0,qt_0132,qt_0144,qt_015B
+qt_00E3:
+.DW qt_00E4,qt_0131,0,0
+qt_0193:
 .DW 0
 .DW chunk_0104
 .DB :chunk_0104
 .DB 5
+qt_0194:
+.DW chunksave_0058
+.DW chunk_0105
+.DB :chunk_0105
+.DB 5
+qt_0192:
+.DW 0,qt_0193,0,qt_0194
+qt_0191:
+.DW 0,0,0,qt_0192
+qt_0197:
+.DW 0
+.DW chunk_00FA
+.DB :chunk_00FA
+.DB 5
+qt_0198:
+.DW 0
+.DW chunk_00FC
+.DB :chunk_00FC
+.DB 5
+qt_0196:
+.DW 0,0,qt_0197,qt_0198
+qt_019A:
+.DW chunksave_0059
+.DW chunk_00FD
+.DB :chunk_00FD
+.DB 5
+qt_019B:
+.DW chunksave_005A
+.DW chunk_00FE
+.DB :chunk_00FE
+.DB 5
+qt_019C:
+.DW chunksave_005B
+.DW chunk_0106
+.DB :chunk_0106
+.DB 5
+qt_0199:
+.DW qt_019A,qt_019B,qt_019C,0
+qt_019E:
+.DW chunksave_005C
+.DW chunk_00FF
+.DB :chunk_00FF
+.DB 5
+qt_019F:
+.DW chunksave_005D
+.DW chunk_0100
+.DB :chunk_0100
+.DB 5
+qt_019D:
+.DW qt_019E,qt_019F,0,0
+qt_0195:
+.DW 0,qt_0196,qt_0199,qt_019D
+qt_01A2:
+.DW 0
+.DW chunk_00EF
+.DB :chunk_00EF
+.DB 4
+qt_01A3:
+.DW 0
+.DW chunk_00EB
+.DB :chunk_00EB
+.DB 4
+qt_01A4:
+.DW 0
+.DW chunk_00CD
+.DB :chunk_00CD
+.DB 4
+qt_01A5:
+.DW 0
+.DW chunk_00F0
+.DB :chunk_00F0
+.DB 4
+qt_01A1:
+.DW qt_01A2,qt_01A3,qt_01A4,qt_01A5
+qt_01A7:
+.DW chunksave_005E
+.DW chunk_00EC
+.DB :chunk_00EC
+.DB 4
+qt_01A8:
+.DW chunksave_005F
+.DW chunk_00ED
+.DB :chunk_00ED
+.DB 4
+qt_01A9:
+.DW chunksave_0060
+.DW chunk_00F1
+.DB :chunk_00F1
+.DB 4
+qt_01AA:
+.DW chunksave_0061
+.DW chunk_00F2
+.DB :chunk_00F2
+.DB 4
+qt_01A6:
+.DW qt_01A7,qt_01A8,qt_01A9,qt_01AA
+qt_01AC:
+.DW 0
+.DW chunk_00D2
+.DB :chunk_00D2
+.DB 4
+qt_01AD:
+.DW 0
+.DW chunk_00F4
+.DB :chunk_00F4
+.DB 4
+qt_01AE:
+.DW 0
+.DW chunk_00D7
+.DB :chunk_00D7
+.DB 4
+qt_01AB:
+.DW qt_01AC,qt_01AD,qt_01AE,0
+qt_01B0:
+.DW chunksave_0062
+.DW chunk_00F5
+.DB :chunk_00F5
+.DB 4
+qt_01B1:
+.DW chunksave_0063
+.DW chunk_00F6
+.DB :chunk_00F6
+.DB 4
+qt_01AF:
+.DW qt_01B0,qt_01B1,0,0
+qt_01A0:
+.DW qt_01A1,qt_01A6,qt_01AB,qt_01AF
+qt_01B4:
+.DW 0
+.DW chunk_00EE
+.DB :chunk_00EE
+.DB 4
+qt_01B5:
+.DW chunksave_0064
+.DW chunk_00F3
+.DB :chunk_00F3
+.DB 4
+qt_01B3:
+.DW qt_01B4,0,qt_01B5,0
+qt_01B7:
+.DW 0
+.DW chunk_00F7
+.DB :chunk_00F7
+.DB 4
+qt_01B6:
+.DW qt_01B7,0,0,0
+qt_01B2:
+.DW qt_01B3,0,qt_01B6,0
+qt_0190:
+.DW qt_0191,qt_0195,qt_01A0,qt_01B2
+qt_01BB:
+.DW 0
+.DW chunk_00FB
+.DB :chunk_00FB
+.DB 5
 qt_01BA:
-.DW qt_01BB,qt_01BC,qt_01BD,qt_01BE
+.DW 0,0,0,qt_01BB
+qt_01BD:
+.DW 0
+.DW chunk_0108
+.DB :chunk_0108
+.DB 5
+qt_01BE:
+.DW 0
+.DW chunk_0109
+.DB :chunk_0109
+.DB 5
+qt_01BF:
+.DW 0
+.DW chunk_00F8
+.DB :chunk_00F8
+.DB 5
 qt_01C0:
 .DW 0
 .DW chunk_00F9
 .DB :chunk_00F9
 .DB 5
-qt_01C1:
-.DW 0
-.DW chunk_00FB
-.DB :chunk_00FB
+qt_01BC:
+.DW qt_01BD,qt_01BE,qt_01BF,qt_01C0
+qt_01C2:
+.DW chunksave_0065
+.DW chunk_0103
+.DB :chunk_0103
 .DB 5
-qt_01BF:
-.DW qt_01C0,qt_01C1,0,0
-qt_01B4:
-.DW qt_01B5,qt_01BA,qt_01BF,0
-qt_01C4:
-.DW 0
-.DW chunk_0105
-.DB :chunk_0105
-.DB 6
-qt_01C5:
-.DW 0
-.DW chunk_0106
-.DB :chunk_0106
-.DB 6
-qt_01C6:
-.DW 0
-.DW chunk_010A
-.DB :chunk_010A
-.DB 6
-qt_01C7:
-.DW 0
-.DW chunk_010B
-.DB :chunk_010B
-.DB 6
 qt_01C3:
-.DW qt_01C4,qt_01C5,qt_01C6,qt_01C7
-qt_01C9:
+.DW chunksave_0066
+.DW chunk_0101
+.DB :chunk_0101
+.DB 5
+qt_01C4:
 .DW 0
 .DW chunk_0107
 .DB :chunk_0107
-.DB 6
+.DB 5
+qt_01C1:
+.DW qt_01C2,qt_01C3,qt_01C4,0
+qt_01C6:
+.DW 0
+.DW chunk_0102
+.DB :chunk_0102
+.DB 5
+qt_01C5:
+.DW qt_01C6,0,0,0
+qt_01B9:
+.DW qt_01BA,qt_01BC,qt_01C1,qt_01C5
+qt_01C9:
+.DW 0
+.DW chunk_010A
+.DB :chunk_010A
+.DB 5
 qt_01CA:
 .DW 0
-.DW chunk_0108
-.DB :chunk_0108
-.DB 6
+.DW chunk_010B
+.DB :chunk_010B
+.DB 5
 qt_01CB:
 .DW 0
 .DW chunk_010C
 .DB :chunk_010C
-.DB 6
+.DB 5
 qt_01CC:
 .DW 0
 .DW chunk_010D
 .DB :chunk_010D
-.DB 6
+.DB 5
 qt_01C8:
 .DW qt_01C9,qt_01CA,qt_01CB,qt_01CC
 qt_01CE:
 .DW 0
-.DW chunk_010F
-.DB :chunk_010F
+.DW chunk_010E
+.DB :chunk_010E
 .DB 6
 qt_01CF:
 .DW 0
-.DW chunk_0110
-.DB :chunk_0110
-.DB 6
-qt_01CD:
-.DW 0,0,qt_01CE,qt_01CF
-qt_01D1:
-.DW 0
-.DW chunk_0111
-.DB :chunk_0111
+.DW chunk_010F
+.DB :chunk_010F
 .DB 6
 qt_01D0:
-.DW 0,0,qt_01D1,0
-qt_01C2:
-.DW qt_01C3,qt_01C8,qt_01CD,qt_01D0
-qt_01B3:
-.DW qt_01B4,qt_01C2,0,0
+.DW 0
+.DW chunk_0112
+.DB :chunk_0112
+.DB 6
+qt_01D1:
+.DW 0
+.DW chunk_0113
+.DB :chunk_0113
+.DB 6
+qt_01CD:
+.DW qt_01CE,qt_01CF,qt_01D0,qt_01D1
+qt_01C7:
+.DW qt_01C8,qt_01CD,0,0
+qt_01B8:
+.DW qt_01B9,qt_01C7,0,0
 qt_01D5:
 .DW 0
-.DW chunk_00D1
-.DB :chunk_00D1
+.DW chunk_00DC
+.DB :chunk_00DC
 .DB 4
 qt_01D6:
 .DW 0
-.DW chunk_00D9
-.DB :chunk_00D9
+.DW chunk_00DF
+.DB :chunk_00DF
 .DB 4
 qt_01D4:
 .DW qt_01D5,0,qt_01D6,0
@@ -2136,30 +2124,40 @@ qt_01D3:
 .DW qt_01D4,0,0,0
 qt_01D2:
 .DW qt_01D3,0,0,0
-qt_018C:
-.DW qt_018D,qt_01B3,qt_01D2,0
+qt_018F:
+.DW qt_0190,qt_01B8,qt_01D2,0
 qt_01DB:
 .DW 0
-.DW chunk_0109
-.DB :chunk_0109
+.DW chunk_0110
+.DB :chunk_0110
 .DB 6
 qt_01DC:
 .DW 0
-.DW chunk_010E
-.DB :chunk_010E
+.DW chunk_0111
+.DB :chunk_0111
+.DB 6
+qt_01DD:
+.DW 0
+.DW chunk_0114
+.DB :chunk_0114
+.DB 6
+qt_01DE:
+.DW 0
+.DW chunk_0115
+.DB :chunk_0115
 .DB 6
 qt_01DA:
-.DW qt_01DB,0,qt_01DC,0
+.DW qt_01DB,qt_01DC,qt_01DD,qt_01DE
 qt_01D9:
 .DW qt_01DA,0,0,0
 qt_01D8:
 .DW qt_01D9,0,0,0
 qt_01D7:
 .DW qt_01D8,0,0,0
-qt_018B:
-.DW qt_018C,qt_01D7,0,0
+qt_018E:
+.DW qt_018F,qt_01D7,0,0
 qt_00E2:
-.DW qt_00E3,qt_018B,0,0
+.DW qt_00E3,qt_018E,0,0
 qt_root:
 .DW qt_0001,qt_00E2,0,0
 .ENDS
@@ -2340,677 +2338,677 @@ LVOBJECTS_BRI1:
 LVOBJECTS_BRI2:
 .DB 20
 .DB $26
-.DW $45C0, $2940
+.DW $46C0, $2940
 .DB $26
-.DW $4620, $2940
+.DW $4720, $2940
 .DB $26
-.DW $4680, $2940
+.DW $4780, $2940
 .DB $2D
-.DW $4760, $28E0
+.DW $4860, $28E0
 .DB $01
-.DW $48E0, $2840
+.DW $49E0, $2840
 .DB $26
-.DW $4FA0, $2860
+.DW $50A0, $2860
 .DB $26
-.DW $5040, $2860
+.DW $5140, $2860
 .DB $0E
-.DW $4920, $2880
+.DW $4A20, $2880
 .DB $2D
-.DW $4A60, $2840
+.DW $4B60, $2840
 .DB $26
-.DW $4D20, $28A0
+.DW $4E20, $28A0
 .DB $0E
-.DW $4B60, $27E0
+.DW $4C60, $27E0
 .DB $26
-.DW $4E40, $2880
+.DW $4F40, $2880
 .DB $0E
-.DW $4F00, $27E0
+.DW $5000, $27E0
 .DB $01
-.DW $4F40, $2820
+.DW $5040, $2820
 .DB $03
-.DW $4D80, $2880
+.DW $4E80, $2880
 .DB $4E
-.DW $4800, $28C0
+.DW $4900, $28C0
 .DB $4E
-.DW $5140, $27E0
+.DW $5240, $27E0
 .DB $51
-.DW $4CA0, $2820
+.DW $4DA0, $2820
 .DB $07
-.DW $53E0, $2780
+.DW $54E0, $2780
 .ENDS
 
 .SECTION "base_LVOBJECTS_BRI3" SLOT 2 SUPERFREE
 LVOBJECTS_BRI3:
 .DB 8
 .DB $FF
-.DW $54C0, $2420
+.DW $55C0, $2420
 .DB $FF
-.DW $54C0, $2420
+.DW $55C0, $2420
 .DB $FF
-.DW $54C0, $2420
+.DW $55C0, $2420
 .DB $FF
-.DW $54C0, $2420
+.DW $55C0, $2420
 .DB $48
-.DW $5920, $2760
+.DW $5A20, $2760
 .DB $25
-.DW $59E0, $2740
+.DW $5AE0, $2740
 .DB $03
-.DW $54E0, $27A0
+.DW $55E0, $27A0
 .ENDS
 
 .SECTION "base_LVOBJECTS_JUN1" SLOT 2 SUPERFREE
 LVOBJECTS_JUN1:
 .DB 30
 .DB $08
-.DW $5D00, $2740
+.DW $5E00, $2740
 .DB $09
-.DW $66C0, $2700
+.DW $67C0, $2700
 .DB $26
-.DW $5DE0, $27A0
+.DW $5EE0, $27A0
 .DB $27
-.DW $6560, $2640
+.DW $6660, $2640
 .DB $28
-.DW $65A0, $2620
+.DW $66A0, $2620
 .DB $11
-.DW $69E0, $26C0
+.DW $6AE0, $26C0
 .DB $28
-.DW $6BA0, $2620
+.DW $6CA0, $2620
 .DB $27
-.DW $6D20, $2620
-.DB $28
 .DW $6E20, $2620
+.DB $28
+.DW $6F20, $2620
 .DB $27
-.DW $6E80, $2620
+.DW $6F80, $2620
 .DB $09
-.DW $6FC0, $2700
+.DW $70C0, $2700
 .DB $0F
-.DW $63A0, $2740
+.DW $64A0, $2740
 .DB $29
-.DW $7400, $2700
+.DW $7500, $2700
 .DB $06
-.DW $6960, $2780
+.DW $6A60, $2780
 .DB $29
-.DW $6AE0, $27A0
+.DW $6BE0, $27A0
 .DB $01
-.DW $5FC0, $2680
+.DW $60C0, $2680
 .DB $03
-.DW $61E0, $2680
+.DW $62E0, $2680
 .DB $04
-.DW $6080, $2760
+.DW $6180, $2760
 .DB $01
-.DW $6C60, $2760
+.DW $6D60, $2760
 .DB $01
-.DW $7240, $26E0
+.DW $7340, $26E0
 .DB $26
-.DW $7440, $2700
+.DW $7540, $2700
 .DB $26
-.DW $75A0, $2700
+.DW $76A0, $2700
 .DB $26
-.DW $6840, $2720
+.DW $6940, $2720
 .DB $26
-.DW $6460, $27A0
+.DW $6560, $27A0
 .DB $08
-.DW $7060, $26E0
+.DW $7160, $26E0
 .DB $08
-.DW $6240, $2760
+.DW $6340, $2760
 .DB $07
-.DW $7780, $26E0
+.DW $7880, $26E0
 .DB $51
-.DW $64A0, $2700
+.DW $65A0, $2700
 .DB $51
-.DW $6F20, $2740
+.DW $7020, $2740
 .ENDS
 
 .SECTION "base_LVOBJECTS_JUN2" SLOT 2 SUPERFREE
 LVOBJECTS_JUN2:
 .DB 25
 .DB $0F
-.DW $7940, $2460
+.DW $7A40, $2460
 .DB $0F
-.DW $7920, $23E0
+.DW $7A20, $23E0
 .DB $01
-.DW $7900, $25A0
+.DW $7A00, $25A0
 .DB $01
-.DW $78E0, $2200
+.DW $79E0, $2200
 .DB $04
-.DW $78A0, $23A0
+.DW $79A0, $23A0
 .DB $0C
-.DW $7960, $2020
+.DW $7A60, $2020
 .DB $0C
-.DW $79A0, $2000
+.DW $7AA0, $2000
 .DB $0C
-.DW $79A0, $1F20
+.DW $7AA0, $1F20
 .DB $0C
-.DW $7960, $1F00
+.DW $7A60, $1F00
 .DB $26
-.DW $79A0, $22E0
+.DW $7AA0, $22E0
 .DB $26
-.DW $7960, $21E0
+.DW $7A60, $21E0
 .DB $26
-.DW $7980, $20C0
+.DW $7A80, $20C0
 .DB $0F
-.DW $7920, $1BE0
+.DW $7A20, $1BE0
 .DB $0F
-.DW $7940, $1BA0
+.DW $7A40, $1BA0
 .DB $0F
-.DW $7920, $1B60
+.DW $7A20, $1B60
 .DB $08
-.DW $79C0, $23A0
+.DW $7AC0, $23A0
 .DB $0F
-.DW $7940, $1B20
+.DW $7A40, $1B20
 .DB $11
-.DW $7A60, $2080
+.DW $7B60, $2080
 .DB $26
-.DW $7A00, $24C0
+.DW $7B00, $24C0
 .DB $26
-.DW $7980, $2720
+.DW $7A80, $2720
 .DB $11
-.DW $7A20, $2600
+.DW $7B20, $2600
 .DB $03
-.DW $78C0, $1DA0
+.DW $79C0, $1DA0
 .DB $07
-.DW $79E0, $19E0
+.DW $7AE0, $19E0
 .DB $51
-.DW $79C0, $2120
+.DW $7AC0, $2120
 .ENDS
 
 .SECTION "base_LVOBJECTS_JUN3" SLOT 2 SUPERFREE
 LVOBJECTS_JUN3:
 .DB 8
 .DB $FF
-.DW $7A80, $15C0
+.DW $7B80, $15C0
 .DB $FF
-.DW $7A80, $15C0
+.DW $7B80, $15C0
 .DB $FF
-.DW $7A80, $15C0
+.DW $7B80, $15C0
 .DB $FF
-.DW $7A80, $15C0
+.DW $7B80, $15C0
 .DB $03
-.DW $7C40, $1A40
+.DW $7D40, $1A40
 .DB $2C
-.DW $7CE0, $15E0
+.DW $7DE0, $15E0
 .DB $25
-.DW $7E20, $1640
+.DW $7F20, $1640
 .ENDS
 
 .SECTION "base_LVOBJECTS_LAB1" SLOT 2 SUPERFREE
 LVOBJECTS_LAB1:
 .DB 27
 .DB $40
-.DW $81E0, $17E0
+.DW $82E0, $17E0
 .DB $01
-.DW $80C0, $17C0
+.DW $81C0, $17C0
 .DB $04
-.DW $8300, $17C0
+.DW $8400, $17C0
 .DB $01
-.DW $8200, $1940
+.DW $8300, $1940
 .DB $04
-.DW $8240, $1A80
-.DB $3E
-.DW $8340, $1B00
-.DB $3E
-.DW $83E0, $1B00
+.DW $8340, $1A80
 .DB $3E
 .DW $8440, $1B00
+.DB $3E
+.DW $84E0, $1B00
+.DB $3E
+.DW $8540, $1B00
 .DB $35
-.DW $85A0, $1A40
+.DW $86A0, $1A40
 .DB $3C
-.DW $82A0, $19C0
+.DW $83A0, $19C0
 .DB $3D
-.DW $83A0, $1880
+.DW $84A0, $1880
 .DB $45
-.DW $8280, $1940
+.DW $8380, $1940
 .DB $45
-.DW $80E0, $19A0
+.DW $81E0, $19A0
 .DB $45
-.DW $8620, $1A60
+.DW $8720, $1A60
 .DB $41
-.DW $85C0, $1860
+.DW $86C0, $1860
 .DB $3D
-.DW $84A0, $17A0
+.DW $85A0, $17A0
 .DB $3F
-.DW $83C0, $1920
+.DW $84C0, $1920
 .DB $3F
-.DW $83A0, $1960
+.DW $84A0, $1960
 .DB $41
-.DW $8060, $19E0
+.DW $8160, $19E0
 .DB $41
-.DW $8300, $1B20
+.DW $8400, $1B20
 .DB $03
-.DW $8420, $16C0
+.DW $8520, $16C0
 .DB $41
-.DW $8500, $1B20
+.DW $8600, $1B20
 .DB $1D
-.DW $8380, $16E0
+.DW $8480, $16E0
 .DB $41
-.DW $8300, $1940
+.DW $8400, $1940
 .DB $07
-.DW $8620, $16A0
+.DW $8720, $16A0
 .DB $51
-.DW $8500, $1B20
+.DW $8600, $1B20
 .ENDS
 
 .SECTION "base_LVOBJECTS_LAB2" SLOT 2 SUPERFREE
 LVOBJECTS_LAB2:
 .DB 30
 .DB $40
-.DW $8BE0, $1980
+.DW $8CE0, $1980
 .DB $04
-.DW $8A20, $1820
+.DW $8B20, $1820
 .DB $3C
-.DW $89E0, $19C0
+.DW $8AE0, $19C0
 .DB $44
-.DW $8A20, $1A60
+.DW $8B20, $1A60
 .DB $35
-.DW $8C40, $19E0
+.DW $8D40, $19E0
 .DB $3C
-.DW $8BA0, $1AC0
+.DW $8CA0, $1AC0
 .DB $03
-.DW $88A0, $1CC0
+.DW $89A0, $1CC0
 .DB $45
-.DW $8920, $1CC0
+.DW $8A20, $1CC0
 .DB $45
-.DW $89C0, $1CC0
+.DW $8AC0, $1CC0
 .DB $3D
-.DW $8C20, $1B40
+.DW $8D20, $1B40
 .DB $3E
-.DW $8C60, $1BE0
+.DW $8D60, $1BE0
 .DB $3E
-.DW $8CE0, $1BE0
+.DW $8DE0, $1BE0
 .DB $3F
-.DW $8D40, $1B40
+.DW $8E40, $1B40
 .DB $3F
-.DW $8E80, $1B80
+.DW $8F80, $1B80
 .DB $3C
-.DW $8DA0, $1B00
+.DW $8EA0, $1B00
 .DB $45
-.DW $8F40, $1C00
+.DW $9040, $1C00
 .DB $05
-.DW $8DC0, $1920
+.DW $8EC0, $1920
 .DB $3D
-.DW $8D80, $19C0
+.DW $8E80, $19C0
 .DB $3F
-.DW $8EC0, $1900
+.DW $8FC0, $1900
 .DB $3F
-.DW $8F40, $18C0
+.DW $9040, $18C0
 .DB $3F
-.DW $8EC0, $1880
+.DW $8FC0, $1880
 .DB $41
-.DW $8AA0, $1AE0
+.DW $8BA0, $1AE0
 .DB $41
-.DW $8E00, $1B40
+.DW $8F00, $1B40
 .DB $41
-.DW $8C20, $1C00
-.DB $41
-.DW $8E80, $1A60
-.DB $01
-.DW $8A60, $1920
-.DB $07
-.DW $8F00, $1700
-.DB $06
-.DW $8D60, $1840
-.DB $51
 .DW $8D20, $1C00
+.DB $41
+.DW $8F80, $1A60
+.DB $01
+.DW $8B60, $1920
+.DB $07
+.DW $9000, $1700
+.DB $06
+.DW $8E60, $1840
+.DB $51
+.DW $8E20, $1C00
 .ENDS
 
 .SECTION "base_LVOBJECTS_LAB3" SLOT 2 SUPERFREE
 LVOBJECTS_LAB3:
 .DB 11
 .DB $40
-.DW $9280, $13A0
+.DW $9380, $13A0
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $FF
-.DW $9000, $1260
+.DW $9100, $1260
 .DB $49
-.DW $9340, $1540
+.DW $9440, $1540
 .DB $25
-.DW $94A0, $1540
+.DW $95A0, $1540
 .DB $03
-.DW $9020, $15A0
+.DW $9120, $15A0
 .ENDS
 
 .SECTION "base_LVOBJECTS_SCR1" SLOT 2 SUPERFREE
 LVOBJECTS_SCR1:
 .DB 23
 .DB $19
-.DW $97A0, $1560
-.DB $16
-.DW $99A0, $14A0
-.DB $16
-.DW $9A20, $14A0
+.DW $98A0, $1560
 .DB $16
 .DW $9AA0, $14A0
+.DB $16
+.DW $9B20, $14A0
+.DB $16
+.DW $9BA0, $14A0
 .DB $17
-.DW $9B80, $14E0
+.DW $9C80, $14E0
 .DB $19
-.DW $9DC0, $14E0
-.DB $16
-.DW $9E40, $14A0
-.DB $16
-.DW $9EC0, $14A0
+.DW $9EC0, $14E0
 .DB $16
 .DW $9F40, $14A0
+.DB $16
+.DW $9FC0, $14A0
+.DB $16
+.DW $A040, $14A0
 .DB $1A
-.DW $9E60, $14E0
+.DW $9F60, $14E0
 .DB $1A
-.DW $9EE0, $14E0
+.DW $9FE0, $14E0
 .DB $17
-.DW $9FC0, $14E0
+.DW $A0C0, $14E0
 .DB $1A
-.DW $A020, $1520
+.DW $A120, $1520
 .DB $1A
-.DW $A0C0, $1520
+.DW $A1C0, $1520
 .DB $1D
-.DW $A100, $1480
+.DW $A200, $1480
 .DB $1E
-.DW $A180, $1460
+.DW $A280, $1460
 .DB $16
-.DW $A220, $1420
+.DW $A320, $1420
 .DB $16
-.DW $A3E0, $1460
+.DW $A4E0, $1460
 .DB $16
-.DW $A5E0, $14C0
+.DW $A6E0, $14C0
 .DB $17
-.DW $A6A0, $1500
+.DW $A7A0, $1500
 .DB $03
-.DW $9C80, $1500
+.DW $9D80, $1500
 .DB $07
-.DW $A7E0, $1500
+.DW $A8E0, $1500
 .ENDS
 
 .SECTION "base_LVOBJECTS_SCR2_main" SLOT 2 SUPERFREE
 LVOBJECTS_SCR2_main:
 .DB 21
 .DB $14
-.DW $AF20, $14C0
+.DW $B080, $14C0
 .DB $15
-.DW $B120, $1480
+.DW $B280, $1480
 .DB $15
-.DW $B120, $13A0
+.DW $B280, $13A0
 .DB $14
-.DW $AF20, $13C0
+.DW $B080, $13C0
 .DB $16
-.DW $ACC0, $14E0
+.DW $AE20, $14E0
 .DB $16
-.DW $AD80, $14E0
+.DW $AEE0, $14E0
 .DB $16
-.DW $AE80, $14E0
+.DW $AFE0, $14E0
 .DB $17
-.DW $B3C0, $1440
+.DW $B520, $1440
 .DB $19
-.DW $AC40, $1500
+.DW $ADA0, $1500
 .DB $19
-.DW $AEC0, $1500
+.DW $B020, $1500
 .DB $16
-.DW $B180, $12C0
+.DW $B2E0, $12C0
 .DB $16
-.DW $B220, $12C0
+.DW $B380, $12C0
 .DB $16
-.DW $B2C0, $12C0
+.DW $B420, $12C0
 .DB $16
-.DW $B360, $12C0
+.DW $B4C0, $12C0
 .DB $01
-.DW $AF20, $1340
+.DW $B080, $1340
 .DB $04
-.DW $B120, $14E0
+.DW $B280, $14E0
 .DB $1F
-.DW $AFE0, $1520
+.DW $B140, $1520
 .DB $13
-.DW $B880, $1260
+.DW $B9E0, $1260
 .DB $13
-.DW $B880, $1580
+.DW $B9E0, $1580
 .DB $03
-.DW $B380, $1460
+.DW $B4E0, $1460
 .ENDS
 
 .SECTION "base_LVOBJECTS_SCR2_upper" SLOT 2 SUPERFREE
 LVOBJECTS_SCR2_upper:
 .DB 26
 .DB $17
-.DW $BE60, $1280
+.DW $BFC0, $1280
 .DB $19
-.DW $BD00, $1140
+.DW $BE60, $1140
 .DB $18
-.DW $BE00, $10E0
+.DW $BF60, $10E0
 .DB $19
-.DW $BD00, $0FA0
+.DW $BE60, $0FA0
 .DB $18
-.DW $BA20, $0EE0
+.DW $BB80, $0EE0
 .DB $17
-.DW $BB80, $0CA0
+.DW $BCE0, $0CA0
 .DB $16
-.DW $B9E0, $0C60
+.DW $BB40, $0C60
 .DB $16
-.DW $BA80, $0C60
+.DW $BBE0, $0C60
 .DB $16
-.DW $BB20, $0C60
+.DW $BC80, $0C60
 .DB $16
-.DW $BA80, $0E80
+.DW $BBE0, $0E80
 .DB $16
-.DW $BB00, $0E80
+.DW $BC60, $0E80
 .DB $16
-.DW $BB40, $10E0
+.DW $BCA0, $10E0
 .DB $16
-.DW $BBC0, $10E0
+.DW $BD20, $10E0
 .DB $16
-.DW $BC40, $10E0
+.DW $BDA0, $10E0
 .DB $1A
-.DW $BB00, $0F60
+.DW $BC60, $0F60
 .DB $1A
-.DW $BA80, $0F60
+.DW $BBE0, $0F60
 .DB $1D
-.DW $BC40, $0F40
+.DW $BDA0, $0F40
 .DB $1E
-.DW $BBC0, $0F20
+.DW $BD20, $0F20
 .DB $1E
-.DW $BC00, $0F20
+.DW $BD60, $0F20
 .DB $13
-.DW $B880, $1280
+.DW $B9E0, $1280
 .DB $06
-.DW $BF60, $1120
+.DW $C0C0, $1120
 .DB $1F
-.DW $BD80, $1160
+.DW $BEE0, $1160
 .DB $1B
-.DW $BDE0, $1000
+.DW $BF40, $1000
 .DB $1B
-.DW $BD20, $1080
+.DW $BE80, $1080
 .DB $07
-.DW $BD40, $0CA0
+.DW $BEA0, $0CA0
 .ENDS
 
 .SECTION "base_LVOBJECTS_SCR2_lower" SLOT 2 SUPERFREE
 LVOBJECTS_SCR2_lower:
 .DB 9
 .DB $18
-.DW $BAA0, $1C60
+.DW $BC00, $1C60
 .DB $17
-.DW $BB00, $1C60
+.DW $BC60, $1C60
 .DB $19
-.DW $BB60, $1B60
+.DW $BCC0, $1B60
 .DB $18
-.DW $BB20, $15A0
+.DW $BC80, $15A0
 .DB $1B
-.DW $B880, $1AE0
+.DW $B9E0, $1AE0
 .DB $1B
-.DW $B880, $1920
+.DW $B9E0, $1920
 .DB $1B
-.DW $B880, $1760
+.DW $B9E0, $1760
 .DB $13
-.DW $B880, $1580
+.DW $B9E0, $1580
 .ENDS
 
 .SECTION "base_LVOBJECTS_SCR3" SLOT 2 SUPERFREE
 LVOBJECTS_SCR3:
 .DB 26
 .DB $19
-.DW $C040, $0CA0
+.DW $C3A0, $0CA0
 .DB $17
-.DW $C100, $0CA0
+.DW $C460, $0CA0
 .DB $18
-.DW $C280, $0CA0
+.DW $C5E0, $0CA0
 .DB $18
-.DW $C2E0, $0CA0
+.DW $C640, $0CA0
 .DB $17
-.DW $C200, $0D60
+.DW $C560, $0D60
 .DB $19
-.DW $C340, $0D60
+.DW $C6A0, $0D60
 .DB $18
-.DW $C3A0, $0D60
+.DW $C700, $0D60
 .DB $19
-.DW $C4C0, $0D60
+.DW $C820, $0D60
 .DB $18
-.DW $C1C0, $0BE0
+.DW $C520, $0BE0
 .DB $18
-.DW $C220, $0BE0
+.DW $C580, $0BE0
 .DB $19
-.DW $C3A0, $0BE0
+.DW $C700, $0BE0
 .DB $19
-.DW $C2C0, $0B20
+.DW $C620, $0B20
 .DB $17
-.DW $C320, $0B20
+.DW $C680, $0B20
 .DB $19
-.DW $C380, $0A60
+.DW $C6E0, $0A60
 .DB $18
-.DW $C040, $0A60
+.DW $C3A0, $0A60
 .DB $18
-.DW $C1E0, $0A60
+.DW $C540, $0A60
 .DB $1E
-.DW $C100, $09A0
+.DW $C460, $09A0
 .DB $18
-.DW $C240, $09A0
+.DW $C5A0, $09A0
 .DB $17
-.DW $C440, $09A0
+.DW $C7A0, $09A0
 .DB $17
-.DW $C140, $0860
+.DW $C4A0, $0860
 .DB $19
-.DW $C160, $0CA0
+.DW $C4C0, $0CA0
 .DB $01
-.DW $C100, $0A80
+.DW $C460, $0A80
 .DB $22
-.DW $C2C0, $0860
+.DW $C620, $0860
 .DB $1D
-.DW $C1C0, $09C0
+.DW $C520, $09C0
 .DB $03
-.DW $C3C0, $0D80
+.DW $C720, $0D80
 .ENDS
 
 .SECTION "base_LVOBJECTS_SKY1" SLOT 2 SUPERFREE
 LVOBJECTS_SKY1:
 .DB 20
 .DB $3B
-.DW $D1C0, $0320
+.DW $D520, $0320
 .DB $3B
-.DW $D200, $0300
+.DW $D560, $0300
 .DB $3A
-.DW $CCA0, $0480
+.DW $D000, $0480
 .DB $3A
-.DW $CBE0, $0520
+.DW $CF40, $0520
 .DB $3A
-.DW $CB80, $04E0
+.DW $CEE0, $04E0
 .DB $3A
-.DW $CB20, $04E0
+.DW $CE80, $04E0
 .DB $3A
-.DW $CA40, $04E0
+.DW $CDA0, $04E0
 .DB $3A
-.DW $C580, $04C0
+.DW $C8E0, $04C0
 .DB $3A
-.DW $C640, $0480
+.DW $C9A0, $0480
 .DB $3A
-.DW $C7E0, $0480
+.DW $CB40, $0480
 .DB $3A
-.DW $C7E0, $0460
+.DW $CB40, $0460
 .DB $3A
-.DW $C920, $0520
+.DW $CC80, $0520
 .DB $38
-.DW $CF40, $04E0
+.DW $D2A0, $04E0
 .DB $38
-.DW $CFA0, $0540
+.DW $D300, $0540
 .DB $03
-.DW $CB40, $0560
+.DW $CEA0, $0560
 .DB $35
-.DW $CC60, $0460
+.DW $CFC0, $0460
 .DB $35
-.DW $CCE0, $0520
+.DW $D040, $0520
 .DB $04
-.DW $C8A0, $0460
+.DW $CC00, $0460
 .DB $07
-.DW $D340, $02E0
+.DW $D6A0, $02E0
 .ENDS
 
 .SECTION "base_LVOBJECTS_SKY2" SLOT 2 SUPERFREE
 LVOBJECTS_SKY2:
 .DB 23
 .DB $30
-.DW $D240, $00C0
+.DW $D5A0, $00C0
 .DB $30
-.DW $D400, $0300
+.DW $D760, $0300
 .DB $30
-.DW $D3E0, $02A0
+.DW $D740, $02A0
 .DB $30
-.DW $D200, $0140
+.DW $D560, $0140
 .DB $30
-.DW $D6A0, $01A0
+.DW $DA00, $01A0
 .DB $30
-.DW $D620, $0260
+.DW $D980, $0260
 .DB $13
-.DW $D380, $01E0
+.DW $D6E0, $01E0
 .DB $39
-.DW $D140, $00E0
+.DW $D4A0, $00E0
 .DB $37
-.DW $D200, $01E0
+.DW $D560, $01E0
 .DB $37
-.DW $D260, $0220
+.DW $D5C0, $0220
 .DB $37
-.DW $D2C0, $0260
+.DW $D620, $0260
 .DB $33
-.DW $D540, $01E0
+.DW $D8A0, $01E0
 .DB $33
-.DW $D5E0, $01C0
+.DW $D940, $01C0
 .DB $32
-.DW $D2A0, $0100
+.DW $D600, $0100
 .DB $31
-.DW $D1E0, $0260
+.DW $D540, $0260
 .DB $03
-.DW $D440, $0280
+.DW $D7A0, $0280
 .DB $38
-.DW $D200, $0360
+.DW $D560, $0360
 .DB $38
-.DW $D460, $0320
+.DW $D7C0, $0320
 .DB $38
-.DW $D500, $02E0
+.DW $D860, $02E0
 .DB $38
-.DW $D600, $02A0
+.DW $D960, $02A0
 .DB $3B
-.DW $D780, $01E0
+.DW $DAE0, $01E0
 .DB $06
-.DW $D700, $0200
+.DW $DA60, $0200
 .ENDS
 
 .SECTION "base_LVOBJECTS_SKY2_end" SLOT 2 SUPERFREE
 LVOBJECTS_SKY2_end:
 .DB 2
 .DB $07
-.DW $DC40, $0760
+.DW $DFA0, $0760
 .ENDS
 
 .SECTION "base_LVOBJECTS_SKY3" SLOT 2 SUPERFREE
 LVOBJECTS_SKY3:
 .DB 4
 .DB $46
-.DW $DD80, $0160
+.DW $E0E0, $0160
 .DB $4A
-.DW $DDE0, $0160
+.DW $E140, $0160
 .DB $03
-.DW $DA80, $00C0
+.DW $DDE0, $00C0
 .ENDS
 
 .SECTION "base_chunk_0000" SLOT 2 SUPERFREE
@@ -3195,7 +3193,7 @@ chunk_0023:
 
 .SECTION "base_chunk_0024" SLOT 2 SUPERFREE
 chunk_0024:
-.DB $00, $E1, $30, $39, $00, $E0, $3F, $00, $E4, $30, $39, $00, $73, $47, $00, $E7, $3B, $73, $47, $00, $00, $38, $00, $E6, $01, $3A, $2C, $38, $2C, $00, $38, $00, $2C, $2C, $3D, $2C, $00, $00, $2C, $00, $45, $54, $54, $53, $42, $43, $53, $43, $54, $43, $01, $02, $02, $03, $54, $54, $45, $02, $02, $13, $25, $02, $13, $03, $00, $00, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $05, $05, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $3C, $3C, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $2D, $2D, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $05, $05, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $05, $05, $04, $05, $05, $06, $00, $00, $45, $05, $E9, $06, $2E, $02, $27, $05, $E9, $06, $05, $F9, $00, $E4, $05, $E6, $00, $E4, $DF
+.DB $00, $E1, $30, $39, $00, $E0, $3F, $00, $E4, $30, $39, $00, $73, $47, $00, $E7, $3B, $73, $47, $00, $00, $38, $00, $E6, $01, $3A, $2C, $38, $2C, $00, $38, $00, $2C, $2C, $3D, $2C, $00, $00, $2C, $00, $45, $54, $54, $53, $42, $43, $53, $43, $54, $43, $01, $02, $02, $03, $54, $54, $45, $02, $02, $13, $25, $02, $13, $03, $00, $00, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $00, $00, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $3C, $3C, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $2D, $2D, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $05, $05, $04, $05, $05, $06, $00, $00, $45, $05, $E3, $06, $05, $05, $04, $05, $05, $06, $00, $00, $45, $05, $E9, $06, $2E, $02, $27, $05, $E9, $06, $05, $F7, $00, $E6, $05, $E4, $00, $E6, $DF
 .ENDS
 
 .SECTION "base_chunk_0025" SLOT 2 SUPERFREE
@@ -3225,7 +3223,7 @@ chunk_0029:
 
 .SECTION "base_chunk_002A" SLOT 2 SUPERFREE
 chunk_002A:
-.DB $05, $E6, $00, $E4, $05, $E6, $00, $E4, $05, $E6, $00, $E4, $05, $E6, $00, $E4, $05, $E6, $00, $FF, $FF, $FF, $FF, $FF, $EF, $DF
+.DB $05, $E4, $00, $E6, $05, $E4, $00, $E6, $05, $E4, $00, $E6, $05, $E4, $00, $E6, $05, $E4, $00, $FF, $FF, $FF, $FF, $FF, $F1, $DF
 .ENDS
 
 .SECTION "base_chunk_002B" SLOT 2 SUPERFREE
@@ -3325,7 +3323,7 @@ chunk_003D:
 
 .SECTION "base_chunk_003E" SLOT 2 SUPERFREE
 chunk_003E:
-.DB $00, $F5, $5A, $73, $6C, $00, $E2, $73, $73, $6C, $61, $00, $00, $44, $30, $4B, $E0, $42, $00, $44, $30, $42, $8C, $81, $4B, $4B, $6C, $00, $8C, $83, $53, $6B, $4B, $6C, $54, $83, $53, $00, $80, $82, $6B, $4B, $3C, $42, $00, $00, $87, $4B, $3C, $4B, $73, $42, $7B, $00, $3A, $87, $4B, $43, $00, $E0, $54, $83, $53, $00, $8C, $53, $7A, $7B, $79, $42, $8C, $53, $25, $82, $00, $E7, $54, $00, $E0, $3A, $00, $00, $71, $76, $71, $70, $76, $71, $E0, $00, $01, $02, $E3, $1C, $E4, $1D, $02, $69, $05, $EA, $38, $6F, $69, $05, $E3, $63, $E7, $05, $FD, $00, $FF, $EC, $DF
+.DB $00, $FD, $73, $73, $6C, $61, $00, $E7, $44, $30, $8C, $81, $4B, $4B, $6C, $00, $E6, $8C, $83, $80, $82, $6B, $4B, $3C, $42, $00, $E7, $3A, $87, $4B, $43, $00, $E8, $54, $42, $8C, $53, $25, $82, $00, $EB, $3A, $00, $E7, $71, $76, $02, $EB, $1C, $1C, $05, $FB, $63, $63, $05, $FD, $00, $FF, $EC, $DF
 .ENDS
 
 .SECTION "base_chunk_003F" SLOT 2 SUPERFREE
@@ -3345,97 +3343,97 @@ chunk_0041:
 
 .SECTION "base_chunk_0042" SLOT 2 SUPERFREE
 chunk_0042:
-.DB $00, $F7, $61, $00, $E9, $44, $30, $73, $43, $00, $00, $61, $00, $E6, $86, $4B, $4B, $6C, $44, $30, $4B, $42, $00, $E0, $7A, $79, $00, $00, $54, $83, $81, $4B, $E0, $3C, $43, $00, $87, $87, $42, $7B, $7B, $5A, $6C, $61, $00, $00, $86, $3C, $43, $00, $00, $54, $53, $53, $00, $E0, $6A, $3C, $3C, $42, $54, $53, $00, $00, $7A, $7B, $00, $00, $03, $00, $01, $03, $00, $01, $18, $0C, $79, $E1, $07, $08, $29, $00, $38, $02, $69, $38, $6F, $69, $38, $0A, $31, $32, $32, $33, $09, $00, $35, $00, $38, $4D, $69, $38, $0F, $69, $38, $34, $0E, $6F, $4D, $E1, $2A, $34, $63, $ED, $05, $E3, $00, $E7, $05, $E3, $00, $FF, $F6, $DF
+.DB $00, $ED, $5A, $73, $6C, $00, $EA, $4B, $E0, $42, $00, $44, $30, $42, $00, $E4, $44, $53, $6B, $4B, $6C, $54, $83, $53, $00, $E5, $86, $87, $4B, $3C, $4B, $73, $42, $7B, $00, $E0, $7A, $79, $00, $00, $54, $83, $83, $53, $00, $8C, $53, $7A, $7B, $79, $87, $42, $7B, $7B, $5A, $6C, $61, $00, $E5, $54, $53, $00, $E0, $6A, $3C, $3C, $42, $71, $70, $76, $71, $E0, $00, $01, $03, $00, $01, $03, $00, $01, $18, $0C, $1C, $E2, $1D, $00, $69, $38, $00, $69, $38, $6F, $69, $38, $0A, $05, $E2, $38, $6F, $69, $38, $4D, $69, $38, $0F, $69, $38, $34, $63, $ED, $05, $E3, $00, $E7, $05, $E3, $00, $FF, $F6, $DF
 .ENDS
 
 .SECTION "base_chunk_0043" SLOT 2 SUPERFREE
 chunk_0043:
-.DB $00, $FF, $FF, $FF, $E5, $61, $00, $EB, $54, $81, $73, $6C, $00, $00, $42, $44, $30, $73, $42, $00, $E1, $5A, $73, $6C, $8C, $81, $42, $2C, $54, $81, $4B, $4B, $73, $42, $00, $44, $30, $5F, $83, $81, $42, $2C, $44, $30, $00, $00, $8C, $83, $53, $00, $00, $8C, $53, $00, $E0, $2C, $54, $83, $53, $7B, $E3, $00, $F7, $88, $E3, $1B, $02, $E6, $5E, $E3, $69, $05, $E6, $55, $E3, $69, $05, $E6, $DF
+.DB $00, $FF, $FF, $FE, $61, $00, $EB, $54, $81, $73, $6C, $00, $E3, $44, $30, $00, $E0, $5A, $73, $6C, $8C, $81, $42, $2C, $00, $00, $44, $30, $4B, $4B, $00, $00, $30, $5F, $83, $81, $42, $2C, $44, $30, $42, $00, $6A, $5F, $53, $6B, $00, $00, $53, $00, $E0, $2C, $54, $83, $53, $00, $E0, $44, $30, $43, $00, $E9, $54, $83, $53, $00, $00, $44, $00, $EB, $54, $83, $02, $ED, $05, $FB, $63, $63, $DF
 .ENDS
 
 .SECTION "base_chunk_0044" SLOT 2 SUPERFREE
 chunk_0044:
-.DB $00, $FF, $FF, $FF, $F9, $61, $00, $E7, $61, $00, $E0, $87, $3C, $00, $E5, $44, $30, $3C, $42, $00, $54, $53, $00, $44, $30, $42, $00, $E2, $6A, $43, $44, $30, $42, $00, $E0, $83, $53, $61, $00, $61, $00, $00, $61, $00, $54, $83, $53, $00, $E0, $7B, $6C, $54, $81, $73, $4B, $42, $54, $81, $73, $42, $2C, $00, $E2, $66, $2C, $54, $83, $53, $7A, $79, $54, $53, $00, $E1, $20, $1A, $88, $65, $7A, $79, $80, $82, $7B, $7B, $00, $00, $7A, $7B, $79, $00, $04, $38, $5E, $00, $7B, $7B, $3A, $39, $00, $E2, $3E, $00, $00, $04, $38, $55, $DF
+.DB $00, $FF, $FF, $FF, $F1, $61, $00, $E7, $61, $00, $E0, $87, $3C, $42, $44, $30, $73, $42, $00, $E0, $44, $30, $3C, $42, $00, $54, $53, $00, $54, $81, $4B, $4B, $73, $42, $00, $44, $6A, $43, $44, $30, $42, $00, $E2, $8C, $83, $53, $00, $00, $8C, $00, $54, $83, $53, $00, $E0, $7B, $E4, $00, $00, $73, $42, $2C, $00, $EA, $53, $00, $E1, $20, $1A, $88, $E4, $1B, $02, $00, $7A, $7B, $79, $00, $04, $38, $5E, $E4, $69, $05, $00, $00, $3E, $00, $00, $04, $38, $55, $E4, $69, $05, $DF
 .ENDS
 
 .SECTION "base_chunk_0045" SLOT 2 SUPERFREE
 chunk_0045:
-.DB $00, $FF, $FF, $FF, $EE, $44, $30, $00, $E9, $44, $30, $4B, $4B, $00, $E7, $42, $00, $6A, $5F, $53, $6B, $00, $E0, $54, $83, $53, $00, $00, $87, $73, $00, $E0, $44, $30, $43, $00, $E1, $2C, $00, $61, $54, $83, $81, $00, $00, $54, $83, $53, $00, $00, $44, $30, $73, $6C, $54, $81, $42, $80, $82, $00, $E3, $54, $83, $53, $8C, $81, $42, $00, $00, $3A, $00, $02, $EB, $18, $0C, $05, $EB, $38, $0A, $05, $E3, $63, $E7, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $E0, $44, $30, $42, $00, $E9, $54, $83, $53, $61, $00, $61, $00, $00, $61, $00, $00, $44, $30, $73, $6C, $44, $30, $6C, $54, $81, $73, $4B, $42, $54, $81, $00, $00, $6A, $5F, $53, $8C, $81, $4B, $66, $2C, $54, $83, $53, $7A, $79, $54, $00, $E0, $2C, $7A, $79, $00, $86, $65, $7A, $79, $80, $82, $7B, $7B, $00, $E0, $27, $82, $7B, $7B, $54, $53, $00, $7B, $7B, $3A, $39, $00, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_0046" SLOT 2 SUPERFREE
 chunk_0046:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $E9, $44, $30, $73, $6C, $00, $44, $30, $73, $6C, $00, $E3, $54, $83, $81, $4B, $4B, $6C, $8C, $81, $4B, $4B, $73, $6C, $00, $E1, $6C, $2C, $61, $6B, $4B, $3C, $42, $00, $6B, $4B, $4B, $64, $00, $E0, $54, $53, $00, $6A, $5F, $53, $00, $44, $30, $4B, $E0, $43, $00, $00, $44, $30, $7B, $E0, $25, $82, $87, $3C, $3C, $5F, $83, $53, $00, $7A, $79, $86, $4B, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $F1, $44, $30, $73, $6C, $00, $44, $30, $00, $E5, $54, $83, $81, $4B, $4B, $6C, $8C, $81, $61, $00, $E1, $44, $30, $73, $6C, $2C, $61, $6B, $4B, $3C, $42, $00, $81, $42, $00, $E0, $6A, $5F, $83, $53, $00, $6A, $5F, $53, $00, $44, $30, $00, $00, $61, $61, $7B, $E0, $00, $7B, $E0, $25, $82, $87, $3C, $3C, $DF
 .ENDS
 
 .SECTION "base_chunk_0047" SLOT 2 SUPERFREE
 chunk_0047:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $EB, $61, $00, $E8, $54, $44, $30, $73, $4B, $42, $00, $E2, $44, $30, $73, $6C, $44, $30, $83, $81, $5F, $53, $00, $E3, $6A, $5F, $53, $8C, $81, $4B, $73, $42, $2C, $00, $E5, $2C, $7A, $79, $00, $86, $66, $7A, $79, $80, $82, $44, $30, $42, $00, $00, $27, $82, $7B, $7B, $54, $53, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $73, $6C, $00, $E6, $61, $00, $E1, $4B, $4B, $73, $6C, $00, $E1, $44, $30, $73, $4B, $42, $00, $E0, $6B, $4B, $4B, $64, $00, $E0, $54, $83, $81, $5F, $53, $00, $E1, $4B, $E0, $43, $00, $00, $44, $30, $73, $42, $2C, $00, $E2, $5F, $83, $53, $00, $7A, $79, $86, $4B, $66, $7A, $79, $80, $82, $44, $30, $42, $DF
 .ENDS
 
 .SECTION "base_chunk_0048" SLOT 2 SUPERFREE
 chunk_0048:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $EA, $44, $30, $73, $73, $6C, $61, $00, $E1, $44, $30, $73, $00, $00, $54, $53, $6B, $3C, $5F, $83, $81, $42, $00, $E0, $6A, $5F, $83, $00, $87, $42, $54, $53, $7A, $7B, $79, $00, $00, $61, $61, $7B, $E0, $00, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F2, $44, $30, $73, $73, $6C, $44, $30, $73, $42, $00, $E3, $54, $53, $6B, $3C, $5F, $83, $3C, $5F, $53, $44, $30, $6C, $00, $E0, $87, $42, $54, $53, $7A, $7B, $79, $DF
 .ENDS
 
 .SECTION "base_chunk_0049" SLOT 2 SUPERFREE
 chunk_0049:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $44, $30, $73, $42, $00, $E8, $87, $3C, $5F, $53, $44, $30, $6C, $00, $00, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $F5, $87, $DF
 .ENDS
 
 .SECTION "base_chunk_004A" SLOT 2 SUPERFREE
 chunk_004A:
-.DB $00, $E3, $54, $53, $7B, $7B, $54, $83, $83, $81, $42, $00, $EC, $7A, $7B, $00, $E4, $01, $02, $E0, $18, $0C, $7A, $7B, $7B, $00, $E2, $87, $73, $69, $05, $E0, $38, $0A, $31, $32, $32, $42, $00, $00, $44, $30, $4B, $4B, $69, $05, $E0, $14, $02, $03, $00, $80, $7A, $7B, $00, $6A, $5F, $53, $8C, $69, $05, $E0, $69, $05, $38, $00, $3A, $3E, $00, $E3, $69, $15, $12, $12, $11, $16, $38, $6F, $4D, $85, $00, $00, $29, $31, $33, $29, $69, $69, $05, $E0, $38, $38, $2F, $2F, $85, $00, $00, $35, $00, $6F, $2A, $69, $69, $05, $E0, $38, $38, $6F, $47, $85, $0E, $00, $35, $6F, $0F, $2B, $69, $69, $05, $E0, $38, $38, $5D, $4F, $63, $EB, $56, $57, $00, $FF, $FF, $EB, $DF
+.DB $00, $EB, $54, $53, $00, $00, $61, $00, $EA, $30, $73, $43, $00, $00, $61, $00, $E6, $01, $4B, $4B, $6C, $44, $30, $4B, $42, $00, $E3, $87, $73, $69, $81, $4B, $E0, $3C, $43, $00, $87, $42, $00, $00, $44, $30, $4B, $4B, $69, $00, $86, $3C, $43, $00, $00, $54, $53, $7A, $7B, $00, $6A, $5F, $53, $8C, $69, $54, $53, $00, $00, $7A, $7B, $00, $00, $3E, $00, $E3, $69, $79, $E1, $07, $08, $29, $00, $85, $00, $00, $29, $31, $33, $29, $69, $31, $32, $32, $33, $09, $00, $35, $00, $85, $00, $00, $35, $00, $6F, $2A, $69, $0E, $6F, $4D, $E1, $2A, $34, $85, $0E, $00, $35, $6F, $0F, $2B, $69, $63, $ED, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_004B" SLOT 2 SUPERFREE
 chunk_004B:
-.DB $54, $53, $44, $30, $73, $42, $00, $E0, $54, $83, $81, $42, $00, $E0, $7B, $79, $8C, $83, $53, $00, $E0, $01, $02, $1A, $88, $E2, $7B, $7B, $79, $07, $08, $29, $00, $00, $69, $05, $38, $00, $E2, $32, $32, $33, $09, $00, $35, $00, $00, $69, $05, $38, $5E, $E2, $82, $27, $82, $00, $00, $35, $00, $00, $69, $05, $38, $55, $E2, $00, $3A, $00, $6F, $4D, $2A, $4D, $34, $69, $05, $38, $55, $E2, $4D, $0D, $6F, $6E, $0F, $2B, $0F, $6E, $69, $05, $38, $55, $E2, $2F, $6F, $6E, $0F, $6E, $2B, $6E, $0F, $69, $05, $38, $55, $E2, $63, $ED, $5B, $FD, $00, $FF, $FF, $EB, $DF
+.DB $7B, $7B, $54, $83, $83, $81, $42, $00, $54, $53, $44, $30, $73, $42, $00, $E5, $7A, $7B, $7B, $79, $8C, $83, $53, $00, $E0, $02, $E0, $18, $0C, $7A, $7B, $E1, $79, $07, $08, $29, $00, $00, $05, $E0, $38, $0A, $31, $32, $E1, $33, $09, $00, $35, $00, $00, $05, $E0, $14, $02, $03, $00, $80, $82, $27, $82, $00, $00, $35, $00, $00, $05, $E0, $69, $05, $38, $00, $3A, $00, $3A, $00, $6F, $4D, $2A, $4D, $34, $15, $12, $12, $11, $16, $38, $6F, $4D, $4D, $0D, $6F, $6E, $0F, $2B, $0F, $6E, $69, $05, $E0, $38, $38, $2F, $E0, $6F, $6E, $0F, $6E, $2B, $6E, $0F, $69, $05, $E0, $38, $38, $6F, $47, $63, $E5, $69, $05, $E0, $38, $38, $5D, $4F, $5B, $E5, $63, $E3, $56, $57, $5B, $E5, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_004C" SLOT 2 SUPERFREE
 chunk_004C:
-.DB $00, $80, $82, $3A, $54, $53, $00, $E0, $44, $30, $42, $7B, $7B, $6B, $3C, $88, $E1, $1B, $02, $18, $0C, $54, $83, $53, $00, $00, $54, $53, $80, $00, $E1, $69, $05, $38, $0A, $31, $32, $33, $29, $00, $00, $01, $02, $5E, $E1, $69, $05, $38, $0E, $74, $77, $0D, $35, $0E, $4D, $69, $05, $55, $E1, $69, $05, $38, $6E, $34, $00, $0E, $2A, $5D, $49, $63, $63, $55, $E1, $69, $05, $38, $0F, $48, $63, $E1, $57, $5B, $5B, $55, $E1, $69, $05, $38, $6E, $46, $5B, $E4, $55, $E1, $69, $05, $38, $5D, $4F, $5B, $E4, $63, $E5, $57, $5B, $FF, $E3, $00, $FF, $FF, $EB, $DF
+.DB $00, $54, $83, $81, $42, $00, $E1, $80, $82, $3A, $54, $53, $00, $00, $01, $02, $1A, $88, $E6, $1B, $02, $18, $0C, $69, $05, $38, $00, $E6, $69, $05, $38, $0A, $69, $05, $38, $5E, $E6, $69, $05, $38, $0E, $69, $05, $38, $55, $E6, $69, $05, $38, $6E, $69, $05, $38, $55, $E6, $69, $05, $38, $0F, $69, $05, $38, $55, $E6, $69, $05, $38, $6E, $69, $05, $38, $55, $E6, $69, $05, $38, $5D, $63, $ED, $5B, $FD, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_004D" SLOT 2 SUPERFREE
 chunk_004D:
-.DB $65, $7B, $7B, $3A, $5A, $3C, $43, $2C, $25, $82, $3A, $00, $E0, $01, $02, $82, $39, $00, $54, $53, $00, $00, $07, $19, $02, $02, $03, $39, $6F, $69, $05, $03, $10, $0D, $29, $31, $32, $33, $09, $69, $05, $05, $38, $10, $2F, $69, $05, $38, $4D, $4D, $2A, $62, $4C, $63, $EB, $56, $57, $5B, $FF, $FF, $FF, $E4, $00, $FF, $FF, $EB, $DF
+.DB $00, $44, $30, $42, $7B, $7B, $6B, $3C, $65, $7B, $7B, $3A, $5A, $3C, $43, $2C, $54, $83, $53, $00, $00, $54, $53, $80, $82, $39, $00, $54, $53, $00, $00, $07, $31, $32, $33, $29, $00, $00, $01, $02, $03, $10, $0D, $29, $31, $32, $33, $09, $74, $77, $0D, $35, $0E, $4D, $69, $05, $38, $4D, $4D, $2A, $62, $4C, $63, $63, $34, $00, $0E, $2A, $5D, $49, $63, $E3, $56, $57, $5B, $5B, $48, $63, $E1, $57, $5B, $E7, $46, $5B, $EC, $4F, $5B, $EC, $57, $5B, $FF, $EB, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_004E" SLOT 2 SUPERFREE
 chunk_004E:
-.DB $03, $00, $E0, $10, $0D, $00, $01, $03, $00, $85, $00, $00, $04, $38, $55, $38, $4D, $4D, $01, $03, $39, $4D, $69, $38, $00, $85, $39, $6F, $04, $38, $55, $38, $2F, $2F, $69, $38, $10, $2F, $69, $38, $0D, $85, $10, $2F, $04, $38, $55, $63, $ED, $5B, $FF, $FF, $FF, $EA, $00, $FF, $FF, $EB, $DF
+.DB $25, $82, $3A, $00, $E0, $01, $02, $03, $00, $E0, $10, $0D, $00, $01, $19, $02, $02, $03, $39, $6F, $69, $05, $38, $4D, $4D, $01, $03, $39, $4D, $69, $69, $05, $05, $38, $10, $2F, $69, $05, $38, $2F, $2F, $69, $38, $10, $2F, $69, $63, $ED, $5B, $FF, $FF, $FF, $EA, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_004F" SLOT 2 SUPERFREE
 chunk_004F:
-.DB $55, $E3, $69, $05, $E6, $55, $E3, $69, $05, $E6, $55, $E3, $69, $05, $E6, $63, $ED, $5B, $FF, $FF, $FF, $EA, $00, $FF, $FF, $EB, $DF
+.DB $03, $00, $85, $00, $00, $04, $38, $55, $E4, $69, $05, $38, $00, $85, $39, $6F, $04, $38, $55, $E4, $69, $05, $38, $0D, $85, $10, $2F, $04, $38, $55, $E4, $69, $05, $63, $ED, $5B, $FF, $FF, $FF, $EA, $00, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_0050" SLOT 2 SUPERFREE
 chunk_0050:
-.DB $05, $E3, $5B, $E7, $05, $E3, $00, $E7, $05, $E3, $00, $E7, $63, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $E7, $5B, $E3, $00, $FF, $FF, $F5, $DF
+.DB $05, $EB, $5B, $5B, $05, $EB, $00, $00, $05, $EB, $00, $00, $63, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $00, $5B, $EB, $00, $FF, $FF, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0051" SLOT 2 SUPERFREE
 chunk_0051:
-.DB $00, $FF, $FF, $FF, $FF, $E9, $4B, $5F, $81, $42, $00, $E5, $54, $81, $42, $61, $43, $44, $30, $6C, $00, $E3, $44, $30, $6C, $61, $54, $81, $54, $53, $8C, $81, $42, $00, $27, $82, $00, $54, $83, $53, $8C, $81, $42, $00, $25, $82, $00, $00, $25, $82, $3A, $07, $19, $02, $E4, $3A, $00, $E0, $3A, $07, $08, $09, $69, $05, $E4, $31, $32, $E0, $33, $09, $00, $00, $69, $05, $E4, $63, $ED, $DF
+.DB $00, $FF, $FF, $FF, $FF, $EA, $54, $83, $53, $00, $00, $87, $73, $4B, $5F, $81, $42, $00, $E3, $2C, $00, $61, $54, $83, $81, $43, $44, $30, $6C, $00, $E1, $30, $73, $6C, $54, $81, $42, $80, $82, $54, $53, $8C, $81, $42, $00, $27, $82, $53, $8C, $81, $42, $00, $00, $3A, $00, $25, $82, $00, $00, $25, $82, $3A, $07, $02, $E3, $18, $0C, $3A, $00, $E0, $3A, $07, $08, $09, $05, $E3, $38, $0A, $31, $32, $E0, $33, $09, $00, $00, $63, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0052" SLOT 2 SUPERFREE
 chunk_0052:
-.DB $00, $FF, $FF, $FF, $FF, $EA, $80, $82, $00, $54, $83, $81, $42, $44, $30, $6C, $00, $E2, $42, $3A, $44, $30, $6C, $00, $2C, $54, $83, $83, $53, $00, $00, $25, $82, $00, $E0, $8C, $83, $81, $42, $2C, $00, $80, $82, $00, $E0, $3A, $00, $00, $02, $E1, $26, $25, $82, $00, $3A, $60, $02, $E3, $05, $E1, $3B, $3A, $01, $03, $00, $3D, $05, $E3, $2D, $5C, $63, $EC, $57, $5B, $EB, $DF
+.DB $00, $FF, $FF, $FF, $FF, $ED, $54, $81, $42, $61, $00, $80, $82, $00, $54, $83, $81, $42, $00, $00, $44, $30, $6C, $61, $54, $81, $42, $3A, $44, $30, $6C, $00, $2C, $54, $00, $54, $83, $53, $8C, $81, $42, $00, $E0, $8C, $83, $81, $42, $2C, $00, $19, $02, $E8, $26, $25, $82, $00, $69, $05, $E8, $3B, $3A, $01, $03, $69, $05, $E4, $2D, $5C, $63, $EC, $57, $5B, $E3, $DF
 .ENDS
 
 .SECTION "base_chunk_0053" SLOT 2 SUPERFREE
 chunk_0053:
-.DB $00, $FF, $FF, $FF, $FF, $ED, $54, $81, $5F, $53, $44, $30, $42, $00, $E2, $80, $82, $00, $44, $30, $73, $6C, $54, $83, $53, $00, $E3, $3A, $00, $54, $83, $83, $53, $6A, $42, $00, $E5, $02, $ED, $05, $ED, $63, $ED, $5B, $ED, $DF
+.DB $00, $FF, $FF, $FF, $FF, $E9, $44, $30, $6C, $00, $E6, $54, $81, $5F, $53, $83, $83, $53, $00, $00, $25, $82, $00, $80, $82, $00, $44, $30, $73, $6C, $54, $80, $82, $00, $E0, $3A, $00, $00, $3A, $00, $54, $83, $83, $53, $6A, $42, $3A, $60, $02, $EB, $00, $3D, $05, $EB, $63, $ED, $5B, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0054" SLOT 2 SUPERFREE
 chunk_0054:
-.DB $00, $FF, $EB, $37, $00, $E1, $37, $68, $00, $E1, $37, $5C, $68, $00, $00, $3D, $37, $5C, $37, $5C, $00, $00, $68, $37, $5C, $5C, $68, $37, $5C, $68, $37, $68, $00, $37, $00, $00, $3D, $00, $E0, $37, $00, $00, $65, $68, $00, $68, $37, $00, $3D, $61, $61, $3B, $37, $5C, $5C, $00, $6A, $65, $66, $61, $00, $00, $6A, $00, $3B, $37, $68, $37, $5C, $68, $00, $3D, $01, $17, $18, $03, $65, $61, $3B, $00, $37, $00, $00, $3D, $00, $00, $68, $6A, $05, $51, $47, $4F, $66, $00, $3D, $37, $68, $37, $5C, $68, $3D, $7B, $6A, $65, $55, $4C, $4C, $25, $18, $03, $00, $E0, $68, $65, $65, $00, $7B, $01, $17, $02, $03, $6A, $05, $47, $4F, $68, $00, $00, $65, $66, $67, $65, $7B, $55, $4C, $4C, $4D, $68, $05, $51, $4F, $37, $02, $02, $17, $E1, $02, $02, $03, $00, $00, $37, $55, $4C, $4D, $00, $81, $E6, $82, $E4, $83, $ED, $5B, $00, $EC, $DF
+.DB $00, $FF, $F8, $37, $68, $00, $E7, $37, $5C, $37, $5C, $00, $00, $68, $37, $00, $E6, $37, $00, $00, $3D, $00, $E9, $3D, $61, $61, $3B, $37, $5C, $5C, $00, $E6, $3B, $37, $68, $37, $5C, $68, $00, $E7, $37, $00, $00, $3D, $00, $00, $68, $44, $30, $42, $00, $E2, $37, $68, $37, $5C, $68, $3D, $7B, $6A, $83, $53, $00, $E5, $68, $65, $65, $00, $7B, $01, $00, $E7, $65, $66, $67, $65, $7B, $55, $02, $E7, $17, $E1, $02, $02, $05, $E5, $81, $E5, $63, $E5, $83, $E5, $5B, $E6, $00, $E4, $DF
 .ENDS
 
 .SECTION "base_chunk_0055" SLOT 2 SUPERFREE
@@ -3445,942 +3443,962 @@ chunk_0055:
 
 .SECTION "base_chunk_0056" SLOT 2 SUPERFREE
 chunk_0056:
-.DB $5B, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $F5, $DF
+.DB $5B, $E6, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0057" SLOT 2 SUPERFREE
 chunk_0057:
-.DB $00, $EB, $38, $38, $00, $E2, $37, $5C, $68, $37, $68, $00, $E1, $38, $38, $00, $E1, $3A, $68, $00, $31, $31, $00, $68, $00, $E0, $38, $38, $00, $01, $03, $39, $01, $03, $68, $3B, $3D, $37, $5C, $68, $00, $00, $38, $38, $00, $55, $25, $03, $55, $4D, $3B, $37, $5C, $68, $00, $37, $5C, $68, $38, $88, $00, $37, $05, $4F, $3A, $01, $02, $03, $37, $68, $37, $3D, $00, $00, $38, $84, $37, $3A, $05, $4F, $00, $55, $4C, $4D, $57, $58, $68, $3B, $57, $6E, $38, $84, $00, $3A, $55, $4D, $3D, $00, $00, $0D, $0E, $0F, $5D, $5D, $0E, $00, $88, $84, $3A, $00, $6D, $1A, $1B, $1A, $54, $09, $3B, $3D, $3B, $00, $E0, $84, $84, $02, $02, $03, $00, $00, $37, $68, $37, $68, $37, $5C, $68, $3A, $6A, $84, $84, $51, $51, $4F, $00, $37, $5C, $5C, $00, $37, $6A, $00, $3A, $5C, $5C, $84, $84, $4C, $4C, $4D, $01, $02, $03, $00, $37, $00, $00, $37, $6A, $01, $03, $86, $86, $00, $E0, $55, $4C, $4D, $5C, $00, $00, $37, $00, $00, $55, $4D, $84, $84, $82, $EB, $85, $85, $83, $ED, $00, $ED, $DF
+.DB $00, $E3, $38, $E5, $00, $00, $37, $68, $00, $E1, $38, $E5, $3D, $37, $31, $00, $68, $00, $E0, $38, $E5, $00, $7B, $3D, $37, $5C, $68, $00, $00, $38, $E5, $00, $7B, $5C, $68, $00, $37, $5C, $68, $38, $88, $38, $88, $38, $E1, $7A, $7B, $37, $68, $37, $3D, $00, $00, $38, $84, $38, $84, $38, $88, $38, $38, $01, $02, $57, $58, $68, $3B, $57, $6E, $38, $84, $38, $84, $38, $84, $38, $38, $05, $51, $0E, $0F, $5D, $5D, $0E, $00, $88, $84, $38, $84, $88, $84, $38, $38, $05, $51, $3B, $3D, $3B, $00, $E0, $84, $84, $88, $84, $E0, $38, $38, $05, $51, $68, $37, $5C, $68, $3A, $6A, $84, $E3, $38, $38, $55, $4C, $37, $6A, $00, $3A, $5C, $5C, $84, $E3, $38, $38, $37, $39, $00, $00, $37, $6A, $01, $03, $86, $E3, $1C, $3F, $62, $1E, $00, $37, $00, $00, $55, $4D, $84, $E3, $2D, $2D, $5C, $5C, $82, $E3, $85, $E3, $81, $81, $82, $82, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0058" SLOT 2 SUPERFREE
 chunk_0058:
-.DB $38, $E3, $00, $E2, $37, $5C, $68, $37, $68, $38, $E3, $3D, $37, $68, $00, $37, $5C, $68, $00, $68, $00, $38, $E3, $00, $7B, $7B, $00, $3D, $5C, $68, $00, $37, $5C, $38, $E3, $00, $7B, $7B, $68, $00, $3D, $37, $5C, $3D, $37, $38, $88, $38, $E1, $7A, $7B, $7B, $79, $68, $37, $37, $39, $68, $39, $38, $84, $38, $88, $38, $38, $01, $02, $02, $03, $6D, $58, $68, $39, $37, $3D, $38, $84, $38, $84, $38, $38, $05, $51, $51, $4F, $00, $0A, $0B, $0C, $3D, $3B, $38, $84, $88, $84, $38, $38, $05, $51, $51, $4F, $3D, $00, $3B, $4E, $53, $19, $88, $84, $E0, $38, $38, $05, $51, $51, $4F, $37, $68, $00, $00, $37, $68, $84, $E1, $38, $38, $55, $4C, $4C, $4D, $39, $00, $68, $37, $68, $00, $84, $E1, $38, $38, $37, $39, $39, $1D, $01, $02, $03, $00, $39, $39, $86, $E1, $1C, $3F, $62, $1E, $00, $00, $05, $51, $4F, $3D, $61, $3D, $84, $E1, $2D, $2D, $5C, $E1, $55, $4C, $4D, $00, $E0, $85, $E1, $81, $81, $82, $E7, $83, $ED, $00, $ED, $DF
+.DB $00, $E0, $37, $5C, $68, $37, $68, $00, $37, $5C, $68, $00, $E0, $37, $68, $00, $37, $5C, $68, $00, $68, $00, $68, $00, $00, $5C, $68, $37, $5C, $00, $7B, $00, $3D, $5C, $68, $00, $37, $5C, $5C, $39, $68, $37, $39, $5C, $39, $68, $7B, $68, $00, $3D, $37, $5C, $3D, $37, $39, $00, $37, $00, $E2, $7B, $79, $68, $37, $37, $39, $68, $39, $00, $E1, $3B, $3D, $37, $68, $02, $03, $6D, $58, $68, $39, $37, $3D, $61, $61, $3B, $65, $00, $37, $00, $00, $51, $4F, $00, $0A, $0B, $0C, $3D, $3B, $3D, $3B, $01, $17, $03, $3D, $3D, $2B, $51, $4F, $3D, $00, $3B, $4E, $53, $19, $1B, $6E, $05, $51, $4F, $00, $28, $2C, $51, $4F, $37, $68, $00, $00, $37, $68, $00, $37, $55, $4C, $25, $02, $03, $00, $4C, $4D, $39, $00, $68, $37, $68, $00, $37, $00, $E0, $05, $51, $4F, $28, $39, $1D, $01, $02, $03, $00, $39, $39, $00, $3D, $00, $00, $55, $11, $15, $02, $00, $00, $05, $51, $4F, $3D, $61, $3D, $3B, $00, $3D, $3B, $00, $55, $4C, $4C, $5C, $5C, $55, $4C, $4D, $00, $E0, $37, $68, $00, $37, $68, $00, $E0, $82, $ED, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0059" SLOT 2 SUPERFREE
 chunk_0059:
-.DB $00, $37, $5C, $68, $00, $E0, $37, $5C, $68, $38, $E2, $00, $68, $00, $00, $5C, $68, $37, $5C, $00, $00, $37, $38, $E2, $00, $5C, $39, $68, $37, $39, $5C, $39, $68, $37, $00, $38, $E2, $68, $39, $00, $37, $00, $E2, $68, $00, $38, $E2, $00, $E2, $3B, $3D, $37, $68, $00, $00, $38, $E2, $3D, $61, $61, $3B, $65, $00, $37, $00, $00, $04, $06, $38, $E2, $00, $3D, $3B, $01, $17, $03, $3D, $3D, $2B, $34, $28, $38, $E2, $28, $1B, $6E, $05, $51, $4F, $00, $28, $2C, $2B, $00, $38, $E2, $27, $00, $37, $55, $4C, $25, $02, $03, $00, $27, $3E, $38, $E2, $28, $37, $00, $E0, $05, $51, $4F, $28, $01, $03, $38, $E2, $01, $00, $3D, $00, $00, $55, $11, $15, $02, $16, $4D, $38, $E2, $05, $3B, $00, $3D, $3B, $00, $55, $4C, $4C, $4D, $00, $38, $E2, $55, $37, $68, $00, $37, $68, $00, $E2, $2D, $E2, $00, $82, $E7, $81, $E2, $82, $83, $ED, $00, $ED, $DF
+.DB $5C, $68, $38, $E2, $00, $E4, $37, $68, $00, $37, $38, $E2, $00, $00, $37, $5C, $5C, $68, $37, $00, $00, $37, $00, $38, $E2, $68, $37, $00, $E1, $68, $00, $00, $68, $00, $38, $E2, $00, $68, $00, $E1, $3B, $00, $E1, $38, $E2, $3D, $3B, $37, $5C, $68, $3B, $3D, $37, $68, $04, $06, $38, $E2, $00, $37, $00, $E0, $37, $5C, $00, $00, $34, $28, $38, $E2, $28, $3D, $2B, $00, $37, $68, $3D, $3B, $3D, $2B, $00, $38, $E2, $27, $3E, $2C, $28, $00, $00, $68, $37, $5C, $27, $3E, $38, $E2, $28, $00, $01, $03, $31, $31, $00, $44, $00, $01, $03, $38, $E2, $01, $94, $16, $4B, $31, $3B, $3D, $37, $68, $16, $4D, $38, $E2, $05, $51, $4F, $4A, $3B, $37, $5C, $68, $37, $4D, $00, $38, $E2, $55, $4C, $4D, $00, $37, $3A, $00, $00, $68, $00, $00, $2D, $E2, $00, $E1, $3D, $00, $E1, $82, $82, $81, $E2, $82, $E6, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005A" SLOT 2 SUPERFREE
 chunk_005A:
-.DB $00, $E3, $37, $68, $00, $E6, $37, $5C, $5C, $68, $37, $00, $00, $5C, $68, $00, $E2, $37, $37, $00, $E1, $68, $00, $E0, $3B, $00, $E3, $68, $00, $E1, $3B, $00, $E0, $37, $68, $00, $E2, $3B, $37, $5C, $68, $3B, $3D, $37, $68, $37, $5C, $5C, $68, $37, $68, $00, $00, $37, $00, $E0, $37, $5C, $00, $00, $3D, $31, $00, $00, $68, $00, $E0, $3D, $2B, $00, $37, $68, $3D, $3B, $3D, $3B, $00, $3D, $31, $68, $37, $68, $00, $3E, $2C, $28, $00, $00, $68, $37, $5C, $68, $00, $E0, $6F, $00, $00, $68, $00, $01, $03, $31, $31, $00, $44, $00, $00, $68, $00, $6F, $71, $6F, $00, $3B, $94, $16, $4B, $31, $3B, $3D, $37, $68, $37, $68, $37, $64, $71, $71, $8A, $8B, $51, $4F, $4A, $3B, $37, $5C, $68, $37, $00, $37, $37, $71, $71, $5A, $99, $9A, $4C, $4D, $00, $37, $3A, $00, $00, $68, $00, $3D, $00, $64, $71, $71, $6B, $71, $00, $E0, $3D, $00, $E2, $3A, $68, $71, $71, $6B, $71, $6B, $82, $EB, $81, $81, $83, $ED, $00, $ED, $DF
+.DB $00, $EB, $37, $68, $5C, $68, $00, $E2, $37, $5C, $68, $00, $E0, $37, $5C, $5C, $00, $3B, $00, $E4, $3B, $37, $5C, $5C, $68, $00, $E0, $37, $68, $00, $E2, $37, $5C, $00, $00, $3D, $00, $68, $37, $37, $5C, $5C, $68, $37, $68, $00, $00, $87, $87, $3B, $37, $68, $3B, $37, $00, $3D, $31, $00, $00, $68, $00, $E0, $84, $84, $37, $26, $3B, $00, $3D, $00, $3B, $00, $3D, $31, $68, $37, $68, $00, $84, $84, $68, $00, $7A, $79, $00, $00, $68, $00, $E0, $6F, $00, $00, $68, $84, $84, $00, $37, $7B, $7B, $68, $00, $00, $68, $00, $6F, $71, $6F, $00, $3B, $84, $84, $68, $00, $7B, $7B, $00, $68, $37, $68, $37, $64, $71, $71, $8A, $8B, $85, $85, $82, $89, $8A, $8A, $8B, $92, $00, $37, $37, $71, $71, $5A, $99, $9A, $8C, $8E, $93, $96, $9B, $9B, $97, $84, $00, $3D, $00, $64, $71, $71, $6B, $71, $98, $9A, $84, $98, $99, $99, $9A, $84, $00, $3A, $68, $71, $71, $6B, $71, $6B, $71, $5A, $84, $6B, $6B, $71, $71, $84, $82, $E3, $81, $E1, $85, $81, $E1, $85, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005B" SLOT 2 SUPERFREE
 chunk_005B:
-.DB $00, $E3, $37, $68, $00, $E5, $5C, $68, $00, $E0, $37, $5C, $5C, $68, $00, $E3, $37, $00, $3B, $37, $5C, $5C, $68, $00, $00, $3B, $00, $37, $5C, $68, $00, $37, $00, $37, $5C, $00, $00, $3D, $00, $68, $37, $68, $37, $00, $6A, $00, $00, $3D, $37, $87, $87, $3B, $37, $68, $3B, $37, $00, $68, $00, $37, $5C, $68, $00, $37, $3A, $84, $84, $37, $26, $3B, $00, $3D, $00, $37, $5C, $5C, $68, $3B, $37, $3A, $00, $84, $84, $68, $00, $7A, $79, $00, $00, $37, $00, $7B, $7B, $6A, $3D, $31, $00, $84, $84, $00, $37, $7B, $7B, $68, $00, $3D, $00, $7B, $7B, $6F, $00, $6A, $3D, $84, $84, $68, $00, $7B, $7B, $00, $68, $00, $3D, $6F, $02, $71, $23, $E0, $85, $85, $82, $89, $8A, $8A, $8B, $92, $89, $8A, $71, $51, $5A, $00, $37, $68, $8C, $8E, $93, $96, $9B, $9B, $97, $84, $98, $99, $6B, $4C, $5A, $87, $3D, $3B, $98, $9A, $84, $98, $99, $99, $9A, $84, $71, $6B, $71, $00, $42, $84, $00, $00, $71, $5A, $84, $6B, $6B, $71, $71, $84, $64, $71, $71, $6F, $6F, $84, $00, $00, $81, $81, $85, $81, $E1, $85, $81, $E2, $85, $82, $82, $83, $ED, $00, $ED, $DF
+.DB $00, $E5, $37, $5C, $68, $37, $68, $00, $37, $5C, $68, $00, $E3, $37, $00, $E2, $5C, $68, $37, $3B, $00, $37, $5C, $68, $00, $37, $00, $E1, $3D, $37, $68, $37, $00, $68, $37, $00, $6A, $00, $00, $3D, $37, $00, $E0, $68, $3D, $00, $68, $6A, $68, $00, $37, $5C, $68, $00, $37, $3A, $00, $E0, $3B, $5C, $68, $00, $00, $37, $5C, $5C, $68, $3B, $37, $3A, $00, $E4, $68, $37, $37, $00, $7B, $7B, $6A, $3D, $31, $00, $7B, $7B, $3B, $3D, $7B, $7B, $3B, $3D, $3D, $00, $7B, $7B, $6F, $00, $6A, $3D, $31, $3B, $7B, $7B, $3D, $3B, $7B, $7B, $00, $3D, $6F, $02, $71, $23, $E0, $62, $62, $23, $23, $62, $62, $23, $23, $89, $8A, $71, $51, $5A, $00, $37, $68, $00, $E0, $37, $5C, $5C, $68, $00, $98, $99, $6B, $4C, $5A, $87, $3D, $3B, $87, $E0, $3D, $00, $87, $87, $00, $71, $6B, $71, $00, $42, $84, $00, $00, $84, $E0, $00, $3D, $84, $84, $00, $64, $71, $71, $6F, $6F, $84, $00, $00, $84, $E0, $00, $00, $84, $84, $00, $81, $E2, $85, $82, $82, $85, $E0, $82, $82, $85, $85, $82, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005C" SLOT 2 SUPERFREE
 chunk_005C:
-.DB $37, $5C, $68, $37, $68, $00, $37, $5C, $68, $37, $5C, $68, $38, $E1, $00, $E2, $5C, $68, $37, $5C, $68, $3D, $3B, $38, $E1, $00, $E0, $3D, $37, $68, $37, $00, $3D, $3B, $37, $39, $38, $E1, $00, $E0, $68, $3D, $00, $68, $6A, $37, $5C, $00, $00, $38, $E1, $00, $E0, $3B, $5C, $68, $00, $E0, $7B, $7B, $00, $38, $E1, $00, $E3, $68, $37, $68, $7B, $7B, $61, $38, $E1, $7B, $7B, $3B, $3D, $7B, $7B, $3B, $3D, $3B, $00, $6F, $68, $38, $E1, $31, $3B, $7B, $7B, $3D, $3B, $7B, $7B, $6F, $37, $71, $03, $38, $E1, $62, $62, $23, $23, $62, $62, $23, $23, $71, $01, $71, $4F, $38, $E1, $00, $E0, $37, $5C, $5C, $68, $00, $42, $05, $69, $4F, $38, $E1, $87, $E0, $3D, $00, $87, $87, $00, $00, $05, $51, $4F, $38, $E1, $84, $E0, $00, $3D, $84, $84, $00, $01, $14, $12, $4B, $38, $E1, $84, $E0, $00, $00, $84, $84, $00, $05, $51, $4F, $4A, $2D, $E1, $85, $E0, $82, $82, $85, $85, $82, $81, $82, $E0, $81, $E1, $83, $ED, $00, $ED, $DF
+.DB $68, $37, $5C, $68, $38, $E2, $68, $00, $E1, $38, $38, $5C, $68, $3D, $3B, $38, $E2, $00, $5C, $68, $00, $00, $38, $38, $3D, $3B, $37, $39, $38, $E2, $61, $00, $00, $37, $5C, $38, $38, $37, $5C, $00, $00, $38, $E2, $3B, $3D, $37, $00, $00, $38, $38, $00, $7B, $7B, $00, $38, $E2, $37, $5C, $68, $61, $61, $38, $38, $68, $7B, $7B, $61, $38, $E2, $5C, $68, $37, $5C, $5C, $38, $38, $3B, $00, $6F, $68, $38, $E2, $00, $37, $6A, $01, $03, $38, $38, $6F, $37, $71, $03, $38, $E2, $6A, $68, $65, $05, $4F, $38, $38, $71, $01, $71, $4F, $38, $E2, $01, $02, $18, $16, $4B, $38, $38, $42, $05, $69, $4F, $38, $E2, $05, $51, $47, $4F, $48, $38, $38, $00, $05, $51, $4F, $38, $E2, $05, $51, $51, $4F, $4A, $38, $38, $01, $14, $12, $4B, $38, $E1, $1F, $14, $13, $13, $15, $95, $21, $38, $05, $51, $4F, $4A, $2D, $E1, $05, $51, $E2, $4F, $2D, $81, $82, $E0, $81, $E9, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005D" SLOT 2 SUPERFREE
 chunk_005D:
-.DB $38, $68, $00, $E1, $38, $E8, $00, $5C, $68, $00, $00, $38, $E8, $61, $00, $00, $37, $5C, $38, $E8, $3B, $3D, $37, $00, $00, $38, $E8, $37, $5C, $68, $61, $61, $38, $E8, $5C, $68, $37, $5C, $5C, $38, $E8, $00, $37, $6A, $01, $03, $38, $E8, $6A, $68, $65, $05, $4F, $38, $E5, $24, $38, $38, $01, $02, $18, $16, $4B, $38, $E8, $05, $51, $47, $4F, $48, $38, $E4, $24, $38, $E0, $05, $51, $51, $4F, $4A, $38, $E2, $24, $38, $E1, $1F, $14, $13, $13, $15, $95, $21, $38, $E6, $05, $51, $E2, $4F, $2D, $E6, $81, $ED, $83, $ED, $00, $ED, $DF
+.DB $38, $EC, $00, $38, $EC, $00, $38, $EC, $5C, $38, $EC, $31, $38, $EC, $37, $38, $EC, $37, $38, $EC, $3D, $38, $E3, $24, $38, $E5, $00, $38, $EC, $6A, $38, $E2, $24, $38, $E6, $00, $38, $E0, $24, $38, $E8, $01, $38, $EC, $05, $2D, $EC, $55, $81, $EC, $82, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005E" SLOT 2 SUPERFREE
 chunk_005E:
-.DB $38, $E4, $00, $00, $37, $68, $37, $68, $00, $00, $37, $38, $E4, $00, $37, $3D, $00, $E0, $37, $5C, $00, $38, $E4, $5C, $68, $3B, $3D, $31, $3B, $37, $68, $37, $38, $E4, $31, $37, $5C, $68, $3D, $37, $37, $00, $00, $38, $E4, $37, $00, $37, $5C, $5C, $68, $00, $3B, $3D, $38, $E4, $37, $5C, $5C, $68, $00, $3B, $5C, $5C, $37, $38, $E4, $3D, $00, $6A, $00, $37, $5C, $68, $37, $31, $38, $E4, $00, $6A, $65, $37, $3D, $00, $37, $00, $3D, $38, $E4, $6A, $65, $67, $6A, $00, $37, $00, $44, $37, $38, $E4, $00, $67, $66, $3D, $3B, $3D, $3B, $00, $3D, $38, $E4, $01, $17, $18, $02, $03, $37, $3D, $31, $37, $38, $E4, $05, $51, $47, $51, $4F, $3D, $31, $37, $00, $2D, $E4, $55, $4C, $E0, $4D, $00, $00, $3D, $00, $81, $E4, $82, $E6, $83, $ED, $00, $ED, $DF
+.DB $00, $37, $68, $37, $68, $00, $00, $37, $68, $00, $E4, $37, $3D, $00, $E0, $37, $5C, $00, $37, $5C, $68, $37, $5C, $68, $00, $00, $68, $3B, $3D, $31, $3B, $37, $68, $37, $3D, $00, $00, $68, $00, $37, $5C, $5C, $37, $5C, $68, $3D, $37, $37, $00, $E0, $3D, $31, $3B, $37, $00, $E1, $37, $5C, $5C, $68, $00, $3B, $3D, $31, $37, $68, $37, $6A, $00, $37, $5C, $E0, $68, $00, $3B, $5C, $5C, $37, $5C, $37, $00, $68, $00, $E2, $6A, $00, $37, $5C, $68, $37, $31, $00, $6A, $00, $00, $5C, $00, $6D, $58, $6A, $65, $37, $3D, $00, $37, $00, $3D, $31, $00, $01, $02, $02, $03, $68, $0F, $65, $67, $6A, $00, $37, $00, $44, $37, $5C, $68, $05, $51, $51, $4F, $3B, $00, $67, $66, $3D, $3B, $3D, $3B, $00, $3D, $3D, $00, $55, $4C, $4C, $4D, $00, $6A, $17, $18, $02, $03, $37, $3D, $31, $37, $68, $3B, $00, $3A, $37, $5C, $5C, $68, $51, $47, $51, $4F, $3D, $31, $37, $00, $00, $68, $3A, $37, $00, $E1, $4C, $E0, $4D, $00, $00, $3D, $00, $00, $3B, $00, $3D, $3B, $00, $E0, $82, $ED, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_005F" SLOT 2 SUPERFREE
 chunk_005F:
-.DB $68, $00, $EC, $37, $5C, $68, $37, $5C, $68, $00, $00, $37, $68, $00, $E3, $3D, $00, $00, $68, $00, $37, $5C, $5C, $68, $00, $37, $68, $37, $68, $00, $E0, $3D, $31, $3B, $37, $00, $E0, $37, $5C, $68, $37, $00, $00, $68, $00, $31, $37, $68, $37, $6A, $00, $37, $5C, $00, $E0, $5C, $68, $00, $3B, $00, $5C, $37, $00, $68, $00, $E1, $61, $00, $37, $39, $68, $39, $68, $37, $00, $6A, $00, $00, $5C, $00, $6D, $58, $43, $3D, $00, $61, $3B, $00, $37, $65, $31, $00, $01, $02, $02, $03, $68, $0F, $6C, $43, $3B, $37, $68, $37, $01, $17, $5C, $68, $05, $51, $51, $4F, $3B, $00, $0F, $6C, $43, $68, $00, $00, $05, $51, $3D, $00, $55, $4C, $4C, $4D, $00, $6A, $6A, $0F, $6C, $3B, $61, $61, $05, $51, $68, $3B, $00, $3A, $37, $5C, $5C, $68, $37, $68, $0F, $40, $00, $3D, $55, $4C, $00, $68, $3A, $37, $00, $E1, $68, $6A, $68, $1D, $1E, $37, $5C, $68, $00, $3B, $00, $3D, $3B, $00, $E0, $3B, $00, $3B, $00, $00, $1D, $23, $62, $82, $ED, $83, $ED, $00, $ED, $DF
+.DB $00, $E2, $37, $68, $00, $E6, $5C, $68, $00, $37, $5C, $37, $5C, $5C, $68, $00, $E6, $5C, $68, $37, $68, $00, $E0, $5C, $68, $00, $E0, $3B, $00, $37, $00, $37, $68, $00, $37, $5C, $68, $00, $E3, $37, $5C, $68, $7B, $6A, $00, $5C, $61, $61, $3B, $68, $00, $37, $68, $6A, $5C, $00, $28, $7B, $E0, $3B, $37, $68, $65, $6A, $00, $5C, $37, $5C, $68, $37, $04, $06, $7B, $E0, $6A, $00, $37, $66, $00, $37, $5C, $68, $00, $37, $00, $34, $35, $23, $23, $1E, $3D, $3B, $01, $18, $3C, $00, $E1, $3D, $37, $3C, $28, $00, $E1, $2B, $05, $47, $71, $8B, $92, $E0, $89, $8A, $71, $82, $1E, $2B, $68, $28, $2C, $05, $51, $5A, $9A, $84, $E0, $96, $9B, $71, $93, $37, $2C, $00, $37, $68, $55, $4C, $71, $71, $84, $E0, $98, $99, $5A, $84, $3D, $37, $5C, $00, $68, $39, $68, $42, $64, $84, $E0, $6B, $71, $5A, $84, $00, $3D, $3B, $3D, $61, $61, $3B, $3D, $64, $84, $E0, $71, $6B, $71, $84, $82, $E5, $81, $85, $E0, $81, $E0, $85, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0060" SLOT 2 SUPERFREE
 chunk_0060:
-.DB $00, $EA, $37, $68, $00, $E2, $37, $68, $00, $37, $5C, $68, $00, $37, $5C, $37, $5C, $5C, $00, $E1, $3D, $00, $5C, $00, $E0, $5C, $68, $37, $68, $00, $E0, $37, $39, $68, $37, $68, $37, $68, $37, $00, $37, $68, $00, $37, $5C, $68, $37, $00, $00, $37, $39, $5C, $68, $00, $68, $7B, $6A, $00, $5C, $61, $61, $3B, $39, $68, $65, $3D, $00, $00, $61, $37, $7B, $E0, $3B, $37, $68, $65, $6A, $7B, $7B, $66, $6F, $00, $3B, $6A, $3D, $7B, $E0, $6A, $00, $37, $66, $00, $02, $02, $18, $71, $45, $03, $23, $E1, $1E, $3D, $3B, $01, $18, $3C, $51, $51, $47, $69, $51, $4F, $37, $68, $00, $E1, $2B, $05, $47, $71, $51, $E2, $4F, $6A, $1D, $1E, $2B, $68, $28, $2C, $05, $51, $5A, $4C, $E2, $4D, $1D, $1E, $37, $2C, $00, $37, $68, $55, $4C, $71, $37, $68, $00, $1D, $23, $62, $1E, $00, $3D, $37, $5C, $00, $68, $39, $68, $42, $62, $1E, $5C, $5C, $68, $00, $3D, $3B, $00, $3D, $3B, $3D, $61, $61, $3B, $3D, $82, $ED, $83, $ED, $00, $ED, $DF
+.DB $38, $E1, $00, $E9, $38, $E1, $00, $E4, $31, $3B, $3D, $00, $68, $38, $E1, $00, $E4, $3D, $00, $00, $3D, $3B, $38, $E1, $37, $68, $00, $37, $68, $00, $00, $37, $68, $6A, $3B, $37, $38, $E1, $2B, $00, $68, $00, $3B, $39, $5C, $37, $00, $5C, $5C, $68, $38, $E1, $2A, $37, $5C, $5C, $68, $37, $68, $6A, $00, $3D, $00, $00, $38, $E1, $2C, $3D, $7B, $7B, $00, $5C, $5C, $68, $65, $3B, $3D, $3B, $2D, $E1, $28, $00, $7B, $7B, $3B, $00, $3C, $00, $66, $6A, $65, $00, $81, $81, $8F, $91, $82, $82, $89, $8B, $92, $92, $59, $02, $18, $02, $17, $02, $8C, $8E, $96, $97, $93, $93, $98, $9A, $84, $84, $71, $51, $47, $51, $E0, $96, $97, $98, $9A, $84, $84, $71, $5A, $84, $84, $64, $51, $E2, $96, $97, $71, $5A, $84, $84, $64, $71, $84, $84, $64, $51, $E2, $98, $9A, $71, $71, $84, $84, $71, $5A, $84, $84, $71, $4C, $E2, $81, $E1, $85, $85, $81, $81, $85, $85, $81, $82, $E2, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0061" SLOT 2 SUPERFREE
 chunk_0061:
-.DB $00, $E5, $38, $E1, $00, $E1, $68, $00, $E4, $38, $E1, $00, $E2, $5C, $68, $00, $E0, $3B, $00, $38, $E1, $00, $E7, $37, $5C, $38, $E1, $37, $68, $00, $37, $68, $00, $37, $68, $6A, $5C, $00, $28, $38, $E1, $2B, $00, $68, $00, $00, $5C, $37, $5C, $68, $37, $04, $06, $38, $E1, $2A, $37, $5C, $5C, $37, $5C, $68, $00, $37, $00, $34, $35, $38, $E1, $2C, $3D, $7B, $7B, $00, $E1, $3D, $37, $3C, $28, $2D, $E1, $28, $00, $7B, $7B, $8B, $92, $E0, $89, $8A, $71, $82, $81, $81, $8F, $91, $82, $82, $89, $8B, $9A, $84, $E0, $96, $9B, $71, $93, $8C, $8E, $96, $97, $93, $93, $98, $9A, $71, $84, $E0, $98, $99, $5A, $84, $96, $97, $98, $9A, $84, $84, $71, $5A, $64, $84, $E0, $6B, $71, $5A, $84, $96, $97, $71, $5A, $84, $84, $64, $71, $64, $84, $E0, $71, $6B, $71, $84, $98, $9A, $71, $71, $84, $84, $71, $5A, $81, $85, $E0, $81, $E0, $85, $81, $E1, $85, $85, $81, $81, $83, $ED, $00, $ED, $DF
+.DB $00, $F5, $37, $68, $00, $EA, $37, $00, $00, $68, $00, $00, $37, $5C, $68, $00, $00, $37, $5C, $68, $00, $00, $3D, $61, $37, $39, $68, $37, $00, $E0, $5C, $5C, $68, $37, $5C, $68, $37, $68, $37, $00, $E0, $3D, $00, $6D, $58, $37, $00, $00, $65, $68, $00, $68, $37, $00, $00, $2B, $6A, $61, $3D, $3B, $0F, $00, $6A, $65, $66, $61, $00, $00, $6A, $7A, $00, $2A, $61, $61, $3B, $57, $6E, $3D, $01, $17, $18, $03, $65, $61, $3B, $7A, $28, $2C, $28, $07, $08, $09, $00, $6A, $05, $51, $47, $4F, $66, $00, $3D, $7A, $6D, $1A, $54, $56, $2B, $6A, $01, $65, $55, $4C, $4C, $25, $18, $03, $00, $01, $03, $00, $37, $5C, $2C, $5C, $05, $17, $02, $03, $6A, $05, $47, $4F, $68, $05, $4F, $5C, $5C, $68, $61, $3B, $05, $4C, $4C, $4D, $68, $05, $51, $4F, $37, $05, $4F, $00, $E0, $68, $00, $05, $03, $00, $00, $37, $55, $4C, $4D, $00, $55, $4D, $00, $E0, $3B, $00, $55, $81, $82, $EC, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0062" SLOT 2 SUPERFREE
 chunk_0062:
-.DB $00, $ED, $37, $68, $00, $E5, $37, $68, $00, $E3, $68, $00, $00, $37, $5C, $68, $37, $5C, $00, $E0, $37, $5C, $68, $61, $37, $39, $68, $37, $00, $E0, $68, $00, $37, $68, $37, $00, $00, $3B, $37, $00, $E0, $3D, $00, $6D, $58, $7A, $7B, $79, $57, $6E, $01, $02, $03, $00, $00, $2B, $6A, $61, $3D, $3B, $0F, $10, $7B, $0D, $0E, $00, $05, $51, $4F, $7A, $00, $2A, $61, $61, $3B, $57, $6E, $0A, $5B, $09, $61, $00, $05, $51, $4F, $7A, $28, $2C, $28, $07, $08, $09, $00, $6A, $37, $68, $00, $3D, $05, $51, $4F, $7A, $6D, $1A, $54, $56, $2B, $6A, $01, $03, $7B, $7B, $68, $37, $05, $51, $4F, $01, $03, $00, $37, $5C, $2C, $5C, $05, $4F, $7B, $7B, $65, $00, $05, $11, $15, $05, $4F, $5C, $5C, $68, $61, $3B, $05, $25, $02, $02, $17, $03, $55, $05, $51, $05, $4F, $00, $E0, $68, $00, $05, $05, $51, $E0, $4F, $00, $55, $4C, $55, $4D, $00, $E0, $3B, $00, $55, $55, $4C, $E0, $4D, $00, $E0, $82, $ED, $83, $ED, $00, $ED, $DF
+.DB $00, $EF, $37, $68, $00, $E6, $37, $5C, $68, $37, $5C, $00, $E0, $37, $5C, $68, $00, $E1, $3A, $68, $00, $31, $68, $00, $37, $68, $37, $00, $00, $3B, $00, $01, $03, $39, $01, $03, $68, $3B, $7A, $7B, $79, $57, $6E, $01, $02, $03, $00, $55, $25, $03, $55, $4D, $3B, $37, $10, $7B, $0D, $0E, $00, $05, $51, $4F, $00, $37, $05, $4F, $3A, $01, $02, $03, $0A, $5B, $09, $61, $00, $05, $51, $4F, $37, $3A, $05, $4F, $00, $55, $4C, $4D, $6A, $37, $68, $00, $3D, $05, $51, $4F, $00, $3A, $55, $4D, $3D, $00, $00, $0D, $03, $7B, $7B, $68, $37, $05, $51, $4F, $3A, $00, $6D, $1A, $1B, $1A, $54, $09, $4F, $7B, $7B, $65, $00, $05, $11, $15, $02, $02, $03, $00, $00, $37, $68, $37, $25, $02, $02, $17, $03, $55, $05, $51, $E0, $4F, $00, $37, $5C, $5C, $00, $05, $51, $E0, $4F, $00, $55, $4C, $E0, $4D, $01, $02, $03, $00, $37, $55, $4C, $E0, $4D, $00, $E3, $55, $4C, $4D, $5C, $00, $82, $ED, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0063" SLOT 2 SUPERFREE
 chunk_0063:
-.DB $00, $F0, $31, $3B, $3D, $00, $68, $00, $E0, $37, $5C, $68, $00, $E2, $3D, $00, $00, $3D, $3B, $37, $68, $37, $37, $5C, $68, $00, $00, $68, $00, $00, $37, $68, $6A, $3B, $37, $00, $00, $68, $00, $68, $00, $E0, $3B, $39, $5C, $37, $00, $5C, $5C, $68, $6A, $37, $5C, $5C, $68, $00, $2B, $28, $68, $37, $68, $6A, $00, $3D, $00, $00, $37, $65, $00, $E0, $68, $2C, $65, $00, $5C, $5C, $68, $65, $3B, $3D, $3B, $65, $67, $3B, $3D, $65, $6A, $65, $66, $3B, $00, $3C, $00, $66, $6A, $65, $00, $66, $66, $65, $65, $66, $00, $66, $66, $92, $92, $59, $02, $18, $02, $17, $02, $18, $17, $17, $18, $18, $02, $17, $18, $84, $84, $71, $51, $47, $51, $E0, $47, $51, $51, $47, $47, $51, $51, $47, $84, $84, $64, $51, $EA, $84, $84, $64, $51, $EA, $84, $84, $71, $4C, $EA, $85, $85, $81, $82, $EA, $83, $ED, $00, $ED, $DF
+.DB $00, $ED, $37, $68, $00, $E7, $37, $68, $00, $37, $68, $00, $37, $68, $37, $68, $00, $E3, $3D, $00, $5C, $00, $37, $5C, $68, $37, $00, $00, $68, $00, $00, $37, $39, $68, $37, $68, $37, $68, $00, $E0, $5C, $68, $00, $3B, $00, $37, $00, $00, $37, $39, $5C, $68, $00, $61, $00, $37, $39, $68, $39, $68, $37, $39, $68, $65, $3D, $00, $00, $61, $37, $43, $3D, $00, $61, $3B, $00, $37, $65, $7B, $7B, $66, $6F, $00, $3B, $6A, $3D, $6C, $43, $3B, $37, $68, $37, $01, $17, $02, $02, $18, $71, $45, $03, $23, $23, $0F, $6C, $43, $68, $00, $00, $05, $51, $E0, $47, $69, $51, $4F, $37, $68, $6A, $0F, $6C, $3B, $61, $61, $05, $51, $E3, $4F, $6A, $1D, $37, $68, $0F, $40, $00, $3D, $55, $4C, $E3, $4D, $1D, $1E, $68, $6A, $68, $1D, $1E, $37, $5C, $68, $37, $68, $00, $1D, $23, $62, $1E, $00, $3B, $00, $3B, $00, $00, $1D, $23, $62, $62, $1E, $5C, $5C, $68, $00, $3D, $3B, $82, $ED, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0064" SLOT 2 SUPERFREE
 chunk_0064:
-.DB $00, $E2, $68, $37, $38, $E4, $24, $38, $00, $E2, $37, $00, $38, $E6, $2B, $00, $E0, $3B, $3D, $3B, $38, $E5, $24, $2A, $2B, $00, $00, $6A, $37, $5C, $38, $E6, $2C, $2C, $00, $00, $37, $3D, $00, $38, $E6, $28, $65, $00, $E0, $6A, $3D, $38, $E3, $24, $38, $38, $65, $67, $00, $00, $5C, $68, $6A, $38, $E1, $24, $38, $E1, $66, $66, $00, $00, $65, $65, $00, $38, $38, $24, $38, $E3, $17, $18, $02, $02, $17, $17, $02, $21, $38, $E5, $51, $47, $51, $51, $81, $E5, $82, $81, $E0, $51, $E1, $83, $E9, $51, $E1, $83, $E9, $4C, $E5, $00, $E5, $82, $E5, $00, $E5, $83, $E5, $00, $F5, $DF
+.DB $00, $EA, $68, $37, $38, $00, $E0, $37, $5C, $68, $00, $E4, $37, $00, $38, $37, $68, $37, $37, $5C, $68, $00, $00, $2B, $00, $E0, $3B, $3D, $3B, $38, $00, $00, $68, $00, $68, $00, $E0, $2A, $2B, $00, $00, $6A, $37, $5C, $38, $6A, $37, $5C, $5C, $68, $00, $2B, $28, $2C, $2C, $00, $00, $37, $3D, $00, $38, $37, $65, $00, $E0, $68, $2C, $65, $28, $65, $00, $E0, $6A, $3D, $38, $65, $67, $3B, $3D, $65, $6A, $65, $66, $65, $67, $00, $00, $5C, $68, $6A, $38, $66, $66, $65, $65, $66, $00, $66, $E1, $00, $00, $65, $65, $00, $38, $18, $17, $17, $18, $18, $02, $17, $18, $17, $18, $02, $02, $17, $17, $02, $21, $47, $51, $51, $47, $47, $51, $51, $47, $51, $47, $51, $51, $81, $E1, $51, $E9, $83, $E1, $51, $E9, $83, $E1, $4C, $ED, $82, $ED, $83, $ED, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0065" SLOT 2 SUPERFREE
 chunk_0065:
-.DB $00, $FF, $FF, $FF, $FF, $ED, $6F, $00, $EC, $71, $00, $EC, $71, $68, $00, $E0, $37, $68, $37, $68, $00, $37, $68, $00, $E1, $71, $3B, $00, $37, $5C, $00, $37, $3A, $26, $5C, $68, $37, $00, $E1, $71, $37, $5C, $3D, $00, $3D, $61, $65, $3B, $65, $6A, $26, $00, $E1, $71, $3D, $61, $3B, $68, $6A, $65, $66, $6A, $67, $65, $65, $00, $E1, $71, $65, $65, $00, $6A, $6F, $66, $66, $65, $66, $66, $67, $DF
+.DB $00, $FF, $FF, $FF, $FF, $F5, $6F, $00, $EC, $71, $00, $EC, $71, $68, $00, $EB, $71, $3B, $00, $37, $00, $E9, $71, $37, $5C, $3D, $00, $E9, $71, $3D, $61, $3B, $00, $E9, $71, $65, $65, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_0066" SLOT 2 SUPERFREE
 chunk_0066:
-.DB $00, $E1, $3B, $3D, $61, $00, $3B, $3D, $37, $39, $00, $E0, $3B, $00, $E3, $6A, $37, $68, $37, $26, $00, $3D, $61, $3B, $0D, $00, $E1, $37, $68, $37, $00, $00, $6A, $00, $00, $3B, $6A, $0D, $0E, $00, $E3, $37, $68, $00, $00, $6D, $1A, $19, $54, $09, $00, $E3, $37, $26, $00, $68, $6A, $00, $E1, $6A, $00, $E3, $26, $3D, $00, $3A, $00, $57, $6E, $26, $00, $E5, $6D, $58, $6A, $00, $0D, $0E, $00, $00, $37, $68, $37, $00, $E1, $6D, $58, $0A, $53, $54, $09, $00, $3A, $39, $3D, $3B, $3A, $00, $E2, $0F, $10, $26, $3A, $37, $5C, $68, $00, $6A, $68, $00, $E4, $0F, $10, $00, $3D, $31, $3B, $3D, $37, $68, $00, $E3, $39, $68, $0F, $10, $00, $00, $6A, $37, $3A, $00, $39, $5C, $37, $5C, $68, $00, $68, $3B, $26, $0F, $10, $37, $5C, $00, $6A, $00, $26, $5C, $00, $3A, $26, $00, $00, $68, $37, $68, $0A, $0B, $0C, $3D, $37, $68, $37, $37, $65, $6A, $00, $E1, $6A, $3B, $00, $00, $4E, $53, $1B, $6E, $68, $6A, $66, $65, $65, $00, $E0, $65, $00, $65, $00, $6F, $37, $00, $00, $3B, $65, $66, $67, $66, $00, $3D, $3B, $66, $65, $67, $37, $71, $02, $03, $6F, $00, $DF
+.DB $00, $E9, $3B, $3D, $61, $00, $EC, $6A, $37, $00, $E9, $37, $68, $37, $00, $EC, $37, $68, $00, $EA, $37, $26, $00, $EB, $26, $3D, $00, $EB, $6D, $58, $6A, $00, $E9, $6D, $58, $0A, $53, $00, $EA, $0F, $10, $26, $00, $EB, $0F, $10, $00, $EA, $39, $68, $0F, $00, $37, $68, $37, $68, $00, $37, $68, $5C, $37, $5C, $68, $00, $68, $3B, $26, $5C, $00, $37, $3A, $26, $5C, $68, $37, $5C, $00, $3A, $26, $00, $00, $68, $37, $00, $3D, $61, $65, $3B, $65, $6A, $26, $37, $65, $6A, $00, $E1, $6A, $68, $6A, $65, $66, $6A, $67, $65, $65, $6A, $66, $65, $65, $00, $E0, $65, $6A, $6F, $66, $66, $65, $66, $66, $67, $65, $66, $67, $66, $00, $3D, $3B, $66, $DF
 .ENDS
 
 .SECTION "base_chunk_0067" SLOT 2 SUPERFREE
 chunk_0067:
-.DB $00, $E1, $6B, $17, $17, $02, $02, $71, $18, $17, $18, $E0, $17, $00, $E1, $71, $11, $12, $51, $51, $6B, $47, $51, $47, $E0, $51, $00, $E1, $6B, $05, $4F, $51, $51, $69, $51, $E3, $00, $E1, $6B, $05, $25, $12, $51, $E5, $00, $E1, $42, $55, $05, $4F, $4C, $E5, $00, $E1, $61, $01, $16, $4D, $00, $EA, $55, $4D, $3B, $00, $00, $2E, $E2, $00, $E4, $01, $02, $03, $30, $38, $E2, $2F, $00, $E1, $5C, $5C, $55, $4C, $4D, $38, $E4, $00, $E1, $02, $E0, $03, $00, $38, $E4, $00, $E1, $4C, $E0, $4D, $68, $38, $E4, $00, $E1, $37, $39, $39, $68, $3B, $38, $E4, $00, $E1, $3D, $00, $04, $06, $68, $38, $E4, $00, $E2, $37, $32, $33, $2B, $38, $E4, $00, $E1, $37, $2B, $34, $28, $2A, $38, $E4, $00, $E1, $3A, $2C, $00, $00, $29, $38, $E4, $DF
+.DB $00, $E9, $6B, $17, $17, $02, $00, $E9, $71, $11, $12, $51, $00, $E9, $6B, $05, $4F, $51, $00, $E9, $6B, $05, $25, $12, $00, $E9, $42, $55, $05, $4F, $00, $E9, $61, $01, $16, $4D, $00, $EA, $55, $4D, $3B, $00, $EB, $01, $02, $00, $E9, $5C, $5C, $55, $4C, $00, $E9, $02, $E0, $03, $00, $E9, $4C, $E0, $4D, $00, $E9, $37, $39, $39, $68, $00, $E9, $3D, $00, $04, $06, $00, $EA, $37, $32, $33, $00, $E9, $37, $2B, $34, $28, $00, $E9, $3A, $2C, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_0068" SLOT 2 SUPERFREE
 chunk_0068:
-.DB $17, $18, $17, $18, $02, $E0, $18, $17, $17, $02, $71, $51, $4F, $71, $82, $51, $47, $51, $47, $51, $E0, $47, $51, $E0, $71, $51, $4F, $71, $8C, $51, $E8, $71, $51, $4F, $71, $96, $51, $E8, $71, $51, $4F, $71, $96, $4C, $E1, $51, $E4, $71, $51, $4F, $71, $96, $00, $E1, $51, $E4, $71, $51, $4F, $71, $96, $37, $5C, $68, $00, $51, $E4, $71, $51, $4F, $71, $96, $3D, $37, $5C, $68, $51, $E4, $71, $51, $4F, $71, $96, $00, $68, $61, $00, $EA, $37, $68, $00, $EB, $3D, $00, $5C, $68, $00, $E9, $2B, $27, $3E, $00, $EA, $29, $00, $2B, $00, $EA, $2A, $28, $2C, $28, $00, $E9, $2A, $01, $02, $02, $00, $E9, $2A, $05, $51, $51, $00, $E9, $DF
+.DB $02, $71, $18, $17, $18, $E0, $17, $17, $18, $17, $18, $02, $E0, $18, $51, $6B, $47, $51, $47, $E0, $51, $51, $47, $51, $47, $51, $E0, $47, $51, $69, $51, $FB, $4C, $E9, $51, $E1, $00, $E9, $51, $E1, $00, $00, $2E, $E2, $00, $37, $5C, $68, $00, $51, $E1, $03, $30, $38, $E2, $2F, $3D, $37, $5C, $68, $51, $E1, $4D, $38, $E4, $00, $68, $61, $00, $E3, $38, $E4, $37, $68, $00, $E3, $68, $38, $E4, $3D, $00, $5C, $68, $00, $E1, $3B, $38, $E4, $2B, $27, $3E, $00, $E2, $68, $38, $E4, $29, $00, $2B, $00, $E2, $2B, $38, $E4, $2A, $28, $2C, $28, $00, $E1, $2A, $38, $E4, $2A, $01, $02, $02, $00, $E1, $29, $38, $E4, $2A, $05, $51, $51, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_0069" SLOT 2 SUPERFREE
 chunk_0069:
-.DB $00, $E1, $02, $03, $2B, $00, $2A, $38, $E4, $00, $E1, $4C, $4D, $2C, $2B, $2C, $38, $E0, $24, $38, $E0, $00, $E2, $28, $00, $2C, $00, $38, $E4, $00, $E1, $37, $68, $00, $E0, $38, $38, $24, $38, $E1, $00, $E1, $3D, $68, $00, $37, $68, $38, $E4, $00, $E1, $31, $3B, $5C, $00, $00, $38, $E0, $24, $38, $E0, $00, $E1, $37, $5C, $68, $3D, $3B, $38, $E4, $00, $E3, $37, $68, $00, $38, $E1, $24, $38, $38, $00, $E2, $7B, $7B, $3B, $37, $38, $E3, $24, $00, $E1, $5C, $7B, $7B, $68, $1D, $1C, $3F, $3F, $1C, $1C, $3F, $3F, $00, $E1, $37, $1D, $1E, $00, $68, $38, $E4, $00, $E1, $6F, $3B, $3D, $31, $00, $38, $E4, $00, $E1, $71, $3C, $00, $3D, $3B, $38, $E4, $00, $E1, $71, $71, $45, $02, $03, $38, $E4, $00, $E1, $69, $71, $51, $51, $4F, $38, $24, $38, $E2, $00, $E1, $51, $69, $51, $51, $4F, $38, $E1, $24, $38, $38, $DF
+.DB $00, $E9, $02, $03, $2B, $00, $EA, $4C, $4D, $2C, $2B, $00, $EA, $28, $00, $2C, $00, $E9, $37, $68, $00, $EB, $3D, $68, $00, $37, $00, $E9, $31, $3B, $5C, $00, $EA, $37, $5C, $68, $3D, $00, $EB, $37, $68, $00, $EA, $7B, $7B, $3B, $00, $E9, $5C, $7B, $7B, $68, $00, $E9, $37, $1D, $1E, $00, $EA, $6F, $3B, $3D, $31, $00, $E9, $71, $3C, $00, $3D, $00, $E9, $71, $71, $45, $02, $00, $E9, $69, $71, $51, $51, $00, $E9, $51, $69, $51, $51, $DF
 .ENDS
 
 .SECTION "base_chunk_006A" SLOT 2 SUPERFREE
 chunk_006A:
-.DB $29, $05, $51, $51, $00, $E9, $2C, $55, $4C, $4C, $00, $EB, $37, $68, $00, $EA, $37, $00, $EC, $3D, $31, $00, $EC, $3D, $31, $00, $E9, $37, $68, $37, $5C, $00, $E9, $3D, $31, $00, $3D, $00, $E9, $37, $68, $37, $68, $00, $E9, $1E, $37, $00, $EC, $3D, $31, $3D, $00, $EA, $37, $68, $31, $00, $E9, $37, $26, $00, $5C, $00, $E9, $3D, $31, $37, $26, $00, $E9, $31, $31, $3D, $00, $EA, $37, $68, $3B, $3D, $00, $E9, $DF
+.DB $2A, $38, $E4, $29, $05, $51, $51, $00, $E1, $2C, $38, $E0, $24, $38, $E0, $2C, $55, $4C, $4C, $00, $E2, $38, $E4, $00, $00, $37, $68, $00, $E2, $38, $38, $24, $38, $E1, $00, $37, $00, $E3, $68, $38, $E4, $00, $3D, $31, $00, $E3, $38, $E0, $24, $38, $E0, $00, $00, $3D, $31, $00, $E1, $3B, $38, $E4, $37, $68, $37, $5C, $00, $E2, $38, $E1, $24, $38, $38, $3D, $31, $00, $3D, $00, $E1, $37, $38, $E3, $24, $37, $68, $37, $68, $00, $E1, $1D, $1C, $3F, $3F, $1C, $1C, $3F, $3F, $1E, $37, $00, $E3, $68, $38, $E4, $00, $3D, $31, $3D, $00, $E2, $38, $E4, $00, $37, $68, $31, $00, $E1, $3B, $38, $E4, $37, $26, $00, $5C, $00, $E1, $03, $38, $E4, $3D, $31, $37, $26, $00, $E1, $4F, $38, $24, $38, $E2, $31, $31, $3D, $00, $E2, $4F, $38, $E1, $24, $38, $38, $37, $68, $3B, $3D, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_006B" SLOT 2 SUPERFREE
 chunk_006B:
-.DB $00, $E1, $4C, $E1, $4D, $38, $E3, $24, $00, $E2, $37, $68, $37, $39, $38, $E4, $00, $E1, $5C, $00, $01, $03, $23, $3F, $3F, $1C, $1C, $3F, $3F, $1C, $00, $E1, $3D, $37, $05, $4F, $00, $38, $E4, $00, $E1, $01, $02, $16, $4B, $68, $38, $E4, $00, $E1, $05, $51, $4F, $4A, $00, $38, $E4, $00, $E1, $05, $51, $25, $03, $3C, $38, $E4, $00, $E1, $55, $4C, $05, $4F, $71, $24, $38, $E3, $00, $E3, $05, $4F, $71, $38, $E4, $00, $E1, $61, $61, $55, $4D, $71, $38, $E4, $00, $E2, $37, $5C, $3D, $42, $38, $E3, $24, $00, $E1, $5C, $00, $00, $68, $3D, $38, $E4, $00, $E2, $37, $68, $61, $61, $38, $E4, $00, $E1, $37, $00, $37, $5C, $68, $38, $E4, $00, $E1, $3D, $00, $3D, $3B, $00, $38, $E4, $00, $E1, $37, $68, $37, $3D, $00, $38, $E3, $24, $DF
+.DB $00, $E9, $4C, $E1, $00, $EA, $37, $68, $37, $00, $E9, $5C, $00, $01, $03, $00, $E9, $3D, $37, $05, $4F, $00, $E9, $01, $02, $16, $4B, $00, $E9, $05, $51, $4F, $4A, $00, $E9, $05, $51, $25, $03, $00, $E9, $55, $4C, $05, $4F, $00, $EB, $05, $4F, $00, $E9, $61, $61, $55, $4D, $00, $EA, $37, $5C, $3D, $00, $E9, $5C, $00, $00, $68, $00, $EA, $37, $68, $61, $00, $E9, $37, $00, $37, $5C, $00, $E9, $3D, $00, $3D, $3B, $00, $E9, $37, $68, $37, $3D, $DF
 .ENDS
 
 .SECTION "base_chunk_006C" SLOT 2 SUPERFREE
 chunk_006C:
-.DB $00, $7B, $7B, $39, $00, $E9, $3D, $7B, $7B, $68, $00, $E9, $23, $01, $03, $3B, $00, $E9, $68, $05, $4F, $37, $00, $E9, $3B, $05, $4F, $00, $EA, $37, $55, $4D, $37, $00, $EB, $37, $00, $EA, $3D, $61, $3D, $00, $EA, $5C, $68, $00, $3D, $00, $EA, $37, $5C, $00, $EA, $5C, $00, $00, $5C, $00, $EA, $01, $03, $00, $EA, $3D, $05, $4F, $3B, $00, $E9, $01, $16, $4B, $00, $EA, $05, $4F, $4A, $00, $EA, $05, $4F, $37, $5C, $00, $E9, $DF
+.DB $4D, $38, $E3, $24, $00, $7B, $7B, $39, $00, $E1, $39, $38, $E4, $3D, $7B, $7B, $68, $00, $E1, $23, $3F, $3F, $1C, $1C, $3F, $3F, $1C, $23, $01, $03, $3B, $00, $E2, $38, $E4, $68, $05, $4F, $37, $00, $E1, $68, $38, $E4, $3B, $05, $4F, $00, $E3, $38, $E4, $37, $55, $4D, $37, $00, $E1, $3C, $38, $E4, $00, $00, $37, $00, $E2, $71, $24, $38, $E3, $3D, $61, $3D, $00, $E2, $71, $38, $E4, $5C, $68, $00, $3D, $00, $E1, $71, $38, $E4, $00, $37, $5C, $00, $E2, $42, $38, $E3, $24, $5C, $00, $00, $5C, $00, $E1, $3D, $38, $E4, $00, $01, $03, $00, $E2, $61, $38, $E4, $3D, $05, $4F, $3B, $00, $E1, $68, $38, $E4, $01, $16, $4B, $00, $E3, $38, $E4, $05, $4F, $4A, $00, $E3, $38, $E3, $24, $05, $4F, $37, $5C, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_006D" SLOT 2 SUPERFREE
 chunk_006D:
-.DB $00, $E3, $68, $37, $68, $38, $E4, $00, $E1, $3D, $61, $3B, $3D, $61, $38, $E4, $00, $E1, $6A, $37, $68, $00, $00, $24, $38, $E3, $00, $E1, $5C, $68, $37, $68, $37, $38, $E4, $00, $E2, $37, $00, $00, $68, $38, $38, $24, $38, $38, $24, $38, $00, $E1, $3D, $00, $00, $6A, $00, $38, $E4, $00, $E2, $3D, $61, $61, $30, $38, $E4, $00, $E1, $3D, $3B, $00, $00, $38, $E5, $00, $E1, $68, $37, $68, $37, $38, $E5, $00, $E1, $37, $7B, $37, $00, $38, $E2, $24, $24, $38, $00, $E1, $7A, $7B, $79, $31, $38, $38, $24, $38, $E2, $00, $E1, $7A, $7B, $79, $68, $24, $38, $E4, $00, $E1, $3C, $3C, $23, $1E, $38, $E5, $00, $E1, $71, $71, $68, $00, $38, $24, $38, $38, $24, $38, $E0, $00, $E1, $71, $71, $6F, $37, $38, $E3, $24, $38, $00, $E1, $71, $E0, $00, $38, $E5, $DF
+.DB $00, $EB, $68, $37, $00, $E9, $3D, $61, $3B, $3D, $00, $E9, $6A, $37, $68, $00, $EA, $5C, $68, $37, $68, $00, $EA, $37, $00, $EB, $3D, $00, $00, $6A, $00, $EA, $3D, $61, $61, $00, $E9, $3D, $3B, $00, $EB, $68, $37, $68, $37, $00, $E9, $37, $7B, $37, $00, $EA, $7A, $7B, $79, $31, $00, $E9, $7A, $7B, $79, $68, $00, $E9, $3C, $3C, $23, $1E, $00, $E9, $71, $71, $68, $00, $EA, $71, $71, $6F, $37, $00, $E9, $71, $E0, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_006E" SLOT 2 SUPERFREE
 chunk_006E:
-.DB $55, $4D, $3D, $00, $EA, $6A, $00, $37, $68, $00, $E9, $37, $5C, $00, $EB, $2F, $00, $6A, $00, $EA, $38, $68, $37, $68, $00, $E9, $24, $00, $68, $00, $EA, $38, $00, $3C, $3C, $00, $E9, $38, $3C, $71, $71, $00, $E9, $24, $71, $6B, $71, $00, $E9, $38, $64, $71, $71, $00, $E9, $38, $71, $6B, $6B, $00, $E9, $38, $71, $6B, $71, $00, $E9, $38, $71, $71, $6B, $00, $E9, $38, $64, $6B, $71, $00, $E9, $38, $64, $71, $71, $00, $E9, $77, $71, $71, $6B, $00, $E9, $DF
+.DB $68, $38, $E4, $55, $4D, $3D, $00, $E2, $61, $38, $E4, $6A, $00, $37, $68, $00, $E2, $24, $38, $E3, $37, $5C, $00, $E3, $37, $38, $E4, $2F, $00, $6A, $00, $E2, $68, $38, $38, $24, $38, $38, $24, $38, $38, $68, $37, $68, $00, $E2, $38, $E4, $24, $00, $68, $00, $E2, $30, $38, $E5, $00, $3C, $3C, $00, $E1, $38, $E6, $3C, $71, $71, $00, $E1, $38, $E5, $24, $71, $6B, $71, $00, $E1, $38, $E2, $24, $24, $38, $38, $64, $71, $71, $00, $E1, $38, $38, $24, $38, $E3, $71, $6B, $6B, $00, $E1, $24, $38, $E5, $71, $6B, $71, $00, $E1, $38, $E6, $71, $71, $6B, $00, $E1, $38, $24, $38, $38, $24, $38, $E1, $64, $6B, $71, $00, $E1, $38, $E3, $24, $38, $38, $64, $71, $71, $00, $E1, $38, $E5, $77, $71, $71, $6B, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_006F" SLOT 2 SUPERFREE
 chunk_006F:
-.DB $00, $E1, $71, $6B, $71, $3C, $38, $E5, $00, $E1, $6B, $71, $6B, $71, $77, $38, $E3, $77, $00, $E1, $6B, $71, $6B, $71, $6B, $77, $38, $E1, $77, $71, $00, $E1, $71, $6B, $71, $6B, $71, $75, $38, $38, $24, $38, $71, $6B, $00, $E1, $6B, $71, $6B, $6B, $71, $38, $24, $38, $E0, $75, $71, $00, $E1, $71, $6B, $71, $71, $75, $38, $38, $24, $24, $38, $38, $75, $00, $E1, $71, $E0, $75, $38, $E0, $76, $76, $38, $E0, $00, $E1, $42, $71, $42, $38, $38, $24, $38, $E1, $24, $38, $00, $E1, $3D, $42, $00, $38, $E6, $00, $E2, $3D, $3B, $38, $E0, $24, $E1, $38, $38, $00, $E1, $37, $68, $00, $38, $E1, $76, $76, $38, $E0, $00, $E1, $3D, $37, $68, $38, $E0, $24, $38, $38, $24, $38, $38, $00, $E1, $37, $00, $3B, $38, $24, $38, $E3, $24, $00, $E1, $02, $03, $23, $1C, $E6, $00, $E1, $4C, $4D, $00, $38, $E6, $00, $E3, $37, $38, $E6, $DF
+.DB $00, $E9, $71, $6B, $71, $3C, $00, $E9, $6B, $71, $6B, $71, $00, $E9, $6B, $71, $6B, $71, $00, $E9, $71, $6B, $71, $6B, $00, $E9, $6B, $71, $6B, $6B, $00, $E9, $71, $6B, $71, $71, $00, $E9, $71, $E0, $75, $00, $E9, $42, $71, $42, $38, $00, $E9, $3D, $42, $00, $38, $00, $EA, $3D, $3B, $38, $00, $E9, $37, $68, $00, $38, $00, $E9, $3D, $37, $68, $38, $00, $E9, $37, $00, $3B, $38, $00, $E9, $02, $03, $23, $1C, $00, $E9, $4C, $4D, $00, $38, $00, $EB, $37, $38, $DF
 .ENDS
 
 .SECTION "base_chunk_0070" SLOT 2 SUPERFREE
 chunk_0070:
-.DB $64, $71, $6B, $71, $00, $E9, $71, $6B, $71, $71, $00, $E9, $6B, $71, $71, $6B, $00, $E9, $71, $71, $6B, $71, $00, $E9, $6B, $71, $E0, $00, $E9, $71, $6B, $71, $6B, $00, $E9, $75, $71, $71, $6B, $00, $E9, $38, $42, $E0, $00, $E9, $38, $3D, $00, $EB, $38, $3B, $3D, $3B, $00, $E9, $38, $37, $39, $68, $00, $E9, $38, $7B, $7B, $79, $00, $E9, $38, $7B, $7B, $79, $00, $E9, $1C, $23, $01, $02, $00, $E9, $38, $00, $05, $51, $00, $E9, $38, $00, $55, $4C, $00, $E9, $DF
+.DB $38, $E5, $64, $71, $6B, $71, $00, $E1, $77, $38, $E3, $77, $71, $6B, $71, $71, $00, $E1, $6B, $77, $38, $E1, $77, $71, $6B, $71, $71, $6B, $00, $E1, $71, $75, $38, $38, $24, $38, $71, $6B, $71, $71, $6B, $71, $00, $E1, $71, $38, $24, $38, $E0, $75, $71, $6B, $71, $E0, $00, $E1, $75, $38, $38, $24, $24, $38, $38, $75, $71, $6B, $71, $6B, $00, $E1, $38, $E0, $76, $76, $38, $E0, $75, $71, $71, $6B, $00, $E1, $38, $24, $38, $E1, $24, $38, $38, $42, $E0, $00, $E1, $38, $E6, $3D, $00, $E3, $38, $38, $24, $E1, $38, $E0, $3B, $3D, $3B, $00, $E1, $38, $E0, $76, $76, $38, $E1, $37, $39, $68, $00, $E1, $38, $38, $24, $38, $38, $24, $38, $E0, $7B, $7B, $79, $00, $E1, $24, $38, $E3, $24, $38, $7B, $7B, $79, $00, $E1, $1C, $E6, $23, $01, $02, $00, $E1, $38, $E6, $00, $05, $51, $00, $E1, $38, $E6, $00, $55, $4C, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_0071" SLOT 2 SUPERFREE
 chunk_0071:
-.DB $00, $E1, $68, $37, $00, $38, $E6, $00, $E1, $6A, $00, $00, $38, $E1, $24, $24, $38, $E0, $00, $E3, $6A, $38, $E6, $00, $E1, $68, $00, $00, $38, $E6, $00, $E2, $68, $37, $38, $E6, $00, $E3, $68, $38, $E3, $24, $38, $24, $00, $E4, $38, $E6, $00, $E1, $37, $68, $00, $38, $E1, $24, $38, $E1, $00, $E2, $26, $68, $38, $E3, $24, $38, $38, $00, $E1, $3D, $00, $26, $38, $E5, $24, $00, $E4, $38, $E6, $00, $E1, $37, $68, $00, $38, $E5, $77, $00, $E3, $39, $38, $E4, $1F, $71, $00, $E1, $61, $3B, $00, $38, $24, $38, $38, $24, $38, $38, $72, $71, $00, $E2, $3D, $6A, $38, $E1, $76, $38, $E0, $75, $00, $E1, $68, $37, $68, $38, $E2, $24, $38, $E0, $DF
+.DB $00, $E9, $68, $37, $00, $38, $00, $E9, $6A, $00, $00, $38, $00, $EB, $6A, $38, $00, $E9, $68, $00, $00, $38, $00, $EA, $68, $37, $38, $00, $EB, $68, $38, $00, $EC, $38, $00, $E9, $37, $68, $00, $38, $00, $EA, $26, $68, $38, $00, $E9, $3D, $00, $26, $38, $00, $EC, $38, $00, $E9, $37, $68, $00, $38, $00, $EB, $39, $38, $00, $E9, $61, $3B, $00, $38, $00, $EA, $3D, $6A, $38, $00, $E9, $68, $37, $68, $38, $DF
 .ENDS
 
 .SECTION "base_chunk_0072" SLOT 2 SUPERFREE
 chunk_0072:
-.DB $38, $68, $00, $37, $00, $E9, $38, $79, $5C, $65, $00, $E9, $38, $79, $65, $66, $00, $E9, $38, $79, $67, $67, $00, $E9, $38, $01, $17, $17, $00, $E9, $38, $05, $51, $51, $00, $E9, $38, $55, $4C, $4C, $00, $E9, $38, $00, $37, $68, $00, $E9, $38, $37, $00, $EB, $38, $7B, $7B, $79, $00, $E9, $38, $7B, $7B, $6F, $00, $E9, $20, $02, $02, $71, $00, $E9, $51, $63, $51, $6B, $00, $E9, $74, $71, $63, $6B, $00, $E9, $38, $6B, $71, $71, $00, $E9, $38, $42, $71, $6B, $00, $E9, $DF
+.DB $38, $E6, $68, $00, $37, $00, $E1, $38, $E0, $24, $24, $38, $E1, $79, $5C, $65, $00, $E1, $38, $E6, $79, $65, $66, $00, $E1, $38, $E6, $79, $67, $67, $00, $E1, $38, $E6, $01, $17, $17, $00, $E1, $38, $E2, $24, $38, $24, $38, $05, $51, $51, $00, $E1, $38, $E6, $55, $4C, $4C, $00, $E1, $38, $E0, $24, $38, $E2, $00, $37, $68, $00, $E1, $38, $E2, $24, $38, $E0, $37, $00, $E3, $38, $E4, $24, $38, $7B, $7B, $79, $00, $E1, $38, $E6, $7B, $7B, $6F, $00, $E1, $38, $E4, $77, $20, $02, $02, $71, $00, $E1, $38, $E3, $1F, $71, $51, $63, $51, $6B, $00, $E1, $24, $38, $38, $24, $38, $38, $72, $71, $74, $71, $63, $6B, $00, $E1, $38, $E0, $76, $38, $E0, $75, $38, $6B, $71, $71, $00, $E1, $38, $E1, $24, $38, $E1, $42, $71, $6B, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_0073" SLOT 2 SUPERFREE
 chunk_0073:
-.DB $38, $6A, $42, $71, $00, $E9, $38, $00, $00, $42, $00, $E9, $38, $37, $68, $6A, $00, $E9, $38, $7B, $7B, $79, $00, $E9, $1F, $02, $E0, $00, $E9, $05, $51, $E0, $00, $E9, $05, $51, $E0, $00, $E9, $05, $51, $E0, $00, $E9, $05, $51, $E0, $00, $E9, $81, $E1, $00, $E9, $83, $E1, $00, $E9, $83, $E1, $00, $FF, $FF, $E7, $DF
+.DB $38, $E3, $24, $38, $38, $6A, $42, $71, $00, $E1, $38, $E6, $00, $00, $42, $00, $E1, $38, $E4, $24, $38, $37, $68, $6A, $00, $E1, $38, $E6, $7B, $7B, $79, $00, $E1, $38, $E5, $1F, $02, $E0, $00, $E1, $38, $E2, $24, $38, $38, $05, $51, $E0, $00, $E1, $38, $E0, $24, $38, $E1, $05, $51, $E0, $00, $E1, $38, $24, $38, $E3, $05, $51, $E0, $00, $E1, $38, $E5, $05, $51, $E0, $00, $E1, $81, $E1, $82, $81, $E4, $00, $E1, $83, $E9, $00, $E1, $83, $E9, $00, $FF, $FF, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_0074" SLOT 2 SUPERFREE
 chunk_0074:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E1, $2B, $42, $64, $71, $6B, $00, $E7, $2B, $29, $2B, $42, $71, $42, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FA, $2B, $42, $64, $71, $6B, $71, $00, $2B, $71, $6B, $71, $6B, $71, $00, $00, $2B, $29, $2B, $42, $71, $42, $42, $00, $29, $59, $42, $64, $71, $6B, $DF
 .ENDS
 
 .SECTION "base_chunk_0075" SLOT 2 SUPERFREE
 chunk_0075:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $71, $00, $2B, $71, $6B, $71, $6B, $71, $6B, $71, $00, $E3, $42, $00, $29, $59, $42, $64, $71, $6B, $71, $6B, $2A, $29, $00, $E1, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $6B, $71, $00, $E3, $3C, $3D, $54, $33, $3D, $48, $5D, $37, $71, $6B, $2A, $29, $00, $E1, $6F, $6F, $3D, $6F, $48, $5E, $6F, $6F, $DF
 .ENDS
 
 .SECTION "base_chunk_0076" SLOT 2 SUPERFREE
 chunk_0076:
-.DB $00, $E1, $2B, $00, $E0, $28, $2B, $29, $2A, $2C, $00, $42, $00, $E2, $2C, $28, $00, $27, $3E, $2A, $2C, $2C, $37, $68, $00, $E2, $37, $5C, $68, $37, $68, $00, $2C, $37, $68, $00, $00, $65, $28, $37, $5C, $5C, $00, $61, $37, $26, $00, $5C, $37, $00, $E0, $65, $66, $00, $E1, $37, $6D, $58, $37, $68, $37, $57, $6E, $00, $01, $17, $18, $02, $00, $00, $28, $3D, $3B, $0A, $53, $19, $54, $09, $3D, $00, $05, $51, $47, $51, $68, $3B, $37, $5C, $68, $00, $57, $6E, $00, $E1, $05, $51, $E0, $00, $37, $00, $00, $3B, $0D, $0E, $37, $5C, $68, $37, $68, $55, $4C, $E0, $00, $3D, $00, $07, $08, $09, $37, $00, $00, $3B, $00, $00, $68, $00, $E0, $6D, $1A, $54, $56, $00, $00, $3D, $00, $00, $37, $68, $00, $3B, $00, $E0, $68, $57, $6E, $61, $3D, $37, $5C, $68, $37, $00, $00, $68, $00, $E1, $54, $09, $37, $68, $37, $00, $E3, $3B, $00, $E1, $3B, $00, $3D, $3B, $00, $37, $68, $00, $3D, $3B, $00, $E3, $68, $3A, $37, $68, $37, $3A, $3B, $3D, $00, $68, $00, $E3, $58, $37, $26, $00, $68, $00, $68, $37, $3D, $3B, $00, $E3, $0A, $53, $1B, $6E, $00, $39, $68, $68, $00, $E5, $DF
+.DB $00, $E9, $2B, $00, $EC, $2C, $28, $00, $27, $00, $E8, $37, $5C, $68, $37, $68, $00, $E5, $37, $5C, $5C, $00, $61, $37, $26, $00, $E5, $37, $00, $E0, $37, $6D, $58, $37, $68, $00, $E3, $37, $00, $E0, $28, $3D, $3B, $0A, $53, $19, $00, $E3, $3D, $37, $68, $3B, $37, $5C, $68, $00, $57, $6E, $00, $E2, $37, $5C, $00, $00, $37, $00, $00, $3B, $0D, $0E, $37, $00, $E2, $3D, $61, $3B, $00, $3D, $00, $07, $08, $09, $37, $00, $00, $37, $68, $37, $68, $00, $37, $3D, $6D, $1A, $54, $56, $00, $00, $3D, $00, $37, $39, $00, $68, $00, $37, $68, $37, $68, $57, $6E, $61, $3D, $37, $5C, $68, $3D, $3B, $3D, $37, $5C, $00, $6D, $1A, $54, $09, $37, $68, $37, $00, $E0, $68, $37, $68, $00, $6D, $58, $00, $00, $3B, $00, $3D, $3B, $00, $37, $68, $00, $37, $39, $00, $68, $00, $5E, $5F, $6E, $68, $3A, $37, $68, $37, $3A, $3B, $3D, $68, $37, $68, $3B, $3D, $37, $68, $6D, $58, $37, $26, $00, $68, $00, $68, $37, $00, $00, $26, $68, $37, $26, $00, $68, $0A, $53, $1B, $6E, $00, $39, $68, $68, $DF
 .ENDS
 
 .SECTION "base_chunk_0077" SLOT 2 SUPERFREE
 chunk_0077:
-.DB $28, $2B, $2A, $42, $2B, $71, $42, $71, $6B, $71, $29, $29, $00, $E1, $2B, $2A, $2C, $28, $2C, $42, $28, $42, $71, $42, $2A, $2A, $00, $E1, $29, $2C, $00, $27, $3E, $28, $2B, $28, $42, $2B, $2A, $29, $00, $E1, $2C, $00, $28, $00, $28, $00, $2C, $00, $28, $2C, $E0, $00, $E1, $02, $E1, $6F, $3C, $3C, $6F, $3C, $6F, $E4, $51, $E1, $6B, $69, $71, $E0, $6B, $71, $6B, $71, $6B, $71, $71, $51, $E1, $69, $51, $69, $E0, $71, $6B, $71, $6B, $71, $6B, $71, $4C, $E6, $71, $71, $6B, $71, $E0, $6B, $00, $E6, $42, $E4, $00, $FF, $FF, $FF, $EA, $DF
+.DB $28, $2B, $29, $2A, $2C, $00, $42, $00, $28, $2B, $2A, $42, $2B, $71, $42, $71, $3E, $2A, $2C, $2C, $37, $68, $00, $00, $2B, $2A, $2C, $28, $2C, $42, $28, $42, $00, $2C, $37, $68, $00, $00, $65, $28, $29, $2C, $00, $27, $3E, $28, $2B, $28, $5C, $37, $00, $E0, $65, $66, $00, $2C, $00, $28, $00, $28, $00, $2C, $00, $37, $57, $6E, $00, $01, $17, $18, $02, $E2, $6F, $3C, $3C, $6F, $54, $09, $3D, $00, $05, $51, $47, $51, $E2, $6B, $69, $71, $71, $00, $E1, $05, $51, $E4, $69, $51, $69, $69, $5C, $68, $37, $68, $55, $4C, $E8, $00, $3B, $00, $00, $68, $00, $E9, $37, $68, $00, $3B, $00, $E8, $37, $00, $00, $68, $00, $EC, $3B, $00, $E9, $3D, $3B, $00, $EC, $68, $00, $EB, $3D, $3B, $00, $FB, $DF
 .ENDS
 
 .SECTION "base_chunk_0078" SLOT 2 SUPERFREE
 chunk_0078:
-.DB $00, $FF, $FF, $EA, $37, $00, $EB, $37, $00, $EC, $3D, $37, $00, $EA, $37, $5C, $00, $EB, $3D, $61, $3B, $00, $E6, $37, $68, $37, $68, $00, $37, $3D, $00, $E5, $37, $39, $00, $68, $00, $37, $68, $37, $00, $E3, $37, $68, $3D, $3B, $3D, $37, $5C, $00, $6D, $1A, $00, $E3, $3D, $00, $68, $37, $68, $00, $6D, $58, $00, $E3, $68, $37, $5C, $68, $37, $39, $00, $68, $00, $5E, $5F, $6E, $00, $E1, $37, $39, $26, $00, $68, $37, $68, $3B, $3D, $37, $68, $6D, $00, $E1, $39, $26, $00, $E1, $26, $68, $37, $26, $00, $68, $DF
+.DB $6B, $71, $29, $29, $00, $E1, $4B, $43, $47, $43, $4B, $44, $2F, $4B, $71, $42, $2A, $2A, $00, $E1, $41, $42, $41, $41, $42, $4A, $41, $3B, $42, $2B, $2A, $29, $00, $E1, $8A, $E1, $92, $7B, $7B, $41, $28, $2C, $E0, $00, $E1, $29, $E1, $23, $7B, $7B, $00, $3C, $6F, $E4, $01, $01, $02, $02, $01, $14, $01, $18, $71, $6B, $71, $6B, $71, $6B, $71, $71, $6F, $47, $46, $4E, $6F, $4C, $46, $6F, $69, $71, $6B, $71, $6B, $71, $6B, $71, $3C, $50, $55, $06, $3C, $04, $06, $51, $4C, $71, $71, $6B, $71, $E0, $6B, $3D, $33, $2E, $3C, $54, $3C, $6B, $71, $00, $42, $E4, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E2, $3C, $3D, $3C, $00, $E5, $54, $E0, $3D, $3D, $6B, $71, $44, $00, $E5, $54, $E0, $3C, $43, $4E, $41, $4A, $00, $E5, $54, $E0, $3D, $48, $5E, $00, $5B, $00, $E5, $54, $E0, $3C, $3D, $43, $01, $01, $00, $E5, $54, $E0, $3D, $51, $5E, $32, $32, $DF
 .ENDS
 
 .SECTION "base_chunk_0079" SLOT 2 SUPERFREE
 chunk_0079:
-.DB $57, $6E, $00, $37, $68, $37, $68, $00, $E6, $0E, $00, $37, $00, $3B, $00, $3B, $00, $E6, $6A, $00, $3D, $00, $37, $68, $3D, $00, $E7, $37, $68, $37, $3A, $39, $5C, $68, $00, $E6, $3D, $00, $68, $00, $3A, $00, $37, $68, $00, $E4, $6A, $00, $3D, $3B, $3D, $00, $37, $39, $00, $E5, $68, $00, $37, $68, $37, $5C, $39, $00, $E6, $26, $68, $3D, $39, $00, $EA, $3B, $00, $37, $68, $00, $E9, $68, $37, $3D, $00, $39, $00, $E7, $68, $3B, $00, $00, $3D, $3B, $3D, $00, $E6, $37, $5C, $68, $00, $E0, $37, $00, $E8, $3B, $3B, $3D, $37, $00, $E9, $68, $00, $6A, $3D, $3B, $00, $E9, $68, $00, $EA, $6A, $00, $3B, $00, $E9, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $F6, $37, $68, $00, $EB, $3D, $00, $EA, $68, $37, $5C, $68, $00, $E9, $37, $39, $26, $00, $EA, $39, $26, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_007A" SLOT 2 SUPERFREE
 chunk_007A:
-.DB $82, $ED, $8E, $83, $EC, $97, $8C, $8E, $83, $EA, $97, $96, $97, $83, $EA, $97, $96, $97, $83, $EA, $97, $96, $97, $83, $EA, $97, $96, $97, $83, $EA, $97, $96, $97, $83, $EA, $00, $FF, $FF, $FF, $FA, $DF
+.DB $3B, $3D, $37, $39, $00, $E0, $3B, $57, $6E, $00, $37, $68, $37, $68, $00, $68, $37, $26, $00, $3D, $61, $3B, $0D, $0E, $00, $37, $00, $3B, $00, $3B, $00, $00, $6A, $00, $00, $3B, $6A, $0D, $0E, $6A, $00, $3D, $00, $37, $68, $3D, $00, $E0, $6D, $1A, $19, $54, $09, $00, $00, $37, $68, $37, $3A, $39, $5C, $68, $68, $6A, $00, $E1, $6A, $00, $00, $3D, $00, $68, $00, $3A, $00, $37, $3A, $00, $57, $6E, $26, $00, $E0, $6A, $00, $3D, $3B, $3D, $00, $37, $39, $00, $0D, $0E, $00, $00, $37, $68, $37, $68, $00, $37, $68, $37, $5C, $39, $00, $54, $09, $00, $3A, $39, $3D, $3B, $3A, $26, $68, $3D, $39, $00, $E1, $3A, $37, $5C, $68, $00, $6A, $68, $00, $00, $3B, $00, $37, $68, $00, $E1, $3D, $31, $3B, $3D, $37, $68, $00, $00, $68, $37, $3D, $00, $39, $00, $00, $10, $00, $00, $6A, $37, $3A, $00, $39, $68, $3B, $00, $00, $3D, $3B, $3D, $00, $0F, $10, $37, $5C, $00, $6A, $00, $26, $37, $5C, $68, $00, $E0, $37, $00, $68, $0A, $0B, $0C, $3D, $37, $68, $37, $00, $00, $3B, $3B, $3D, $37, $00, $00, $3B, $00, $00, $4E, $53, $1B, $6E, $68, $00, $00, $68, $00, $6A, $3D, $3B, $00, $00, $65, $00, $6F, $37, $00, $00, $3B, $00, $E0, $68, $00, $E1, $65, $67, $37, $71, $02, $03, $6F, $00, $00, $6A, $00, $3B, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_007B" SLOT 2 SUPERFREE
 chunk_007B:
-.DB $82, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $E6, $83, $E4, $00, $FF, $FF, $FF, $FF, $E2, $DF
+.DB $00, $FF, $FC, $68, $00, $FF, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
 
 .SECTION "base_chunk_007C" SLOT 2 SUPERFREE
 chunk_007C:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $3C, $3D, $54, $33, $3D, $48, $5D, $37, $1C, $95, $51, $5D, $54, $E1, $6F, $6F, $3D, $6F, $48, $5E, $6F, $6F, $1C, $95, $43, $3D, $3D, $54, $E0, $DF
+.DB $17, $17, $02, $71, $51, $4F, $71, $82, $E6, $51, $E0, $71, $51, $4F, $71, $8C, $8E, $83, $E4, $51, $E0, $71, $51, $4F, $71, $96, $97, $8C, $8E, $83, $E2, $51, $E0, $71, $51, $4F, $71, $96, $97, $96, $97, $83, $E2, $51, $E0, $71, $51, $4F, $71, $96, $97, $96, $97, $83, $E2, $51, $E0, $71, $51, $4F, $71, $96, $97, $96, $97, $83, $E2, $51, $E0, $71, $51, $4F, $71, $96, $97, $96, $97, $83, $E2, $51, $E0, $71, $51, $4F, $71, $96, $97, $96, $97, $83, $E2, $00, $FF, $FF, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_007D" SLOT 2 SUPERFREE
 chunk_007D:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $54, $FD, $DF
+.DB $82, $EC, $00, $83, $EC, $00, $83, $EC, $00, $83, $EC, $00, $83, $EC, $00, $83, $EC, $00, $83, $EC, $00, $83, $EC, $00, $FF, $FF, $FF, $FB, $DF
 .ENDS
 
 .SECTION "base_chunk_007E" SLOT 2 SUPERFREE
 chunk_007E:
-.DB $4B, $43, $47, $43, $4B, $44, $2F, $4B, $1C, $95, $43, $48, $5E, $5F, $71, $54, $41, $42, $41, $41, $42, $4A, $41, $3B, $1C, $21, $6F, $4B, $6F, $48, $5D, $48, $8A, $E1, $92, $7B, $7B, $41, $23, $73, $43, $6F, $43, $3B, $6F, $45, $29, $E1, $23, $7B, $7B, $00, $00, $61, $35, $3E, $E1, $4D, $01, $01, $02, $02, $01, $14, $01, $18, $0C, $61, $36, $3F, $E1, $43, $6F, $47, $46, $4E, $6F, $4C, $46, $6F, $0A, $6D, $67, $00, $00, $5B, $92, $32, $3C, $50, $55, $06, $3C, $04, $06, $51, $5E, $6F, $6A, $58, $00, $95, $1C, $3A, $3D, $33, $2E, $3C, $54, $3C, $6B, $71, $06, $6F, $4E, $6A, $58, $21, $23, $00, $54, $E7, $5F, $56, $6A, $58, $00, $2C, $54, $E6, $3D, $6B, $71, $6F, $4F, $66, $67, $54, $E2, $3C, $3D, $3C, $3D, $6F, $4E, $6B, $71, $37, $43, $4F, $54, $E0, $3D, $3D, $6B, $71, $44, $6F, $4E, $44, $4B, $6F, $4B, $4E, $4B, $54, $E0, $3C, $43, $4E, $41, $4A, $41, $4B, $4A, $6F, $4E, $6F, $43, $4E, $54, $E0, $3D, $48, $5E, $00, $5B, $8A, $8A, $92, $95, $04, $3D, $50, $4B, $54, $E0, $3C, $3D, $43, $01, $01, $2A, $2B, $23, $95, $5F, $71, $33, $4E, $54, $E0, $3D, $51, $5E, $32, $32, $21, $23, $2C, $95, $04, $3C, $4E, $4B, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $1C, $95, $51, $5D, $54, $E9, $1C, $95, $43, $3D, $3D, $54, $E8, $DF
 .ENDS
 
 .SECTION "base_chunk_007F" SLOT 2 SUPERFREE
 chunk_007F:
-.DB $3D, $54, $EC, $5D, $54, $EA, $4E, $2F, $3C, $54, $E4, $3C, $04, $3C, $51, $5D, $4E, $4B, $3B, $43, $04, $54, $E3, $6B, $56, $04, $54, $4E, $4B, $47, $4B, $04, $48, $5D, $3D, $54, $E3, $6B, $56, $32, $E0, $42, $43, $4E, $48, $5D, $3D, $54, $E2, $3D, $4B, $3A, $E0, $92, $35, $3E, $05, $3D, $3C, $4E, $54, $E0, $71, $6B, $56, $29, $E0, $23, $36, $3F, $35, $35, $46, $3C, $54, $E0, $3C, $51, $5E, $01, $01, $10, $00, $E0, $36, $36, $51, $5D, $59, $54, $E1, $4E, $45, $43, $0F, $10, $00, $7B, $7B, $00, $5F, $56, $2E, $3C, $54, $E1, $4D, $4E, $4B, $0F, $9E, $7B, $7B, $00, $35, $4E, $04, $3D, $05, $45, $4E, $45, $4E, $E0, $37, $96, $5B, $92, $2C, $36, $3E, $35, $51, $5E, $4D, $43, $4D, $43, $3C, $48, $5E, $96, $95, $22, $8A, $92, $3F, $36, $46, $3E, $41, $41, $32, $32, $4B, $5F, $71, $96, $21, $2A, $24, $1C, $2C, $5B, $6F, $3F, $00, $00, $3A, $3A, $5F, $71, $3C, $A0, $00, $21, $29, $23, $00, $95, $4B, $01, $01, $00, $2C, $5B, $4B, $3C, $4E, $00, $5B, $92, $00, $E0, $21, $43, $42, $3E, $00, $00, $21, $4E, $04, $43, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $54, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_0080" SLOT 2 SUPERFREE
 chunk_0080:
-.DB $54, $E7, $6F, $4E, $E0, $6F, $46, $43, $4E, $4B, $3B, $37, $6B, $71, $54, $4E, $47, $4B, $4E, $4B, $46, $4B, $4E, $4E, $43, $4E, $4B, $43, $4E, $47, $6F, $43, $4E, $4E, $43, $6F, $43, $4E, $4B, $3E, $3E, $42, $35, $42, $35, $42, $3E, $42, $3E, $3E, $41, $40, $42, $41, $42, $3F, $3F, $00, $36, $00, $36, $00, $3F, $00, $3F, $3F, $1D, $1E, $1D, $1E, $1D, $00, $E0, $5B, $92, $00, $E3, $27, $26, $27, $26, $27, $01, $01, $00, $21, $23, $00, $E0, $02, $03, $03, $11, $12, $11, $12, $11, $42, $3E, $00, $00, $01, $2C, $00, $0D, $43, $4D, $4D, $4B, $4C, $4B, $4C, $4B, $00, $3F, $00, $00, $42, $00, $08, $09, $45, $3C, $3D, $4E, $5F, $56, $4E, $06, $00, $2C, $00, $E0, $01, $45, $43, $4D, $5F, $56, $54, $E2, $01, $00, $7B, $E0, $43, $4D, $47, $54, $E5, $4E, $00, $7B, $7B, $00, $3B, $43, $6F, $54, $E5, $6F, $01, $00, $E0, $5F, $71, $06, $54, $E5, $37, $3E, $00, $E0, $81, $3C, $54, $E3, $3D, $06, $54, $2F, $3F, $00, $01, $00, $4E, $5F, $71, $54, $E1, $59, $48, $5D, $4E, $3B, $00, $5B, $42, $92, $5F, $71, $3C, $06, $5C, $3C, $3D, $2E, $05, $48, $5D, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $00, $54, $E5, $00, $E5, $54, $F0, $3C, $54, $5F, $56, $54, $E8, $3C, $3D, $50, $54, $3D, $3C, $DF
 .ENDS
 
 .SECTION "base_chunk_0081" SLOT 2 SUPERFREE
 chunk_0081:
-.DB $4E, $E2, $6F, $4E, $E7, $43, $6F, $43, $4E, $43, $4E, $43, $4E, $6F, $E5, $4E, $4B, $4E, $4B, $6F, $4B, $4E, $6F, $4E, $E5, $41, $40, $41, $42, $41, $42, $41, $40, $41, $E5, $1E, $5B, $8A, $E0, $92, $00, $E7, $26, $21, $29, $E0, $23, $34, $34, $00, $E5, $12, $02, $01, $E1, $13, $13, $01, $E5, $4C, $4B, $45, $4E, $46, $4E, $3B, $3B, $46, $E5, $06, $6F, $4D, $5F, $56, $45, $06, $06, $3C, $54, $E9, $4D, $48, $5D, $54, $FF, $F7, $46, $3D, $54, $E8, $50, $6F, $48, $5D, $3C, $3C, $54, $E7, $2D, $43, $46, $3C, $3D, $54, $E8, $DF
+.DB $1C, $95, $43, $48, $5E, $5F, $71, $54, $3D, $54, $E4, $1C, $21, $6F, $4B, $6F, $48, $5D, $48, $5D, $54, $E4, $23, $73, $43, $6F, $43, $3B, $6F, $45, $3C, $54, $E4, $00, $61, $35, $3E, $E1, $4D, $43, $04, $54, $E3, $0C, $61, $36, $3F, $E1, $43, $04, $48, $5D, $3D, $54, $E1, $0A, $6D, $67, $00, $00, $5B, $92, $32, $43, $4E, $48, $5D, $3D, $54, $E0, $5E, $6F, $6A, $58, $00, $95, $1C, $3A, $35, $3E, $05, $3D, $3C, $4E, $54, $54, $06, $6F, $4E, $6A, $58, $21, $23, $00, $36, $3F, $35, $35, $46, $3C, $54, $E1, $5F, $56, $6A, $58, $00, $2C, $00, $00, $36, $36, $51, $5D, $59, $54, $54, $3D, $6B, $71, $6F, $4F, $66, $67, $00, $7B, $7B, $00, $5F, $56, $2E, $3C, $3D, $6F, $4E, $6B, $71, $37, $43, $4F, $9E, $7B, $7B, $00, $35, $4E, $04, $3D, $6F, $4E, $44, $4B, $6F, $4B, $4E, $4B, $96, $5B, $92, $2C, $36, $3E, $35, $51, $41, $4B, $4A, $6F, $4E, $6F, $43, $4E, $96, $95, $22, $8A, $92, $3F, $36, $46, $8A, $8A, $92, $95, $04, $3D, $50, $4B, $96, $21, $2A, $24, $1C, $2C, $5B, $6F, $2A, $2B, $23, $95, $5F, $71, $33, $4E, $A0, $00, $21, $29, $23, $00, $95, $4B, $21, $23, $2C, $95, $04, $3C, $4E, $4B, $00, $5B, $92, $00, $E0, $21, $43, $DF
 .ENDS
 
 .SECTION "base_chunk_0082" SLOT 2 SUPERFREE
 chunk_0082:
-.DB $54, $E0, $5E, $3C, $37, $3A, $3A, $02, $2C, $7B, $95, $41, $E1, $54, $E0, $6B, $71, $4B, $92, $00, $35, $02, $7B, $21, $29, $E0, $23, $54, $E1, $3C, $37, $1C, $00, $36, $41, $7B, $34, $34, $00, $34, $2C, $54, $E0, $3D, $48, $5E, $23, $5B, $01, $E0, $13, $13, $01, $13, $01, $54, $E0, $3C, $43, $37, $92, $95, $43, $4E, $4B, $3B, $3B, $43, $3B, $4B, $54, $E0, $4B, $4E, $4B, $1C, $21, $44, $45, $4E, $54, $4B, $37, $4B, $4E, $54, $E0, $3C, $43, $4E, $23, $5B, $4C, $4D, $54, $E1, $48, $5E, $54, $54, $6B, $56, $4E, $37, $5B, $28, $51, $5E, $54, $E0, $50, $6B, $56, $54, $3C, $05, $37, $6F, $4E, $95, $20, $6F, $48, $5D, $54, $54, $33, $37, $4E, $3D, $6B, $56, $32, $4B, $3E, $21, $2A, $4E, $43, $4E, $54, $54, $59, $50, $4E, $59, $4B, $32, $3A, $32, $3F, $00, $21, $35, $35, $3E, $5F, $71, $2E, $2D, $2F, $2E, $4E, $3A, $00, $3A, $00, $7B, $7B, $36, $36, $3F, $44, $05, $3B, $45, $3B, $48, $5E, $1D, $E0, $00, $7B, $7B, $00, $00, $2C, $4D, $4E, $4E, $4D, $4E, $4E, $43, $27, $E0, $14, $01, $E0, $5B, $92, $3E, $35, $E0, $32, $43, $4B, $27, $E0, $4C, $4E, $3B, $4E, $21, $23, $3F, $36, $E0, $3A, $5E, $46, $11, $E0, $5F, $56, $5F, $56, $03, $34, $34, $00, $00, $02, $14, $DF
+.DB $54, $F3, $4E, $2F, $43, $4E, $4B, $3B, $37, $6B, $71, $54, $3C, $04, $3C, $51, $5D, $4E, $4B, $3B, $4E, $43, $4E, $4B, $43, $4E, $47, $6F, $6B, $56, $04, $54, $4E, $4B, $47, $4B, $3E, $3E, $42, $35, $42, $35, $42, $3E, $54, $54, $6B, $56, $32, $E0, $42, $3F, $3F, $00, $36, $00, $36, $00, $3F, $54, $54, $3D, $4B, $3A, $E0, $92, $00, $E0, $5B, $92, $00, $E0, $54, $71, $6B, $56, $29, $E0, $23, $01, $01, $00, $21, $23, $00, $E0, $54, $3C, $51, $5E, $01, $01, $10, $00, $42, $3E, $00, $00, $01, $2C, $00, $0D, $54, $E0, $4E, $45, $43, $0F, $10, $00, $3F, $00, $00, $42, $00, $08, $09, $54, $E1, $4D, $4E, $4B, $0F, $00, $2C, $00, $E0, $01, $45, $43, $05, $45, $4E, $45, $4E, $E0, $37, $01, $00, $7B, $E0, $43, $4D, $47, $5E, $4D, $43, $4D, $43, $3C, $48, $5E, $4E, $00, $7B, $7B, $00, $3B, $43, $6F, $3E, $41, $41, $32, $32, $4B, $5F, $71, $6F, $01, $00, $E0, $5F, $71, $06, $3F, $00, $00, $3A, $3A, $5F, $71, $3C, $37, $3E, $00, $E0, $81, $3C, $54, $01, $01, $00, $2C, $5B, $4B, $3C, $4E, $2F, $3F, $00, $01, $00, $4E, $5F, $71, $42, $3E, $00, $00, $21, $4E, $04, $43, $3B, $00, $5B, $42, $92, $5F, $71, $3C, $DF
 .ENDS
 
 .SECTION "base_chunk_0083" SLOT 2 SUPERFREE
 chunk_0083:
-.DB $00, $21, $23, $00, $E1, $2F, $1C, $3F, $00, $01, $00, $3E, $3E, $35, $00, $34, $34, $00, $5B, $8A, $8A, $3B, $23, $00, $34, $42, $00, $3F, $3F, $36, $00, $13, $13, $00, $95, $24, $20, $45, $01, $01, $13, $01, $01, $7B, $E0, $00, $3E, $40, $00, $21, $2A, $29, $4D, $4B, $2F, $3B, $43, $4E, $01, $7B, $00, $92, $3F, $2C, $00, $01, $01, $00, $41, $4E, $3C, $4E, $4E, $43, $82, $01, $02, $22, $92, $00, $00, $32, $32, $7B, $79, $41, $5F, $71, $43, $4E, $43, $6F, $3B, $2B, $23, $7B, $7B, $3A, $3A, $00, $01, $00, $51, $5D, $4E, $32, $E0, $6F, $23, $00, $01, $01, $00, $00, $5B, $6F, $92, $4E, $41, $41, $3A, $E0, $6F, $00, $00, $3E, $3E, $2C, $00, $95, $3B, $1C, $41, $2C, $5B, $8A, $92, $00, $51, $34, $00, $3F, $3F, $00, $00, $21, $4E, $23, $00, $00, $95, $24, $1C, $52, $6F, $13, $03, $01, $14, $01, $01, $1F, $3B, $01, $E0, $21, $29, $23, $01, $6F, $3B, $4D, $2F, $4C, $3B, $4E, $43, $45, $2F, $43, $4E, $01, $92, $52, $46, $43, $3B, $43, $3B, $4B, $4E, $43, $47, $4D, $3B, $4E, $43, $4E, $1C, $00, $45, $45, $32, $32, $41, $42, $41, $42, $41, $42, $42, $41, $E0, $23, $01, $4D, $4D, $3A, $3A, $21, $29, $E0, $23, $00, $E0, $7A, $00, $00, $4E, $43, $51, $02, $03, $02, $02, $00, $02, $01, $2C, $01, $01, $7A, $00, $01, $43, $4E, $5F, $DF
+.DB $54, $54, $6F, $4E, $E0, $6F, $46, $4E, $E2, $6F, $4E, $E0, $47, $4B, $4E, $4B, $46, $4B, $4E, $43, $6F, $43, $4E, $43, $4E, $43, $4E, $43, $4E, $4E, $43, $6F, $43, $4E, $4B, $4E, $4B, $4E, $4B, $6F, $4B, $4E, $6F, $42, $3E, $3E, $41, $40, $42, $41, $42, $41, $40, $41, $42, $41, $42, $41, $40, $00, $3F, $3F, $1D, $1E, $1D, $1E, $1D, $1E, $5B, $8A, $E0, $92, $00, $E2, $27, $26, $27, $26, $27, $26, $21, $29, $E0, $23, $34, $34, $02, $03, $03, $11, $12, $11, $12, $11, $12, $02, $01, $E1, $13, $13, $43, $4D, $4D, $4B, $4C, $4B, $4C, $4B, $4C, $4B, $45, $4E, $46, $4E, $3B, $3B, $45, $3C, $3D, $4E, $5F, $56, $4E, $06, $06, $6F, $4D, $5F, $56, $45, $06, $06, $4D, $5F, $56, $54, $E7, $4D, $48, $5D, $54, $FF, $F1, $3D, $06, $54, $E1, $46, $3D, $54, $E4, $59, $48, $5D, $4E, $50, $6F, $48, $5D, $3C, $3C, $54, $54, $06, $5C, $3C, $3D, $2E, $05, $48, $5D, $2D, $43, $46, $3C, $3D, $54, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_0084" SLOT 2 SUPERFREE
 chunk_0084:
-.DB $35, $01, $21, $29, $23, $2F, $48, $5E, $3C, $2D, $3D, $3C, $48, $5E, $42, $42, $36, $42, $00, $00, $01, $43, $04, $3D, $46, $42, $3E, $42, $3E, $42, $5B, $8A, $01, $00, $5B, $01, $4E, $6F, $35, $42, $42, $00, $3F, $00, $3F, $2C, $21, $29, $42, $00, $21, $42, $E0, $36, $7B, $E1, $01, $E3, $02, $01, $01, $02, $01, $E0, $02, $14, $02, $4E, $4E, $05, $3D, $6F, $6F, $3B, $4E, $06, $3B, $06, $4E, $4B, $3B, $4C, $3B, $4B, $4E, $3D, $59, $3C, $51, $5D, $51, $5D, $51, $5E, $4E, $54, $4E, $46, $48, $5E, $54, $54, $2E, $3D, $3D, $5C, $4E, $3D, $5C, $54, $E0, $3C, $50, $54, $E2, $48, $5D, $33, $3C, $54, $33, $54, $E1, $33, $54, $E1, $4E, $3D, $51, $5D, $54, $E9, $3C, $50, $54, $EB, $4E, $33, $46, $3D, $54, $EA, $3C, $51, $5E, $54, $E8, $3C, $4E, $6B, $4E, $3C, $50, $54, $E2, $3C, $54, $E0, $50, $4E, $54, $3C, $5D, $50, $33, $54, $E0, $4E, $3D, $05, $05, $51, $5D, $33, $59, $54, $4E, $71, $33, $54, $E0, $3D, $4E, $E0, $6F, $3D, $3C, $3D, $57, $3D, $48, $DF
+.DB $4E, $E5, $3C, $37, $54, $05, $33, $54, $3C, $37, $6F, $E5, $54, $05, $54, $05, $2F, $4E, $2F, $3D, $4E, $E5, $54, $05, $2F, $4E, $45, $43, $4E, $2F, $41, $E5, $40, $3E, $E0, $49, $40, $35, $35, $00, $E6, $3F, $E0, $5B, $92, $36, $36, $00, $E5, $34, $2C, $00, $21, $23, $34, $34, $00, $01, $E5, $13, $01, $02, $02, $01, $13, $13, $01, $46, $E5, $3C, $06, $05, $4E, $43, $06, $59, $06, $3C, $54, $E5, $6B, $71, $54, $54, $3D, $2E, $43, $54, $FF, $FF, $F9, $05, $3D, $54, $EB, $59, $06, $DF
 .ENDS
 
 .SECTION "base_chunk_0085" SLOT 2 SUPERFREE
 chunk_0085:
-.DB $42, $32, $4E, $6F, $3C, $3D, $54, $E7, $92, $3A, $43, $48, $5D, $3C, $54, $E7, $23, $00, $4B, $5F, $71, $54, $E8, $2C, $00, $43, $05, $3D, $6F, $54, $E7, $14, $00, $4B, $46, $4E, $54, $E8, $4D, $7B, $43, $06, $45, $54, $E8, $37, $7B, $04, $3C, $4D, $54, $E8, $5E, $7B, $4E, $3D, $6B, $56, $54, $E7, $45, $7B, $43, $3C, $54, $06, $54, $E7, $4D, $7B, $45, $04, $6B, $56, $54, $E7, $4B, $7B, $4D, $3D, $4E, $54, $E8, $43, $7B, $5F, $71, $3C, $4E, $54, $E7, $56, $7B, $47, $3C, $54, $3D, $54, $E7, $4E, $92, $44, $5F, $71, $3C, $54, $E7, $37, $1C, $4C, $4E, $4E, $54, $E8, $5E, $1C, $51, $5D, $4E, $54, $E8, $DF
+.DB $00, $E5, $54, $E0, $5E, $3C, $37, $3A, $3A, $00, $E5, $54, $E0, $6B, $71, $4B, $92, $00, $E6, $54, $E1, $3C, $37, $1C, $00, $E6, $54, $E0, $3D, $48, $5E, $23, $5B, $00, $E5, $54, $E0, $3C, $43, $37, $92, $95, $00, $E5, $54, $E0, $4B, $4E, $4B, $1C, $21, $00, $E5, $54, $E0, $3C, $43, $4E, $23, $5B, $00, $E5, $54, $54, $6B, $56, $4E, $37, $5B, $28, $00, $E5, $54, $3C, $05, $37, $6F, $4E, $95, $20, $00, $E5, $3D, $6B, $56, $32, $4B, $3E, $21, $2A, $00, $E5, $59, $4B, $32, $3A, $32, $3F, $00, $21, $00, $E5, $2E, $4E, $3A, $00, $3A, $00, $7B, $7B, $00, $E5, $48, $5E, $1D, $E0, $00, $7B, $7B, $00, $E5, $4E, $43, $27, $E0, $14, $01, $01, $00, $E5, $43, $4B, $27, $E0, $4C, $4E, $3B, $00, $E5, $5E, $46, $11, $E0, $5F, $56, $5F, $DF
 .ENDS
 
 .SECTION "base_chunk_0086" SLOT 2 SUPERFREE
 chunk_0086:
-.DB $06, $4B, $43, $4E, $43, $06, $3C, $48, $5E, $4C, $13, $13, $03, $03, $3B, $4C, $3D, $5C, $3C, $5F, $56, $3C, $3D, $48, $5E, $4E, $3B, $3B, $4C, $4C, $3C, $06, $3C, $33, $54, $3D, $54, $3D, $48, $5E, $54, $3C, $3D, $54, $3C, $5F, $71, $3D, $54, $EA, $3D, $3C, $48, $54, $EB, $3C, $3D, $54, $EB, $4E, $05, $54, $FF, $FF, $FF, $FA, $00, $FD, $DF
+.DB $02, $2C, $7B, $95, $41, $E1, $00, $21, $23, $00, $E1, $2F, $35, $02, $7B, $21, $29, $E0, $23, $00, $34, $34, $00, $5B, $8A, $8A, $3B, $36, $41, $7B, $34, $34, $00, $34, $2C, $00, $13, $13, $00, $95, $24, $20, $45, $01, $E0, $13, $13, $01, $13, $01, $00, $3E, $40, $00, $21, $2A, $29, $4D, $43, $4E, $4B, $3B, $3B, $43, $3B, $4B, $92, $3F, $2C, $00, $01, $01, $00, $41, $44, $45, $4E, $54, $4B, $37, $4B, $4E, $22, $92, $00, $00, $32, $32, $7B, $79, $4C, $4D, $54, $E1, $48, $5E, $2B, $23, $7B, $7B, $3A, $3A, $00, $01, $51, $5E, $54, $E0, $50, $6B, $56, $23, $00, $01, $01, $00, $00, $5B, $6F, $6F, $48, $5D, $54, $54, $33, $37, $4E, $00, $00, $3E, $3E, $2C, $00, $95, $3B, $4E, $43, $4E, $54, $54, $59, $50, $4E, $34, $00, $3F, $3F, $00, $00, $21, $4E, $35, $35, $3E, $5F, $71, $2E, $2D, $2F, $13, $03, $01, $14, $01, $01, $1F, $3B, $36, $36, $3F, $44, $05, $3B, $45, $3B, $3B, $4D, $2F, $4C, $3B, $4E, $43, $45, $00, $00, $2C, $4D, $4E, $4E, $4D, $4E, $3B, $43, $3B, $4B, $4E, $43, $47, $4D, $01, $5B, $92, $3E, $35, $E0, $32, $E0, $41, $42, $41, $42, $41, $42, $4E, $21, $23, $3F, $36, $E0, $3A, $E0, $21, $29, $E0, $23, $00, $56, $03, $34, $34, $00, $00, $02, $14, $02, $03, $02, $02, $00, $02, $01, $2C, $DF
 .ENDS
 
 .SECTION "base_chunk_0087" SLOT 2 SUPERFREE
 chunk_0087:
-.DB $3B, $4D, $32, $32, $00, $35, $42, $00, $42, $42, $7A, $01, $4E, $4E, $43, $54, $48, $5E, $3A, $3A, $2C, $36, $5B, $8A, $8A, $92, $7A, $51, $5D, $50, $54, $54, $5F, $56, $1E, $1D, $1E, $00, $21, $29, $29, $23, $01, $5F, $71, $33, $54, $54, $5D, $37, $26, $27, $26, $00, $2C, $00, $E0, $6F, $4E, $59, $51, $5D, $50, $05, $4E, $12, $11, $12, $00, $00, $01, $31, $31, $46, $4E, $2E, $5F, $71, $33, $6F, $45, $4C, $4E, $4C, $00, $00, $47, $39, $39, $47, $4E, $6F, $4E, $59, $51, $4E, $4D, $4E, $3C, $37, $01, $00, $42, $4B, $35, $43, $42, $5F, $56, $41, $41, $54, $E0, $3D, $3C, $44, $00, $2C, $00, $36, $00, $7B, $35, $42, $7B, $2C, $54, $E1, $37, $4C, $01, $00, $E0, $2C, $7B, $36, $00, $7B, $00, $54, $E1, $3D, $47, $37, $01, $E0, $02, $02, $01, $E0, $02, $54, $E2, $48, $5E, $5C, $47, $06, $47, $3B, $55, $06, $5C, $43, $54, $E2, $3C, $3D, $33, $3C, $54, $3D, $43, $2E, $3D, $33, $06, $54, $E6, $3C, $48, $5D, $54, $E0, $3C, $54, $ED, $00, $FD, $DF
+.DB $1C, $3F, $00, $01, $00, $3E, $3E, $35, $35, $01, $21, $29, $23, $2F, $48, $5E, $23, $00, $34, $42, $00, $3F, $3F, $36, $36, $42, $00, $00, $01, $43, $04, $3D, $01, $01, $13, $01, $01, $7B, $E0, $01, $00, $5B, $01, $4E, $6F, $35, $42, $4B, $2F, $3B, $43, $4E, $01, $7B, $00, $42, $00, $21, $42, $E0, $36, $7B, $4E, $3C, $4E, $4E, $43, $82, $01, $02, $01, $02, $01, $01, $02, $01, $E0, $41, $5F, $71, $43, $4E, $43, $6F, $3B, $6F, $3B, $4E, $06, $3B, $06, $4E, $4B, $00, $51, $5D, $4E, $32, $E0, $6F, $51, $5D, $51, $5D, $51, $5E, $4E, $54, $92, $4E, $41, $41, $3A, $E0, $6F, $3D, $5C, $4E, $3D, $5C, $54, $E0, $1C, $41, $2C, $5B, $8A, $92, $00, $51, $5D, $33, $3C, $54, $33, $54, $E0, $23, $00, $00, $95, $24, $1C, $52, $6F, $51, $5D, $54, $E3, $01, $E0, $21, $29, $23, $01, $6F, $54, $E5, $2F, $43, $4E, $01, $92, $52, $46, $43, $46, $3D, $54, $E3, $3B, $4E, $43, $4E, $1C, $00, $45, $45, $51, $5E, $54, $E3, $42, $41, $E0, $23, $01, $4D, $4D, $4E, $3C, $50, $54, $E2, $00, $00, $7A, $00, $00, $4E, $43, $51, $5D, $50, $33, $54, $E0, $4E, $3D, $01, $01, $7A, $00, $01, $43, $4E, $5F, $71, $33, $54, $E0, $3D, $4E, $4E, $DF
 .ENDS
 
 .SECTION "base_chunk_0088" SLOT 2 SUPERFREE
 chunk_0088:
-.DB $54, $E0, $3C, $3C, $54, $43, $41, $3E, $41, $32, $41, $32, $41, $3E, $46, $54, $E2, $3D, $4E, $92, $3F, $00, $3A, $00, $3A, $00, $3F, $3E, $54, $E0, $59, $3C, $48, $5E, $1C, $00, $E0, $34, $00, $E0, $3F, $3D, $3C, $3D, $57, $3D, $37, $45, $1C, $5B, $01, $01, $13, $01, $01, $02, $01, $3C, $37, $4E, $E0, $3C, $4D, $1C, $95, $4E, $6F, $3B, $6F, $4E, $43, $45, $5D, $4E, $6F, $43, $6F, $43, $46, $1C, $95, $44, $51, $5D, $3D, $43, $54, $4C, $41, $3E, $41, $41, $43, $4E, $43, $23, $21, $4C, $43, $54, $3C, $54, $E0, $00, $3F, $00, $00, $35, $41, $35, $00, $00, $4B, $04, $3D, $54, $E1, $00, $E1, $36, $00, $36, $00, $00, $4B, $3D, $4E, $6F, $54, $E0, $01, $02, $02, $01, $E1, $1F, $03, $46, $43, $51, $5D, $54, $E0, $3C, $3B, $46, $6F, $4B, $46, $4B, $6F, $4D, $43, $2F, $4E, $4E, $54, $E1, $3D, $06, $43, $4E, $4B, $43, $3D, $4E, $4E, $6F, $4E, $54, $E1, $6B, $71, $54, $54, $3D, $3C, $6F, $06, $6B, $56, $6F, $54, $F2, $00, $FD, $DF
+.DB $3C, $2D, $3D, $3C, $48, $5E, $42, $E0, $32, $4E, $6F, $3C, $3D, $54, $54, $46, $42, $3E, $42, $3E, $42, $5B, $8A, $92, $3A, $43, $48, $5D, $3C, $54, $54, $42, $00, $3F, $00, $3F, $2C, $21, $29, $23, $00, $4B, $5F, $71, $54, $E0, $7B, $E0, $01, $E2, $2C, $00, $43, $05, $3D, $6F, $54, $54, $02, $14, $02, $4E, $4E, $05, $3D, $6F, $14, $00, $4B, $46, $4E, $54, $E0, $3B, $4C, $3B, $4B, $4E, $3D, $59, $3C, $4D, $7B, $43, $06, $45, $54, $E0, $4E, $46, $48, $5E, $54, $54, $2E, $3D, $37, $7B, $04, $3C, $4D, $54, $E0, $3C, $50, $54, $E2, $48, $5E, $7B, $4E, $3D, $6B, $56, $54, $E0, $33, $54, $E1, $4E, $3D, $45, $7B, $43, $3C, $54, $06, $54, $E5, $3C, $50, $4D, $7B, $45, $04, $6B, $56, $54, $E5, $4E, $33, $4B, $7B, $4D, $3D, $4E, $54, $E7, $3C, $43, $7B, $5F, $71, $3C, $4E, $54, $E4, $3C, $4E, $6B, $56, $7B, $47, $3C, $54, $3D, $54, $54, $3C, $54, $E0, $50, $4E, $54, $3C, $4E, $92, $44, $5F, $71, $3C, $54, $54, $05, $05, $51, $5D, $33, $59, $54, $4E, $37, $1C, $4C, $4E, $4E, $54, $E0, $4E, $6F, $3D, $3C, $3D, $57, $3D, $48, $5E, $1C, $51, $5D, $4E, $54, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_0089" SLOT 2 SUPERFREE
 chunk_0089:
-.DB $4E, $1C, $43, $47, $4B, $54, $E8, $4E, $23, $6F, $4B, $4E, $54, $E8, $42, $00, $43, $47, $43, $54, $E8, $01, $01, $4E, $4B, $4E, $54, $E8, $06, $43, $54, $FF, $FF, $FF, $FF, $F7, $00, $FD, $DF
+.DB $54, $EB, $2E, $3C, $54, $EA, $3D, $3C, $37, $54, $EA, $05, $05, $3D, $54, $E9, $3C, $06, $59, $06, $54, $E9, $6B, $71, $2E, $3C, $54, $E8, $06, $46, $3D, $4E, $45, $54, $E7, $05, $3D, $4E, $2F, $3E, $49, $54, $E7, $59, $06, $2F, $43, $3F, $21, $54, $E7, $2E, $43, $3B, $40, $5B, $8A, $54, $E7, $3C, $06, $37, $34, $21, $29, $54, $E7, $59, $06, $3B, $13, $14, $02, $54, $E9, $06, $59, $4C, $37, $54, $E9, $71, $2E, $3C, $37, $54, $EA, $3C, $3D, $06, $54, $EA, $51, $5D, $43, $54, $EA, $3D, $3C, $6B, $DF
 .ENDS
 
 .SECTION "base_chunk_008A" SLOT 2 SUPERFREE
 chunk_008A:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $F8, $54, $FF, $54, $3C, $54, $5F, $56, $54, $E2, $50, $5F, $56, $3C, $54, $54, $3C, $3D, $50, $54, $3D, $3C, $54, $54, $3C, $54, $33, $54, $3C, $3D, $DF
+.DB $00, $E5, $06, $4B, $43, $4E, $43, $06, $3C, $48, $00, $E5, $3D, $5C, $3C, $5F, $56, $3C, $3D, $48, $00, $E5, $3C, $33, $54, $3D, $54, $3D, $48, $5E, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_008B" SLOT 2 SUPERFREE
 chunk_008B:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $F8, $54, $54, $2F, $46, $EA, $54, $54, $46, $EB, $54, $54, $2F, $2F, $1C, $95, $46, $E7, $54, $6B, $56, $46, $1C, $95, $6F, $46, $E6, $DF
+.DB $5E, $4C, $13, $13, $03, $03, $3B, $4C, $3B, $4D, $32, $32, $00, $35, $42, $00, $5E, $4E, $3B, $3B, $4C, $4C, $3C, $06, $48, $5E, $3A, $3A, $2C, $36, $5B, $8A, $54, $3C, $3D, $54, $3C, $5F, $71, $3D, $5F, $56, $1E, $1D, $1E, $00, $21, $29, $54, $E2, $3D, $3C, $48, $5D, $37, $26, $27, $26, $00, $2C, $00, $54, $E3, $3C, $3D, $05, $4E, $12, $11, $12, $00, $00, $01, $54, $E3, $4E, $05, $6F, $45, $4C, $4E, $4C, $00, $00, $47, $54, $E5, $4E, $4D, $4E, $3C, $37, $01, $00, $42, $54, $E8, $3D, $3C, $44, $00, $2C, $54, $E9, $37, $4C, $01, $00, $54, $E9, $3D, $47, $37, $01, $54, $EA, $48, $5E, $5C, $54, $EA, $3C, $3D, $33, $54, $FD, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_008C" SLOT 2 SUPERFREE
 chunk_008C:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $F8, $46, $FF, $FC, $DF
+.DB $42, $42, $7A, $01, $4E, $4E, $43, $54, $E1, $3C, $3C, $54, $43, $41, $8A, $92, $7A, $51, $5D, $50, $54, $E4, $3D, $4E, $92, $29, $23, $01, $5F, $71, $33, $54, $E2, $59, $3C, $48, $5E, $1C, $00, $00, $6F, $4E, $59, $51, $5D, $50, $3D, $3C, $3D, $57, $3D, $37, $45, $1C, $31, $31, $46, $4E, $2E, $5F, $71, $33, $3C, $37, $4E, $E0, $3C, $4D, $1C, $39, $39, $47, $4E, $6F, $4E, $59, $51, $5D, $4E, $6F, $43, $6F, $43, $46, $1C, $4B, $35, $43, $42, $5F, $56, $41, $E0, $3E, $41, $41, $43, $4E, $43, $23, $00, $36, $00, $7B, $35, $42, $7B, $2C, $00, $3F, $00, $00, $35, $41, $35, $00, $E0, $2C, $7B, $36, $00, $7B, $00, $E2, $36, $00, $36, $00, $01, $01, $02, $02, $01, $E0, $02, $01, $02, $02, $01, $E1, $1F, $47, $06, $47, $3B, $55, $06, $5C, $43, $3C, $3B, $46, $6F, $4B, $46, $4B, $6F, $3C, $54, $3D, $43, $2E, $3D, $33, $06, $54, $3D, $06, $43, $4E, $4B, $43, $3D, $54, $3C, $48, $5D, $54, $E0, $3C, $6B, $71, $54, $54, $3D, $3C, $6F, $06, $54, $ED, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_008D" SLOT 2 SUPERFREE
 chunk_008D:
-.DB $3C, $37, $54, $05, $33, $54, $3C, $37, $3C, $05, $54, $05, $3C, $3D, $48, $5D, $54, $05, $54, $05, $2F, $4E, $2F, $3D, $05, $4E, $05, $45, $05, $37, $54, $4E, $54, $05, $2F, $4E, $45, $43, $4E, $2F, $4E, $43, $4E, $4C, $05, $45, $4E, $2F, $40, $3E, $E0, $49, $40, $35, $35, $40, $42, $41, $42, $40, $49, $3E, $41, $00, $3F, $E0, $5B, $92, $36, $36, $5B, $8A, $E0, $92, $00, $3F, $5B, $34, $2C, $00, $21, $23, $34, $34, $00, $21, $29, $E0, $23, $00, $00, $21, $13, $01, $02, $02, $01, $13, $13, $01, $01, $14, $02, $02, $01, $01, $31, $31, $3C, $06, $05, $4E, $43, $06, $59, $06, $47, $4C, $47, $05, $4B, $37, $39, $39, $54, $6B, $71, $54, $54, $3D, $2E, $43, $6B, $71, $6B, $71, $3D, $3C, $3C, $4B, $54, $E8, $3D, $3C, $37, $6B, $71, $54, $FF, $F4, $55, $3D, $3C, $37, $55, $3D, $3C, $37, $54, $E3, $05, $3D, $57, $3C, $05, $3D, $57, $05, $05, $3D, $54, $E3, $59, $06, $3D, $4E, $3E, $E0, $42, $40, $2F, $DF
+.DB $3E, $41, $32, $41, $32, $41, $3E, $46, $4E, $1C, $43, $47, $4B, $54, $E0, $3F, $00, $3A, $00, $3A, $00, $3F, $3E, $4E, $23, $6F, $4B, $4E, $54, $E0, $00, $E0, $34, $00, $E0, $3F, $42, $00, $43, $47, $43, $54, $E0, $5B, $01, $01, $13, $01, $01, $02, $01, $E0, $4E, $4B, $4E, $54, $E0, $95, $4E, $6F, $3B, $6F, $4E, $43, $45, $06, $43, $54, $E3, $95, $44, $51, $5D, $3D, $43, $54, $4C, $54, $E5, $21, $4C, $43, $54, $3C, $54, $E8, $00, $4B, $04, $3D, $54, $E9, $00, $4B, $3D, $4E, $6F, $54, $E8, $03, $46, $43, $51, $5D, $54, $E8, $4D, $43, $2F, $4E, $4E, $54, $E8, $4E, $4E, $6F, $4E, $54, $E9, $6B, $56, $6F, $54, $FA, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_008E" SLOT 2 SUPERFREE
 chunk_008E:
-.DB $54, $54, $3C, $46, $1C, $95, $4E, $46, $E6, $54, $2F, $46, $2F, $1C, $21, $6F, $46, $E6, $4E, $43, $45, $2F, $23, $00, $4E, $4E, $46, $E5, $41, $42, $4A, $3E, $00, $00, $6F, $59, $46, $6B, $71, $54, $46, $E1, $8A, $8A, $92, $3F, $00, $00, $4E, $57, $2F, $46, $6B, $71, $54, $54, $46, $46, $29, $2A, $22, $8A, $92, $73, $6F, $05, $3B, $50, $6B, $6B, $71, $59, $54, $6B, $00, $21, $29, $29, $23, $61, $40, $3E, $3B, $57, $3C, $54, $3C, $2E, $3C, $54, $01, $E0, $18, $0C, $61, $00, $3F, $41, $40, $43, $46, $3C, $54, $54, $46, $59, $06, $06, $4B, $0A, $6D, $67, $5B, $8A, $92, $40, $3E, $46, $05, $2F, $45, $2E, $3C, $3C, $06, $43, $05, $6A, $58, $21, $29, $23, $3F, $40, $41, $3B, $4D, $54, $54, $6B, $71, $2E, $3C, $45, $6A, $58, $00, $00, $5B, $8A, $92, $40, $3E, $54, $E0, $3D, $3C, $37, $4D, $06, $6A, $58, $00, $21, $29, $23, $00, $3F, $54, $E0, $05, $3C, $06, $50, $05, $44, $4F, $66, $67, $00, $5B, $8A, $8A, $55, $3D, $3C, $37, $6B, $71, $2E, $3C, $4C, $4B, $46, $4F, $66, $67, $21, $29, $57, $05, $05, $46, $05, $3D, $3C, $3C, $06, $50, $05, $3C, $06, $4F, $66, $67, $35, $35, $4B, $42, $4E, $05, $3C, $6B, $71, $2E, $3C, $6B, $71, $3C, $06, $4F, $DF
+.DB $54, $EA, $6B, $71, $4B, $54, $EA, $6B, $71, $37, $54, $EA, $59, $06, $46, $54, $EA, $2E, $4B, $4E, $54, $E9, $3D, $51, $5D, $46, $54, $E8, $3C, $5C, $3D, $3C, $43, $54, $E9, $2E, $3C, $3D, $3D, $54, $FF, $FF, $FF, $EA, $00, $E5, $54, $E4, $59, $00, $E5, $54, $E1, $3C, $5F, $71, $2E, $DF
 .ENDS
 
 .SECTION "base_chunk_008F" SLOT 2 SUPERFREE
 chunk_008F:
-.DB $46, $FF, $E0, $06, $3C, $46, $06, $3C, $46, $E0, $06, $3C, $46, $3D, $46, $06, $3C, $46, $54, $3D, $59, $54, $3D, $59, $46, $4E, $54, $3D, $59, $3C, $46, $54, $3D, $59, $51, $5E, $2E, $51, $5E, $2E, $2F, $44, $3D, $54, $2E, $3D, $71, $51, $5E, $2E, $54, $4B, $47, $46, $51, $5E, $3B, $4C, $4B, $4E, $51, $5E, $3C, $54, $43, $45, $4E, $3E, $41, $41, $3E, $41, $3E, $3E, $41, $42, $42, $40, $3C, $37, $37, $4D, $6F, $3F, $00, $00, $3F, $00, $3F, $3F, $21, $2A, $24, $24, $46, $06, $2F, $6F, $46, $5B, $8A, $92, $00, $2C, $00, $E0, $21, $29, $29, $3C, $54, $4B, $44, $4E, $21, $29, $23, $34, $00, $00, $2C, $01, $02, $02, $01, $46, $51, $5E, $4C, $43, $02, $01, $02, $13, $34, $00, $00, $41, $41, $3B, $4E, $40, $41, $43, $46, $2F, $04, $44, $51, $5E, $13, $02, $00, $21, $29, $4B, $46, $8A, $92, $41, $47, $46, $3C, $4D, $2F, $46, $41, $3E, $00, $E0, $4E, $6F, $29, $29, $23, $3E, $41, $E0, $3B, $46, $34, $3F, $00, $14, $01, $46, $4E, $00, $E0, $3F, $21, $2A, $24, $47, $46, $13, $00, $2C, $4A, $43, $3E, $41, $66, $67, $00, $E0, $95, $24, $4E, $3C, $4E, $01, $00, $E0, $3F, $5B, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $F8, $54, $E7, $2F, $46, $E2, $54, $E7, $46, $E3, $54, $E1, $50, $5F, $56, $3C, $54, $54, $2F, $2F, $1C, $95, $46, $46, $54, $54, $3C, $54, $33, $54, $3C, $3D, $54, $6B, $56, $46, $1C, $95, $6F, $46, $DF
 .ENDS
 
 .SECTION "base_chunk_0090" SLOT 2 SUPERFREE
 chunk_0090:
-.DB $46, $FF, $E0, $43, $46, $43, $46, $43, $46, $43, $46, $43, $46, $43, $46, $E1, $4B, $46, $4B, $46, $4B, $46, $4B, $46, $4B, $46, $4B, $46, $4B, $59, $47, $43, $46, $43, $46, $43, $47, $43, $46, $43, $6F, $43, $46, $43, $47, $2E, $46, $4E, $4B, $6F, $4B, $6F, $4B, $46, $4B, $47, $4B, $47, $4B, $46, $4B, $41, $40, $41, $EB, $2B, $23, $00, $5B, $8A, $E0, $28, $24, $2B, $29, $29, $23, $00, $E0, $23, $00, $5B, $28, $24, $24, $2B, $29, $29, $23, $00, $E3, $02, $02, $01, $EB, $46, $4B, $4E, $43, $6F, $43, $4E, $43, $4E, $47, $47, $43, $6F, $43, $46, $43, $43, $4E, $46, $46, $4B, $4E, $4B, $46, $44, $6F, $4B, $46, $4B, $4E, $4B, $6F, $44, $45, $51, $5E, $4E, $43, $4E, $43, $4C, $43, $55, $43, $4E, $43, $54, $54, $4C, $4D, $46, $54, $37, $4E, $51, $5D, $45, $54, $57, $4E, $06, $54, $E0, $4E, $41, $51, $5D, $43, $4E, $43, $05, $4D, $54, $37, $4E, $37, $54, $E0, $92, $7B, $3E, $40, $41, $41, $42, $42, $41, $41, $3E, $6F, $51, $5D, $54, $54, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $F8, $46, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_0091" SLOT 2 SUPERFREE
 chunk_0091:
-.DB $54, $E3, $2E, $3C, $6F, $45, $3F, $E0, $2C, $34, $34, $54, $E2, $3D, $3C, $37, $6F, $4D, $00, $00, $01, $01, $13, $13, $54, $E2, $05, $05, $3D, $37, $43, $34, $00, $43, $3E, $41, $40, $54, $E1, $3C, $06, $59, $06, $37, $06, $13, $8A, $92, $3F, $7B, $7B, $54, $E1, $6B, $71, $2E, $3C, $45, $43, $37, $29, $23, $34, $7B, $7B, $54, $E0, $06, $46, $3D, $4E, $45, $4D, $4E, $43, $01, $01, $13, $01, $14, $54, $54, $05, $3D, $4E, $2F, $3E, $49, $4E, $41, $41, $3E, $40, $41, $4B, $4A, $54, $54, $59, $06, $2F, $43, $3F, $21, $2A, $2B, $23, $3F, $21, $29, $E0, $54, $54, $2E, $43, $3B, $40, $5B, $8A, $28, $1C, $00, $E3, $54, $54, $3C, $06, $37, $34, $21, $29, $29, $23, $02, $14, $00, $00, $02, $01, $54, $54, $59, $06, $3B, $13, $14, $02, $00, $00, $3E, $4A, $00, $00, $40, $3E, $54, $E1, $06, $59, $4C, $37, $00, $00, $3F, $00, $E1, $3F, $54, $E1, $71, $2E, $3C, $37, $01, $00, $5B, $8A, $92, $00, $5B, $8A, $54, $E2, $3C, $3D, $06, $37, $00, $21, $2A, $23, $00, $21, $29, $54, $E2, $51, $5D, $43, $4E, $01, $00, $5B, $8A, $92, $00, $00, $54, $E2, $3D, $3C, $6B, $71, $2F, $00, $21, $2A, $23, $00, $34, $DF
+.DB $00, $FF, $FF, $E3, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $54, $3D, $54, $E2, $00, $E5, $6B, $71, $54, $3D, $59, $6F, $54, $3C, $00, $E5, $6F, $5F, $56, $05, $57, $32, $05, $6F, $00, $E5, $6F, $46, $41, $E0, $3A, $3E, $4B, $00, $E5, $6F, $3E, $5B, $8A, $92, $00, $3F, $32, $00, $E5, $4B, $3F, $21, $29, $23, $31, $00, $3A, $46, $E5, $6F, $00, $00, $31, $00, $39, $01, $01, $46, $E5, $6F, $14, $01, $39, $01, $4B, $2F, $43, $46, $E5, $4B, $4C, $4E, $42, $43, $47, $40, $5B, $46, $E5, $40, $00, $E3, $21, $DF
 .ENDS
 
 .SECTION "base_chunk_0092" SLOT 2 SUPERFREE
 chunk_0092:
-.DB $36, $36, $2C, $00, $44, $3D, $46, $55, $3D, $3C, $3C, $4B, $3C, $6B, $56, $44, $03, $01, $01, $14, $4C, $46, $47, $57, $3E, $43, $4B, $42, $41, $3E, $46, $4C, $49, $4B, $40, $4A, $35, $35, $43, $42, $3F, $40, $00, $E0, $3F, $42, $41, $7B, $E0, $2C, $36, $36, $5B, $8A, $8A, $92, $00, $2C, $00, $00, $5B, $8A, $7B, $E0, $34, $01, $21, $29, $29, $23, $31, $00, $31, $00, $01, $21, $29, $03, $02, $01, $13, $4B, $01, $03, $14, $02, $39, $14, $39, $14, $45, $14, $00, $49, $41, $40, $3E, $41, $40, $49, $4A, $40, $40, $49, $35, $49, $E0, $00, $23, $00, $00, $3F, $00, $00, $5B, $8A, $8A, $92, $00, $36, $00, $E3, $34, $00, $E0, $21, $2A, $20, $22, $8A, $92, $00, $E0, $62, $00, $00, $13, $14, $01, $5B, $8A, $28, $24, $24, $20, $23, $00, $64, $65, $6C, $5B, $92, $40, $4A, $3E, $21, $29, $E0, $2A, $23, $00, $9F, $6C, $51, $5D, $21, $2A, $22, $23, $3F, $00, $E4, $97, $4E, $46, $3D, $8A, $28, $24, $22, $8A, $8A, $92, $00, $5B, $8A, $8A, $92, $97, $46, $45, $04, $29, $29, $2A, $24, $20, $20, $23, $00, $21, $2A, $24, $1C, $00, $4E, $4D, $46, $00, $00, $21, $29, $29, $23, $00, $5B, $8A, $28, $29, $23, $00, $32, $E0, $34, $01, $00, $00, $02, $34, $00, $21, $29, $23, $00, $34, $00, $3A, $E0, $DF
+.DB $3C, $05, $54, $05, $3C, $3D, $48, $5D, $54, $54, $3C, $46, $1C, $95, $4E, $46, $05, $4E, $05, $45, $05, $37, $54, $4E, $54, $2F, $46, $2F, $1C, $21, $6F, $46, $4E, $43, $4E, $4C, $05, $45, $4E, $2F, $4E, $43, $45, $2F, $23, $00, $4E, $4E, $40, $42, $41, $42, $40, $49, $3E, $41, $41, $42, $4A, $3E, $00, $00, $6F, $59, $5B, $8A, $E0, $92, $00, $3F, $5B, $8A, $8A, $92, $3F, $00, $00, $4E, $57, $21, $29, $E0, $23, $00, $00, $21, $29, $2A, $22, $8A, $92, $73, $6F, $05, $01, $14, $02, $02, $01, $01, $31, $31, $00, $21, $29, $29, $23, $61, $40, $3E, $47, $4C, $47, $05, $4B, $37, $39, $39, $01, $E0, $18, $0C, $61, $00, $3F, $6B, $71, $6B, $71, $3D, $3C, $3C, $4B, $59, $06, $06, $4B, $0A, $6D, $67, $5B, $54, $E0, $3D, $3C, $37, $6B, $71, $2E, $3C, $3C, $06, $43, $05, $6A, $58, $54, $E7, $6B, $71, $2E, $3C, $45, $6A, $54, $E8, $3D, $3C, $37, $4D, $06, $54, $E8, $05, $3C, $06, $50, $05, $55, $3D, $3C, $37, $55, $3D, $3C, $37, $55, $3D, $3C, $37, $6B, $71, $2E, $3C, $57, $3C, $05, $3D, $57, $05, $05, $3D, $57, $05, $05, $46, $05, $3D, $3C, $3C, $3D, $4E, $3E, $E0, $42, $40, $2F, $35, $35, $4B, $42, $4E, $05, $3C, $6B, $DF
 .ENDS
 
 .SECTION "base_chunk_0093" SLOT 2 SUPERFREE
 chunk_0093:
-.DB $2F, $4F, $66, $67, $00, $21, $2A, $46, $6B, $56, $3B, $00, $34, $2C, $7B, $21, $3B, $4E, $47, $4F, $9E, $00, $21, $44, $4E, $48, $5E, $31, $13, $01, $E0, $40, $40, $41, $41, $96, $00, $00, $4C, $4E, $06, $4E, $39, $43, $4E, $46, $43, $8A, $92, $00, $00, $96, $00, $73, $4E, $3C, $6B, $56, $6B, $56, $3C, $6B, $56, $2A, $22, $92, $00, $96, $64, $6E, $46, $5F, $71, $5F, $71, $44, $5F, $71, $44, $21, $29, $23, $64, $9C, $6C, $4E, $06, $46, $4E, $6B, $56, $4D, $3C, $2F, $4C, $00, $64, $65, $6C, $5F, $56, $3C, $6B, $56, $47, $32, $32, $46, $4E, $3B, $43, $62, $63, $4E, $5C, $3C, $2F, $5F, $71, $44, $46, $3A, $3A, $41, $40, $40, $41, $63, $6F, $44, $2D, $4E, $3B, $46, $47, $4C, $4E, $00, $21, $29, $E0, $23, $47, $4E, $4D, $35, $35, $41, $41, $3E, $44, $46, $00, $00, $14, $01, $02, $14, $06, $2F, $4E, $36, $36, $00, $00, $3F, $4D, $43, $01, $00, $4A, $40, $41, $49, $55, $43, $00, $2C, $7A, $7B, $7B, $79, $00, $4E, $6F, $00, $2C, $00, $E0, $57, $4E, $00, $00, $7B, $E1, $00, $45, $47, $01, $00, $5B, $8A, $28, $4E, $46, $5B, $92, $7A, $7B, $7B, $79, $01, $4D, $4E, $46, $01, $21, $2A, $2B, $32, $41, $21, $23, $00, $02, $02, $01, $4B, $4E, $43, $4E, $82, $00, $95, $22, $3A, $2C, $34, $34, $01, $2F, $3C, $46, $46, $4E, $3C, $54, $4E, $01, $21, $29, $DF
+.DB $46, $FF, $E8, $06, $3C, $46, $06, $46, $6B, $71, $54, $46, $E2, $06, $3C, $46, $54, $3D, $59, $54, $2F, $46, $6B, $71, $54, $54, $46, $E0, $54, $3D, $59, $51, $5E, $2E, $51, $3B, $50, $6B, $6B, $71, $59, $54, $6B, $71, $51, $5E, $2E, $54, $4B, $47, $46, $3B, $57, $3C, $54, $3C, $2E, $3C, $54, $3C, $54, $43, $45, $4E, $3E, $41, $E0, $40, $43, $46, $3C, $54, $54, $46, $3C, $37, $37, $4D, $6F, $3F, $00, $00, $8A, $92, $40, $3E, $46, $05, $2F, $45, $46, $06, $2F, $6F, $46, $5B, $8A, $92, $21, $29, $23, $3F, $40, $41, $3B, $4D, $3C, $54, $4B, $44, $4E, $21, $29, $23, $58, $00, $00, $5B, $8A, $92, $40, $3E, $46, $51, $5E, $4C, $43, $02, $01, $02, $6A, $58, $00, $21, $29, $23, $00, $3F, $40, $41, $43, $46, $2F, $04, $44, $51, $44, $4F, $66, $67, $00, $5B, $8A, $E0, $92, $41, $47, $46, $3C, $4D, $2F, $4C, $4B, $46, $4F, $66, $67, $21, $29, $E0, $23, $3E, $41, $E0, $3B, $06, $50, $05, $3C, $06, $4F, $66, $67, $00, $E0, $3F, $21, $2A, $24, $47, $71, $2E, $3C, $6B, $71, $3C, $06, $4F, $66, $67, $00, $E0, $95, $24, $4E, $DF
 .ENDS
 
 .SECTION "base_chunk_0094" SLOT 2 SUPERFREE
 chunk_0094:
-.DB $23, $7B, $3F, $2C, $34, $00, $5B, $8A, $92, $00, $3F, $2F, $43, $05, $54, $54, $02, $02, $01, $01, $13, $01, $21, $29, $2A, $92, $00, $3B, $04, $54, $E0, $4E, $06, $43, $4E, $06, $4E, $02, $01, $29, $23, $00, $6F, $06, $54, $E1, $6B, $56, $3C, $6B, $43, $41, $40, $00, $2C, $00, $4E, $06, $54, $E0, $5F, $71, $44, $5F, $71, $2F, $53, $5B, $92, $02, $01, $4E, $37, $54, $E0, $6B, $56, $4D, $3C, $47, $3B, $02, $21, $23, $40, $40, $04, $51, $5D, $54, $54, $46, $4E, $46, $4E, $43, $4E, $43, $02, $5B, $92, $52, $04, $43, $05, $54, $54, $42, $3E, $3E, $46, $2F, $37, $40, $41, $21, $29, $2C, $2F, $04, $37, $50, $54, $00, $3F, $3F, $45, $3B, $4E, $53, $5B, $92, $01, $02, $3B, $51, $5D, $33, $54, $02, $00, $38, $4D, $6B, $56, $02, $21, $23, $40, $43, $44, $4E, $46, $54, $54, $40, $00, $01, $51, $5E, $4E, $2F, $01, $5B, $92, $00, $4D, $59, $54, $E0, $5B, $92, $42, $41, $41, $42, $42, $40, $21, $29, $2C, $47, $2E, $54, $E0, $2B, $23, $00, $21, $29, $29, $23, $00, $00, $01, $01, $4E, $54, $E1, $23, $01, $02, $01, $14, $01, $E1, $4E, $47, $46, $4E, $54, $E0, $92, $4E, $4B, $5C, $4C, $4E, $06, $46, $50, $5C, $54, $54, $50, $54, $E0, $23, $4E, $47, $33, $54, $59, $3D, $59, $33, $33, $54, $59, $33, $54, $59, $54, $DF
+.DB $46, $FD, $3C, $46, $E0, $06, $3C, $46, $3D, $46, $E1, $43, $46, $43, $46, $3D, $59, $46, $4E, $54, $3D, $59, $3C, $46, $E0, $4B, $46, $4B, $46, $4B, $5E, $2E, $2F, $44, $3D, $54, $2E, $3D, $59, $47, $43, $46, $43, $46, $43, $47, $51, $5E, $3B, $4C, $4B, $4E, $51, $5E, $2E, $46, $4E, $4B, $6F, $4B, $6F, $4B, $3E, $41, $3E, $3E, $41, $42, $42, $40, $41, $40, $41, $E3, $3F, $00, $3F, $3F, $21, $2A, $24, $24, $2B, $23, $00, $5B, $8A, $E0, $28, $00, $2C, $00, $E0, $21, $29, $29, $23, $00, $5B, $28, $24, $24, $2B, $29, $34, $00, $00, $2C, $01, $02, $02, $01, $02, $02, $01, $E3, $13, $34, $00, $00, $41, $41, $3B, $4E, $46, $4B, $4E, $43, $6F, $43, $4E, $43, $5E, $13, $02, $00, $21, $29, $4B, $46, $43, $4E, $46, $46, $4B, $4E, $4B, $46, $46, $41, $3E, $00, $E0, $4E, $6F, $44, $45, $51, $5E, $4E, $43, $4E, $43, $46, $34, $3F, $00, $14, $01, $46, $4E, $4C, $4D, $46, $54, $37, $4E, $51, $5D, $46, $13, $00, $2C, $4A, $43, $3E, $41, $4E, $41, $51, $5D, $43, $4E, $43, $05, $3C, $4E, $01, $00, $E0, $3F, $5B, $92, $7B, $3E, $40, $41, $41, $42, $42, $DF
 .ENDS
 
 .SECTION "base_chunk_0095" SLOT 2 SUPERFREE
 chunk_0095:
-.DB $54, $E2, $6B, $71, $4B, $3D, $3B, $01, $00, $E1, $13, $54, $E2, $6B, $71, $37, $43, $3E, $40, $00, $2C, $00, $00, $41, $54, $E2, $59, $06, $46, $00, $3F, $5B, $92, $00, $E1, $54, $E2, $2E, $4B, $4E, $34, $21, $23, $00, $34, $01, $00, $2C, $54, $E1, $3D, $51, $5D, $46, $13, $01, $14, $1F, $13, $46, $01, $02, $54, $E0, $3C, $5C, $3D, $3C, $43, $3B, $4E, $4C, $4E, $3B, $4E, $3B, $32, $54, $E1, $2E, $3C, $3D, $3D, $3C, $6B, $71, $3C, $4E, $4E, $32, $3A, $54, $E6, $46, $3C, $6B, $56, $3B, $3A, $00, $54, $E6, $3C, $05, $59, $6B, $45, $22, $92, $54, $E6, $6B, $71, $2E, $4E, $4D, $2B, $14, $54, $E6, $5F, $71, $4E, $43, $46, $23, $4D, $54, $E7, $3C, $47, $46, $47, $7B, $4E, $54, $E7, $05, $59, $4E, $4B, $7B, $2F, $54, $E8, $2E, $46, $4E, $7B, $3B, $54, $E4, $59, $54, $59, $6B, $71, $06, $2F, $7B, $4E, $54, $E1, $3C, $5F, $71, $2E, $54, $2E, $5F, $56, $3C, $3B, $7B, $46, $DF
+.DB $46, $E5, $00, $E5, $46, $E5, $00, $E4, $2C, $43, $46, $43, $46, $43, $46, $43, $46, $00, $E1, $5B, $8A, $E0, $46, $4B, $46, $4B, $46, $4B, $46, $4B, $92, $00, $00, $5B, $28, $20, $24, $20, $43, $46, $43, $6F, $43, $46, $43, $47, $22, $92, $5B, $28, $24, $24, $2A, $20, $46, $4B, $47, $4B, $47, $4B, $46, $4B, $20, $1C, $95, $24, $20, $20, $22, $28, $41, $E5, $24, $1C, $21, $29, $2A, $24, $24, $2A, $24, $2B, $29, $29, $23, $00, $E0, $2B, $23, $2C, $00, $21, $29, $29, $2A, $29, $23, $00, $E3, $23, $00, $34, $E0, $00, $00, $21, $01, $E7, $13, $E0, $01, $01, $02, $4E, $47, $47, $43, $6F, $43, $46, $43, $4E, $43, $3B, $E0, $6F, $43, $3B, $44, $6F, $4B, $46, $4B, $4E, $4B, $6F, $E0, $4E, $5C, $04, $06, $3C, $6B, $4C, $43, $55, $43, $4E, $43, $54, $E2, $33, $3D, $54, $54, $3C, $45, $54, $57, $4E, $06, $54, $E8, $4D, $54, $37, $4E, $37, $54, $E0, $00, $E5, $41, $41, $3E, $6F, $51, $5D, $54, $54, $00, $E5, $DF
 .ENDS
 
 .SECTION "base_chunk_0096" SLOT 2 SUPERFREE
 chunk_0096:
-.DB $13, $4B, $01, $01, $3B, $13, $14, $01, $01, $02, $02, $13, $02, $01, $E0, $4B, $3E, $3E, $49, $41, $40, $4A, $40, $E0, $3E, $43, $2F, $5F, $56, $4E, $41, $3F, $3F, $5B, $8A, $E0, $92, $00, $00, $3F, $40, $4B, $2F, $54, $54, $00, $E0, $21, $29, $29, $23, $34, $34, $00, $E1, $3B, $3C, $50, $02, $01, $02, $E1, $01, $13, $13, $01, $00, $00, $2C, $44, $4E, $2D, $42, $42, $40, $41, $40, $40, $3E, $41, $40, $40, $5B, $8A, $92, $4A, $3E, $4B, $00, $00, $34, $34, $00, $00, $3F, $00, $E0, $21, $29, $23, $00, $3F, $00, $00, $02, $13, $13, $02, $01, $02, $02, $01, $E0, $02, $14, $5B, $8A, $8A, $34, $2F, $3B, $3B, $4E, $46, $54, $3C, $55, $46, $54, $3C, $4C, $21, $29, $29, $13, $3B, $4E, $50, $55, $4E, $55, $46, $2E, $3C, $5C, $4E, $4E, $01, $00, $00, $4E, $54, $54, $33, $2E, $54, $2E, $4E, $5C, $4E, $33, $3C, $5C, $6F, $00, $00, $55, $46, $54, $3C, $55, $46, $54, $3C, $33, $3C, $3D, $55, $33, $4E, $01, $00, $2E, $4E, $5C, $4E, $2E, $54, $E2, $4E, $2E, $5C, $6F, $47, $00, $54, $54, $33, $3C, $54, $E4, $5C, $33, $3C, $4B, $92, $46, $54, $3C, $54, $E5, $33, $3C, $55, $4E, $22, $4E, $4B, $54, $E6, $3C, $55, $2E, $47, $01, $DF
+.DB $6F, $45, $3F, $E0, $2C, $34, $34, $36, $36, $2C, $00, $44, $3D, $46, $55, $6F, $4D, $00, $00, $01, $01, $13, $13, $03, $01, $01, $14, $4C, $46, $47, $57, $37, $43, $34, $00, $43, $3E, $41, $40, $49, $4B, $40, $4A, $35, $35, $43, $42, $37, $06, $13, $8A, $92, $3F, $7B, $E2, $2C, $36, $36, $5B, $8A, $45, $43, $37, $29, $23, $34, $7B, $E2, $34, $01, $21, $29, $29, $4D, $4E, $43, $01, $01, $13, $01, $14, $03, $02, $01, $13, $4B, $01, $03, $14, $4E, $41, $41, $3E, $40, $41, $4B, $4A, $49, $41, $40, $3E, $41, $40, $49, $4A, $2A, $2B, $23, $3F, $21, $29, $E0, $23, $00, $00, $3F, $00, $00, $5B, $8A, $28, $1C, $00, $E5, $34, $00, $E0, $21, $2A, $29, $23, $02, $14, $00, $00, $02, $01, $00, $00, $13, $14, $01, $5B, $8A, $28, $00, $00, $3E, $4A, $00, $00, $40, $3E, $5B, $92, $40, $4A, $3E, $21, $29, $29, $00, $00, $3F, $00, $E1, $3F, $21, $2A, $22, $23, $3F, $00, $E0, $01, $00, $5B, $8A, $92, $00, $5B, $8A, $8A, $28, $24, $22, $8A, $8A, $92, $00, $37, $00, $21, $2A, $23, $00, $21, $29, $E0, $2A, $24, $20, $20, $23, $00, $4E, $01, $00, $5B, $8A, $92, $00, $E1, $21, $29, $29, $23, $00, $5B, $71, $2F, $00, $21, $2A, $23, $00, $34, $34, $01, $00, $00, $02, $34, $00, $21, $DF
 .ENDS
 
 .SECTION "base_chunk_0097" SLOT 2 SUPERFREE
 chunk_0097:
-.DB $02, $01, $13, $13, $2F, $5F, $56, $54, $47, $48, $5D, $5C, $3D, $45, $00, $00, $06, $2F, $4E, $06, $3B, $4E, $54, $E2, $2D, $54, $4D, $01, $2C, $3C, $54, $06, $54, $E5, $3D, $4E, $4E, $3B, $34, $54, $3C, $50, $54, $E6, $50, $47, $4E, $13, $5F, $56, $2D, $54, $E5, $59, $33, $44, $59, $4E, $44, $2F, $54, $4E, $54, $E3, $6F, $57, $5C, $4C, $57, $50, $4A, $3B, $54, $06, $3C, $54, $E2, $4E, $54, $2D, $2F, $44, $2D, $92, $44, $3C, $50, $54, $3C, $50, $54, $3C, $50, $46, $3E, $41, $42, $49, $41, $23, $4C, $4E, $2D, $5F, $56, $2D, $5F, $56, $2D, $4B, $3F, $00, $00, $7B, $7B, $00, $2F, $54, $5F, $56, $51, $5E, $4E, $50, $4E, $41, $00, $00, $34, $7B, $7B, $5B, $81, $54, $06, $3C, $54, $4B, $54, $2D, $46, $53, $00, $01, $13, $31, $31, $95, $4E, $3C, $50, $54, $3C, $50, $37, $43, $41, $00, $7B, $2F, $4E, $39, $39, $21, $6F, $43, $2D, $5F, $56, $2D, $4E, $6F, $00, $00, $01, $3B, $44, $54, $54, $00, $3E, $42, $43, $41, $41, $40, $40, $41, $00, $7B, $4E, $6F, $4C, $06, $3C, $92, $3F, $7B, $E3, $00, $00, $01, $46, $4B, $5C, $50, $54, $02, $00, $E0, $34, $00, $E0, $34, $34, $43, $54, $3C, $33, $33, $47, $DF
+.DB $3D, $3C, $3C, $4B, $3C, $6B, $56, $44, $2F, $4F, $66, $67, $00, $21, $2A, $46, $3E, $43, $4B, $42, $41, $3E, $46, $4C, $3B, $4E, $47, $4F, $9E, $00, $21, $44, $3F, $40, $00, $E0, $3F, $42, $41, $40, $40, $41, $41, $96, $00, $00, $4C, $8A, $92, $00, $2C, $00, $00, $5B, $8A, $8A, $92, $00, $00, $96, $00, $73, $4E, $23, $31, $00, $31, $00, $01, $21, $29, $2A, $22, $92, $00, $96, $64, $6E, $46, $02, $39, $14, $39, $14, $45, $14, $00, $21, $29, $23, $64, $9C, $6C, $4E, $06, $40, $40, $49, $35, $49, $E0, $00, $00, $64, $65, $6C, $5F, $56, $3C, $6B, $8A, $92, $00, $36, $00, $E1, $62, $63, $4E, $5C, $3C, $2F, $5F, $71, $20, $22, $8A, $92, $00, $E0, $62, $63, $6F, $44, $2D, $4E, $3B, $46, $47, $24, $24, $20, $23, $00, $64, $65, $6C, $47, $4E, $4D, $35, $35, $41, $41, $3E, $29, $2A, $23, $00, $9F, $6C, $51, $5D, $06, $2F, $4E, $36, $36, $00, $00, $3F, $00, $E1, $97, $4E, $46, $3D, $55, $43, $00, $2C, $7A, $7B, $7B, $79, $5B, $8A, $8A, $92, $97, $46, $45, $04, $57, $4E, $00, $00, $7B, $E1, $21, $2A, $24, $1C, $00, $4E, $4D, $46, $4E, $46, $5B, $92, $7A, $7B, $7B, $79, $8A, $28, $29, $23, $00, $32, $E1, $41, $21, $23, $00, $02, $02, $01, $29, $23, $00, $34, $00, $3A, $E1, $2C, $34, $34, $01, $2F, $3C, $46, $DF
 .ENDS
 
 .SECTION "base_chunk_0098" SLOT 2 SUPERFREE
 chunk_0098:
-.DB $00, $4E, $4E, $46, $45, $2E, $54, $2E, $43, $4E, $05, $2E, $54, $45, $2E, $54, $00, $41, $3E, $41, $49, $3E, $3E, $41, $41, $32, $32, $4E, $5C, $4C, $4E, $50, $00, $34, $3F, $00, $2C, $3F, $3F, $00, $00, $3A, $3A, $45, $33, $54, $59, $33, $1F, $13, $01, $02, $01, $E0, $34, $5B, $8A, $92, $4D, $4E, $45, $2E, $54, $3B, $4E, $59, $3B, $5C, $46, $4E, $13, $21, $29, $23, $4E, $5C, $4C, $4E, $50, $4E, $45, $57, $54, $2D, $4E, $44, $6F, $01, $01, $00, $4E, $33, $54, $59, $33, $54, $4D, $44, $6F, $54, $5C, $4C, $4E, $50, $3B, $00, $4E, $4E, $45, $2E, $54, $3E, $3E, $4A, $47, $59, $33, $54, $59, $33, $4E, $00, $4E, $5C, $4D, $47, $50, $3F, $3F, $00, $6F, $2E, $4E, $45, $2E, $54, $6F, $00, $44, $33, $54, $59, $33, $00, $34, $00, $41, $45, $5C, $4D, $47, $50, $47, $00, $4C, $4E, $54, $2E, $54, $01, $13, $00, $00, $4D, $33, $54, $59, $33, $44, $00, $2F, $33, $59, $50, $4E, $2F, $4E, $7B, $00, $41, $4E, $54, $2E, $54, $4C, $00, $3B, $54, $2E, $33, $4E, $3B, $2F, $01, $00, $52, $46, $3C, $54, $2F, $2F, $00, $45, $3C, $54, $46, $4E, $5C, $3B, $4E, $7B, $00, $4E, $47, $46, $4E, $3B, $00, $4D, $5C, $54, $54, $4E, $33, $46, $4B, $01, $00, $41, $E2, $00, $2F, $33, $59, $50, $54, $54, $3C, $37, $43, $34, $7B, $E2, $00, $3B, $54, $2E, $33, $47, $DF
+.DB $6B, $56, $3B, $00, $34, $2C, $7B, $21, $23, $7B, $3F, $2C, $34, $00, $5B, $8A, $4E, $48, $5E, $31, $13, $01, $E0, $02, $02, $01, $01, $13, $01, $21, $29, $4E, $06, $4E, $39, $43, $4E, $46, $43, $4E, $06, $43, $4E, $06, $4E, $02, $01, $3C, $6B, $56, $6B, $56, $3C, $6B, $56, $54, $6B, $56, $3C, $6B, $43, $41, $40, $5F, $71, $5F, $71, $44, $5F, $71, $44, $5F, $71, $44, $5F, $71, $2F, $53, $5B, $46, $4E, $6B, $56, $4D, $3C, $2F, $4C, $6B, $56, $4D, $3C, $47, $3B, $02, $21, $56, $47, $32, $32, $46, $4E, $3B, $43, $46, $4E, $46, $4E, $43, $4E, $43, $02, $44, $46, $3A, $3A, $41, $40, $40, $41, $42, $3E, $3E, $46, $2F, $37, $40, $41, $4C, $4E, $00, $21, $29, $E0, $23, $00, $3F, $3F, $45, $3B, $4E, $53, $5B, $44, $46, $00, $00, $14, $01, $02, $14, $02, $00, $38, $4D, $6B, $56, $02, $21, $4D, $43, $01, $00, $4A, $40, $41, $49, $40, $00, $01, $51, $5E, $4E, $2F, $01, $00, $4E, $6F, $00, $2C, $00, $E0, $5B, $92, $42, $41, $41, $42, $42, $40, $00, $45, $47, $01, $00, $5B, $8A, $28, $2B, $23, $00, $21, $29, $29, $23, $00, $01, $4D, $4E, $46, $01, $21, $2A, $2B, $23, $01, $02, $01, $14, $01, $E0, $4B, $4E, $43, $4E, $82, $00, $95, $22, $92, $4E, $4B, $5C, $4C, $4E, $06, $46, $46, $4E, $3C, $54, $4E, $01, $21, $29, $23, $4E, $47, $33, $54, $59, $3D, $59, $DF
 .ENDS
 
 .SECTION "base_chunk_0099" SLOT 2 SUPERFREE
 chunk_0099:
-.DB $54, $E1, $56, $3D, $06, $6B, $56, $4E, $5C, $3C, $5C, $46, $2C, $44, $6B, $56, $05, $4E, $3C, $06, $46, $47, $4E, $4B, $2D, $2F, $2D, $46, $2C, $4C, $54, $47, $5F, $56, $43, $47, $4E, $2F, $32, $E2, $41, $8A, $47, $54, $54, $3C, $55, $4E, $4B, $32, $32, $3A, $E2, $95, $24, $4E, $3C, $50, $54, $2E, $47, $32, $3A, $3A, $5B, $8A, $92, $00, $00, $21, $2A, $44, $54, $33, $3C, $4B, $46, $3A, $34, $00, $21, $29, $23, $02, $34, $00, $21, $4C, $54, $47, $5F, $56, $45, $01, $13, $02, $01, $E0, $3B, $13, $01, $01, $6F, $54, $54, $3C, $55, $4D, $54, $43, $5F, $56, $54, $47, $5F, $56, $4B, $4E, $54, $E1, $2E, $4E, $54, $54, $3C, $55, $54, $54, $3C, $55, $47, $54, $E1, $3C, $4B, $54, $3C, $54, $54, $2E, $3C, $50, $54, $2E, $6F, $3C, $54, $FE, $00, $FF, $FC, $DF
+.DB $92, $00, $3F, $2F, $43, $05, $54, $54, $00, $E5, $2A, $92, $00, $3B, $04, $54, $E0, $00, $E5, $29, $23, $00, $6F, $06, $54, $E0, $00, $E6, $2C, $00, $4E, $06, $54, $E0, $00, $E5, $92, $02, $01, $4E, $37, $54, $E0, $00, $E5, $23, $40, $40, $04, $51, $5D, $54, $54, $00, $E5, $5B, $92, $52, $04, $43, $05, $54, $54, $00, $E5, $21, $29, $2C, $2F, $04, $37, $50, $54, $00, $E5, $92, $01, $02, $3B, $51, $5D, $33, $54, $00, $E5, $23, $40, $43, $44, $4E, $46, $54, $54, $00, $E5, $5B, $92, $00, $4D, $59, $54, $E0, $00, $E5, $21, $29, $2C, $47, $2E, $54, $E0, $00, $E6, $01, $01, $4E, $54, $E1, $00, $E5, $01, $4E, $47, $46, $4E, $54, $E0, $00, $E5, $50, $5C, $54, $54, $50, $54, $E0, $00, $E5, $33, $33, $54, $59, $33, $54, $59, $54, $00, $E5, $DF
 .ENDS
 
 .SECTION "base_chunk_009A" SLOT 2 SUPERFREE
 chunk_009A:
-.DB $47, $5F, $56, $54, $E5, $47, $2E, $5F, $56, $4B, $54, $3C, $54, $E6, $4E, $54, $3C, $55, $46, $3D, $55, $54, $E6, $46, $4E, $5C, $2E, $54, $54, $2E, $54, $E7, $3C, $33, $4E, $50, $47, $54, $EA, $5C, $33, $54, $3D, $55, $54, $E8, $33, $54, $50, $54, $2E, $54, $EA, $33, $54, $FF, $FF, $EA, $00, $FF, $FC, $DF
+.DB $3D, $3B, $01, $00, $E1, $13, $13, $4B, $01, $01, $3B, $13, $14, $01, $43, $3E, $40, $00, $2C, $00, $00, $41, $4B, $3E, $3E, $49, $41, $40, $4A, $40, $00, $3F, $5B, $92, $00, $E1, $41, $3F, $3F, $5B, $8A, $E0, $92, $34, $21, $23, $00, $34, $01, $00, $2C, $00, $E0, $21, $29, $29, $23, $34, $13, $01, $14, $1F, $13, $46, $01, $02, $02, $01, $02, $E1, $01, $13, $3B, $4E, $4C, $4E, $3B, $4E, $3B, $32, $42, $42, $40, $41, $40, $40, $3E, $41, $3C, $6B, $71, $3C, $4E, $4E, $32, $3A, $00, $00, $34, $34, $00, $00, $3F, $00, $54, $46, $3C, $6B, $56, $3B, $3A, $00, $00, $02, $13, $13, $02, $01, $02, $02, $54, $3C, $05, $59, $6B, $45, $22, $92, $34, $2F, $3B, $3B, $4E, $46, $54, $3C, $54, $6B, $71, $2E, $4E, $4D, $2B, $14, $13, $3B, $4E, $50, $55, $4E, $55, $46, $54, $5F, $71, $4E, $43, $46, $23, $4D, $4E, $54, $54, $33, $2E, $54, $2E, $4E, $54, $54, $3C, $47, $46, $47, $7B, $4E, $55, $46, $54, $3C, $55, $46, $54, $3C, $54, $54, $05, $59, $4E, $4B, $7B, $2F, $2E, $4E, $5C, $4E, $2E, $54, $E3, $2E, $46, $4E, $7B, $3B, $54, $54, $33, $3C, $54, $E2, $59, $6B, $71, $06, $2F, $7B, $4E, $46, $54, $3C, $54, $E3, $2E, $5F, $56, $3C, $3B, $7B, $46, $4E, $4B, $54, $E3, $DF
 .ENDS
 
 .SECTION "base_chunk_009B" SLOT 2 SUPERFREE
 chunk_009B:
-.DB $43, $01, $14, $02, $13, $01, $01, $02, $13, $13, $4E, $50, $54, $54, $46, $4B, $4B, $5C, $4C, $3B, $2F, $46, $43, $5C, $3B, $3B, $4E, $33, $47, $54, $54, $3C, $3C, $33, $46, $4B, $5C, $54, $3C, $33, $46, $4B, $5C, $46, $43, $5C, $50, $54, $E1, $3C, $33, $50, $54, $E0, $3C, $33, $54, $3C, $33, $33, $47, $47, $54, $50, $54, $54, $33, $47, $54, $50, $54, $E2, $46, $43, $54, $54, $33, $54, $E2, $33, $54, $E3, $3C, $54, $FF, $FF, $FB, $00, $FF, $FC, $DF
+.DB $01, $02, $02, $13, $02, $01, $E0, $02, $01, $13, $13, $2F, $5F, $56, $54, $40, $40, $3E, $43, $2F, $5F, $56, $4E, $06, $2F, $4E, $06, $3B, $4E, $54, $54, $00, $00, $3F, $40, $4B, $2F, $54, $54, $3C, $54, $06, $54, $E2, $34, $00, $E1, $3B, $3C, $50, $54, $3C, $50, $54, $E2, $13, $01, $00, $00, $2C, $44, $4E, $2D, $5F, $56, $2D, $54, $E2, $40, $40, $5B, $8A, $92, $4A, $3E, $4B, $44, $2F, $54, $4E, $54, $E1, $00, $00, $21, $29, $23, $00, $3F, $00, $4A, $3B, $54, $06, $3C, $54, $E0, $01, $E0, $02, $14, $5B, $8A, $8A, $92, $44, $3C, $50, $54, $3C, $50, $54, $55, $46, $54, $3C, $4C, $21, $29, $29, $23, $4C, $4E, $2D, $5F, $56, $2D, $5F, $2E, $3C, $5C, $4E, $4E, $01, $00, $E0, $2F, $54, $5F, $56, $51, $5E, $4E, $5C, $4E, $33, $3C, $5C, $6F, $00, $00, $5B, $81, $54, $06, $3C, $54, $4B, $54, $33, $3C, $3D, $55, $33, $4E, $01, $00, $95, $4E, $3C, $50, $54, $3C, $50, $37, $54, $54, $4E, $2E, $5C, $6F, $47, $00, $21, $6F, $43, $2D, $5F, $56, $2D, $4E, $54, $E0, $5C, $33, $3C, $4B, $92, $00, $3E, $42, $43, $41, $41, $40, $40, $54, $E0, $33, $3C, $55, $4E, $22, $92, $3F, $7B, $E3, $54, $E0, $3C, $55, $2E, $47, $01, $02, $00, $E0, $34, $00, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_009C" SLOT 2 SUPERFREE
 chunk_009C:
-.DB $5C, $50, $54, $2F, $13, $02, $01, $01, $02, $02, $01, $45, $3C, $54, $46, $4B, $33, $33, $47, $3B, $4E, $46, $43, $5C, $4E, $54, $4E, $4D, $43, $5C, $54, $3C, $54, $46, $43, $5C, $54, $54, $3C, $33, $54, $5C, $54, $54, $4E, $33, $5C, $4E, $54, $54, $3C, $33, $5C, $50, $54, $54, $3C, $33, $5C, $50, $54, $54, $2D, $54, $5C, $54, $E0, $33, $33, $47, $54, $E0, $33, $54, $E2, $33, $54, $FF, $FF, $FF, $E9, $00, $FF, $FC, $DF
+.DB $47, $48, $5D, $5C, $3D, $45, $00, $E0, $4E, $4E, $46, $45, $2E, $54, $2E, $54, $E0, $2D, $54, $4D, $01, $2C, $00, $41, $3E, $41, $49, $3E, $3E, $41, $54, $E0, $3D, $4E, $4E, $3B, $34, $00, $34, $3F, $00, $2C, $3F, $3F, $00, $54, $E1, $50, $47, $4E, $13, $1F, $13, $01, $02, $01, $E0, $34, $54, $E0, $59, $33, $44, $59, $4E, $3B, $4E, $59, $3B, $5C, $46, $4E, $13, $54, $54, $6F, $57, $5C, $4C, $57, $50, $4E, $45, $57, $54, $2D, $4E, $44, $6F, $54, $54, $4E, $54, $2D, $2F, $44, $2D, $54, $4D, $44, $6F, $54, $5C, $4C, $4E, $3C, $50, $46, $3E, $41, $42, $49, $41, $3E, $3E, $4A, $47, $59, $33, $54, $59, $56, $2D, $4B, $3F, $00, $00, $7B, $7B, $3F, $3F, $00, $6F, $2E, $4E, $45, $2E, $50, $4E, $41, $00, $00, $34, $7B, $7B, $00, $34, $00, $41, $45, $5C, $4D, $47, $2D, $46, $53, $00, $01, $13, $31, $31, $01, $13, $00, $00, $4D, $33, $54, $59, $43, $41, $00, $7B, $2F, $4E, $39, $39, $2F, $4E, $7B, $00, $41, $4E, $54, $2E, $6F, $00, $00, $01, $3B, $44, $54, $54, $3B, $2F, $01, $00, $52, $46, $3C, $54, $41, $00, $7B, $4E, $6F, $4C, $06, $3C, $5C, $3B, $4E, $7B, $00, $4E, $47, $46, $00, $00, $01, $46, $4B, $5C, $50, $54, $33, $46, $4B, $01, $00, $41, $E0, $34, $34, $43, $54, $3C, $33, $33, $47, $54, $3C, $37, $43, $34, $7B, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_009D" SLOT 2 SUPERFREE
 chunk_009D:
-.DB $00, $FF, $FC, $54, $FF, $3D, $54, $E7, $50, $54, $54, $6B, $71, $54, $3D, $59, $6F, $54, $3C, $6B, $71, $54, $3D, $59, $2D, $54, $3C, $6F, $5F, $56, $05, $57, $32, $05, $6F, $6F, $5F, $56, $05, $57, $6F, $05, $6F, $6F, $46, $41, $E0, $3A, $3E, $4B, $6F, $32, $41, $3E, $41, $32, $3E, $41, $6F, $3E, $5B, $8A, $92, $00, $3F, $32, $32, $3A, $00, $3F, $00, $3A, $3F, $00, $4B, $3F, $21, $29, $23, $31, $00, $3A, $3A, $00, $00, $31, $34, $00, $E0, $6F, $00, $00, $31, $00, $39, $01, $E1, $02, $39, $13, $14, $2F, $00, $6F, $14, $01, $39, $01, $4B, $2F, $43, $42, $43, $41, $40, $4B, $4A, $4B, $00, $4B, $4C, $4E, $42, $43, $47, $40, $5B, $8A, $92, $2C, $00, $E0, $2C, $5B, $40, $00, $E3, $21, $29, $23, $00, $E2, $21, $DF
+.DB $43, $4E, $05, $2E, $54, $45, $2E, $54, $00, $E5, $41, $32, $32, $4E, $5C, $4C, $4E, $50, $00, $E6, $3A, $3A, $45, $33, $54, $59, $33, $00, $E5, $5B, $8A, $92, $4D, $4E, $45, $2E, $54, $00, $E5, $21, $29, $23, $4E, $5C, $4C, $4E, $50, $00, $E5, $01, $01, $00, $4E, $33, $54, $59, $33, $00, $E5, $50, $3B, $00, $4E, $4E, $45, $2E, $54, $00, $E5, $33, $4E, $00, $4E, $5C, $4D, $47, $50, $00, $E5, $54, $6F, $00, $44, $33, $54, $59, $33, $00, $E5, $50, $47, $00, $4C, $4E, $54, $2E, $54, $00, $E5, $33, $44, $00, $2F, $33, $59, $50, $4E, $00, $E5, $54, $4C, $00, $3B, $54, $2E, $33, $4E, $00, $E5, $2F, $2F, $00, $45, $3C, $54, $46, $4E, $00, $E5, $4E, $3B, $00, $4D, $5C, $54, $54, $4E, $00, $E5, $41, $41, $00, $2F, $33, $59, $50, $54, $00, $E5, $7B, $7B, $00, $3B, $54, $2E, $33, $47, $00, $E5, $DF
 .ENDS
 
 .SECTION "base_chunk_009E" SLOT 2 SUPERFREE
 chunk_009E:
-.DB $00, $FF, $FC, $54, $E1, $6F, $E0, $00, $E6, $54, $E1, $6F, $E0, $00, $00, $6F, $E0, $00, $00, $6F, $6F, $54, $E0, $37, $6F, $6F, $4B, $00, $00, $6F, $E0, $00, $00, $43, $6F, $04, $54, $06, $55, $46, $6F, $43, $00, $00, $43, $4B, $43, $00, $00, $4B, $6F, $E0, $05, $57, $6F, $4E, $4B, $00, $00, $41, $E0, $00, $00, $43, $6F, $3E, $3E, $41, $41, $6F, $46, $43, $00, $5B, $8A, $E0, $92, $00, $4B, $41, $3F, $3F, $00, $00, $41, $E0, $00, $95, $24, $20, $24, $1C, $00, $41, $1D, $00, $E5, $21, $29, $E0, $23, $00, $00, $27, $00, $E0, $01, $E0, $14, $03, $14, $00, $E0, $03, $14, $03, $11, $00, $E0, $6F, $6F, $4E, $4C, $4D, $4C, $00, $E0, $4D, $4C, $4D, $2F, $92, $00, $01, $4E, $06, $6F, $6F, $06, $6F, $00, $E0, $6F, $E0, $3B, $23, $00, $6F, $04, $50, $06, $6B, $56, $6F, $00, $E0, $6F, $E1, $DF
+.DB $00, $E5, $54, $E1, $56, $3D, $06, $6B, $00, $E5, $6B, $56, $05, $4E, $3C, $06, $46, $47, $00, $E5, $54, $47, $5F, $56, $43, $47, $4E, $2F, $00, $E5, $54, $54, $3C, $55, $4E, $4B, $32, $32, $00, $E5, $3C, $50, $54, $2E, $47, $32, $3A, $3A, $00, $E5, $54, $33, $3C, $4B, $46, $3A, $34, $00, $E6, $54, $47, $5F, $56, $45, $01, $13, $02, $00, $E5, $54, $54, $3C, $55, $4D, $54, $43, $5F, $00, $E5, $54, $E0, $2E, $4E, $54, $54, $3C, $00, $E5, $54, $54, $3C, $4B, $54, $3C, $54, $54, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_009F" SLOT 2 SUPERFREE
 chunk_009F:
-.DB $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $6F, $EA, $61, $E0, $6F, $EA, $61, $E0, $6F, $4E, $6F, $6F, $4E, $6F, $47, $6F, $6F, $47, $6F, $E0, $61, $E0, $4E, $47, $6F, $4E, $6F, $6F, $46, $4E, $6F, $E0, $46, $6F, $61, $5F, $5E, $41, $EA, $5F, $5D, $53, $1E, $1D, $1E, $1D, $1E, $00, $E5, $53, $5C, $5B, $26, $27, $26, $27, $26, $00, $E8, $12, $11, $12, $11, $12, $01, $02, $01, $02, $01, $02, $01, $02, $E1, $4C, $2F, $4C, $2F, $4C, $6F, $3B, $6F, $3B, $6F, $3B, $6F, $6F, $2F, $2F, $29, $6F, $3B, $6F, $3B, $6F, $E6, $2F, $26, $26, $6F, $ED, $DF
+.DB $56, $4E, $5C, $3C, $5C, $46, $2C, $44, $47, $5F, $56, $54, $E2, $4E, $4B, $2D, $2F, $2D, $46, $2C, $4C, $54, $3C, $54, $E3, $32, $E2, $41, $8A, $47, $3D, $55, $54, $E3, $3A, $E2, $95, $24, $4E, $54, $2E, $54, $E3, $5B, $8A, $92, $00, $00, $21, $2A, $44, $47, $54, $E4, $21, $29, $23, $02, $34, $00, $21, $4C, $54, $3D, $55, $54, $E2, $01, $E0, $3B, $13, $01, $01, $6F, $50, $54, $2E, $54, $E2, $56, $54, $47, $5F, $56, $4B, $4E, $54, $33, $54, $E4, $55, $54, $54, $3C, $55, $47, $54, $E7, $2E, $3C, $50, $54, $2E, $6F, $3C, $54, $FF, $E5, $00, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00A0" SLOT 2 SUPERFREE
 chunk_00A0:
-.DB $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $5F, $61, $61, $5F, $5E, $5E, $5F, $61, $5F, $5E, $5E, $61, $61, $8D, $4E, $36, $62, $5E, $5E, $5D, $53, $54, $53, $60, $5D, $54, $54, $5D, $5F, $8D, $4E, $37, $53, $5B, $54, $5C, $5B, $55, $54, $5B, $5C, $55, $55, $5C, $53, $A4, $65, $65, $59, $00, $5A, $00, $00, $5A, $7B, $7B, $00, $00, $5A, $5A, $58, $51, $B7, $00, $03, $01, $02, $02, $00, $00, $02, $02, $00, $00, $02, $02, $03, $01, $02, $02, $3A, $39, $2F, $31, $6F, $6F, $26, $36, $6F, $6F, $70, $70, $06, $39, $26, $2B, $3A, $2C, $2D, $2F, $6F, $6F, $27, $37, $6F, $6F, $04, $30, $71, $96, $25, $2F, $6F, $ED, $DF
+.DB $54, $E0, $47, $2E, $5F, $56, $4B, $43, $01, $14, $02, $13, $01, $01, $02, $54, $E0, $4E, $54, $3C, $55, $46, $4B, $5C, $4C, $3B, $2F, $46, $43, $5C, $54, $E0, $46, $4E, $5C, $2E, $54, $3C, $33, $46, $4B, $5C, $54, $3C, $33, $54, $E1, $3C, $33, $4E, $50, $54, $E0, $3C, $33, $50, $54, $E5, $5C, $33, $47, $54, $50, $54, $54, $33, $47, $54, $E4, $33, $54, $E0, $33, $54, $FF, $FF, $FF, $54, $00, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00A1" SLOT 2 SUPERFREE
 chunk_00A1:
-.DB $00, $E5, $5B, $92, $00, $5B, $8A, $8A, $92, $2C, $00, $E4, $2C, $21, $23, $00, $95, $24, $24, $1C, $00, $E2, $5B, $8A, $E0, $92, $00, $2C, $21, $29, $29, $23, $00, $92, $00, $00, $5B, $28, $20, $24, $20, $22, $8A, $8A, $92, $00, $5B, $92, $00, $22, $92, $5B, $28, $24, $24, $2A, $20, $24, $E0, $22, $92, $21, $23, $00, $20, $1C, $95, $24, $20, $20, $22, $28, $2B, $2A, $20, $24, $1C, $00, $00, $1F, $24, $1C, $21, $29, $2A, $24, $24, $2A, $22, $28, $20, $2B, $23, $00, $00, $47, $2B, $23, $2C, $00, $21, $29, $29, $2A, $24, $E0, $23, $00, $01, $01, $4E, $23, $00, $34, $E0, $00, $00, $21, $29, $29, $23, $00, $00, $4B, $4E, $6F, $01, $01, $13, $E0, $01, $01, $02, $01, $02, $01, $E0, $6F, $46, $06, $4E, $43, $3B, $E0, $6F, $43, $3B, $6F, $3B, $43, $6F, $47, $4B, $51, $5D, $6F, $6F, $4E, $5C, $04, $06, $3C, $6B, $56, $3D, $6F, $5C, $6F, $51, $5D, $3D, $54, $E0, $33, $3D, $54, $54, $3C, $54, $54, $3D, $33, $6F, $3D, $3C, $54, $EE, $00, $FD, $DF
+.DB $13, $13, $4E, $50, $54, $54, $46, $4B, $5C, $50, $54, $2F, $13, $02, $01, $01, $3B, $3B, $4E, $33, $47, $54, $54, $3C, $33, $33, $47, $3B, $4E, $46, $43, $5C, $46, $4B, $5C, $46, $43, $5C, $50, $54, $54, $46, $43, $5C, $54, $54, $3C, $33, $54, $3C, $33, $54, $3C, $33, $33, $47, $54, $54, $3C, $33, $5C, $50, $54, $54, $50, $54, $E2, $46, $43, $5C, $54, $E0, $33, $33, $47, $54, $33, $54, $E3, $3C, $33, $54, $FF, $FF, $FF, $E1, $00, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00A2" SLOT 2 SUPERFREE
 chunk_00A2:
-.DB $00, $01, $51, $5D, $33, $54, $54, $3C, $6F, $00, $E0, $6F, $E1, $01, $5F, $71, $54, $E2, $6F, $00, $E0, $6F, $E1, $51, $5D, $3D, $54, $E1, $3D, $6F, $00, $E0, $6F, $E2, $5F, $71, $54, $E0, $3D, $3D, $6F, $00, $E0, $6F, $E1, $47, $04, $3D, $54, $EA, $4E, $6B, $71, $54, $EA, $5F, $71, $59, $54, $EA, $06, $3D, $2E, $54, $EA, $51, $5D, $54, $EB, $3D, $54, $FF, $FF, $EA, $00, $FD, $DF
+.DB $02, $02, $01, $45, $3C, $54, $46, $4B, $00, $E5, $4E, $54, $4E, $4D, $43, $5C, $54, $3C, $00, $E5, $54, $5C, $54, $54, $4E, $33, $5C, $4E, $00, $E5, $3C, $33, $5C, $50, $54, $54, $2D, $54, $00, $E5, $54, $54, $33, $54, $E2, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $E5, $54, $E5, $00, $FF, $FF, $E3, $DF
 .ENDS
 
 .SECTION "base_chunk_00A3" SLOT 2 SUPERFREE
 chunk_00A3:
-.DB $6F, $FF, $FC, $54, $FF, $FF, $FF, $FF, $F9, $00, $FD, $DF
+.DB $00, $FF, $FC, $54, $E9, $6F, $E0, $00, $54, $E9, $6F, $E0, $00, $54, $E2, $50, $54, $E2, $37, $6F, $6F, $4B, $00, $6B, $71, $54, $3D, $59, $2D, $54, $3C, $04, $54, $06, $55, $46, $6F, $43, $00, $6F, $5F, $56, $05, $57, $6F, $05, $6F, $E0, $05, $57, $6F, $4E, $4B, $00, $6F, $32, $41, $3E, $41, $32, $3E, $41, $3E, $3E, $41, $41, $6F, $46, $43, $00, $32, $3A, $00, $3F, $00, $3A, $3F, $00, $3F, $3F, $00, $00, $41, $E0, $00, $3A, $00, $00, $31, $34, $00, $E8, $01, $01, $02, $39, $13, $14, $2F, $00, $E1, $01, $E0, $14, $03, $42, $43, $41, $40, $4B, $4A, $4B, $00, $E1, $6F, $6F, $4E, $4C, $4D, $8A, $92, $2C, $00, $E0, $2C, $5B, $92, $00, $01, $4E, $06, $6F, $6F, $06, $29, $23, $00, $E2, $21, $23, $00, $6F, $04, $50, $06, $6B, $56, $DF
 .ENDS
 
 .SECTION "base_chunk_00A4" SLOT 2 SUPERFREE
 chunk_00A4:
-.DB $2F, $E7, $8C, $2F, $EC, $8C, $2F, $EC, $8C, $2F, $EC, $8C, $2F, $EA, $23, $26, $8C, $70, $E2, $2F, $E5, $24, $25, $8C, $A2, $A2, $B8, $A2, $A2, $2F, $E1, $31, $22, $29, $31, $40, $8F, $76, $00, $7A, $7B, $79, $00, $2F, $E0, $2E, $31, $25, $40, $41, $45, $00, $00, $52, $51, $00, $E0, $23, $26, $2F, $2C, $40, $41, $45, $7B, $07, $15, $03, $01, $02, $02, $03, $01, $24, $25, $40, $41, $45, $7B, $07, $08, $09, $42, $31, $29, $2A, $2B, $3A, $39, $65, $91, $45, $7B, $07, $08, $09, $42, $29, $29, $31, $05, $70, $70, $06, $39, $00, $51, $07, $08, $09, $42, $23, $70, $E0, $06, $30, $71, $04, $30, $2F, $02, $16, $09, $42, $2D, $23, $27, $71, $E0, $04, $39, $26, $3A, $39, $2F, $2D, $2C, $31, $2F, $2D, $25, $28, $2F, $E0, $3A, $39, $25, $3A, $39, $2F, $E8, $3A, $39, $2F, $3A, $39, $2F, $00, $ED, $DF
+.DB $00, $FF, $FF, $EC, $6F, $E0, $00, $00, $6F, $E7, $00, $6F, $E0, $00, $00, $43, $6F, $E6, $00, $43, $4B, $43, $00, $00, $4B, $6F, $6F, $4E, $6F, $6F, $4E, $6F, $47, $6F, $00, $41, $E0, $00, $00, $43, $6F, $4E, $47, $6F, $4E, $6F, $6F, $46, $4E, $5B, $8A, $E0, $92, $00, $4B, $41, $E6, $95, $24, $20, $24, $1C, $00, $41, $1D, $1E, $1D, $1E, $1D, $1E, $00, $E0, $21, $29, $E0, $23, $00, $00, $27, $26, $27, $26, $27, $26, $00, $E0, $14, $00, $E0, $03, $14, $03, $11, $12, $11, $12, $11, $12, $01, $02, $01, $4C, $00, $E0, $4D, $4C, $4D, $2F, $4C, $2F, $4C, $2F, $4C, $6F, $3B, $6F, $6F, $00, $E0, $6F, $E0, $3B, $6F, $3B, $6F, $3B, $6F, $E2, $00, $E0, $6F, $E9, $DF
 .ENDS
 
 .SECTION "base_chunk_00A5" SLOT 2 SUPERFREE
 chunk_00A5:
-.DB $2F, $E6, $8D, $2F, $2F, $8C, $61, $E0, $2F, $E6, $8D, $2F, $2F, $8C, $61, $E0, $2F, $E6, $8D, $2F, $2F, $8C, $61, $E0, $2F, $E6, $8D, $2F, $2F, $8C, $61, $E0, $70, $E6, $8D, $2F, $2F, $8C, $61, $5F, $61, $A2, $B8, $A2, $E0, $B8, $A2, $E0, $8D, $2F, $2F, $8C, $5E, $62, $5E, $00, $00, $52, $00, $7A, $7B, $79, $00, $52, $75, $65, $65, $A3, $5B, $5C, $54, $51, $00, $E1, $51, $00, $E1, $51, $B6, $00, $E0, $5A, $02, $E1, $03, $01, $02, $E4, $03, $01, $02, $26, $2F, $31, $31, $3A, $39, $23, $22, $23, $2F, $2D, $2C, $4E, $3A, $39, $29, $27, $2F, $23, $2F, $3A, $39, $24, $25, $27, $2F, $2A, $2C, $4E, $3A, $39, $2F, $28, $96, $25, $2F, $3A, $39, $2F, $2F, $28, $2F, $30, $04, $2F, $3A, $05, $70, $2F, $E1, $3A, $39, $2F, $E1, $05, $06, $2F, $2F, $71, $71, $2F, $E1, $3A, $39, $2F, $E5, $22, $23, $2F, $E1, $3A, $39, $2F, $E5, $21, $27, $00, $ED, $DF
+.DB $00, $E2, $61, $E8, $00, $E2, $61, $E8, $00, $E2, $61, $E8, $00, $E2, $61, $E8, $00, $E2, $61, $E8, $6F, $E2, $61, $E8, $6F, $E2, $61, $E8, $6F, $47, $6F, $E0, $61, $E8, $6F, $E0, $46, $6F, $61, $5F, $5E, $5F, $61, $61, $5F, $5E, $5E, $5F, $61, $41, $E2, $5F, $5D, $53, $62, $5E, $5E, $5D, $53, $54, $53, $60, $00, $E2, $53, $5C, $5B, $53, $5B, $54, $5C, $5B, $55, $54, $5B, $00, $E5, $59, $00, $5A, $00, $00, $5A, $7B, $7B, $02, $01, $02, $01, $02, $E1, $03, $01, $02, $02, $00, $00, $02, $02, $3B, $6F, $3B, $6F, $6F, $2F, $2F, $29, $3A, $39, $2F, $31, $00, $00, $26, $36, $6F, $E2, $2F, $26, $26, $3A, $2C, $2D, $2F, $00, $00, $27, $37, $6F, $E9, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_00A6" SLOT 2 SUPERFREE
 chunk_00A6:
-.DB $61, $EB, $8D, $2F, $61, $EB, $8D, $2F, $61, $EB, $8D, $2F, $61, $EB, $8D, $2F, $61, $E0, $5F, $5E, $61, $60, $5F, $5E, $61, $5E, $61, $5E, $61, $8D, $2F, $5F, $5D, $5E, $54, $5B, $5E, $5D, $62, $62, $60, $54, $5F, $5D, $5E, $8D, $2F, $53, $5C, $5B, $55, $56, $5B, $5C, $53, $5B, $54, $55, $5B, $5C, $53, $A4, $65, $58, $46, $4C, $48, $00, $7B, $79, $59, $46, $48, $00, $E2, $B6, $00, $E1, $49, $4D, $4B, $00, $E1, $02, $02, $03, $01, $02, $00, $E8, $4E, $2F, $3A, $39, $26, $00, $E5, $51, $00, $00, $4E, $70, $06, $05, $25, $00, $00, $52, $00, $E5, $71, $E0, $04, $39, $51, $00, $E3, $52, $00, $E0, $2F, $29, $2F, $3A, $39, $00, $E1, $5A, $00, $E3, $26, $2F, $2F, $3A, $05, $00, $E6, $51, $00, $27, $2F, $E0, $71, $00, $ED, $DF
+.DB $5B, $92, $00, $5B, $8A, $8A, $92, $2C, $00, $01, $51, $5D, $33, $54, $54, $3C, $21, $23, $00, $95, $24, $24, $1C, $00, $01, $5F, $71, $54, $E2, $92, $00, $2C, $21, $29, $29, $23, $00, $51, $5D, $3D, $54, $E1, $3D, $22, $8A, $8A, $92, $00, $5B, $92, $00, $6F, $5F, $71, $54, $E0, $3D, $3D, $24, $E0, $22, $92, $21, $23, $00, $47, $04, $3D, $54, $E2, $2B, $2A, $20, $24, $1C, $00, $00, $1F, $4E, $6B, $71, $54, $E2, $22, $28, $20, $2B, $23, $00, $00, $47, $5F, $71, $59, $54, $E2, $24, $E0, $23, $00, $01, $01, $4E, $06, $3D, $2E, $54, $E2, $29, $29, $23, $00, $00, $4B, $4E, $6F, $51, $5D, $54, $E3, $01, $02, $01, $E0, $6F, $46, $06, $3D, $54, $E4, $6F, $3B, $43, $6F, $47, $4B, $51, $5D, $54, $E5, $56, $3D, $6F, $5C, $6F, $51, $5D, $3D, $54, $E7, $3D, $33, $6F, $3D, $3C, $54, $F6, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_00A7" SLOT 2 SUPERFREE
 chunk_00A7:
-.DB $8C, $2F, $E8, $8D, $2F, $E0, $8C, $2F, $E8, $8D, $2F, $E0, $8C, $2F, $E8, $8D, $2F, $E0, $8C, $2F, $E8, $8D, $2F, $22, $23, $8C, $70, $E8, $8D, $36, $25, $21, $8C, $A2, $B8, $A2, $E0, $B8, $A2, $E0, $B8, $A2, $8D, $37, $B0, $65, $76, $00, $51, $00, $52, $7B, $E0, $00, $51, $00, $00, $75, $65, $A3, $00, $51, $00, $E0, $50, $00, $00, $52, $50, $00, $E0, $52, $00, $00, $B6, $02, $03, $01, $02, $19, $02, $E0, $19, $02, $E3, $49, $2B, $2D, $39, $36, $2F, $26, $26, $2F, $2F, $23, $22, $23, $2C, $2B, $23, $7B, $2B, $2C, $39, $37, $96, $25, $27, $2F, $2F, $24, $25, $25, $2F, $2F, $21, $02, $2F, $3A, $39, $2F, $E0, $28, $2F, $E5, $31, $2F, $3A, $39, $2F, $EA, $70, $06, $39, $2F, $EA, $71, $71, $2F, $EB, $00, $ED, $DF
+.DB $6F, $00, $E0, $6F, $EA, $00, $E0, $6F, $EA, $00, $E0, $6F, $EA, $00, $E0, $6F, $E9, $54, $FF, $FF, $FF, $FF, $F9, $00, $FD, $DF
 .ENDS
 
 .SECTION "base_chunk_00A8" SLOT 2 SUPERFREE
 chunk_00A8:
-.DB $2F, $E2, $3A, $39, $3A, $39, $26, $26, $4E, $8C, $70, $E0, $2F, $E2, $3A, $39, $3A, $39, $25, $21, $4E, $8C, $A2, $E0, $2F, $E2, $3A, $05, $06, $66, $65, $E0, $A3, $00, $5A, $00, $30, $04, $23, $26, $2F, $2F, $71, $71, $00, $E1, $51, $B5, $00, $00, $05, $06, $24, $25, $2F, $E1, $02, $13, $52, $00, $11, $02, $E0, $65, $E4, $B1, $29, $8C, $00, $00, $8D, $2D, $2D, $2F, $51, $00, $00, $7B, $7B, $00, $52, $75, $65, $76, $00, $00, $8D, $36, $2F, $2F, $00, $00, $52, $46, $48, $00, $7A, $7B, $7B, $79, $51, $00, $8D, $37, $23, $2F, $4D, $4B, $00, $E1, $49, $4D, $4D, $4B, $00, $00, $8D, $29, $25, $2F, $7B, $7B, $50, $00, $51, $00, $00, $50, $00, $E1, $8D, $2F, $E0, $02, $02, $19, $02, $02, $03, $01, $19, $02, $02, $6D, $6E, $B3, $22, $23, $2F, $2D, $2C, $2A, $31, $26, $3A, $39, $26, $2B, $2C, $2F, $2F, $96, $25, $25, $2F, $E2, $27, $3A, $39, $21, $2F, $E9, $28, $3A, $39, $2F, $F6, $00, $ED, $DF
+.DB $6F, $E9, $00, $E1, $6F, $E9, $00, $E1, $6F, $E9, $00, $E1, $6F, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $E1, $54, $E9, $00, $FF, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00A9" SLOT 2 SUPERFREE
 chunk_00A9:
-.DB $70, $E3, $8D, $4E, $4E, $2F, $E0, $8C, $2F, $2F, $26, $A2, $B8, $A2, $E1, $8D, $4E, $4E, $22, $23, $2D, $8C, $2F, $2F, $24, $7B, $E0, $00, $E0, $75, $8E, $44, $24, $25, $2B, $8C, $70, $E0, $00, $51, $00, $52, $00, $00, $51, $7B, $6A, $4F, $44, $2F, $8C, $A2, $A2, $B8, $03, $01, $02, $E2, $18, $0C, $7B, $6A, $90, $76, $00, $7B, $7B, $3A, $39, $29, $26, $36, $2F, $2F, $43, $0A, $0B, $0C, $7B, $00, $52, $00, $00, $3A, $39, $96, $25, $37, $2F, $2A, $2C, $31, $43, $0A, $17, $02, $03, $01, $02, $3A, $39, $2F, $E5, $29, $23, $31, $3A, $39, $26, $3A, $39, $2F, $E6, $27, $31, $3A, $39, $25, $2F, $E8, $28, $2F, $3A, $05, $70, $2F, $EB, $71, $71, $2F, $FF, $FC, $00, $ED, $DF
+.DB $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E7, $61, $E2, $8D, $2F, $E3, $31, $22, $29, $31, $61, $E2, $8D, $2F, $E2, $2E, $31, $25, $40, $41, $5F, $5E, $5E, $61, $61, $8D, $4E, $36, $23, $26, $2F, $2C, $40, $41, $45, $7B, $5D, $54, $54, $5D, $5F, $8D, $4E, $37, $24, $25, $40, $41, $45, $7B, $07, $08, $5C, $55, $55, $5C, $53, $A4, $65, $E0, $91, $45, $7B, $07, $08, $09, $42, $00, $00, $5A, $5A, $58, $51, $B7, $00, $00, $51, $07, $08, $09, $42, $23, $70, $00, $00, $02, $02, $03, $01, $02, $E0, $16, $09, $42, $2D, $23, $27, $71, $00, $00, $70, $70, $06, $39, $26, $2B, $2D, $2C, $31, $2F, $2D, $25, $28, $2F, $00, $00, $04, $30, $71, $96, $25, $2F, $E6, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00AA" SLOT 2 SUPERFREE
 chunk_00AA:
-.DB $26, $2F, $8D, $2F, $EA, $25, $2F, $8D, $2F, $EA, $70, $70, $8D, $36, $2F, $E3, $8C, $2F, $E2, $A2, $A2, $8D, $37, $29, $23, $2F, $E1, $8C, $2F, $E2, $7B, $00, $75, $8E, $44, $25, $2F, $2C, $2A, $2F, $8C, $2F, $E2, $00, $E0, $51, $6A, $4F, $44, $2D, $2D, $2F, $8C, $06, $2D, $2C, $05, $70, $02, $E0, $18, $0C, $7B, $6A, $4F, $44, $2F, $8C, $A2, $E1, $B8, $31, $2D, $2D, $43, $0A, $0B, $0C, $7B, $6A, $90, $76, $00, $E0, $7B, $7B, $2F, $E0, $29, $2F, $43, $0A, $0B, $0C, $7B, $00, $00, $52, $00, $00, $5A, $70, $E1, $2F, $26, $2F, $43, $0A, $17, $03, $01, $02, $E1, $71, $E0, $04, $39, $27, $2F, $2F, $2B, $2D, $3A, $39, $26, $22, $23, $4E, $2F, $E0, $3A, $39, $28, $2F, $E1, $3A, $39, $24, $25, $21, $2F, $E1, $3A, $39, $2F, $E2, $3A, $05, $70, $E1, $2F, $E0, $3A, $39, $2F, $E3, $71, $E2, $2F, $ED, $00, $ED, $DF
+.DB $2F, $2F, $8C, $2F, $EC, $8C, $2F, $EC, $8C, $2F, $EC, $8C, $2F, $EA, $23, $26, $8C, $70, $EA, $24, $25, $8C, $A2, $A2, $B8, $A2, $E0, $B8, $A2, $E0, $B8, $A2, $A2, $40, $8F, $76, $00, $7A, $7B, $79, $00, $E0, $52, $00, $7A, $7B, $79, $00, $45, $00, $00, $52, $51, $00, $E0, $51, $00, $E1, $51, $00, $00, $07, $15, $03, $01, $02, $02, $03, $01, $02, $E1, $03, $01, $02, $02, $09, $42, $31, $29, $2A, $2B, $3A, $39, $26, $2F, $31, $31, $3A, $39, $23, $22, $29, $29, $31, $05, $70, $70, $06, $39, $27, $2F, $23, $2F, $3A, $39, $24, $25, $70, $70, $06, $30, $71, $04, $30, $2F, $28, $96, $25, $2F, $3A, $39, $2F, $2F, $71, $71, $04, $39, $26, $3A, $39, $2F, $E2, $3A, $39, $2F, $E1, $3A, $39, $25, $3A, $39, $2F, $E2, $3A, $39, $2F, $E1, $3A, $39, $2F, $3A, $39, $2F, $E2, $3A, $39, $2F, $2F, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00AB" SLOT 2 SUPERFREE
 chunk_00AB:
-.DB $2F, $E2, $8C, $61, $E7, $2F, $E2, $8C, $61, $E7, $2F, $E0, $8D, $2F, $8C, $61, $E7, $2F, $E0, $8D, $2F, $8C, $61, $E7, $26, $2F, $2F, $8D, $2F, $8C, $61, $E2, $5E, $5F, $61, $E0, $25, $70, $70, $8D, $2F, $8C, $61, $5F, $5E, $60, $5E, $54, $5B, $5F, $5E, $5F, $A2, $E0, $8D, $2F, $8C, $5E, $5D, $54, $54, $5B, $55, $56, $5B, $00, $54, $7B, $00, $51, $75, $65, $A3, $5B, $5C, $55, $55, $5A, $00, $00, $5A, $00, $E3, $B6, $00, $E0, $5A, $00, $E4, $03, $01, $02, $E2, $03, $01, $02, $02, $03, $01, $02, $E0, $4E, $2D, $2D, $26, $30, $04, $29, $3A, $05, $2C, $2B, $06, $39, $2F, $29, $31, $3A, $39, $2F, $21, $05, $06, $26, $2F, $71, $29, $71, $71, $22, $23, $2F, $2F, $06, $39, $2F, $E1, $27, $2F, $E2, $25, $21, $2F, $2F, $71, $2F, $E2, $28, $2F, $F6, $00, $ED, $DF
+.DB $2F, $8D, $2F, $2F, $8C, $61, $E8, $2F, $8D, $2F, $2F, $8C, $61, $E8, $2F, $8D, $2F, $2F, $8C, $61, $E8, $2F, $8D, $2F, $2F, $8C, $61, $E8, $70, $8D, $2F, $2F, $8C, $61, $5F, $61, $E1, $5F, $5E, $61, $60, $5F, $A2, $8D, $2F, $2F, $8C, $5E, $62, $5E, $5F, $5D, $5E, $54, $5B, $5E, $5D, $62, $52, $75, $65, $65, $A3, $5B, $5C, $54, $53, $5C, $5B, $55, $56, $5B, $5C, $53, $00, $00, $51, $B6, $00, $E0, $5A, $58, $46, $4C, $48, $00, $7B, $79, $59, $02, $E2, $03, $01, $02, $00, $E1, $49, $4D, $4B, $00, $23, $2F, $2D, $2C, $4E, $3A, $39, $29, $00, $E5, $27, $2F, $2A, $2C, $4E, $3A, $39, $2F, $00, $E5, $28, $2F, $30, $04, $2F, $3A, $05, $70, $00, $00, $52, $00, $E2, $2F, $2F, $05, $06, $2F, $2F, $71, $71, $51, $00, $E3, $52, $2F, $E3, $22, $23, $00, $E1, $5A, $00, $E0, $2F, $E3, $21, $27, $00, $F5, $DF
 .ENDS
 
 .SECTION "base_chunk_00AC" SLOT 2 SUPERFREE
 chunk_00AC:
-.DB $61, $FF, $FC, $5E, $5F, $5E, $5E, $5F, $61, $E3, $5F, $61, $5E, $5F, $5E, $5D, $54, $5B, $54, $5B, $60, $5E, $61, $61, $5E, $5F, $5D, $62, $5B, $54, $5B, $5C, $55, $5A, $55, $00, $54, $62, $5E, $5F, $62, $5B, $5C, $54, $00, $55, $5A, $00, $E1, $5A, $00, $00, $5B, $62, $54, $5A, $00, $57, $5A, $00, $EF, $02, $E5, $03, $02, $E4, $31, $26, $2F, $E3, $3A, $2F, $96, $29, $22, $23, $2F, $26, $2F, $27, $2F, $E3, $3A, $2F, $E0, $24, $25, $96, $25, $2F, $28, $2F, $E2, $71, $30, $71, $71, $30, $71, $04, $71, $71, $2F, $E5, $39, $2F, $2F, $39, $26, $3A, $2F, $2B, $2F, $E4, $70, $05, $70, $70, $39, $27, $3A, $2F, $2D, $00, $E4, $2F, $E1, $39, $28, $3A, $2F, $2A, $DF
+.DB $61, $E3, $8D, $2F, $8C, $2F, $E4, $61, $E3, $8D, $2F, $8C, $2F, $E4, $61, $E3, $8D, $2F, $8C, $2F, $E4, $61, $E3, $8D, $2F, $8C, $2F, $E4, $5E, $61, $5E, $61, $5E, $61, $8D, $2F, $8C, $70, $E4, $62, $60, $54, $5F, $5D, $5E, $8D, $2F, $8C, $A2, $B8, $A2, $E0, $B8, $A2, $5B, $54, $55, $5B, $5C, $53, $A4, $65, $76, $00, $51, $00, $52, $7B, $E0, $46, $48, $00, $E2, $B6, $51, $00, $E0, $50, $00, $00, $52, $00, $E0, $02, $02, $03, $01, $02, $02, $03, $01, $02, $19, $02, $E0, $00, $E0, $4E, $2F, $3A, $39, $26, $2B, $2D, $39, $36, $2F, $26, $26, $2F, $51, $00, $00, $4E, $70, $06, $05, $25, $2B, $2C, $39, $37, $96, $25, $27, $2F, $00, $E0, $71, $E0, $04, $39, $2F, $3A, $39, $2F, $E0, $28, $2F, $00, $E0, $2F, $29, $2F, $3A, $39, $2F, $3A, $39, $2F, $E2, $00, $E0, $26, $2F, $2F, $3A, $05, $70, $06, $39, $2F, $E2, $00, $51, $00, $27, $2F, $E0, $71, $E0, $2F, $E3, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00AD" SLOT 2 SUPERFREE
 chunk_00AD:
-.DB $61, $EC, $8D, $61, $EC, $8D, $61, $EC, $8D, $61, $EC, $8D, $61, $5F, $5E, $61, $E0, $5E, $61, $E5, $8D, $60, $5D, $54, $5E, $61, $5F, $5D, $61, $E0, $5E, $5F, $61, $5E, $5F, $8D, $00, $5C, $55, $53, $5F, $5B, $5C, $00, $5E, $53, $54, $5D, $5B, $5D, $54, $8D, $00, $E0, $5B, $54, $5A, $00, $5A, $58, $59, $55, $5A, $00, $5C, $55, $75, $00, $E0, $7A, $7B, $79, $00, $00, $7A, $7B, $79, $00, $E0, $57, $00, $02, $E3, $00, $00, $02, $E0, $00, $00, $02, $03, $01, $4E, $2F, $E0, $26, $2F, $52, $00, $3A, $22, $23, $00, $00, $2F, $3A, $05, $4E, $2F, $E0, $27, $2F, $00, $00, $96, $25, $21, $00, $00, $06, $2C, $2A, $71, $51, $52, $2C, $28, $2F, $00, $00, $06, $37, $05, $00, $00, $3A, $2D, $2D, $2F, $E0, $71, $E0, $00, $51, $04, $30, $4E, $00, $00, $70, $06, $05, $2F, $E1, $2D, $2F, $52, $00, $3A, $38, $4E, $00, $00, $2F, $E1, $00, $00, $2F, $2A, $2F, $00, $00, $3A, $05, $70, $00, $00, $2F, $E0, $DF
+.DB $2F, $E1, $8D, $2F, $E5, $3A, $39, $3A, $2F, $E1, $8D, $2F, $E5, $3A, $39, $3A, $2F, $E1, $8D, $2F, $E5, $3A, $05, $06, $2F, $E1, $8D, $2F, $22, $23, $30, $04, $23, $26, $2F, $2F, $71, $71, $70, $E1, $8D, $36, $25, $21, $05, $06, $24, $25, $2F, $E1, $A2, $A2, $B8, $A2, $8D, $37, $B0, $65, $E5, $B1, $00, $51, $00, $00, $75, $65, $A3, $00, $51, $00, $00, $7B, $7B, $00, $52, $75, $50, $00, $E0, $52, $00, $00, $B6, $00, $00, $52, $46, $48, $00, $7A, $7B, $19, $02, $E3, $49, $4D, $4B, $00, $E1, $49, $4D, $2F, $23, $22, $23, $2C, $2B, $23, $7B, $E0, $50, $00, $51, $00, $00, $50, $2F, $24, $25, $25, $2F, $2F, $21, $02, $E0, $19, $02, $02, $03, $01, $19, $2F, $E4, $31, $2D, $2C, $2A, $31, $26, $3A, $39, $26, $2F, $E9, $27, $3A, $39, $21, $2F, $E9, $28, $3A, $39, $2F, $EE, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00AE" SLOT 2 SUPERFREE
 chunk_00AE:
-.DB $00, $FF, $EB, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $2F, $61, $EC, $8D, $61, $EC, $8D, $61, $EC, $8D, $61, $EC, $8D, $61, $EC, $8D, $DF
+.DB $39, $26, $26, $4E, $8C, $70, $E6, $8D, $4E, $39, $25, $21, $4E, $8C, $A2, $E1, $B8, $A2, $E1, $8D, $4E, $66, $65, $E0, $A3, $00, $5A, $00, $7B, $E0, $00, $E0, $75, $8E, $00, $E1, $51, $B5, $00, $E0, $51, $00, $52, $00, $00, $51, $7B, $02, $13, $52, $00, $11, $02, $E0, $03, $01, $02, $E2, $18, $29, $8C, $00, $00, $8D, $2D, $2D, $2F, $3A, $39, $29, $26, $36, $2F, $2F, $43, $65, $76, $00, $00, $8D, $36, $2F, $2F, $3A, $39, $96, $25, $37, $2F, $2A, $2C, $7B, $79, $51, $00, $8D, $37, $23, $2F, $3A, $39, $2F, $E3, $4D, $4B, $00, $00, $8D, $29, $25, $2F, $3A, $39, $2F, $E3, $00, $E1, $8D, $2F, $E8, $02, $02, $6D, $6E, $B3, $22, $23, $2F, $E6, $2B, $2C, $2F, $2F, $96, $25, $25, $2F, $FF, $F5, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00AF" SLOT 2 SUPERFREE
 chunk_00AF:
-.DB $00, $FD, $2F, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $4E, $2F, $E0, $8C, $2F, $2F, $26, $26, $2F, $8D, $2F, $E2, $4E, $22, $23, $2D, $8C, $2F, $2F, $24, $25, $2F, $8D, $2F, $E2, $44, $24, $25, $2B, $8C, $70, $E2, $8D, $36, $2F, $E1, $6A, $4F, $44, $2F, $8C, $A2, $A2, $B8, $A2, $A2, $8D, $37, $29, $23, $2F, $2F, $0C, $7B, $6A, $90, $76, $00, $7B, $E0, $00, $75, $8E, $44, $25, $2F, $2C, $0A, $0B, $0C, $7B, $00, $52, $00, $E2, $51, $6A, $4F, $44, $2D, $31, $43, $0A, $17, $02, $03, $01, $02, $E1, $18, $0C, $7B, $6A, $4F, $2F, $2F, $29, $23, $31, $3A, $39, $26, $31, $2D, $2D, $43, $0A, $0B, $0C, $7B, $2F, $E0, $27, $31, $3A, $39, $25, $2F, $E0, $29, $2F, $43, $0A, $0B, $2F, $E0, $28, $2F, $3A, $05, $70, $E2, $2F, $26, $2F, $43, $2F, $E3, $71, $E2, $04, $39, $27, $2F, $EA, $3A, $39, $28, $2F, $EA, $3A, $39, $2F, $EB, $3A, $39, $2F, $F0, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00B0" SLOT 2 SUPERFREE
 chunk_00B0:
-.DB $00, $FD, $2F, $E5, $8C, $26, $3A, $39, $26, $22, $23, $3A, $2F, $E5, $8C, $21, $3A, $39, $25, $21, $21, $3A, $2F, $E5, $8C, $70, $06, $05, $70, $E0, $06, $2F, $E5, $8C, $70, $E4, $2F, $E3, $2D, $2D, $8C, $A2, $E4, $2F, $E3, $2E, $2E, $8C, $00, $E2, $7B, $79, $2F, $E4, $26, $8C, $00, $E1, $51, $00, $00, $2F, $E4, $27, $8C, $52, $00, $E0, $46, $4C, $48, $2F, $E3, $96, $28, $8C, $14, $00, $00, $7A, $7B, $E0, $2F, $E4, $29, $8C, $00, $00, $46, $47, $4C, $47, $4C, $2F, $E5, $8C, $00, $E4, $2F, $E3, $96, $23, $8C, $7A, $7B, $79, $00, $00, $52, $00, $2F, $E2, $29, $29, $25, $8C, $6B, $00, $52, $00, $E1, $2F, $E5, $8C, $49, $4D, $4B, $00, $7A, $7B, $79, $DF
+.DB $2F, $EA, $8C, $61, $61, $2F, $EA, $8C, $61, $61, $2F, $2F, $8C, $2F, $E5, $8D, $2F, $8C, $61, $61, $2F, $2F, $8C, $2F, $E5, $8D, $2F, $8C, $61, $61, $2A, $2F, $8C, $2F, $E2, $26, $2F, $2F, $8D, $2F, $8C, $61, $61, $2D, $2F, $8C, $06, $2D, $2C, $05, $70, $25, $70, $70, $8D, $2F, $8C, $61, $5F, $44, $2F, $8C, $A2, $E1, $B8, $A2, $E0, $8D, $2F, $8C, $5E, $5D, $6A, $90, $76, $00, $E0, $7B, $E0, $00, $51, $75, $65, $A3, $5B, $5C, $0C, $7B, $00, $00, $52, $00, $00, $5A, $00, $E1, $B6, $00, $E0, $0A, $17, $03, $01, $02, $E1, $03, $01, $02, $E2, $03, $2B, $2D, $3A, $39, $26, $22, $23, $4E, $4E, $2D, $2D, $26, $30, $04, $29, $3A, $2F, $2F, $3A, $39, $24, $25, $21, $2F, $3A, $39, $2F, $21, $05, $06, $26, $2F, $E0, $3A, $05, $70, $E1, $06, $39, $2F, $E1, $27, $2F, $E1, $71, $E3, $2F, $E2, $28, $2F, $EE, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00B1" SLOT 2 SUPERFREE
 chunk_00B1:
-.DB $00, $FD, $39, $2F, $3A, $39, $22, $23, $31, $2F, $E6, $05, $70, $06, $39, $25, $21, $31, $2F, $39, $3A, $2F, $4E, $E0, $3A, $39, $31, $70, $E2, $31, $70, $05, $06, $70, $E1, $06, $39, $70, $ED, $A2, $E9, $B8, $A2, $E0, $00, $52, $00, $E3, $51, $00, $00, $7B, $E0, $52, $B4, $00, $E3, $49, $4D, $4D, $4B, $02, $03, $01, $02, $02, $01, $00, $00, $46, $4C, $48, $00, $E2, $2F, $3A, $39, $26, $2F, $39, $79, $00, $E1, $51, $00, $E1, $2F, $3A, $39, $25, $70, $39, $47, $4C, $47, $48, $00, $E0, $7B, $00, $00, $70, $06, $05, $06, $30, $39, $00, $E6, $5A, $71, $E1, $2F, $05, $00, $00, $52, $7B, $7B, $00, $46, $4C, $48, $6C, $2F, $E3, $00, $00, $5A, $00, $E4, $71, $71, $04, $2F, $E0, $00, $46, $4C, $E0, $48, $52, $7B, $7B, $00, $31, $2C, $3A, $2F, $E0, $DF
+.DB $61, $FF, $FF, $5E, $5F, $61, $E0, $5E, $5F, $5E, $5E, $5F, $61, $E0, $5E, $60, $5E, $54, $5B, $5F, $5E, $5F, $5D, $54, $5B, $54, $5B, $60, $5E, $61, $54, $54, $5B, $55, $56, $5B, $00, $54, $5C, $55, $5A, $55, $00, $54, $62, $00, $55, $55, $5A, $00, $00, $5A, $00, $E3, $5A, $00, $E0, $5A, $00, $EC, $01, $02, $02, $03, $01, $02, $E8, $05, $2C, $2B, $06, $39, $2F, $29, $31, $31, $26, $2F, $E3, $71, $29, $71, $71, $22, $23, $2F, $E0, $27, $2F, $E7, $25, $21, $2F, $E0, $28, $2F, $FF, $E2, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00B2" SLOT 2 SUPERFREE
 chunk_00B2:
-.DB $00, $FD, $26, $2F, $31, $25, $31, $3A, $05, $70, $E2, $06, $39, $26, $23, $21, $2F, $31, $E0, $3A, $30, $04, $2F, $29, $26, $71, $04, $39, $25, $21, $2F, $E2, $3A, $05, $06, $2F, $2F, $25, $2F, $3A, $05, $70, $EF, $A2, $B8, $A2, $E1, $B8, $A2, $E1, $B8, $A2, $E1, $00, $E1, $52, $7B, $E0, $00, $E2, $52, $00, $00, $02, $02, $03, $02, $E8, $13, $51, $2D, $2D, $3A, $2F, $31, $26, $29, $29, $2F, $4E, $4E, $77, $4E, $4E, $8C, $7A, $2A, $2B, $3A, $2F, $2F, $27, $30, $71, $04, $70, $70, $21, $2F, $2F, $8C, $7A, $2F, $2F, $3A, $2F, $2F, $28, $05, $70, $06, $71, $04, $39, $2F, $77, $8C, $7A, $70, $70, $06, $2F, $E4, $3A, $05, $70, $25, $8C, $7A, $2F, $E1, $70, $E0, $86, $2F, $26, $2F, $30, $71, $04, $8C, $7A, $2F, $E0, $3A, $30, $71, $71, $86, $2F, $21, $2F, $2D, $E0, $8C, $7A, $2F, $E0, $3A, $31, $65, $65, $86, $65, $65, $B1, $2A, $E0, $8C, $00, $DF
+.DB $61, $00, $61, $EC, $00, $61, $EC, $00, $61, $EC, $00, $61, $EC, $00, $61, $E1, $5F, $61, $5E, $5F, $5E, $61, $5F, $5E, $61, $E0, $00, $61, $61, $5E, $5F, $5D, $62, $5B, $54, $5B, $60, $5D, $54, $5E, $61, $00, $00, $5E, $5F, $62, $5B, $5C, $54, $00, $55, $5A, $00, $5C, $55, $53, $5F, $00, $00, $5B, $62, $54, $5A, $00, $57, $5A, $00, $E2, $5B, $54, $00, $EB, $7A, $7B, $02, $E0, $03, $02, $E5, $00, $00, $02, $02, $2F, $E0, $3A, $2F, $96, $29, $22, $23, $2F, $26, $4E, $00, $00, $2F, $26, $2F, $E0, $3A, $2F, $E0, $24, $25, $96, $25, $4E, $00, $00, $2F, $27, $2F, $2F, $71, $30, $71, $71, $30, $71, $04, $71, $E0, $51, $52, $2C, $28, $2F, $E0, $39, $2F, $2F, $39, $26, $3A, $2F, $2B, $2F, $00, $00, $71, $71, $2F, $2F, $70, $05, $70, $70, $39, $27, $3A, $2F, $2D, $2F, $00, $00, $2F, $2D, $00, $00, $2F, $E1, $39, $28, $3A, $2F, $2A, $2F, $00, $00, $2F, $2A, $DF
 .ENDS
 
 .SECTION "base_chunk_00B3" SLOT 2 SUPERFREE
 chunk_00B3:
-.DB $00, $FD, $2F, $EE, $8D, $2F, $EB, $70, $8D, $26, $2F, $EA, $70, $8D, $27, $2F, $EA, $A2, $8D, $28, $2F, $E9, $2A, $00, $8D, $77, $2F, $E9, $2D, $00, $8D, $27, $2F, $E7, $77, $2F, $2D, $00, $8D, $28, $2F, $E4, $30, $71, $04, $27, $29, $2F, $00, $8D, $30, $04, $2F, $E3, $05, $70, $06, $28, $2F, $40, $00, $8D, $39, $3A, $2F, $2C, $2A, $2A, $2B, $2F, $4E, $4E, $2F, $40, $41, $45, $52, $8D, $05, $06, $2F, $2C, $2A, $2C, $2B, $2F, $2F, $40, $41, $45, $00, $5A, $00, $8D, $2F, $E1, $29, $2F, $2F, $40, $41, $45, $52, $00, $07, $08, $00, $8D, $31, $29, $2F, $31, $2F, $40, $41, $45, $00, $00, $07, $08, $09, $42, $00, $8D, $2F, $2F, $35, $65, $91, $45, $00, $51, $07, $08, $09, $42, $2F, $2F, $DF
+.DB $00, $FF, $E6, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $00, $E7, $2F, $E3, $61, $E7, $8D, $2F, $E2, $61, $E7, $8D, $2F, $E2, $61, $E7, $8D, $2F, $E2, $61, $E7, $8D, $2F, $E2, $61, $E7, $8D, $2F, $E2, $DF
 .ENDS
 
 .SECTION "base_chunk_00B4" SLOT 2 SUPERFREE
 chunk_00B4:
-.DB $00, $FD, $2F, $E9, $26, $2F, $E5, $22, $23, $2F, $2F, $26, $2C, $2B, $21, $2F, $E5, $25, $21, $30, $04, $21, $2F, $40, $8F, $65, $AC, $A9, $2F, $E1, $26, $30, $04, $05, $06, $40, $41, $45, $00, $51, $93, $9B, $2F, $E1, $25, $05, $06, $40, $41, $45, $00, $00, $07, $15, $1A, $1C, $2F, $31, $E0, $3A, $40, $41, $45, $00, $52, $07, $08, $09, $42, $2F, $2F, $2C, $2B, $2F, $40, $41, $45, $00, $00, $07, $08, $09, $42, $2F, $E2, $40, $41, $45, $51, $52, $07, $08, $09, $42, $2F, $E3, $41, $45, $00, $00, $07, $08, $09, $42, $2F, $E5, $00, $00, $07, $08, $09, $42, $2F, $E7, $07, $08, $09, $42, $2F, $E9, $09, $42, $2F, $FF, $EA, $DF
+.DB $00, $FD, $2F, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
 
 .SECTION "base_chunk_00B5" SLOT 2 SUPERFREE
 chunk_00B5:
-.DB $00, $E0, $2F, $E3, $30, $04, $2F, $35, $34, $00, $0D, $00, $E0, $2F, $2F, $22, $29, $2F, $2F, $05, $06, $35, $34, $00, $0D, $0E, $2F, $2F, $A5, $2F, $96, $25, $31, $31, $23, $2F, $35, $34, $51, $0D, $0E, $29, $2F, $2F, $A5, $70, $E0, $A6, $29, $25, $35, $34, $00, $0D, $0E, $31, $31, $A9, $A9, $A1, $AF, $AF, $AE, $9F, $A9, $AB, $34, $00, $0D, $0E, $31, $2C, $2A, $92, $9C, $A8, $AF, $AF, $AE, $A7, $9C, $94, $B7, $0D, $0E, $30, $04, $4E, $4E, $1C, $1C, $1E, $AF, $AF, $AE, $1D, $1C, $1B, $02, $0E, $2F, $39, $3A, $2F, $E1, $A5, $71, $E0, $A6, $2F, $2F, $2D, $2D, $2F, $39, $3A, $2F, $E1, $A5, $2F, $E1, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $DF
+.DB $00, $FD, $2F, $E0, $8C, $26, $3A, $39, $26, $22, $23, $3A, $39, $2F, $3A, $39, $22, $2F, $E0, $8C, $21, $3A, $39, $25, $21, $21, $3A, $05, $70, $06, $39, $25, $2F, $E0, $8C, $70, $06, $05, $70, $E0, $06, $31, $70, $E1, $2F, $E0, $8C, $70, $E9, $2F, $2D, $2D, $8C, $A2, $E9, $2F, $2E, $2E, $8C, $00, $E2, $7B, $79, $00, $52, $00, $E0, $2F, $2F, $26, $8C, $00, $E1, $51, $00, $E4, $2F, $2F, $27, $8C, $52, $00, $E0, $46, $4C, $48, $00, $00, $46, $4C, $48, $2F, $96, $28, $8C, $14, $00, $00, $7A, $7B, $E0, $79, $00, $E1, $2F, $2F, $29, $8C, $00, $00, $46, $47, $4C, $47, $4C, $47, $4C, $47, $48, $00, $2F, $E0, $8C, $00, $E9, $2F, $96, $23, $8C, $7A, $7B, $79, $00, $00, $52, $00, $E0, $52, $7B, $7B, $29, $29, $25, $8C, $6B, $00, $52, $00, $E3, $5A, $00, $00, $2F, $E0, $8C, $49, $4D, $4B, $00, $7A, $7B, $79, $00, $46, $4C, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00B6" SLOT 2 SUPERFREE
 chunk_00B6:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $EF, $61, $E6, $00, $E4, $61, $E6, $00, $E4, $61, $E6, $00, $E4, $61, $E6, $00, $E4, $61, $E6, $DF
+.DB $00, $FD, $23, $31, $2F, $E6, $26, $2F, $31, $25, $31, $21, $31, $2F, $39, $3A, $2F, $4E, $E0, $3A, $39, $21, $2F, $31, $E0, $70, $31, $70, $05, $06, $70, $E1, $06, $39, $2F, $E2, $70, $ED, $A2, $E4, $B8, $A2, $E1, $B8, $A2, $E0, $00, $E0, $51, $00, $00, $7B, $E0, $52, $B4, $00, $E1, $52, $00, $49, $4D, $4D, $4B, $02, $03, $01, $02, $02, $01, $02, $02, $03, $02, $02, $00, $E2, $2F, $3A, $39, $26, $2F, $39, $2D, $2D, $3A, $2F, $31, $51, $00, $E1, $2F, $3A, $39, $25, $70, $39, $2A, $2B, $3A, $2F, $2F, $00, $00, $7B, $00, $00, $70, $06, $05, $06, $30, $39, $2F, $2F, $3A, $2F, $2F, $00, $E1, $5A, $71, $E1, $2F, $05, $70, $70, $06, $2F, $2F, $00, $46, $4C, $48, $6C, $2F, $E7, $70, $00, $E2, $71, $71, $04, $2F, $E3, $3A, $30, $48, $52, $7B, $7B, $00, $31, $2C, $3A, $2F, $E3, $3A, $31, $DF
 .ENDS
 
 .SECTION "base_chunk_00B7" SLOT 2 SUPERFREE
 chunk_00B7:
-.DB $2F, $EF, $8C, $2F, $EC, $8C, $2F, $E8, $70, $70, $2F, $2F, $8C, $70, $E2, $2F, $2F, $3A, $30, $71, $04, $30, $71, $31, $31, $8C, $71, $E1, $04, $05, $70, $06, $39, $2F, $3A, $39, $22, $29, $25, $8C, $2F, $2B, $2E, $2C, $3A, $30, $71, $04, $39, $2B, $3A, $39, $24, $31, $31, $8C, $70, $E1, $06, $05, $70, $06, $05, $2C, $06, $05, $70, $65, $65, $A3, $A2, $E0, $B8, $A2, $E2, $B8, $A2, $E0, $00, $E1, $52, $00, $00, $51, $00, $E0, $52, $00, $E1, $03, $01, $03, $01, $02, $E0, $18, $0C, $51, $7B, $E2, $52, $3A, $39, $3A, $39, $29, $2F, $2F, $43, $0A, $17, $02, $03, $01, $02, $02, $16, $2B, $2D, $2D, $05, $70, $70, $29, $23, $2F, $70, $70, $06, $29, $29, $26, $4E, $2D, $2C, $2A, $30, $71, $04, $39, $21, $3A, $30, $71, $04, $39, $2F, $27, $3A, $06, $05, $06, $39, $2F, $3A, $39, $2F, $3A, $39, $2F, $3A, $05, $70, $28, $3A, $2F, $2F, $3A, $39, $2F, $3A, $05, $70, $06, $39, $2F, $3A, $30, $04, $05, $06, $2F, $ED, $DF
+.DB $00, $FD, $3A, $05, $70, $E2, $06, $39, $26, $23, $2F, $E2, $3A, $30, $04, $2F, $29, $26, $71, $04, $39, $25, $21, $2F, $8D, $2F, $E0, $3A, $05, $06, $2F, $2F, $25, $2F, $3A, $05, $70, $E0, $8D, $26, $2F, $2F, $70, $E9, $8D, $27, $2F, $2F, $A2, $B8, $A2, $E1, $B8, $A2, $E2, $8D, $28, $2F, $2F, $7B, $E0, $00, $E2, $52, $00, $E0, $8D, $77, $2F, $2F, $02, $E6, $13, $51, $00, $8D, $27, $2F, $2F, $26, $29, $29, $2F, $4E, $4E, $77, $4E, $4E, $8C, $7A, $00, $8D, $28, $2F, $2F, $27, $30, $71, $04, $70, $70, $21, $2F, $2F, $8C, $7A, $00, $8D, $30, $04, $2F, $28, $05, $70, $06, $71, $04, $39, $2F, $77, $8C, $7A, $00, $8D, $39, $3A, $2F, $E3, $3A, $05, $70, $25, $8C, $7A, $52, $8D, $05, $06, $2F, $70, $70, $86, $2F, $26, $2F, $30, $71, $04, $8C, $7A, $00, $8D, $2F, $E0, $71, $71, $86, $2F, $21, $2F, $2D, $E0, $8C, $7A, $00, $8D, $31, $29, $2F, $65, $65, $86, $65, $65, $B1, $2A, $E0, $8C, $00, $00, $8D, $2F, $2F, $35, $DF
 .ENDS
 
 .SECTION "base_chunk_00B8" SLOT 2 SUPERFREE
 chunk_00B8:
-.DB $2F, $E3, $4E, $4E, $8C, $00, $E4, $2F, $E3, $4E, $4E, $8C, $00, $49, $4D, $4D, $4B, $00, $00, $70, $E3, $2F, $2F, $8C, $00, $E2, $7A, $7B, $71, $E2, $04, $8D, $23, $8C, $00, $49, $4D, $E2, $23, $2F, $26, $70, $70, $06, $8D, $27, $8C, $00, $E0, $52, $5A, $00, $00, $25, $96, $25, $71, $71, $04, $8D, $25, $8C, $00, $E1, $7A, $7B, $7B, $70, $E2, $06, $8D, $29, $8C, $6B, $00, $E1, $51, $00, $A2, $E1, $B8, $A2, $A4, $65, $76, $00, $49, $4A, $4D, $4A, $4D, $4A, $00, $00, $51, $00, $E1, $B7, $00, $00, $51, $00, $E2, $07, $15, $03, $01, $02, $03, $01, $02, $01, $02, $03, $02, $E0, $03, $01, $09, $42, $3A, $39, $2B, $3A, $39, $4E, $39, $26, $3A, $70, $E0, $06, $39, $4E, $4E, $3A, $05, $70, $06, $05, $70, $39, $27, $3A, $71, $71, $04, $31, $2F, $05, $70, $06, $30, $71, $04, $30, $71, $39, $28, $3A, $70, $70, $06, $39, $2F, $30, $04, $30, $2A, $2C, $3A, $39, $2F, $05, $70, $06, $71, $E0, $2F, $2F, $39, $3A, $05, $70, $70, $06, $39, $2F, $F6, $DF
+.DB $00, $FD, $2F, $FF, $FB, $26, $2F, $E7, $2A, $2F, $E1, $25, $2F, $E7, $2D, $2F, $31, $E0, $3A, $2F, $E5, $77, $2F, $2D, $2C, $2B, $2F, $40, $41, $2F, $E2, $30, $71, $04, $27, $29, $2F, $2F, $40, $41, $45, $51, $2F, $E2, $05, $70, $06, $28, $2F, $40, $41, $45, $00, $00, $07, $2C, $2A, $2A, $2B, $2F, $4E, $4E, $2F, $40, $41, $45, $00, $00, $07, $08, $09, $2C, $2A, $2C, $2B, $2F, $2F, $40, $41, $45, $00, $5A, $07, $08, $09, $42, $2F, $2F, $29, $2F, $2F, $40, $41, $45, $52, $00, $07, $08, $09, $42, $2F, $E0, $31, $2F, $40, $41, $45, $00, $00, $07, $08, $09, $42, $2F, $E2, $65, $91, $45, $00, $51, $07, $08, $09, $42, $2F, $E4, $DF
 .ENDS
 
 .SECTION "base_chunk_00B9" SLOT 2 SUPERFREE
 chunk_00B9:
-.DB $51, $00, $E1, $51, $00, $49, $4B, $00, $70, $70, $06, $2F, $E0, $00, $E4, $7B, $7B, $00, $2F, $2F, $70, $E1, $00, $52, $00, $00, $46, $4C, $E0, $48, $00, $70, $06, $30, $71, $E0, $4B, $00, $E3, $52, $00, $00, $71, $04, $39, $2F, $E0, $00, $E0, $51, $7B, $E0, $00, $00, $6C, $4E, $3A, $05, $70, $E0, $7B, $79, $00, $46, $4C, $E1, $48, $00, $4E, $06, $30, $71, $E0, $00, $5A, $00, $E5, $26, $04, $39, $2F, $E0, $4D, $4A, $4B, $00, $51, $00, $B7, $00, $52, $14, $27, $3A, $39, $2F, $E0, $00, $E3, $7B, $79, $00, $00, $28, $3A, $39, $2F, $E0, $02, $E4, $03, $01, $6E, $2F, $3A, $39, $2F, $E0, $26, $26, $22, $23, $31, $2F, $2F, $3A, $05, $70, $70, $06, $39, $2F, $E0, $24, $25, $27, $25, $2F, $30, $04, $2F, $E8, $28, $2F, $2F, $05, $06, $2F, $FF, $F5, $DF
+.DB $00, $EB, $2F, $2F, $00, $EB, $2F, $E6, $26, $2F, $E2, $A5, $2F, $96, $22, $23, $2F, $2F, $26, $2C, $2B, $21, $2F, $E2, $A5, $70, $70, $25, $21, $30, $04, $21, $2F, $40, $8F, $65, $AC, $A9, $E0, $A1, $AF, $AF, $30, $04, $05, $06, $40, $41, $45, $00, $51, $93, $9B, $92, $9C, $A8, $AF, $AF, $05, $06, $40, $41, $45, $00, $00, $07, $15, $1A, $1C, $E0, $1E, $AF, $AF, $40, $41, $45, $00, $52, $07, $08, $09, $42, $2F, $E1, $A5, $71, $71, $45, $00, $00, $07, $08, $09, $42, $2F, $E3, $A5, $2F, $2F, $52, $07, $08, $09, $42, $2F, $E8, $08, $09, $42, $2F, $EA, $42, $2F, $FF, $FF, $EA, $DF
 .ENDS
 
 .SECTION "base_chunk_00BA" SLOT 2 SUPERFREE
 chunk_00BA:
-.DB $2F, $E0, $3A, $31, $00, $00, $86, $00, $00, $8D, $2E, $E0, $8C, $00, $70, $E0, $06, $05, $00, $51, $B9, $00, $00, $75, $65, $E0, $A3, $00, $71, $71, $04, $30, $26, $00, $E3, $51, $00, $E0, $52, $2F, $2F, $3A, $39, $25, $00, $00, $1F, $52, $00, $11, $02, $02, $03, $01, $03, $70, $70, $06, $05, $70, $02, $02, $86, $02, $02, $B3, $2F, $2F, $3A, $39, $3A, $71, $E2, $31, $31, $86, $23, $31, $2F, $4E, $4E, $3A, $39, $3A, $2F, $E4, $86, $21, $31, $2F, $23, $26, $3A, $05, $06, $2F, $E4, $86, $2F, $E0, $24, $25, $3A, $30, $04, $2F, $FF, $FF, $FF, $FA, $DF
+.DB $2F, $E1, $30, $04, $2F, $35, $34, $00, $0D, $0E, $2F, $05, $70, $06, $22, $29, $2F, $2F, $05, $06, $35, $34, $00, $0D, $0E, $26, $26, $2F, $E0, $25, $31, $31, $23, $2F, $35, $34, $51, $0D, $0E, $29, $25, $27, $2F, $E0, $70, $A6, $29, $25, $35, $34, $00, $0D, $0E, $31, $31, $2F, $28, $2F, $E0, $AE, $9F, $A9, $AB, $34, $00, $0D, $0E, $31, $2C, $2A, $2B, $2F, $E1, $AE, $A7, $9C, $94, $B7, $0D, $0E, $30, $04, $4E, $E0, $2F, $E1, $AE, $1D, $1C, $1B, $02, $0E, $2F, $39, $3A, $2F, $E4, $71, $A6, $2F, $2F, $2D, $2D, $2F, $39, $3A, $2F, $E6, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_00BB" SLOT 2 SUPERFREE
 chunk_00BB:
-.DB $5A, $75, $65, $65, $34, $00, $E0, $07, $08, $09, $42, $2F, $E1, $00, $E3, $11, $16, $09, $42, $2F, $E3, $00, $E0, $51, $00, $00, $75, $8E, $44, $2F, $E4, $01, $02, $E0, $10, $00, $E0, $6A, $4F, $44, $2F, $E2, $39, $29, $2F, $2F, $0F, $02, $18, $0C, $52, $00, $6A, $4F, $44, $2F, $E0, $29, $2C, $2A, $2A, $2B, $2C, $43, $0A, $0B, $0C, $5A, $00, $6A, $4F, $44, $2F, $39, $2C, $2B, $2D, $E0, $30, $04, $43, $0A, $0B, $0C, $00, $00, $6A, $4F, $39, $2F, $E2, $39, $3A, $26, $4E, $43, $0A, $0B, $0C, $51, $00, $2F, $E3, $05, $06, $21, $29, $31, $26, $43, $0A, $0B, $0C, $2F, $E7, $38, $27, $2F, $29, $43, $0A, $2F, $E7, $31, $28, $29, $26, $29, $2F, $EB, $25, $26, $2F, $EC, $21, $2F, $FF, $ED, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $EA, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_00BC" SLOT 2 SUPERFREE
 chunk_00BC:
-.DB $2F, $FF, $FF, $FB, $44, $2F, $EC, $6A, $4F, $44, $2F, $EA, $00, $00, $6A, $4F, $44, $2F, $E4, $2E, $E1, $0B, $0C, $52, $00, $6A, $4F, $44, $2F, $E1, $4E, $2E, $2E, $2C, $2A, $43, $0A, $0B, $0C, $00, $00, $6A, $4F, $44, $2F, $2F, $4E, $2F, $3A, $05, $70, $2F, $2F, $43, $0A, $0B, $0C, $51, $00, $6A, $4F, $44, $4E, $4E, $2F, $71, $71, $30, $71, $04, $2F, $43, $0A, $0B, $0C, $00, $00, $6A, $90, $AC, $AC, $A9, $A9, $39, $2F, $3A, $2F, $31, $31, $43, $0A, $0B, $0C, $00, $00, $93, $9D, $9B, $92, $39, $2F, $3A, $2F, $26, $22, $23, $2F, $43, $0A, $17, $02, $1A, $1A, $1C, $1C, $2F, $E1, $24, $25, $21, $2F, $26, $2F, $E0, $70, $70, $2F, $4E, $DF
+.DB $61, $E7, $8D, $2F, $E2, $61, $E7, $8D, $2F, $2F, $8C, $2F, $2F, $61, $E7, $8D, $2F, $2F, $8C, $2F, $2F, $61, $E7, $8D, $2F, $2F, $8C, $70, $70, $61, $5E, $61, $E5, $8D, $31, $31, $8C, $71, $71, $5F, $5D, $61, $E0, $5E, $5F, $61, $5E, $5F, $8D, $29, $25, $8C, $2F, $2B, $5B, $5C, $00, $5E, $53, $54, $5D, $5B, $5D, $54, $8D, $31, $31, $8C, $70, $70, $5A, $00, $5A, $58, $59, $55, $5A, $00, $5C, $55, $75, $65, $65, $A3, $A2, $A2, $79, $00, $00, $7A, $7B, $79, $00, $E0, $57, $00, $E2, $52, $02, $00, $00, $02, $E0, $00, $00, $02, $03, $01, $03, $01, $03, $01, $02, $2F, $52, $00, $3A, $22, $23, $00, $00, $2F, $3A, $05, $3A, $39, $3A, $39, $29, $2F, $00, $00, $96, $25, $21, $00, $00, $06, $2C, $2A, $2B, $2D, $2D, $05, $70, $2F, $00, $00, $06, $37, $05, $00, $00, $3A, $2D, $E0, $2C, $2A, $30, $71, $71, $00, $51, $04, $30, $4E, $00, $00, $70, $06, $05, $06, $05, $06, $39, $2F, $2F, $52, $00, $3A, $38, $4E, $00, $00, $2F, $E2, $3A, $39, $2F, $2F, $00, $00, $3A, $05, $70, $00, $00, $2F, $E5, $DF
 .ENDS
 
 .SECTION "base_chunk_00BD" SLOT 2 SUPERFREE
 chunk_00BD:
-.DB $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2F, $E4, $00, $E6, $2E, $E0, $2F, $E1, $00, $E6, $2B, $2D, $2D, $2F, $E1, $00, $E6, $70, $06, $A5, $2F, $E0, $A6, $39, $2F, $E2, $39, $2F, $2F, $71, $71, $A5, $70, $E0, $A6, $2A, $2B, $2F, $29, $23, $2F, $39, $2F, $2F, $AB, $A9, $A1, $AF, $AF, $AE, $9F, $A9, $AB, $8E, $44, $25, $31, $05, $70, $70, $9E, $92, $A8, $AF, $AF, $AE, $A7, $92, $9E, $B4, $6A, $4F, $44, $2F, $31, $4E, $1B, $1C, $1E, $AF, $AF, $AE, $1D, $1C, $1B, $18, $0C, $00, $6A, $4F, $44, $4E, $4E, $2F, $A5, $71, $E0, $A6, $23, $26, $31, $0A, $0B, $0C, $52, $6A, $4F, $DF
+.DB $2F, $FF, $E5, $70, $E7, $2F, $2F, $3A, $30, $71, $04, $30, $71, $E5, $04, $05, $70, $06, $39, $2F, $3A, $39, $22, $23, $2F, $26, $70, $70, $2E, $2C, $3A, $30, $71, $04, $39, $2B, $3A, $39, $24, $25, $96, $25, $71, $71, $70, $70, $06, $05, $70, $06, $05, $2C, $06, $05, $70, $E3, $A2, $B8, $A2, $E2, $B8, $A2, $E4, $B8, $00, $00, $51, $00, $E0, $52, $00, $E3, $51, $00, $00, $02, $02, $18, $0C, $51, $7B, $E2, $52, $07, $15, $03, $01, $02, $2F, $2F, $43, $0A, $17, $02, $03, $01, $02, $02, $16, $09, $42, $3A, $39, $2B, $70, $29, $23, $2F, $70, $70, $06, $29, $29, $26, $4E, $E0, $3A, $05, $70, $04, $39, $21, $3A, $30, $71, $04, $39, $2F, $27, $3A, $05, $70, $06, $30, $71, $3A, $39, $2F, $3A, $39, $2F, $3A, $05, $70, $28, $3A, $30, $04, $30, $2A, $2C, $3A, $05, $70, $06, $39, $2F, $3A, $30, $04, $05, $06, $39, $3A, $05, $70, $70, $2F, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00BE" SLOT 2 SUPERFREE
 chunk_00BE:
-.DB $00, $E4, $2F, $E1, $05, $70, $06, $70, $70, $00, $E4, $2F, $E6, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $2F, $4E, $4E, $8C, $00, $E4, $51, $00, $E1, $2F, $4E, $4E, $8C, $00, $49, $4D, $4D, $4B, $00, $E4, $70, $2F, $2F, $8C, $00, $E2, $7A, $7B, $00, $52, $00, $00, $46, $04, $8D, $23, $8C, $00, $49, $4D, $E2, $4B, $00, $E1, $06, $8D, $27, $8C, $00, $E0, $52, $5A, $00, $E2, $51, $7B, $04, $8D, $25, $8C, $00, $E1, $7A, $7B, $E0, $79, $00, $46, $4C, $06, $8D, $29, $8C, $6B, $00, $E1, $51, $00, $00, $5A, $00, $E0, $A2, $A4, $65, $76, $00, $49, $4A, $4D, $4A, $4D, $4A, $4D, $4A, $4B, $00, $51, $00, $00, $B7, $00, $00, $51, $00, $E7, $03, $01, $02, $01, $02, $03, $02, $E0, $03, $01, $02, $E2, $3A, $39, $4E, $39, $26, $3A, $70, $E0, $06, $39, $26, $26, $22, $23, $31, $06, $05, $70, $39, $27, $3A, $71, $71, $04, $31, $2F, $24, $25, $27, $25, $2F, $04, $30, $71, $39, $28, $3A, $70, $70, $06, $39, $2F, $E0, $28, $2F, $2F, $3A, $39, $2F, $05, $70, $06, $71, $E0, $2F, $E4, $06, $39, $2F, $FB, $DF
 .ENDS
 
 .SECTION "base_chunk_00BF" SLOT 2 SUPERFREE
 chunk_00BF:
-.DB $70, $00, $52, $70, $E0, $00, $00, $2F, $71, $71, $00, $00, $2F, $E1, $00, $00, $2F, $E0, $00, $51, $22, $23, $2F, $00, $00, $2F, $E0, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $51, $00, $49, $4B, $00, $70, $70, $06, $2F, $E3, $3A, $31, $00, $00, $7B, $7B, $00, $2F, $2F, $70, $E4, $06, $05, $4C, $E0, $48, $00, $70, $06, $30, $71, $E2, $04, $30, $26, $00, $00, $52, $00, $00, $71, $04, $39, $2F, $E2, $3A, $39, $25, $7B, $7B, $00, $00, $6C, $4E, $3A, $05, $70, $E2, $06, $05, $70, $4C, $E0, $48, $00, $4E, $06, $30, $71, $E5, $00, $E2, $26, $04, $39, $2F, $E5, $00, $B7, $00, $52, $14, $27, $3A, $39, $2F, $E5, $00, $7B, $79, $00, $00, $28, $3A, $39, $2F, $E5, $02, $02, $03, $01, $6E, $2F, $3A, $39, $2F, $E7, $3A, $05, $70, $70, $06, $39, $2F, $E5, $30, $04, $2F, $EB, $05, $06, $2F, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_00C0" SLOT 2 SUPERFREE
 chunk_00C0:
-.DB $2F, $FD, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $00, $00, $86, $00, $00, $8D, $2E, $E0, $8C, $00, $5A, $75, $65, $65, $34, $00, $51, $B9, $00, $00, $75, $65, $E0, $A3, $00, $E9, $51, $00, $E0, $52, $00, $E0, $51, $00, $E0, $1F, $52, $00, $11, $02, $02, $03, $01, $03, $01, $02, $E0, $10, $02, $02, $86, $02, $02, $B3, $2F, $2F, $3A, $39, $3A, $39, $29, $2F, $2F, $0F, $31, $31, $86, $23, $31, $2F, $4E, $4E, $3A, $39, $3A, $29, $2C, $2A, $2A, $2B, $2F, $2F, $86, $21, $31, $2F, $23, $26, $3A, $05, $06, $39, $2C, $2B, $2D, $2D, $2F, $2F, $86, $2F, $E0, $24, $25, $3A, $30, $04, $39, $2F, $FF, $FF, $FF, $FE, $DF
 .ENDS
 
 .SECTION "base_chunk_00C1" SLOT 2 SUPERFREE
 chunk_00C1:
-.DB $2F, $E5, $27, $26, $26, $3A, $30, $04, $39, $2C, $2F, $E5, $28, $24, $25, $3A, $39, $3A, $39, $2F, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $00, $E0, $07, $08, $09, $42, $2F, $E6, $00, $11, $16, $09, $42, $2F, $E8, $00, $75, $8E, $44, $2F, $E9, $00, $E0, $6A, $4F, $44, $2F, $E7, $02, $18, $0C, $52, $00, $6A, $4F, $44, $2F, $E5, $2C, $43, $0A, $0B, $0C, $5A, $00, $6A, $4F, $44, $2F, $E3, $2D, $30, $04, $43, $0A, $0B, $0C, $00, $00, $6A, $4F, $44, $2F, $E2, $39, $3A, $26, $4E, $43, $0A, $0B, $0C, $51, $00, $6A, $4F, $44, $2F, $E0, $05, $06, $21, $29, $31, $26, $43, $0A, $0B, $0C, $00, $00, $6A, $4F, $44, $2F, $E2, $38, $27, $2F, $29, $43, $0A, $0B, $0C, $52, $00, $6A, $2F, $E2, $31, $28, $29, $26, $29, $2F, $43, $0A, $0B, $0C, $00, $2F, $E5, $25, $26, $2F, $E0, $43, $0A, $0B, $2F, $E6, $21, $2F, $30, $71, $04, $2F, $43, $2F, $E8, $39, $2F, $3A, $2F, $31, $2F, $E8, $39, $2F, $3A, $2F, $26, $2F, $EC, $24, $DF
 .ENDS
 
 .SECTION "base_chunk_00C2" SLOT 2 SUPERFREE
 chunk_00C2:
-.DB $2A, $2B, $A5, $2F, $E0, $A6, $25, $27, $31, $2F, $43, $0A, $0B, $0C, $00, $2F, $2F, $A5, $2F, $E0, $A6, $70, $28, $31, $70, $4E, $4E, $43, $0A, $0B, $00, $E0, $2F, $2F, $3A, $30, $71, $E2, $04, $39, $29, $43, $00, $E0, $2F, $2F, $3A, $05, $70, $E2, $06, $39, $31, $31, $00, $E0, $23, $22, $23, $30, $71, $E3, $2F, $40, $41, $00, $E0, $24, $25, $21, $39, $4E, $4E, $26, $2F, $2F, $40, $41, $45, $51, $00, $E0, $31, $31, $3A, $39, $2D, $2D, $25, $40, $41, $45, $52, $07, $08, $00, $E0, $31, $65, $67, $66, $65, $65, $91, $45, $00, $07, $08, $09, $42, $00, $E0, $2F, $00, $E1, $51, $00, $07, $08, $09, $42, $2F, $30, $00, $E0, $2F, $00, $5A, $00, $00, $11, $16, $09, $42, $31, $2B, $2E, $39, $00, $E0, $2F, $00, $E1, $75, $8E, $44, $2F, $31, $2B, $2A, $05, $00, $E0, $70, $00, $E1, $B5, $00, $6A, $4F, $44, $2F, $2F, $23, $00, $E0, $71, $02, $E2, $18, $0C, $51, $6A, $4F, $44, $24, $00, $E0, $2F, $26, $26, $2F, $31, $31, $43, $0A, $0B, $0C, $00, $6A, $4F, $00, $E0, $31, $24, $25, $2F, $2F, $23, $26, $26, $43, $0A, $0B, $0C, $00, $E1, $26, $2F, $E1, $24, $25, $25, $2F, $2F, $43, $0A, $0B, $DF
+.DB $2F, $FF, $FF, $FF, $FF, $E0, $2E, $E4, $2F, $2F, $4F, $44, $2F, $E1, $4E, $2E, $2E, $2C, $2A, $2B, $2D, $2D, $2F, $2F, $00, $6A, $4F, $44, $2F, $2F, $4E, $2F, $3A, $05, $70, $70, $06, $A5, $2F, $2F, $0C, $51, $00, $6A, $4F, $44, $4E, $4E, $2F, $71, $E1, $A5, $70, $70, $0A, $0B, $0C, $00, $00, $6A, $90, $AC, $AC, $A9, $A9, $AB, $A9, $A1, $AF, $AF, $31, $43, $0A, $0B, $0C, $00, $00, $93, $9D, $9B, $92, $9E, $92, $A8, $AF, $AF, $22, $23, $2F, $43, $0A, $17, $02, $1A, $1A, $1C, $1C, $1B, $1C, $1E, $AF, $AF, $25, $21, $2F, $26, $2F, $E0, $70, $70, $2F, $4E, $4E, $2F, $A5, $71, $71, $DF
 .ENDS
 
 .SECTION "base_chunk_00C3" SLOT 2 SUPERFREE
 chunk_00C3:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $EB, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $E6, $8C, $26, $2F, $2F, $DF
+.DB $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $A6, $39, $2F, $E2, $39, $2F, $2F, $3A, $2F, $E1, $70, $A6, $2A, $2B, $2F, $29, $23, $2F, $39, $2F, $2F, $3A, $2F, $E1, $AE, $9F, $A9, $AB, $8E, $44, $25, $31, $05, $70, $70, $06, $2F, $E1, $AE, $A7, $92, $9E, $B4, $6A, $4F, $44, $2F, $31, $4E, $2F, $E1, $26, $AE, $1D, $1C, $1B, $18, $0C, $00, $6A, $4F, $44, $4E, $2F, $2D, $36, $2F, $27, $71, $A6, $23, $26, $31, $0A, $0B, $0C, $52, $6A, $4F, $44, $2E, $37, $2F, $28, $DF
 .ENDS
 
 .SECTION "base_chunk_00C4" SLOT 2 SUPERFREE
 chunk_00C4:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $2F, $EB, $61, $61, $2F, $EB, $61, $61, $2F, $EB, $61, $61, $2F, $EB, $61, $61, $2F, $EB, $61, $61, $DF
+.DB $00, $00, $2F, $E1, $05, $70, $06, $70, $E0, $00, $52, $70, $70, $00, $00, $2F, $E7, $00, $00, $2F, $2F, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
 
 .SECTION "base_chunk_00C5" SLOT 2 SUPERFREE
 chunk_00C5:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $61, $FF, $FF, $EB, $DF
+.DB $70, $00, $00, $2F, $71, $71, $00, $00, $2F, $E6, $00, $51, $22, $23, $2F, $00, $00, $2F, $E5, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
 
 .SECTION "base_chunk_00C6" SLOT 2 SUPERFREE
 chunk_00C6:
-.DB $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $FF, $FF, $F9, $DF
+.DB $2F, $FD, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $DF
 .ENDS
 
 .SECTION "base_chunk_00C7" SLOT 2 SUPERFREE
 chunk_00C7:
-.DB $61, $61, $8D, $4E, $31, $25, $2F, $24, $25, $2F, $2F, $36, $2F, $21, $26, $8C, $61, $61, $8D, $4E, $4E, $2F, $E1, $29, $29, $37, $2F, $2F, $25, $8C, $61, $61, $A4, $65, $65, $97, $9A, $E3, $98, $65, $65, $A3, $61, $61, $00, $51, $00, $9D, $9B, $92, $92, $9C, $92, $9C, $94, $00, $52, $00, $61, $61, $11, $02, $02, $1A, $1C, $E3, $1B, $02, $E0, $61, $61, $8D, $2F, $E1, $2D, $2C, $2A, $2F, $26, $30, $71, $71, $04, $61, $61, $8D, $2F, $E1, $2B, $2D, $2D, $2F, $25, $05, $70, $70, $06, $61, $61, $8D, $2F, $E4, $22, $23, $2F, $E1, $61, $61, $8D, $2F, $E4, $25, $21, $2F, $4E, $B0, $65, $61, $61, $8D, $2F, $E7, $4E, $8C, $00, $61, $61, $8D, $2F, $E8, $8C, $00, $61, $61, $8D, $2F, $E4, $26, $2F, $2F, $26, $8C, $00, $61, $61, $8D, $2F, $E3, $26, $25, $2F, $2F, $27, $8C, $51, $61, $61, $8D, $2F, $E2, $31, $21, $2F, $31, $31, $28, $8C, $00, $61, $61, $8D, $2F, $E1, $26, $B0, $65, $E2, $A3, $00, $61, $61, $8D, $2F, $E1, $25, $8C, $00, $00, $51, $00, $B5, $00, $00, $DF
+.DB $2F, $E0, $27, $26, $26, $3A, $30, $04, $39, $2C, $2A, $2B, $A5, $2F, $E2, $28, $24, $25, $3A, $39, $3A, $39, $2F, $E0, $A5, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $23, $22, $00, $EB, $24, $25, $00, $EB, $31, $31, $00, $EB, $31, $65, $00, $EB, $2F, $00, $EC, $2F, $00, $EC, $2F, $00, $EC, $70, $00, $EC, $71, $02, $00, $EB, $2F, $26, $00, $EB, $31, $24, $00, $EB, $26, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00C8" SLOT 2 SUPERFREE
 chunk_00C8:
-.DB $00, $E0, $2F, $E6, $8C, $27, $2F, $70, $00, $E0, $2F, $E6, $8C, $28, $3A, $30, $00, $E0, $2F, $E6, $8C, $70, $06, $05, $00, $E0, $2F, $E4, $2D, $2D, $8C, $A2, $A2, $B8, $00, $E0, $2F, $E4, $70, $70, $73, $00, $E3, $2F, $E0, $2D, $2F, $2F, $3A, $2F, $35, $34, $00, $52, $B4, $00, $E0, $2F, $2F, $3A, $2E, $2F, $70, $06, $35, $34, $0D, $03, $01, $02, $00, $E0, $96, $29, $2F, $2F, $3A, $2F, $35, $34, $0D, $0E, $3A, $29, $26, $00, $E0, $31, $70, $E0, $06, $35, $34, $0D, $0E, $70, $06, $96, $25, $00, $E0, $31, $2F, $E0, $35, $34, $0D, $0E, $3A, $30, $71, $E0, $00, $E0, $31, $65, $E0, $34, $0D, $0E, $26, $3A, $39, $2F, $E0, $00, $E0, $31, $5A, $00, $00, $0D, $0E, $29, $25, $2F, $E2, $00, $E0, $31, $52, $51, $11, $0E, $30, $71, $04, $2F, $E2, $00, $E0, $31, $00, $00, $75, $74, $05, $70, $06, $2F, $E2, $00, $E0, $31, $14, $00, $52, $72, $74, $31, $31, $2F, $E2, $00, $E0, $31, $31, $6F, $02, $10, $72, $74, $31, $26, $2F, $E1, $DF
+.DB $2F, $A6, $25, $27, $31, $2F, $43, $0A, $0B, $0C, $00, $6A, $90, $65, $E0, $2F, $A6, $70, $28, $31, $70, $4E, $4E, $43, $0A, $0B, $0C, $00, $00, $51, $00, $3A, $30, $71, $E2, $04, $39, $29, $43, $0A, $17, $13, $00, $00, $3A, $05, $70, $E2, $06, $39, $31, $31, $40, $8F, $76, $00, $52, $23, $30, $71, $E3, $2F, $40, $41, $45, $00, $5A, $00, $00, $21, $39, $4E, $4E, $26, $2F, $2F, $40, $41, $45, $51, $07, $15, $02, $E0, $3A, $39, $2D, $2D, $25, $40, $41, $45, $52, $07, $08, $09, $42, $2D, $2F, $26, $67, $66, $65, $65, $91, $45, $00, $07, $08, $09, $42, $29, $23, $2E, $96, $25, $00, $E0, $51, $00, $07, $08, $09, $42, $2F, $30, $71, $25, $2E, $26, $26, $5A, $00, $00, $11, $16, $09, $42, $31, $2B, $2E, $39, $2F, $3A, $2F, $27, $25, $00, $E0, $75, $8E, $44, $2F, $31, $2B, $2A, $05, $70, $06, $2F, $28, $31, $00, $E0, $B5, $00, $6A, $4F, $44, $2F, $2F, $23, $22, $23, $2F, $2F, $31, $02, $E1, $18, $0C, $51, $6A, $4F, $44, $24, $25, $21, $2F, $70, $70, $26, $2F, $31, $31, $43, $0A, $0B, $0C, $00, $6A, $4F, $44, $2A, $2A, $30, $04, $25, $2F, $2F, $23, $26, $26, $43, $0A, $0B, $0C, $00, $6A, $90, $67, $66, $67, $2F, $E0, $24, $25, $25, $2F, $2F, $43, $0A, $0B, $0C, $52, $00, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00C9" SLOT 2 SUPERFREE
 chunk_00C9:
-.DB $23, $26, $4E, $4E, $70, $E0, $06, $30, $04, $30, $71, $8D, $8C, $61, $61, $24, $25, $4E, $4E, $04, $30, $71, $04, $39, $3A, $39, $2C, $8D, $8C, $61, $61, $70, $31, $31, $70, $06, $05, $2C, $2B, $31, $06, $05, $70, $8D, $8C, $5E, $5D, $A2, $E1, $B8, $A2, $E1, $B8, $A2, $A2, $8D, $8C, $54, $5C, $51, $00, $E0, $51, $00, $E4, $A4, $76, $55, $5A, $00, $00, $52, $00, $E1, $51, $00, $00, $52, $B4, $00, $E1, $03, $01, $02, $03, $01, $02, $E0, $03, $02, $E3, $03, $3A, $05, $70, $06, $39, $29, $20, $2A, $3A, $2F, $26, $31, $31, $22, $23, $3A, $06, $30, $71, $04, $39, $2C, $2A, $2A, $3A, $2F, $27, $29, $2F, $24, $25, $3A, $04, $39, $29, $3A, $39, $2D, $E0, $3A, $26, $28, $2F, $E1, $3A, $3A, $05, $70, $06, $39, $2F, $E0, $3A, $25, $2C, $2A, $2A, $2B, $70, $06, $2F, $71, $E0, $05, $70, $E0, $06, $71, $E4, $2F, $FF, $FC, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $F6, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00CA" SLOT 2 SUPERFREE
 chunk_00CA:
-.DB $61, $EE, $5E, $5F, $5E, $61, $61, $5E, $5E, $5F, $61, $5F, $5E, $61, $5E, $5E, $5F, $5F, $54, $5B, $5D, $5E, $5F, $54, $53, $54, $5E, $62, $5D, $60, $54, $54, $62, $54, $55, $00, $5C, $00, $5B, $55, $5B, $55, $54, $54, $5C, $5B, $55, $55, $58, $55, $00, $5A, $00, $E1, $5A, $00, $5A, $00, $E0, $5A, $00, $EF, $01, $02, $E1, $03, $01, $02, $E6, $31, $E0, $26, $26, $3A, $39, $31, $2F, $26, $2F, $2D, $2D, $2F, $30, $04, $31, $2E, $2E, $25, $21, $3A, $39, $31, $96, $25, $2C, $2A, $2B, $2F, $39, $3A, $39, $2F, $E1, $3A, $39, $31, $2F, $2F, $2D, $2D, $4E, $4E, $05, $06, $39, $2F, $FF, $FF, $FA, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $2F, $FF, $FF, $E2, $8C, $26, $2F, $E4, $DF
 .ENDS
 
 .SECTION "base_chunk_00CB" SLOT 2 SUPERFREE
 chunk_00CB:
-.DB $61, $FD, $5E, $5F, $61, $5F, $61, $60, $5F, $60, $5E, $61, $E2, $5F, $5E, $59, $54, $5E, $5D, $5E, $54, $54, $5B, $5D, $5F, $5E, $5F, $5D, $5E, $54, $5B, $00, $5A, $5B, $5C, $5B, $55, $55, $00, $5C, $5B, $54, $5B, $5C, $5B, $55, $00, $E5, $5A, $00, $00, $5A, $00, $E1, $5A, $02, $ED, $2F, $2F, $2C, $2A, $2A, $2B, $23, $31, $2F, $2F, $22, $23, $2F, $2F, $26, $2C, $2F, $2F, $2C, $2A, $2A, $2B, $21, $31, $2F, $2F, $25, $21, $2F, $2F, $25, $29, $2F, $E7, $71, $71, $2F, $2F, $70, $70, $2F, $E3, $26, $29, $2F, $2F, $29, $2F, $E0, $71, $71, $2F, $E3, $27, $2F, $E1, $26, $2F, $2F, $26, $2F, $E4, $28, $2F, $E1, $25, $2F, $2F, $21, $2F, $FC, $31, $2F, $EE, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $2F, $E6, $61, $E4, $2F, $E6, $61, $E4, $2F, $E6, $61, $E4, $2F, $E6, $61, $E4, $2F, $E6, $61, $E4, $DF
 .ENDS
 
 .SECTION "base_chunk_00CC" SLOT 2 SUPERFREE
 chunk_00CC:
-.DB $61, $61, $8D, $2F, $2F, $70, $70, $36, $8C, $7A, $00, $11, $02, $E1, $61, $61, $8D, $2F, $3A, $30, $71, $37, $8C, $7A, $00, $8D, $31, $2F, $2F, $26, $61, $5E, $8D, $2F, $26, $39, $2F, $2F, $8C, $7A, $52, $8D, $29, $26, $2F, $24, $5E, $5D, $8D, $29, $25, $2D, $2D, $2C, $8C, $7A, $00, $8D, $31, $25, $2C, $2B, $00, $5C, $A4, $65, $67, $66, $65, $65, $A3, $00, $00, $A4, $65, $E1, $00, $E1, $52, $7B, $7B, $51, $00, $E3, $52, $00, $03, $01, $02, $02, $03, $01, $02, $E0, $6D, $03, $01, $02, $02, $00, $00, $2B, $05, $70, $70, $06, $39, $23, $26, $2F, $2D, $2D, $39, $2F, $23, $00, $79, $3A, $30, $71, $E0, $26, $24, $25, $2F, $2F, $3A, $39, $2F, $27, $00, $79, $06, $39, $2F, $E0, $27, $2F, $E1, $3A, $39, $2F, $28, $5A, $79, $71, $2F, $E1, $28, $2F, $E1, $3A, $05, $70, $70, $00, $79, $2F, $E8, $71, $E0, $00, $00, $2F, $EA, $29, $02, $6D, $2F, $EC, $22, $2F, $EC, $25, $2F, $E0, $00, $EA, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $E8, $61, $FF, $FF, $EB, $DF
 .ENDS
 
 .SECTION "base_chunk_00CD" SLOT 2 SUPERFREE
 chunk_00CD:
-.DB $00, $E0, $31, $E0, $2F, $0F, $10, $72, $74, $25, $29, $2F, $30, $71, $00, $E0, $31, $E0, $70, $70, $0F, $10, $72, $74, $31, $29, $39, $2C, $00, $E0, $71, $E1, $04, $39, $0F, $10, $72, $74, $31, $39, $4E, $00, $E0, $2F, $2F, $4E, $4E, $3A, $2D, $2D, $0F, $10, $72, $74, $05, $70, $00, $E0, $2F, $2F, $4E, $4E, $06, $05, $70, $70, $0F, $10, $72, $74, $31, $00, $E0, $2F, $2F, $4E, $4E, $30, $71, $71, $04, $39, $0F, $10, $72, $74, $00, $E0, $2F, $2F, $4E, $4E, $05, $70, $70, $06, $05, $70, $0F, $10, $72, $00, $E0, $2F, $E1, $71, $E2, $04, $39, $0F, $10, $00, $E0, $2F, $E6, $3A, $39, $26, $0F, $00, $E0, $2F, $E6, $3A, $39, $25, $29, $00, $E0, $2F, $E6, $3A, $05, $70, $70, $00, $E0, $2F, $E7, $71, $71, $31, $00, $E0, $2F, $E9, $31, $00, $E0, $2F, $EA, $00, $E0, $2F, $E9, $29, $00, $E0, $2F, $EA, $DF
+.DB $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $FF, $FF, $EE, $DF
 .ENDS
 
 .SECTION "base_chunk_00CE" SLOT 2 SUPERFREE
 chunk_00CE:
-.DB $04, $2F, $E8, $23, $8D, $2F, $2F, $2A, $8C, $2F, $E1, $70, $E1, $2F, $2F, $27, $8D, $2F, $2F, $3A, $8C, $70, $4E, $4E, $06, $30, $71, $71, $04, $39, $29, $28, $8D, $2F, $2F, $06, $8C, $31, $05, $06, $31, $05, $70, $70, $06, $2D, $E0, $8D, $2F, $2F, $31, $8C, $A2, $A2, $B8, $A2, $E0, $B8, $A2, $E1, $8D, $2F, $E0, $8C, $52, $00, $E5, $52, $00, $8D, $B0, $65, $65, $A3, $00, $E0, $51, $00, $E1, $5A, $00, $00, $8D, $8C, $00, $51, $00, $E3, $52, $00, $E2, $8D, $8C, $00, $02, $02, $49, $4A, $4B, $00, $00, $49, $4B, $00, $E1, $75, $A3, $00, $26, $2F, $00, $E0, $51, $00, $E1, $51, $00, $E0, $51, $00, $27, $70, $00, $00, $49, $4A, $4B, $00, $5A, $00, $46, $4C, $48, $02, $E0, $28, $31, $00, $51, $00, $50, $00, $E0, $50, $00, $E0, $31, $4E, $22, $29, $31, $6F, $03, $01, $19, $02, $03, $01, $19, $03, $01, $6E, $31, $4E, $25, $23, $2D, $2D, $3A, $39, $2B, $2E, $2E, $05, $70, $06, $39, $2F, $26, $4E, $2F, $21, $2E, $2E, $3A, $05, $4E, $E0, $2F, $E1, $29, $25, $4E, $2F, $EE, $DF
+.DB $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $96, $29, $00, $EB, $31, $70, $00, $EB, $31, $2F, $00, $EB, $31, $65, $00, $EB, $31, $5A, $00, $EB, $31, $52, $00, $EB, $31, $00, $EC, $31, $14, $00, $EB, $31, $31, $DF
 .ENDS
 
 .SECTION "base_chunk_00CF" SLOT 2 SUPERFREE
 chunk_00CF:
-.DB $2F, $E6, $70, $86, $2F, $E9, $26, $3A, $30, $86, $2F, $E5, $22, $23, $2F, $2F, $21, $3A, $39, $86, $2F, $E3, $36, $2F, $25, $21, $29, $40, $8F, $67, $66, $B9, $65, $26, $2F, $E1, $37, $4E, $4E, $40, $41, $45, $51, $00, $E0, $B5, $25, $2F, $E0, $65, $E0, $91, $45, $00, $07, $15, $02, $02, $1F, $02, $30, $04, $2F, $2F, $52, $00, $00, $5A, $07, $08, $09, $42, $23, $2F, $86, $29, $39, $3A, $2F, $2F, $11, $02, $02, $16, $09, $42, $31, $31, $25, $70, $86, $2F, $05, $06, $2F, $2F, $A4, $65, $E3, $B1, $2C, $2A, $2B, $2F, $3A, $39, $2F, $2F, $00, $52, $00, $E0, $51, $00, $8D, $2D, $E0, $26, $06, $39, $22, $23, $02, $E2, $00, $00, $8D, $2F, $2F, $96, $25, $04, $39, $24, $25, $23, $26, $2F, $2B, $36, $00, $00, $8D, $B0, $65, $E0, $67, $66, $65, $65, $24, $25, $2F, $2C, $37, $52, $00, $75, $A3, $51, $00, $E3, $29, $23, $26, $31, $31, $00, $00, $B6, $00, $E5, $31, $27, $21, $31, $31, $6D, $02, $02, $13, $14, $00, $E0, $52, $00, $00, $2F, $28, $2F, $E1, $23, $31, $8C, $00, $00, $14, $E0, $00, $00, $DF
+.DB $2F, $E4, $8C, $27, $2F, $70, $23, $26, $4E, $4E, $70, $2F, $E4, $8C, $28, $3A, $30, $24, $25, $4E, $4E, $04, $2F, $E4, $8C, $70, $06, $05, $70, $31, $31, $70, $06, $2F, $E2, $2D, $2D, $8C, $A2, $A2, $B8, $A2, $E1, $B8, $2F, $E2, $70, $70, $73, $00, $E0, $51, $00, $E0, $51, $2F, $2D, $2F, $2F, $3A, $2F, $35, $34, $00, $52, $B4, $00, $00, $52, $00, $00, $3A, $2E, $2F, $70, $06, $35, $34, $0D, $03, $01, $02, $03, $01, $02, $03, $01, $2F, $2F, $3A, $2F, $35, $34, $0D, $0E, $3A, $29, $26, $3A, $05, $70, $06, $39, $70, $70, $06, $35, $34, $0D, $0E, $70, $06, $96, $25, $06, $30, $71, $04, $39, $2F, $2F, $35, $34, $0D, $0E, $3A, $30, $71, $E0, $04, $39, $29, $3A, $39, $65, $65, $34, $0D, $0E, $26, $3A, $39, $2F, $E0, $3A, $05, $70, $06, $39, $00, $00, $0D, $0E, $29, $25, $2F, $E3, $71, $E0, $05, $51, $11, $0E, $30, $71, $04, $2F, $E7, $00, $75, $74, $05, $70, $06, $2F, $E7, $00, $52, $72, $74, $31, $31, $2F, $E7, $6F, $02, $10, $72, $74, $31, $26, $2F, $E6, $DF
 .ENDS
 
 .SECTION "base_chunk_00D0" SLOT 2 SUPERFREE
 chunk_00D0:
-.DB $2F, $FF, $FF, $FF, $FF, $FF, $E8, $B1, $2C, $2B, $26, $2F, $E9, $8D, $26, $2F, $25, $2F, $E9, $8D, $27, $2F, $EB, $8D, $28, $2F, $EB, $8D, $2F, $EC, $DF
+.DB $70, $70, $06, $30, $04, $30, $71, $8D, $8C, $61, $E4, $30, $71, $04, $39, $3A, $39, $2C, $8D, $8C, $61, $E0, $5E, $5F, $5E, $61, $05, $2C, $2B, $31, $06, $05, $70, $8D, $8C, $5E, $5D, $5F, $54, $5B, $5D, $5E, $A2, $E1, $B8, $A2, $A2, $8D, $8C, $54, $5C, $54, $55, $00, $5C, $00, $E5, $A4, $76, $55, $5A, $55, $00, $5A, $00, $E1, $51, $00, $00, $52, $B4, $00, $E6, $02, $E0, $03, $02, $E3, $03, $01, $02, $E1, $29, $20, $2A, $3A, $2F, $26, $31, $31, $22, $23, $3A, $31, $E0, $26, $26, $2C, $2A, $2A, $3A, $2F, $27, $29, $2F, $24, $25, $3A, $31, $2E, $2E, $25, $21, $2D, $E0, $3A, $26, $28, $2F, $E1, $3A, $39, $2F, $E4, $3A, $25, $2C, $2A, $2A, $2B, $70, $06, $39, $2F, $E1, $70, $E0, $06, $71, $E4, $2F, $FF, $FF, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00D1" SLOT 2 SUPERFREE
 chunk_00D1:
-.DB $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $DF
+.DB $61, $EE, $5E, $5E, $5F, $61, $5F, $5E, $61, $5E, $5E, $5F, $61, $E2, $5F, $54, $53, $54, $5E, $62, $5D, $60, $54, $54, $62, $5E, $5F, $61, $E0, $5B, $55, $5B, $55, $54, $54, $5C, $5B, $55, $55, $58, $59, $54, $61, $E0, $00, $00, $5A, $00, $5A, $00, $E0, $5A, $00, $E0, $5A, $00, $F0, $03, $01, $02, $EB, $3A, $39, $31, $2F, $26, $2F, $2D, $2D, $2F, $30, $04, $2F, $E2, $3A, $39, $31, $96, $25, $2C, $2A, $2B, $2F, $39, $3A, $2F, $E2, $3A, $39, $31, $2F, $2F, $2D, $2D, $4E, $4E, $05, $06, $2F, $FF, $FF, $FF, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00D2" SLOT 2 SUPERFREE
 chunk_00D2:
-.DB $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $E8, $30, $04, $00, $E0, $2F, $E8, $05, $06, $00, $E0, $2F, $E6, $4E, $E0, $2F, $00, $E0, $2F, $E5, $4E, $E0, $26, $29, $00, $E0, $71, $E6, $04, $23, $21, $35, $00, $E0, $2F, $E6, $3A, $25, $35, $34, $00, $E0, $70, $E6, $06, $35, $34, $52, $DF
+.DB $61, $FF, $EA, $5F, $61, $EB, $5E, $5D, $5E, $00, $EA, $5B, $5C, $5B, $00, $ED, $02, $ED, $2F, $EA, $2C, $2A, $2A, $2F, $EA, $2C, $2A, $2A, $2F, $FF, $FF, $FF, $E8, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00D3" SLOT 2 SUPERFREE
 chunk_00D3:
-.DB $2F, $FF, $FF, $E2, $26, $2F, $EC, $25, $2F, $E0, $70, $E1, $06, $2F, $E1, $8C, $70, $E0, $06, $05, $06, $70, $E1, $06, $2F, $E1, $8C, $A2, $E2, $B8, $A2, $E0, $B8, $A2, $2F, $22, $23, $2F, $8A, $00, $00, $51, $00, $E5, $31, $21, $25, $35, $34, $00, $E3, $51, $00, $E1, $31, $31, $35, $34, $00, $00, $51, $00, $E3, $52, $00, $00, $31, $35, $34, $00, $0D, $02, $E1, $00, $00, $02, $02, $00, $00, $02, $35, $34, $00, $0D, $0E, $31, $31, $2F, $31, $00, $00, $70, $70, $00, $00, $2F, $34, $00, $0D, $0E, $2B, $2E, $38, $2E, $2F, $00, $00, $04, $30, $00, $00, $70, $52, $0D, $0E, $26, $2F, $31, $31, $2F, $31, $00, $00, $06, $39, $00, $52, $71, $0D, $0E, $30, $24, $04, $2F, $E1, $00, $51, $04, $39, $00, $00, $26, $DF
+.DB $00, $EB, $31, $31, $00, $EB, $31, $31, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00D4" SLOT 2 SUPERFREE
 chunk_00D4:
-.DB $2F, $E2, $96, $25, $26, $8C, $00, $E4, $2F, $E4, $25, $8C, $52, $00, $E1, $14, $14, $2F, $E5, $8C, $00, $E3, $51, $2F, $E2, $2C, $2A, $2B, $8C, $00, $00, $14, $E0, $00, $00, $70, $E0, $2F, $2F, $2D, $E0, $8C, $00, $00, $52, $00, $E1, $30, $71, $04, $39, $36, $2F, $2F, $38, $8C, $14, $14, $00, $E2, $05, $70, $06, $05, $37, $70, $8D, $38, $8C, $00, $E2, $51, $00, $A2, $A2, $B8, $A2, $E0, $8D, $37, $8C, $00, $00, $14, $E0, $00, $E0, $51, $00, $E1, $8D, $2F, $8C, $00, $51, $00, $E8, $75, $65, $A3, $00, $E2, $14, $14, $00, $E1, $52, $00, $E5, $52, $00, $00, $02, $00, $00, $02, $E0, $03, $01, $03, $01, $02, $03, $01, $02, $02, $6E, $2F, $00, $00, $2F, $2D, $2D, $3A, $29, $26, $31, $31, $3A, $39, $23, $31, $2F, $70, $00, $00, $70, $E0, $06, $39, $25, $39, $2F, $3A, $39, $25, $26, $30, $71, $00, $00, $71, $04, $30, $04, $05, $06, $05, $70, $06, $39, $31, $25, $39, $26, $00, $52, $26, $3A, $39, $29, $71, $71, $04, $30, $04, $39, $2F, $2F, $05, $DF
+.DB $31, $2F, $0F, $10, $72, $74, $25, $29, $2F, $30, $71, $04, $2F, $E1, $31, $70, $70, $0F, $10, $72, $74, $31, $29, $39, $2C, $2A, $8C, $2F, $E0, $71, $71, $04, $39, $0F, $10, $72, $74, $31, $39, $4E, $3A, $8C, $70, $4E, $E1, $3A, $2D, $2D, $0F, $10, $72, $74, $05, $70, $06, $8C, $31, $05, $06, $4E, $4E, $06, $05, $70, $70, $0F, $10, $72, $74, $31, $31, $8C, $A2, $A2, $B8, $4E, $4E, $30, $71, $71, $04, $39, $0F, $10, $72, $74, $2F, $8C, $52, $00, $00, $4E, $4E, $05, $70, $70, $06, $05, $70, $0F, $10, $72, $65, $A3, $00, $E0, $2F, $2F, $71, $E2, $04, $39, $0F, $10, $51, $00, $E1, $2F, $E4, $3A, $39, $26, $0F, $02, $02, $49, $4A, $4B, $2F, $E4, $3A, $39, $25, $29, $26, $2F, $00, $E0, $2F, $E4, $3A, $05, $70, $70, $27, $70, $00, $00, $49, $2F, $E5, $71, $71, $31, $28, $31, $00, $51, $00, $2F, $E7, $31, $29, $31, $6F, $03, $01, $2F, $E8, $23, $2D, $2D, $3A, $39, $2F, $E7, $29, $21, $2E, $2E, $3A, $05, $2F, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00D5" SLOT 2 SUPERFREE
 chunk_00D5:
-.DB $8D, $2F, $E0, $26, $2F, $E8, $8D, $2F, $E0, $27, $2F, $2F, $86, $2F, $E5, $8D, $2F, $8C, $2F, $28, $2F, $2F, $86, $2F, $E5, $8D, $2F, $8C, $70, $70, $31, $70, $86, $70, $E2, $31, $2F, $2F, $8D, $2F, $8C, $A2, $E1, $86, $A2, $E2, $31, $2F, $2F, $8D, $2F, $8C, $00, $E1, $86, $00, $E1, $52, $31, $2F, $2F, $A4, $65, $76, $00, $00, $51, $00, $B9, $00, $00, $51, $00, $00, $2F, $E0, $00, $00, $B6, $52, $00, $E4, $B6, $00, $26, $2F, $2F, $02, $E4, $1F, $02, $E2, $25, $2F, $E0, $2C, $2B, $2F, $E1, $86, $2F, $E5, $26, $2F, $2F, $31, $2F, $E0, $86, $31, $2F, $31, $23, $22, $23, $2F, $2F, $27, $2F, $2F, $31, $31, $2F, $2F, $86, $2F, $4E, $2F, $25, $21, $21, $2F, $2F, $28, $2F, $E3, $86, $2F, $4E, $2F, $E3, $04, $2F, $22, $23, $2D, $2F, $2F, $86, $31, $2F, $05, $2F, $E2, $3A, $2F, $27, $27, $2F, $E0, $86, $2F, $2A, $2B, $2F, $E2, $06, $2F, $28, $28, $2F, $29, $2F, $86, $2F, $2F, $3A, $2F, $E2, $DF
+.DB $2F, $E4, $23, $8D, $2F, $E5, $70, $E1, $2F, $2F, $27, $8D, $2F, $E4, $06, $30, $71, $71, $04, $39, $29, $28, $8D, $2F, $E2, $22, $23, $31, $05, $70, $70, $06, $2D, $E0, $8D, $2F, $E0, $36, $2F, $25, $21, $A2, $E0, $B8, $A2, $E1, $8D, $2F, $E0, $37, $4E, $4E, $40, $00, $E3, $52, $00, $8D, $B0, $65, $E1, $91, $45, $51, $00, $E1, $5A, $00, $00, $8D, $8C, $00, $52, $00, $00, $5A, $07, $00, $00, $52, $00, $E2, $8D, $8C, $00, $11, $02, $02, $16, $09, $00, $00, $49, $4B, $00, $E1, $75, $A3, $00, $A4, $65, $E1, $51, $00, $E1, $51, $00, $E0, $51, $00, $00, $52, $00, $E0, $4A, $4B, $00, $5A, $00, $46, $4C, $48, $02, $E5, $50, $00, $E0, $50, $00, $E0, $31, $4E, $22, $23, $26, $2F, $2B, $36, $19, $02, $03, $01, $19, $03, $01, $6E, $31, $4E, $25, $24, $25, $2F, $2C, $37, $2B, $2E, $2E, $05, $70, $06, $39, $2F, $26, $4E, $2F, $29, $23, $26, $31, $31, $4E, $E0, $2F, $E1, $29, $25, $4E, $2F, $31, $27, $21, $31, $31, $2F, $E9, $28, $2F, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00D6" SLOT 2 SUPERFREE
 chunk_00D6:
-.DB $0E, $2F, $05, $70, $06, $2F, $2C, $2A, $2B, $00, $00, $3A, $26, $00, $00, $24, $26, $26, $2F, $E1, $2C, $26, $2F, $00, $00, $3A, $25, $00, $00, $4E, $25, $27, $2F, $E1, $96, $25, $2F, $00, $00, $31, $2F, $00, $00, $4E, $2F, $28, $2F, $E4, $00, $00, $26, $2F, $00, $00, $71, $2B, $2F, $E2, $4E, $E0, $00, $52, $27, $23, $00, $00, $2F, $4E, $2F, $E3, $26, $26, $00, $00, $24, $25, $51, $00, $2F, $E5, $21, $21, $00, $00, $2F, $2F, $00, $00, $2F, $E7, $00, $00, $31, $31, $00, $00, $2F, $00, $FF, $FF, $FF, $FA, $DF
+.DB $2F, $E1, $70, $86, $2F, $E9, $26, $3A, $30, $86, $2F, $E9, $21, $3A, $39, $86, $2F, $E7, $29, $40, $8F, $67, $66, $B9, $65, $26, $2F, $E5, $41, $45, $51, $00, $E0, $B5, $25, $2F, $E5, $00, $07, $15, $02, $02, $1F, $02, $30, $04, $2F, $E4, $08, $09, $42, $23, $2F, $86, $29, $39, $3A, $2F, $E4, $42, $31, $31, $25, $70, $86, $2F, $05, $06, $2F, $E4, $65, $65, $B1, $2C, $2A, $2B, $2F, $3A, $39, $2F, $E4, $51, $00, $8D, $2D, $E0, $26, $06, $39, $22, $23, $2F, $E2, $00, $00, $8D, $2F, $2F, $96, $25, $04, $39, $24, $25, $2F, $E2, $00, $00, $8D, $B0, $65, $E0, $67, $66, $65, $65, $B1, $2C, $2B, $26, $2F, $52, $00, $75, $A3, $51, $00, $E3, $8D, $26, $2F, $25, $2F, $00, $00, $B6, $00, $E5, $8D, $27, $2F, $E0, $6D, $02, $02, $13, $14, $00, $E0, $52, $00, $00, $8D, $28, $2F, $E1, $23, $31, $8C, $00, $00, $14, $E0, $00, $00, $8D, $2F, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_00D7" SLOT 2 SUPERFREE
 chunk_00D7:
-.DB $25, $00, $00, $25, $06, $05, $70, $E0, $06, $39, $3A, $39, $2F, $E1, $00, $00, $71, $E4, $2F, $3A, $05, $70, $2D, $2D, $70, $00, $51, $2F, $2D, $2D, $2F, $2F, $29, $E0, $2F, $71, $E2, $00, $00, $97, $9A, $9A, $97, $9A, $E0, $98, $9A, $E2, $2F, $00, $B7, $9D, $9B, $92, $93, $92, $92, $9C, $9E, $92, $E0, $9B, $92, $26, $6D, $02, $1A, $1C, $1C, $1A, $1C, $E0, $1B, $1C, $E2, $24, $29, $31, $70, $E0, $29, $2F, $E0, $2A, $2A, $70, $E0, $2F, $E0, $31, $30, $71, $04, $39, $26, $2F, $2F, $2D, $2D, $71, $71, $04, $39, $00, $FF, $FF, $FF, $FA, $DF
+.DB $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $2F, $EB, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00D8" SLOT 2 SUPERFREE
 chunk_00D8:
-.DB $2F, $E1, $70, $E0, $86, $70, $70, $06, $2F, $E2, $70, $23, $2F, $26, $99, $A0, $A2, $86, $99, $A0, $A2, $2F, $E2, $04, $25, $96, $25, $00, $E0, $85, $00, $E0, $2F, $2E, $2F, $E0, $9A, $98, $65, $A3, $52, $00, $00, $84, $00, $51, $00, $26, $2D, $2F, $E0, $92, $9E, $51, $00, $E1, $83, $00, $B7, $00, $25, $2F, $E1, $1C, $1B, $02, $E2, $86, $03, $01, $02, $2F, $E2, $26, $06, $39, $2F, $2E, $2C, $2F, $86, $3A, $39, $4E, $2F, $E2, $27, $30, $2F, $2F, $2E, $2C, $2F, $86, $3A, $39, $4E, $2F, $E2, $00, $FF, $FF, $FF, $FA, $DF
+.DB $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $70, $70, $DF
 .ENDS
 
 .SECTION "base_chunk_00D9" SLOT 2 SUPERFREE
 chunk_00D9:
-.DB $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $FF, $FF, $FF, $FF, $E6, $DF
+.DB $2F, $FF, $FF, $FF, $E9, $8C, $2F, $EC, $8C, $2F, $E9, $22, $23, $2F, $8A, $2F, $E6, $30, $04, $31, $21, $25, $35, $34, $2F, $E6, $05, $06, $31, $31, $35, $34, $00, $2F, $E4, $4E, $E0, $2F, $31, $35, $34, $00, $0D, $2F, $E3, $4E, $E0, $26, $29, $35, $34, $00, $0D, $0E, $71, $E4, $04, $23, $21, $35, $34, $00, $0D, $0E, $2B, $2F, $E4, $3A, $25, $35, $34, $52, $0D, $0E, $26, $2F, $70, $E4, $06, $35, $34, $52, $0D, $0E, $30, $24, $04, $DF
 .ENDS
 
 .SECTION "base_chunk_00DA" SLOT 2 SUPERFREE
 chunk_00DA:
-.DB $00, $FF, $FF, $FF, $FF, $F9, $3A, $2F, $E4, $29, $8D, $3A, $39, $86, $4E, $2F, $2F, $3A, $2F, $E2, $A2, $E0, $8D, $3A, $39, $86, $4E, $31, $31, $06, $2F, $E1, $70, $00, $E0, $A4, $67, $66, $B9, $65, $65, $2F, $E2, $26, $71, $00, $E0, $52, $00, $E2, $2F, $2F, $2D, $36, $2F, $27, $31, $00, $51, $11, $02, $E0, $1F, $02, $02, $29, $44, $2E, $37, $2F, $28, $29, $00, $00, $8D, $31, $2F, $2F, $86, $26, $2F, $2F, $DF
+.DB $2F, $FF, $FE, $26, $2F, $E5, $70, $E0, $2F, $E1, $25, $2F, $E0, $70, $E1, $06, $30, $71, $04, $39, $36, $70, $E0, $06, $05, $06, $70, $E1, $06, $05, $70, $06, $05, $37, $A2, $E2, $B8, $A2, $E0, $B8, $A2, $E0, $B8, $A2, $A2, $00, $00, $51, $00, $E6, $51, $00, $E6, $51, $00, $E7, $51, $00, $E3, $52, $00, $E3, $52, $02, $E1, $00, $00, $02, $02, $00, $00, $02, $02, $00, $00, $02, $02, $31, $31, $2F, $31, $00, $00, $70, $70, $00, $00, $2F, $2F, $00, $00, $2F, $2D, $2E, $38, $2E, $2F, $00, $00, $04, $30, $00, $00, $70, $70, $00, $00, $70, $70, $31, $31, $2F, $31, $00, $00, $06, $39, $00, $52, $71, $71, $00, $00, $71, $04, $2F, $E1, $00, $51, $04, $39, $00, $00, $26, $26, $00, $52, $26, $3A, $DF
 .ENDS
 
 .SECTION "base_chunk_00DB" SLOT 2 SUPERFREE
 chunk_00DB:
-.DB $00, $FF, $FF, $FF, $FF, $F9, $2F, $E0, $00, $EA, $31, $2F, $2F, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $DF
+.DB $96, $25, $26, $8C, $00, $E4, $8D, $2F, $E0, $26, $2F, $2F, $25, $8C, $52, $00, $E1, $14, $14, $8D, $2F, $E0, $27, $2F, $E0, $8C, $00, $E3, $51, $8D, $2F, $8C, $2F, $28, $2C, $2A, $2B, $8C, $00, $00, $14, $E0, $00, $00, $8D, $2F, $8C, $70, $70, $2D, $E0, $8C, $00, $00, $52, $00, $E1, $8D, $2F, $8C, $A2, $A2, $2F, $2F, $38, $8C, $14, $14, $00, $E2, $8D, $2F, $8C, $00, $00, $70, $8D, $38, $8C, $00, $E2, $51, $00, $A4, $65, $76, $00, $00, $A2, $8D, $37, $8C, $00, $00, $14, $E0, $00, $E1, $B6, $52, $00, $00, $8D, $2F, $8C, $00, $51, $00, $E2, $02, $E2, $00, $75, $65, $A3, $00, $E2, $14, $14, $2F, $2C, $2B, $2F, $2F, $00, $E5, $52, $00, $00, $26, $2F, $2F, $31, $2F, $02, $03, $01, $03, $01, $02, $03, $01, $02, $02, $6E, $27, $2F, $2F, $31, $31, $2D, $3A, $29, $26, $31, $31, $3A, $39, $23, $31, $2F, $28, $2F, $E1, $70, $06, $39, $25, $39, $2F, $3A, $39, $25, $26, $30, $04, $2F, $22, $23, $2D, $30, $04, $05, $06, $05, $70, $06, $39, $31, $25, $39, $3A, $2F, $27, $27, $2F, $39, $29, $71, $71, $04, $30, $04, $39, $2F, $2F, $05, $06, $2F, $28, $28, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00DC" SLOT 2 SUPERFREE
 chunk_00DC:
-.DB $6A, $90, $65, $E1, $00, $00, $8D, $31, $26, $26, $86, $27, $2F, $2F, $0C, $00, $00, $51, $00, $E1, $8D, $29, $27, $25, $86, $28, $2F, $2F, $0A, $17, $13, $00, $E2, $8D, $2F, $28, $2F, $86, $2F, $E0, $40, $8F, $76, $00, $52, $00, $E0, $8D, $31, $04, $2B, $2B, $2F, $E0, $45, $00, $5A, $00, $E1, $51, $8D, $39, $3A, $2A, $2A, $2F, $E0, $07, $15, $02, $E0, $13, $00, $00, $8D, $05, $06, $2E, $2F, $E1, $09, $42, $2D, $2F, $26, $8C, $00, $00, $8D, $2F, $2F, $3A, $39, $2F, $E0, $29, $23, $2E, $96, $25, $8C, $00, $00, $8D, $4E, $4E, $3A, $39, $2F, $E0, $71, $25, $2E, $26, $26, $8C, $51, $00, $8D, $4E, $4E, $06, $39, $2F, $E1, $3A, $2F, $27, $25, $8C, $00, $00, $8D, $04, $31, $22, $23, $22, $23, $2F, $70, $06, $2F, $28, $31, $8C, $00, $00, $8D, $3A, $39, $25, $24, $25, $25, $2F, $22, $23, $2F, $2F, $31, $8C, $00, $51, $8D, $3A, $05, $70, $2F, $E1, $25, $21, $2F, $70, $70, $8C, $00, $00, $8D, $2F, $71, $04, $39, $2F, $E0, $44, $2A, $2A, $30, $04, $8C, $00, $00, $8D, $29, $26, $06, $39, $2F, $E0, $6A, $90, $67, $66, $67, $76, $00, $00, $8D, $2F, $25, $30, $2F, $E1, $0C, $52, $00, $E1, $51, $00, $8D, $3A, $30, $2F, $E2, $DF
+.DB $2F, $EB, $00, $00, $2F, $2F, $86, $2F, $E8, $00, $00, $2F, $2F, $86, $2F, $E8, $00, $00, $31, $70, $86, $70, $E2, $31, $2F, $E2, $00, $00, $A2, $A2, $86, $A2, $E2, $31, $2F, $E2, $00, $E1, $86, $00, $E1, $52, $31, $2F, $E2, $00, $00, $51, $00, $B9, $00, $00, $51, $00, $00, $2F, $E3, $00, $E5, $B6, $00, $26, $2F, $E2, $00, $00, $02, $02, $1F, $02, $E2, $25, $2F, $E2, $00, $00, $2F, $2F, $86, $2F, $E8, $00, $00, $2F, $2F, $86, $31, $2F, $31, $23, $22, $23, $2F, $E2, $00, $00, $2F, $2F, $86, $2F, $4E, $2F, $25, $21, $21, $2F, $E2, $00, $00, $2F, $2F, $86, $2F, $4E, $2F, $E6, $00, $00, $2F, $2F, $86, $31, $2F, $05, $2F, $E5, $00, $00, $2F, $2F, $86, $2F, $2A, $2B, $2F, $E5, $00, $00, $29, $2F, $86, $2F, $2F, $3A, $2F, $E5, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00DD" SLOT 2 SUPERFREE
 chunk_00DD:
-.DB $00, $E0, $25, $2F, $E0, $26, $2F, $2F, $30, $71, $04, $2F, $2F, $43, $00, $E0, $31, $2F, $E0, $27, $2F, $30, $2F, $30, $04, $2F, $E0, $00, $E0, $31, $2F, $E0, $28, $2F, $05, $70, $05, $06, $2F, $40, $41, $00, $E0, $2F, $2B, $2C, $2A, $29, $2F, $E1, $40, $41, $45, $52, $00, $E0, $23, $2D, $2C, $2A, $31, $2F, $2F, $40, $41, $45, $00, $07, $08, $00, $E0, $27, $65, $E2, $91, $45, $51, $07, $08, $09, $42, $00, $E0, $28, $00, $52, $00, $E1, $07, $08, $09, $42, $2E, $2C, $00, $E0, $2F, $00, $E1, $11, $16, $09, $42, $2F, $E1, $00, $E0, $70, $00, $E1, $75, $8E, $44, $31, $31, $22, $23, $26, $00, $E0, $71, $51, $00, $E0, $B6, $00, $6A, $4F, $44, $25, $24, $25, $00, $E0, $26, $02, $E2, $18, $0C, $00, $6A, $4F, $44, $31, $00, $E0, $21, $2F, $E0, $22, $23, $43, $0A, $0B, $0C, $52, $6A, $4F, $00, $E0, $29, $2F, $E0, $25, $27, $31, $2F, $43, $0A, $0B, $0C, $00, $E1, $2F, $E2, $28, $31, $2F, $26, $26, $43, $0A, $0B, $00, $E0, $70, $E0, $2F, $E2, $24, $25, $26, $2F, $43, $00, $E0, $71, $71, $04, $39, $2D, $2F, $2F, $30, $04, $2F, $25, $2F, $2F, $DF
+.DB $2F, $2C, $2A, $2B, $00, $00, $3A, $26, $00, $00, $24, $25, $00, $00, $25, $06, $2F, $2C, $26, $2F, $00, $00, $3A, $25, $00, $00, $4E, $2F, $00, $00, $71, $71, $2F, $96, $25, $2F, $00, $00, $31, $2F, $00, $00, $4E, $70, $00, $51, $2F, $2D, $2F, $E1, $00, $00, $26, $2F, $00, $00, $71, $71, $00, $00, $97, $9A, $2F, $4E, $E0, $00, $52, $27, $23, $00, $00, $2F, $2F, $00, $B7, $9D, $9B, $2F, $2F, $26, $26, $00, $00, $24, $25, $51, $00, $2F, $26, $6D, $02, $1A, $1C, $2F, $2F, $21, $21, $00, $00, $2F, $2F, $00, $00, $2F, $24, $29, $31, $70, $70, $2F, $E1, $00, $00, $31, $31, $00, $00, $2F, $E0, $31, $30, $71, $00, $FF, $FF, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_00DE" SLOT 2 SUPERFREE
 chunk_00DE:
-.DB $0A, $17, $13, $00, $E2, $8D, $31, $39, $2F, $E2, $40, $8F, $76, $00, $52, $00, $E0, $8D, $31, $39, $2F, $E2, $45, $00, $E4, $8D, $2F, $26, $2F, $E2, $07, $15, $02, $E0, $13, $00, $00, $8D, $96, $25, $2F, $E2, $09, $42, $2F, $23, $26, $8C, $00, $51, $8D, $2F, $E5, $22, $23, $21, $21, $8C, $00, $00, $8D, $2F, $26, $2F, $E2, $31, $21, $25, $2F, $2F, $8C, $00, $00, $8D, $96, $25, $2F, $E4, $30, $71, $04, $8C, $00, $00, $8D, $31, $31, $2F, $E4, $05, $70, $06, $8C, $52, $00, $8D, $2F, $E4, $36, $2F, $E1, $8C, $00, $00, $8D, $2F, $E4, $37, $2F, $26, $2A, $2A, $8C, $00, $00, $8D, $26, $2F, $70, $70, $2F, $E0, $44, $2F, $25, $2C, $2B, $8C, $00, $51, $8D, $25, $3A, $30, $04, $39, $2F, $2F, $6A, $90, $65, $E0, $76, $00, $00, $8D, $2F, $06, $39, $3A, $39, $2F, $2F, $0C, $52, $51, $00, $E2, $8D, $3A, $30, $2F, $3A, $39, $2F, $2F, $0A, $17, $13, $00, $E2, $8D, $3A, $05, $70, $06, $39, $2F, $2F, $40, $8F, $76, $51, $00, $E1, $8D, $29, $71, $E0, $2F, $E0, $DF
+.DB $05, $70, $E0, $06, $39, $3A, $39, $2F, $E4, $70, $71, $E2, $2F, $3A, $05, $70, $2D, $2D, $70, $23, $2F, $26, $99, $2D, $2F, $2F, $29, $E0, $2F, $71, $E1, $04, $25, $96, $25, $00, $9A, $97, $9A, $E0, $98, $9A, $E3, $98, $65, $A3, $52, $92, $93, $92, $92, $9C, $9E, $92, $E0, $9B, $92, $92, $9E, $51, $00, $00, $1C, $1A, $1C, $E0, $1B, $1C, $E3, $1B, $02, $E0, $70, $29, $2F, $E0, $2A, $2A, $70, $E0, $2F, $26, $06, $39, $2F, $2E, $04, $39, $26, $2F, $2F, $2D, $2D, $71, $71, $04, $39, $27, $30, $2F, $2F, $2E, $00, $FF, $FF, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_00DF" SLOT 2 SUPERFREE
 chunk_00DF:
-.DB $00, $E0, $23, $2F, $3A, $39, $2A, $2F, $2F, $05, $06, $31, $31, $40, $41, $00, $E0, $25, $2F, $3A, $39, $23, $22, $23, $4E, $4E, $40, $41, $45, $52, $00, $E0, $31, $29, $3A, $39, $24, $25, $21, $40, $41, $45, $00, $07, $08, $00, $E0, $31, $65, $67, $66, $65, $65, $91, $45, $00, $07, $08, $09, $42, $00, $E0, $31, $00, $E0, $51, $00, $52, $07, $08, $09, $42, $31, $31, $00, $E0, $2F, $00, $E1, $11, $16, $09, $31, $31, $26, $2F, $2F, $00, $E0, $2F, $52, $00, $E0, $75, $8E, $44, $29, $29, $25, $2F, $2F, $00, $E0, $2F, $00, $E1, $B7, $00, $6A, $4F, $44, $2F, $E0, $00, $E0, $26, $02, $E0, $03, $01, $18, $0C, $52, $6A, $4F, $44, $2F, $00, $E0, $21, $26, $29, $31, $3A, $39, $43, $0A, $0B, $0C, $51, $6A, $4F, $00, $E0, $2F, $27, $2F, $31, $22, $23, $2F, $2E, $43, $0A, $0B, $0C, $00, $E1, $2F, $28, $2F, $2F, $24, $25, $2F, $2C, $2C, $31, $43, $0A, $0B, $00, $E0, $2F, $E1, $26, $05, $70, $70, $2F, $E0, $26, $43, $00, $E0, $2F, $E1, $25, $30, $71, $04, $39, $4E, $4E, $21, $30, $00, $E0, $26, $2F, $E0, $3A, $39, $2F, $06, $39, $2D, $2D, $2F, $05, $00, $E0, $27, $2F, $E0, $3A, $05, $06, $30, $2F, $E2, $DF
+.DB $70, $70, $86, $70, $70, $06, $2F, $E5, $00, $00, $A0, $A2, $86, $99, $A0, $A2, $2F, $E5, $00, $E1, $85, $00, $E0, $2F, $2E, $2F, $E3, $00, $E1, $84, $00, $51, $00, $26, $2D, $2F, $E3, $00, $E1, $83, $00, $B7, $00, $25, $2F, $E4, $00, $00, $02, $02, $86, $03, $01, $02, $2F, $E5, $00, $00, $2C, $2F, $86, $3A, $39, $4E, $2F, $E5, $00, $00, $2C, $2F, $86, $3A, $39, $4E, $2F, $E5, $00, $FF, $FF, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00E0" SLOT 2 SUPERFREE
 chunk_00E0:
-.DB $45, $00, $E3, $52, $8D, $22, $23, $31, $2F, $E1, $07, $15, $02, $03, $01, $13, $00, $00, $8D, $25, $25, $31, $2F, $E1, $09, $42, $2F, $3A, $39, $8C, $00, $00, $8D, $31, $E0, $2F, $E1, $26, $22, $23, $3A, $39, $8C, $00, $00, $8D, $4E, $2F, $E3, $24, $25, $21, $3A, $39, $8C, $51, $00, $8D, $4E, $26, $2F, $E5, $3A, $39, $8C, $00, $00, $8D, $29, $27, $2F, $E5, $3A, $39, $8C, $5A, $00, $8D, $2F, $28, $2F, $E2, $26, $2F, $2F, $3A, $39, $8C, $00, $00, $8D, $31, $2F, $26, $36, $2F, $86, $2F, $21, $2D, $2D, $36, $39, $8C, $00, $00, $8D, $2F, $96, $25, $37, $2F, $86, $2F, $44, $2A, $2A, $37, $39, $8C, $00, $00, $8D, $31, $2F, $B0, $65, $65, $86, $65, $6A, $90, $65, $67, $66, $76, $00, $00, $75, $65, $65, $A3, $51, $00, $85, $00, $0C, $00, $52, $00, $E0, $51, $00, $00, $52, $00, $E1, $84, $00, $0A, $17, $02, $03, $01, $13, $00, $00, $11, $02, $E2, $83, $02, $04, $29, $26, $3A, $39, $8C, $00, $00, $8D, $31, $23, $31, $2D, $2C, $86, $2F, $06, $86, $27, $3A, $39, $8C, $00, $00, $8D, $26, $27, $2F, $86, $2F, $86, $2F, $2F, $86, $28, $3A, $39, $8C, $00, $00, $8D, $27, $28, $2F, $86, $2F, $E0, $DF
+.DB $00, $FF, $FF, $FF, $FF, $F9, $2F, $E0, $29, $8D, $3A, $39, $86, $4E, $2F, $E2, $00, $00, $2F, $A2, $E0, $8D, $3A, $39, $86, $4E, $31, $E0, $2F, $2F, $00, $00, $70, $00, $E0, $A4, $67, $66, $B9, $65, $65, $2F, $E1, $00, $00, $71, $00, $E0, $52, $00, $E2, $2F, $E1, $00, $00, $31, $00, $51, $11, $02, $E0, $1F, $02, $02, $29, $2F, $E0, $00, $00, $29, $00, $00, $8D, $31, $2F, $2F, $86, $26, $2F, $E2, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00E1" SLOT 2 SUPERFREE
 chunk_00E1:
-.DB $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $23, $26, $00, $EA, $B1, $24, $25, $00, $EA, $8D, $31, $2F, $00, $EA, $8D, $31, $2F, $00, $EA, $B3, $2F, $2F, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $2F, $E0, $00, $EA, $DF
+.DB $65, $00, $00, $8D, $31, $26, $26, $86, $27, $2F, $E2, $00, $E2, $8D, $29, $27, $25, $86, $28, $2F, $E2, $00, $E2, $8D, $2F, $28, $2F, $86, $2F, $E3, $00, $E2, $8D, $31, $04, $2B, $2B, $2F, $E3, $00, $E1, $51, $8D, $39, $3A, $2A, $2A, $2F, $E3, $00, $00, $13, $00, $00, $8D, $05, $06, $2E, $2F, $E4, $00, $00, $8C, $00, $00, $8D, $2F, $2F, $3A, $39, $2F, $E3, $00, $00, $8C, $00, $00, $8D, $4E, $4E, $3A, $39, $2F, $E3, $00, $00, $8C, $51, $00, $8D, $4E, $4E, $06, $39, $2F, $E3, $00, $00, $8C, $00, $00, $8D, $04, $31, $22, $23, $22, $23, $2F, $E1, $00, $00, $8C, $00, $00, $8D, $3A, $39, $25, $24, $25, $25, $2F, $E1, $00, $00, $8C, $00, $51, $8D, $3A, $05, $70, $2F, $E4, $00, $00, $8C, $00, $00, $8D, $2F, $71, $04, $39, $2F, $E3, $00, $00, $8C, $00, $00, $8D, $29, $26, $06, $39, $2F, $E3, $00, $00, $76, $00, $00, $8D, $2F, $25, $30, $2F, $E4, $00, $E0, $51, $00, $8D, $3A, $30, $2F, $E5, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00E2" SLOT 2 SUPERFREE
 chunk_00E2:
-.DB $00, $E0, $28, $2F, $E9, $00, $E0, $2F, $E9, $4E, $00, $E0, $2F, $E9, $26, $00, $E0, $2F, $E8, $96, $25, $00, $E0, $2F, $E9, $31, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $FF, $FF, $FF, $FA, $DF
+.DB $00, $EB, $25, $2F, $00, $EB, $31, $2F, $00, $EB, $31, $2F, $00, $EB, $2F, $2B, $00, $EB, $23, $2D, $00, $EB, $27, $65, $00, $EB, $28, $00, $EC, $2F, $00, $EC, $70, $00, $EC, $71, $51, $00, $EB, $26, $02, $00, $EB, $21, $2F, $00, $EB, $29, $2F, $00, $EB, $2F, $2F, $00, $EB, $70, $70, $00, $EB, $71, $71, $DF
 .ENDS
 
 .SECTION "base_chunk_00E3" SLOT 2 SUPERFREE
 chunk_00E3:
-.DB $2F, $86, $26, $3A, $39, $8C, $00, $5A, $8D, $28, $36, $2F, $86, $2F, $E0, $4E, $86, $25, $3A, $39, $8C, $00, $00, $8D, $31, $37, $2F, $86, $4E, $4E, $2F, $65, $85, $65, $67, $66, $A3, $00, $00, $A4, $65, $E0, $85, $65, $26, $2F, $00, $84, $00, $52, $51, $00, $E2, $51, $00, $84, $00, $21, $2F, $02, $83, $03, $01, $02, $E5, $83, $02, $29, $2F, $2F, $86, $3A, $39, $2C, $2A, $2A, $29, $2F, $2F, $26, $26, $86, $2F, $30, $04, $2F, $86, $3A, $39, $2F, $E2, $96, $25, $27, $86, $2F, $05, $06, $2F, $86, $3A, $39, $2F, $E4, $28, $86, $2F, $E0, $00, $FF, $FF, $FF, $FA, $DF
+.DB $2F, $2F, $26, $2F, $2F, $30, $71, $04, $2F, $2F, $43, $0A, $17, $13, $00, $00, $2F, $2F, $27, $2F, $30, $2F, $30, $04, $2F, $E0, $40, $8F, $76, $00, $52, $2F, $2F, $28, $2F, $05, $70, $05, $06, $2F, $40, $41, $45, $00, $E1, $2C, $2A, $29, $2F, $E1, $40, $41, $45, $52, $07, $15, $02, $E0, $2C, $2A, $31, $2F, $2F, $40, $41, $45, $00, $07, $08, $09, $42, $2F, $23, $26, $65, $E1, $91, $45, $51, $07, $08, $09, $42, $2F, $22, $23, $21, $21, $52, $00, $E1, $07, $08, $09, $42, $2E, $2C, $31, $21, $25, $2F, $2F, $00, $E0, $11, $16, $09, $42, $2F, $E3, $30, $71, $04, $00, $E0, $75, $8E, $44, $31, $31, $22, $23, $26, $2F, $2F, $05, $70, $06, $00, $E0, $B6, $00, $6A, $4F, $44, $25, $24, $25, $36, $2F, $E1, $02, $E1, $18, $0C, $00, $6A, $4F, $44, $31, $37, $2F, $26, $2A, $2A, $2F, $2F, $22, $23, $43, $0A, $0B, $0C, $52, $6A, $4F, $44, $2F, $25, $2C, $2B, $2F, $2F, $25, $27, $31, $2F, $43, $0A, $0B, $0C, $00, $6A, $90, $65, $E0, $2F, $E0, $28, $31, $2F, $26, $26, $43, $0A, $0B, $0C, $52, $51, $00, $00, $70, $2F, $E2, $24, $25, $26, $2F, $43, $0A, $17, $13, $00, $00, $04, $39, $2D, $2F, $2F, $30, $04, $2F, $25, $2F, $2F, $40, $8F, $76, $51, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00E4" SLOT 2 SUPERFREE
 chunk_00E4:
-.DB $00, $00, $8D, $2F, $E1, $23, $22, $23, $8C, $53, $53, $54, $5C, $57, $00, $00, $8D, $2F, $E1, $24, $25, $25, $8C, $5B, $54, $55, $00, $56, $00, $00, $8D, $2F, $E0, $65, $E1, $A3, $00, $55, $5A, $00, $55, $00, $00, $8D, $2F, $E0, $00, $00, $52, $00, $E6, $8D, $2F, $2F, $26, $00, $00, $11, $02, $E0, $03, $01, $02, $02, $00, $00, $8D, $2F, $2F, $25, $00, $79, $8D, $31, $26, $2C, $3A, $39, $26, $26, $61, $61, $8D, $2F, $E0, $00, $79, $8D, $96, $25, $2D, $3A, $39, $21, $24, $61, $61, $8D, $2F, $22, $23, $00, $79, $8D, $2F, $E0, $3A, $39, $2F, $2F, $61, $61, $8D, $2F, $24, $25, $51, $79, $8D, $29, $2D, $2F, $3A, $39, $2F, $2F, $61, $61, $8D, $2F, $4E, $4E, $00, $79, $8D, $26, $2F, $2F, $3A, $39, $2F, $2F, $61, $61, $8D, $2F, $4E, $4E, $00, $79, $8D, $25, $31, $26, $3A, $39, $2F, $23, $61, $61, $8D, $2F, $2F, $31, $00, $79, $8D, $2F, $31, $21, $3A, $39, $96, $25, $61, $61, $8D, $2F, $2F, $23, $00, $79, $A4, $65, $E0, $67, $66, $65, $65, $61, $61, $8D, $2F, $2F, $27, $00, $E0, $51, $7A, $7B, $7B, $79, $52, $00, $61, $61, $8D, $2F, $2F, $28, $02, $6D, $02, $E4, $13, $61, $61, $8D, $2F, $2F, $26, $2F, $23, $26, $2C, $2A, $2C, $31, $23, $31, $8C, $DF
+.DB $00, $E0, $8D, $31, $39, $2F, $E5, $00, $E2, $8D, $31, $39, $2F, $E5, $00, $E2, $8D, $2F, $26, $2F, $E5, $00, $00, $13, $00, $00, $8D, $96, $25, $2F, $E5, $00, $00, $8C, $00, $51, $8D, $2F, $E7, $00, $00, $8C, $00, $00, $8D, $2F, $26, $2F, $E5, $00, $00, $8C, $00, $00, $8D, $96, $25, $2F, $E5, $00, $00, $8C, $00, $00, $8D, $31, $31, $2F, $E5, $00, $00, $8C, $52, $00, $8D, $2F, $E7, $00, $00, $8C, $00, $00, $8D, $2F, $E7, $00, $00, $8C, $00, $00, $8D, $26, $2F, $70, $70, $2F, $E3, $00, $00, $8C, $00, $51, $8D, $25, $3A, $30, $04, $39, $2F, $E2, $00, $00, $76, $00, $00, $8D, $2F, $06, $39, $3A, $39, $2F, $E2, $00, $E2, $8D, $3A, $30, $2F, $3A, $39, $2F, $E2, $00, $E2, $8D, $3A, $05, $70, $06, $39, $2F, $E2, $00, $E2, $8D, $29, $71, $E0, $2F, $E3, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00E5" SLOT 2 SUPERFREE
 chunk_00E5:
-.DB $5B, $5C, $54, $54, $5B, $00, $62, $5F, $60, $62, $62, $5F, $5E, $5F, $5E, $60, $00, $00, $55, $55, $5A, $00, $5B, $5C, $54, $54, $5B, $5C, $54, $62, $5B, $5C, $00, $5A, $00, $5A, $00, $E0, $5A, $55, $55, $00, $5A, $55, $5B, $00, $ED, $5A, $00, $02, $13, $11, $02, $E8, $13, $00, $26, $8C, $8D, $29, $30, $71, $04, $2F, $E0, $31, $31, $4E, $4E, $B2, $02, $25, $8C, $8D, $2F, $39, $2F, $3A, $71, $E1, $04, $31, $E0, $2F, $2F, $8C, $8D, $2F, $05, $70, $06, $2F, $E7, $8C, $8D, $29, $2E, $2C, $2A, $2F, $E7, $8C, $8D, $2F, $2F, $26, $2F, $E8, $8C, $8D, $22, $23, $27, $2F, $36, $2A, $2B, $2D, $2F, $E0, $26, $2F, $29, $8C, $8D, $21, $21, $28, $2F, $37, $2D, $2D, $2C, $29, $2F, $96, $25, $31, $65, $76, $A4, $65, $EA, $00, $E0, $52, $7A, $7B, $00, $7B, $79, $00, $51, $00, $E4, $02, $13, $49, $4A, $4D, $4A, $4B, $11, $02, $02, $13, $00, $52, $11, $7A, $00, $2F, $B2, $02, $E2, $B3, $23, $31, $8C, $00, $00, $8D, $DF
+.DB $00, $EB, $23, $2F, $00, $EB, $25, $2F, $00, $EB, $31, $29, $00, $EB, $31, $65, $00, $EB, $31, $00, $EC, $2F, $00, $EC, $2F, $52, $00, $EB, $2F, $00, $EC, $26, $02, $00, $EB, $21, $26, $00, $EB, $2F, $27, $00, $EB, $2F, $28, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $26, $2F, $00, $EB, $27, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00E6" SLOT 2 SUPERFREE
 chunk_00E6:
-.DB $60, $5E, $5F, $5E, $61, $E9, $54, $5B, $62, $5C, $5B, $60, $61, $E7, $55, $5A, $00, $00, $5A, $00, $F8, $11, $02, $EC, $B3, $2F, $FF, $FD, $8C, $2F, $2F, $3A, $39, $26, $23, $2F, $E6, $8C, $2C, $2D, $3A, $39, $24, $25, $2F, $E6, $8C, $A2, $A2, $99, $A0, $A2, $A2, $29, $2F, $E3, $65, $65, $A3, $00, $E3, $2F, $E4, $00, $00, $51, $7A, $7B, $52, $00, $E0, $2F, $E4, $02, $E3, $13, $00, $00, $23, $23, $2F, $E2, $30, $04, $2F, $23, $26, $31, $8C, $00, $00, $24, $25, $2F, $E2, $DF
+.DB $3A, $39, $2A, $2F, $2F, $05, $06, $31, $31, $40, $41, $45, $00, $E1, $3A, $39, $23, $22, $23, $4E, $4E, $40, $41, $45, $52, $07, $15, $02, $03, $01, $3A, $39, $24, $25, $21, $40, $41, $45, $00, $07, $08, $09, $42, $2F, $3A, $39, $67, $66, $65, $65, $91, $45, $00, $07, $08, $09, $42, $26, $22, $23, $3A, $39, $00, $00, $51, $00, $52, $07, $08, $09, $42, $31, $31, $24, $25, $21, $3A, $39, $00, $E0, $11, $16, $09, $31, $31, $26, $2F, $E2, $3A, $39, $00, $E0, $75, $8E, $44, $29, $29, $25, $2F, $E2, $3A, $39, $00, $E0, $B7, $00, $6A, $4F, $44, $2F, $E0, $26, $2F, $2F, $3A, $39, $02, $02, $03, $01, $18, $0C, $52, $6A, $4F, $44, $2F, $21, $2D, $2D, $36, $39, $29, $31, $3A, $39, $43, $0A, $0B, $0C, $51, $6A, $4F, $44, $2A, $2A, $37, $39, $2F, $31, $22, $23, $2F, $2E, $43, $0A, $0B, $0C, $00, $6A, $90, $65, $67, $66, $2F, $2F, $24, $25, $2F, $2C, $2C, $31, $43, $0A, $0B, $0C, $00, $52, $00, $00, $2F, $2F, $26, $05, $70, $70, $2F, $E0, $26, $43, $0A, $17, $02, $03, $01, $2F, $2F, $25, $30, $71, $04, $39, $4E, $4E, $21, $30, $04, $29, $26, $3A, $39, $2F, $2F, $3A, $39, $2F, $06, $39, $2D, $2D, $2F, $05, $06, $86, $27, $3A, $39, $2F, $2F, $3A, $05, $06, $30, $2F, $E3, $86, $28, $3A, $39, $DF
 .ENDS
 
 .SECTION "base_chunk_00E7" SLOT 2 SUPERFREE
 chunk_00E7:
-.DB $61, $61, $00, $EB, $61, $61, $00, $FF, $EA, $02, $02, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $DF
+.DB $00, $00, $52, $8D, $22, $23, $31, $2F, $E4, $00, $00, $13, $00, $00, $8D, $25, $25, $31, $2F, $E4, $00, $00, $8C, $00, $00, $8D, $31, $E0, $2F, $E4, $00, $00, $8C, $00, $00, $8D, $4E, $2F, $E6, $00, $00, $8C, $51, $00, $8D, $4E, $26, $2F, $E5, $00, $00, $8C, $00, $00, $8D, $29, $27, $2F, $E5, $00, $00, $8C, $5A, $00, $8D, $2F, $28, $2F, $E5, $00, $00, $8C, $00, $00, $8D, $31, $2F, $26, $36, $2F, $86, $2F, $E1, $00, $00, $8C, $00, $00, $8D, $2F, $96, $25, $37, $2F, $86, $2F, $2F, $23, $26, $00, $00, $8C, $00, $00, $8D, $31, $2F, $B0, $65, $65, $86, $65, $B1, $24, $25, $00, $00, $76, $00, $00, $75, $65, $65, $A3, $51, $00, $85, $00, $8D, $31, $2F, $00, $E0, $51, $00, $00, $52, $00, $E1, $84, $00, $8D, $31, $2F, $00, $00, $13, $00, $00, $11, $02, $E2, $83, $02, $B3, $2F, $2F, $00, $00, $8C, $00, $00, $8D, $31, $23, $31, $2D, $2C, $86, $2F, $E1, $00, $00, $8C, $00, $00, $8D, $26, $27, $2F, $86, $2F, $86, $2F, $E1, $00, $00, $8C, $00, $00, $8D, $27, $28, $2F, $86, $2F, $E3, $00, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00E8" SLOT 2 SUPERFREE
 chunk_00E8:
-.DB $00, $FF, $FF, $FD, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $00, $00, $61, $EB, $DF
+.DB $00, $EB, $28, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $FF, $FF, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_00E9" SLOT 2 SUPERFREE
 chunk_00E9:
-.DB $00, $79, $2F, $3A, $30, $71, $71, $04, $39, $24, $25, $31, $8C, $00, $00, $8D, $7A, $00, $70, $06, $05, $2F, $2F, $3A, $39, $31, $31, $29, $8C, $51, $00, $8D, $00, $79, $71, $71, $04, $39, $B0, $67, $66, $65, $E0, $A3, $00, $00, $8D, $00, $00, $26, $2F, $3A, $39, $8C, $52, $00, $52, $00, $E2, $8D, $6D, $02, $25, $2F, $3A, $2E, $8C, $00, $00, $11, $02, $02, $03, $01, $6D, $B3, $2F, $E1, $3A, $2A, $8C, $00, $79, $8D, $23, $26, $3A, $39, $2B, $2D, $2F, $23, $22, $23, $3A, $39, $8C, $00, $79, $8D, $24, $25, $3A, $39, $2F, $E0, $24, $25, $25, $3A, $39, $8C, $00, $79, $8D, $31, $31, $3A, $39, $2F, $29, $65, $E1, $67, $66, $A3, $00, $79, $A4, $65, $65, $67, $66, $65, $65, $00, $52, $B4, $7A, $7B, $79, $00, $51, $00, $00, $B4, $7B, $7B, $79, $00, $00, $79, $11, $13, $46, $4C, $48, $11, $01, $6D, $02, $E1, $13, $51, $00, $79, $8D, $B2, $02, $E0, $B3, $39, $23, $2F, $22, $23, $26, $8C, $00, $00, $79, $8D, $23, $2F, $3A, $30, $71, $2F, $21, $2F, $27, $24, $25, $8C, $00, $00, $79, $8D, $25, $31, $31, $39, $2B, $2C, $2F, $2F, $28, $31, $31, $8C, $00, $00, $79, $A4, $65, $65, $67, $66, $65, $65, $97, $9A, $98, $65, $65, $A3, $00, $51, $00, $00, $7B, $7B, $5A, $00, $00, $51, $9D, $9B, $94, $00, $B5, $00, $E0, $DF
+.DB $2F, $E9, $86, $26, $3A, $39, $2F, $E7, $4E, $4E, $86, $25, $3A, $39, $2F, $E7, $26, $65, $85, $65, $67, $66, $2F, $E6, $96, $25, $00, $84, $00, $52, $51, $2F, $E7, $31, $02, $83, $03, $01, $02, $2F, $E9, $86, $3A, $39, $2C, $2F, $E9, $86, $3A, $39, $2F, $EA, $86, $3A, $39, $2F, $00, $FF, $FF, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_00EA" SLOT 2 SUPERFREE
 chunk_00EA:
-.DB $05, $06, $2F, $24, $25, $31, $8C, $7A, $52, $70, $E4, $2F, $E2, $31, $8C, $7A, $00, $71, $E4, $2F, $E2, $23, $8C, $7A, $00, $2F, $E4, $26, $2F, $E0, $96, $25, $8C, $7A, $51, $31, $26, $23, $2F, $E1, $25, $2F, $E1, $31, $8C, $7A, $00, $31, $25, $25, $2F, $E1, $2C, $2F, $E1, $31, $8C, $7A, $00, $31, $2F, $E9, $8C, $7A, $00, $31, $2F, $E3, $23, $2F, $2F, $22, $23, $26, $8C, $7A, $52, $2F, $E4, $27, $2F, $2F, $27, $24, $25, $8C, $7A, $00, $2F, $2D, $31, $2F, $E1, $28, $2F, $2F, $28, $2F, $29, $8C, $00, $00, $2F, $E4, $29, $2F, $E2, $8C, $00, $00, $70, $E4, $26, $2F, $E0, $2D, $2D, $8C, $00, $51, $71, $E4, $21, $2F, $E0, $2A, $2A, $8C, $00, $00, $2F, $E4, $31, $70, $E0, $2E, $2E, $8C, $00, $00, $4E, $4E, $2F, $E2, $71, $E0, $04, $39, $2F, $8C, $51, $52, $4E, $4E, $2F, $E2, $23, $2F, $2F, $3A, $39, $2F, $8C, $00, $00, $2F, $E4, $DF
+.DB $8C, $00, $5A, $8D, $28, $36, $2F, $86, $2F, $E3, $00, $00, $8C, $00, $00, $8D, $31, $37, $2F, $86, $4E, $4E, $2F, $E1, $00, $00, $A3, $00, $00, $A4, $65, $E0, $85, $65, $26, $2F, $E1, $00, $E4, $51, $00, $84, $00, $21, $2F, $E1, $00, $00, $02, $E4, $83, $02, $29, $2F, $E1, $00, $00, $2A, $2A, $29, $2F, $2F, $26, $26, $86, $2F, $30, $04, $2F, $E0, $00, $00, $2F, $E1, $96, $25, $27, $86, $2F, $05, $06, $2F, $E0, $00, $00, $2F, $E3, $28, $86, $2F, $E3, $00, $FF, $FF, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00EB" SLOT 2 SUPERFREE
 chunk_00EB:
-.DB $70, $70, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $70, $70, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $DF
+.DB $00, $EA, $8D, $2F, $2F, $00, $EA, $8D, $2F, $2F, $00, $EA, $8D, $2F, $2F, $00, $EA, $8D, $2F, $2F, $00, $EA, $8D, $2F, $2F, $00, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $22, $61, $EA, $8D, $2F, $24, $61, $EA, $8D, $2F, $4E, $61, $EA, $8D, $2F, $4E, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00EC" SLOT 2 SUPERFREE
 chunk_00EC:
-.DB $6D, $03, $01, $02, $13, $00, $00, $11, $1A, $1C, $1B, $02, $03, $01, $6D, $02, $26, $3A, $2D, $2D, $8C, $52, $00, $8D, $26, $31, $23, $26, $3A, $39, $23, $2F, $25, $3A, $39, $36, $8C, $00, $00, $8D, $25, $31, $24, $25, $3A, $39, $27, $2F, $2F, $3A, $39, $37, $8C, $00, $00, $8D, $4E, $4E, $31, $2F, $3A, $39, $28, $2F, $65, $67, $66, $65, $A3, $00, $00, $A4, $65, $E2, $B1, $2F, $2F, $00, $B6, $00, $51, $00, $E1, $B6, $7B, $79, $00, $00, $8D, $31, $2F, $11, $02, $E1, $6D, $03, $01, $02, $02, $13, $51, $00, $8D, $2D, $2F, $8D, $2F, $29, $23, $31, $29, $3A, $39, $2A, $2B, $8C, $7A, $00, $8D, $2C, $2F, $8D, $4E, $4E, $25, $2F, $23, $3A, $39, $2F, $23, $8C, $7A, $00, $8D, $2F, $23, $8D, $4E, $4E, $2F, $96, $25, $3A, $2B, $2D, $21, $8C, $7A, $00, $8D, $29, $21, $A4, $65, $E2, $67, $66, $65, $65, $A3, $7A, $52, $A4, $65, $65, $00, $B7, $51, $7B, $7B, $50, $7B, $7B, $52, $00, $E2, $B7, $51, $02, $E2, $19, $01, $02, $03, $01, $02, $6D, $02, $E1, $23, $2C, $2A, $2B, $31, $31, $39, $26, $3A, $39, $22, $23, $31, $31, $2C, $2A, $27, $2F, $E1, $3A, $39, $21, $3A, $39, $25, $27, $2F, $2F, $2C, $2A, $00, $ED, $DF
+.DB $2F, $2F, $23, $22, $23, $8C, $53, $53, $54, $5C, $57, $5B, $5C, $54, $54, $5B, $2F, $2F, $24, $25, $25, $8C, $5B, $54, $55, $00, $56, $00, $00, $55, $55, $5A, $2F, $65, $E1, $A3, $00, $55, $5A, $00, $55, $00, $5A, $00, $5A, $00, $2F, $00, $00, $52, $00, $E9, $26, $00, $00, $11, $02, $E0, $03, $01, $02, $E0, $13, $11, $02, $02, $25, $00, $79, $8D, $31, $26, $2C, $3A, $39, $26, $E0, $8C, $8D, $29, $30, $2F, $00, $79, $8D, $96, $25, $2D, $3A, $39, $21, $24, $25, $8C, $8D, $2F, $39, $23, $00, $79, $8D, $2F, $E0, $3A, $39, $2F, $E0, $8C, $8D, $2F, $05, $25, $51, $79, $8D, $29, $2D, $2F, $3A, $39, $2F, $E0, $8C, $8D, $29, $2E, $4E, $00, $79, $8D, $26, $2F, $2F, $3A, $39, $2F, $E0, $8C, $8D, $2F, $2F, $4E, $00, $79, $8D, $25, $31, $26, $3A, $39, $2F, $23, $2F, $8C, $8D, $22, $23, $31, $00, $79, $8D, $2F, $31, $21, $3A, $39, $96, $25, $29, $8C, $8D, $21, $21, $23, $00, $79, $A4, $65, $E0, $67, $66, $65, $E0, $76, $A4, $65, $65, $27, $00, $E0, $51, $7A, $7B, $7B, $79, $52, $00, $E1, $52, $7A, $28, $02, $6D, $02, $E4, $13, $00, $00, $02, $13, $49, $26, $2F, $23, $26, $2C, $2A, $2C, $31, $23, $31, $8C, $7A, $00, $2F, $B2, $02, $DF
 .ENDS
 
 .SECTION "base_chunk_00ED" SLOT 2 SUPERFREE
 chunk_00ED:
-.DB $21, $2F, $2F, $3A, $39, $26, $8C, $00, $00, $31, $2D, $2F, $E5, $3A, $39, $25, $8C, $00, $00, $2F, $E7, $3A, $39, $23, $8C, $52, $00, $29, $29, $2F, $E5, $3A, $39, $25, $8C, $00, $00, $70, $E4, $2F, $E0, $3A, $39, $2F, $8C, $00, $51, $71, $E4, $2F, $E0, $3A, $39, $2D, $8C, $00, $00, $2F, $23, $26, $2F, $E4, $3A, $39, $2A, $8C, $00, $00, $2F, $24, $25, $2F, $E4, $3A, $39, $2E, $8C, $00, $00, $70, $E4, $2F, $E0, $3A, $39, $26, $8C, $00, $00, $71, $E4, $2F, $31, $E0, $39, $25, $8C, $51, $00, $26, $2F, $E3, $65, $E0, $67, $66, $65, $A3, $00, $00, $27, $2F, $E3, $7B, $7B, $52, $00, $E3, $28, $2F, $E3, $02, $E0, $03, $01, $02, $E1, $2F, $E4, $2A, $2F, $23, $3A, $39, $2C, $2B, $31, $29, $29, $2F, $E3, $2A, $2F, $21, $3A, $39, $2F, $E8, $00, $ED, $DF
+.DB $00, $62, $5F, $60, $62, $62, $5F, $5E, $5F, $5E, $60, $60, $5E, $5F, $5E, $61, $00, $5B, $5C, $54, $54, $5B, $5C, $54, $62, $5B, $5C, $54, $5B, $62, $5C, $5B, $00, $00, $5A, $55, $55, $00, $5A, $55, $5B, $00, $00, $55, $5A, $00, $00, $5A, $00, $E6, $5A, $00, $E3, $02, $E6, $13, $00, $11, $02, $E1, $71, $04, $2F, $E0, $31, $31, $4E, $4E, $B2, $02, $B3, $2F, $E2, $3A, $71, $E1, $04, $31, $E0, $2F, $E3, $70, $06, $2F, $EB, $2C, $2A, $2F, $EB, $26, $2F, $E9, $8C, $2F, $2F, $27, $2F, $36, $2A, $2B, $2D, $2F, $E0, $26, $2F, $E0, $8C, $2C, $2D, $28, $2F, $37, $2D, $2D, $2C, $29, $2F, $96, $25, $31, $2F, $2F, $8C, $A2, $A2, $65, $EA, $A3, $00, $00, $7B, $00, $7B, $79, $00, $51, $00, $E4, $51, $7A, $7B, $4A, $4D, $4A, $4B, $11, $02, $02, $13, $00, $52, $11, $02, $E6, $B3, $23, $31, $8C, $00, $00, $8D, $30, $04, $2F, $23, $26, $DF
 .ENDS
 
 .SECTION "base_chunk_00EE" SLOT 2 SUPERFREE
 chunk_00EE:
-.DB $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $70, $70, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $70, $70, $00, $EB, $71, $71, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $EB, $2F, $2F, $00, $FB, $DF
+.DB $61, $EA, $00, $E0, $60, $61, $E9, $00, $FF, $00, $02, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $2F, $EA, $00, $E0, $3A, $39, $26, $23, $2F, $E6, $00, $E0, $3A, $39, $24, $25, $2F, $E6, $00, $E0, $99, $A0, $A2, $A2, $29, $2F, $E5, $00, $E4, $2F, $E6, $00, $E0, $52, $00, $E0, $2F, $E6, $00, $E0, $02, $13, $00, $00, $23, $23, $2F, $E4, $00, $E0, $31, $8C, $00, $00, $24, $25, $2F, $E4, $00, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00EF" SLOT 2 SUPERFREE
 chunk_00EF:
-.DB $00, $EB, $82, $26, $00, $EA, $01, $2C, $04, $00, $EB, $C4, $82, $00, $E9, $43, $43, $C4, $88, $00, $E9, $43, $43, $52, $82, $00, $E9, $49, $E0, $77, $00, $E9, $49, $E0, $81, $00, $E3, $CB, $00, $E1, $CE, $00, $E7, $CE, $00, $CE, $CB, $CE, $00, $E8, $CB, $CE, $00, $EA, $CD, $CB, $D1, $CC, $55, $00, $CE, $CC, $CB, $00, $E6, $D3, $CB, $59, $CE, $CB, $D2, $D3, $CB, $D2, $00, $E6, $59, $00, $E0, $CB, $00, $CE, $00, $E6, $59, $CB, $D1, $19, $00, $D3, $00, $E0, $CB, $00, $CB, $D1, $00, $00, $71, $5C, $CE, $CD, $05, $00, $CB, $CC, $00, $E0, $CD, $CD, $CB, $CE, $CD, $59, $CE, $D1, $1B, $05, $00, $00, $CB, $DF
+.DB $00, $FF, $FF, $FF, $E7, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $00, $EA, $61, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00F0" SLOT 2 SUPERFREE
 chunk_00F0:
-.DB $26, $E0, $1E, $51, $44, $5E, $BF, $E1, $5D, $3B, $E0, $2D, $44, $74, $44, $54, $52, $44, $5E, $BF, $E1, $5D, $44, $43, $E0, $26, $E1, $1D, $1E, $A4, $A3, $A3, $A4, $A3, $A3, $A4, $A3, $E0, $43, $52, $44, $74, $52, $44, $54, $52, $43, $44, $43, $52, $44, $43, $E0, $53, $53, $1E, $26, $1D, $1E, $26, $1D, $1C, $1E, $1D, $37, $1E, $53, $E0, $48, $48, $46, $46, $48, $46, $46, $48, $48, $46, $48, $38, $46, $48, $E0, $49, $49, $47, $47, $49, $47, $47, $49, $49, $47, $49, $39, $47, $49, $E0, $00, $E0, $45, $00, $00, $45, $45, $00, $00, $45, $35, $00, $E3, $1B, $11, $1B, $1B, $11, $11, $1B, $1B, $11, $1B, $E2, $00, $CE, $00, $EB, $CE, $00, $EC, $D2, $00, $EC, $CB, $D1, $00, $EC, $CB, $D2, $00, $FA, $D2, $00, $EC, $DF
+.DB $61, $EA, $8D, $4E, $31, $61, $EA, $8D, $4E, $4E, $61, $EA, $A4, $65, $65, $61, $EA, $00, $51, $00, $61, $EA, $11, $02, $02, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $2F, $DF
 .ENDS
 
 .SECTION "base_chunk_00F1" SLOT 2 SUPERFREE
 chunk_00F1:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $F7, $01, $00, $EC, $05, $00, $E6, $CB, $00, $E2, $DF
+.DB $25, $2F, $24, $25, $2F, $2F, $36, $2F, $21, $26, $8C, $00, $79, $2F, $3A, $30, $2F, $E1, $29, $29, $37, $2F, $2F, $25, $8C, $7A, $00, $70, $06, $05, $97, $9A, $E3, $98, $65, $65, $A3, $00, $79, $71, $71, $04, $9D, $9B, $92, $92, $9C, $92, $9C, $94, $00, $52, $00, $E0, $26, $2F, $3A, $1A, $1C, $E3, $1B, $02, $E0, $6D, $02, $25, $2F, $3A, $2F, $2F, $2D, $2C, $2A, $2F, $26, $30, $71, $71, $04, $2F, $E1, $3A, $2F, $2F, $2B, $2D, $2D, $2F, $25, $05, $70, $70, $06, $2F, $23, $22, $23, $3A, $2F, $E2, $22, $23, $2F, $E2, $24, $25, $25, $3A, $2F, $E2, $25, $21, $2F, $4E, $B0, $65, $E2, $67, $2F, $E5, $4E, $8C, $00, $00, $52, $B4, $7A, $7B, $2F, $E6, $8C, $00, $79, $11, $13, $46, $4C, $2F, $E2, $26, $2F, $2F, $26, $8C, $00, $79, $8D, $B2, $02, $02, $2F, $E1, $26, $25, $2F, $2F, $27, $8C, $51, $79, $8D, $23, $2F, $3A, $2F, $E0, $31, $21, $2F, $31, $31, $28, $8C, $00, $79, $8D, $25, $31, $31, $2F, $2F, $26, $B0, $65, $E2, $A3, $00, $79, $A4, $65, $65, $67, $2F, $2F, $25, $8C, $00, $00, $51, $00, $B5, $00, $E1, $7B, $7B, $5A, $DF
 .ENDS
 
 .SECTION "base_chunk_00F2" SLOT 2 SUPERFREE
 chunk_00F2:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $EE, $71, $5B, $E3, $5C, $DF
+.DB $71, $71, $04, $39, $24, $25, $31, $8C, $00, $00, $8D, $05, $06, $2F, $24, $25, $2F, $2F, $3A, $39, $31, $31, $29, $8C, $51, $00, $8D, $2F, $E2, $39, $B0, $67, $66, $65, $E0, $A3, $00, $00, $8D, $2F, $E2, $39, $8C, $52, $00, $52, $00, $E2, $8D, $26, $2F, $E0, $96, $2E, $8C, $00, $00, $11, $02, $02, $03, $01, $6D, $B3, $25, $2F, $E1, $2A, $8C, $00, $79, $8D, $23, $26, $3A, $39, $2B, $2D, $2C, $2F, $E1, $39, $8C, $00, $79, $8D, $24, $25, $3A, $39, $2F, $E4, $39, $8C, $00, $79, $8D, $31, $31, $3A, $39, $2F, $29, $23, $2F, $2F, $22, $23, $66, $A3, $00, $79, $A4, $65, $65, $67, $66, $65, $65, $27, $2F, $2F, $27, $24, $79, $00, $51, $00, $00, $B4, $7B, $7B, $79, $00, $00, $28, $2F, $2F, $28, $2F, $48, $11, $01, $6D, $02, $E1, $13, $51, $00, $29, $2F, $E1, $02, $B3, $39, $23, $2F, $22, $23, $26, $8C, $00, $00, $26, $2F, $E0, $2D, $30, $71, $2F, $21, $2F, $27, $24, $25, $8C, $00, $00, $21, $2F, $E0, $2A, $39, $2B, $2C, $2F, $2F, $28, $31, $31, $8C, $00, $00, $31, $70, $E0, $2E, $66, $65, $65, $97, $9A, $98, $65, $65, $A3, $00, $51, $71, $E0, $04, $39, $00, $00, $51, $9D, $9B, $94, $00, $B5, $00, $E0, $23, $2F, $2F, $3A, $39, $DF
 .ENDS
 
 .SECTION "base_chunk_00F3" SLOT 2 SUPERFREE
 chunk_00F3:
-.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $CB, $00, $CF, $00, $E9, $DF
+.DB $31, $8C, $7A, $52, $70, $E6, $00, $E0, $31, $8C, $7A, $00, $71, $E6, $00, $E0, $23, $8C, $7A, $00, $2F, $E6, $00, $E0, $25, $8C, $7A, $51, $31, $26, $23, $2F, $E3, $00, $E0, $31, $8C, $7A, $00, $31, $25, $25, $2F, $E3, $00, $E0, $31, $8C, $7A, $00, $31, $2F, $E5, $00, $E0, $2F, $8C, $7A, $00, $31, $2F, $E5, $00, $E0, $26, $8C, $7A, $52, $2F, $E6, $00, $E0, $25, $8C, $7A, $00, $2F, $2D, $31, $2F, $E3, $00, $E0, $29, $8C, $00, $00, $2F, $E6, $00, $E0, $2F, $8C, $00, $00, $70, $E6, $00, $E0, $2D, $8C, $00, $51, $71, $E6, $00, $E0, $2A, $8C, $00, $00, $2F, $E6, $00, $E0, $2E, $8C, $00, $00, $4E, $4E, $2F, $E4, $00, $E0, $2F, $8C, $51, $52, $4E, $4E, $2F, $E4, $00, $E0, $2F, $8C, $00, $00, $2F, $E6, $00, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_00F4" SLOT 2 SUPERFREE
 chunk_00F4:
-.DB $00, $E5, $D1, $CD, $00, $CB, $00, $E0, $CB, $00, $E6, $CB, $CC, $00, $CD, $CB, $00, $E3, $CB, $00, $D2, $CF, $00, $00, $D0, $CF, $D1, $CB, $CF, $5A, $00, $E1, $D2, $CD, $00, $00, $D2, $CB, $CE, $7A, $00, $79, $D3, $CD, $00, $CB, $00, $CE, $00, $00, $01, $CE, $00, $E0, $7B, $E0, $00, $1B, $00, $00, $CD, $00, $E0, $05, $00, $D2, $00, $00, $1B, $E0, $00, $E5, $05, $D2, $D1, $CE, $CD, $CD, $3F, $CB, $00, $CE, $00, $E0, $CD, $CB, $D1, $73, $CE, $CD, $1B, $1B, $00, $E0, $CD, $00, $E3, $CB, $73, $10, $00, $CB, $D1, $CC, $00, $1B, $01, $1B, $00, $E3, $73, $0F, $10, $CE, $D0, $CE, $D1, $00, $05, $00, $E4, $05, $BE, $0F, $10, $00, $CD, $CD, $D0, $05, $CE, $00, $00, $CB, $00, $E0, $05, $C8, $BE, $CA, $17, $01, $00, $00, $05, $71, $CC, $00, $00, $CB, $CF, $CD, $C9, $42, $9A, $C8, $BF, $9A, $00, $01, $04, $59, $CB, $00, $D2, $00, $00, $D2, $CE, $00, $97, $42, $9A, $00, $00, $73, $BF, $59, $00, $CB, $CC, $CE, $D0, $CE, $D1, $CC, $CE, $00, $42, $00, $0D, $73, $BF, $59, $4E, $5A, $5B, $72, $00, $7B, $7B, $CD, $CB, $CC, $CE, $0D, $0E, $73, $9A, $59, $DF
+.DB $61, $EA, $8D, $2F, $2F, $61, $EA, $8D, $2F, $3A, $60, $5F, $60, $5E, $61, $E2, $5F, $5E, $61, $5E, $8D, $2F, $26, $54, $54, $5B, $5D, $5F, $5E, $5F, $5D, $5E, $54, $5B, $5E, $5D, $8D, $29, $25, $55, $55, $00, $5C, $5B, $54, $5B, $5C, $5B, $55, $00, $00, $5C, $A4, $65, $67, $00, $00, $5A, $00, $00, $5A, $00, $E1, $5A, $00, $E1, $52, $02, $E0, $00, $00, $02, $02, $00, $00, $02, $02, $03, $01, $02, $02, $03, $2B, $23, $31, $00, $00, $22, $23, $00, $00, $26, $2C, $2B, $05, $70, $70, $06, $2B, $21, $31, $00, $00, $25, $21, $00, $00, $25, $29, $3A, $30, $71, $E0, $2F, $E0, $00, $00, $71, $71, $00, $00, $70, $70, $06, $39, $2F, $E1, $26, $29, $00, $00, $29, $2F, $00, $00, $71, $E0, $2F, $E2, $27, $2F, $00, $00, $2F, $26, $00, $00, $26, $2F, $E4, $28, $2F, $00, $00, $2F, $25, $00, $00, $21, $2F, $E6, $00, $00, $2F, $2F, $00, $00, $2F, $E7, $00, $00, $2F, $2F, $00, $00, $31, $2F, $E3, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00F5" SLOT 2 SUPERFREE
 chunk_00F5:
-.DB $CC, $00, $E1, $CE, $00, $E1, $CE, $7A, $00, $00, $CB, $00, $CB, $CE, $CB, $CE, $D3, $CB, $CC, $00, $CE, $D3, $CB, $7A, $CD, $D0, $CE, $CD, $5B, $5B, $72, $CB, $CE, $00, $CD, $D3, $00, $D0, $00, $7A, $CB, $CE, $D3, $CB, $CB, $CF, $5A, $5B, $E3, $5C, $D0, $7A, $00, $7B, $1B, $3C, $1B, $1B, $3C, $00, $00, $CD, $CB, $D1, $D0, $CE, $00, $19, $00, $7B, $00, $3E, $CF, $CB, $73, $10, $7B, $CB, $CE, $D3, $CD, $7B, $0D, $73, $1B, $CE, $D1, $CE, $55, $00, $73, $0F, $10, $7B, $CB, $CE, $7B, $0D, $0E, $73, $CE, $1B, $E0, $59, $00, $73, $C8, $0F, $10, $00, $00, $0D, $0E, $BE, $73, $55, $97, $00, $42, $59, $00, $C9, $42, $BE, $CA, $17, $16, $C5, $BE, $9A, $05, $59, $00, $CB, $CE, $59, $CB, $00, $00, $C8, $BE, $E1, $9A, $97, $C9, $5A, $5B, $5B, $72, $59, $00, $CB, $CE, $42, $9A, $C8, $E0, $97, $00, $CC, $CB, $D1, $CE, $59, $A6, $5C, $00, $E0, $42, $97, $97, $00, $E2, $CD, $00, $5A, $00, $00, $CE, $CC, $00, $E9, $CE, $CD, $00, $00, $CC, $00, $FF, $E7, $DF
+.DB $70, $70, $36, $8C, $7A, $00, $11, $02, $E1, $6D, $03, $01, $02, $13, $30, $71, $37, $8C, $7A, $00, $8D, $31, $2F, $2F, $26, $26, $3A, $2D, $2D, $8C, $39, $2F, $2F, $8C, $7A, $52, $8D, $29, $26, $2F, $24, $25, $3A, $39, $36, $8C, $2D, $2D, $2C, $8C, $7A, $00, $8D, $31, $25, $2C, $2B, $2F, $3A, $39, $37, $8C, $66, $65, $65, $A3, $00, $00, $A4, $65, $E2, $67, $66, $65, $A3, $7B, $7B, $51, $00, $E3, $52, $00, $00, $B6, $00, $51, $00, $01, $02, $E0, $6D, $03, $01, $02, $02, $00, $00, $11, $02, $E1, $39, $23, $26, $2F, $2D, $2D, $39, $2F, $23, $00, $79, $8D, $2F, $29, $23, $31, $26, $24, $25, $2F, $2F, $3A, $39, $2F, $27, $00, $79, $8D, $4E, $4E, $25, $2F, $27, $2F, $E1, $3A, $39, $2F, $28, $5A, $79, $8D, $4E, $4E, $2F, $96, $28, $2F, $E1, $3A, $05, $70, $70, $00, $79, $A4, $65, $E1, $2F, $E3, $71, $E0, $00, $E0, $B7, $51, $7B, $7B, $2F, $E5, $29, $02, $6D, $02, $E2, $2F, $E7, $22, $23, $2C, $2A, $2B, $31, $2F, $E7, $25, $27, $2F, $E1, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00F6" SLOT 2 SUPERFREE
 chunk_00F6:
-.DB $CE, $00, $55, $00, $CD, $D4, $CB, $D1, $59, $00, $E5, $CB, $59, $00, $E0, $CE, $CB, $59, $00, $E0, $D2, $00, $E0, $CE, $00, $71, $5B, $E2, $72, $D4, $CB, $CC, $00, $E0, $79, $1B, $1B, $59, $00, $01, $02, $02, $01, $59, $00, $00, $CB, $D2, $CB, $D2, $79, $CE, $CD, $59, $CD, $C8, $9A, $C8, $9A, $59, $01, $19, $1B, $D1, $00, $00, $1B, $5A, $5B, $A6, $75, $5B, $E1, $72, $9A, $C8, $4E, $CB, $CE, $1B, $45, $7B, $E0, $59, $CE, $CB, $7B, $CE, $59, $00, $00, $B6, $1B, $00, $97, $45, $1B, $7B, $CB, $59, $00, $7B, $E0, $59, $00, $4E, $BB, $BB, $1B, $00, $07, $00, $1B, $1B, $59, $00, $1B, $E0, $4F, $CE, $BC, $BB, $B6, $07, $08, $09, $CB, $97, $CE, $59, $CB, $00, $45, $CB, $CE, $3C, $12, $12, $16, $09, $AA, $BE, $00, $D3, $00, $59, $00, $CD, $45, $CE, $CB, $C8, $BF, $BE, $BF, $BE, $9A, $9A, $5B, $E0, $A6, $5B, $5B, $5C, $00, $00, $42, $C8, $BF, $9A, $9A, $97, $97, $00, $E7, $97, $C8, $97, $00, $EB, $97, $00, $00, $CD, $D3, $00, $FD, $DF
+.DB $00, $00, $11, $1A, $1C, $1B, $02, $03, $01, $6D, $02, $21, $2F, $2F, $3A, $39, $52, $00, $8D, $26, $31, $23, $26, $3A, $39, $23, $2F, $E1, $3A, $39, $00, $00, $8D, $25, $31, $24, $25, $3A, $39, $27, $2F, $E1, $3A, $39, $00, $00, $8D, $4E, $4E, $31, $2F, $3A, $39, $28, $2F, $E1, $3A, $39, $00, $00, $A4, $65, $E2, $B1, $2F, $E2, $3A, $39, $00, $E0, $B6, $7B, $79, $00, $00, $8D, $31, $2F, $E1, $3A, $39, $6D, $03, $01, $02, $02, $13, $51, $00, $8D, $2D, $2F, $E1, $3A, $39, $29, $3A, $39, $2A, $2B, $8C, $7A, $00, $8D, $2C, $2F, $E1, $3A, $39, $23, $3A, $39, $2F, $23, $8C, $7A, $00, $8D, $2F, $23, $2F, $E0, $3A, $39, $25, $3A, $2B, $2D, $21, $8C, $7A, $00, $8D, $29, $21, $2F, $31, $E0, $39, $65, $67, $66, $65, $65, $A3, $7A, $52, $A4, $65, $E2, $67, $66, $50, $7B, $7B, $52, $00, $E2, $B7, $51, $7B, $7B, $52, $00, $00, $19, $01, $02, $03, $01, $02, $6D, $02, $E4, $03, $01, $31, $39, $26, $3A, $39, $22, $23, $31, $31, $2C, $2A, $2A, $2F, $23, $3A, $39, $3A, $39, $21, $3A, $39, $25, $27, $2F, $2F, $2C, $2A, $2A, $2F, $21, $3A, $39, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_00F7" SLOT 2 SUPERFREE
 chunk_00F7:
-.DB $73, $00, $E3, $CD, $CB, $CE, $CD, $CB, $CE, $CD, $CB, $CC, $73, $00, $55, $00, $E0, $CB, $00, $E1, $CE, $00, $E0, $D3, $73, $00, $59, $00, $E3, $71, $5B, $E3, $73, $00, $59, $D3, $CB, $00, $D3, $CB, $CD, $59, $00, $1B, $1B, $CB, $CE, $00, $73, $00, $5A, $75, $5B, $E2, $72, $D3, $00, $00, $7B, $E0, $C9, $D4, $CF, $59, $00, $CB, $00, $4E, $CE, $59, $7B, $E1, $1B, $1B, $00, $D2, $00, $59, $00, $4E, $B6, $BC, $00, $4F, $00, $1B, $1B, $00, $D0, $45, $15, $19, $3C, $59, $00, $13, $E0, $01, $3C, $D4, $45, $3F, $CF, $D3, $45, $AA, $BF, $9A, $59, $00, $C8, $BF, $9A, $C8, $9A, $00, $00, $D4, $1B, $1B, $11, $C8, $9A, $97, $59, $CB, $97, $9A, $42, $97, $5A, $5B, $5B, $72, $97, $45, $3F, $97, $00, $CE, $59, $00, $CB, $00, $CB, $00, $CE, $CC, $CE, $59, $00, $11, $1B, $CB, $CE, $00, $59, $CC, $CE, $CB, $CE, $CB, $CE, $1B, $1B, $59, $1B, $00, $97, $00, $00, $D1, $59, $00, $E5, $59, $00, $CB, $CE, $D0, $CE, $CB, $5A, $5B, $E5, $5C, $00, $CF, $00, $E0, $CE, $CB, $CE, $CD, $00, $E3, $CB, $CE, $00, $EF, $DF
+.DB $26, $8C, $00, $00, $31, $2D, $2F, $E4, $00, $E0, $25, $8C, $00, $00, $2F, $E6, $00, $E0, $23, $8C, $52, $00, $29, $29, $2F, $E4, $00, $E0, $25, $8C, $00, $00, $70, $E6, $00, $E0, $2F, $8C, $00, $51, $71, $E6, $00, $E0, $2D, $8C, $00, $00, $2F, $23, $26, $2F, $E3, $00, $E0, $2A, $8C, $00, $00, $2F, $24, $25, $2F, $E3, $00, $E0, $2E, $8C, $00, $00, $70, $E6, $00, $E0, $26, $8C, $00, $00, $71, $E6, $00, $E0, $25, $8C, $51, $00, $26, $2F, $E5, $00, $E0, $65, $A3, $00, $00, $27, $2F, $E5, $00, $E4, $28, $2F, $E5, $00, $E0, $02, $E1, $2F, $E6, $00, $E0, $2C, $2B, $31, $29, $29, $2F, $E5, $00, $E0, $2F, $EA, $00, $F0, $DF
 .ENDS
 
 .SECTION "base_chunk_00F8" SLOT 2 SUPERFREE
 chunk_00F8:
-.DB $CF, $CB, $CD, $00, $EC, $CB, $CE, $CB, $D4, $00, $E6, $CD, $75, $5B, $E1, $5C, $CB, $D1, $00, $CB, $00, $00, $CF, $CB, $55, $CF, $59, $7B, $E3, $CD, $CB, $00, $D4, $D4, $00, $00, $59, $00, $59, $7B, $7B, $00, $1B, $01, $CB, $00, $00, $CD, $CB, $00, $E0, $59, $00, $59, $1B, $1B, $00, $00, $05, $10, $CD, $CB, $D1, $00, $D0, $CF, $CB, $59, $CB, $59, $00, $00, $CD, $CB, $05, $0F, $10, $00, $D0, $CD, $00, $E0, $59, $00, $5A, $5B, $72, $D1, $00, $C9, $BE, $0F, $10, $CD, $CB, $CC, $00, $00, $59, $CE, $D0, $CD, $59, $CB, $CE, $CD, $9A, $BE, $0F, $10, $CD, $CB, $CC, $CE, $59, $CD, $00, $CB, $59, $00, $CD, $D3, $97, $9A, $BE, $CA, $0B, $0C, $CD, $00, $59, $00, $1B, $1B, $59, $00, $00, $CB, $00, $42, $C8, $9A, $C6, $0A, $17, $01, $59, $01, $00, $00, $59, $1B, $E0, $CB, $CE, $97, $00, $C8, $9A, $E0, $59, $9A, $CB, $CC, $4F, $42, $97, $00, $00, $1B, $1B, $CB, $CE, $42, $00, $97, $59, $00, $00, $CB, $D1, $00, $CB, $D1, $CE, $45, $42, $1B, $CB, $CE, $7B, $7B, $59, $CB, $CB, $CE, $D4, $CB, $CE, $D0, $CE, $CB, $00, $42, $1B, $E1, $59, $00, $E6, $CB, $CE, $42, $42, $97, $97, $59, $1B, $DF
+.DB $00, $E6, $82, $26, $E1, $1E, $51, $00, $E5, $01, $2C, $04, $44, $74, $44, $54, $52, $00, $E6, $C4, $82, $26, $E1, $1D, $00, $E4, $43, $43, $C4, $88, $43, $52, $44, $74, $52, $00, $E4, $43, $43, $52, $82, $53, $53, $1E, $26, $1D, $00, $E4, $49, $E0, $77, $48, $48, $46, $46, $48, $00, $E4, $49, $E0, $81, $49, $49, $47, $47, $49, $00, $CB, $00, $E1, $CE, $00, $E4, $45, $00, $00, $CE, $00, $CE, $CB, $CE, $00, $E4, $1B, $11, $1B, $00, $CB, $CE, $00, $E6, $CE, $00, $E0, $CD, $CB, $D1, $CC, $55, $00, $CE, $CC, $CB, $00, $00, $CE, $00, $E3, $D3, $CB, $59, $CE, $CB, $D2, $D3, $CB, $D2, $D2, $00, $E5, $59, $00, $E0, $CB, $00, $CE, $CB, $D1, $00, $E4, $59, $CB, $D1, $19, $00, $D3, $00, $00, $CB, $D2, $00, $00, $D1, $00, $00, $71, $5C, $CE, $CD, $05, $00, $CB, $CC, $00, $E2, $CB, $CE, $CD, $59, $CE, $D1, $1B, $05, $00, $00, $CB, $D2, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_00F9" SLOT 2 SUPERFREE
 chunk_00F9:
-.DB $00, $00, $CD, $CB, $D1, $00, $E0, $59, $CB, $CE, $CD, $05, $D1, $00, $CE, $00, $E1, $CB, $CB, $D1, $00, $59, $00, $1B, $1B, $73, $CD, $CD, $D0, $D1, $00, $00, $CE, $00, $CD, $CB, $CE, $59, $00, $CE, $00, $73, $00, $E0, $19, $CB, $CE, $CC, $00, $E1, $59, $D0, $1B, $1B, $73, $CB, $D1, $00, $73, $00, $CB, $D2, $00, $71, $5B, $5B, $5C, $00, $CB, $CE, $73, $D3, $CB, $00, $73, $00, $55, $CB, $D2, $59, $00, $E1, $1B, $1B, $05, $D2, $00, $CB, $73, $CD, $59, $CB, $D2, $59, $CB, $CE, $CD, $CD, $00, $45, $05, $00, $E0, $73, $00, $59, $00, $CD, $59, $D2, $00, $00, $1B, $1B, $45, $C9, $CB, $00, $00, $C9, $CD, $59, $CD, $CF, $59, $CB, $D1, $D2, $00, $45, $00, $E0, $D0, $CF, $00, $00, $59, $00, $00, $59, $00, $01, $1B, $1B, $45, $D2, $CB, $D2, $CD, $00, $CD, $D0, $59, $CB, $D1, $59, $00, $73, $00, $45, $00, $E4, $CE, $59, $00, $CB, $4F, $D1, $C9, $00, $E5, $CE, $00, $4F, $00, $00, $CD, $CD, $00, $FF, $F5, $DF
+.DB $44, $5E, $BF, $E1, $5D, $3B, $E0, $2D, $12, $12, $29, $20, $02, $44, $5E, $BF, $E1, $5D, $44, $43, $E4, $44, $1E, $A4, $A3, $A3, $A4, $A3, $A3, $A4, $A3, $E4, $A4, $44, $54, $52, $43, $44, $43, $52, $44, $43, $E4, $44, $1E, $26, $1D, $1C, $1E, $1D, $37, $1E, $53, $E2, $1C, $37, $1E, $46, $46, $48, $48, $46, $48, $38, $46, $48, $E3, $38, $46, $47, $47, $49, $49, $47, $49, $39, $47, $49, $E3, $39, $47, $00, $45, $45, $00, $00, $45, $35, $00, $E4, $35, $00, $1B, $11, $11, $1B, $1B, $11, $1B, $E2, $00, $FF, $FF, $FF, $EF, $DF
 .ENDS
 
 .SECTION "base_chunk_00FA" SLOT 2 SUPERFREE
 chunk_00FA:
-.DB $00, $ED, $CB, $CF, $CD, $00, $EA, $CD, $D3, $D4, $CB, $00, $E1, $CB, $00, $00, $CE, $00, $E0, $CB, $00, $E1, $CB, $D1, $00, $00, $CE, $CB, $CE, $00, $E4, $CE, $D3, $D4, $CD, $55, $CE, $00, $E1, $CE, $CB, $CE, $00, $CE, $CD, $D1, $CE, $CD, $CB, $59, $00, $CB, $CC, $CE, $CD, $00, $E2, $CB, $CE, $CB, $CE, $CD, $59, $CB, $00, $CD, $CB, $CC, $00, $00, $CE, $CD, $CB, $CC, $00, $0D, $19, $00, $59, $1B, $1B, $11, $00, $CB, $CE, $CB, $CE, $CB, $CD, $CB, $0D, $0E, $73, $00, $59, $42, $45, $97, $00, $CE, $00, $D1, $00, $E0, $0D, $0E, $C8, $73, $1B, $5A, $5B, $5B, $72, $00, $E1, $D0, $00, $16, $C5, $9A, $97, $73, $00, $1B, $00, $00, $59, $00, $00, $CB, $CE, $CE, $D4, $C8, $9A, $42, $00, $05, $1B, $00, $00, $CD, $59, $CB, $CE, $D4, $00, $E0, $42, $97, $CB, $00, $C9, $7B, $7B, $1B, $1B, $59, $00, $CB, $D1, $00, $CD, $D0, $00, $CE, $CB, $CB, $00, $7B, $7B, $00, $00, $59, $00, $CE, $CB, $CE, $00, $CE, $CD, $C7, $7B, $7B, $CB, $1B, $1B, $CE, $CD, $59, $CE, $00, $E0, $CD, $00, $19, $2F, $19, $1B, $1B, $00, $E1, $4F, $00, $E3, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E1, $01, $00, $E4, $71, $5B, $E3, $5C, $05, $00, $E1, $DF
 .ENDS
 
 .SECTION "base_chunk_00FB" SLOT 2 SUPERFREE
 chunk_00FB:
-.DB $00, $FD, $D0, $CE, $00, $FB, $D2, $00, $FC, $CD, $D3, $00, $FF, $FF, $FF, $FF, $F7, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E3, $CB, $00, $CB, $00, $EB, $CD, $CD, $DF
 .ENDS
 
 .SECTION "base_chunk_00FC" SLOT 2 SUPERFREE
 chunk_00FC:
-.DB $BC, $00, $00, $4F, $7B, $E1, $00, $CD, $0D, $0E, $BE, $73, $97, $59, $BB, $BC, $4E, $C7, $00, $7B, $7B, $00, $01, $02, $0E, $BE, $BF, $C9, $00, $59, $13, $12, $13, $2F, $01, $02, $19, $00, $C8, $C8, $9A, $BF, $9A, $5A, $5B, $5C, $BE, $BF, $C8, $C8, $BE, $C8, $9B, $00, $42, $00, $42, $9A, $00, $FF, $FF, $FF, $FF, $FF, $FC, $DF
+.DB $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $EB, $CB, $00, $E3, $CB, $00, $CF, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_00FD" SLOT 2 SUPERFREE
 chunk_00FD:
-.DB $00, $EB, $59, $00, $EC, $4F, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F8, $DF
+.DB $00, $E0, $D1, $CD, $00, $CB, $00, $E0, $CB, $CC, $00, $E5, $CB, $CC, $00, $CD, $CB, $00, $00, $CB, $CE, $CB, $CE, $D3, $00, $D2, $CF, $00, $00, $D0, $CF, $D1, $CB, $CF, $5A, $5B, $5B, $72, $CB, $CE, $CD, $00, $00, $D2, $CB, $CE, $7A, $00, $79, $D3, $CD, $CB, $CF, $5A, $5B, $5B, $00, $01, $CE, $00, $E0, $7B, $E0, $00, $1B, $E0, $3C, $00, $E0, $05, $00, $D2, $00, $00, $1B, $E0, $00, $00, $CF, $CB, $73, $10, $7B, $00, $05, $D2, $D1, $CE, $CD, $CD, $3F, $CB, $00, $CE, $55, $00, $73, $0F, $10, $D1, $73, $CE, $CD, $1B, $1B, $00, $E0, $CD, $00, $59, $00, $73, $C8, $0F, $CB, $73, $10, $00, $CB, $D1, $CC, $00, $1B, $01, $1B, $59, $00, $C9, $42, $BE, $00, $73, $0F, $10, $CE, $D0, $CE, $D1, $00, $05, $00, $59, $CB, $00, $00, $C8, $00, $05, $BE, $0F, $10, $00, $CD, $CD, $D0, $05, $CE, $59, $00, $CB, $CE, $42, $00, $05, $C8, $BE, $CA, $17, $01, $00, $00, $05, $71, $A6, $5C, $00, $E0, $CD, $C9, $42, $9A, $C8, $BF, $9A, $00, $01, $04, $59, $00, $00, $CE, $CC, $00, $D2, $CE, $00, $97, $42, $9A, $00, $00, $73, $BF, $59, $CE, $CD, $00, $00, $CC, $CE, $D1, $CC, $CE, $00, $42, $00, $0D, $73, $BF, $59, $00, $E2, $7B, $7B, $CD, $CB, $CC, $CE, $0D, $0E, $73, $9A, $59, $00, $E2, $DF
 .ENDS
 
 .SECTION "base_chunk_00FE" SLOT 2 SUPERFREE
 chunk_00FE:
-.DB $C8, $BF, $9A, $97, $00, $EA, $C8, $97, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $E3, $DF
+.DB $CE, $00, $E1, $CE, $7A, $00, $00, $CB, $00, $CE, $00, $55, $00, $CD, $CB, $CC, $00, $CE, $D3, $CB, $7A, $CD, $D0, $CE, $CD, $00, $CB, $59, $00, $E0, $CD, $D3, $00, $D0, $00, $7A, $CB, $CE, $D3, $CB, $CE, $00, $71, $5B, $E3, $5C, $D0, $7A, $00, $7B, $1B, $3C, $1B, $1B, $59, $00, $01, $CD, $CB, $D1, $D0, $CE, $00, $19, $00, $7B, $00, $3E, $CE, $CD, $59, $CD, $C8, $CB, $CE, $D3, $CD, $7B, $0D, $73, $1B, $CE, $D1, $CE, $5A, $5B, $A6, $75, $5B, $7B, $CB, $CE, $7B, $0D, $0E, $73, $CE, $1B, $E0, $7B, $E0, $59, $CE, $10, $00, $00, $0D, $0E, $BE, $73, $55, $97, $00, $42, $1B, $7B, $CB, $59, $00, $CA, $17, $16, $C5, $BE, $9A, $05, $59, $00, $CB, $CE, $00, $1B, $1B, $59, $00, $BE, $E1, $9A, $97, $C9, $5A, $5B, $5B, $72, $CB, $97, $CE, $59, $CB, $9A, $C8, $E0, $97, $00, $CC, $CB, $D1, $CE, $59, $00, $D3, $00, $59, $00, $42, $97, $97, $00, $E2, $CD, $00, $5A, $5B, $E0, $A6, $5B, $00, $FF, $FC, $DF
 .ENDS
 
 .SECTION "base_chunk_00FF" SLOT 2 SUPERFREE
 chunk_00FF:
-.DB $00, $FF, $E8, $8C, $93, $8B, $8B, $00, $E8, $8D, $65, $94, $65, $65, $00, $E7, $8F, $8E, $63, $6C, $63, $63, $00, $E7, $90, $64, $64, $6D, $64, $64, $00, $E7, $91, $91, $9C, $95, $9D, $A2, $00, $E9, $98, $BB, $99, $D6, $00, $E7, $02, $02, $28, $27, $29, $2A, $00, $E7, $84, $63, $31, $6C, $63, $63, $00, $E7, $87, $83, $32, $6D, $64, $64, $00, $E8, $85, $33, $6E, $65, $65, $00, $E9, $34, $6F, $66, $66, $00, $E9, $35, $76, $44, $74, $00, $E9, $35, $82, $26, $26, $00, $EA, $81, $47, $44, $DF
+.DB $D4, $CB, $D1, $59, $00, $E4, $73, $00, $E2, $CE, $CB, $59, $00, $E0, $D2, $00, $E0, $73, $00, $55, $00, $00, $5B, $E0, $72, $D4, $CB, $CC, $00, $E0, $79, $73, $00, $59, $00, $00, $02, $02, $01, $59, $00, $00, $CB, $D2, $CB, $D2, $79, $73, $00, $59, $D3, $CB, $9A, $C8, $9A, $59, $01, $19, $1B, $D1, $00, $00, $1B, $73, $00, $5A, $75, $5B, $E1, $72, $9A, $C8, $4E, $CB, $CE, $1B, $45, $C9, $D4, $CF, $59, $00, $CB, $7B, $CE, $59, $00, $00, $B6, $1B, $00, $97, $45, $00, $D2, $00, $59, $00, $7B, $E0, $59, $00, $4E, $BB, $BB, $1B, $00, $07, $15, $19, $3C, $59, $00, $1B, $E0, $4F, $CE, $BC, $BB, $B6, $07, $08, $09, $AA, $BF, $9A, $59, $00, $00, $45, $CB, $CE, $3C, $12, $12, $16, $09, $AA, $BE, $C8, $9A, $97, $59, $CB, $CD, $45, $CE, $CB, $C8, $BF, $BE, $BF, $BE, $9A, $9A, $97, $00, $CE, $59, $00, $5B, $5C, $00, $00, $42, $C8, $BF, $9A, $9A, $97, $97, $CB, $CE, $00, $59, $CC, $00, $E2, $97, $C8, $97, $00, $E2, $D1, $59, $00, $E4, $97, $00, $00, $CD, $D3, $D0, $CE, $CB, $5A, $5B, $00, $EA, $CE, $CB, $CE, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0100" SLOT 2 SUPERFREE
 chunk_0100:
-.DB $00, $FD, $93, $8B, $8B, $93, $8B, $8B, $93, $8B, $E2, $93, $8B, $E0, $94, $65, $65, $94, $65, $65, $94, $65, $E2, $94, $65, $E0, $6C, $63, $63, $6C, $63, $63, $6C, $63, $E2, $6C, $63, $E0, $6D, $64, $64, $6D, $64, $64, $6D, $64, $E2, $6D, $64, $E0, $9F, $A0, $A0, $9F, $A0, $A0, $9F, $A0, $E0, $A1, $AB, $C0, $AB, $E0, $C0, $AB, $AB, $C0, $AB, $E3, $C0, $AC, $E2, $2E, $2A, $2A, $2E, $2A, $2A, $2E, $2A, $E1, $30, $2E, $2A, $2A, $30, $6C, $63, $63, $6C, $63, $63, $6C, $63, $E2, $6C, $63, $E0, $6D, $64, $64, $6D, $64, $64, $6D, $64, $E2, $6D, $64, $E0, $6E, $65, $65, $6E, $65, $65, $6E, $65, $E2, $6E, $65, $E0, $6F, $66, $66, $6F, $66, $66, $6F, $66, $E2, $6F, $66, $E0, $44, $74, $44, $44, $56, $58, $5E, $BF, $E1, $5D, $BF, $E0, $5D, $26, $26, $BA, $44, $56, $58, $5E, $80, $E1, $5D, $80, $80, $BF, $5D, $54, $44, $74, $44, $56, $58, $5E, $BF, $E1, $5D, $D5, $E0, $A8, $DF
+.DB $00, $00, $CD, $CB, $CE, $CD, $CB, $CE, $CD, $CB, $CC, $CF, $CB, $CD, $00, $E0, $CB, $00, $E1, $CE, $00, $E0, $D3, $00, $00, $CB, $CE, $CB, $00, $E1, $71, $5B, $E3, $75, $5B, $E1, $00, $D3, $CB, $CD, $59, $00, $1B, $1B, $CB, $CE, $00, $59, $7B, $E1, $5B, $E1, $72, $D3, $00, $00, $7B, $E0, $59, $7B, $7B, $00, $1B, $CB, $00, $4E, $CE, $59, $7B, $E1, $1B, $1B, $59, $1B, $1B, $00, $00, $4E, $B6, $BC, $00, $4F, $00, $1B, $1B, $00, $D0, $45, $59, $00, $00, $CD, $CB, $13, $E0, $01, $3C, $D4, $45, $3F, $CF, $D3, $45, $5A, $5B, $72, $D1, $00, $C8, $BF, $9A, $C8, $9A, $00, $00, $D4, $1B, $1B, $11, $D0, $CD, $59, $CB, $CE, $97, $9A, $42, $97, $5A, $5B, $5B, $72, $97, $45, $3F, $00, $CB, $59, $00, $CD, $CB, $00, $CB, $00, $CE, $CC, $CE, $59, $00, $11, $1B, $E0, $59, $00, $00, $CE, $CB, $CE, $CB, $CE, $1B, $1B, $59, $1B, $00, $97, $00, $00, $59, $1B, $1B, $00, $E4, $59, $00, $CB, $CE, $CB, $CC, $4F, $42, $97, $5B, $E4, $5C, $00, $CF, $00, $00, $CB, $D1, $00, $CB, $CD, $00, $E3, $CB, $CE, $00, $00, $CB, $CE, $D4, $CB, $CE, $00, $ED, $DF
 .ENDS
 
 .SECTION "base_chunk_0101" SLOT 2 SUPERFREE
 chunk_0101:
-.DB $00, $FD, $93, $8B, $E3, $93, $8B, $E1, $93, $8B, $E0, $94, $65, $E3, $94, $65, $E1, $94, $65, $E0, $6C, $63, $E3, $6C, $63, $E1, $6C, $63, $E0, $6D, $64, $E3, $6D, $64, $E1, $6D, $64, $E0, $C0, $9C, $96, $E0, $9D, $AB, $C0, $B7, $AB, $E0, $C0, $A1, $96, $96, $AC, $98, $BB, $A5, $BB, $99, $AC, $E4, $A8, $BB, $BB, $2E, $28, $12, $2A, $12, $29, $2A, $2E, $2A, $2A, $30, $2A, $2E, $2D, $12, $12, $6C, $63, $E3, $6C, $63, $E1, $6C, $63, $E0, $6D, $64, $E3, $6D, $64, $E1, $6D, $64, $E0, $6E, $65, $E3, $6E, $65, $E1, $6E, $65, $E0, $6F, $66, $E3, $6F, $66, $E1, $6F, $66, $E0, $BB, $BB, $99, $00, $00, $C3, $00, $C3, $00, $E5, $BB, $BB, $99, $00, $00, $C3, $00, $C3, $00, $E2, $21, $22, $00, $BB, $BB, $99, $21, $22, $C3, $00, $C3, $21, $22, $00, $07, $15, $20, $02, $10, $DF
+.DB $00, $EA, $CD, $CB, $D1, $00, $EC, $CB, $00, $E0, $CB, $00, $00, $CE, $00, $E0, $CB, $D1, $00, $00, $CE, $00, $D1, $00, $00, $CE, $CB, $CE, $00, $E2, $19, $CB, $CE, $CC, $00, $CD, $55, $CE, $00, $E1, $CE, $CB, $CE, $00, $73, $00, $CB, $D2, $00, $CB, $59, $00, $CB, $CC, $CE, $CD, $00, $E1, $73, $00, $55, $CB, $D2, $CD, $59, $CB, $00, $CD, $CB, $CC, $00, $00, $CE, $CD, $73, $CD, $59, $CB, $D2, $00, $59, $1B, $1B, $11, $00, $CB, $CE, $CB, $CE, $CB, $73, $00, $59, $00, $CD, $00, $59, $42, $45, $97, $00, $CE, $00, $D1, $00, $00, $C9, $CD, $59, $CD, $CF, $1B, $5A, $5B, $5B, $72, $00, $E1, $D0, $00, $E0, $59, $00, $E0, $1B, $00, $00, $59, $00, $00, $CB, $CE, $CE, $D4, $CD, $D0, $59, $CB, $D1, $1B, $00, $00, $CD, $59, $CB, $CE, $D4, $00, $E1, $CE, $59, $00, $CB, $7B, $7B, $1B, $1B, $59, $00, $CB, $D1, $00, $CD, $D0, $CE, $00, $4F, $00, $00, $7B, $7B, $00, $00, $59, $00, $CE, $CB, $CE, $00, $CE, $00, $E2, $1B, $1B, $CE, $CD, $59, $CE, $00, $E0, $CD, $00, $E7, $4F, $00, $E8, $DF
 .ENDS
 
 .SECTION "base_chunk_0102" SLOT 2 SUPERFREE
 chunk_0102:
-.DB $00, $FD, $8B, $E2, $B5, $00, $E7, $65, $E3, $B4, $00, $E6, $63, $E3, $B2, $B3, $00, $E5, $64, $E4, $B1, $00, $E5, $9D, $91, $E7, $B9, $B9, $B8, $00, $00, $99, $00, $E8, $5F, $60, $00, $00, $29, $02, $E3, $03, $1A, $1A, $00, $5F, $60, $00, $E0, $63, $E4, $68, $00, $00, $5F, $60, $00, $E1, $64, $E3, $67, $70, $00, $5F, $60, $00, $E2, $65, $E3, $69, $00, $5F, $60, $00, $E3, $66, $E2, $6A, $00, $5F, $60, $00, $EA, $5F, $60, $00, $EA, $5F, $60, $00, $E6, $21, $22, $00, $00, $5F, $60, $00, $E7, $DF
+.DB $00, $E0, $59, $CB, $CE, $CD, $05, $D1, $00, $CE, $00, $E2, $CB, $D1, $00, $59, $00, $1B, $1B, $73, $CD, $CD, $D0, $00, $E2, $CD, $CB, $CE, $59, $00, $CE, $00, $73, $00, $E0, $D0, $CE, $00, $E3, $59, $D0, $1B, $1B, $73, $CB, $D1, $00, $E3, $71, $5B, $5B, $5C, $00, $CB, $CE, $73, $D3, $CB, $00, $D2, $00, $E1, $59, $00, $E1, $1B, $1B, $05, $D2, $00, $CB, $00, $E2, $59, $CB, $CE, $CD, $CD, $00, $45, $05, $00, $E0, $CD, $D3, $00, $E0, $59, $D2, $00, $00, $1B, $1B, $45, $C9, $CB, $00, $E4, $59, $CB, $D1, $D2, $00, $45, $00, $E0, $D0, $CF, $00, $E2, $59, $00, $01, $1B, $1B, $45, $D2, $CB, $D2, $CD, $00, $E3, $59, $00, $73, $00, $45, $00, $E8, $4F, $D1, $C9, $00, $EA, $CD, $CD, $00, $FF, $FA, $DF
 .ENDS
 
 .SECTION "base_chunk_0103" SLOT 2 SUPERFREE
 chunk_0103:
-.DB $12, $12, $29, $20, $02, $36, $03, $36, $20, $02, $16, $AE, $AF, $43, $43, $AD, $43, $E1, $44, $56, $58, $56, $E5, $57, $A3, $E1, $A4, $43, $44, $43, $43, $52, $43, $52, $43, $52, $43, $52, $43, $E1, $44, $43, $44, $48, $E6, $53, $53, $1C, $37, $1E, $51, $44, $49, $E6, $48, $E0, $38, $46, $49, $47, $00, $E6, $49, $E0, $39, $47, $00, $EB, $35, $00, $FF, $FF, $FF, $FF, $E5, $DF
+.DB $00, $ED, $D4, $00, $E6, $CD, $CB, $CF, $CD, $00, $00, $5C, $CB, $D1, $00, $CB, $00, $00, $CF, $CB, $55, $CF, $CD, $D3, $D4, $CB, $00, $7B, $7B, $CD, $CB, $00, $D4, $D4, $00, $00, $59, $00, $E2, $CB, $01, $CB, $00, $00, $CD, $CB, $00, $E0, $59, $00, $E0, $CE, $D3, $D4, $05, $10, $CD, $CB, $D1, $00, $D0, $CF, $CB, $59, $CB, $CE, $CD, $D1, $CE, $CD, $05, $0F, $10, $00, $D0, $CD, $00, $E0, $59, $00, $00, $CB, $CE, $CB, $CE, $C9, $BE, $0F, $10, $CD, $CB, $CC, $00, $00, $59, $CE, $CB, $CC, $00, $0D, $19, $CD, $9A, $BE, $0F, $10, $CD, $CB, $CC, $CE, $59, $CD, $CD, $CB, $0D, $0E, $73, $D3, $97, $9A, $BE, $CA, $0B, $0C, $CD, $00, $59, $00, $00, $0D, $0E, $C8, $73, $CB, $00, $42, $C8, $9A, $C6, $0A, $17, $01, $59, $01, $16, $C5, $9A, $97, $73, $1B, $CB, $CE, $97, $00, $C8, $9A, $E0, $59, $9A, $C8, $9A, $42, $00, $05, $00, $00, $1B, $1B, $CB, $CE, $42, $00, $97, $59, $00, $42, $97, $CB, $00, $C9, $D1, $CE, $45, $42, $1B, $CB, $CE, $7B, $7B, $59, $CB, $00, $CE, $CB, $CB, $00, $D0, $CE, $CB, $00, $42, $1B, $E1, $59, $00, $CD, $C7, $7B, $7B, $CB, $00, $E0, $CB, $CE, $42, $42, $97, $97, $59, $1B, $19, $2F, $19, $1B, $1B, $DF
 .ENDS
 
 .SECTION "base_chunk_0104" SLOT 2 SUPERFREE
 chunk_0104:
-.DB $20, $10, $00, $5F, $60, $07, $15, $02, $02, $03, $89, $8A, $00, $E1, $44, $AD, $02, $61, $16, $AE, $AF, $43, $43, $4A, $00, $E3, $44, $43, $E1, $52, $E0, $4A, $00, $E4, $46, $48, $E3, $4B, $00, $E5, $47, $49, $E1, $4D, $4C, $00, $FF, $FF, $FF, $FF, $FF, $F1, $DF
+.DB $00, $FF, $EB, $CB, $00, $EC, $D2, $00, $E9, $CB, $00, $CE, $00, $EB, $CD, $00, $FD, $CD, $CB, $00, $FF, $F9, $CB, $00, $EA, $CC, $00, $00, $CB, $CF, $00, $E8, $CB, $00, $D2, $00, $EB, $CB, $CC, $CE, $D0, $00, $E8, $4E, $5A, $5B, $72, $00, $DF
 .ENDS
 
 .SECTION "base_chunk_0105" SLOT 2 SUPERFREE
 chunk_0105:
-.DB $00, $EB, $59, $06, $00, $EB, $3D, $28, $00, $EB, $06, $00, $EC, $06, $51, $00, $EB, $06, $4C, $00, $EB, $06, $2D, $00, $EB, $5B, $12, $00, $EB, $59, $58, $00, $EB, $5A, $5A, $00, $EB, $05, $5A, $00, $EB, $05, $5A, $00, $EB, $05, $5A, $00, $EB, $05, $5A, $00, $EB, $05, $05, $00, $EB, $05, $05, $00, $EB, $05, $05, $DF
+.DB $00, $E8, $BC, $00, $00, $4F, $7B, $00, $E8, $BB, $BC, $4E, $C7, $00, $E9, $13, $12, $13, $2F, $01, $00, $E8, $BE, $BF, $C8, $C8, $BE, $00, $FF, $FF, $FF, $FF, $FF, $F8, $DF
 .ENDS
 
 .SECTION "base_chunk_0106" SLOT 2 SUPERFREE
 chunk_0106:
-.DB $00, $04, $05, $55, $54, $57, $5A, $54, $59, $5A, $E0, $05, $E1, $00, $27, $41, $2A, $2B, $2A, $24, $53, $5A, $E1, $05, $E1, $00, $00, $08, $2C, $E0, $23, $24, $54, $53, $5A, $5A, $05, $E1, $4D, $4C, $50, $4E, $4B, $4C, $08, $23, $24, $59, $5A, $5A, $05, $55, $57, $05, $4B, $0A, $4D, $0A, $4E, $4F, $4D, $08, $23, $24, $53, $5A, $57, $57, $05, $05, $2D, $E3, $29, $4B, $08, $23, $24, $59, $05, $56, $57, $05, $11, $12, $11, $11, $12, $11, $1F, $29, $4D, $08, $23, $24, $58, $59, $58, $05, $05, $5A, $58, $57, $54, $55, $20, $1F, $29, $4F, $08, $23, $24, $5A, $5A, $05, $05, $5A, $57, $55, $53, $57, $53, $20, $1F, $29, $4D, $08, $23, $24, $5A, $57, $05, $5A, $05, $05, $5A, $05, $5A, $54, $20, $1F, $29, $4E, $08, $23, $2B, $2A, $05, $5A, $05, $05, $53, $57, $54, $58, $54, $20, $1F, $29, $4F, $08, $2C, $2C, $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $53, $20, $1F, $29, $50, $4B, $4F, $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $5A, $54, $20, $1F, $29, $4D, $4B, $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $E0, $53, $20, $1F, $2D, $2D, $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $E0, $59, $5A, $20, $12, $11, $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $E2, $53, $54, $55, $DF
+.DB $7B, $E0, $00, $CD, $0D, $0E, $BE, $73, $97, $59, $00, $E2, $7B, $7B, $00, $01, $02, $0E, $BE, $BF, $C9, $00, $59, $00, $E2, $02, $19, $00, $C8, $C8, $9A, $BF, $9A, $5A, $5B, $5C, $00, $E2, $C8, $9B, $00, $42, $00, $42, $9A, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E0, $DF
 .ENDS
 
 .SECTION "base_chunk_0107" SLOT 2 SUPERFREE
 chunk_0107:
-.DB $5A, $00, $EC, $5A, $00, $EC, $5A, $00, $EC, $5A, $00, $EC, $5A, $05, $5A, $05, $5A, $5A, $05, $05, $00, $E5, $5A, $05, $5A, $05, $5A, $5A, $05, $05, $5A, $5A, $05, $E3, $5A, $05, $5A, $05, $5A, $5A, $05, $05, $5A, $5A, $05, $E3, $5A, $57, $5A, $59, $5A, $5A, $05, $05, $5A, $5A, $05, $57, $59, $05, $05, $48, $5A, $58, $5A, $56, $5A, $54, $52, $55, $5A, $5A, $55, $52, $05, $55, $59, $48, $2B, $2A, $2B, $2A, $24, $59, $57, $59, $5A, $35, $3B, $3C, $E1, $2E, $2C, $E1, $23, $2A, $E0, $32, $34, $00, $E2, $2F, $51, $4B, $4E, $50, $08, $2C, $E0, $07, $0B, $00, $51, $4B, $4D, $50, $36, $4E, $4F, $4D, $4E, $09, $2D, $E0, $29, $0B, $00, $50, $4C, $4F, $51, $31, $2D, $E1, $21, $11, $E0, $14, $10, $00, $E2, $1D, $12, $11, $12, $11, $22, $55, $57, $58, $5A, $0F, $1A, $1B, $E1, $42, $54, $57, $53, $56, $59, $58, $52, $59, $5A, $58, $05, $57, $55, $05, $52, $48, $DF
+.DB $00, $E6, $59, $00, $C8, $BF, $9A, $97, $00, $E7, $4F, $00, $00, $C8, $97, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F9, $DF
 .ENDS
 
 .SECTION "base_chunk_0108" SLOT 2 SUPERFREE
 chunk_0108:
-.DB $00, $FF, $FF, $EB, $5A, $05, $05, $5A, $05, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5A, $05, $05, $5A, $05, $05, $5A, $E0, $05, $E1, $40, $05, $05, $39, $05, $05, $5A, $05, $05, $5A, $E0, $05, $E1, $40, $05, $05, $39, $58, $05, $5A, $05, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5E, $05, $05, $5A, $05, $05, $5A, $35, $64, $38, $E1, $4A, $38, $38, $30, $05, $05, $59, $58, $05, $35, $34, $00, $4B, $4C, $4E, $0B, $49, $0C, $51, $37, $38, $38, $64, $38, $38, $34, $00, $00, $50, $00, $51, $0B, $49, $0C, $50, $3A, $0A, $00, $0A, $00, $0A, $51, $00, $4F, $4B, $4E, $4F, $4B, $19, $4E, $4B, $1E, $13, $13, $02, $13, $13, $10, $00, $00, $1C, $E1, $40, $1C, $1C, $43, $05, $05, $59, $58, $05, $0F, $1C, $1C, $40, $44, $45, $44, $45, $40, $40, $39, $58, $05, $5A, $05, $05, $5A, $40, $44, $45, $46, $47, $46, $47, $40, $40, $DF
+.DB $00, $FF, $E3, $8C, $93, $8B, $8B, $93, $8B, $8B, $93, $8B, $00, $E3, $8D, $65, $94, $65, $65, $94, $65, $65, $94, $65, $00, $E2, $8F, $8E, $63, $6C, $63, $63, $6C, $63, $63, $6C, $63, $00, $E2, $90, $64, $64, $6D, $64, $64, $6D, $64, $64, $6D, $64, $00, $E2, $91, $91, $9C, $95, $9D, $A2, $9F, $A0, $A0, $9F, $A0, $00, $E4, $98, $BB, $99, $D6, $C0, $AB, $AB, $C0, $AB, $00, $E2, $02, $02, $28, $27, $29, $2A, $2E, $2A, $2A, $2E, $2A, $00, $E2, $84, $63, $31, $6C, $63, $63, $6C, $63, $63, $6C, $63, $00, $E2, $87, $83, $32, $6D, $64, $64, $6D, $64, $64, $6D, $64, $00, $E3, $85, $33, $6E, $65, $65, $6E, $65, $65, $6E, $65, $00, $E4, $34, $6F, $66, $66, $6F, $66, $66, $6F, $66, $00, $E4, $35, $76, $44, $74, $44, $74, $44, $44, $56, $00, $E4, $35, $82, $26, $E1, $BA, $44, $56, $00, $E5, $81, $47, $44, $54, $44, $74, $44, $56, $DF
 .ENDS
 
 .SECTION "base_chunk_0109" SLOT 2 SUPERFREE
 chunk_0109:
-.DB $00, $FF, $FF, $EB, $5A, $05, $00, $EB, $5A, $05, $00, $EB, $5A, $05, $00, $EB, $5A, $05, $00, $EB, $33, $05, $00, $EB, $04, $05, $00, $EB, $04, $05, $00, $EB, $04, $05, $00, $EB, $04, $05, $00, $EB, $04, $05, $00, $EB, $04, $05, $00, $EB, $DF
+.DB $00, $FD, $8B, $93, $8B, $E2, $93, $8B, $E0, $93, $8B, $E1, $65, $94, $65, $E2, $94, $65, $E0, $94, $65, $E1, $63, $6C, $63, $E2, $6C, $63, $E0, $6C, $63, $E1, $64, $6D, $64, $E2, $6D, $64, $E0, $6D, $64, $E1, $A0, $9F, $A0, $E0, $A1, $AB, $C0, $AB, $E0, $C0, $9C, $96, $E0, $AB, $E2, $C0, $AC, $E3, $98, $BB, $A5, $BB, $2A, $2E, $2A, $E1, $30, $2E, $2A, $2A, $30, $2E, $28, $12, $2A, $12, $63, $6C, $63, $E2, $6C, $63, $E0, $6C, $63, $E1, $64, $6D, $64, $E2, $6D, $64, $E0, $6D, $64, $E1, $65, $6E, $65, $E2, $6E, $65, $E0, $6E, $65, $E1, $66, $6F, $66, $E2, $6F, $66, $E0, $6F, $66, $E1, $58, $5E, $BF, $E1, $5D, $BF, $E0, $5D, $BB, $BB, $99, $00, $00, $58, $5E, $80, $E1, $5D, $80, $80, $BF, $5D, $BB, $BB, $99, $00, $00, $58, $5E, $BF, $E1, $5D, $D5, $E0, $A8, $BB, $BB, $99, $21, $22, $DF
 .ENDS
 
 .SECTION "base_chunk_010A" SLOT 2 SUPERFREE
 chunk_010A:
-.DB $00, $EB, $05, $05, $00, $EB, $05, $05, $00, $EB, $05, $05, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.DB $00, $FD, $8B, $8B, $93, $8B, $E1, $93, $8B, $E5, $65, $65, $94, $65, $E1, $94, $65, $E5, $63, $63, $6C, $63, $E1, $6C, $63, $E5, $64, $64, $6D, $64, $E1, $6D, $64, $E5, $9D, $AB, $C0, $B7, $AB, $E0, $C0, $A1, $96, $96, $9D, $91, $E1, $99, $AC, $E4, $A8, $BB, $BB, $99, $00, $E1, $29, $2A, $2E, $2A, $2A, $30, $2A, $2E, $2D, $12, $12, $29, $02, $E1, $63, $63, $6C, $63, $E1, $6C, $63, $E5, $64, $64, $6D, $64, $E1, $6D, $64, $E5, $65, $65, $6E, $65, $E1, $6E, $65, $E5, $66, $66, $6F, $66, $E1, $6F, $66, $E5, $C3, $00, $C3, $00, $EA, $C3, $00, $C3, $00, $E2, $21, $22, $00, $E3, $C3, $00, $C3, $21, $22, $00, $07, $15, $20, $02, $10, $21, $22, $00, $00, $5F, $DF
 .ENDS
 
 .SECTION "base_chunk_010B" SLOT 2 SUPERFREE
 chunk_010B:
-.DB $05, $5A, $05, $05, $5A, $05, $5A, $05, $5A, $E4, $05, $E6, $5A, $E4, $56, $05, $EB, $5A, $05, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.DB $00, $FD, $B5, $00, $EC, $65, $B4, $00, $EB, $63, $B2, $B3, $00, $EA, $64, $64, $B1, $00, $EA, $91, $E3, $B9, $B9, $B8, $00, $EB, $5F, $60, $00, $E4, $02, $02, $03, $1A, $1A, $00, $5F, $60, $00, $E5, $63, $63, $68, $00, $00, $5F, $60, $00, $E6, $64, $67, $70, $00, $5F, $60, $00, $E7, $65, $69, $00, $5F, $60, $00, $E8, $6A, $00, $5F, $60, $00, $EA, $5F, $60, $00, $EA, $5F, $60, $00, $EB, $60, $00, $EC, $DF
 .ENDS
 
 .SECTION "base_chunk_010C" SLOT 2 SUPERFREE
 chunk_010C:
-.DB $5A, $52, $5A, $05, $56, $57, $05, $52, $5A, $05, $58, $05, $05, $58, $05, $48, $5A, $05, $5A, $55, $05, $E1, $5A, $05, $05, $55, $05, $05, $56, $48, $5A, $59, $5A, $05, $57, $05, $57, $59, $5A, $05, $E1, $57, $05, $48, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.DB $36, $03, $36, $20, $02, $16, $AE, $AF, $43, $43, $AD, $20, $10, $00, $5F, $60, $56, $58, $56, $E5, $57, $44, $AD, $02, $61, $16, $43, $44, $43, $43, $52, $43, $52, $43, $52, $43, $52, $44, $43, $E2, $44, $48, $E6, $46, $48, $E1, $51, $44, $49, $E6, $47, $49, $E2, $47, $00, $FF, $FF, $FF, $FF, $FF, $E6, $DF
 .ENDS
 
 .SECTION "base_chunk_010D" SLOT 2 SUPERFREE
 chunk_010D:
-.DB $39, $05, $05, $5A, $05, $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $39, $05, $05, $5A, $05, $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $39, $05, $05, $5A, $05, $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.DB $07, $15, $02, $02, $03, $89, $8A, $00, $E6, $AE, $AF, $43, $43, $4A, $00, $E8, $52, $E0, $4A, $00, $E9, $48, $48, $4B, $00, $EA, $4D, $4C, $00, $FF, $FF, $FF, $FF, $FF, $F6, $DF
 .ENDS
 
 .SECTION "base_chunk_010E" SLOT 2 SUPERFREE
 chunk_010E:
-.DB $04, $05, $00, $EB, $04, $05, $00, $EB, $04, $00, $FF, $FF, $FF, $FF, $FF, $FF, $F6, $DF
+.DB $00, $E6, $59, $06, $00, $04, $05, $55, $54, $00, $E6, $3D, $28, $00, $27, $41, $2A, $2B, $00, $E6, $06, $00, $E0, $08, $2C, $2C, $00, $E6, $06, $51, $4D, $4C, $50, $4E, $4B, $00, $E6, $06, $4C, $4B, $0A, $4D, $0A, $4E, $00, $E6, $06, $2D, $E3, $00, $E6, $5B, $12, $11, $12, $11, $11, $12, $00, $E6, $59, $58, $05, $5A, $58, $57, $54, $00, $E6, $5A, $5A, $05, $5A, $57, $55, $53, $00, $E6, $05, $5A, $05, $5A, $05, $05, $5A, $00, $E6, $05, $5A, $05, $5A, $05, $05, $53, $00, $E6, $05, $5A, $05, $5A, $05, $05, $5A, $00, $E6, $05, $5A, $05, $5A, $05, $05, $5A, $00, $E6, $05, $E0, $5A, $05, $05, $5A, $00, $E6, $05, $E0, $5A, $05, $05, $5A, $00, $E6, $05, $E0, $5A, $05, $05, $5A, $DF
 .ENDS
 
 .SECTION "base_chunk_010F" SLOT 2 SUPERFREE
 chunk_010F:
-.DB $00, $FF, $FF, $F9, $05, $05, $00, $EB, $05, $05, $00, $EB, $05, $05, $00, $EB, $05, $59, $00, $EB, $59, $58, $00, $EB, $63, $63, $00, $EB, $65, $65, $00, $EB, $16, $16, $00, $EB, $59, $58, $00, $EB, $59, $05, $00, $EB, $59, $05, $DF
+.DB $57, $5A, $54, $59, $5A, $E0, $05, $E1, $5A, $00, $E1, $2A, $24, $53, $5A, $E1, $05, $E1, $5A, $00, $E1, $2C, $23, $24, $54, $53, $5A, $5A, $05, $E1, $5A, $00, $E1, $4C, $08, $23, $24, $59, $5A, $5A, $05, $55, $57, $05, $5A, $00, $E1, $4F, $4D, $08, $23, $24, $53, $5A, $57, $57, $05, $05, $5A, $05, $5A, $05, $5A, $2D, $29, $4B, $08, $23, $24, $59, $05, $56, $57, $05, $5A, $05, $5A, $05, $5A, $11, $1F, $29, $4D, $08, $23, $24, $58, $59, $58, $05, $5A, $05, $5A, $05, $5A, $55, $20, $1F, $29, $4F, $08, $23, $24, $5A, $5A, $05, $5A, $57, $5A, $59, $5A, $57, $53, $20, $1F, $29, $4D, $08, $23, $24, $5A, $57, $5A, $58, $5A, $56, $5A, $05, $5A, $54, $20, $1F, $29, $4E, $08, $23, $2B, $2A, $2B, $2A, $2B, $2A, $24, $57, $54, $58, $54, $20, $1F, $29, $4F, $08, $2C, $E3, $23, $05, $5A, $05, $5A, $53, $20, $1F, $29, $50, $4B, $4F, $51, $4B, $4E, $50, $08, $05, $5A, $05, $5A, $5A, $54, $20, $1F, $29, $4D, $4B, $4E, $4F, $4D, $4E, $09, $05, $5A, $05, $5A, $E0, $53, $20, $1F, $2D, $E3, $21, $05, $5A, $05, $5A, $E0, $59, $5A, $20, $12, $11, $12, $11, $12, $11, $22, $05, $5A, $05, $5A, $E2, $53, $54, $55, $54, $57, $53, $56, $59, $DF
 .ENDS
 
 .SECTION "base_chunk_0110" SLOT 2 SUPERFREE
 chunk_0110:
-.DB $00, $FF, $FF, $EB, $05, $E3, $5A, $05, $05, $5A, $05, $5A, $5A, $05, $05, $5A, $05, $E3, $5A, $05, $05, $5A, $05, $5A, $5A, $05, $05, $5A, $55, $05, $E1, $55, $5A, $05, $05, $5A, $05, $54, $5A, $05, $57, $5A, $05, $05, $52, $05, $05, $52, $54, $05, $59, $54, $05, $5A, $26, $2A, $2A, $2B, $59, $52, $56, $59, $52, $56, $53, $56, $05, $5A, $59, $26, $25, $2C, $E0, $63, $E3, $60, $41, $2A, $2B, $2A, $25, $07, $50, $4B, $50, $65, $E3, $62, $08, $2C, $E0, $07, $0A, $51, $4E, $4C, $16, $E3, $15, $13, $13, $02, $13, $02, $13, $E0, $02, $05, $52, $05, $05, $56, $05, $05, $55, $58, $54, $05, $5A, $05, $55, $59, $5A, $59, $05, $57, $59, $52, $57, $52, $05, $05, $53, $05, $5A, $05, $59, $05, $5A, $59, $52, $57, $05, $56, $05, $59, $56, $58, $5A, $56, $59, $05, $05, $59, $5A, $DF
+.DB $00, $FF, $FC, $5A, $05, $05, $00, $EA, $5A, $05, $05, $5A, $5A, $05, $E3, $5A, $05, $05, $5A, $05, $5A, $05, $05, $5A, $5A, $05, $E3, $5A, $05, $05, $5A, $05, $5A, $05, $05, $5A, $5A, $05, $57, $59, $05, $05, $48, $39, $05, $05, $5A, $05, $54, $52, $55, $5A, $5A, $55, $52, $05, $55, $59, $48, $39, $58, $05, $5A, $05, $59, $57, $59, $5A, $35, $3B, $3C, $E1, $2E, $5E, $05, $05, $5A, $05, $2A, $E0, $32, $34, $00, $E2, $2F, $30, $05, $05, $59, $58, $2C, $E0, $07, $0B, $00, $51, $4B, $4D, $50, $36, $37, $38, $38, $64, $38, $2D, $E0, $29, $0B, $00, $50, $4C, $4F, $51, $31, $3A, $0A, $00, $0A, $00, $11, $E0, $14, $10, $00, $E2, $1D, $1E, $13, $13, $02, $13, $55, $57, $58, $5A, $0F, $1A, $1B, $E1, $42, $43, $05, $05, $59, $58, $58, $52, $59, $5A, $58, $05, $57, $55, $05, $52, $48, $39, $58, $05, $5A, $05, $DF
 .ENDS
 
 .SECTION "base_chunk_0111" SLOT 2 SUPERFREE
 chunk_0111:
-.DB $00, $FF, $FF, $EB, $05, $E9, $00, $E1, $55, $05, $55, $05, $E0, $55, $05, $E2, $00, $E1, $05, $52, $05, $56, $05, $52, $05, $57, $56, $55, $52, $05, $00, $E1, $2A, $E9, $00, $E1, $2C, $E9, $00, $E1, $4E, $4D, $4B, $4D, $4B, $50, $00, $E7, $4B, $51, $4F, $51, $4E, $51, $0A, $E0, $00, $E4, $13, $E9, $00, $E1, $56, $05, $57, $05, $E0, $57, $05, $56, $56, $05, $05, $00, $E1, $05, $52, $05, $56, $05, $56, $05, $55, $05, $56, $05, $05, $00, $E1, $55, $57, $52, $57, $55, $05, $E2, $00, $E3, $DF
+.DB $00, $FF, $FF, $EB, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5A, $05, $00, $E0, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5A, $05, $00, $E0, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5A, $05, $00, $E0, $05, $5A, $E0, $05, $E1, $40, $05, $05, $5A, $05, $00, $E0, $05, $5A, $35, $64, $38, $E1, $4A, $38, $38, $33, $05, $00, $E0, $05, $35, $34, $00, $4B, $4C, $4E, $0B, $49, $0C, $51, $04, $05, $00, $E0, $38, $34, $00, $00, $50, $00, $51, $0B, $49, $0C, $50, $04, $05, $00, $E0, $0A, $51, $00, $4F, $4B, $4E, $4F, $4B, $19, $4E, $4B, $04, $05, $00, $E0, $13, $10, $00, $00, $1C, $E1, $40, $1C, $1C, $04, $05, $00, $E0, $05, $0F, $1C, $1C, $40, $44, $45, $44, $45, $40, $40, $04, $05, $00, $E0, $05, $5A, $40, $44, $45, $46, $47, $46, $47, $40, $40, $04, $05, $00, $E0, $DF
+.ENDS
+
+.SECTION "base_chunk_0112" SLOT 2 SUPERFREE
+chunk_0112:
+.DB $00, $E6, $05, $E0, $5A, $05, $05, $5A, $00, $E6, $05, $E4, $00, $E6, $05, $E4, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.ENDS
+
+.SECTION "base_chunk_0113" SLOT 2 SUPERFREE
+chunk_0113:
+.DB $05, $5A, $05, $5A, $E4, $05, $5A, $52, $5A, $05, $56, $05, $E0, $5A, $E4, $56, $5A, $05, $5A, $55, $05, $E7, $5A, $05, $5A, $59, $5A, $05, $57, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.ENDS
+
+.SECTION "base_chunk_0114" SLOT 2 SUPERFREE
+chunk_0114:
+.DB $57, $05, $52, $5A, $05, $58, $05, $05, $58, $05, $48, $39, $05, $05, $5A, $05, $E1, $5A, $05, $05, $55, $05, $05, $56, $48, $39, $05, $05, $5A, $05, $05, $57, $59, $5A, $05, $E1, $57, $05, $48, $39, $05, $05, $5A, $05, $00, $FF, $FF, $FF, $FF, $FF, $FF, $E7, $DF
+.ENDS
+
+.SECTION "base_chunk_0115" SLOT 2 SUPERFREE
+chunk_0115:
+.DB $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $04, $05, $00, $E0, $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $04, $05, $00, $E0, $05, $5A, $40, $46, $47, $46, $47, $46, $47, $40, $40, $04, $00, $FF, $FF, $FF, $FF, $FF, $FF, $EB, $DF
 .ENDS
 
 .RAMSECTION "ram_chunksave_0000" SLOT 4 FREE
@@ -4500,11 +4518,11 @@ chunksave_001C dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_001D" SLOT 4 FREE
-chunksave_001D dsb 2
+chunksave_001D dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_001E" SLOT 4 FREE
-chunksave_001E dsb 1
+chunksave_001E dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_001F" SLOT 4 FREE
@@ -4520,7 +4538,7 @@ chunksave_0021 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0022" SLOT 4 FREE
-chunksave_0022 dsb 1
+chunksave_0022 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0023" SLOT 4 FREE
@@ -4528,7 +4546,7 @@ chunksave_0023 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0024" SLOT 4 FREE
-chunksave_0024 dsb 2
+chunksave_0024 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0025" SLOT 4 FREE
@@ -4536,35 +4554,35 @@ chunksave_0025 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0026" SLOT 4 FREE
-chunksave_0026 dsb 1
+chunksave_0026 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0027" SLOT 4 FREE
-chunksave_0027 dsb 1
+chunksave_0027 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0028" SLOT 4 FREE
-chunksave_0028 dsb 3
+chunksave_0028 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0029" SLOT 4 FREE
-chunksave_0029 dsb 2
+chunksave_0029 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_002A" SLOT 4 FREE
-chunksave_002A dsb 1
+chunksave_002A dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_002B" SLOT 4 FREE
-chunksave_002B dsb 3
+chunksave_002B dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_002C" SLOT 4 FREE
-chunksave_002C dsb 2
+chunksave_002C dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_002D" SLOT 4 FREE
-chunksave_002D dsb 3
+chunksave_002D dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_002E" SLOT 4 FREE
@@ -4572,7 +4590,7 @@ chunksave_002E dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_002F" SLOT 4 FREE
-chunksave_002F dsb 3
+chunksave_002F dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0030" SLOT 4 FREE
@@ -4584,7 +4602,7 @@ chunksave_0031 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0032" SLOT 4 FREE
-chunksave_0032 dsb 2
+chunksave_0032 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0033" SLOT 4 FREE
@@ -4592,11 +4610,11 @@ chunksave_0033 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0034" SLOT 4 FREE
-chunksave_0034 dsb 1
+chunksave_0034 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0035" SLOT 4 FREE
-chunksave_0035 dsb 1
+chunksave_0035 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0036" SLOT 4 FREE
@@ -4604,7 +4622,7 @@ chunksave_0036 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0037" SLOT 4 FREE
-chunksave_0037 dsb 2
+chunksave_0037 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0038" SLOT 4 FREE
@@ -4616,15 +4634,15 @@ chunksave_0039 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_003A" SLOT 4 FREE
-chunksave_003A dsb 3
+chunksave_003A dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_003B" SLOT 4 FREE
-chunksave_003B dsb 2
+chunksave_003B dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_003C" SLOT 4 FREE
-chunksave_003C dsb 1
+chunksave_003C dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_003D" SLOT 4 FREE
@@ -4632,7 +4650,7 @@ chunksave_003D dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_003E" SLOT 4 FREE
-chunksave_003E dsb 1
+chunksave_003E dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_003F" SLOT 4 FREE
@@ -4640,19 +4658,19 @@ chunksave_003F dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0040" SLOT 4 FREE
-chunksave_0040 dsb 2
+chunksave_0040 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0041" SLOT 4 FREE
-chunksave_0041 dsb 3
+chunksave_0041 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0042" SLOT 4 FREE
-chunksave_0042 dsb 1
+chunksave_0042 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0043" SLOT 4 FREE
-chunksave_0043 dsb 3
+chunksave_0043 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0044" SLOT 4 FREE
@@ -4660,11 +4678,11 @@ chunksave_0044 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0045" SLOT 4 FREE
-chunksave_0045 dsb 1
+chunksave_0045 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0046" SLOT 4 FREE
-chunksave_0046 dsb 2
+chunksave_0046 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0047" SLOT 4 FREE
@@ -4680,11 +4698,11 @@ chunksave_0049 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_004A" SLOT 4 FREE
-chunksave_004A dsb 2
+chunksave_004A dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_004B" SLOT 4 FREE
-chunksave_004B dsb 2
+chunksave_004B dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_004C" SLOT 4 FREE
@@ -4692,11 +4710,11 @@ chunksave_004C dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_004D" SLOT 4 FREE
-chunksave_004D dsb 1
+chunksave_004D dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_004E" SLOT 4 FREE
-chunksave_004E dsb 3
+chunksave_004E dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_004F" SLOT 4 FREE
@@ -4704,7 +4722,7 @@ chunksave_004F dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0050" SLOT 4 FREE
-chunksave_0050 dsb 2
+chunksave_0050 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0051" SLOT 4 FREE
@@ -4712,11 +4730,11 @@ chunksave_0051 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0052" SLOT 4 FREE
-chunksave_0052 dsb 3
+chunksave_0052 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0053" SLOT 4 FREE
-chunksave_0053 dsb 2
+chunksave_0053 dsb 3
 .ENDS
 
 .RAMSECTION "ram_chunksave_0054" SLOT 4 FREE
@@ -4736,7 +4754,7 @@ chunksave_0057 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0058" SLOT 4 FREE
-chunksave_0058 dsb 3
+chunksave_0058 dsb 1
 .ENDS
 
 .RAMSECTION "ram_chunksave_0059" SLOT 4 FREE
@@ -4756,11 +4774,11 @@ chunksave_005C dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_005D" SLOT 4 FREE
-chunksave_005D dsb 1
+chunksave_005D dsb 4
 .ENDS
 
 .RAMSECTION "ram_chunksave_005E" SLOT 4 FREE
-chunksave_005E dsb 4
+chunksave_005E dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_005F" SLOT 4 FREE
@@ -4780,7 +4798,19 @@ chunksave_0062 dsb 2
 .ENDS
 
 .RAMSECTION "ram_chunksave_0063" SLOT 4 FREE
-chunksave_0063 dsb 1
+chunksave_0063 dsb 2
+.ENDS
+
+.RAMSECTION "ram_chunksave_0064" SLOT 4 FREE
+chunksave_0064 dsb 2
+.ENDS
+
+.RAMSECTION "ram_chunksave_0065" SLOT 4 FREE
+chunksave_0065 dsb 2
+.ENDS
+
+.RAMSECTION "ram_chunksave_0066" SLOT 4 FREE
+chunksave_0066 dsb 1
 .ENDS
 
 .SECTION "base_LVTILEFLAGS_GHZ" SLOT 1 BANK 1
