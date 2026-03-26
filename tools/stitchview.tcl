@@ -569,6 +569,7 @@ proc init_tilemap_images {} {
          set tspecial [lindex $tilespecials $x]
          if {$tspecial eq {}} { set tspecial 0 }
          if {$tflags eq {}} { set tflags 0 }
+
          foreach cidx {0 1} {
             .alltiles.canvas${cidx} create image \
                [expr {$eff_x*32}] \
@@ -822,6 +823,7 @@ proc load_level_layout {lbs} {
    set ti 0
    set eff_width_px 0
    set ts_idx $::tileset_indices($ts_key)
+   lassign $::tilesets($ts_key) _ _ tilespecials
    for {set py 0} {$py < $height_px} {incr py 32} {
       for {set px 0} {$px < $width_px} {incr px 32} {
          set v [lindex $uncdata $ti]
@@ -847,6 +849,15 @@ proc load_level_layout {lbs} {
                      -image [lindex $tilemap $v] \
                      -tags [list $ls_key tbyte_${v} tfull/${ts_key}/${v} ttset_${ts_key} tfulldata] \
                      ;
+
+                  # TODO: FIXME: KLUDGE: Print teleporters --GM
+                  set tspecial [lindex $tilespecials $v]
+                  if {$tspecial eq {}} { set tspecial 0 }
+                  if {$tspecial == 0x0B} {
+                     puts [format "teleport %04X %04X (%02X %02X)" $global_px $global_py [expr {($global_px>>5)&0xFF}] [expr {($global_py>>5)&0xFF}]]
+                  } elseif {$tspecial == 0x1B} {
+                     puts [format "teleport suppressor %04X %04X (%02X %02X)" $global_px $global_py [expr {($global_px>>5)&0xFF}] [expr {($global_py>>5)&0xFF}]]
+                  }
                }
             }
          }

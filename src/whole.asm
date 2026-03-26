@@ -4910,7 +4910,9 @@ LUT_object_functions:
 .dw objfunc_50_flower_raiser, objfunc_51_monitor_checkpoint, objfunc_52_monitor_continue, objfunc_53_end_controller_start, objfunc_54_end_controller_good_ending_chaos_emeralds, objfunc_55_thrown_ring_on_sonic_damage  ; 00:2B96
 
 LUT_object_offscreen_activation_bounds:
-.dw $0100, $0200, $0100, $0200, $0020, $0120, $0020, $00E0                          ; 00:2BA2
+;.dw $0100, $0200, $0100, $0200, $0020, $0120, $0020, $00E0                          ; 00:2BA2 - 00 Sonic (original) + 01
+.dw $0060, $0160, $0060, $0120, $0020, $0120, $0020, $00E0                          ; 00:2BA2 - 00 Sonic (semi-paranoid) + 01
+
 .dw $0020, $0120, $0020, $00E0, $0020, $0120, $0020, $00E0                          ; 00:2BB2
 .dw $0020, $0120, $0020, $00E0, $0020, $0120, $0020, $00E0                          ; 00:2BC2
 .dw $0020, $0120, $0020, $00E0, $0020, $0120, $0060, $00E0                          ; 00:2BD2
@@ -5609,7 +5611,13 @@ run_all_objfuncs:
    ld     hl, g_sprite_table_12        ; 00:32B3 - 21 24 D0
    ld     (g_next_avail_vdp_sprite_ptr), hl  ; 00:32B6 - 22 3C D2
    ld     de, object_list              ; 00:32B9 - 11 FC D3
-   call   try_run_objfunc_DE           ; 00:32BC - CD C8 32
+
+   ;; Tick Sonic if on-screen
+   ld hl, (g_object_ptrs)
+   ld a, l
+   or a
+   call nz, try_run_objfunc_DE
+
    pop    hl                           ; 00:32BF - E1
    pop    af                           ; 00:32C0 - F1
    ld     (g_next_avail_vdp_sprite_ptr), hl  ; 00:32C1 - 22 3C D2
@@ -8139,10 +8147,6 @@ objfunc_00_sonic:
 
 @do_teleport:
    ld     hl, (g_teleport_spec_dest_ptr)  ; 01:5142 - 2A D5 D2
-   ld     b, (hl)                      ; 01:5145 - 46
-   inc    hl                           ; 01:5146 - 23
-   ld     c, (hl)                      ; 01:5147 - 4E
-   inc    hl                           ; 01:5148 - 23
    ld     a, (hl)                      ; 01:5149 - 7E
    and    a                            ; 01:514A - A7
    jr     z, @teleport_is_in_same_level  ; 01:514B - 28 16
@@ -8160,35 +8164,19 @@ objfunc_00_sonic:
    ret                                 ; 01:5162 - C9
 
 @teleport_is_in_same_level:
-   ld     a, b                         ; 01:5163 - 78
-   ld     h, $00                       ; 01:5164 - 26 00
-   ld     b, $05                       ; 01:5166 - 06 05
-
-@teleport_x_pos_shift_left_by_5_loop:
-   add    a, a                         ; 01:5168 - 87
-   rl     h                            ; 01:5169 - CB 14
-   djnz   @teleport_x_pos_shift_left_by_5_loop  ; 01:516B - 10 FB
-   ld     l, a                         ; 01:516D - 6F
-   ld     de, $0008                    ; 01:516E - 11 08 00
-   add    hl, de                       ; 01:5171 - 19
-   ld     (sonic_x), hl                ; 01:5172 - 22 FE D3
-   ld     a, c                         ; 01:5175 - 79
-   ld     h, $00                       ; 01:5176 - 26 00
-   add    a, a                         ; 01:5178 - 87
-   rl     h                            ; 01:5179 - CB 14
-   add    a, a                         ; 01:517B - 87
-   rl     h                            ; 01:517C - CB 14
-   add    a, a                         ; 01:517E - 87
-   rl     h                            ; 01:517F - CB 14
-   add    a, a                         ; 01:5181 - 87
-   rl     h                            ; 01:5182 - CB 14
-   add    a, a                         ; 01:5184 - 87
-   rl     h                            ; 01:5185 - CB 14
-   ld     l, a                         ; 01:5187 - 6F
-   ld     (sonic_y), hl                ; 01:5188 - 22 01 D4
+   inc hl
+   ld de, sonic_x
+   ldi
+   ldi
+   ld de, sonic_y
+   ldi
+   ldi
    xor    a                            ; 01:518B - AF
    ld     (sonic_x_sub), a             ; 01:518C - 32 FD D3
    ld     (sonic_y_sub), a             ; 01:518F - 32 00 D4
+   ;; Clear Sonic's tick function pointer so Sonic doesn't when there's incorrect off-screen physics
+   ld hl, $0000
+   ld (g_object_ptrs), hl
    ret                                 ; 01:5192 - C9
 
 @handle_ending_animation_teleport_in:
@@ -8806,12 +8794,42 @@ objfunc_00_sonic:
    inc    hl                           ; 01:563D - 23
    inc    hl                           ; 01:563E - 23
    inc    hl                           ; 01:563F - 23
+   inc hl
+   inc hl
    djnz   @find_teleport_region        ; 01:5640 - 10 E4
    ret                                 ; 01:5642 - C9
 
 @special_0B_teleport_specs:
-.db $34, $3C, $34, $2F, $00, $19, $3A, $19, $04, $00, $0E, $3A, $00, $00, $16, $1B  ; 01:5643
-.db $32, $00, $00, $17, $2F, $0C, $00, $00, $FF                                     ; 01:5653
+   ; upper teleport C040 1280 (02 94)
+   ; -> upper teleport suppressor C040 1100 (02 88)
+   .db $02, $94
+   .db $00
+   .dw $C040+$08, $1100-$20
+   ; lower teleport BD20 1B80 (E9 DC)
+   ; -> upper teleport suppressor BEA0 0EA0 (F5 75)
+   .db $E9, $DC
+   .db $00
+   .dw $BEA0+$08, $0EA0-$20
+   ; lower teleport BB80 1C80 (DC E4)
+   ; -> main teleport suppressor B440 1460 (A2 A3)
+   .db $DC, $E4
+   .db $00
+   .dw $B440+$08, $1460-$20
+   ; lower teleport BCE0 1C80 (E7 E4)
+   ; -> lower teleport suppressor BCE0 15C0 (E7 AE)
+   .db $E7, $E4
+   .db $00
+   .dw $BCE0+$08, $15C0-$20
+
+   ; sky3 teleport E300 0180 (18 0C)
+   .db $18, $0C, $FF, $00, $00, $00, $00
+
+   ;; Original table follows.
+   ;.db $34, $3C, $34, $2F, $00
+   ;.db $19, $3A, $19, $04, $00
+   ;.db $0E, $3A, $00, $00, $16
+   ;.db $1B, $32, $00, $00, $17
+   ;.db $2F, $0C, $00, $00, $FF
 
 @special_0C_underwater_accel_left_8_subpx_t2:
    ld     hl, (sonic_vel_x_sub)        ; 01:565C - 2A 03 D4

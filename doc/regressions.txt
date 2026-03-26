@@ -1,14 +1,12 @@
 Regressions known at this stage:
 
-- Sonic can actually jump repeatedly while an animal capsule is exploding.
-   - I need to look at the explosion objfunc because that might be what I broke.
 - The LAB1 life monitor always shows as a life monitor.
 - Left-entry-only and right-entry-only doors are weirdly offset to the left.
    - This seems to have "fixed itself"...? Keep an eye on this one.
-- All teleporters and corridors are broken.
-   - SCR2 corridors do not spawn objects.
+- The one remaining corridor that actually needs to teleport does not work.
    - SKY2 corridor does not work. This would be a nice way to move everything over to the left to make room for more levels...
 - The chunksave mechanism is still broken (it was working at one point, honest!), although at least some rings get collected now.
+   - I had to force Sonic to deactivate when off-screen in order to not break teleporters due to checking physics against the wrong chunk layout. I need to confirm if that fixes it.
 - SKY3: The button Robotnik jumps on isn't drawn. I'm not sure how to do this one relatively yet, as the logic is in Robotnik's code.
 - SKY3: Sonic can't teleport out (as per all teleporters being broken).
 - SKY2: The spike wall seems to use an absolute position to work out when to move... and, well, it doesn't move.
