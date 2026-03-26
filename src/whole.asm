@@ -3952,32 +3952,8 @@ load_and_init_level_from_header:
    ld     hl, $FFFE                    ; 00:213D - 21 FE FF
    ld     (g_y_oscillate_baseline_target), hl  ; 00:2140 - 22 9F D2
    ld     hl, LUT_normal_stage_start_time  ; 00:2143 - 21 FF 23
-   bit    4, (iy+iy_06_lvflag01-IYBASE)  ; 00:2146 - FD CB 06 66
-   jr     z, @init_time_after_teleport  ; 00:214A - 28 09
-   bit    0, (iy+iy_05_lvflag00-IYBASE)  ; 00:214C - FD CB 05 46
-   jr     z, @skip_set_init_time_after_teleport  ; 00:2150 - 28 20
-   ld     hl, LUT_bonus_stage_time_limits  ; 00:2152 - 21 02 24
-
-@init_time_after_teleport:
    xor    a                            ; 00:2155 - AF
    ld     (g_rings_BCD), a             ; 00:2156 - 32 AA D2
-   ld     a, (g_level)                 ; 00:2159 - 3A 3E D2
-   sub    $1C                          ; 00:215C - D6 1C
-   jr     c, @set_init_time            ; 00:215E - 38 0A
-   ld     c, a                         ; 00:2160 - 4F
-   add    a, a                         ; 00:2161 - 87
-   add    a, c                         ; 00:2162 - 81
-   ld     e, a                         ; 00:2163 - 5F
-   ld     d, $00                       ; 00:2164 - 16 00
-   ld     hl, LUT_bonus_stage_time_limits_offs_01  ; 00:2166 - 21 05 24
-   add    hl, de                       ; 00:2169 - 19
-
-@set_init_time:
-   ld     de, g_time_mins_BCD          ; 00:216A - 11 CE D2
-   ld     bc, $0003                    ; 00:216D - 01 03 00
-   ldir                                ; 00:2170 - ED B0
-
-@skip_set_init_time_after_teleport:
    ld hl, ART_09_B92E
    ld a, :ART_09_B92E
    ld de, $3000
