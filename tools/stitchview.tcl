@@ -891,37 +891,39 @@ proc load_level_layout {lbs} {
          }
 
          binary scan [read $fp 1] cu obj_count
+
          lappend ::codegen_sections ""
          lappend ::codegen_sections ".SECTION \"base_${obj_label}\" SLOT 2 SUPERFREE"
          lappend ::codegen_sections "${obj_label}:"
+         # TODO: FIXME: KLUDGE: Transplant SCR2_upper signpost into SCR2_main (add one object to list) --GM
+         if {$obj_label eq {LVOBJECTS_SCR2_main}} {
+            incr obj_count
+         }
          lappend ::codegen_sections ".DB ${obj_count}"
+         # TODO: FIXME: KLUDGE: Transplant SCR2_upper signpost into SCR2_main (add one object to list) --GM
+         if {$obj_label eq {LVOBJECTS_SCR2_main}} {
+            incr obj_count -1
+         }
          for {set oi 1} {$oi < $obj_count} {incr oi} {
             set obx {}
             set oby {}
-            binary scan [read $fp 3] cucucu obtype obx oby
+            binary scan [read $fp 3] cucucu obtype rel_obx rel_oby
             # TODO: Track this in an array --GM
-            set obx [expr {($obx<<5)+($base_x-$x0_px)}]
-            set oby [expr {($oby<<5)+($base_y-$y0_px)}]
-            lappend ::codegen_sections [format ".DB \$%02X" $obtype]
-            lappend ::codegen_sections [format ".DW \$%04X, \$%04X" $obx $oby]
-            .canvas create rectangle \
-               [expr {$obx+4}] \
-               [expr {$oby+8}] \
-               [expr {$obx+28}] \
-               [expr {$oby+24}] \
-               -fill #000000 \
-               -outline #FFFFFF \
-               -tags [list $ls_key obj obj_rect] \
-               ;
-            .canvas create text \
-               [expr {$obx+16}] \
-               [expr {$oby+16}] \
-               -text [format %02X $obtype] \
-               -fill #FFFFFF \
-               -anchor center \
-               -tags [list $ls_key obj obj_text] \
-               ;
+            set obx [expr {($rel_obx<<5)+($base_x-$x0_px)}]
+            set oby [expr {($rel_oby<<5)+($base_y-$y0_px)}]
+            load_object $ls_key $obtype $obx $oby
+
+            # TODO: FIXME: KLUDGE: Print if this is an ending signpost so I can kludge it into a different level if needed --GM
+            if {$obtype == 0x07} {
+               puts [format "next level from %s %02X %04X %04X (%02X %02X)" $obj_label $obtype $obx $oby $rel_obx $rel_oby]
+            }
          }
+
+         # TODO: FIXME: KLUDGE: Transplant SCR2_upper signpost into SCR2_main (add the actual object) --GM
+         if {$obj_label eq {LVOBJECTS_SCR2_main}} {
+            load_object $ls_key 0x07 0xBEA0 0x0CA0
+         }
+
          lappend ::codegen_sections ".ENDS"
       } finally {
          close $fp
@@ -929,6 +931,28 @@ proc load_level_layout {lbs} {
    }
 
    incr ::next_layout_x $eff_width_px
+}
+
+proc load_object {ls_key obtype obx oby} {
+   lappend ::codegen_sections [format ".DB \$%02X" $obtype]
+   lappend ::codegen_sections [format ".DW \$%04X, \$%04X" $obx $oby]
+   .canvas create rectangle \
+      [expr {$obx+4}] \
+      [expr {$oby+8}] \
+      [expr {$obx+28}] \
+      [expr {$oby+24}] \
+      -fill #000000 \
+      -outline #FFFFFF \
+      -tags [list $ls_key obj obj_rect] \
+      ;
+   .canvas create text \
+      [expr {$obx+16}] \
+      [expr {$oby+16}] \
+      -text [format %02X $obtype] \
+      -fill #FFFFFF \
+      -anchor center \
+      -tags [list $ls_key obj obj_text] \
+      ;
 }
 
 proc put_metatile {mtx mty v ts_idx} {
