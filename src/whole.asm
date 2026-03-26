@@ -191,7 +191,7 @@ g_HUD_FFstr_buf_3 db   ; D2C1
 .  dsb 1
 g_HUD_FFstr_buf_5 db   ; D2C3
 .  dsb 10
-g_time_mins db   ; D2CE
+g_time_mins_BCD db   ; D2CE
 g_time_secs_BCD db   ; D2CF
 g_time_subsecs db   ; D2D0
 .  dsb 1
@@ -3973,7 +3973,7 @@ load_and_init_level_from_header:
    add    hl, de                       ; 00:2169 - 19
 
 @set_init_time:
-   ld     de, g_time_mins              ; 00:216A - 11 CE D2
+   ld     de, g_time_mins_BCD          ; 00:216A - 11 CE D2
    ld     bc, $0003                    ; 00:216D - 01 03 00
    ldir                                ; 00:2170 - ED B0
 
@@ -4007,7 +4007,7 @@ load_and_init_level_from_header:
    jr z, @checkpoint_not_set
 
    ld     hl, LUT_bonus_stage_time_limits  ; 00:21AE - 21 02 24
-   ld     de, g_time_mins              ; 00:21B1 - 11 CE D2
+   ld     de, g_time_mins_BCD          ; 00:21B1 - 11 CE D2
    ld     bc, $0003                    ; 00:21B4 - 01 03 00
    ldir                                ; 00:21B7 - ED B0
    ld hl, g_level_checkpoint_x_pix
@@ -5057,7 +5057,24 @@ draw_HUD_rings:
 
 draw_level_timer:
    ld     hl, g_HUD_FFstr_buf          ; 00:2F1F - 21 BE D2
-   ld     a, (g_time_mins)             ; 00:2F22 - 3A CE D2
+   ld     a, (g_time_mins_BCD)         ; 00:2F22 - 3A CE D2
+   cp $10
+   jr c, @time_is_below_10_mins
+   rrca
+   rrca
+   scf
+   rra
+   and $9E
+   ld (hl), a
+   inc hl
+   ld a, (g_time_mins_BCD)
+   and $0F
+   add a, a
+   add a, $80
+   ld (hl), a
+   inc hl
+   jr @time_was_at_least_10_mins
+@time_is_below_10_mins:
    and    $0F                          ; 00:2F25 - E6 0F
    add    a, a                         ; 00:2F27 - 87
    add    a, $80                       ; 00:2F28 - C6 80
@@ -5065,6 +5082,7 @@ draw_level_timer:
    inc    hl                           ; 00:2F2B - 23
    ld     (hl), $B0                    ; 00:2F2C - 36 B0
    inc    hl                           ; 00:2F2E - 23
+@time_was_at_least_10_mins:
    ld     a, (g_time_secs_BCD)         ; 00:2F2F - 3A CF D2
    ld     c, a                         ; 00:2F32 - 4F
    srl    a                            ; 00:2F33 - CB 3F
@@ -6583,15 +6601,13 @@ tick_game_time:
    ld     a, (hl)                      ; 00:3A27 - 7E
    adc    a, $00                       ; 00:3A28 - CE 00
    daa                                 ; 00:3A2A - 27
-   cp     $10                          ; 00:3A2B - FE 10
-   jr     c, @up_time_not_expired      ; 00:3A2D - 38 06
-   push   hl                           ; 00:3A2F - E5
-   call   kill_sonic                   ; 00:3A30 - CD 18 36
-   pop    hl                           ; 00:3A33 - E1
-   xor    a                            ; 00:3A34 - AF
-
+   jr nc, @up_time_not_expired
+   ;; Don't kill, just saturate the time counter at 99:59
+   ld (hl), $99
+   inc hl
+   ld a, $59
 @up_time_not_expired:
-   ld     (hl), a                      ; 00:3A35 - 77
+   ld (hl), a
    ret                                 ; 00:3A36 - C9
 
 @time_ticks_downwards:
