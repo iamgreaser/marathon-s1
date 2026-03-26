@@ -12,6 +12,7 @@ Regressions known at this stage:
 - SKY2: The spike wall seems to use an absolute position to work out when to move... and, well, it doesn't move.
 - Transitions across different tilesets are still a bit jank as the tilemaps and art and palettes get replaced, but at least chunks have consistent physics now!
 - SKY1 to SKY2 transition can result in being bombarded with a non-stop lightning flash.
+- SKY3: The background tiles get mangled when the electric bolts happen.
 
 Stuff which will result in a regression if I'm not careful:
 

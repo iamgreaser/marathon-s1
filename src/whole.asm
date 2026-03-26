@@ -14727,6 +14727,18 @@ objfunc_13_level_change_corridor:
    of_disable_world_collisions
    of_check_collision_with_sonic $00, $00, $1E, $60
    jr     c, @finish_tick              ; 02:9B8A - 38 45
+.IF 1
+   ;; There's only one functioning corridor teleport remaining, the ones in SCR2 are unused.
+   ld a, (g_level)
+   cp $10  ; SKY2?
+   jr c, @finish_tick
+
+   ;; Go to next level!
+   set 1, (iy+iy_06_lvflag01-IYBASE)
+   ld a, $01
+   ld (g_signpost_tickdown_counter), a
+.ELSE
+   ;; Original code follows.
    ld     l, (ix+2)                    ; 02:9B8C - DD 6E 02
    ld     h, (ix+3)                    ; 02:9B8F - DD 66 03
    ld     a, l                         ; 02:9B92 - 7D
@@ -14770,6 +14782,7 @@ objfunc_13_level_change_corridor:
    inc    hl                           ; 02:9BCD - 23
    inc    hl                           ; 02:9BCE - 23
    djnz   @each_corridor_candidate     ; 02:9BCF - 10 E2
+.ENDIF
 
 @finish_tick:
    of_clear_sprite
@@ -14777,17 +14790,9 @@ objfunc_13_level_change_corridor:
 
 LUT_corridor_data:
 .db $7D, $1A, $15                                                                   ; 02:9BD9
-
-LUT_corridor_data_1:
 .db $7D, $01, $14                                                                   ; 02:9BDC
-
-LUT_corridor_data_2:
 .db $01, $3C, $18                                                                   ; 02:9BDF
-
-LUT_corridor_data_3:
 .db $01, $02, $19                                                                   ; 02:9BE2
-
-LUT_corridor_data_4:
 .db $14, $0F, $1A                                                                   ; 02:9BE5
 
 objfunc_14_SCR_flamer_firing_right:
