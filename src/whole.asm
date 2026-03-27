@@ -11880,7 +11880,7 @@ SPRITEMAP_platform_downwards_wide:
 .ENDS
 
 .SMSTAG
-.SDSCTAG 0.0, "Sonic 1 Marathon", "", "modified by GreaseMonkey"
+.SDSCTAG 0.2, "Sonic 1 Marathon Edition", "", "modified by GreaseMonkey"
 
 .SECTION "Bank01_TMR_SEGA_presum" SLOT 1 BANK $01 FORCE ORG $3FF8
 .db $59, $59 ; 01:7FF8

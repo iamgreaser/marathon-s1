@@ -1,0 +1,45 @@
+Sonic 1 Marathon Edition
+A disassembly-based modification of Sonic The Hedgehog for the Sega Master System
+Modification by GreaseMonkey, 2026 (AKA thematrixeatsyou)
+Originally developed for the SMS Power Hacks Competition 2026.
+
+------------------------------
+
+What is this?
+
+Sonic 1 with somewhat modified gameplay. Try to get to the end of the first level. (That is the extent of the trolling.)
+Don't worry too much about the timer, it won't kill you in this mod.
+
+Also, this mod supports Slot 2 mappers! No need for that pesky Slot 1 unlike the original version.
+
+Play requirements:
+
+- A good dump of Sonic The Hedgehog for the Sega Master System with a CRC32 of B519E833
+- A patcher that can handle BPS format (I used `flips` to generate the BPS patch if you need a suggestion)
+- Some way to play the game
+
+Note that the engine is a little bit slower than the vanilla engine, so you will definitely want to play this in PAL instead of NTSC unless you want something more *cinematic*.
+
+Also, if you want to modify this mod:
+
+- You have my full permission. Just remember that, as this is a mod for a commercial game, you'll need to not give SEGA a good reason to send lawyers after you.
+- Here's the codebase: https://github.com/iamgreaser/marathon-s1
+- If you just want a disassembly you can modify, this is what it's based on: https://github.com/iamgreaser/s1smsdisasm-gm
+- If you can work out a sane way to slap free software / open source licences on the tools for your own purposes, let me know somehow and I'll make it happen.
+
+------------------------------
+
+Version 0.2 (initial release, 2026-03-27):
+
+I had to hurry up and ship this so unfortunately there *are* bugs, and there are also a few incomplete things and a bit of jank.
+Also, SEIZURE WARNING. You still get the flashing in Sky Base 1 and it can actually follow on to the next level.
+- The most notable jank is during level transitions. The physics are consistent, but the tile data will definitely appear borked. I have to rework how tilesets work in order for that to work nicely.
+- Some rings will mysteriously disappear. Haven't gotten to the bottom of this yet. I recall this was working fine at one point, though!
+- Scrap Brain 2 unfortunately is in a mostly incomplete state, and as a result, that Chaos Emerald is uncollectable. I did get the teleporters working and the transition to Scrap Brain 3 working though. My main aim is to get everything into a kd-tree and minimise the amount of RAM state needed.
+- There are some graphical issues in Sky Base 3.
+- The life monitor in Labyrinth 1 is broken graphically and only gives rings. Which is weird as I had the opposite problem for the longest time where it would only ever be a life monitor and never give rings instead (but the graphics weren't borked).
+- I ended up doing fairly normal transitions for the end of Scrap Brain 3 and the end of Sky Base 2. The first is largely due to not getting around to modifying the boss code suitably, but the second is because the airship is actually a TARDIS and I would have to make an actual level editor to figure that one out.
+- I had to deactivate Sonic while off-screen, so during that time, the invincibility timer isn't decreasing. So you can end up with the music playing longer than expected.
+- Anything else I missed.
+
+OK enough rambling now ship it
